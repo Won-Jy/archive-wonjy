@@ -30,21 +30,37 @@
       color: #555;
       font-size: 0.95em;
       transition: color 0.2s;
+      font-weight: normal;
     }
     nav a:hover,
     nav a.active {
       color: #007BFF;
     }
+    .lang-placeholder {
+      height: 30px;
+    }
     main {
       padding: 60px 24px;
       max-width: 700px;
     }
-    .row {
-      margin-bottom: 20px;
+    .entry {
+      margin-bottom: 30px;
     }
-    .row span {
+    .entry-label {
+      display: inline-block;
+      min-width: 40px;
+      color: #000;
+      font-weight: normal; /* 여기서 볼드 제거 */
+    }
+    .lang-links a {
       margin-left: 10px;
+      font-size: 0.9em;
       color: #666;
+      text-decoration: none;
+      font-weight: normal; /* 여기서도 볼드 제거 */
+    }
+    .lang-links a:hover {
+      color: #007BFF;
     }
   </style>
 </head>
@@ -59,17 +75,23 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
+  <div class="lang-placeholder"></div>
   <main>
-    <div class="row">
-      <strong>Book</strong>
-      <span>(<a href="book-fr.pdf">FR</a>)</span>
-      <span>(<a href="book-en.pdf">EN</a>)</span>
+    <div class="entry">
+      <span class="entry-label">Book</span>
+      <span class="lang-links">
+        <a href="book-fr.pdf" target="_blank">(FR)</a>
+        <a href="book-en.pdf" target="_blank">(EN)</a>
+      </span>
     </div>
-    <div class="row">
-      <strong>CV</strong>
-      <span>(<a href="cv-fr.pdf">FR</a>)</span>
+    <div class="entry">
+      <span class="entry-label">CV</span>
+      <span class="lang-links">
+        <a href="cv-fr.pdf" target="_blank">(FR)</a>
+      </span>
     </div>
   </main>
 </body>
 </html>
+
+
