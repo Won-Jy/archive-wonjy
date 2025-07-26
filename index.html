@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>archive-wonjy.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>archive-wonjy</title>
   <style>
     body {
       font-family: sans-serif;
@@ -10,122 +11,88 @@
       padding: 0;
     }
 
-    nav {
+    header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 10px 20px;
+      align-items: center;
+      padding: 16px 24px;
       border-bottom: 1px solid #ddd;
     }
 
     .logo {
       font-weight: bold;
+      font-size: 1.2em;
     }
 
-    .menu a {
-      margin-left: 15px;
+    nav a {
+      margin-left: 20px;
       text-decoration: none;
-      color: #444;
+      color: black;
     }
 
-    .menu a.active {
-      color: #007bff;
+    nav a:hover,
+    nav a.active {
+      color: #007aff;
     }
 
-    .menu a:hover {
-      color: #007bff;
+    main {
+      padding: 48px 24px;
     }
 
-    .container {
-      padding: 40px 20px;
+    .row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
-    .lang-links {
-      display: inline-block;
-      margin-left: 10px;
-    }
-
-    .lang-links a {
-      margin-left: 5px;
-      text-decoration: none;
-      color: #444;
+    .row span:first-child {
+      min-width: 50px;
       font-weight: normal;
     }
 
-    .lang-links a:hover,
-    .lang-links a.active {
-      color: #007bff;
+    .row .lang-links {
+      margin-left: 8px;
     }
 
-    .block {
-      margin-top: 30px;
-    }
-
-    .block-title {
-      font-weight: bold;
-      display: inline-block;
-      min-width: 50px;
-    }
-
-    .right-links {
-      display: inline-block;
-      margin-left: 10px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .right-links a {
+    .lang-links a {
       text-decoration: none;
-      color: #666;
-      margin-left: 10px;
+      color: gray;
+      margin-left: 8px;
     }
 
-    .right-links a:hover {
-      color: #007bff;
+    .lang-links a:hover {
+      color: #007aff;
     }
   </style>
 </head>
 <body>
-  <nav>
+  <header>
     <div class="logo">archive-wonjy.com</div>
-    <div class="menu">
+    <nav>
       <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
       <a href="bio.html">Bio</a>
       <a href="texts.html">Texts</a>
       <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-
-  <div class="container">
+    </nav>
+  </header>
+  <main>
     <p>Artiste basée à Nîmes.</p>
 
-    <div class="block">
-      <span class="block-title">Book</span>
-      <span class="right-links">
-        <a href="book-fr.pdf">(FR)</a>
-        <a href="book-en.pdf">(EN)</a>
+    <div class="row">
+      <span><strong>Book</strong></span>
+      <span class="lang-links">
+        <a href="docs/book_fr.pdf" target="_blank">(FR)</a>
+        <a href="docs/book_en.pdf" target="_blank">(EN)</a>
       </span>
     </div>
 
-    <div class="block">
-      <span class="block-title">CV</span>
-      <span class="right-links">
-        <a href="cv-fr.pdf">(FR)</a>
+    <div class="row">
+      <span><strong>CV</strong></span>
+      <span class="lang-links">
+        <a href="docs/cv_fr.pdf" target="_blank">(FR)</a>
       </span>
     </div>
-
-    <div class="block">
-      <a href="bio.html">Bio</a>
-    </div>
-
-    <div class="block">
-      <a href="texts.html">Texts</a>
-    </div>
-
-    <div class="block">
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+  </main>
 </body>
 </html>
