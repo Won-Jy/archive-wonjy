@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
   <title>archive-wonjy.com</title>
   <style>
     body {
@@ -11,98 +10,122 @@
       padding: 0;
     }
 
-    header {
+    nav {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 16px 40px;
-      border-bottom: 1px solid #eee;
+      justify-content: space-between;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
     }
 
-    .site-title {
+    .logo {
       font-weight: bold;
-      font-size: 18px;
     }
 
-    nav a {
-      margin-left: 20px;
-      color: #333;
+    .menu a {
+      margin-left: 15px;
       text-decoration: none;
-      border-bottom: 1px solid transparent;
+      color: #444;
     }
 
-    nav a:hover,
-    nav a.active {
-      color: royalblue;
-      border-bottom: 1px solid royalblue;
+    .menu a.active {
+      color: #007bff;
     }
 
-    main {
-      max-width: 700px;
-      margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.6;
+    .menu a:hover {
+      color: #007bff;
     }
 
-    ul {
-      list-style-type: none;
-      padding-left: 0;
+    .container {
+      padding: 40px 20px;
     }
 
-    .item-label {
+    .lang-links {
       display: inline-block;
-      width: 60px;
-      font-weight: bold;
+      margin-left: 10px;
     }
 
-    .item-lang {
-      color: #666;
-      font-size: 0.9em;
-    }
-
-    .item-lang a {
-      color: #666;
-      text-decoration: none;
+    .lang-links a {
       margin-left: 5px;
+      text-decoration: none;
+      color: #444;
+      font-weight: normal;
     }
 
-    .item-lang a:hover {
-      color: royalblue;
+    .lang-links a:hover,
+    .lang-links a.active {
+      color: #007bff;
+    }
+
+    .block {
+      margin-top: 30px;
+    }
+
+    .block-title {
+      font-weight: bold;
+      display: inline-block;
+      min-width: 50px;
+    }
+
+    .right-links {
+      display: inline-block;
+      margin-left: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .right-links a {
+      text-decoration: none;
+      color: #666;
+      margin-left: 10px;
+    }
+
+    .right-links a:hover {
+      color: #007bff;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="site-title">archive-wonjy.com</div>
-    <nav>
+  <nav>
+    <div class="logo">archive-wonjy.com</div>
+    <div class="menu">
       <a href="index.html" class="active">Home</a>
-      <a href="#">Work</a>
+      <a href="work.html">Work</a>
       <a href="bio.html">Bio</a>
-      <a href="#">Texts</a>
+      <a href="texts.html">Texts</a>
       <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <main>
+  <div class="container">
     <p>Artiste basée à Nîmes.</p>
-    <ul>
-      <li>
-        <span class="item-label">Book</span>
-        <span class="item-lang">
-          (<a href="book-fr.pdf">FR</a>)
-          (<a href="book-en.pdf">EN</a>)
-        </span>
-      </li>
-      <li>
-        <span class="item-label">CV</span>
-        <span class="item-lang">
-          (<a href="cv.pdf">FR</a>)
-        </span>
-      </li>
-      <li><a href="bio.html">Bio</a></li>
-      <li><a href="#">Texts</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </main>
+
+    <div class="block">
+      <span class="block-title">Book</span>
+      <span class="right-links">
+        <a href="book-fr.pdf">(FR)</a>
+        <a href="book-en.pdf">(EN)</a>
+      </span>
+    </div>
+
+    <div class="block">
+      <span class="block-title">CV</span>
+      <span class="right-links">
+        <a href="cv-fr.pdf">(FR)</a>
+      </span>
+    </div>
+
+    <div class="block">
+      <a href="bio.html">Bio</a>
+    </div>
+
+    <div class="block">
+      <a href="texts.html">Texts</a>
+    </div>
+
+    <div class="block">
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
 </body>
 </html>
