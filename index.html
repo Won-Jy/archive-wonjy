@@ -13,7 +13,7 @@
     }
     header {
       display: flex;
-      justify-content: flex-start; /* ← 왼쪽 정렬 */
+      justify-content: flex-start;
       align-items: center;
       padding: 20px 24px;
       border-bottom: 1px solid #ddd;
@@ -28,16 +28,18 @@
       text-transform: lowercase;
     }
     nav {
-      margin-left: 40px; /* ← 제목과 메뉴 사이 간격 */
+      margin-left: 40px;
     }
     nav a {
       margin-left: 24px;
       text-decoration: none;
       color: #555;
       font-size: 0.95em;
+      transition: color 0.2s;
     }
-    nav a:hover {
-      color: #000;
+    nav a:hover,
+    nav a.active {
+      color: #007BFF; /* 파란색 */
     }
     main {
       padding: 60px 24px;
@@ -53,6 +55,12 @@
       font-size: 0.9em;
       color: #aaa;
       margin-left: 4px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .lang:hover,
+    .lang.active {
+      color: #007BFF;
     }
   </style>
 </head>
@@ -61,7 +69,7 @@
   <header>
     <div class="title">archive-wonjy</div>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
       <a href="bio.html">Bio</a>
       <a href="texts.html">Texts</a>
