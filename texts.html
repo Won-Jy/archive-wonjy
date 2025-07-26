@@ -127,19 +127,19 @@
       container.innerHTML = "";
 
       for (let i = 1; i <= totalPages; i++) {
-        if (i > 1) container.innerHTML += " / ";
+        if (i > 1) container.appendChild(document.createTextNode(" / "));
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = i;
         if (i === currentPage) {
           link.classList.add("active");
         }
-        link.addEventListener("click", (e => {
+        link.addEventListener("click", function (e) {
           e.preventDefault();
           currentPage = i;
           renderTexts();
           renderPagination();
-        }));
+        });
         container.appendChild(link);
       }
     }
