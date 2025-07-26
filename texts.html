@@ -8,7 +8,7 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 0;
+      line-height: 1.6;
     }
     header {
       display: flex;
@@ -29,52 +29,49 @@
       text-decoration: none;
       color: #555;
       font-size: 0.95em;
+      transition: color 0.2s;
     }
     nav a:hover,
     nav a.active {
       color: #007BFF;
     }
+    .lang-placeholder {
+      height: 30px;
+    }
     main {
-      padding: 40px 24px;
+      padding: 60px 24px;
       max-width: 700px;
-      margin: 0 auto;
+      min-height: 550px;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 24px;
+    .text-entry {
+      margin-bottom: 18px;
       font-size: 0.95em;
     }
-    em {
+    .text-entry em {
       font-style: italic;
     }
-    .langs a {
+    .lang-links a {
       margin-left: 8px;
-      text-decoration: none;
+      font-size: 0.95em;
       color: #666;
-      font-size: 0.85em;
+      text-decoration: none;
     }
-    .langs a:hover {
+    .lang-links a:hover {
       color: #007BFF;
     }
     .pagination {
-      margin-top: 40px;
-      text-align: center;
+      text-align: left;
+      padding: 20px 24px;
     }
-    .pagination button {
-      margin: 0 4px;
-      padding: 4px 8px;
-      background: none;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      font-size: 0.85em;
+    .pagination a {
+      margin-right: 10px;
+      color: #555;
+      text-decoration: none;
+      font-size: 0.95em;
     }
-    .pagination button.active {
-      background: #007BFF;
-      color: white;
-      border-color: #007BFF;
+    .pagination a:hover,
+    .pagination a.active {
+      color: #007BFF;
     }
   </style>
 </head>
@@ -89,56 +86,71 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <ul id="text-list"></ul>
-    <div class="pagination" id="pagination"></div>
-  </main>
+  <div class="lang-placeholder"></div>
+  <main id="textContainer"></main>
+  <div class="pagination" id="pagination"></div>
 
   <script>
     const texts = [
-      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", files: { fr: "roule-lave-fr.html", en: "roule-lave-en.html" } },
-      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", files: { fr: "like-a-rolling-stone-fr.html", en: "like-a-rolling-stone-en.html" } },
-      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", files: { fr: "wonjy-cacn-fr.html", en: "wonjy-cacn-en.html" } },
-      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024-04", files: { fr: "label-text-fr.html" } },
-      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024-04", files: { fr: "murohomo-fr.html" } },
-      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022-05", files: { fr: "grotto-fr.html", en: "grotto-en.html" } },
-      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022-05", files: { fr: "effondrement-fr.html", en: "effondrement-en.html" } },
-      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021-12", files: { fr: "pierres-fr.html" } },
-      { title: "Se réinventer", author: "Laurent Puech", date: "2021-11", files: { fr: "reinventer-fr.html", en: "reinventer-en.html" } },
-      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021-10", files: { fr: "entretien-fr.html" } },
-      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020-12", files: { fr: "banal-fr.html" } },
-      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019-08", files: { fr: "columbarium-fr.html", en: "columbarium-en.html" } },
-      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018-07", files: { fr: "devenir-fr.html", en: "devenir-en.html" } }
+      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "#", en: "#" },
+      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "#", en: "#" },
+      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "#", en: "#" },
+      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024-04", fr: "#" },
+      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024-04", fr: "#" },
+      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022-05", fr: "#", en: "#" },
+      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022-05", fr: "#", en: "#" },
+      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021-12", fr: "#" },
+      { title: "Se réinventer", author: "Laurent Puech", date: "2021-11", fr: "#", en: "#" },
+      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021-10", fr: "#" },
+      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020-12", fr: "#" },
+      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019-08", fr: "#", en: "#" },
+      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018-07", fr: "#", en: "#" }
     ];
 
-    let currentPage = 1;
+    texts.sort((a, b) => b.date.localeCompare(a.date));
+
     const perPage = 8;
+    let currentPage = 1;
 
-    function renderList() {
+    function renderTexts() {
+      const container = document.getElementById("textContainer");
+      container.innerHTML = "";
       const start = (currentPage - 1) * perPage;
-      const paginated = texts.slice(start, start + perPage);
-      document.getElementById("text-list").innerHTML = paginated.map(t => {
-        const langLinks = Object.entries(t.files).map(([lang, link]) => `<a href="${link}" target="_blank">(${lang.toUpperCase()})</a>`).join(" ");
-        return `<li><em>${t.title}</em> – ${t.author}, ${t.date} <span class="langs">${langLinks}</span></li>`;
-      }).join("");
-      renderPagination(texts.length);
+      const pageItems = texts.slice(start, start + perPage);
+
+      pageItems.forEach(text => {
+        const div = document.createElement("div");
+        div.className = "text-entry";
+        div.innerHTML = `<em>${text.title}</em> – ${text.author}, ${text.date}` +
+          `<span class="lang-links">` +
+          (text.fr ? `<a href="${text.fr}" target="_blank">(FR)</a>` : "") +
+          (text.en ? `<a href="${text.en}" target="_blank">(EN)</a>` : "") +
+          `</span>`;
+        container.appendChild(div);
+      });
     }
 
-    function renderPagination(total) {
-      const totalPages = Math.ceil(total / perPage);
-      let html = "";
+    function renderPagination() {
+      const pag = document.getElementById("pagination");
+      pag.innerHTML = "";
+      const totalPages = Math.ceil(texts.length / perPage);
       for (let i = 1; i <= totalPages; i++) {
-        html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        const link = document.createElement("a");
+        link.href = "#";
+        link.textContent = i;
+        if (i === currentPage) link.classList.add("active");
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          currentPage = i;
+          renderTexts();
+          renderPagination();
+        });
+        pag.appendChild(link);
       }
-      document.getElementById("pagination").innerHTML = html;
     }
 
-    function goToPage(page) {
-      currentPage = page;
-      renderList();
-    }
-
-    renderList();
+    renderTexts();
+    renderPagination();
   </script>
 </body>
 </html>
