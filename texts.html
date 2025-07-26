@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Texts | archive-wonjy</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid #ddd;
+    }
+    .title {
+      font-size: 1.2em;
+      font-weight: bold;
+      text-transform: lowercase;
+    }
+    nav {
+      margin-left: 40px;
+    }
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #555;
+      font-size: 0.95em;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #007BFF;
+    }
+    main {
+      display: flex;
+      padding: 40px 24px;
+      max-width: 1000px;
+    }
+    aside {
+      margin-right: 40px;
+    }
+    aside button {
+      display: block;
+      margin-bottom: 10px;
+      background: none;
+      border: none;
+      color: #555;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    aside button:hover,
+    aside button.active {
+      color: #007BFF;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 24px;
+      font-size: 0.95em;
+    }
+    em {
+      font-style: italic;
+    }
+    .langs a {
+      margin-left: 8px;
+      text-decoration: none;
+      color: #666;
+      font-size: 0.85em;
+    }
+    .langs a:hover {
+      color: #007BFF;
+    }
+    .pagination {
+      margin-top: 40px;
+    }
+    .pagination button {
+      margin-right: 8px;
+      padding: 4px 8px;
+      background: none;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      font-size: 0.85em;
+    }
+    .pagination button.active {
+      background: #007BFF;
+      color: white;
+      border-color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">archive-wonjy.com</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="bio.html">Bio</a>
+      <a href="texts.html" class="active">Texts</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <aside id="year-filter"></aside>
+    <section style="flex-grow:1;">
+      <ul id="text-list"></ul>
+      <div class="pagination" id="pagination"></div>
+    </section>
+  </main>
 
+  <script>
+    const texts = [
+      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", files: { fr: "roule-lave-fr.html", en: "roule-lave-en.html" } },
+      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", files: { fr: "like-a-rolling-stone-fr.html", en: "like-a-rolling-stone-en.html" } },
+      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", files: { fr: "wonjy-cacn-fr.html", en: "wonjy-cacn-en.html" } },
+      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024-04", files: { fr: "label-text-fr.html" } },
+      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024-04", files: { fr: "murohomo-fr.html" } },
+      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022-05", files: { fr: "grotto-fr.html", en: "grotto-en.html" } },
+      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022-05", files: { fr: "effondrement-fr.html", en: "effondrement-en.html" } },
+      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021-12", files: { fr: "pierres-fr.html" } },
+      { title: "Se réinventer", author: "Laurent Puech", date: "2021-11", files: { fr: "reinventer-fr.html", en: "reinventer-en.html" } },
+      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021-10", files: { fr: "entretien-fr.html" } },
+      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020-12", files: { fr: "banal-fr.html" } },
+      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019-08", files: { fr: "columbarium-fr.html", en: "columbarium-en.html" } },
+      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018-07", files: { fr: "devenir-fr.html", en: "devenir-en.html" } }
+    ];
+  </script>
+</body>
+</html>
