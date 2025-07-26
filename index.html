@@ -3,32 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Won Jy – Archive</title>
+  <title>archive-wonjy</title>
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
-      margin: 40px;
-      max-width: 700px;
-      line-height: 1.6;
+      background: #fff;
+      color: #111;
     }
-    a {
-      color: #333;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1000;
+    }
+    .title {
+      font-weight: bold;
+      text-transform: lowercase;
+      font-size: 1.2em;
+    }
+    nav a {
+      margin-left: 24px;
       text-decoration: none;
-      border-bottom: 1px solid #999;
+      color: #555;
+      font-size: 0.95em;
+    }
+    main {
+      padding: 60px 40px;
+    }
+    .resource {
+      margin-bottom: 20px;
+    }
+    .label {
+      margin-right: 10px;
+    }
+    .lang-link {
+      font-size: 0.9em;
+      color: #aaa;
+      margin-left: 4px;
     }
   </style>
 </head>
 <body>
-  <h1>Won Jy – Archive</h1>
-  <p>Artiste basée à Nîmes.</p>
 
-  <ul>
-    <li><a href="book-fr.pdf">Book (FR)</a></li>
-    <li><a href="book-en.pdf">Book (EN)</a></li>
-    <li><a href="cv.pdf">CV (FR)</a></li>
-    <li><a href="bio.html">Bio</a></li>
-    <li><a href="texts.html">Texts</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+<header>
+  <div class="title">archive-wonjy</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="work.html">Work</a>
+    <a href="bio.html">Bio</a>
+    <a href="texts.html">Texts</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <div class="resource">
+    <span class="label">Book</span>
+    <a class="lang-link" href="book-fr.pdf">(FR)</a>
+    <a class="lang-link" href="book-en.pdf">(EN)</a>
+  </div>
+  <div class="resource">
+    <span class="label">CV</span>
+    <a class="lang-link" href="cv.pdf">(FR)</a>
+  </div>
+</main>
+
 </body>
 </html>
