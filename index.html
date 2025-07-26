@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: sans-serif;
-      background: #fff;
+      background-color: #fff;
       color: #111;
     }
     header {
@@ -19,13 +19,13 @@
       border-bottom: 1px solid #ddd;
       position: sticky;
       top: 0;
-      background: #fff;
-      z-index: 1000;
+      background: white;
+      z-index: 10;
     }
     .title {
+      font-size: 1.2em;
       font-weight: bold;
       text-transform: lowercase;
-      font-size: 1.2em;
     }
     nav a {
       margin-left: 24px;
@@ -33,16 +33,20 @@
       color: #555;
       font-size: 0.95em;
     }
+    nav a:hover {
+      color: #000;
+    }
     main {
       padding: 60px 40px;
     }
-    .resource {
-      margin-bottom: 20px;
+    .section {
+      margin: 20px 0;
     }
     .label {
-      margin-right: 10px;
+      display: inline-block;
+      margin-right: 8px;
     }
-    .lang-link {
+    .lang {
       font-size: 0.9em;
       color: #aaa;
       margin-left: 4px;
@@ -51,28 +55,28 @@
 </head>
 <body>
 
-<header>
-  <div class="title">archive-wonjy</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="work.html">Work</a>
-    <a href="bio.html">Bio</a>
-    <a href="texts.html">Texts</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header>
+    <div class="title">archive-wonjy</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="bio.html">Bio</a>
+      <a href="texts.html">Texts</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<main>
-  <div class="resource">
-    <span class="label">Book</span>
-    <a class="lang-link" href="book-fr.pdf">(FR)</a>
-    <a class="lang-link" href="book-en.pdf">(EN)</a>
-  </div>
-  <div class="resource">
-    <span class="label">CV</span>
-    <a class="lang-link" href="cv.pdf">(FR)</a>
-  </div>
-</main>
+  <main>
+    <div class="section">
+      <span class="label">Book</span>
+      <a class="lang" href="book-fr.pdf">(FR)</a>
+      <a class="lang" href="book-en.pdf">(EN)</a>
+    </div>
+    <div class="section">
+      <span class="label">CV</span>
+      <a class="lang" href="cv.pdf">(FR)</a>
+    </div>
+  </main>
 
 </body>
 </html>
