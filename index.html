@@ -1,71 +1,67 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>archive-wonjy.com</title>
+  <title>Home | archive-wonjy</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 0;
+      line-height: 1.6;
     }
-
     header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 30px 10px;
+      padding: 20px 24px;
       border-bottom: 1px solid #ddd;
     }
-
-    .site-title {
+    .title {
+      font-size: 1.2em;
       font-weight: bold;
-      font-size: 20px;
+      text-transform: lowercase;
     }
-
+    nav {
+      margin-left: 40px;
+    }
     nav a {
-      margin-left: 20px;
+      margin-left: 24px;
       text-decoration: none;
-      color: #333;
+      color: #555;
+      font-size: 0.95em;
       transition: color 0.2s;
     }
-
     nav a:hover,
     nav a.active {
-      color: #007bff;
+      color: #007BFF;
     }
-
+    .lang-placeholder {
+      height: 30px;
+    }
     main {
-      padding: 50px 30px;
+      padding: 60px 24px;
+      max-width: 700px;
     }
-
-    .title {
+    .entry {
+      margin-bottom: 30px;
+    }
+    .entry-title {
       font-weight: bold;
-      margin-top: 30px;
-      margin-bottom: 5px;
     }
-
-    .lang-links {
-      display: inline-block;
-      margin-left: 10px;
-    }
-
     .lang-links a {
+      margin-left: 10px;
       font-size: 0.9em;
-      color: gray;
+      color: #666;
       text-decoration: none;
-      margin-left: 8px;
     }
-
     .lang-links a:hover {
-      color: #007bff;
+      color: #007BFF;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="site-title">archive-wonjy.com</div>
+    <div class="title">archive-wonjy.com</div>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
@@ -74,19 +70,22 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
+  <div class="lang-placeholder"></div>
   <main>
-    <div class="title">Book
-      <span class="lang-links">
-        <a href="book-fr.pdf" target="_blank">(FR)</a>
-        <a href="book-en.pdf" target="_blank">(EN)</a>
-      </span>
+    <div class="entry">
+      <div class="entry-title">Book
+        <span class="lang-links">
+          <a href="book-fr.pdf" target="_blank">(FR)</a>
+          <a href="book-en.pdf" target="_blank">(EN)</a>
+        </span>
+      </div>
     </div>
-
-    <div class="title">CV
-      <span class="lang-links">
-        <a href="cv-fr.pdf" target="_blank">(FR)</a>
-      </span>
+    <div class="entry">
+      <div class="entry-title">CV
+        <span class="lang-links">
+          <a href="cv-fr.pdf" target="_blank">(FR)</a>
+        </span>
+      </div>
     </div>
   </main>
 </body>
