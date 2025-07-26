@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact – archive-wonjy.com</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | archive-wonjy</title>
   <style>
     body {
-      margin: 0;
       font-family: sans-serif;
-      background-color: #fff;
-      color: #111;
+      margin: 0;
+      line-height: 1.6;
     }
     header {
       display: flex;
-      justify-content: flex-start;
       align-items: center;
       padding: 20px 24px;
       border-bottom: 1px solid #ddd;
-      background: white;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
     .title {
       font-size: 1.2em;
@@ -41,24 +35,20 @@
     nav a.active {
       color: #007BFF;
     }
+    .lang-placeholder {
+      height: 30px;
+    }
     main {
       padding: 60px 24px;
-      line-height: 1.8;
+      max-width: 700px;
     }
-    strong {
-      font-weight: bold;
-    }
-    a.external-link {
+    a {
       color: #007BFF;
       text-decoration: none;
-    }
-    a.external-link:hover {
-      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
   <header>
     <div class="title">archive-wonjy.com</div>
     <nav>
@@ -69,11 +59,10 @@
       <a href="contact.html" class="active">Contact</a>
     </nav>
   </header>
-
+  <div class="lang-placeholder"></div>
   <main>
-    <p><strong>E-mail:</strong> wonjungyun1@gmail.com</p>
-    <p><strong>Instagram:</strong> <a class="external-link" href="https://www.instagram.com/won___j_y_/" target="_blank">@won___j_y_</a></p>
+    <p><span style="font-weight:bold;">E-mail:</span> wonjungyun1@gmail.com</p>
+    <p><span style="font-weight:bold;">Instagram:</span> <a href="https://www.instagram.com/won___j_y_">@won___j_y_</a></p>
   </main>
-
 </body>
 </html>
