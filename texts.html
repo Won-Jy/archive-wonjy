@@ -13,7 +13,7 @@
     header {
       display: flex;
       align-items: center;
-      padding: 20px 24px;ㅁ
+      padding: 20px 24px;
       border-bottom: 1px solid #ddd;
     }
     .title {
@@ -35,36 +35,34 @@
     nav a.active {
       color: #007BFF;
     }
-    .lang-placeholder {
-      height: 30px;
-    }
     main {
-      padding: 60px 24px 100px 24px;
+      padding: 60px 24px;
       max-width: 700px;
+      min-height: 520px; /* 높이 조정 */
     }
-    .text-entry {
+    .text-item {
       margin-bottom: 12px;
     }
-    .text-entry em {
+    .text-title {
       font-style: italic;
     }
-    .text-entry .lang-links a {
+    .lang-links a {
       margin-left: 10px;
       font-size: 0.95em;
       color: #666;
       text-decoration: none;
     }
-    .text-entry .lang-links a:hover {
+    .lang-links a:hover {
       color: #007BFF;
     }
     .pagination {
-      margin-top: 60px;
-      padding-left: 24px;
+      padding: 0px 24px 60px;
+      max-width: 700px;
     }
     .pagination a {
-      margin: 0 6px;
+      margin: 0 4px;
       text-decoration: none;
-      color: #555;
+      color: #000;
       font-size: 0.95em;
     }
     .pagination a:hover,
@@ -84,7 +82,7 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main id="text-container"></main>
+  <main id="text-list"></main>
   <div class="pagination" id="pagination"></div>
 
   <script>
@@ -104,47 +102,49 @@
       { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
     ];
 
-    const textsPerPage = 8;
+    const itemsPerPage = 8;
     let currentPage = 1;
 
     function renderTexts() {
-      const container = document.getElementById('text-container');
-      container.innerHTML = '';
-      const start = (currentPage - 1) * textsPerPage;
-      const pageTexts = texts.slice(start, start + textsPerPage);
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const list = document.getElementById("text-list");
+      list.innerHTML = "";
 
-      pageTexts.forEach(text => {
-        const div = document.createElement('div');
-        div.className = 'text-entry';
-        let html = `<em>${text.title}</em> – ${text.author}, ${text.date}`;
-        if (text.fr || text.en) {
-          html += ' <span class="lang-links">';
-          if (text.fr) html += `<a href="${text.fr}" target="_blank">(FR)</a>`;
-          if (text.en) html += `<a href="${text.en}" target="_blank">(EN)</a>`;
-          html += '</span>';
-        }
-        div.innerHTML = html;
-        container.appendChild(div);
+      texts.slice(start, end).forEach(text => {
+        const item = document.createElement("div");
+        item.className = "text-item";
+        const langLinks = [];
+        if (text.fr) langLinks.push(`<a href="${text.fr}" target="_blank">(FR)</a>`);
+        if (text.en) langLinks.push(`<a href="${text.en}" target="_blank">(EN)</a>`);
+
+        item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
+        list.appendChild(item);
       });
     }
 
     function renderPagination() {
-      const pagination = document.getElementById('pagination');
-      pagination.innerHTML = '';
-      const pageCount = Math.ceil(texts.length / textsPerPage);
-      for (let i = 1; i <= pageCount; i++) {
-        const a = document.createElement('a');
-        a.textContent = i;
-        a.href = '#';
-        if (i === currentPage) a.classList.add('active');
-        a.addEventListener('click', (e) => {
+      const totalPages = Math.ceil(texts.length / itemsPerPage);
+      const container = document.getElementById("pagination");
+      container.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (i > 1) container.innerHTML += " / ";
+        const link = document.createElement("a");
+        link.href = "#";
+        link.textContent = i;
+        if (i === currentPage) {
+          link.classList.add("active");
+        }
+        link.addEventListener("click", function (e) {
           e.preventDefault();
-          currentPage = i;
-          renderTexts();
-          renderPagination();
+          if (currentPage !== i) {
+            currentPage = i;
+            renderTexts();
+            renderPagination();
+          }
         });
-        pagination.appendChild(a);
-        if (i < pageCount) pagination.append(' / ');
+        container.appendChild(link);
       }
     }
 
@@ -153,5 +153,3 @@
   </script>
 </body>
 </html>
-
-
