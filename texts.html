@@ -38,7 +38,7 @@
     main {
       padding: 60px 24px;
       max-width: 700px;
-      min-height: 520px; /* 높이 조정 */
+      min-height: 560px;
     }
     .text-item {
       margin-bottom: 12px;
@@ -56,8 +56,7 @@
       color: #007BFF;
     }
     .pagination {
-      padding: 0px 24px 60px;
-      max-width: 700px;
+      padding: 30px 24px 60px;
     }
     .pagination a {
       margin: 0 4px;
@@ -129,7 +128,10 @@
       container.innerHTML = "";
 
       for (let i = 1; i <= totalPages; i++) {
-        if (i > 1) container.innerHTML += " / ";
+        if (i > 1) {
+          const slash = document.createTextNode(" / ");
+          container.appendChild(slash);
+        }
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = i;
@@ -138,11 +140,9 @@
         }
         link.addEventListener("click", function (e) {
           e.preventDefault();
-          if (currentPage !== i) {
-            currentPage = i;
-            renderTexts();
-            renderPagination();
-          }
+          currentPage = i;
+          renderTexts();
+          renderPagination();
         });
         container.appendChild(link);
       }
