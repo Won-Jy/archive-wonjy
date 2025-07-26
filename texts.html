@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Texts | archive-wonjy</title>
   <style>
     body {
@@ -39,38 +39,37 @@
       height: 30px;
     }
     main {
-      padding: 60px 24px;
+      padding: 60px 24px 100px 24px;
       max-width: 700px;
-      min-height: 400px;
     }
     .text-entry {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
-    .text-entry i {
+    .text-entry em {
       font-style: italic;
     }
-    .lang-links a {
-      margin-left: 8px;
+    .text-entry .lang-links a {
+      margin-left: 10px;
       font-size: 0.95em;
       color: #666;
       text-decoration: none;
     }
-    .lang-links a:hover {
+    .text-entry .lang-links a:hover {
       color: #007BFF;
     }
     .pagination {
-      margin-top: 40px;
-      padding-bottom: 40px;
-      font-size: 0.95em;
+      margin-top: 60px;
+      padding-left: 24px;
     }
     .pagination a {
-      margin: 0 5px;
-      color: #007BFF;
+      margin: 0 6px;
       text-decoration: none;
+      color: #555;
+      font-size: 0.95em;
     }
+    .pagination a:hover,
     .pagination a.active {
-      font-weight: bold;
-      text-decoration: underline;
+      color: #007BFF;
     }
   </style>
 </head>
@@ -85,68 +84,71 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <div class="lang-placeholder"></div>
-  <main id="texts-container"></main>
+  <main id="text-container"></main>
   <div class="pagination" id="pagination"></div>
+
   <script>
     const texts = [
       { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "#", en: "#" },
       { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "#", en: "#" },
       { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "#", en: "#" },
-      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024-04", fr: "#" },
-      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024-04", fr: "#" },
-      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022-05", fr: "#", en: "#" },
-      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022-05", fr: "#", en: "#" },
-      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021-12", fr: "#" },
-      { title: "Se réinventer", author: "Laurent Puech", date: "2021-11", fr: "#", en: "#" },
-      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021-10", fr: "#" },
-      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020-12", fr: "#" },
-      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019-08", fr: "#", en: "#" },
-      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018-07", fr: "#", en: "#" }
+      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024", fr: "#" },
+      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024", fr: "#" },
+      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022", fr: "#", en: "#" },
+      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022", fr: "#", en: "#" },
+      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021", fr: "#" },
+      { title: "Se réinventer", author: "Laurent Puech", date: "2021", fr: "#", en: "#" },
+      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021", fr: "#" },
+      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020", fr: "#" },
+      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019", fr: "#", en: "#" },
+      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
     ];
 
-    const perPage = 8;
+    const textsPerPage = 8;
     let currentPage = 1;
 
-    function renderTexts(page) {
-      const container = document.getElementById('texts-container');
+    function renderTexts() {
+      const container = document.getElementById('text-container');
       container.innerHTML = '';
-      const start = (page - 1) * perPage;
-      const end = start + perPage;
-      const items = texts.slice(start, end);
-      items.forEach(item => {
-        const el = document.createElement('div');
-        el.className = 'text-entry';
-        el.innerHTML = `<i>${item.title}</i> – ${item.author}, ${item.date} <span class="lang-links">${item.fr ? `<a href="${item.fr}" target="_blank">(FR)</a>` : ''}${item.en ? `<a href="${item.en}" target="_blank">(EN)</a>` : ''}</span>`;
-        container.appendChild(el);
+      const start = (currentPage - 1) * textsPerPage;
+      const pageTexts = texts.slice(start, start + textsPerPage);
+
+      pageTexts.forEach(text => {
+        const div = document.createElement('div');
+        div.className = 'text-entry';
+        let html = `<em>${text.title}</em> – ${text.author}, ${text.date}`;
+        if (text.fr || text.en) {
+          html += ' <span class="lang-links">';
+          if (text.fr) html += `<a href="${text.fr}" target="_blank">(FR)</a>`;
+          if (text.en) html += `<a href="${text.en}" target="_blank">(EN)</a>`;
+          html += '</span>';
+        }
+        div.innerHTML = html;
+        container.appendChild(div);
       });
     }
 
     function renderPagination() {
-      const container = document.getElementById('pagination');
-      const totalPages = Math.ceil(texts.length / perPage);
-      container.innerHTML = '';
-      for (let i = 1; i <= totalPages; i++) {
-        const link = document.createElement('a');
-        link.textContent = i;
-        link.href = '#';
-        if (i === currentPage) link.className = 'active';
-        link.addEventListener('click', e => {
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+      const pageCount = Math.ceil(texts.length / textsPerPage);
+      for (let i = 1; i <= pageCount; i++) {
+        const a = document.createElement('a');
+        a.textContent = i;
+        a.href = '#';
+        if (i === currentPage) a.classList.add('active');
+        a.addEventListener('click', (e) => {
           e.preventDefault();
           currentPage = i;
-          renderTexts(currentPage);
+          renderTexts();
           renderPagination();
         });
-        container.appendChild(link);
-        if (i < totalPages) {
-          const sep = document.createElement('span');
-          sep.textContent = ' / ';
-          container.appendChild(sep);
-        }
+        pagination.appendChild(a);
+        if (i < pageCount) pagination.append(' / ');
       }
     }
 
-    renderTexts(currentPage);
+    renderTexts();
     renderPagination();
   </script>
 </body>
