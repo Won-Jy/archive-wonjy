@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>archive-wonjy.com</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Won Jy – Archive</title>
   <style>
     body {
-      margin: 0;
       font-family: sans-serif;
-      background-color: #fff;
-      color: #111;
+      margin: 0;
+      line-height: 1.6;
     }
     header {
       display: flex;
-      justify-content: flex-start;
       align-items: center;
       padding: 20px 24px;
       border-bottom: 1px solid #ddd;
-      background: white;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
     .title {
       font-size: 1.2em;
@@ -41,31 +35,21 @@
     nav a.active {
       color: #007BFF;
     }
+    .lang-placeholder {
+      height: 30px;
+    }
     main {
       padding: 60px 24px;
+      max-width: 700px;
     }
-    .section {
-      margin: 20px 0;
-    }
-    .label {
-      display: inline-block;
-      margin-right: 8px;
-    }
-    .lang {
-      font-size: 0.9em;
-      color: #aaa;
-      margin-left: 4px;
+    a {
+      color: #333;
       text-decoration: none;
-      transition: color 0.2s;
-    }
-    .lang:hover,
-    .lang.active {
-      color: #007BFF;
+      border-bottom: 1px solid #999;
     }
   </style>
 </head>
 <body>
-
   <header>
     <div class="title">archive-wonjy.com</div>
     <nav>
@@ -76,18 +60,17 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
+  <div class="lang-placeholder"></div>
   <main>
-    <div class="section">
-      <span class="label">Book</span>
-      <a class="lang" href="book-fr.pdf">(FR)</a>
-      <a class="lang" href="book-en.pdf">(EN)</a>
-    </div>
-    <div class="section">
-      <span class="label">CV</span>
-      <a class="lang" href="cv.pdf">(FR)</a>
-    </div>
+    <p>Artiste basée à Nîmes.</p>
+    <ul>
+      <li><a href="book-fr.pdf">Book (FR)</a></li>
+      <li><a href="book-en.pdf">Book (EN)</a></li>
+      <li><a href="cv.pdf">CV (FR)</a></li>
+      <li><a href="bio.html">Bio</a></li>
+      <li><a href="texts.html">Texts</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </main>
-
 </body>
 </html>
