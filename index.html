@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>archive-wonjy</title>
+  <title>archive-wonjy.com</title>
   <style>
     body {
       font-family: sans-serif;
@@ -15,59 +15,57 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 24px;
+      padding: 20px 30px 10px;
       border-bottom: 1px solid #ddd;
     }
 
-    .logo {
+    .site-title {
       font-weight: bold;
-      font-size: 1.2em;
+      font-size: 20px;
     }
 
     nav a {
       margin-left: 20px;
       text-decoration: none;
-      color: black;
+      color: #333;
+      transition: color 0.2s;
     }
 
     nav a:hover,
     nav a.active {
-      color: #007aff;
+      color: #007bff;
     }
 
     main {
-      padding: 48px 24px;
+      padding: 50px 30px;
     }
 
-    .row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
+    .title {
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 5px;
     }
 
-    .row span:first-child {
-      min-width: 50px;
-      font-weight: normal;
-    }
-
-    .row .lang-links {
-      margin-left: 8px;
+    .lang-links {
+      display: inline-block;
+      margin-left: 10px;
     }
 
     .lang-links a {
-      text-decoration: none;
+      font-size: 0.9em;
       color: gray;
+      text-decoration: none;
       margin-left: 8px;
     }
 
     .lang-links a:hover {
-      color: #007aff;
+      color: #007bff;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">archive-wonjy.com</div>
+    <div class="site-title">archive-wonjy.com</div>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
@@ -76,21 +74,18 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <p>Artiste basée à Nîmes.</p>
 
-    <div class="row">
-      <span><strong>Book</strong></span>
+  <main>
+    <div class="title">Book
       <span class="lang-links">
-        <a href="docs/book_fr.pdf" target="_blank">(FR)</a>
-        <a href="docs/book_en.pdf" target="_blank">(EN)</a>
+        <a href="book-fr.pdf" target="_blank">(FR)</a>
+        <a href="book-en.pdf" target="_blank">(EN)</a>
       </span>
     </div>
 
-    <div class="row">
-      <span><strong>CV</strong></span>
+    <div class="title">CV
       <span class="lang-links">
-        <a href="docs/cv_fr.pdf" target="_blank">(FR)</a>
+        <a href="cv-fr.pdf" target="_blank">(FR)</a>
       </span>
     </div>
   </main>
