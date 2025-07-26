@@ -3,31 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Won Jy – Archive</title>
+  <title>archive-wonjy.com</title>
   <style>
     body {
       font-family: sans-serif;
-      margin: 40px;
-      max-width: 700px;
-      line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
-    a {
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .site-title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    nav a {
+      margin-left: 20px;
       color: #333;
       text-decoration: none;
-      border-bottom: 1px solid #999;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: royalblue;
+      border-bottom: 1px solid royalblue;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .item-label {
+      display: inline-block;
+      width: 60px;
+      font-weight: bold;
+    }
+
+    .item-lang {
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .item-lang a {
+      color: #666;
+      text-decoration: none;
+      margin-left: 5px;
+    }
+
+    .item-lang a:hover {
+      color: royalblue;
     }
   </style>
 </head>
 <body>
-  <h1>Won Jy – Archive</h1>
-  <p>Artiste basée à Nîmes.</p>
-  <ul>
-    <li><a href="book-fr.pdf">Book (FR)</a></li>
-    <li><a href="book-en.pdf">Book (EN)</a></li>
-    <li><a href="cv.pdf">CV (FR)</a></li>
-    <li><a href="bio.html">Bio</a></li>
-    <li><a href="texts.html">Texts</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+  <header>
+    <div class="site-title">archive-wonjy.com</div>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="#">Work</a>
+      <a href="bio.html">Bio</a>
+      <a href="#">Texts</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <p>Artiste basée à Nîmes.</p>
+    <ul>
+      <li>
+        <span class="item-label">Book</span>
+        <span class="item-lang">
+          (<a href="book-fr.pdf">FR</a>)
+          (<a href="book-en.pdf">EN</a>)
+        </span>
+      </li>
+      <li>
+        <span class="item-label">CV</span>
+        <span class="item-lang">
+          (<a href="cv.pdf">FR</a>)
+        </span>
+      </li>
+      <li><a href="bio.html">Bio</a></li>
+      <li><a href="#">Texts</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </main>
 </body>
 </html>
