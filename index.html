@@ -42,6 +42,24 @@
       padding: 60px 24px;
       max-width: 700px;
     }
+    .line {
+      display: flex;
+      justify-content: space-between;
+      max-width: 400px;
+      margin: 8px 0;
+    }
+    .line-title {
+      font-weight: bold;
+    }
+    .lang-links a {
+      color: #666;
+      font-size: 0.9em;
+      margin-left: 8px;
+      text-decoration: none;
+    }
+    .lang-links a:hover {
+      color: #007BFF;
+    }
     a {
       color: #333;
       text-decoration: none;
@@ -63,14 +81,31 @@
   <div class="lang-placeholder"></div>
   <main>
     <p>Artiste basée à Nîmes.</p>
-    <ul>
-      <li><a href="book-fr.pdf">Book (FR)</a></li>
-      <li><a href="book-en.pdf">Book (EN)</a></li>
-      <li><a href="cv.pdf">CV (FR)</a></li>
-      <li><a href="bio.html">Bio</a></li>
-      <li><a href="texts.html">Texts</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+
+    <div class="line">
+      <div class="line-title">Book</div>
+      <div class="lang-links">
+        <a href="book-fr.pdf">(FR)</a>
+        <a href="book-en.pdf">(EN)</a>
+      </div>
+    </div>
+
+    <div class="line">
+      <div class="line-title">CV</div>
+      <div class="lang-links">
+        <a href="cv.pdf">(FR)</a>
+      </div>
+    </div>
+
+    <div class="line">
+      <div class="line-title"><a href="bio.html">Bio</a></div>
+    </div>
+    <div class="line">
+      <div class="line-title"><a href="texts.html">Texts</a></div>
+    </div>
+    <div class="line">
+      <div class="line-title"><a href="contact.html">Contact</a></div>
+    </div>
   </main>
 </body>
 </html>
