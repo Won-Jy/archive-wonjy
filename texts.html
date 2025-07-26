@@ -128,6 +128,56 @@
       { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019-08", files: { fr: "columbarium-fr.html", en: "columbarium-en.html" } },
       { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018-07", files: { fr: "devenir-fr.html", en: "devenir-en.html" } }
     ];
+
+    let currentYear = "ALL";
+    let currentPage = 1;
+    const perPage = 8;
+
+    function getYears() {
+      const years = [...new Set(texts.map(t => t.date.substring(0, 4)))];
+      return years.sort((a, b) => b - a);
+    }
+
+    function renderYearFilter() {
+      const container = document.getElementById("year-filter");
+      const years = ["ALL", ...getYears()];
+      container.innerHTML = years.map(y => `<button class="${y === currentYear ? 'active' : ''}" onclick="filterYear('${y}')">${y}</button>`).join("");
+    }
+
+    function filterYear(year) {
+      currentYear = year;
+      currentPage = 1;
+      renderYearFilter();
+      renderList();
+    }
+
+    function renderList() {
+      const filtered = currentYear === "ALL" ? texts : texts.filter(t => t.date.startsWith(currentYear));
+      const start = (currentPage - 1) * perPage;
+      const paginated = filtered.slice(start, start + perPage);
+      document.getElementById("text-list").innerHTML = paginated.map(t => {
+        const langLinks = Object.entries(t.files).map(([lang, link]) => `<a href="${link}" target="_blank">(${lang.toUpperCase()})</a>`).join(" ");
+        return `<li><em>${t.title}</em> – ${t.author}, ${t.date} <span class="langs">${langLinks}</span></li>`;
+      }).join("");
+      renderPagination(filtered.length);
+    }
+
+    function renderPagination(total) {
+      const totalPages = Math.ceil(total / perPage);
+      let html = "";
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+      }
+      document.getElementById("pagination").innerHTML = html;
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      renderList();
+    }
+
+    renderYearFilter();
+    renderList();
   </script>
 </body>
 </html>
