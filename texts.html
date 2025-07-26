@@ -35,38 +35,34 @@
     nav a.active {
       color: #007BFF;
     }
-    .container {
-      padding: 60px 24px 40px;
+    main {
+      padding: 60px 24px;
       max-width: 700px;
+      min-height: 560px; /* 고정 높이 설정 */
     }
-    .text-entry {
-      margin-bottom: 10px;
-      font-size: 1em;
+    .text-item {
+      margin-bottom: 12px;
     }
-    .text-entry em {
+    .text-title {
       font-style: italic;
     }
-    .text-links {
-      margin-left: 8px;
-    }
-    .text-links a {
-      font-size: 1em;
-      margin-left: 6px;
-      color: #777;
+    .lang-links a {
+      margin-left: 10px;
+      font-size: 0.95em;
+      color: #666;
       text-decoration: none;
     }
-    .text-links a:hover {
+    .lang-links a:hover {
       color: #007BFF;
     }
     .pagination {
-      padding-top: 50px;
-      padding-bottom: 100px;
-      font-size: 1em;
+      padding: 30px 24px 60px;
     }
     .pagination a {
       margin: 0 4px;
       text-decoration: none;
-      color: #555;
+      color: #000;
+      font-size: 0.95em;
     }
     .pagination a:hover,
     .pagination a.active {
@@ -85,8 +81,8 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <div class="container" id="textContainer"></div>
-  <div class="container pagination" id="pagination"></div>
+  <main id="text-list"></main>
+  <div class="pagination" id="pagination"></div>
 
   <script>
     const texts = [
@@ -105,34 +101,41 @@
       { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
     ];
 
-    const perPage = 8;
+    const itemsPerPage = 8;
     let currentPage = 1;
 
     function renderTexts() {
-      const container = document.getElementById('textContainer');
-      container.innerHTML = '';
-      const start = (currentPage - 1) * perPage;
-      const end = start + perPage;
-      const pageItems = texts.slice(start, end);
-      pageItems.forEach(t => {
-        const div = document.createElement('div');
-        div.className = 'text-entry';
-        div.innerHTML = `<em>${t.title}</em> – ${t.author}, ${t.date}<span class="text-links">${t.fr ? `<a href="${t.fr}" target="_blank">(FR)</a>` : ''}${t.en ? `<a href="${t.en}" target="_blank">(EN)</a>` : ''}</span>`;
-        container.appendChild(div);
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const list = document.getElementById("text-list");
+      list.innerHTML = "";
+
+      texts.slice(start, end).forEach(text => {
+        const item = document.createElement("div");
+        item.className = "text-item";
+        const langLinks = [];
+        if (text.fr) langLinks.push(`<a href="${text.fr}" target="_blank">(FR)</a>`);
+        if (text.en) langLinks.push(`<a href="${text.en}" target="_blank">(EN)</a>`);
+
+        item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
+        list.appendChild(item);
       });
     }
 
     function renderPagination() {
-      const container = document.getElementById('pagination');
-      container.innerHTML = '';
-      const pageCount = Math.ceil(texts.length / perPage);
-      for (let i = 1; i <= pageCount; i++) {
-        if (i > 1) container.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a');
+      const totalPages = Math.ceil(texts.length / itemsPerPage);
+      const container = document.getElementById("pagination");
+      container.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (i > 1) container.innerHTML += " / ";
+        const link = document.createElement("a");
+        link.href = "#";
         link.textContent = i;
-        link.href = '#';
-        if (i === currentPage) link.classList.add('active');
-        link.addEventListener('click', e => {
+        if (i === currentPage) {
+          link.classList.add("active");
+        }
+        link.addEventListener("click", function (e) {
           e.preventDefault();
           currentPage = i;
           renderTexts();
