@@ -54,6 +54,7 @@
       color: #007BFF;
       text-decoration: none;
       margin-right: 10px;
+      cursor: pointer;
     }
     .bold {
       font-weight: bold;
@@ -61,58 +62,7 @@
       display: inline-block;
     }
   </style>
-</head>
-<body>
-
-  <header>
-    <div class="title">archive-wonjy.com</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="work.html">Work</a>
-      <a href="bio.html" class="active">Bio</a>
-      <a href="texts.html">Texts</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="lang-switch">
-      <a href="#en">(EN)</a>
-      <a href="#fr">(FR)</a>
-    </div>
-
-    <div id="en">
-      <p>I am a visual artist of South Korean origin, based in Nîmes since 2016.</p>
-
-      <p>After graduating from the Daejeon High School of Arts in 2008, I completed two years of military service. In 2011, to support myself, I began selling items such as smartphone cases, notebooks, and paintings in the streets of Seoul. During this time, I became acutely aware of the issue of urban waste and was moved by the precarious lives of elderly people collecting recyclable materials to resell. This experience had a profound impact on my artistic practice, particularly in the choice and treatment of materials.</p>
-
-      <p>Key encounters later led me to pursue my studies in France, drawn by its vibrant artistic scene. I arrived in Paris in 2014 and spent two years learning French while continuing to develop my practice. The summer of 2015 marked a turning point with the organization of a performative project, in which I explored the lives of the homeless and urban pigeons by sharing their daily realities on the streets of Paris. In 2016, I enrolled at the École supérieure des beaux-arts de Nîmes, where I continue to live and work.</p>
-
-      <span class="bold">Statement</span>
-
-      <p>In my artistic practice, I focus on objects often regarded as waste or nuisances in daily life—those that occupy a lower position in the hierarchy of human values. My field of observation is vast, spanning from microorganisms to massive architectural structures, and even the invisible dimensions of the atmosphere. The objects I work with representatively include water, stone, concrete, and dead pigeons.</p>
-
-      <p>I collect or assemble these objects and sometimes intervene with them in a plastic manner using various mediums. Generally, this “intervention” unfolds in several stages, considering the materiality of the object, its social and cultural implications, as well as its intrinsic individuality. The aim is to revalue the object and foster a dialogue that is both material and poetic.</p>
-
-      <p>This artistic approach entails profound reflection on aesthetic ethics and allows me to meditate on the dualities of “natural-artificial” and “container-content.” The objects I select, collect, or transform are presented to the public through diverse exhibition setups. Through these processes of “re-visualization,” I strive to address the persistent social and environmental challenges of our era from the perspective of hospitality.</p>
-    </div>
-
-    <div id="fr" style="margin-top: 60px;">
-      <p>Je suis un artiste plasticien d’origine sud-coréenne, établi à Nîmes depuis 2016.</p>
-
-      <p>Diplômé de la Lycée des Arts de Daejeon en 2008, j’ai ensuite accompli deux années de service militaire. En 2011, pour subvenir à mes besoins, j’ai commencé à vendre des produits tels que des coques de smartphone, des cahiers et des peintures dans les rues de Séoul. Cette période m’a particulièrement sensibilisé à la question des déchets urbains, et j’ai été touché par la précarité des personnes âgées récupérant des matériaux recyclables pour les revendre. Cette expérience a profondément influencé ma pratique artistique, notamment dans la sélection et le traitement de mes matériaux.</p>
-
-      <p>Des rencontres déterminantes m’ont ensuite conduit à poursuivre mes études en France, attiré par sa riche scène artistique. Arrivé à Paris en 2014, j’ai consacré deux ans à l’apprentissage du français tout en développant ma pratique. L’été 2015 a marqué un tournant avec l’organisation d’un projet performatif, où j’ai esquissé la vie des SDF et des pigeons urbains en partageant leur quotidien dans les rues de Paris. En 2016, je me suis inscrit à l’École supérieure des beaux-arts de Nîmes, où je continue de résider et de créer.</p>
-
-      <span class="bold">Statement</span>
-
-      <p>Dans ma pratique artistique, je porte une attention particulière aux objets souvent considérés comme des déchets ou nuisibles dans la vie quotidienne, soit ceux qui ont une moindre valeur dans la hiérarchie des valeurs humaines. Mon champ d’observation est vaste, allant des micro-organismes aux imposantes structures architecturales, et même aux dimensions invisibles de l’atmosphère. Les objets que je traite de manière représentative sont : l’eau, la pierre, le béton et les pigeons morts.</p>
-
-      <p>Je collecte ces objets ou les rassemble et, parfois, interviens dessus de manière plastique en utilisant divers médiums. En général, cette « intervention » se déroule en plusieurs étapes, prenant en compte la matérialité de l’objet, son implication sociale et culturelle, ainsi que son individualité intrinsèque. Tout cela dans le but de revaloriser l’objet et d’engager un dialogue à la fois matériel et poétique avec lui.</p>
-
-      <p>Cette démarche artistique implique une profonde réflexion sur l’éthique esthétique et me permet de méditer sur la dualité entre « naturel-artificiel » et « contenant-contenu ». Les objets ainsi sélectionnés, collectés ou modifiés sont présentés au public via divers dispositifs d’exposition. À travers ces processus de « re-visibilisation », j’aspire à aborder les problèmes sociaux et environnementaux persistants de notre ère, en adoptant la perspective de l’hospitalité.</p>
-    </div>
-  </main>
-
-</body>
-</html>
+  <script>
+    function showLang(lang) {
+      document.getElementById('en').style.display = (lang === 'en') ? 'block' : 'none';
+      document.getElem
