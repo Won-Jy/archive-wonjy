@@ -35,37 +35,38 @@
     nav a.active {
       color: #007BFF;
     }
-    .lang-placeholder {
-      height: 30px;
-    }
-    main {
-      padding: 60px 24px 100px 24px;
+    .container {
+      padding: 60px 24px 40px;
       max-width: 700px;
     }
     .text-entry {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      font-size: 1em;
     }
     .text-entry em {
       font-style: italic;
     }
-    .text-entry .lang-links a {
-      margin-left: 10px;
-      font-size: 0.95em;
-      color: #666;
+    .text-links {
+      margin-left: 8px;
+    }
+    .text-links a {
+      font-size: 1em;
+      margin-left: 6px;
+      color: #777;
       text-decoration: none;
     }
-    .text-entry .lang-links a:hover {
+    .text-links a:hover {
       color: #007BFF;
     }
     .pagination {
-      margin-top: 60px;
-      padding-left: 24px;
+      padding-top: 50px;
+      padding-bottom: 100px;
+      font-size: 1em;
     }
     .pagination a {
-      margin: 0 6px;
+      margin: 0 4px;
       text-decoration: none;
       color: #555;
-      font-size: 0.95em;
     }
     .pagination a:hover,
     .pagination a.active {
@@ -84,8 +85,8 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main id="text-container"></main>
-  <div class="pagination" id="pagination"></div>
+  <div class="container" id="textContainer"></div>
+  <div class="container pagination" id="pagination"></div>
 
   <script>
     const texts = [
@@ -104,47 +105,40 @@
       { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
     ];
 
-    const textsPerPage = 8;
+    const perPage = 8;
     let currentPage = 1;
 
     function renderTexts() {
-      const container = document.getElementById('text-container');
+      const container = document.getElementById('textContainer');
       container.innerHTML = '';
-      const start = (currentPage - 1) * textsPerPage;
-      const pageTexts = texts.slice(start, start + textsPerPage);
-
-      pageTexts.forEach(text => {
+      const start = (currentPage - 1) * perPage;
+      const end = start + perPage;
+      const pageItems = texts.slice(start, end);
+      pageItems.forEach(t => {
         const div = document.createElement('div');
         div.className = 'text-entry';
-        let html = `<em>${text.title}</em> – ${text.author}, ${text.date}`;
-        if (text.fr || text.en) {
-          html += ' <span class="lang-links">';
-          if (text.fr) html += `<a href="${text.fr}" target="_blank">(FR)</a>`;
-          if (text.en) html += `<a href="${text.en}" target="_blank">(EN)</a>`;
-          html += '</span>';
-        }
-        div.innerHTML = html;
+        div.innerHTML = `<em>${t.title}</em> – ${t.author}, ${t.date}<span class="text-links">${t.fr ? `<a href="${t.fr}" target="_blank">(FR)</a>` : ''}${t.en ? `<a href="${t.en}" target="_blank">(EN)</a>` : ''}</span>`;
         container.appendChild(div);
       });
     }
 
     function renderPagination() {
-      const pagination = document.getElementById('pagination');
-      pagination.innerHTML = '';
-      const pageCount = Math.ceil(texts.length / textsPerPage);
+      const container = document.getElementById('pagination');
+      container.innerHTML = '';
+      const pageCount = Math.ceil(texts.length / perPage);
       for (let i = 1; i <= pageCount; i++) {
-        const a = document.createElement('a');
-        a.textContent = i;
-        a.href = '#';
-        if (i === currentPage) a.classList.add('active');
-        a.addEventListener('click', (e) => {
+        if (i > 1) container.appendChild(document.createTextNode(' / '));
+        const link = document.createElement('a');
+        link.textContent = i;
+        link.href = '#';
+        if (i === currentPage) link.classList.add('active');
+        link.addEventListener('click', e => {
           e.preventDefault();
           currentPage = i;
           renderTexts();
           renderPagination();
         });
-        pagination.appendChild(a);
-        if (i < pageCount) pagination.append(' / ');
+        container.appendChild(link);
       }
     }
 
