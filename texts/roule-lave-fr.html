@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Roulé-Lavé – Guilhem Monceaux (2025)</title>
+  <title>Roulé-Lavé | archive-wonjy</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 0;
-      padding: 60px 24px;
-      max-width: 700px;
       line-height: 1.6;
     }
     header {
       display: flex;
       align-items: center;
-      padding: 20px 0;
+      padding: 20px 24px;
       border-bottom: 1px solid #ddd;
     }
     .title {
@@ -31,21 +29,24 @@
       text-decoration: none;
       color: #555;
       font-size: 0.95em;
+      transition: color 0.2s;
     }
     nav a:hover,
     nav a.active {
       color: #007BFF;
     }
+    main {
+      padding: 60px 24px;
+      max-width: 700px;
+    }
     h1 {
       font-style: italic;
-      margin-top: 40px;
+      font-size: 1.5em;
+      margin-bottom: 0.2em;
     }
-    .author {
-      font-size: 0.95em;
-      color: #666;
-    }
-    .content {
-      margin-top: 40px;
+    .author-date {
+      color: #888;
+      margin-bottom: 40px;
     }
   </style>
 </head>
@@ -53,21 +54,19 @@
   <header>
     <div class="title">archive-wonjy.com</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="work.html">Work</a>
-      <a href="bio.html">Bio</a>
-      <a href="texts.html" class="active">Texts</a>
-      <a href="contact.html">Contact</a>
+      <a href="/archive-wonjy/index.html">Home</a>
+      <a href="/archive-wonjy/work.html">Work</a>
+      <a href="/archive-wonjy/bio.html">Bio</a>
+      <a href="/archive-wonjy/texts.html" class="active">Texts</a>
+      <a href="/archive-wonjy/contact.html">Contact</a>
     </nav>
   </header>
-
-  <h1>Roulé-Lavé</h1>
-  <div class="author">Guilhem Monceaux, 2025</div>
-
-  <div class="content">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus.  
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.  
-    (texte d'exemple...)
-  </div>
+  <main>
+    <h1>Roulé-Lavé</h1>
+    <div class="author-date">Guilhem Monceaux, 2025</div>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. (texte d'exemple...)
+    </div>
+  </main>
 </body>
 </html>
