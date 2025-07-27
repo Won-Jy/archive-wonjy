@@ -86,7 +86,7 @@
 
   <script>
     const texts = [
-      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "#", en: "#" },
+      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "roule-lave-fr.html", en: "#" },
       { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "#", en: "#" },
       { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "#", en: "#" },
       { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024", fr: "#" },
@@ -114,7 +114,7 @@
         const item = document.createElement("div");
         item.className = "text-item";
         const langLinks = [];
-        if (text.fr) langLinks.push(`<a href="${text.fr}" target="_blank">(FR)</a>`);
+        if (text.fr) langLinks.push(`<a href="${text.fr}">(FR)</a>`);
         if (text.en) langLinks.push(`<a href="${text.en}" target="_blank">(EN)</a>`);
 
         item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
