@@ -8,15 +8,14 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      line-height: 1.6;
       display: flex;
+      flex-direction: column;
     }
     header {
-      width: 100%;
-      padding: 20px 24px;
-      border-bottom: 1px solid #ddd;
       display: flex;
       align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid #ddd;
     }
     .title {
       font-size: 1.2em;
@@ -31,95 +30,71 @@
       text-decoration: none;
       color: #555;
       font-size: 0.95em;
-      transition: color 0.2s;
     }
     nav a:hover,
     nav a.active {
       color: #007BFF;
     }
-    main {
+    .container {
+      display: flex;
+      flex-direction: row;
       padding: 60px 24px;
-      max-width: 800px;
-      flex: 1;
+      max-width: 1400px;
     }
-    aside {
-      width: 300px;
-      padding: 60px 24px;
+    .main-text {
+      flex: 2;
+      padding-right: 40px;
+      max-width: 900px;
+    }
+    .sidebar {
+      flex: 1;
       position: sticky;
-      top: 0;
+      top: 40px;
       align-self: flex-start;
-      font-size: 0.9em;
+      font-size: 0.95em;
       color: #333;
     }
-    .footnote-ref {
-      font-size: 0.75em;
+    .sidebar h4 {
+      margin-top: 0;
+    }
+    sup {
       color: #007BFF;
-      vertical-align: super;
-    }
-    .note-number {
-      font-weight: bold;
-      color: #007BFF;
-      margin-right: 5px;
-    }
-    h1 {
-      font-style: italic;
-    }
-    .subtitle {
-      color: #999;
-      font-size: 0.9em;
-      margin-bottom: 30px;
-    }
-    .aside-section {
-      margin-bottom: 40px;
-    }
-    .aside-section h3 {
-      margin-bottom: 10px;
-      font-size: 0.95em;
+      font-size: 0.7em;
     }
   </style>
 </head>
 <body>
-  <div style="width: 100%;">
-    <header>
-      <div class="title">archive-wonjy.com</div>
-      <nav>
-        <a href="/archive-wonjy/index.html">Home</a>
-        <a href="/archive-wonjy/work.html">Work</a>
-        <a href="/archive-wonjy/bio.html">Bio</a>
-        <a href="/archive-wonjy/texts.html" class="active">Texts</a>
-        <a href="/archive-wonjy/contact.html">Contact</a>
-      </nav>
-    </header>
-    <div style="display: flex; align-items: flex-start;">
-      <main>
-        <h1>Roulé-Lavé</h1>
-        <div class="subtitle">Guilhem Monceaux, 2025</div>
-        <div class="content">
-          <p>En 2018, alors que sa femme et sa fille sont parties en Corée pour huit mois, Won Jy décida d’optimiser l’espace de son domicile familial pour l’ajuster à ses besoins de travail. [...] Il s’est demandé si les pigeons ne sentaient pas la solitude des autres, et s’ils étaient venus se nicher chez lui pour cette raison.</p>
-          <p>Cette anecdote issue de son mémoire<sup class="footnote-ref">[1]</sup> [...] dans le Vaisseau 3008<sup class="footnote-ref">[2]</sup>, un tiers-lieu nîmois [...]</p>
-          <p>Il ne restera bientôt plus grand-chose non plus [...] des projets enterrés de l’artiste.</p>
-          <p>Roulé-Lavé revient sur quelques projets récents de Won Jy [...] la conditionnalité de l’hospitalité infuse dans toute l’exposition.</p>
-          <p>Si on écrit « Roulé-Lavé » sur Google en France [...] Les cailloux portent en eux la mémoire des individus et des familles qu’elles ont hébergés pendant plusieurs décennies.</p>
-          <p>En miroir des gravats qui prolifèrent dans les salles [...] et se transmutent les uns en les autres.</p>
-        </div>
-      </main>
-      <aside>
-        <div class="aside-section">
-          <h3>NOTES</h3>
-          <p><span class="note-number">[1]</span> Won Jy, <i>Esquisse sur la Colombophobie</i>, Esban, Nîmes, 2022.</p>
-          <p><span class="note-number">[2]</span> Le Vaisseau 3008 était un projet d’occupation temporaire [...] détruit à l’été 2022.</p>
-          <p><span class="note-number">[3]</span> <i>Hostis</i>, exposition de Won Jy avec Julie Emile Fabre [...] première Triennale d’art contemporain de Nîmes.</p>
-          <p><span class="note-number">[4]</span> Au nord du quartier Pissevin [...] du quartier Pissevin.</p>
-        </div>
-        <div class="aside-section">
-          <h3>SOURCE</h3>
-          <p>Texte de Guilhem Monceaux à l'occasion de l'exposition personnelle <i>Roulé-Lavé</i> au CACN - Centre d'Art Contemporain de Nîmes.</p>
-        </div>
-        <div class="aside-section">
-          <h3>AUTEUR.E</h3>
-          <p>Guilhem Monceaux est commissaire d’exposition et directeur du CACN – Centre d’Art Contemporain de Nîmes. Son travail explore les liens entre pratiques artistiques et pédagogies critiques, dans une perspective d’horizontalité et de circulation des savoirs. Il initie des projets collectifs à la croisée de l’art et du social, en s’attachant à questionner les dynamiques institutionnelles et les conditions de travail dans le champ culturel. Son engagement se prolonge dans des formes hybrides, entre fiction et réalité, et au sein de collectifs œuvrant pour une transformation des structures du monde de l’art.</p>
-        </div>
-      </aside>
+  <header>
+    <div class="title">archive-wonjy.com</div>
+    <nav>
+      <a href="/archive-wonjy/index.html">Home</a>
+      <a href="/archive-wonjy/work.html">Work</a>
+      <a href="/archive-wonjy/bio.html">Bio</a>
+      <a href="/archive-wonjy/texts.html" class="active">Texts</a>
+      <a href="/archive-wonjy/contact.html">Contact</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="main-text">
+      <h1><i>Roulé-Lavé</i></h1>
+      <p><strong>Guilhem Monceaux, 2025</strong></p>
+      <p>En 2018, alors que sa femme et sa fille sont parties en Corée pour huit mois, Won Jy décida d’optimiser l’espace de son domicile familial pour l’ajuster à ses besoins de travail. À l’époque, il passait son diplôme de troisième année aux Beaux-Arts de Nîmes. Il a descendu les matelas familiaux à la cave, dormait sur son canapé et travaillait sur la table à manger. La chambre de sa fille est devenue son stockage d’atelier. Il a adapté son régime alimentaire pour des repas moins chers et plus rapides à ingérer. Son travail dépend beaucoup de la collecte de déchets, de gravats, et tout l’espace non utilisé pendant cette période s’est rempli au fur et à mesure de montagnes d’objets usagés. Seul dans ces amoncellements, il entend un jour un couple de pigeons sur sa terrasse. Ces oiseaux se sont installés dans un interstice créé par Won Jy pour recueillir la sciure de bois – sa terrasse était devenue un atelier de charpentier. Tous les jours, il pouvait observer le couple par la fenêtre de sa cuisine. Il étudiait leur routine, leur allers et venues, a vu la naissance de leurs enfants jusqu’à leur premier envol. Il s’est demandé si les pigeons ne sentaient pas la solitude des autres, et s’ils étaient venus se nicher chez lui pour cette raison.</p>
+
+<p>Cette anecdote issue de son mémoire<sup>[1]</sup> nous éclaire sur deux caractéristiques propres à la personnalité et la méthode de travail de Won Jy : il est particulièrement attentif aux contextes dans lesquels il travaille, et il est très sensible à la question de l’altérité. Au cours de précédentes initiatives artistiques, Won Jy s’est immergé totalement dans l’environnement qu’il observait. A l’instar du couple de pigeon qu’il regarde depuis un appartement préparé à cet effet, il a vécu dans les rues de Paris ou récemment dans le Vaisseau 3008<sup>[2]</sup>, un tiers-lieu nîmois détruit depuis peu dans le quartier de la Placette. Dans les deux cas, il a campé, s’est mêlé aux différentes communautés marginalisées qu’il y a rencontrées, et a tenté de restituer ces rencontres par le biais de dessins, d’installations, de sculptures, de photographies et de textes – parfois solitaires et parfois collaboratifs. Il reste peu de choses visibles de son expérience parisienne et de son année de vie au Vaisseau 3008. Des carnets de dessins de la rue et de ses occupants, il ne les montre qu’enfermés dans une boîte. Les sculptures engoncées dans les caves du tiers-lieu nîmois ont fini ensevelies sous les gravats, un sarcophage endormi sous une future résidence de luxe. Ces archives opaques nourrissent néanmoins une grande partie de son travail. Il les revisite régulièrement, en tâtonnant, et s’autorisant la critique, en laissant toujours le contexte mouvant lui suggérer de nouvelles pistes.</p>
+
+<p>Il ne restera bientôt plus grand-chose non plus du dernier atelier de l’artiste dans la galerie Wagner, une barre d’immeubles d’habitation et de commerces qui est sortie de terre dans les années 60 à l’ouest de Nîmes, dans le quartier de Pissevin. Depuis deux ans, Won Jy y occupe d’anciennes pompes funèbres dans lesquelles il a d’abord installé un jardin composé de plantes vernaculaires ou il recueillait des pigeons blessés pour les soigner. L’exposition « Hostis »<sup>[3]</sup> était une tentative de reconstituer un écosystème local et permettait une relation familière entre l’artiste et les oiseaux qu’il accueillait. Une famille de rats est venue creuser des galeries dans les talus du jardin et a fini par décapiter un des pigeons en convalescence. L’écosystème que Won Jy a initié est devenu autonome et a échappé au contrôle de l’artiste. Après cette période, il a réinvesti les lieux pour en faire son atelier, dans lequel il a pu produire quelques pièces de l’exposition Roulé-Lavé au CACN. Le quartier Pissevin est actuellement en processus de rénovation urbaine, et une partie des bâtiments de cette zone prioritaire sont détruits ou vont l’être dans les prochaines années. La galerie Wagner fait partie de ces tours destinées à s’effondrer. Peut-être que certaines œuvres de Won Jy seront à nouveau enfouies dans les décombres, rejoignant une série de projets enterrés de l’artiste.</p>
+
+<p><i>(texte à suivre...)</i></p>
+    </div>
+    <div class="sidebar">
+      <h4>NOTES</h4>
+      <p><sup>[1]</sup> Won Jy, <i>Esquisse sur la Colombophobie</i>, Esban, Nîmes, 2022.</p>
+      <p><sup>[2]</sup> Le Vaisseau 3008 était un projet d’occupation temporaire... (texte complet à insérer).</p>
+      <p><sup>[3]</sup> <i>Hostis</i>, exposition de Won Jy... (texte complet à insérer).</p>
+      <h4>SOURCE</h4>
+      <p>Texte de Guilhem Monceaux à l'occasion de l'exposition personnelle <i>Roulé-Lavé</i> au CACN - Centre d'Art Contemporain de Nîmes.</p>
+      <h4>AUTEUR.E</h4>
+      <p>Guilhem Monceaux est commissaire d’exposition et directeur du CACN – Centre d’Art Contemporain de Nîmes. [...]</p>
     </div>
   </div>
 </body>
