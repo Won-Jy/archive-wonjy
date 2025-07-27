@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roulé-Lavé | archive-wonjy</title>
   <style>
     body {
@@ -35,18 +35,50 @@
     nav a.active {
       color: #007BFF;
     }
-    main {
+    .container {
+      display: flex;
       padding: 60px 24px;
-      max-width: 700px;
+      max-width: 1200px;
+      margin: auto;
     }
-    h1 {
+    .main-text {
+      flex: 3;
+      padding-right: 40px;
+    }
+    .main-text h1 {
       font-style: italic;
-      font-size: 1.5em;
-      margin-bottom: 0.2em;
     }
-    .author-date {
-      color: #888;
-      margin-bottom: 40px;
+    .main-text h2 {
+      font-size: 1em;
+      margin-top: 0;
+      color: #555;
+    }
+    .note-ref {
+      vertical-align: super;
+      font-size: 0.7em;
+      color: #007BFF;
+    }
+    aside {
+      flex: 1;
+      font-size: 0.9em;
+      color: #333;
+    }
+    aside section {
+      margin-bottom: 30px;
+    }
+    aside h3 {
+      margin-top: 0;
+      font-size: 0.9em;
+      text-transform: uppercase;
+    }
+    aside hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    .fixed-aside {
+      position: sticky;
+      top: 60px;
     }
   </style>
 </head>
@@ -61,13 +93,36 @@
       <a href="/archive-wonjy/contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <h1>Roulé-Lavé</h1>
-    <div class="author-date">Guilhem Monceaux, 2025</div>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. (texte d'exemple...)
-    </div>
-  </main>
+  <div class="container">
+    <main class="main-text">
+      <h1>Roulé-Lavé</h1>
+      <h2>Guilhem Monceaux, 2025</h2>
+      <p>En 2018, alors que sa femme et sa fille sont parties en Corée pour huit mois, Won Jy décida d’optimiser l’espace de son domicile familial pour l’ajuster à ses besoins de travail. À l’époque, il passait son diplôme de troisième année aux Beaux-Arts de Nîmes. Il a descendu les matelas familiaux à la cave, dormait sur son canapé et travaillait sur la table à manger. La chambre de sa fille est devenue son stockage d’atelier. Il a adapté son régime alimentaire pour des repas moins chers et plus rapides à ingérer. Son travail dépend beaucoup de la collecte de déchets, de gravats, et tout l’espace non utilisé pendant cette période s’est rempli au fur et à mesure de montagnes d’objets usagés. Seul dans ces amoncellements, il entend un jour un couple de pigeons sur sa terrasse. Ces oiseaux se sont installés dans un interstice créé par Won Jy pour recueillir la sciure de bois – sa terrasse était devenue un atelier de charpentier. Tous les jours, il pouvait observer le couple par la fenêtre de sa cuisine. Il étudiait leur routine, leur allers et venues, a vu la naissance de leurs enfants jusqu’à leur premier envol. Il s’est demandé si les pigeons ne sentaient pas la solitude des autres, et s’ils étaient venus se nicher chez lui pour cette raison.</p>
+      <p>Cette anecdote issue de son mémoire<sup class="note-ref">[1]</sup> nous éclaire sur deux caractéristiques propres à la personnalité et la méthode de travail de Won Jy : il est particulièrement attentif aux contextes dans lesquels il travaille, et il est très sensible à la question de l’altérité. [...]</p>
+      <p>Il ne restera bientôt plus grand-chose non plus du dernier atelier de l’artiste [...] rejoignant une série de projets enterrés de l’artiste.</p>
+      <p><em>Roulé-Lavé</em> revient sur quelques projets récents de Won Jy [...] la question de la conditionnalité de l’hospitalité infuse dans toute l’exposition.</p>
+      <p>Si on écrit « Roulé-Lavé » sur Google en France, l’expression fait directement référence au monde du bâtiment. [...] Ils parlent plus largement des politiques migratoires nationales et de la considération des différents quartiers qui constituent une ville.</p>
+      <p>En miroir des gravats qui prolifèrent dans les salles de cet ancien centre médico-social [...] un cycle où le temps, l’eau, la roche, les humains et les animaux se croisent et se transmutent les uns en les autres.</p>
+    </main>
+    <aside class="fixed-aside">
+      <section>
+        <h3>Notes</h3>
+        <p><sup class="note-ref">[1]</sup> Won Jy, <i>Esquisse sur la Colombophobie</i>, Esban, Nîmes, 2022.</p>
+        <p><sup class="note-ref">[2]</sup> Le Vaisseau 3008 était un projet d’occupation temporaire [...] Il a été détruit à l’été 2022.</p>
+        <p><sup class="note-ref">[3]</sup> <i>Hostis</i>, exposition de Won Jy avec Julie Emile Fabre [...] première Triennale d’art contemporain de Nîmes.</p>
+        <p><sup class="note-ref">[4]</sup> Au nord du quartier Pissevin, le site de Lauzières accueille [...] du quartier Pissevin.</p>
+      </section>
+      <hr />
+      <section>
+        <h3>Source</h3>
+        <p>Texte de Guilhem Monceaux à l’occasion de l’exposition personnelle <i>Roulé-Lavé</i> au CACN – Centre d’Art Contemporain de Nîmes.</p>
+      </section>
+      <hr />
+      <section>
+        <h3>Auteur.e</h3>
+        <p>Guilhem Monceaux est commissaire d’exposition et directeur du CACN – Centre d’Art Contemporain de Nîmes. [...] transformation des structures du monde de l’art.</p>
+      </section>
+    </aside>
+  </div>
 </body>
 </html>
-
