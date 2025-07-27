@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roulé-Lavé | archive-wonjy</title>
   <style>
     body {
@@ -10,14 +10,13 @@
       margin: 0;
       line-height: 1.6;
       display: flex;
-      flex-direction: column;
-      height: 100vh;
     }
     header {
-      display: flex;
-      align-items: center;
+      width: 100%;
       padding: 20px 24px;
       border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
     }
     .title {
       font-size: 1.2em;
@@ -38,82 +37,89 @@
     nav a.active {
       color: #007BFF;
     }
-    .container {
-      display: flex;
+    main {
+      padding: 60px 24px;
+      max-width: 800px;
       flex: 1;
-      padding: 40px 24px;
-      gap: 40px;
-      box-sizing: border-box;
     }
-    .content {
-      flex: 3;
-      max-width: 700px;
-    }
-    .content h1 {
-      font-style: italic;
-    }
-    .content .author {
-      color: #888;
-      margin-top: -12px;
-      margin-bottom: 24px;
-    }
-    .content p {
-      margin-bottom: 1em;
-    }
-    .sidebar {
-      flex: 1.2;
+    aside {
+      width: 300px;
+      padding: 60px 24px;
       position: sticky;
-      top: 40px;
+      top: 0;
       align-self: flex-start;
-      font-size: 0.92em;
+      font-size: 0.9em;
       color: #333;
     }
-    .sidebar section {
+    .footnote-ref {
+      font-size: 0.75em;
+      color: #007BFF;
+      vertical-align: super;
+    }
+    .note-number {
+      font-weight: bold;
+      color: #007BFF;
+      margin-right: 5px;
+    }
+    h1 {
+      font-style: italic;
+    }
+    .subtitle {
+      color: #999;
+      font-size: 0.9em;
+      margin-bottom: 30px;
+    }
+    .aside-section {
       margin-bottom: 40px;
     }
-    .sidebar h4 {
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-    .sidebar p {
-      margin: 0 0 8px 0;
+    .aside-section h3 {
+      margin-bottom: 10px;
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="title">archive-wonjy.com</div>
-    <nav>
-      <a href="/archive-wonjy/index.html">Home</a>
-      <a href="/archive-wonjy/work.html">Work</a>
-      <a href="/archive-wonjy/bio.html">Bio</a>
-      <a href="/archive-wonjy/texts.html" class="active">Texts</a>
-      <a href="/archive-wonjy/contact.html">Contact</a>
-    </nav>
-  </header>
-  <div class="container">
-    <div class="content">
-      <h1>Roulé-Lavé</h1>
-      <p class="author">Guilhem Monceaux, 2025</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. (texte d'exemple...)</p>
-      <p>Aliquam erat volutpat. Nulla facilisi. Cras a malesuada mauris. Sed imperdiet diam in justo facilisis, sed luctus leo porta. Donec bibendum, justo a interdum pulvinar, metus libero porta augue, vel convallis orci mauris vitae leo.</p>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer a diam efficitur, sodales odio vel, malesuada nulla. (texte d'exemple...)</p>
-    </div>
-    <div class="sidebar">
-      <section>
-        <h4>NOTES</h4>
-        <p>[1] Note d'exemple un.</p>
-        <p>[2] Note d'exemple deux.</p>
-      </section>
-      <section>
-        <h4>SOURCE</h4>
-        <p>Texte de Guilhem Monceaux à l'occasion de l'exposition personnelle.</p>
-      </section>
-      <section>
-        <h4>AUTEUR.E</h4>
-        <p>Commissaire d’exposition et directeur du CACN.</p>
-      </section>
+  <div style="width: 100%;">
+    <header>
+      <div class="title">archive-wonjy.com</div>
+      <nav>
+        <a href="/archive-wonjy/index.html">Home</a>
+        <a href="/archive-wonjy/work.html">Work</a>
+        <a href="/archive-wonjy/bio.html">Bio</a>
+        <a href="/archive-wonjy/texts.html" class="active">Texts</a>
+        <a href="/archive-wonjy/contact.html">Contact</a>
+      </nav>
+    </header>
+    <div style="display: flex; align-items: flex-start;">
+      <main>
+        <h1>Roulé-Lavé</h1>
+        <div class="subtitle">Guilhem Monceaux, 2025</div>
+        <div class="content">
+          <p>En 2018, alors que sa femme et sa fille sont parties en Corée pour huit mois, Won Jy décida d’optimiser l’espace de son domicile familial pour l’ajuster à ses besoins de travail. [...] Il s’est demandé si les pigeons ne sentaient pas la solitude des autres, et s’ils étaient venus se nicher chez lui pour cette raison.</p>
+          <p>Cette anecdote issue de son mémoire<sup class="footnote-ref">[1]</sup> [...] dans le Vaisseau 3008<sup class="footnote-ref">[2]</sup>, un tiers-lieu nîmois [...]</p>
+          <p>Il ne restera bientôt plus grand-chose non plus [...] des projets enterrés de l’artiste.</p>
+          <p>Roulé-Lavé revient sur quelques projets récents de Won Jy [...] la conditionnalité de l’hospitalité infuse dans toute l’exposition.</p>
+          <p>Si on écrit « Roulé-Lavé » sur Google en France [...] Les cailloux portent en eux la mémoire des individus et des familles qu’elles ont hébergés pendant plusieurs décennies.</p>
+          <p>En miroir des gravats qui prolifèrent dans les salles [...] et se transmutent les uns en les autres.</p>
+        </div>
+      </main>
+      <aside>
+        <div class="aside-section">
+          <h3>NOTES</h3>
+          <p><span class="note-number">[1]</span> Won Jy, <i>Esquisse sur la Colombophobie</i>, Esban, Nîmes, 2022.</p>
+          <p><span class="note-number">[2]</span> Le Vaisseau 3008 était un projet d’occupation temporaire [...] détruit à l’été 2022.</p>
+          <p><span class="note-number">[3]</span> <i>Hostis</i>, exposition de Won Jy avec Julie Emile Fabre [...] première Triennale d’art contemporain de Nîmes.</p>
+          <p><span class="note-number">[4]</span> Au nord du quartier Pissevin [...] du quartier Pissevin.</p>
+        </div>
+        <div class="aside-section">
+          <h3>SOURCE</h3>
+          <p>Texte de Guilhem Monceaux à l'occasion de l'exposition personnelle <i>Roulé-Lavé</i> au CACN - Centre d'Art Contemporain de Nîmes.</p>
+        </div>
+        <div class="aside-section">
+          <h3>AUTEUR.E</h3>
+          <p>Guilhem Monceaux est commissaire d’exposition et directeur du CACN – Centre d’Art Contemporain de Nîmes. Son travail explore les liens entre pratiques artistiques et pédagogies critiques, dans une perspective d’horizontalité et de circulation des savoirs. Il initie des projets collectifs à la croisée de l’art et du social, en s’attachant à questionner les dynamiques institutionnelles et les conditions de travail dans le champ culturel. Son engagement se prolonge dans des formes hybrides, entre fiction et réalité, et au sein de collectifs œuvrant pour une transformation des structures du monde de l’art.</p>
+        </div>
+      </aside>
     </div>
   </div>
 </body>
