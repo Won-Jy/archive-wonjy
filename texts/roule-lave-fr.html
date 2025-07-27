@@ -9,6 +9,9 @@
       font-family: sans-serif;
       margin: 0;
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
     header {
       display: flex;
@@ -35,18 +38,46 @@
     nav a.active {
       color: #007BFF;
     }
-    main {
-      padding: 60px 24px;
+    .container {
+      display: flex;
+      flex: 1;
+      padding: 40px 24px;
+      gap: 40px;
+      box-sizing: border-box;
+    }
+    .content {
+      flex: 3;
       max-width: 700px;
     }
-    h1 {
+    .content h1 {
       font-style: italic;
-      font-size: 1.5em;
-      margin-bottom: 0.2em;
     }
-    .author-date {
+    .content .author {
       color: #888;
+      margin-top: -12px;
+      margin-bottom: 24px;
+    }
+    .content p {
+      margin-bottom: 1em;
+    }
+    .sidebar {
+      flex: 1.2;
+      position: sticky;
+      top: 40px;
+      align-self: flex-start;
+      font-size: 0.92em;
+      color: #333;
+    }
+    .sidebar section {
       margin-bottom: 40px;
+    }
+    .sidebar h4 {
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .sidebar p {
+      margin: 0 0 8px 0;
     }
   </style>
 </head>
@@ -61,12 +92,29 @@
       <a href="/archive-wonjy/contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <h1>Roulé-Lavé</h1>
-    <div class="author-date">Guilhem Monceaux, 2025</div>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. (texte d'exemple...)
+  <div class="container">
+    <div class="content">
+      <h1>Roulé-Lavé</h1>
+      <p class="author">Guilhem Monceaux, 2025</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel arcu sed orci gravida luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. (texte d'exemple...)</p>
+      <p>Aliquam erat volutpat. Nulla facilisi. Cras a malesuada mauris. Sed imperdiet diam in justo facilisis, sed luctus leo porta. Donec bibendum, justo a interdum pulvinar, metus libero porta augue, vel convallis orci mauris vitae leo.</p>
+      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer a diam efficitur, sodales odio vel, malesuada nulla. (texte d'exemple...)</p>
     </div>
-  </main>
+    <div class="sidebar">
+      <section>
+        <h4>NOTES</h4>
+        <p>[1] Note d'exemple un.</p>
+        <p>[2] Note d'exemple deux.</p>
+      </section>
+      <section>
+        <h4>SOURCE</h4>
+        <p>Texte de Guilhem Monceaux à l'occasion de l'exposition personnelle.</p>
+      </section>
+      <section>
+        <h4>AUTEUR.E</h4>
+        <p>Commissaire d’exposition et directeur du CACN.</p>
+      </section>
+    </div>
+  </div>
 </body>
 </html>
