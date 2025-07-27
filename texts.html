@@ -36,7 +36,7 @@
       color: #007BFF;
     }
     main {
-      padding: 60px 24px;
+      padding: 80px 24px;
       max-width: 700px;
       min-height: 300px;
     }
@@ -47,7 +47,7 @@
       font-style: italic;
     }
     .lang-links a {
-      margin-left: 6px;
+      margin-left: 10px;
       font-size: 0.95em;
       color: #666;
       text-decoration: none;
@@ -86,22 +86,22 @@
 
   <script>
     const texts = [
-      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "texts/roule-lave-fr.html", en: "texts/roule-lave-en.html" },
-      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "texts/like-a-rolling-stone-fr.html", en: "texts/like-a-rolling-stone-en.html" },
-      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "texts/wonjy-au-cacn-fr.html", en: "texts/wonjy-au-cacn-en.html" },
-      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024", fr: "texts/label-text-fr.html" },
-      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024", fr: "texts/murohomo-fr.html" },
-      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022", fr: "texts/grotto-fr.html", en: "texts/grotto-en.html" },
-      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022", fr: "texts/effondrement-fr.html", en: "texts/effondrement-en.html" },
-      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021", fr: "texts/pierres-fr.html" },
-      { title: "Se réinventer", author: "Laurent Puech", date: "2021", fr: "texts/reinventer-fr.html", en: "texts/reinventer-en.html" },
-      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021", fr: "texts/entretien-fr.html" },
-      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020", fr: "texts/banal-fr.html" },
-      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019", fr: "texts/columbarium-fr.html", en: "texts/columbarium-en.html" },
-      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "texts/en-cours-fr.html", en: "texts/en-cours-en.html" }
+      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "#", en: "#" },
+      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "#", en: "#" },
+      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "#", en: "#" },
+      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024", fr: "#" },
+      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024", fr: "#" },
+      { title: "Grotto en trois temps", author: "Julie Fabre", date: "2022", fr: "#", en: "#" },
+      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022", fr: "#", en: "#" },
+      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021", fr: "#" },
+      { title: "Se réinventer", author: "Laurent Puech", date: "2021", fr: "#", en: "#" },
+      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021", fr: "#" },
+      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020", fr: "#" },
+      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019", fr: "#", en: "#" },
+      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
     ];
 
-    const itemsPerPage = 8;
+    const itemsPerPage = 10;
     let currentPage = 1;
 
     function renderTexts() {
@@ -114,8 +114,9 @@
         const item = document.createElement("div");
         item.className = "text-item";
         const langLinks = [];
-        if (text.fr) langLinks.push(`<a href="${text.fr}">(FR)</a>`);
-        if (text.en) langLinks.push(`<a href="${text.en}">(EN)</a>`);
+        if (text.fr) langLinks.push(`<a href="${text.fr}" target="_blank">(FR)</a>`);
+        if (text.en) langLinks.push(`<a href="${text.en}" target="_blank">(EN)</a>`);
+
         item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
         list.appendChild(item);
       });
@@ -127,7 +128,10 @@
       container.innerHTML = "";
 
       for (let i = 1; i <= totalPages; i++) {
-        if (i > 1) container.appendChild(document.createTextNode(" / "));
+        if (i > 1) {
+          const slash = document.createTextNode(" / ");
+          container.appendChild(slash);
+        }
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = i;
@@ -149,3 +153,6 @@
   </script>
 </body>
 </html>
+
+
+
