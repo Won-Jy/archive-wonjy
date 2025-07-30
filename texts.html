@@ -115,7 +115,7 @@
         item.className = "text-item";
         const langLinks = [];
         if (text.fr) langLinks.push(`<a href="${text.fr}">(FR)</a>`);
-        if (text.en) langLinks.push(`<a href="${text.en}" target="_blank">(EN)</a>`);
+        if (text.en) langLinks.push(`<a href="${text.en}">(EN)</a>`);
 
         item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
         list.appendChild(item);
