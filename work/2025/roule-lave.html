@@ -153,15 +153,15 @@
         max-width: 100%;
       }
     }
-footer {
-  border-top: 1px solid #ddd;
-  padding: 20px 24px;
-  font-size: 0.75em;
-  color: #888;
-  text-align: center;
-  margin-top: 60px;
-  line-height: 1.4;
-}
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 20px 24px;
+      font-size: 0.75em;
+      color: #888;
+      text-align: center;
+      margin-top: 60px;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -230,13 +230,68 @@ footer {
 
     <img class="work" src="/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp" alt="Vue 4">
     <div class="caption"><em>Eau de douche</em>, washing water from six pigeons of Pissevin, 19×34×19cm, 2024.</div>
+
+    <script>
+      const images = [
+        "Vue_Roulé-Lavé_06_IMG_0556.webp",
+        "Vue_Roulé-Lavé_08_IMG_0419.webp",
+        "Vue_Roulé-Lavé_09_IMG_0078.webp",
+        "Vue_Roulé-Lavé_10_IMG_0448.webp",
+        "Vue_Roulé-Lavé_11_IMG_0454.webp",
+        "Vue_Roulé-Lavé_12_IMG_0462.webp",
+        "Vue_Roulé-Lavé_13_IMG_0184.webp",
+        "Vue_Roulé-Lavé_14_IMG_0174.webp",
+        "Vue_Roulé-Lavé_15_IMG_0526.webp",
+        "Vue_Roulé-Lavé_15_IMG_0857.webp",
+        "Vue_Roulé-Lavé_15_IMG_0860.webp",
+        "Vue_Roulé-Lavé_16_IMG_0250.webp",
+        "Vue_Roulé-Lavé_17_IMG_0513.webp",
+        "Vue_Roulé-Lavé_18_IMG_0918.webp",
+        "Vue_Roulé-Lavé_19_IMG_0325.webp",
+        "Vue_Roulé-Lavé_20_IMG_0708.webp",
+        "Vue_Roulé-Lavé_21_IMG_0683.webp",
+        "Vue_Roulé-Lavé_22_IMG_0688.webp",
+        "Vue_Roulé-Lavé_23_IMG_0316.webp",
+        "Vue_Roulé-Lavé_24_IMG_0575.webp",
+        "Vue_Roulé-Lavé_25_IMG_0297.webp",
+        "Vue_Roulé-Lavé_26_IMG_0322.webp",
+        "Vue_Roulé-Lavé_27_IMG_0754.webp",
+        "Vue_Roulé-Lavé_28_IMG_0339.webp",
+        "Vue_Roulé-Lavé_28_IMG_0378.webp",
+        "Vue_Roulé-Lavé_28_IMG_0776.webp",
+        "Vue_Roulé-Lavé_29_IMG_0382.webp",
+        "Vue_Roulé-Lavé_29_IMG_0384.webp",
+        "Vue_Roulé-Lavé_29_IMG_0387.webp",
+        "Vue_Roulé-Lavé_30_IMG_0272.webp",
+        "Vue_Roulé-Lavé_31.webp",
+        "Vue_Roulé-Lavé_32_IMG_0328.webp",
+        "Vue_Roulé-Lavé_33_IMG_0398.webp",
+        "Vue_Roulé-Lavé_34_IMG_0406.webp",
+        "Vue_Roulé-Lavé_35_IMG_0400.webp",
+        "Vue_Roulé-Lavé_35_IMG_0413.webp",
+        "Vue_Roulé-Lavé_36_IMG_0599.webp"
+      ];
+      const main = document.querySelector('main');
+      images.forEach(filename => {
+        const img = document.createElement('img');
+        img.className = 'work';
+        img.src = `/images/2025/roule-lave/${filename}`;
+        img.alt = filename;
+
+        const caption = document.createElement('div');
+        caption.className = 'caption';
+        caption.innerText = 'caption';
+
+        main.appendChild(img);
+        main.appendChild(caption);
+      });
+    </script>
   </main>
-<footer>
-  <div class="footer-content">
-    © 2025 Won Jy – All rights reserved. Member of ADAGP.
-  </div>
-</footer>
+
+  <footer>
+    <div class="footer-content">
+      © 2025 Won Jy – All rights reserved. Member of ADAGP.
+    </div>
+  </footer>
 </body>
 </html>
-
-
