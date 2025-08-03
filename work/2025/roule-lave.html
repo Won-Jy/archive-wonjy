@@ -10,20 +10,24 @@
       margin: 0;
       line-height: 1.6;
     }
+
     header {
       display: flex;
       align-items: center;
       padding: 20px 24px;
       border-bottom: 1px solid #ddd;
     }
+
     .title {
       font-size: 1.2em;
       font-weight: bold;
       text-transform: lowercase;
     }
+
     nav {
       margin-left: 40px;
     }
+
     nav a {
       margin-left: 24px;
       text-decoration: none;
@@ -31,6 +35,7 @@
       font-size: 0.95em;
       transition: color 0.2s;
     }
+
     nav a:hover,
     nav a.active {
       color: #007BFF;
@@ -38,7 +43,7 @@
 
     main {
       padding: 60px 40px 60px 24px;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0;
     }
 
@@ -46,12 +51,11 @@
       display: flex;
       gap: 40px;
       margin-bottom: 60px;
+      align-items: flex-start;
     }
 
     .intro-image {
-      flex: 1.1;
-      width: 0;
-      height: auto;
+      flex-basis: 75%;
     }
 
     .intro-image img {
@@ -68,7 +72,7 @@
     }
 
     .intro-text {
-      flex: 1.3;
+      flex: 1;
       font-size: 0.95em;
       color: #333;
     }
@@ -102,6 +106,7 @@
 
       .intro-image,
       .intro-text {
+        flex: none;
         width: 100%;
       }
 
@@ -131,7 +136,7 @@
         <div class="caption">Vue 1 – installation view</div>
       </div>
       <div class="intro-text">
-        <h2>Roulé-Lavé<br> CACN, 2025</h2>
+        <h2>Roulé-Lavé<br>CACN, 2025</h2>
         <p><em>Roulé-Lavé</em> documents a solo exhibition by Won Jy at the CACN – Centre d’Art Contemporain de Nîmes.</p>
         <p>The work explores issues of material transformation, hospitality, and exclusion. The sculptures are composed of reused rubble, often sourced from public demolition sites, and arranged into precarious yet poetic forms that suggest both ruin and resilience.</p>
         <p>This installation includes a functioning water circuit and integrates elements such as pigeons, pebbles, and urban ruins to reflect on the temporality of built environments.</p>
