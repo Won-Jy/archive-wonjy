@@ -35,16 +35,36 @@
     nav a.active {
       color: #007BFF;
     }
+
     main {
-      padding: 60px 40px 60px 24px; /* 왼쪽 여백을 좁게 */
+      padding: 60px 40px 60px 24px;
       max-width: 1200px;
       margin: 0;
     }
-    h1 {
-      font-size: 1.8em;
-      margin-bottom: 32px;
+
+    .intro {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 60px;
     }
-    img {
+    .intro img {
+      width: 50%;
+      height: auto;
+    }
+    .intro-text {
+      flex: 1;
+      font-size: 0.95em;
+      color: #333;
+    }
+    .intro-text h2 {
+      font-size: 1.3em;
+      margin-bottom: 8px;
+    }
+    .intro-text p {
+      margin-bottom: 12px;
+    }
+
+    img.work {
       max-width: 100%;
       height: auto;
       display: block;
@@ -54,6 +74,15 @@
       font-size: 0.9em;
       color: #666;
       margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .intro {
+        flex-direction: column;
+      }
+      .intro img {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -71,18 +100,24 @@
   </header>
 
   <main>
-    <h1>Roulé-Lavé – CACN, 2025</h1>
+    <div class="intro">
+      <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp" alt="intro image">
+      <div class="intro-text">
+        <h2>Roulé-Lavé<br> CACN, 2025</h2>
+        <p><em>Roulé-Lavé</em> documents a solo exhibition by Won Jy at the CACN – Centre d’Art Contemporain de Nîmes.</p>
+        <p>The work explores issues of material transformation, hospitality, and exclusion. The sculptures are composed of reused rubble, often sourced from public demolition sites, and arranged into precarious yet poetic forms that suggest both ruin and resilience.</p>
+        <p>This installation includes a functioning water circuit and integrates elements such as pigeons, pebbles, and urban ruins to reflect on the temporality of built environments.</p>
+        <p><em>Curator: Guilhem Monceaux</em></p>
+      </div>
+    </div>
 
-    <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp" alt="Vue 1">
-    <div class="caption">Vue 1 – installation view</div>
-
-    <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp" alt="Vue 2">
+    <img class="work" src="/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp" alt="Vue 2">
     <div class="caption">Vue 2 – detail</div>
 
-    <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp" alt="Vue 3">
+    <img class="work" src="/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp" alt="Vue 3">
     <div class="caption">Vue 3 – perspective</div>
 
-    <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp" alt="Vue 4">
+    <img class="work" src="/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp" alt="Vue 4">
     <div class="caption">Vue 4 – close-up</div>
   </main>
 
