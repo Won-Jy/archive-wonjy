@@ -47,19 +47,35 @@
       gap: 40px;
       margin-bottom: 60px;
     }
-    .intro img {
+
+    .intro-image {
       width: 75%;
-      height: auto;
     }
+
+    .intro-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .intro-image .caption {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
     .intro-text {
       flex: 1;
       font-size: 0.95em;
       color: #333;
     }
+
     .intro-text h2 {
       font-size: 1.3em;
       margin-bottom: 8px;
     }
+
     .intro-text p {
       margin-bottom: 12px;
     }
@@ -70,6 +86,7 @@
       display: block;
       margin-bottom: 8px;
     }
+
     .caption {
       font-size: 0.9em;
       color: #666;
@@ -80,8 +97,14 @@
       .intro {
         flex-direction: column;
       }
-      .intro img {
+
+      .intro-image,
+      .intro-text {
         width: 100%;
+      }
+
+      img.work {
+        max-width: 100%;
       }
     }
   </style>
@@ -101,8 +124,10 @@
 
   <main>
     <div class="intro">
-      <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp" alt="intro image">
-      <div class="caption">Vue 1 – installation view</div>
+      <div class="intro-image">
+        <img src="/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp" alt="intro image">
+        <div class="caption">Vue 1 – installation view</div>
+      </div>
       <div class="intro-text">
         <h2>Roulé-Lavé<br> CACN, 2025</h2>
         <p><em>Roulé-Lavé</em> documents a solo exhibition by Won Jy at the CACN – Centre d’Art Contemporain de Nîmes.</p>
