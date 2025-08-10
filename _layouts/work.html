@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} | archive-wonjy</title>
+  <style>
+    /* 최소 기본 스타일: 기존 사이트 톤과 유사하게 */
+    :root { --blue: #2b6cb0; --border: #ddd; --text: #222; --muted:#666; }
+    html, body { margin:0; padding:0; font-family: sans-serif; color: var(--text); line-height:1.65; }
+
+    header.site { display:flex; align-items:center; gap:40px; padding:20px 24px; border-bottom:1px solid var(--border); }
+    .title { font-size:1.2em; text-transform: lowercase; }
+    nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; }
+    nav a:hover { color: var(--blue); text-decoration: underline; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    .work-header { display:grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items:start; }
+    @media (max-width: 900px) { .work-header { grid-template-columns: 1fr; } }
+
+    h1 { margin:0 0 8px; font-size: 1.6rem; font-weight:600; }
+    .meta-line { color: var(--muted); font-size:0.95rem; margin-bottom: 6px; }
+    .meta-line b { font-weight:600; color:#444; }
+
+    .cover-figure { margin:0; }
+    /* 4:3 고정 프레임 */
+    .cover-box { position: relative; width:100%; padding-top: 75%; border: 1px solid var(--border); background:#f7f7f7; overflow:hidden; }
+    .cover-box img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .caption { margin-top:8px; color: var(--muted); font-size:0.9rem; }
+
+    article { margin-top: 28px; }
+
+    .tagset { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .tag { border:1px solid var(--border); padding:2px 8px; border-radius:12px; font-size:0.85rem; color:#444; }
+
+    footer.site { border-top:1px solid var(--border); margin-top:60px; padding:24px; color:#888; font-size:0.9rem; }
+    a { color: inherit; }
+    a.inline { color: var(--blue); text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <!-- 상단 공통 헤더 (필요시 기존 사이트 네비게이션과 맞춰 조정) -->
+  <header class="site">
+    <div class="title"><a href="/">archive-wonjy.com</a></div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/work.html">Work</a>
+      <a href="/bio.html">Bio</a>
+      <a href="/texts.html">Texts</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    {% comment %} 연도 표기 규칙: 단일/열림/범위 {% endcomment %}
+    {% assign s = page.year_start %}
+    {% assign e = page.year_end %}
+    {% if e %}
+      {% if s == e %}
+        {% assign year_display = s %}
+      {% else %}
+        {% assign year_display = s | append: " – " | append: e %}
+      {% endif %}
+    {% else %}
+      {% assign year_display = s | append: " –" %}
+    {% endif %}
+
+    <section class="work-header">
+      <figure class="cover-figure">
+        {% if page.cover %}
+          <div class="cover-box">
+            <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} cover" loading="lazy" />
+          </div>
+          <figcaption class="caption">{{ page.title }}</figcaption>
+        {% else %}
+          <div class="cover-box"></div>
+          <figcaption class="caption">No cover set</figcaption>
+        {% endif %}
+      </figure>
+
+      <div>
+        <h1>{{ page.title }}</h1>
+        <div class="meta-line"><b>Type</b>: {{ page.type }}</div>
+        <div class="meta-line"><b>Year</b>: {{ year_display }}</div>
+        {% if page.status %}<div class="meta-line"><b>Status</b>: {{ page.status }}</div>{% endif %}
+        {% if page.tags and page.tags.size > 0 %}
+          <div class="tagset">
+            {% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <article>
+      {{ content }}
+    </article>
+  </main>
+
+  <footer class="site">
+    © {{ "now" | date: "%Y" }} archive-wonjy. All rights reserved.
+  </footer>
+</body>
+</html>
