@@ -5,7 +5,7 @@ type: "Exhibition"
 year_start: 2023
 year_end: 2023
 status: "Completed"
-tags: ["exhibition", "nimes"]
+tags: []
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
 ---
 
