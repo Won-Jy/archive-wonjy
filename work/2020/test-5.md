@@ -5,7 +5,7 @@ type: "Series"
 year_start: 2020
 year_end:
 status: "In progress"
-tags: ["river", "collection"]
+tags: []
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
 ---
 
