@@ -5,7 +5,7 @@ type: "Project"
 year_start: 2022
 year_end:
 status: "In progress"
-tags: ["installation"]
+tags: []
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
 ---
 
