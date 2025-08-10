@@ -162,6 +162,28 @@
       margin-top: 10px;
       line-height: 1.4;
     }
+
+    /* ===== Back to top 버튼 스타일 ===== */
+    #backToTop {
+      position: fixed;
+      right: 24px;
+      bottom: 20px;
+      z-index: 999;
+      display: none;              /* 처음엔 숨김 */
+      text-decoration: none;
+      color: #007BFF;             /* 기존 파랑 */
+      font-size: 0.95em;
+      background: transparent;    /* 텍스트 버튼 느낌 유지 */
+      padding: 6px 8px;           /* 클릭 영역 살짝 확보 */
+      border-radius: 4px;         /* 포커스 시 모양 부드럽게 */
+    }
+    #backToTop:hover {
+      text-decoration: underline; /* 호버 시 밑줄 */
+    }
+    #backToTop:focus {
+      outline: 2px solid #cfe2ff; /* 접근성: 키보드 포커스 */
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -321,7 +343,35 @@
       © 2025 Won Jy – All rights reserved. Member of ADAGP.
     </div>
   </footer>
+
+  <!-- Back to top 버튼 -->
+  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+
+  <script>
+    (function () {
+      const backToTopBtn = document.getElementById('backToTop');
+      const showAfter = 300; // px
+
+      // 스크롤 시 표시/숨김
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > showAfter) {
+          backToTopBtn.style.display = 'inline';
+        } else {
+          backToTopBtn.style.display = 'none';
+        }
+      });
+
+      // 클릭 시 부드럽게 상단 이동 (사용자 선호 고려)
+      backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          window.scrollTo(0, 0);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
-
-
