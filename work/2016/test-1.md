@@ -5,7 +5,7 @@ type: "Series"
 year_start: 2016
 year_end: 2019
 status: "Completed"
-tags: ["test", "stone", "river"]
+tags: []
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
 ---
 
