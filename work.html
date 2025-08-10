@@ -35,15 +35,21 @@ layout: none
   }
 
   /* Sort 링크: 기본은 회색, hover/active 때만 파랑 */
-  .sort a{
+ .sort a{
   color:#555;
   text-decoration:none;
   margin-right:6px;
   }
-  .sort a:hover,
-  .sort a.active{
-  color:var(--blue);
-  text-decoration:underline;
+.sort a:hover,
+.sort a:active,
+.sort a:focus{
+  color: var(--blue);
+  text-decoration: none;   /* ← 밑줄 제거 */
+  }
+.sort a.active{
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;   /* ← 밑줄 제거 */
   }
 
   /* Search 입력창 */
