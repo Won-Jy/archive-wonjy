@@ -5,185 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roulé-Lavé, 2025 | archive-wonjy</title>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      line-height: 1.6;
-    }
+    body { font-family: sans-serif; margin: 0; line-height: 1.6; }
 
     header {
-      display: flex;
-      align-items: center;
-      padding: 20px 24px;
+      display: flex; align-items: center; padding: 20px 24px;
       border-bottom: 1px solid #ddd;
     }
-
-    .title {
-      font-size: 1.2em;
-      font-weight: bold;
-      text-transform: lowercase;
-    }
-
-    nav {
-      margin-left: 40px;
-    }
-
+    .title { font-size: 1.2em; font-weight: bold; text-transform: lowercase; }
+    nav { margin-left: 40px; }
     nav a {
-      margin-left: 24px;
-      text-decoration: none;
-      color: #555;
-      font-size: 0.95em;
-      transition: color 0.2s;
+      margin-left: 24px; text-decoration: none; color: #555; font-size: 0.95em; transition: color 0.2s;
     }
+    nav a:hover, nav a.active { color: #007BFF; }
 
-    nav a:hover,
-    nav a.active {
-      color: #007BFF;
-    }
+    main { padding: 60px 40px 60px 24px; max-width: 1200px; margin: 0; }
 
-    main {
-      padding: 60px 40px 60px 24px;
-      max-width: 1200px;
-      margin: 0;
-    }
+    .intro { display: flex; gap: 40px; margin-bottom: 0; align-items: flex-start; }
+    .intro-image { flex-basis: 70%; }
+    .intro-image img { width: 100%; height: auto; display: block; }
+    .intro-image .caption { font-size: 0.8em; color: #666; margin-top: 3px; margin-bottom: 40px; }
 
-    .intro {
-      display: flex;
-      gap: 40px;
-      margin-bottom: 0px;
-      align-items: flex-start;
-    }
+    .intro-text { flex: 1; font-size: 0.95em; color: #333; }
+    .intro-group { font-size: 0.95em; color: #333; max-width: 100%; }
 
-    .intro-image {
-      flex-basis: 70%;
-    }
+    .intro-header h2 { font-size: 1.5em; font-style: italic; font-weight: bold; margin: 0 0 4px 0; }
+    .intro-header .year { font-size: 1.1em; font-weight: bold; color: #888; margin-bottom: 16px; }
 
-    .intro-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .divider { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
 
-    .intro-image .caption {
-      font-size: 0.8em;
-      color: #666;
-      margin-top: 3px;
-      margin-bottom: 40px;
-    }
+    .related-texts h3 { font-size: 1em; font-weight: bold; margin-bottom: 12px; }
+    .related-texts p { font-size: 0.95em; }
 
-    .intro-text {
-      flex: 1;
-      font-size: 0.95em;
-      color: #333;
-    }
+    .text-link { margin-left: 8px; text-decoration: none; color: #007BFF; }
+    .text-link:hover { text-decoration: underline; }
 
-    .intro-group {
-      font-size: 0.95em;
-      color: #333;
-      max-width: 100%;
-    }
-
-    .intro-header h2 {
-      font-size: 1.5em;
-      font-style: italic;
-      font-weight: bold;
-      margin: 0 0 4px 0;
-    }
-
-    .intro-header .year {
-      font-size: 1.1em;
-      font-weight: bold;
-      color: #888;
-      margin-bottom: 16px;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 30px 0;
-    }
-
-    .related-texts h3 {
-      font-size: 1em;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .related-texts p {
-      font-size: 0.95em;
-    }
-
-    .text-link {
-      margin-left: 8px;
-      text-decoration: none;
-      color: #007BFF;
-    }
-
-    .text-link:hover {
-      text-decoration: underline;
-    }
-
-    img.work {
-      max-width: 70%;
-      height: auto;
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    .caption {
-      font-size: 0.8em;
-      color: #666;
-      margin-bottom: 40px;
-    }
+    img.work { max-width: 70%; height: auto; display: block; margin-bottom: 3px; }
+    .caption { font-size: 0.8em; color: #666; margin-bottom: 40px; }
 
     @media (max-width: 768px) {
-      .intro {
-        flex-direction: column;
-      }
-
-      .intro-image,
-      .intro-text,
-      .intro-group {
-        flex: none;
-        width: 100%;
-        max-width: 100%;
-      }
-
-      img.work {
-        max-width: 100%;
-      }
-    }
-    footer {
-      border-top: 1px solid #ddd;
-      padding: 20px 24px;
-      font-size: 0.8em;
-      color: #888;
-      text-align: flex-start;
-      margin-top: 10px;
-      line-height: 1.4;
+      .intro { flex-direction: column; }
+      .intro-image, .intro-text, .intro-group { flex: none; width: 100%; max-width: 100%; }
+      img.work { max-width: 100%; }
     }
 
-    /* ===== Back to top 버튼 스타일 ===== */
-    #backToTop {
-      position: fixed;
-      right: 24px;
-      bottom: 20px;
-      z-index: 999;
-      display: none;              /* 처음엔 숨김 */
-      text-decoration: none;
-      color: #007BFF;             /* 기존 파랑 */
-      font-size: 0.95em;
-      background: transparent;    /* 텍스트 버튼 느낌 유지 */
-      padding: 6px 8px;           /* 클릭 영역 살짝 확보 */
-      border-radius: 4px;         /* 포커스 시 모양 부드럽게 */
+    /* ===== 하단 고정 바: © + Back to top ===== */
+    #btBar {
+      position: fixed; right: 24px; bottom: 20px; z-index: 999;
+      display: none; font-size: 0.95em; background: transparent;
     }
-    #backToTop:hover {
-      text-decoration: underline; /* 호버 시 밑줄 */
-    }
-    #backToTop:focus {
-      outline: 2px solid #cfe2ff; /* 접근성: 키보드 포커스 */
-      outline-offset: 2px;
-    }
+    #btBar .copy { color: #888; margin-right: 12px; }
+    #btBar a#backToTop { color: #007BFF; text-decoration: none; }
+    #btBar a#backToTop:hover { text-decoration: underline; }
+    #btBar a#backToTop:focus { outline: none; } /* 클릭 시 테두리 제거 */
   </style>
 </head>
 <body>
@@ -338,38 +211,27 @@
     <div class="caption">Solo exhibition view <em>Roulé-Lavé</em>, CACN - centre d'art contemporain de Nîmes, France, 2025.</div>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      © 2025 Won Jy – All rights reserved. Member of ADAGP.
-    </div>
-  </footer>
-
   <!-- Back to top 버튼 -->
-  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+ <div id="btBar" role="region" aria-label="Back to top bar">
+    <span class="copy">© Won Jy, ADAGP</span>
+    <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+  </div>
 
   <script>
     (function () {
+      const bar = document.getElementById('btBar');
       const backToTopBtn = document.getElementById('backToTop');
       const showAfter = 300; // px
 
-      // 스크롤 시 표시/숨김
       window.addEventListener('scroll', () => {
-        if (window.scrollY > showAfter) {
-          backToTopBtn.style.display = 'inline';
-        } else {
-          backToTopBtn.style.display = 'none';
-        }
+        bar.style.display = (window.scrollY > showAfter) ? 'flex' : 'none';
       });
 
-      // 클릭 시 부드럽게 상단 이동 (사용자 선호 고려)
       backToTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReduced) {
-          window.scrollTo(0, 0);
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) window.scrollTo(0, 0);
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     })();
   </script>
