@@ -17,7 +17,12 @@ layout: none
     nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
     nav a:hover,nav a.active{color:var(--blue)}
 
-    main{max-width:1200px;margin:0 auto;padding:24px}
+    main {
+    max-width: none;     /* 가운데 폭 제한 제거 */
+    margin: 0;           /* 중앙 정렬 제거 */
+    padding: 24px;       /* 상하좌우 여백 조정 */
+    padding-left: 24px;  /* 왼쪽 여백 24px로 고정 */
+}
 
     .topbar{display:flex;align-items:center;gap:16px;justify-content:flex-start;margin:8px 0 16px}
     .sort a{color:var(--blue);text-decoration:none;margin-right:6px}
