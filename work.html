@@ -115,31 +115,31 @@ layout: none
     
     /* Work 페이지 페이지네이션 */
     .grid{
-    width:100%;
-    max-width:1200px;      /* 필요시 1100/1000 등으로 조절 */
-    margin:0 auto;         /* 가운데 정렬 */
+    width: 100%;      /* 섹션 폭을 그대로 사용 */
+    margin: 0;        /* 가운데 정렬은 섹션이 담당하니 auto 제거 */
     }
-    
-    .pagination{
-    width:100%;
-    max-width:1200px;      /* 위 그리드와 같은 값 */
-    margin:40px auto 60px; /* 카드와의 간격/아래 여백 */
-    display:flex;
-    justify-content:center;
-    gap:6px;
-    }
-    
-    .pagination a{
+  
+  /* Pagination */
+  .pagination{
+    width: 100%;                 /* 섹션 폭과 동일 */
+    margin: 40px 0 60px;         /* 카드와의 간격/아래 여백 */
+    display: flex;
+    justify-content: center;     /* 가운데 정렬 */
+    gap: 6px;
+  }
+  
+  .pagination a{
     text-decoration: none;
     color: #000;
     font-size: 0.95em;
-    }
-    .pagination a:hover,
-    .pagination a.current{
+  }
+  .pagination a:hover,
+  .pagination a.current{
     color: var(--blue);
-    }
-    /* Work 페이지네이션 나오는 "..." 부분  */
-    .pagination .ellipsis { padding: 0 6px; color: #999; }
+  }
+  
+  /* '…' 표시 */
+  .pagination .ellipsis{ padding: 0 6px; color: #999; }
 
     
     /* 스크린리더 전용 숨김 */
