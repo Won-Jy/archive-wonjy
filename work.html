@@ -148,7 +148,48 @@ layout: none
         grid-template-columns: repeat(2, auto);
       }
     }
+    
+/* 1) Type / Status / Tag = 세로 리스트 */
+.filter-group[data-filter="type"] .chips,
+.filter-group[data-filter="status"] .chips,
+.filter-group[data-filter="tag"] .chips{
+  display: block;                  /* 줄바꿈 리스트 */
+}
+.filter-group[data-filter="type"] .chip,
+.filter-group[data-filter="status"] .chip,
+.filter-group[data-filter="tag"] .chip{
+  display: block;                  /* 한 줄에 하나 */
+  padding: 6px 0;
+  margin: 0;
+  white-space: normal;             /* 긴 태그 줄바꿈 허용 */
+}
 
+/* 2) Year = 4열 가로 배열(내림차순은 JS에서 이미 처리됨) */
+.filter-group[data-filter="year"] .chips{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 16px;
+  row-gap: 8px;
+  align-content: start;
+}
+.filter-group[data-filter="year"] .chip{
+  display: inline-block;
+  padding: 2px 0;
+  margin: 0;
+}
+/* All은 첫 줄 단독으로 전체 폭 차지 */
+.filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
+  grid-column: 1 / -1;
+  padding-bottom: 6px;
+}
+
+/* 반응형: 폭이 줄면 열 수도 자동 축소 */
+@media (max-width: 1100px){
+  .filter-group[data-filter="year"] .chips{ grid-template-columns: repeat(3, auto); }
+}
+@media (max-width: 720px){
+  .filter-group[data-filter="year"] .chips{ grid-template-columns: repeat(2, auto); }
+}
 
     /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
