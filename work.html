@@ -124,7 +124,26 @@ padding-left: 12px; /* 내용 들여쓰기 */
   .filter-group[data-filter="year"] .chips{ grid-template-columns:repeat(2, auto); }
 }
 
+/* 필터 내용 들여쓰기 — 사이드바에만 적용 */
+.sidebar .filter-group .filter-body {
+  padding-left: 14px;           /* ← 들여쓰기 값 (12~16px 사이로 취향 조절) */
+}
 
+/* Type / Status / Tag 항목(세로 리스트) 들여쓰기 보장 */
+.sidebar .filter-group[data-filter="type"]   .filter-body .chip,
+.sidebar .filter-group[data-filter="status"] .filter-body .chip,
+.sidebar .filter-group[data-filter="tag"]    .filter-body .chip {
+  margin-left: 0;                /* 중복 들여쓰기 방지 */
+}
+
+/* Year(그리드)도 동일 들여쓰기 */
+.sidebar .filter-group[data-filter="year"] .filter-body {
+  padding-left: 14px;            /* 위의 값과 동일하게 맞추기 */
+}
+
+/* 구분선 길이와 들여쓰기 시각 균형(선은 전체폭, 내용은 안으로) */
+.sidebar .filter-group { padding-left: 0; }
+    
 
     /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
