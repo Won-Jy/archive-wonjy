@@ -383,18 +383,35 @@ layout: none
 
         // 페이지네이션 (숫자 + <, > 모두 클릭 가능)
         // < → 1페이지, > → 마지막 페이지
+        //예 : < 1 … 4 5 [6] 7 8 … 100 >
         const link = (p, label, cls='') =>
         `<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
         const num = (p, current) =>
-        current
-        ? `<a href="#" class="current" data-page="${p}">${p}</a>`
-        : `<a href="#" data-page="${p}">${p}</a>`;
-
+        current ? `<a href="#" class="current" data-page="${p}">${p}</a>`
+                : `<a href="#" data-page="${p}">${p}</a>`;
+      
         let html = '';
         if (total > 1) {
-          html += link(1, '<', 'prev');                 // 맨 앞
-          for (let i = 1; i <= total; i++) html += num(i, i === state.page);
-          html += link(total, '>', 'next');             // 맨 뒤
+        // 화살표: 첫/마지막으로 이동 (기존 스펙 유지)
+        html += link(1, '<', 'prev');
+      
+        const windowSize = 2; // 현재 주변 몇 개 보여줄지
+        const pages = new Set([1, total]);
+      
+        for (let p = state.page - windowSize; p <= state.page + windowSize; p++) {
+        if (p > 1 && p < total) pages.add(p);
+        }
+      
+        const list = [...pages].sort((a, b) => a - b);
+      
+        let last = 0;
+        for (const p of list) {
+        if (last && p - last > 1) html += `<span class="ellipsis">…</span>`;
+        html += num(p, p === state.page);
+        last = p;
+        }
+      
+        html += link(total, '>', 'next');
         }
         pager.innerHTML = html;
         } 
