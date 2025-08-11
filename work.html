@@ -192,7 +192,7 @@ margin: 6px 0 0px;
 .sidebar .filter-group[data-filter="tag"] .chips{
   display:flex;
   flex-direction:column;
-  gap:10px;           /* 필요시 3~6px로 조절 */
+  gap:12px;           /* 사이드 바 필터 세로로 정렬된 버튼들 사이 상하 간격*/
 }
 
 /* Year는 grid gap만 사용 (항목 자체 padding 제거) */
@@ -200,7 +200,7 @@ margin: 6px 0 0px;
   display:grid;
   grid-template-columns:repeat(4, auto);
   column-gap:16px;
-  row-gap:10px;
+  row-gap:12px; /* 연도 행들 사이의 위아래 간격*/
   align-content:start;
 }
 .filter-group[data-filter="year"] .chip{ padding:0; margin:0; }
