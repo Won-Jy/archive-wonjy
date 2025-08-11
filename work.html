@@ -114,21 +114,22 @@ layout: none
     .hover .meta{padding:10px 12px;font-size:0.95em}
     
     /* Work 페이지 페이지네이션 */
-    section > .grid{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 18px;
-    width: min(1200px, 100%);
-    margin: 0 auto;  
+    .content-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
     }
-
-    section > .pagination{
-    max-width: 100%;              /* 기본적으로 부모 폭을 넘지 않음 */
-    width: min(1200px, 100%);
-    margin: 40px auto 60px;   /* 카드와 간격 / 아래 여백 */
+  
+    .content-wrap .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    }
+  
+    .content-wrap .pagination {
+    margin: 40px 0 60px;
     display: flex;
     justify-content: center;
-    gap: 6px;                  /* ← 오타 주의! */
+    gap: 6px;
     }
   
     section > .pagination a{
