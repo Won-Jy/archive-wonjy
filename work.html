@@ -46,68 +46,77 @@ layout: none
     @media (max-width:960px){.layout{grid-template-columns:1fr}}
 
 /* === Sidebar 스타일 전체 === */
-.sidebar {
-  width: 200px;
-  padding: 0 20px;
-  font-size: 0.95em;
-  padding-top: 0; /* 필요하면 기존 값에서 줄임 */
-  margin-top: -16px; /* 음수로 주면 더 위로 올라감 */
+/* Sidebar 위치 조정 */
+.sidebar{
+  padding-top:0;
+  margin-top:-16px;
+ padding-top: 0; /* 필요하면 기존 값에서 줄임 */
+  margin-top: -16px; /* 음수로 주면 더 위로 올라감 */ 
+}
+@media (max-width:960px){
+  .sidebar{ border-bottom:1px solid var(--border); padding-bottom:16px; margin-bottom:8px; }
 }
 
-/* 각 필터 그룹 */
-.sidebar .filter-group {
-  border-bottom: 1px solid #ddd;
-  padding: 12px 0;
+/* Type 위 첫 구분선 */
+.sidebar .filter-group:first-of-type{
+  border-top:1px solid var(--border);
+  padding-top:12px;
 }
 
-/* 그룹 제목 */
-.sidebar .filter-group h4 {
-  margin: 0 0 8px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* 그룹 구분선/여백 */
+.filter-group{
+  margin:16px 0;
+  border-bottom:1px solid var(--border);
+  padding-bottom:12px;
+}
+.filter-group:last-child{ border-bottom:none; }
+
+/* 제목 줄 */
+.filter-head{
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; user-select:none; padding:6px 0;
+}
+.filter-head .label{ font-weight:bold; font-size:0.95em; }
+.toggle{ color:#999; }
+
+/* 본문 */
+.filter-body{ margin:6px 0 8px; }
+
+/* ✅ 기본: 세로 리스트 (Type/Status/Tag) */
+.chips{
+  display:block;           /* ← flex 금지 */
+  padding:0; margin:0;
+}
+.chip{
+  display:block;           /* 한 줄에 하나 */
+  border:0; background:none; padding:6px 0; margin:0;
+  font-size:0.95em; color:inherit; cursor:pointer; white-space:normal;
+}
+.chip:hover, .chip.active{ color:var(--blue); }
+.chips .chip[data-value="__ALL__"]{ font-weight:700; }
+
+/* ✅ Year만 4열 grid */
+.filter-group[data-filter="year"] .chips{
+  display:grid;
+  grid-template-columns:repeat(4, auto);
+  column-gap:16px; row-gap:8px; align-content:start;
+}
+.filter-group[data-filter="year"] .chip{
+  display:inline-block; padding:2px 0; margin:0;
+}
+/* Year의 All은 첫 줄 전체 차지 */
+.filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
+  grid-column:1 / -1; padding-bottom:6px; display:block !important;
 }
 
-/* All 버튼 항상 볼드 */
-.sidebar .filter-group ul li:first-child a {
-  font-weight: bold;
+/* 반응형 */
+@media (max-width:1100px){
+  .filter-group[data-filter="year"] .chips{ grid-template-columns:repeat(3, auto); }
+}
+@media (max-width:720px){
+  .filter-group[data-filter="year"] .chips{ grid-template-columns:repeat(2, auto); }
 }
 
-/* 필터 항목 리스트 기본 세로 정렬 */
-.sidebar .filter-group ul {
-  display: block;
-  padding-left: 0;
-  margin: 0;
-  list-style: none;
-}
-
-/* Year만 가로 4열 정렬 + 내림차순 정렬 유지 */
-.sidebar .filter-group.year ul {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  gap: 4px 16px; /* 세로, 가로 간격 */
-}
-
-/* 리스트 항목 간격 */
-.sidebar .filter-group ul li {
-  margin-bottom: 4px;
-}
-
-/* 필터 링크 스타일 */
-.sidebar .filter-group ul li a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.sidebar .filter-group ul li a.active {
-  color: #0073e6;
-}
-
-/* 접혔을 때 목록 숨김 */
-.sidebar .filter-group.collapsed ul {
-  display: none;
-}
 
 
     /* 카드 공통 */
