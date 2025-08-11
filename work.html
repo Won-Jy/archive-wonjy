@@ -46,52 +46,87 @@ layout: none
     @media (max-width:960px){.layout{grid-template-columns:1fr}}
 
     /* Sidebar */
-    /* 1) 사이드바 오른쪽 세로선 제거, 그룹 사이 구분선 추가 */
-    .sidebar{ border-right: none; padding-right: 16px; }
-    .filter-group{ padding: 12px 0; border-bottom: 1px solid var(--border); }
-    .filter-group:last-child{ border-bottom: 0; }
-    .filter-head{ padding: 8px 0; }
-    .filter-head .label{ font-weight:600; font-size:0.95em; }
-    .toggle{ color:#999; }
-    
-    /* 2) 칩을 '텍스트 버튼'처럼 보이게: 테두리/배경 제거 */
-    .chips{ display:block; gap:0; }                /* 기본은 세로 리스트 */
-    .chip{
-      display:block;                               /* 한 줄에 하나 */
-      padding:6px 0;
-      margin:0;
-      border:0; border-radius:0;
-      background:none;
-      color:#444;                                   /* 기본 회색 텍스트 */
-      font-size:0.95em;
-      cursor:pointer;
-    }
-    .chip:hover,
-    .chip:focus{ color:var(--blue); outline:none; } /* 사이트 링크와 동일 hover */
-    .chip.active{ color:var(--blue); font-weight:600; } /* active도 파랑 */
-    
-    /* 3) 'All'은 항상 진하게(기본 색 유지), hover/active 시 파랑 */
-    .chip[data-value="__ALL__"]{ font-weight:700; }     /* 두껍게만 */
-    .chip[data-value="__ALL__"].active{ color:var(--blue); }
-    
-    /* 4) Type/Status/Tag: 세로 정렬(기본 그대로) */
-    /* 이미 .chips display:block; .chip display:block 으로 세로 배치 */
-    
-    /* 5) Year: 내림차순 4열 그리드 + 'All'은 맨 위에 단독 줄 */
-    .filter-group[data-filter="year"] .chips{
-      display:grid;
-      grid-template-columns: repeat(4, auto);
-      column-gap: 16px;
-      row-gap: 8px;
-      align-content:start;
-    }
-    .filter-group[data-filter="year"] .chip{
-      display:inline-block; padding:2px 0; margin:0;
-    }
-    .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
-      grid-column: 1 / -1;                          /* All이 첫 줄 전체 차지 */
-      padding-bottom: 6px;
-    }
+.sidebar {
+  padding-right: 16px;
+}
+@media (max-width:960px) {
+  .sidebar {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+  }
+}
+
+/* 필터 그룹 */
+.filter-group {
+  margin: 16px 0;
+  border-bottom: 1px solid var(--border); /* 그룹 간 구분선 */
+  padding-bottom: 12px;
+}
+.filter-group:last-child {
+  border-bottom: none; /* 마지막 그룹은 구분선 제거 */
+}
+
+/* 필터 제목 */
+.filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 0;
+}
+.filter-head .label {
+  font-weight: bold;
+  font-size: 0.95em;
+}
+.toggle {
+  color: #999;
+}
+
+/* 필터 내용 */
+.filter-body {
+  margin: 6px 0 6px 0;
+}
+
+/* 버튼 기본 스타일 (테두리/배경 제거, 텍스트 링크 스타일) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+  cursor: pointer;
+  color: inherit;
+  font-weight: normal; /* 기본은 볼드 아님 */
+}
+.chip:hover,
+.chip.active {
+  color: var(--blue); /* hover, active 시 파란색 */
+}
+
+/* All 버튼만 볼드 */
+.chip.all {
+  font-weight: bold;
+}
+
+/* 세로 정렬 그룹 (Type, Status, Tag) */
+.filter-group.vertical .chips {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Year 그룹 (4열 가로 배열, 내림차순 가정) */
+.filter-group.year .chips {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 6px 12px;
+}
+
     
     /* 반응형: 화면 줄면 열 수 줄이기 */
     @media (max-width: 1100px){
