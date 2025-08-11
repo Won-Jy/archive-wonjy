@@ -172,10 +172,10 @@ margin: 6px 0 0px;
 /* 구분선 길이와 들여쓰기 시각 균형(선은 전체폭, 내용은 안으로) */
 .sidebar .filter-group { padding-left: 0; }
 
+    
 /* === Sidebar spacing — 최하단에 추가 === */
-
 /* 섹션 하단 간격은 여기서만 관리 */
-.filter-group{ padding-bottom:12px; }
+.filter-group{ padding-bottom:24px; }
 
 /* 본문 아래 마진 제거 */
 .filter-body{ margin:6px 0 0; }
@@ -192,7 +192,7 @@ margin: 6px 0 0px;
 .sidebar .filter-group[data-filter="tag"] .chips{
   display:flex;
   flex-direction:column;
-  gap:4px;           /* 필요시 3~6px로 조절 */
+  gap:10px;           /* 필요시 3~6px로 조절 */
 }
 
 /* Year는 grid gap만 사용 (항목 자체 padding 제거) */
@@ -200,7 +200,7 @@ margin: 6px 0 0px;
   display:grid;
   grid-template-columns:repeat(4, auto);
   column-gap:16px;
-  row-gap:8px;
+  row-gap:10px;
   align-content:start;
 }
 .filter-group[data-filter="year"] .chip{ padding:0; margin:0; }
