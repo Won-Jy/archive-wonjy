@@ -396,7 +396,7 @@ layout: none
           html += link(total, '>', 'next');         // 맨 뒤
         }
         pager.innerHTML = html; 
-              }
+        
 
       pager.addEventListener('click',e=>{
         const a = e.target.closest('a[data-page]'); if(!a) return; e.preventDefault();
