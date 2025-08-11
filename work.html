@@ -381,16 +381,22 @@ layout: none
           </a>`;
         }).join('');
 
-        // 페이지네이션
-        const mkLink = (p,label,active=false)=> active? `<span class="current">${label}</span>` : `<a href="#" data-page="${p}">${label}</a>`;
-        let html='';
-        if(total>1){
-          html += mkLink(1,'<');
-          for(let i=1;i<=total;i++) html += mkLink(i,String(i), i===state.page);
-          html += mkLink(total,'>');
+        // 페이지네이션 (숫자 + <, > 모두 클릭 가능)
+        // < → 1페이지, > → 마지막 페이지
+        const link = (p, label, cls='') =>
+          <a href="#" class="${cls}" data-page="${p}">${label}</a>;
+        const num = (p, current) =>
+          current ? <a href="#" class="current" data-page="${p}">${p}</a>
+                  : <a href="#" data-page="${p}">${p}</a>;
+        
+        let html = '';
+        if (total > 1) {
+          html += link(1, '<', 'prev');             // 맨 앞
+          for (let i = 1; i <= total; i++) html += num(i, i === state.page);
+          html += link(total, '>', 'next');         // 맨 뒤
         }
-        pager.innerHTML = html;
-      }
+        pager.innerHTML = html; 
+              }
 
       pager.addEventListener('click',e=>{
         const a = e.target.closest('a[data-page]'); if(!a) return; e.preventDefault();
