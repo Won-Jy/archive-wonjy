@@ -31,10 +31,17 @@ layout: none
     .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
 
     /* Search */
-    .search input{
-      box-sizing:border-box;padding:6px 8px;padding-right:6px;border:1px solid var(--border);
-      border-radius:0;font-size:0.95em;text-align:left;outline:none;
-    }
+    .search input {
+    box-sizing: border-box;
+    padding: 6px 8px;
+    padding-right: 6px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font-size: 0.95em;
+    text-align: left;
+    outline: none;
+    width: 220px; /* ← 원하는 넓이로 조정 */
+  }
     .search input::placeholder{color:#999}
     .search input::-webkit-search-cancel-button{
       -webkit-appearance:none;width:14px;height:14px;cursor:pointer;
