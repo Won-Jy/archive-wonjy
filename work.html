@@ -189,7 +189,45 @@ margin: 6px 0 0px;
 /* Year 그리드도 동일하게 맞춤(혹시 위 규칙을 덮는 경우 방지) */
 .filter-group[data-filter="year"] .chip { padding:2px 0; margin:0; }
     
+/* === Sidebar spacing — 최하단에 추가 === */
 
+/* 섹션 하단 간격은 여기서만 관리 */
+.filter-group{ padding-bottom:12px; }
+
+/* 본문 아래 마진 제거 */
+.filter-body{ margin:6px 0 0; }
+
+/* 사이드바 항목은 내부 여백/마진 없음(마지막 줄에 간격 안 붙게) */
+.sidebar .filter-group .filter-body .chip{
+  padding:0;
+  margin:0;
+}
+
+/* 세로 리스트(Type/Status/Tag)는 gap으로만 간격 제어 (끝에는 간격 0) */
+.sidebar .filter-group[data-filter="type"] .chips,
+.sidebar .filter-group[data-filter="status"] .chips,
+.sidebar .filter-group[data-filter="tag"] .chips{
+  display:flex;
+  flex-direction:column;
+  gap:4px;           /* 필요시 3~6px로 조절 */
+}
+
+/* Year는 grid gap만 사용 (항목 자체 padding 제거) */
+.filter-group[data-filter="year"] .chips{
+  display:grid;
+  grid-template-columns:repeat(4, auto);
+  column-gap:16px;
+  row-gap:8px;
+  align-content:start;
+}
+.filter-group[data-filter="year"] .chip{ padding:0; margin:0; }
+
+/* Year의 All 아래 추가 여백 제거 */
+.filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
+  grid-column:1/-1;
+  padding-bottom:0;         /* ← 핵심 */
+  display:block !important;
+}
     /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
