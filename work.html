@@ -105,8 +105,8 @@ margin: 6px 0 0px;
   padding:0; margin:0;
 }
 .chip{
-  display:block;           /* 한 줄에 하나 */
-  border:0; background:none; padding:6px 0; margin:0;
+  display:block;
+  border:0; background:none; padding:0; margin:0;   /* ← 패딩 0으로 */
   font-size:0.95em; color:inherit; cursor:pointer; white-space:normal;
 }
     
@@ -141,7 +141,7 @@ margin: 6px 0 0px;
 }
 /* Year의 All은 첫 줄 전체 차지 */
 .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
-  grid-column:1 / -1; padding-bottom:6px; display:block !important;
+  grid-column:1 / -1; padding-bottom:2px; display:block !important; /* 6px → 2px */
 }
 
 /* 반응형 */
@@ -171,6 +171,23 @@ margin: 6px 0 0px;
 
 /* 구분선 길이와 들여쓰기 시각 균형(선은 전체폭, 내용은 안으로) */
 .sidebar .filter-group { padding-left: 0; }
+
+/* === Sidebar spacing normalization (A안) — FILE BOTTOM === */
+
+/* 섹션 하단 간격은 filter-group에서만 관리 */
+.filter-group { padding-bottom:12px; }
+
+/* filter-body의 아래 마진 제거 */
+.filter-body { margin:6px 0 0; }
+
+/* 사이드바 내부 chip은 패딩/마진을 통일 (전역 .chip 보다 ‘아래’에 위치) */
+.sidebar .filter-group .filter-body .chip {
+  margin-bottom:0;
+  padding:2px 0;
+}
+
+/* Year 그리드도 동일하게 맞춤(혹시 위 규칙을 덮는 경우 방지) */
+.filter-group[data-filter="year"] .chip { padding:2px 0; margin:0; }
     
 
     /* 카드 공통 */
