@@ -114,26 +114,19 @@ layout: none
     .hover .meta{padding:10px 12px;font-size:0.95em}
     
     /* Work 페이지 페이지네이션 */
-    .pagination {
+    .pagination{
     padding: 30px 24px 60px;
     display: flex;
     justify-content: center;
     gap: 4px;
     }
-    .pagination a {
+    .pagination a{
     text-decoration: none;
     color: #000;
     font-size: 0.95em;
-    pointer-events: none; /* 기본적으로 클릭 불가 */
     }
-    .pagination a.prev,
-    .pagination a.next {
-    pointer-events: auto; /* 이전/다음 버튼만 클릭 가능 */
-    }
-    .pagination a:hover {
-    color: var(--blue);
-    }
-    .pagination .current {
+    .pagination a:hover,
+    .pagination a.current{
     color: var(--blue);
     }
     
