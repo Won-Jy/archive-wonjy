@@ -1,4 +1,4 @@
----
+  ---
 title: Work
 layout: none
 ---
@@ -122,10 +122,19 @@ layout: none
     gap: 6px;
     max-width: 100%;        /* 전체 폭 제한 */
     }
-    .layout section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    /* 그리드와 페이지네이션 중앙 맞춤 */
+    .grid{
+    width:100%;
+    max-width:1200px;      /* 필요시 1100/1000 등으로 조절 */
+    margin:0 auto;         /* 가운데 정렬 */
+    }
+
+    .pagination{
+    width:100%;
+    max-width:1200px;      /* 위 그리드와 같은 값 */
+    margin:40px auto 60px; /* 카드와의 간격/아래 여백 */
+    display:flex;
+    justify-content:center;
+    gap:6px;
     }
     .pagination a{
     text-decoration: none;
