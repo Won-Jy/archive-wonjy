@@ -56,7 +56,7 @@ layout: none
   .search input{
   box-sizing: border-box;
   padding: 6px 8px;
-  padding-right: 26px;          /* ← X 버튼 영역만큼 여백 */
+  padding-right: 10px;          /* ← X 버튼 영역만큼 여백 */
   border: 1px solid var(--border);   /* 기본 얇은 회색 테두리 */
   border-radius: 0;
   font-size: 0.95em;
@@ -64,20 +64,19 @@ layout: none
   outline: none;
   }
   
-  /* 검색창 x 버튼 *(현재는 오류나서 삭제함.)/
-  /* 얇은 회색선 X 아이콘 (Chrome/Safari/Edge) */
-.search input::-webkit-search-cancel-button{
+  /* 검색창 X버튼 *(Chrome/Safari/Edge)*/
+  .search input::-webkit-search-cancel-button{
   -webkit-appearance: none;
   width: 14px;
   height: 14px;
   cursor: pointer;
   background: no-repeat center / contain
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");
+  url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");
   opacity: .9;
-}
-.search input::-webkit-search-cancel-button:hover{
+  }
+  .search input::-webkit-search-cancel-button:hover{
   opacity: 1;
-}
+  }
 
     /* 선택: 플레이스홀더 Search 색 살짝 연하게(원하시면 유지) */
     .search input::placeholder{
