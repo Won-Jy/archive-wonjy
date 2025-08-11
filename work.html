@@ -384,25 +384,33 @@ layout: none
         // 페이지네이션 (숫자 + <, > 모두 클릭 가능)
         // < → 1페이지, > → 마지막 페이지
         const link = (p, label, cls='') =>
-          <a href="#" class="${cls}" data-page="${p}">${label}</a>;
+        `<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
         const num = (p, current) =>
-          current ? <a href="#" class="current" data-page="${p}">${p}</a>
-                  : <a href="#" data-page="${p}">${p}</a>;
-        
+        current
+        ? `<a href="#" class="current" data-page="${p}">${p}</a>`
+        : `<a href="#" data-page="${p}">${p}</a>`;
+
         let html = '';
         if (total > 1) {
-          html += link(1, '<', 'prev');             // 맨 앞
+          html += link(1, '<', 'prev');                 // 맨 앞
           for (let i = 1; i <= total; i++) html += num(i, i === state.page);
-          html += link(total, '>', 'next');         // 맨 뒤
+          html += link(total, '>', 'next');             // 맨 뒤
         }
-        pager.innerHTML = html; 
+        pager.innerHTML = html;
+        } 
         
 
-      pager.addEventListener('click',e=>{
-        const a = e.target.closest('a[data-page]'); if(!a) return; e.preventDefault();
-        const to = Number(a.dataset.page); if(!Number.isFinite(to)) return; state.page = to; render();
+        // 클릭 위임 (render() 바깥)
+        pager.addEventListener('click', e => {
+        const a = e.target.closest('a[data-page]');
+        if (!a) return;
+        e.preventDefault();
+        const to = Number(a.dataset.page);
+        if (!Number.isFinite(to)) return;
+        state.page = to;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+        render();
+        });
 
       render();
     })();
