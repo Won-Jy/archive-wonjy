@@ -17,72 +17,31 @@ layout: none
     nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
     nav a:hover,nav a.active{color:var(--blue)}
 
-    main {
-    max-width: 1200px;     /* 가운데 폭 제한 제거 */
-    margin: 0;           /* 중앙 정렬 제거 */
-    padding: 24px;       /* 상하좌우 여백 조정 */
-    padding-left: 24px;  /* 왼쪽 여백 24px로 고정 */
+    main{
+      max-width:1200px; /* 페이지 좌우 여백 */
+      margin:0;
+      padding:24px;
+      padding-left:24px;
     }
 
     /* Topbar */
-  .topbar{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  justify-content:flex-end;
-  margin:8px 0 16px;
-  font-size:0.9em;               /* ← 살짝 작게 */
-  }
+    .topbar{display:flex;align-items:center;gap:16px;justify-content:flex-end;margin:8px 0 16px;font-size:0.9em}
+    .sort a{color:#555;text-decoration:none;margin-right:6px}
+    .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
+    .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
 
-  /* Sort 링크: 기본은 회색, hover/active 때만 파랑 */
- .sort a{
-  color:#555;
-  text-decoration:none;
-  margin-right:6px;
-  }
-.sort a:hover,
-.sort a:active,
-.sort a:focus{
-  color: var(--blue);
-  text-decoration: none;   /* ← 밑줄 제거 */
-  }
-.sort a.active{
-  color: var(--blue);
-  font-weight: normal;   /* ← 볼드 해제 */
-  text-decoration: none;   /* ← 밑줄 제거 */
-  }
-
-  /* Search 입력창 */
-  .search input{
-  box-sizing: border-box;
-  padding: 6px 8px;
-  padding-right: 6px;          /* ← X 버튼 영역만큼 여백 */
-  border: 1px solid var(--border);   /* 기본 얇은 회색 테두리 */
-  border-radius: 0;
-  font-size: 0.95em;
-  text-align: left;
-  outline: none;
-  }
-  
-  /* 검색창 X버튼 *(Chrome/Safari/Edge)*/
-  .search input::-webkit-search-cancel-button{
-  -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-  background: no-repeat center / contain
-  url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");
-  opacity: .9;
-  }
-  .search input::-webkit-search-cancel-button:hover{
-  opacity: 1;
-  }
-
-    /* 선택: 플레이스홀더 Search 색 살짝 연하게(원하시면 유지) */
-    .search input::placeholder{
-      color:#999;
+    /* Search */
+    .search input{
+      box-sizing:border-box;padding:6px 8px;padding-right:6px;border:1px solid var(--border);
+      border-radius:0;font-size:0.95em;text-align:left;outline:none;
     }
+    .search input::placeholder{color:#999}
+    .search input::-webkit-search-cancel-button{
+      -webkit-appearance:none;width:14px;height:14px;cursor:pointer;
+      background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
+    .search input::-webkit-search-cancel-button:hover{opacity:1}
 
+    /* Layout */
     .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
     @media (max-width:960px){.layout{grid-template-columns:1fr}}
 
@@ -98,56 +57,39 @@ layout: none
     .chip{border:1px solid var(--border);padding:2px 8px;border-radius:12px;font-size:0.85em;cursor:pointer}
     .chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-    /* Grid */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr); /* 데스크톱: 2열 */
-      gap:18px;
-    }
-    @media (max-width:900px){ .grid{ grid-template-columns:1fr; } } /* 모바일: 1열 */
-
+    /* 카드 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
     .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
     .card:hover .hover{opacity:1}
     .hover .meta{padding:10px 12px;font-size:0.95em}
-    
-    /* Work 페이지 페이지네이션 */
-    .content-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    }
-  
-    .content-wrap .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    }
-  
-    .content-wrap .pagination {
-    margin: 40px 0 60px;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    }
-  
-    section > .pagination a{
-    text-decoration: none;
-    color: #000;
-    font-size: 0.95em;
-    }
-    section > .pagination a:hover,
-    section > .pagination a.current{
-    color: var(--blue);
-    }
-  
-    section > .pagination .ellipsis{ padding: 0 6px; color:#999; }
 
-    
-    /* 스크린리더 전용 숨김 */
+    /* 콘텐츠 래퍼: 그리드와 페이저 동일 폭 중앙정렬 */
+    section > .content-wrap{width:min(1200px,100%);margin:0 auto}
+
+    /* Grid */
+    .content-wrap .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+    @media (max-width:900px){ .content-wrap .grid{ grid-template-columns:1fr; } }
+
+    /* Pagination */
+    .content-wrap .pagination{
+      margin:40px 0 60px;
+      display:flex;
+      justify-content:center;
+      gap:6px;
+    }
+    .content-wrap .pagination a{ text-decoration:none; color:#000; font-size:0.95em; }
+    .content-wrap .pagination a:hover,
+    .content-wrap .pagination a.current{ color:var(--blue); }
+    .content-wrap .pagination .ellipsis{ padding:0 6px; color:#999; }
+
+    /* 스크린리더용 숨김 */
     .sr{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-
   </style>
 </head>
 <body>
@@ -164,23 +106,14 @@ layout: none
 
   <main>
     <div class="topbar">
-      <div class="sort">Sort by &nbsp;
-        <a href="#" data-sort="newest" class="active">newest</a>
-        /
+      <div class="sort">Sort by&nbsp;
+        <a href="#" data-sort="newest" class="active">newest</a> /
         <a href="#" data-sort="oldest">oldest</a>
       </div>
       <div class="search">
         <label class="sr" for="q">Search</label>
-        <input
-        id="q"
-        name="work_search"
-        type="search"
-        placeholder="Search"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-        />
+        <input id="q" name="work_search" type="search" placeholder="Search"
+               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       </div>
     </div>
 
@@ -205,15 +138,15 @@ layout: none
       </aside>
 
       <section>
-      <div class="content-wrap">
-      <div id="grid" class="grid"></div>
-      <nav id="pager" class="pagination" aria-label="Pagination"></nav>
-      </div>
+        <div class="content-wrap">
+          <div id="grid" class="grid"></div>
+          <nav id="pager" class="pagination" aria-label="Pagination"></nav>
+        </div>
       </section>
     </div>
   </main>
 
-  <!-- Liquid로 Jekyll 페이지 메타데이터를 JS 배열로 내보내기 -->
+  <!-- Liquid -> JS 데이터 -->
   <script>
     window.WORKS = [
       {% assign works = site.pages | where: "layout", "work" %}
@@ -235,122 +168,88 @@ layout: none
   <script>
     (function(){
       const PER_PAGE = 6;
-      const grid = document.getElementById('grid');
+      const grid  = document.getElementById('grid');
       const pager = document.getElementById('pager');
-      const q = document.getElementById('q');
+      const q     = document.getElementById('q');
 
       const state = { sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
 
       const data = (window.WORKS||[]).map(w=>({
         ...w,
-        _years: (()=>{ // 연도 표시용
-          const s = Number(w.year_start||'');
-          const e = w.year_end===null||w.year_end===''? null : Number(w.year_end);
-          let d = '';
-          if(e===null){ d = s? `${s} –` : ''; }
-          else if(s===e){ d = `${s}`; }
-          else { d = `${s} – ${e}`; }
+        _years:(()=>{
+          const s=Number(w.year_start||'');
+          const e=(w.year_end===null||w.year_end==='')? null : Number(w.year_end);
+          let d=''; if(e===null){ d=s?`${s} –`:''; } else if(s===e){ d=`${s}`; } else { d=`${s} – ${e}`; }
           return {s,e,display:d};
         })()
       }));
 
-      // 고유값 수집
-      const setFrom = (arr, key) => Array.from(new Set(arr.map(o=>o[key]).filter(Boolean))).sort();
+      const setFrom = (arr,key)=>Array.from(new Set(arr.map(o=>o[key]).filter(Boolean))).sort();
       const types = setFrom(data,'type');
       const statuses = setFrom(data,'status');
       const yearsAll = Array.from(new Set(data.flatMap(o=>{
-        const s = Number(o.year_start||'');
-        const e = (o.year_end===null||o.year_end==='')? s : Number(o.year_end);
-        if(!s) return [];
-        const ys=[]; for(let y=s; y<=e; y++) ys.push(y); return ys;
-      }))).sort((a,b)=>b-a); // 큰 연도 먼저
+        const s=Number(o.year_start||''); const e=(o.year_end===null||o.year_end==='')? s : Number(o.year_end);
+        if(!s) return []; const ys=[]; for(let y=s;y<=e;y++) ys.push(y); return ys;
+      }))).sort((a,b)=>b-a);
       const tagsAll = Array.from(new Set(data.flatMap(o=>Array.isArray(o.tags)?o.tags:[]))).sort();
 
-      // 필터 UI 채우기
-      const mountChips = (selector, items) => {
-        const g = document.querySelector(`.filter-group[data-filter="${selector}"] .filter-body`);
-        g.innerHTML = '';
-        const all = document.createElement('span');
-        all.className='chip active'; all.textContent='All';
-        all.dataset.value='__ALL__';
-        g.appendChild(all);
-        items.forEach(v=>{
-          const s=document.createElement('span'); s.className='chip'; s.textContent=v; s.dataset.value=String(v);
-          g.appendChild(s);
-        });
+      const mountChips=(selector,items)=>{
+        const g=document.querySelector(`.filter-group[data-filter="${selector}"] .filter-body`);
+        g.innerHTML=''; const all=document.createElement('span');
+        all.className='chip active'; all.textContent='All'; all.dataset.value='__ALL__'; g.appendChild(all);
+        items.forEach(v=>{const s=document.createElement('span'); s.className='chip'; s.textContent=v; s.dataset.value=String(v); g.appendChild(s);});
       };
-      mountChips('type', types);
-      mountChips('year', yearsAll);
-      mountChips('status', statuses);
-      mountChips('tag', tagsAll);
+      mountChips('type',types); mountChips('year',yearsAll); mountChips('status',statuses); mountChips('tag',tagsAll);
 
-      // 접힘/펼침
       document.querySelectorAll('.filter-group .filter-head').forEach(h=>{
         h.addEventListener('click',()=>{
-          const body = h.parentElement.querySelector('.filter-body');
-          const t = h.querySelector('.toggle');
-          const open = body.style.display!=="none";
-          body.style.display = open? 'none':'flex';
-          t.textContent = open? '+':'−';
+          const body=h.parentElement.querySelector('.filter-body'); const t=h.querySelector('.toggle');
+          const open=body.style.display!=="none"; body.style.display=open?'none':'flex'; t.textContent=open?'+':'−';
         });
       });
-      // 초기 상태: Type/Year 펼침, Status/Tag 접힘(이미 스타일에서 적용)
 
-      // 칩 클릭 처리
       document.querySelectorAll('.chips').forEach(group=>{
         group.addEventListener('click',e=>{
-          const el = e.target.closest('.chip'); if(!el) return;
-          const filter = el.closest('.filter-group').dataset.filter;
-          const value = el.dataset.value;
-          // All
+          const el=e.target.closest('.chip'); if(!el) return;
+          const filter=el.closest('.filter-group').dataset.filter; const value=el.dataset.value;
           if(value==='__ALL__'){
             state.filters[filter].clear();
             group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
             el.classList.add('active');
-          } else {
-            // toggle value
-            const set = state.filters[filter];
+          }else{
+            const set=state.filters[filter];
             if(set.has(value)) set.delete(value); else set.add(value);
-            // UI 표시
             group.querySelector('[data-value="__ALL__"]').classList.remove('active');
             el.classList.toggle('active');
-            // 아무것도 선택 안 되면 All 복원
-            if(set.size===0){ group.querySelector('[data-value="__ALL__"]').classList.add('active'); }
+            if(set.size===0) group.querySelector('[data-value="__ALL__"]').classList.add('active');
           }
           state.page=1; render();
         });
       });
 
-      // 정렬
       document.querySelectorAll('.sort a').forEach(a=>{
         a.addEventListener('click',e=>{
           e.preventDefault();
           document.querySelectorAll('.sort a').forEach(x=>x.classList.remove('active'));
           a.classList.add('active');
-          state.sort = a.dataset.sort; state.page=1; render();
+          state.sort=a.dataset.sort; state.page=1; render();
         });
       });
 
-      // 검색
       q.addEventListener('input',()=>{ state.page=1; render(); });
 
       function matchesFilters(item){
-        // type/status/tag
         for(const key of ['type','status']){
-          const set = state.filters[key];
-          if(set.size && !set.has(String(item[key]))) return false;
+          const set=state.filters[key]; if(set.size && !set.has(String(item[key]))) return false;
         }
-        // tag
-        const tset = state.filters.tag;
+        const tset=state.filters.tag;
         if(tset.size){
-          const t = new Set((item.tags||[]).map(String));
+          const t=new Set((item.tags||[]).map(String));
           for(const v of tset){ if(!t.has(v)) return false; }
         }
-        // year: 범위 매칭(시작~끝 포함)
-        const yset = state.filters.year;
+        const yset=state.filters.year;
         if(yset.size){
-          const s=Number(item.year_start||'');
-          const e=item.year_end===null||item.year_end===''? s : Number(item.year_end);
+          const s=Number(item.year_start||''); const e=item.year_end===null||item.year_end===''? s : Number(item.year_end);
           const years=[]; if(s){ for(let y=s;y<=e;y++) years.push(String(y)); }
           for(const v of yset){ if(!years.includes(v)) return false; }
         }
@@ -358,38 +257,31 @@ layout: none
       }
 
       function matchesQuery(item){
-        const term = q.value.trim().toLowerCase();
-        if(!term) return true;
-        const hay = [item.title, item.type, item.status, (item.tags||[]).join(' ')].join(' ').toLowerCase();
+        const term=q.value.trim().toLowerCase(); if(!term) return true;
+        const hay=[item.title,item.type,item.status,(item.tags||[]).join(' ')].join(' ').toLowerCase();
         return hay.includes(term);
       }
 
       function sortItems(arr){
         return arr.sort((a,b)=>{
-          const sa = Number(a.year_start||0), sb = Number(b.year_start||0);
-          return state.sort==='newest' ? (sb-sa) : (sa-sb);
+          const sa=Number(a.year_start||0), sb=Number(b.year_start||0);
+          return state.sort==='newest'? (sb-sa):(sa-sb);
         });
       }
 
-      function yearDisplay(it){ return it._years.display; }
+      const yearDisplay=it=>it._years.display;
 
       function render(){
-        // 필터/검색
-        let items = data.filter(d=>matchesFilters(d) && matchesQuery(d));
-        items = sortItems(items);
-        // 페이지네이션
-        const total = Math.max(1, Math.ceil(items.length / PER_PAGE));
-        if(state.page>total) state.page = total;
-        const start = (state.page-1)*PER_PAGE;
-        const slice = items.slice(start, start+PER_PAGE);
+        let items=data.filter(d=>matchesFilters(d)&&matchesQuery(d));
+        items=sortItems(items);
 
-        // 카드 출력
+        const total=Math.max(1,Math.ceil(items.length/PER_PAGE));
+        if(state.page>total) state.page=total;
+        const start=(state.page-1)*PER_PAGE;
+        const slice=items.slice(start,start+PER_PAGE);
+
         grid.innerHTML = slice.map(it=>{
-          const cover = it.cover || '';
-          const title = it.title || '';
-          const type = it.type || '';
-          const y = yearDisplay(it) || '';
-          const url = it.url || '#';
+          const cover=it.cover||''; const title=it.title||''; const type=it.type||''; const y=yearDisplay(it)||''; const url=it.url||'#';
           return `
           <a class="card" href="${url}">
             <div class="thumb">${cover?`<img src="${cover}" alt="${title}">`:''}
@@ -398,60 +290,35 @@ layout: none
           </a>`;
         }).join('');
 
-        // 페이지네이션 (숫자 + <, > 모두 클릭 가능)
-        // < → 1페이지, > → 마지막 페이지
-        //예 : < 1 … 4 5 [6] 7 8 … 100 >
-        const link = (p, label, cls='') =>
-        `<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
-        const num = (p, current) =>
-        current ? `<a href="#" class="current" data-page="${p}">${p}</a>`
-                : `<a href="#" data-page="${p}">${p}</a>`;
-      
-        let html = '';
-        if (total > 1) {
-        // 화살표: 첫/마지막으로 이동 (기존 스펙 유지)
-        html += link(1, '<', 'prev');
-      
-        const windowSize = 2; // 현재 주변 몇 개 보여줄지
-        const pages = new Set([1, total]);
-      
-        for (let p = state.page - windowSize; p <= state.page + windowSize; p++) {
-        if (p > 1 && p < total) pages.add(p);
-        }
-      
-        const list = [...pages].sort((a, b) => a - b);
-      
-        let last = 0;
-        for (const p of list) {
-        if (last && p - last > 1) html += `<span class="ellipsis">…</span>`;
-        html += num(p, p === state.page);
-        last = p;
-        }
-      
-        html += link(total, '>', 'next');
-        }
-        pager.innerHTML = html;
-        
-        }
-      
-        // 창 크기 바뀔 때 폭 재계산
-        window.addEventListener('resize', () => {
-        pager.style.width = grid.getBoundingClientRect().width + 'px';
-        });
+        // Pagination (compressed with ellipsis)
+        const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
+        const num =(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`;
 
-        // 페이지 번호 클릭 위임
-        pager.addEventListener('click', e => {
-        const a = e.target.closest('a[data-page]');
-        if (!a) return;
+        let html='';
+        if(total>1){
+          html += link(1,'<','prev');
+          const windowSize=2;
+          const pages=new Set([1,total]);
+          for(let p=state.page-windowSize;p<=state.page+windowSize;p++){ if(p>1 && p<total) pages.add(p); }
+          const list=[...pages].sort((a,b)=>a-b);
+          let last=0;
+          for(const p of list){
+            if(last && p-last>1) html+=`<span class="ellipsis">…</span>`;
+            html+=num(p,p===state.page); last=p;
+          }
+          html += link(total,'>','next');
+        }
+        pager.innerHTML=html;
+      }
+
+      // Pager click
+      pager.addEventListener('click',e=>{
+        const a=e.target.closest('a[data-page]'); if(!a) return;
         e.preventDefault();
-        const to = Number(a.dataset.page);
-        if (!Number.isFinite(to)) return;
-        state.page = to;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        render();
-        });
-      
-      // 최초 렌더
+        const to=Number(a.dataset.page); if(!Number.isFinite(to)) return;
+        state.page=to; window.scrollTo({top:0,behavior:'smooth'}); render();
+      });
+
       render();
     })();
   </script>
