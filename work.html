@@ -114,11 +114,30 @@ layout: none
     .hover .meta{padding:10px 12px;font-size:0.95em}
     
     /* Work 페이지 페이지네이션 */
-    .pagination{display:flex;gap:10px;justify-content:center;margin:18px 0}
-    .pagination a{color:var(--blue);text-decoration:none}
-    .pagination a:hover{text-decoration:underline}
-    .pagination .current{font-weight:bold}
-
+    .pagination {
+    padding: 30px 24px 60px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    }
+    .pagination a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.95em;
+    pointer-events: none; /* 기본적으로 클릭 불가 */
+    }
+    .pagination a.prev,
+    .pagination a.next {
+    pointer-events: auto; /* 이전/다음 버튼만 클릭 가능 */
+    }
+    .pagination a:hover {
+    color: var(--blue);
+    }
+    .pagination .current {
+    color: var(--blue);
+    }
+    
+    /* 스크린리더 전용 숨김 */
     .sr{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
   </style>
