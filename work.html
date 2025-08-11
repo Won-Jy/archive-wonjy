@@ -62,6 +62,33 @@ layout: none
   text-align: left;
   outline: none;
   }
+  .search input::-webkit-search-cancel-button {   /* 검색창 x 버튼 */
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.search input::-webkit-search-cancel-button::before,
+.search input::-webkit-search-cancel-button::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 1px;
+  height: 10px;
+  background-color: #999;
+}
+
+.search input::-webkit-search-cancel-button::before {
+  transform: rotate(45deg);
+}
+
+.search input::-webkit-search-cancel-button::after {
+  transform: rotate(-45deg);
+}
 
   .search input:hover {
   border-color: var(--blue);         /* hover 시 파란색 */
@@ -74,7 +101,7 @@ layout: none
   box-shadow: none;
   }
 
-  /* 선택: 플레이스홀더 색 살짝 연하게(원하시면 유지) */
+  /* 선택: 플레이스홀더 Search 색 살짝 연하게(원하시면 유지) */
   .search input::placeholder{
     color:#999;
   }
