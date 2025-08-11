@@ -268,11 +268,21 @@ layout: none
       mountChips('type',types); mountChips('year',yearsAll); mountChips('status',statuses); mountChips('tag',tagsAll);
 
       document.querySelectorAll('.filter-group .filter-head').forEach(h=>{
-        h.addEventListener('click',()=>{
-          const body=h.parentElement.querySelector('.filter-body'); const t=h.querySelector('.toggle');
-          const open=body.style.display!=="none"; body.style.display=open?'none':'flex'; t.textContent=open?'+':'−';
-        });
-      });
+  h.addEventListener('click', () => {
+    const body = h.parentElement.querySelector('.filter-body');
+    const t    = h.querySelector('.toggle');
+    const isOpen = body.style.display !== 'none';
+
+    if (isOpen) {
+      body.style.display = 'none';  // 접기
+      t.textContent = '+';
+    } else {
+      body.style.display = '';      // 펼칠 때는 CSS 기본값 사용 (block/grid)
+      t.textContent = '−';
+    }
+  });
+});
+
 
       document.querySelectorAll('.chips').forEach(group=>{
         group.addEventListener('click',e=>{
