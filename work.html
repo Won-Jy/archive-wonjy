@@ -172,23 +172,6 @@ margin: 6px 0 0px;
 /* 구분선 길이와 들여쓰기 시각 균형(선은 전체폭, 내용은 안으로) */
 .sidebar .filter-group { padding-left: 0; }
 
-/* === Sidebar spacing normalization (A안) — FILE BOTTOM === */
-
-/* 섹션 하단 간격은 filter-group에서만 관리 */
-.filter-group { padding-bottom:12px; }
-
-/* filter-body의 아래 마진 제거 */
-.filter-body { margin:6px 0 0; }
-
-/* 사이드바 내부 chip은 패딩/마진을 통일 (전역 .chip 보다 ‘아래’에 위치) */
-.sidebar .filter-group .filter-body .chip {
-  margin-bottom:0;
-  padding:2px 0;
-}
-
-/* Year 그리드도 동일하게 맞춤(혹시 위 규칙을 덮는 경우 방지) */
-.filter-group[data-filter="year"] .chip { padding:2px 0; margin:0; }
-    
 /* === Sidebar spacing — 최하단에 추가 === */
 
 /* 섹션 하단 간격은 여기서만 관리 */
@@ -228,6 +211,7 @@ margin: 6px 0 0px;
   padding-bottom:0;         /* ← 핵심 */
   display:block !important;
 }
+    
     /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
