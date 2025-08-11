@@ -115,11 +115,15 @@ layout: none
     
     /* Work 페이지 페이지네이션 */
     section > .grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 18px;
     width: min(1200px, 100%);
-    margin-inline: auto;
+    margin: 0 auto;  
     }
 
     section > .pagination{
+    max-width: 100%;              /* 기본적으로 부모 폭을 넘지 않음 */
     width: min(1200px, 100%);
     margin: 40px auto 60px;   /* 카드와 간격 / 아래 여백 */
     display: flex;
