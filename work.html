@@ -18,7 +18,7 @@ layout: none
     nav a:hover,nav a.active{color:var(--blue)}
 
     main{
-      max-width:1200px; /* 페이지 좌우 여백 */
+      max-width:1200px;
       margin:0;
       padding:24px;
       padding-left:24px;
@@ -57,7 +57,7 @@ layout: none
     .chip{border:1px solid var(--border);padding:2px 8px;border-radius:12px;font-size:0.85em;cursor:pointer}
     .chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-    /* 카드 */
+    /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
     .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -65,28 +65,28 @@ layout: none
     .card:hover .hover{opacity:1}
     .hover .meta{padding:10px 12px;font-size:0.95em}
 
-    /* 콘텐츠 래퍼: 그리드와 페이저 동일 폭 중앙정렬 */
-    section > .content-wrap{width:min(1200px,100%);margin:0 auto}
+    /* 그리드+페이저 공통 래퍼: 동일 폭/중앙 정렬 */
+    .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
 
     /* Grid */
-    .content-wrap .grid{
+    .grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:18px;
     }
-    @media (max-width:900px){ .content-wrap .grid{ grid-template-columns:1fr; } }
+    @media (max-width:900px){ .grid{ grid-template-columns:1fr; } }
 
     /* Pagination */
-    .content-wrap .pagination{
+    .pagination{
       margin:40px 0 60px;
       display:flex;
       justify-content:center;
       gap:6px;
     }
-    .content-wrap .pagination a{ text-decoration:none; color:#000; font-size:0.95em; }
-    .content-wrap .pagination a:hover,
-    .content-wrap .pagination a.current{ color:var(--blue); }
-    .content-wrap .pagination .ellipsis{ padding:0 6px; color:#999; }
+    .pagination a{ text-decoration:none; color:#000; font-size:0.95em; }
+    .pagination a:hover,
+    .pagination a.current{ color:var(--blue); }
+    .pagination .ellipsis{ padding:0 6px; color:#999; }
 
     /* 스크린리더용 숨김 */
     .sr{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
@@ -138,7 +138,7 @@ layout: none
       </aside>
 
       <section>
-        <div class="content-wrap">
+        <div class="grid-pager-wrap">
           <div id="grid" class="grid"></div>
           <nav id="pager" class="pagination" aria-label="Pagination"></nav>
         </div>
