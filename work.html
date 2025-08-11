@@ -126,6 +126,10 @@ layout: none
   grid-template-columns: repeat(4, auto);
   gap: 6px 12px;
 }
+    
+.chips .chip[data-value="__ALL__"] { font-weight: 700; }
+.chips .chip[data-value="__ALL__"]:hover,
+.chips .chip[data-value="__ALL__"].active { color: var(--blue); font-weight: 700; }
 
     
     /* 반응형: 화면 줄면 열 수 줄이기 */
