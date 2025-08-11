@@ -56,55 +56,46 @@ layout: none
   .search input{
   box-sizing: border-box;
   padding: 6px 8px;
+  padding-right: 26px;          /* ← X 버튼 영역만큼 여백 */
   border: 1px solid var(--border);   /* 기본 얇은 회색 테두리 */
   border-radius: 0;
   font-size: 0.95em;
   text-align: left;
   outline: none;
   }
-  .search input::-webkit-search-cancel-button {   /* 검색창 x 버튼 */
-  -webkit-appearance: none;
+  
+  /* 검색창 x 버튼 */
+  .search input::-webkit-search-cancel-button{
+  -webkit-appearance: none;     /* 기본 아이콘 제거 */
   height: 14px;
   width: 14px;
-  background: transparent;
-  position: relative;
   cursor: pointer;
-}
-
-.search input::-webkit-search-cancel-button::before,
-.search input::-webkit-search-cancel-button::after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  top: 2px;
-  width: 1px;
-  height: 10px;
-  background-color: #999;
-}
-
-.search input::-webkit-search-cancel-button::before {
-  transform: rotate(45deg);
-}
-
-.search input::-webkit-search-cancel-button::after {
-  transform: rotate(-45deg);
-}
-
-  .search input:hover {
-  border-color: var(--blue);         /* hover 시 파란색 */
-  border-width: 1px;                 /* 두께 그대로 유지 */
+  background: no-repeat center / contain
+    url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'>\
+  <line x1='3' y1='3' x2='9' y2='9' stroke='%23999' stroke-width='1'/>\
+  <line x1='9' y1='3' x2='3' y2='9' stroke='%23999' stroke-width='1'/>\
+  </svg>");
+  opacity: .9;                   /* 필요시 투명도 */
   }
-
-  .search input:focus{
-  border-color: var(--blue);         /* focus 시 파란색 */
-  border-width: 1px;                 /* focus 때만 굵게 */
-  box-shadow: none;
-  }
-
-  /* 선택: 플레이스홀더 Search 색 살짝 연하게(원하시면 유지) */
-  .search input::placeholder{
-    color:#999;
-  }
+  .search input::-webkit-search-cancel-button:hover{
+    opacity: 1;                    /* 호버 시 살짝 진하게 */
+  
+    .search input:hover {
+    border-color: var(--blue);         /* hover 시 파란색 */
+    border-width: 1px;                 /* 두께 그대로 유지 */
+    }
+  
+    .search input:focus{
+    border-color: var(--blue);         /* focus 시 파란색 */
+    border-width: 1px;                 /* focus 때만 굵게 */
+    box-shadow: none;
+    }
+  
+    /* 선택: 플레이스홀더 Search 색 살짝 연하게(원하시면 유지) */
+    .search input::placeholder{
+      color:#999;
+    }
 
     .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
     @media (max-width:960px){.layout{grid-template-columns:1fr}}
