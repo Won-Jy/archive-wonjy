@@ -115,10 +115,17 @@ layout: none
     
     /* Work 페이지 페이지네이션 */
     .pagination{
-    padding: 30px 24px 60px;
+    margin-top: 40px;       /* 카드와의 간격 ↑ */
+    margin-bottom: 60px;    /* 아래 여백 */
     display: flex;
     justify-content: center;
-    gap: 4px;
+    gap: 6px;
+    max-width: 100%;        /* 전체 폭 제한 */
+    }
+    .layout section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* 그리드와 페이지네이션 중앙 맞춤 */
     }
     .pagination a{
     text-decoration: none;
