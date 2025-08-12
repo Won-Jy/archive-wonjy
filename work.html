@@ -20,7 +20,7 @@ layout: none
     main{
       max-width:1200px;
       margin:0;
-      padding:20px;
+      padding:24px;
       padding-left:24px;
     }
 
@@ -40,7 +40,7 @@ layout: none
     font-size: 0.95em;
     text-align: left;
     outline: none;
-    width: 230px; /* ← 원하는 넓이로 조정 */
+    width: 250px; /* ← 원하는 넓이로 조정 */
   }
     .search input::placeholder{color:#999}
     .search input::-webkit-search-cancel-button{
@@ -58,7 +58,7 @@ layout: none
   padding-top:0;
   margin-top:-16px;
  padding-top: 0; /* 필요하면 기존 값에서 줄임 */
-  margin-top: 0px; /* 음수로 주면 더 위로 올라감 */ 
+  margin-top: -16px; /* 음수로 주면 더 위로 올라감 */ 
 }
 @media (max-width:960px) {
   .sidebar {
@@ -71,14 +71,13 @@ layout: none
 /* Type 위 첫 구분선 */
 .sidebar .filter-group:first-of-type{
   border-top:1px solid var(--border);
-  padding-top: 12px;
+  padding-top:12px;
 }
 
 /* 그룹 구분선/여백 */
 .filter-group{
-  margin:0 0 16px;
+  margin:16px 0;
   border-bottom:1px solid var(--border);
-  padding-top:12px;
   padding-bottom:12px;
 }
 .filter-group:last-child{ border-bottom:none; }
@@ -97,7 +96,7 @@ layout: none
 
 /* 본문 */
 .filter-body {
-margin: 6px 0 0px;
+margin: 6px 0 8px;
 }
 
 /* ✅ 기본: 세로 리스트 (Type/Status/Tag) */
@@ -106,8 +105,8 @@ margin: 6px 0 0px;
   padding:0; margin:0;
 }
 .chip{
-  display:block;
-  border:0; background:none; padding:0; margin:0;   /* ← 패딩 0으로 */
+  display:block;           /* 한 줄에 하나 */
+  border:0; background:none; padding:6px 0; margin:0;
   font-size:0.95em; color:inherit; cursor:pointer; white-space:normal;
 }
     
@@ -115,8 +114,7 @@ margin: 6px 0 0px;
 .sidebar .filter-body .chip {
   font-size: 0.93em;     /* 폰트 크기 */
   line-height: 1.0;      /* 줄 간격 */
-  margin-bottom: 0px;    /* 항목 간 간격 */
-  padding: 2px 0;
+  margin-bottom: 4px;    /* 항목 간 간격 */
   color: #555;           /* 기본 글자색 (짙은 회색) */
 }
 
@@ -142,7 +140,7 @@ margin: 6px 0 0px;
 }
 /* Year의 All은 첫 줄 전체 차지 */
 .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
-  grid-column:1 / -1; padding-bottom:2px; display:block !important; /* 6px → 2px */
+  grid-column:1 / -1; padding-bottom:6px; display:block !important;
 }
 
 /* 반응형 */
@@ -172,47 +170,8 @@ margin: 6px 0 0px;
 
 /* 구분선 길이와 들여쓰기 시각 균형(선은 전체폭, 내용은 안으로) */
 .sidebar .filter-group { padding-left: 0; }
-
     
-/* === Sidebar spacing — 최하단에 추가 === */
-/* 섹션 하단 간격은 여기서만 관리 */
-.filter-group{ padding-bottom:12px; }
 
-/* 본문 아래 마진 제거 */
-.filter-body { margin: 0; }
-
-/* 사이드바 항목은 내부 여백/마진 없음(마지막 줄에 간격 안 붙게) */
-.sidebar .filter-group .filter-body .chip{
-  padding:0;
-  margin:0;
-}
-
-/* 세로 리스트(Type/Status/Tag)는 gap으로만 간격 제어 (끝에는 간격 0) */
-.sidebar .filter-group[data-filter="type"] .chips,
-.sidebar .filter-group[data-filter="status"] .chips,
-.sidebar .filter-group[data-filter="tag"] .chips{
-  display:flex;
-  flex-direction:column;
-  gap:12px;           /* 사이드 바 필터 세로로 정렬된 버튼들 사이 상하 간격*/
-}
-
-/* Year는 grid gap만 사용 (항목 자체 padding 제거) */
-.filter-group[data-filter="year"] .chips{
-  display:grid;
-  grid-template-columns:repeat(4, auto);
-  column-gap:16px;
-  row-gap:12px; /* 연도 행들 사이의 위아래 간격*/
-  align-content:start;
-}
-.filter-group[data-filter="year"] .chip{ padding:0; margin:0; }
-
-/* Year의 All 아래 추가 여백 제거 */
-.filter-group[data-filter="year"] .chip[data-value="__ALL__"]{
-  grid-column:1/-1;
-  padding-bottom:0;         /* ← 핵심 */
-  display:block !important;
-}
-    
     /* 카드 공통 */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
@@ -490,3 +449,4 @@ margin: 6px 0 0px;
   </script>
 </body>
 </html>
+
