@@ -29,8 +29,8 @@ critique_links:
     url_en: "/texts/rolling-stone-en.html"
 
     - label: "*Won Jy au CACN*, Bernard Teulon-Nouailles, 2025"
-    url_fr: ""
-    url_en: ""
+    url_fr: "/texts/rolling-stone-fr.html"
+    url_en: "/texts/rolling-stone-fr.html"
     
 images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
