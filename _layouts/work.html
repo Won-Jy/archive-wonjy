@@ -61,6 +61,12 @@
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+.related-texts { list-style:none; margin:0; padding:0; }
+.related-texts li { margin-bottom:4px; }
+.related-texts a { color: var(--blue); text-decoration:none; }
+.related-texts a:hover { text-decoration: underline; }
+    
   </style>
 </head>
 <body>
@@ -148,11 +154,19 @@
           {%- endif -%}
 
           {%- if page.critique -%}
-            <div class="divider"></div>
-            {%- if page.critique_title -%}
-              <div class="section-title">{{ page.critique_title }}</div>
-            {%- endif -%}
-            <div class="rich critique">{{ page.critique | markdownify }}</div>
+<div class="divider"></div>
+  {%- if page.critique_title -%}
+    <div class="section-title">{{ page.critique_title }}</div>
+  {%- endif -%}
+  <ul class="related-texts">
+    {%- for item in page.critique_links -%}
+      <li>
+        {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
+        {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{% endif %}
+        {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{% endif %}
+      </li>
+    {%- endfor -%}
+  </ul>
           {%- endif -%}
         </div>
       </aside>
