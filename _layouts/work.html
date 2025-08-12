@@ -10,37 +10,44 @@
 
     /* Header / Nav */
     header.site { display:flex; align-items:center; gap:40px; padding:20px 24px; border-bottom:1px solid var(--border); }
-    .title { font-size:1.2em; font-weight:bold; text-transform: lowercase; }
+    .title { font-size:1.2em; font-weight:600; text-transform: lowercase; }
     nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; transition: color .2s; }
-    nav a:hover, nav a.active { color: var(--blue); }
+    nav a:hover, nav a.active, nav a[aria-current="page"] { color: var(--blue); }
 
-    /* Main container */
-    main { max-width:1200px; margin:0; padding:60px 40px 60px 24px; }
+    /* Main container – left aligned like other pages */
+    main { max-width:none; margin:0; padding:60px 40px 60px 60px; }
 
     /* Intro (cover + meta) */
     .intro { display:flex; gap:40px; margin-bottom:0; align-items:flex-start; }
-    .intro-image { flex-basis:70%; }
+    .intro-image { flex-basis:70%; min-width:0; }
+    .intro-image figure { margin:0; }
     .intro-image img { width:100%; height:auto; display:block; }
     .intro-image .caption { font-size:0.8em; color:var(--muted); margin-top:3px; margin-bottom:40px; }
 
-    .intro-side { flex:1; font-size:0.95em; color:#333; }
-    .intro-group { font-size:0.95em; color:#333; max-width:100%; }
-    .intro-header h1 { font-size:1.5em; font-style: italic; font-weight:bold; margin:0 0 4px 0; }
-    .intro-header .year { font-size:1.1em; font-weight:bold; color:#888; margin-bottom:16px; }
+    .intro-side { flex:1; min-width:0; font-size:0.95em; color:#333; }
+    .intro-group { max-width:100%; }
+    .intro-header h1 { font-size: clamp(1.4rem, 2vw, 1.8rem); font-style: italic; font-weight:600; margin:0 0 4px 0; }
+    .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
+    .meta-row { margin:0 0 4px 0; }
+    .meta-row .label { color:#777; margin-right:6px; }
+    .meta-row .value { color:#333; }
 
     .divider { border:none; border-top:1px solid var(--border); margin:30px 0; }
 
-    /* Links */
-    a { color: inherit; }
-    .text-link { margin-left:8px; text-decoration:none; color: var(--blue); }
-    .text-link:hover { text-decoration: underline; }
+    /* Rich text blocks (summary/description/critique) */
+    .rich p { margin:0 0 1em 0; }
+    .rich a { color: var(--blue); text-decoration:none; }
+    .rich a:hover, .rich a:focus { text-decoration: underline; }
+    .section-title { margin:0 0 8px 0; font-size:1em; color:#555; }
 
-    /* Common content helpers for work pages */
+    /* Work images */
+    figure.work { margin:0; }
     img.work { max-width:70%; height:auto; display:block; margin-bottom:3px; }
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
 
     @media (max-width: 768px) {
-      .intro { flex-direction: column; }
+      main { padding:40px 20px; }
+      .intro { flex-direction: column; gap:24px; }
       .intro-image, .intro-side, .intro-group { flex:none; width:100%; max-width:100%; }
       img.work { max-width:100%; }
     }
@@ -53,7 +60,7 @@
     #btBar .copy { color: #888; margin-right: 12px; }
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
-    #btBar a#backToTop:focus { outline: none; }
+    #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
   </style>
 </head>
 <body>
@@ -62,7 +69,7 @@
     <div class="title"><a href="/">archive-wonjy.com</a></div>
     <nav>
       <a href="/index.html">Home</a>
-      <a href="/work.html" class="active">Work</a>
+      <a href="/work.html" class="active" aria-current="page">Work</a>
       <a href="/bio.html">Bio</a>
       <a href="/texts.html">Texts</a>
       <a href="/contact.html">Contact</a>
@@ -84,38 +91,101 @@
     {%- endif -%}
 
     <section class="intro">
+      <!-- Left: cover -->
       <div class="intro-image">
         {%- if page.cover -%}
-          <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} cover" loading="lazy" />
-          <div class="caption"><em>{{ page.title }}</em></div>
+          <figure class="cover">
+            <img
+              src="{{ page.cover | relative_url }}"
+              alt="{{ page.title }} cover"
+              loading="lazy" decoding="async"
+              {%- if page.cover_width and page.cover_height -%}
+              width="{{page.cover_width}}" height="{{page.cover_height}}"
+              {%- endif -%}
+              sizes="(max-width:768px) 100vw, 70vw"
+            />
+            {%- if page.cover_caption -%}
+              <figcaption class="caption">{{ page.cover_caption }}</figcaption>
+            {%- else -%}
+              <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
+            {%- endif -%}
+          </figure>
         {%- endif -%}
       </div>
 
+      <!-- Right: meta + text blocks -->
       <aside class="intro-side">
         <div class="intro-group">
           <div class="intro-header">
             <h1>{{ page.title }}</h1>
             {%- if s -%}<div class="year">{{ year_display }}</div>{%- endif -%}
-            {%- if page.type -%}<p><b>Type</b>: {{ page.type }}</p>{%- endif -%}
-            {%- if page.status -%}<p><b>Status</b>: {{ page.status }}</p>{%- endif -%}
+
+            {%- if page.type -%}
+              <p class="meta-row"><span class="label">Type</span><span class="value">{{ page.type }}</span></p>
+            {%- endif -%}
+            {%- if page.status -%}
+              <p class="meta-row"><span class="label">Status</span><span class="value">{{ page.status }}</span></p>
+            {%- endif -%}
             {%- if page.tags and page.tags.size > 0 -%}
-              <p><b>Tags</b>:
-                {%- for t in page.tags -%}
-                  <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
-                {%- endfor -%}
+              <p class="meta-row"><span class="label">Tags</span>
+                <span class="value">
+                  {%- for t in page.tags -%}
+                    <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                  {%- endfor -%}
+                </span>
               </p>
             {%- endif -%}
           </div>
+
+          {%- if page.summary -%}
+            <div class="divider"></div>
+            <div class="rich summary">{{ page.summary | markdownify }}</div>
+          {%- endif -%}
+
+          {%- if page.description -%}
+            <div class="divider"></div>
+            <div class="rich description">{{ page.description | markdownify }}</div>
+          {%- endif -%}
+
+          {%- if page.critique -%}
+            <div class="divider"></div>
+            {%- if page.critique_title -%}
+              <div class="section-title">{{ page.critique_title }}</div>
+            {%- endif -%}
+            <div class="rich critique">{{ page.critique | markdownify }}</div>
+          {%- endif -%}
         </div>
       </aside>
     </section>
 
     <hr class="divider" />
 
-    <!-- Page body from each work file -->
-    <article>
-      {{ content }}
-    </article>
+    <!-- Work images (n items) -->
+    {%- if page.images -%}
+      {%- for img in page.images -%}
+        <figure class="work">
+          <img
+            src="{{ img.src | relative_url }}"
+            alt="{{ img.alt | default: '' }}"
+            class="work"
+            loading="lazy" decoding="async"
+            {%- if img.width and img.height -%}
+            width="{{img.width}}" height="{{img.height}}"
+            {%- endif -%}
+          />
+          {%- if img.caption -%}
+            <figcaption class="caption">{{ img.caption }}</figcaption>
+          {%- endif -%}
+        </figure>
+      {%- endfor -%}
+    {%- endif -%}
+
+    <!-- Optional extra body from md (kept for flexibility) -->
+    {%- if content and content != "" -%}
+      <article class="rich">
+        {{ content }}
+      </article>
+    {%- endif -%}
   </main>
 
   <!-- Floating bar: © + Back to top -->
@@ -127,15 +197,10 @@
   <script>
     (function(){
       const bar = document.getElementById('btBar');
-      const backToTopBtn = document.getElementById('backToTop');
-      const showAfter = 300; // px
-
-      window.addEventListener('scroll', ()=>{
-        bar.style.display = (window.scrollY > showAfter) ? 'flex' : 'none';
-      });
-
-      backToTopBtn.addEventListener('click', (e)=>{
-        e.preventDefault();
+      const btn = document.getElementById('backToTop');
+      const showAfter = 300;
+      window.addEventListener('scroll', ()=>{ bar.style.display = (window.scrollY > showAfter) ? 'flex' : 'none'; });
+      btn.addEventListener('click', (e)=>{ e.preventDefault();
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduce) window.scrollTo(0,0); else window.scrollTo({ top:0, behavior:'smooth' });
       });
