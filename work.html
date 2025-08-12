@@ -178,7 +178,13 @@ margin: 8px 0 10px;
     .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
     .card:hover .hover{opacity:1}
     .hover .meta{padding:10px 12px;font-size:0.95em}
-
+    .hover .meta strong{
+      font-style: italic;   /* 제목만 이탤릭 */
+      /* 선택: 크기/굵기도 조절 가능 */
+      /* font-size: 1.1em; */
+      /* font-weight: 700;   기본 strong 굵기 유지 */
+    }
+    
     /* 그리드+페이저 공통 래퍼: 동일 폭/중앙 정렬 */
     .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
 
