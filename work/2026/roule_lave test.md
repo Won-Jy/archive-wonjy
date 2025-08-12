@@ -22,12 +22,10 @@ critique_title: "Related texts"
 critique_links:
   - label: "*Roulé-Lavé*, Guilhem Monceaux, 2025"
     url_fr: "/texts/roule-lave-fr.html"
-    url_en: "/texts/roule-lave-en.html"
-    
+    url_en: "/texts/roule-lave-en.html"  
   - label: "*Like a Rolling Stone*, Christian Skimao, 2025"
     url_fr: "/texts/rolling-stone-fr.html"
     url_en: "/texts/rolling-stone-en.html"
-
     - label: "*Won Jy au CACN*, Bernard Teulon-Nouailles, 2025"
     url_fr: "/texts/rolling-stone-fr.html"
     url_en: "/texts/rolling-stone-fr.html"
@@ -35,7 +33,6 @@ critique_links:
 images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
     caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
-    
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
     caption: "Detail caption 2"
 
