@@ -57,7 +57,7 @@
       position: fixed; right: 24px; bottom: 20px; z-index: 999;
       display: none; font-size: 0.95em; background: transparent;
     }
-    #btBar .copy { color: #888; margin-right: 12px; }
+    #btBar .copy { color: #888; margin-right: 24px; }
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
@@ -179,13 +179,9 @@
   <div class="rich critique">{{ page.critique | markdownify }}</div>
 {%- endif -%}
 
-
-          
         </div>
       </aside>
     </section>
-
-    <hr class="divider" />
 
     <!-- Work images (n items) -->
     {%- if page.images -%}
@@ -217,7 +213,7 @@
 
   <!-- Floating bar: © + Back to top -->
   <div id="btBar" role="region" aria-label="Back to top bar">
-    <span class="copy">© Won Jy, ADAGP</span>
+    <span class="copy">© ADAGP, Paris, 2025</span>
     <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
   </div>
 
