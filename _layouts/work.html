@@ -153,8 +153,8 @@
             <div class="rich description">{{ page.description | markdownify }}</div>
           {%- endif -%}
 
-          {%- if page.critique -%}
-<div class="divider"></div>
+{%- if page.critique_links and page.critique_links.size > 0 -%}
+  <div class="divider"></div>
   {%- if page.critique_title -%}
     <div class="section-title">{{ page.critique_title }}</div>
   {%- endif -%}
@@ -162,12 +162,20 @@
     {%- for item in page.critique_links -%}
       <li>
         {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
-        {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{% endif %}
-        {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{% endif %}
+        {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
+        {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
       </li>
     {%- endfor -%}
   </ul>
-          {%- endif -%}
+{%- elsif page.critique -%}
+  <div class="divider"></div>
+  {%- if page.critique_title -%}
+    <div class="section-title">{{ page.critique_title }}</div>
+  {%- endif -%}
+  <div class="rich critique">{{ page.critique | markdownify }}</div>
+{%- endif -%}
+
+          
         </div>
       </aside>
     </section>
