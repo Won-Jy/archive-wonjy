@@ -30,7 +30,12 @@
 
     .intro-side { flex:1; min-width:0; font-size:0.95em; color:#333; }
     .intro-group { max-width:100%; }
-    .intro-header h1 { font-size: clamp(1.4rem, 2vw, 1.8rem); font-style: italic; font-weight:600; margin:0 0 4px 0; }
+    .intro-header h1 {
+  font-size: clamp(1.4em, 2vw, 1.6em); /* 최소 1.4em, 최대 1.6em */
+  font-style: italic;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
     .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
     .meta-row { margin:0 0 4px 0; }
     .meta-row .label { color:#777; margin-right:6px; }
