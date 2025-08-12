@@ -62,9 +62,13 @@
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
 
-.related-texts { list-style:none; margin:0; padding:0; }
-.related-texts li { margin-bottom:4px; }
-.related-texts a { color: var(--blue); text-decoration:none; margin-left: 4px; }
+/* Related texts */
+.related-texts { list-style:none; margin:8px 0 0; padding:0; }
+.related-texts li { margin:0 0 6px 0; position: relative; padding-left:14px; }
+.related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+
+/* (FR)(EN) 버튼 간격 */
+.related-texts a { color: var(--blue); text-decoration:none; margin-left:6px; }
 .related-texts a:hover { text-decoration: underline; }
     
   </style>
@@ -164,13 +168,17 @@
         {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
         {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
         {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
-        .related-texts li::before {
-        content: "– ";
-        color: var(--muted);
-        }
       </li>
     {%- endfor -%}
   </ul>
+{%- elsif page.critique -%}
+  <div class="divider"></div>
+  {%- if page.critique_title -%}
+    <div class="section-title">{{ page.critique_title }}</div>
+  {%- endif -%}
+  <div class="rich critique">{{ page.critique | markdownify }}</div>
+{%- endif -%}
+          
 {%- elsif page.critique -%}
   <div class="divider"></div>
   {%- if page.critique_title -%}
