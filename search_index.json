@@ -1,0 +1,44 @@
+---
+layout: null
+permalink: /search_index.json
+---
+[
+{% assign works = site.pages | where: "layout", "work" %}
+{% for p in works %}
+{% assign image_captions = "" %}
+{% if p.images %}
+  {% for im in p.images %}
+    {% if im.caption %}
+      {% assign image_captions = image_captions | append: " " | append: im.caption %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{
+  "url": "{{ p.url | relative_url }}",
+  "title": {{ p.title | jsonify }},
+  "type": {{ p.type | jsonify }},
+  "status": {{ p.status | jsonify }},
+  "year_start": {{ p.year_start | jsonify }},
+  "year_end": {{ p.year_end | jsonify }},
+  "tags": {{ p.tags | jsonify }},
+  "summary": {{ p.summary | jsonify }},
+  "description": {{ p.description | jsonify }},
+  "cover_caption": {{ p.cover_caption | jsonify }},
+  "image_captions": {{ image_captions | strip_html | jsonify }},
+  "blob": {{
+    (p.title | append: " "
+      | append: p.type | append: " "
+      | append: p.status | append: " "
+      | append: p.year_start | append: " "
+      | append: p.year_end | append: " "
+      | append: p.tags | append: " "
+      | append: p.summary | append: " "
+      | append: p.description | append: " "
+      | append: p.cover_caption | append: " "
+      | append: image_captions | append: " "
+      | append: p.content
+    ) | strip_html | normalize_whitespace | truncate: 12000 | jsonify
+  }}
+}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
