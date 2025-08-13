@@ -36,7 +36,6 @@ title: Texts
     border:none;
     outline:none;
   }
-  /* 내부 span들도 함께 파랗게 */
   .text-link:hover .text-title,
   .text-link:hover .author,
   .text-link:hover .year,
@@ -46,7 +45,6 @@ title: Texts
   .text-link:focus .text-title,
   .text-link:focus .author,
   .text-link:focus .year{ color:var(--blue); }
-  /* (선택) 부드러운 전환 */
   .text-link .text-title,
   .text-link .author,
   .text-link .year{ transition: color .15s; }
@@ -59,18 +57,25 @@ title: Texts
   .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
   .pagination a:hover,.pagination a.active{color:var(--blue)}
 
-  /* 상세 화면 (전체폭은 기존 그대로 유지) */
+  /* 상세 화면: 왼쪽 컬럼을 '콘텐츠 폭'에 맞춤 */
   main.detail{
     display:grid;
-    grid-template-columns:minmax(0,1fr) 320px;
-    gap:16px; /* 본문과 오른쪽바 간격 */
-    max-width:1200px;   /* 전체폭 유지 */
-    margin:0;           /* 왼쪽 정렬 */
+    grid-template-columns: auto 320px;  /* ← 1fr 대신 auto */
+    gap:16px;                            /* 실제 컬럼 간격 */
+    max-width:1200px;
+    margin:0;
     padding:50px 40px 60px 24px;
   }
-  @media (max-width:960px){ main.detail{grid-template-columns:1fr} aside{position:static} }
+  /* 왼쪽 그리드 셀(기사) 자체가 본문 폭만큼만 갖도록 고정 */
+  #detailArticle{ width:min(80ch, 100%); }  /* 읽기폭 유지 */
+  @media (max-width:960px){
+    main.detail{grid-template-columns:1fr}
+    #detailArticle{ width:100%; }
+    aside{position:static}
+  }
 
-  article .text-body, article .notes{ max-width:80ch; } /* 초기값 */
+  /* 본문 내부 블록들은 기사 폭을 꽉 채우게 */
+  article .text-body, article .notes{ max-width:100%; }
   aside{ position:static; top:24px; align-self:start }
 
   h1,h2,h3,h4{font-weight:normal;margin:.2em 0 .4em}
@@ -88,10 +93,9 @@ title: Texts
   /* Notes/주석 */
   .notes{margin-top:24px}
   .notes ol{margin:0;padding-left:20px}
-  /* 각주 간격: 여기서만 관리 */
   article .notes li{ margin:.4rem 0; }
-  .note-ref{cursor:pointer;text-decoration:none;color:var(--blue)} /* 본문 주석번호 기본 파랑 */
-  .note-num{color:var(--blue);text-decoration:none;margin-right:6px} /* 하단 Notes의 [n] */
+  .note-ref{cursor:pointer;text-decoration:none;color:var(--blue)}
+  .note-num{color:var(--blue);text-decoration:none;margin-right:6px}
   .note-num:hover{text-decoration:underline}
 
   /* tooltip */
@@ -100,21 +104,13 @@ title: Texts
     padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none
   }
 
-  /* 사이드: 테두리 제거 + 구분선 */
+  /* 사이드 */
   .aside-block{padding:14px 0}
   .divider{height:1px;background:var(--border);margin:16px 0}
 
-  /* 본문 구분선: 본문 폭에 동기화(초기값: 80ch) */
-  main.detail article .divider{
-    max-width:80ch;
-    width:100%;
-    margin:16px 0;
-  }
-  /* 사이드 구분선은 컬럼 전체폭 유지 */
-  main.detail aside .divider{
-    max-width:none;
-    width:100%;
-  }
+  /* 본문 구분선은 기사 폭을 따르게 */
+  main.detail article .divider{ max-width:100%; width:100%; margin:16px 0; }
+  main.detail aside .divider{ max-width:none; width:100%; }
 
   /* back to top */
   #backToTop{
@@ -161,36 +157,6 @@ title: Texts
     line-height:1.55;
   }
   article .notes h3{ margin:0 0 8px 0; }
-
-  /* ========================
-     ▼▼ 덮어쓰기 패치(핵심) ▼▼
-     ======================== */
-
-  /* ① gap:16px 확정 적용 (우선순위 보장) */
-  main.detail{ gap:16px !important; }
-
-  /* ② 본문 폭을 살짝 넓혀 중앙 여백을 줄임
-        - 사이드바(320px)+갭(16px)을 초과하지 않도록 가드 */
-  article .text-body, article .notes{
-    max-width: min(88ch, calc(100% - 320px - 16px));
-  }
-
-  /* ③ 본문 구분선도 본문 폭(88ch)에 동기화 */
-  main.detail article .divider{
-    max-width: min(88ch, calc(100% - 320px - 16px));
-  }
-
-  /* (옵션) 사이드바를 300px로 슬림하게 — 더 붙어 보이는 효과
-     필요 없으면 이 블록은 삭제하세요. */
-  @media (min-width: 961px){
-    main.detail{ grid-template-columns: minmax(0,1fr) 300px; }
-    article .text-body, article .notes{
-      max-width: min(88ch, calc(100% - 300px - 16px));
-    }
-    main.detail article .divider{
-      max-width: min(88ch, calc(100% - 300px - 16px));
-    }
-  }
 </style>
 </head>
 <body>
@@ -350,7 +316,7 @@ title: Texts
       </section>
     `;
 
-    // 사이드(테두리 없음, 구분선으로 분리)
+    // 사이드
     aside.innerHTML = `
       <div class="aside-block">
         <h4>Related works</h4>
@@ -406,7 +372,7 @@ title: Texts
         }
       });
 
-      // notes map (툴팁 표시용) — 앞쪽 [n] 링크 제거하여 내용만 추출
+      // notes map (툴팁용)
       const notesMap = {};
       article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
         const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
