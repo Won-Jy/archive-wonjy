@@ -157,6 +157,22 @@ title: Texts
     line-height:1.55;
   }
   article .notes h3{ margin:0 0 8px 0; }
+
+  /* Related works: 기본 파랑, hover/active 시 밑줄 */
+.related-works .link-button{
+  color: var(--blue);
+  text-decoration: none;
+}
+.related-works .link-button:hover,
+.related-works .link-button:active{
+  text-decoration: underline;
+}
+/* 회색 대시(링크 밖) */
+.related-works .dash{
+  color: var(--muted);
+  margin-right: 6px;
+}
+  
 </style>
 </head>
 <body>
@@ -320,10 +336,10 @@ title: Texts
     aside.innerHTML = `
       <div class="aside-block">
         <h4>Related works</h4>
-        <div class="buttons" style="display:flex;flex-direction:column;gap:4px">
+        <div class="buttons related-works" style="display:flex;flex-direction:column;gap:4px">
           ${(t.related_works || []).map(r => {
             const label = r.label || 'View';
-            return `<a href="/${r.slug}.html" class="link-button">- ${label}</a>`;
+            return `<span class="dash">-</span><a href="/${r.slug}.html" class="link-button">${label}</a>`;
           }).join('')}
         </div>
       </div>
