@@ -228,10 +228,16 @@ title: Texts
     aside.innerHTML = `
       <div class="aside-block">
         <h4>Related works</h4>
-        <div class="buttons" style="display:flex;flex-wrap:wrap;gap:8px">
-          ${(t.related_works||[]).map(r=>`<a href="/${r.slug}.html" style="border:1px solid var(--border);padding:6px 10px;text-decoration:none;color:#444">View</a>`).join('')}
-        </div>
-      </div>
+<div class="buttons" style="display:flex;flex-wrap:wrap;gap:8px">
+  ${(t.related_works || []).map(r => {
+    const label = r.label || 'View';
+    return `<a href="/${r.slug}.html"
+               style="border:1px solid var(--border);padding:6px 10px;text-decoration:none;color:#444">
+               ${label}
+            </a>`;
+  }).join('')}
+</div>
+</div>
 
       <div class="divider"></div>
 
