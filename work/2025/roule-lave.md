@@ -1,6 +1,6 @@
 ---
 layout: work
-title: "Roulé-Lavé test"
+title: "Roulé-Lavé"
 type: "Exhibition"
 year_start: 2025
 year_end: 2025
