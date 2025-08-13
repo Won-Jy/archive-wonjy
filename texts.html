@@ -269,7 +269,7 @@ title: Texts
     // 본문(언어 탭 + variants)
     article.innerHTML = `
       <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
-      <div class="meta"><span>${t.author?.name || ''}</span>, <span>${t.year || ''}</span></div>
+      <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
 
       <div class="lang-tabs" id="langTabs">
         <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
