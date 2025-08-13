@@ -14,15 +14,15 @@
     nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; transition: color .2s; }
     nav a:hover, nav a.active, nav a[aria-current="page"] { color: var(--blue); }
 
-    /* Main container – left aligned like other pages */
+    /* Main container – left aligned */
     main {
-  max-width: 1200px;          /* 가로폭 제한 */
-  margin: 0;                  /* 가운데 정렬 제거 → 왼쪽 정렬 */
-  padding: 50px 40px 60px 24px; /* 위/오른/아래/왼 = 50/40/60/24 */
-}
+      max-width: 1200px;
+      margin: 0;                        /* 왼쪽 정렬 */
+      padding: 50px 40px 60px 24px;     /* 위/오른/아래/왼 */
+    }
 
     /* Intro (cover + meta) */
-    .intro { display:flex; gap:40px; align-items:flex-start; margin-bottom: 40px; }
+    .intro { display:flex; gap:40px; align-items:flex-start; margin-bottom:40px; }
     .intro-image { flex-basis:70%; min-width:0; }
     .intro-image figure { margin:0; }
     .intro-image img { width:100%; height:auto; display:block; }
@@ -31,11 +31,11 @@
     .intro-side { flex:1; min-width:0; font-size:0.95em; color:#333; }
     .intro-group { max-width:100%; }
     .intro-header h1 {
-  font-size: clamp(1.4em, 2vw, 1.6em); /* 최소 1.4em, 최대 1.6em */
-  font-style: italic;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-}
+      font-size: clamp(1.4em, 2vw, 1.6em); /* 반응형(예전 1.5em 느낌) */
+      font-style: italic;
+      font-weight:600;
+      margin:0 0 4px 0;
+    }
     .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
     .meta-row { margin:0 0 4px 0; }
     .meta-row .label { color:#777; margin-right:6px; }
@@ -43,43 +43,40 @@
 
     .divider { border:none; border-top:1px solid var(--border); margin:30px 0; }
 
-    /* Rich text blocks (summary/description/critique) */
+    /* Rich text blocks */
     .rich p { margin:0 0 1em 0; }
     .rich a { color: var(--blue); text-decoration:none; }
     .rich a:hover, .rich a:focus { text-decoration: underline; }
     .section-title { margin:0 0 8px 0; font-size:1em; color:#555; }
 
-    /* Work images */
+    /* Work images (이제 왼쪽 컬럼 내부에 렌더) */
     figure.work { margin:0; }
-    img.work { max-width:70%; height:auto; display:block; margin-bottom:3px; }
+    img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
 
+    /* Related texts */
+    .related-texts { list-style:none; margin:8px 0 0; padding:0; }
+    .related-texts li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+    .related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+    .related-texts a { color: var(--blue); text-decoration:none; margin-left:6px; }
+    .related-texts a:hover { text-decoration: underline; }
+
     @media (max-width: 768px) {
-      main { padding:40px 20px; }
+      main { padding:40px 20px 50px 24px; }
       .intro { flex-direction: column; gap:24px; }
       .intro-image, .intro-side, .intro-group { flex:none; width:100%; max-width:100%; }
-      img.work { max-width:100%; }
     }
 
     /* Bottom floating bar: © + Back to top */
     #btBar {
       position: fixed; right: 24px; bottom: 20px; z-index: 999;
       display: none; font-size: 0.95em; background: transparent;
+      gap:16px; /* 간격 넓힘 */
     }
-    #btBar .copy { color: #888; margin-right: 24px; }
+    #btBar .copy { color: #888; }
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
-
-/* Related texts */
-.related-texts { list-style:none; margin:8px 0 0; padding:0; }
-.related-texts li { margin:0 0 6px 0; position: relative; padding-left:14px; }
-.related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
-
-/* (FR)(EN) 버튼 간격 */
-.related-texts a { color: var(--blue); text-decoration:none; margin-left:6px; }
-.related-texts a:hover { text-decoration: underline; }
-    
   </style>
 </head>
 <body>
@@ -110,7 +107,7 @@
     {%- endif -%}
 
     <section class="intro">
-      <!-- Left: cover -->
+      <!-- Left: cover + all work images -->
       <div class="intro-image">
         {%- if page.cover -%}
           <figure class="cover">
@@ -129,6 +126,23 @@
               <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
             {%- endif -%}
           </figure>
+        {%- endif -%}
+
+        {%- if page.images -%}
+          {%- for img in page.images -%}
+            <figure class="work">
+              <img
+                src="{{ img.src | relative_url }}"
+                alt="{{ img.alt | default: '' }}"
+                class="work"
+                loading="lazy" decoding="async"
+                {%- if img.width and img.height -%} width="{{img.width}}" height="{{img.height}}"{%- endif -%}
+              />
+              {%- if img.caption -%}
+                <figcaption class="caption">{{ img.caption }}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
         {%- endif -%}
       </div>
 
@@ -166,52 +180,32 @@
             <div class="rich description">{{ page.description | markdownify }}</div>
           {%- endif -%}
 
-{%- if page.critique_links and page.critique_links.size > 0 -%}
-  {%- if page.critique_title -%}
-    <div class="section-title">{{ page.critique_title }}</div>
-  {%- endif -%}
-  <ul class="related-texts">
-    {%- for item in page.critique_links -%}
-      <li>
-        {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
-        {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
-        {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
-      </li>
-    {%- endfor -%}
-  </ul>
-{%- elsif page.critique -%}
-  <div class="divider"></div>
-  {%- if page.critique_title -%}
-    <div class="section-title">{{ page.critique_title }}</div>
-  {%- endif -%}
-  <div class="rich critique">{{ page.critique | markdownify }}</div>
-{%- endif -%}
-
+          {%- if page.critique_links and page.critique_links.size > 0 -%}
+            <div class="divider"></div>
+            {%- if page.critique_title -%}
+              <div class="section-title">{{ page.critique_title }}</div>
+            {%- endif -%}
+            <ul class="related-texts">
+              {%- for item in page.critique_links -%}
+                <li>
+                  {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
+                  {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
+                  {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- elsif page.critique -%}
+            <div class="divider"></div>
+            {%- if page.critique_title -%}
+              <div class="section-title">{{ page.critique_title }}</div>
+            {%- endif -%}
+            <div class="rich critique">{{ page.critique | markdownify }}</div>
+          {%- endif -%}
         </div>
       </aside>
     </section>
 
-    <!-- Work images (n items) -->
-    {%- if page.images -%}
-      {%- for img in page.images -%}
-        <figure class="work">
-          <img
-            src="{{ img.src | relative_url }}"
-            alt="{{ img.alt | default: '' }}"
-            class="work"
-            loading="lazy" decoding="async"
-            {%- if img.width and img.height -%}
-            width="{{img.width}}" height="{{img.height}}"
-            {%- endif -%}
-          />
-          {%- if img.caption -%}
-            <figcaption class="caption">{{ img.caption }}</figcaption>
-          {%- endif -%}
-        </figure>
-      {%- endfor -%}
-    {%- endif -%}
-
-    <!-- Optional extra body from md (kept for flexibility) -->
+    <!-- Optional extra body from md -->
     {%- if content and content != "" -%}
       <article class="rich">
         {{ content }}
