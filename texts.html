@@ -63,14 +63,14 @@ title: Texts
   main.detail{
     display:grid;
     grid-template-columns:minmax(0,1fr) 320px;
-    gap:16px; /*본문과 오른쪽바와의 사이 간격*/
-    max-width:1200px;   /* ← 기존 전체폭 유지 */
+    gap:16px; /* 본문과 오른쪽바 간격 */
+    max-width:1200px;   /* 전체폭 유지 */
     margin:0;           /* 왼쪽 정렬 */
     padding:50px 40px 60px 24px;
   }
   @media (max-width:960px){ main.detail{grid-template-columns:1fr} aside{position:static} }
 
-  article .text-body, article .notes{ max-width:80ch; } /* 본문 & 각주 본문 폭 */
+  article .text-body, article .notes{ max-width:80ch; } /* 초기값 */
   aside{ position:static; top:24px; align-self:start }
 
   h1,h2,h3,h4{font-weight:normal;margin:.2em 0 .4em}
@@ -88,7 +88,7 @@ title: Texts
   /* Notes/주석 */
   .notes{margin-top:24px}
   .notes ol{margin:0;padding-left:20px}
-  /* 중복 규칙 정리: 각주 간격은 여기서만 관리 (기존 시각 유지 0.4rem) */
+  /* 각주 간격: 여기서만 관리 */
   article .notes li{ margin:.4rem 0; }
   .note-ref{cursor:pointer;text-decoration:none;color:var(--blue)} /* 본문 주석번호 기본 파랑 */
   .note-num{color:var(--blue);text-decoration:none;margin-right:6px} /* 하단 Notes의 [n] */
@@ -104,7 +104,7 @@ title: Texts
   .aside-block{padding:14px 0}
   .divider{height:1px;background:var(--border);margin:16px 0}
 
-  /* 본문 쪽 구분선 길이만 본문 폭(80ch)에 맞추기 */
+  /* 본문 구분선: 본문 폭에 동기화(초기값: 80ch) */
   main.detail article .divider{
     max-width:80ch;
     width:100%;
@@ -161,6 +161,36 @@ title: Texts
     line-height:1.55;
   }
   article .notes h3{ margin:0 0 8px 0; }
+
+  /* ========================
+     ▼▼ 덮어쓰기 패치(핵심) ▼▼
+     ======================== */
+
+  /* ① gap:16px 확정 적용 (우선순위 보장) */
+  main.detail{ gap:16px !important; }
+
+  /* ② 본문 폭을 살짝 넓혀 중앙 여백을 줄임
+        - 사이드바(320px)+갭(16px)을 초과하지 않도록 가드 */
+  article .text-body, article .notes{
+    max-width: min(88ch, calc(100% - 320px - 16px));
+  }
+
+  /* ③ 본문 구분선도 본문 폭(88ch)에 동기화 */
+  main.detail article .divider{
+    max-width: min(88ch, calc(100% - 320px - 16px));
+  }
+
+  /* (옵션) 사이드바를 300px로 슬림하게 — 더 붙어 보이는 효과
+     필요 없으면 이 블록은 삭제하세요. */
+  @media (min-width: 961px){
+    main.detail{ grid-template-columns: minmax(0,1fr) 300px; }
+    article .text-body, article .notes{
+      max-width: min(88ch, calc(100% - 300px - 16px));
+    }
+    main.detail article .divider{
+      max-width: min(88ch, calc(100% - 300px - 16px));
+    }
+  }
 </style>
 </head>
 <body>
