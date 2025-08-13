@@ -336,7 +336,12 @@ title: Texts
   // back to top
   const btt = document.getElementById('backToTop');
   window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
-  btt.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+  btt.addEventListener('click', (e)=>{
+  e.preventDefault(); // ← 이게 없어서 점프했습니다!
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) window.scrollTo(0,0);
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 </script>
 </body>
