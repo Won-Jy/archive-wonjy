@@ -283,6 +283,32 @@ margin: 8px 0 10px;
       {% endfor %}
     ];
   </script>
+<script>
+let SEARCH_INDEX = null;
+
+async function loadSearchIndex(){
+  if(SEARCH_INDEX) return SEARCH_INDEX;
+  const res = await fetch('/search_index.json', { cache: 'no-store' });
+  SEARCH_INDEX = await res.json();
+  return SEARCH_INDEX;
+}
+
+function norm(s){
+  return (s || '')
+    .toString()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu,'')
+    .toLowerCase()
+    .trim();
+}
+
+function matchAllTokens(hay, q){
+  const H = norm(hay);
+  const tokens = norm(q).split(/\s+/).filter(Boolean);
+  if(tokens.length === 0) return true;
+  return tokens.every(t => H.includes(t));
+}
+</script>
 
   <script>
     (function(){
@@ -385,11 +411,14 @@ margin: 8px 0 10px;
         return true;
       }
 
-      function matchesQuery(item){
-        const term=q.value.trim().toLowerCase(); if(!term) return true;
-        const hay=[item.title,item.type,item.status,(item.tags||[]).join(' ')].join(' ').toLowerCase();
-        return hay.includes(term);
-      }
+      async function matchesQuery(item){
+  const term = q.value.trim();
+  if(!term) return true;
+  const idx = await loadSearchIndex();
+  const found = idx.find(it => it.url === item.url);
+  if(!found) return false;
+  return matchAllTokens(found.blob, term);
+}
 
       function sortItems(arr){
         return arr.sort((a,b)=>{
@@ -400,9 +429,16 @@ margin: 8px 0 10px;
 
       const yearDisplay=it=>it._years.display;
 
-      function render(){
-        let items=data.filter(d=>matchesFilters(d)&&matchesQuery(d));
-        items=sortItems(items);
+      async function render(){
+  let items = [];
+  for (const d of data) {
+    if (matchesFilters(d) && await matchesQuery(d)) {
+      items.push(d);
+    }
+  }
+  items = sortItems(items);
+  // 이하 기존 render 내용 그대로 유지
+}
 
         const total=Math.max(1,Math.ceil(items.length/PER_PAGE));
         if(state.page>total) state.page=total;
