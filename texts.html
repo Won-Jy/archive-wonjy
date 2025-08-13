@@ -104,7 +104,16 @@ title: Texts
   color: var(--blue); /* hover 시 파랑색 */
   outline: none;
 }
-  
+
+/* Notes: 기본 번호 숨기기 (파란 [n]만 보이게) */
+.notes .notes-list{
+  list-style: none;     /* 숫자 제거 */
+  padding-left: 0;      /* 들여쓰기 제거 */
+  margin-left: 0;
+}
+.notes .notes-list li{
+  padding-left: 0;      /* 불필요 여백 제거 */
+}
 
   
 </style>
