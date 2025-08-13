@@ -172,6 +172,10 @@ title: Texts
   color: var(--muted);
   margin-right: 6px;
 }
+
+.link-button span {
+  white-space: nowrap;
+}
   
 </style>
 </head>
@@ -339,7 +343,7 @@ title: Texts
         <div class="buttons related-works" style="display:flex;flex-direction:column;gap:4px">
           ${(t.related_works || []).map(r => {
             const label = r.label || 'View';
-            return `<span class="dash">-</span><a href="/${r.slug}.html" class="link-button">${label}</a>`;
+            return `<a href="/${r.slug}.html" class="link-button"><span>- ${label}</span></a>`;
           }).join('')}
         </div>
       </div>
