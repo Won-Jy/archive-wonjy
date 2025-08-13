@@ -23,7 +23,16 @@ title: Texts
   main.list{padding:50px 40px 60px 24px;max-width:740px;margin:0;min-height:400px}
   .items{display:flex;flex-direction:column;gap:10px}
   .text-link{display:block;padding:8px 10px;border:1px solid transparent;text-decoration:none;color:inherit}
-  .text-link:hover{color:var(--blue);border-color:var(--border)}
+  .text-link:hover{
+  color:var(--blue);
+  border: none; /* 테두리 제거 */
+}
+.text-link:active,
+.text-link:focus{
+  color:var(--blue);
+  outline:none;
+  border: none; /* 테두리 제거 */
+}
   .text-link:active,.text-link:focus{color:var(--blue);outline:none;border-color:var(--blue)}
   .text-title{font-style:italic}
   .meta-sep{margin:0 6px;color:var(--muted)}
