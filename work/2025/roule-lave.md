@@ -5,7 +5,7 @@ type: "Exhibition"
 year_start: 2025
 year_end: 2025
 status: "Completed"
-tags: ["Rolling stone"]
+tags: ["Rolling stone", "Hospitality"]
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
 cover_caption: "<em>Fontaine</em>, concrete rubble from Pissevin, 220×200×130cm, 2025."
 summary: >
