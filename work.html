@@ -195,14 +195,62 @@ function matchAllTokens(hay,q){
   document.querySelectorAll('.sort a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.sort a').forEach(x=>x.classList.remove('active'));a.classList.add('active');state.sort=a.dataset.sort;state.page=1;render();});});
   q.addEventListener('input',()=>{state.page=1;render();});
 
-  function matchesFilters(item){for(const k of ['type','status']){const set=state.filters[k];if(set.size&&!set.has(String(item[k])))return false;}const tset=state.filters.tag;if(tset.size){const t=new Set((item.tags||[]).map(String));for(const v of tset){if(!t.has(v))return false;}}const yset=state.filters.year;if(yset.size){const s=Number(item.year_start||'');const e=item.year_end==null||item.year_end===''?s:Number(item.year_end);const years=[];if(s){for(let y=s;y<=e;y++)years.push(String(y));}for(const v of yset){if(!years.includes(v))return false;}}return true;}
-  async function matchesQuery(item){const term=q.value.trim();if(!term)return true;const idx=await loadSearchIndex();const found=idx.find(it=>it.url===item.url);if(!found)return false;return matchAllTokens(found.blob,term);}
-  function sortItems(arr){return arr.sort((a,b)=>{const sa=Number(a.year_start||0),sb=Number(b.year_start||0);return state.sort==='newest'?(sb-sa):(sa-sb);});}
+  // 수정된 Year 필터 OR 조건 적용
+  function matchesFilters(item){
+    for(const k of ['type','status']){
+      const set=state.filters[k];
+      if(set.size && !set.has(String(item[k]))) return false;
+    }
+    const tset=state.filters.tag;
+    if(tset.size){
+      const t=new Set((item.tags||[]).map(String));
+      for(const v of tset){
+        if(!t.has(v)) return false;
+      }
+    }
+    const yset=state.filters.year;
+    if(yset.size){
+      const s=Number(item.year_start||'');
+      const e=item.year_end==null||item.year_end===''?s:Number(item.year_end);
+      const years=[];
+      if(s){
+        for(let y=s;y<=e;y++) years.push(String(y));
+      }
+      let match=false;
+      for(const v of yset){
+        if(years.includes(v)){
+          match=true;
+          break;
+        }
+      }
+      if(!match) return false;
+    }
+    return true;
+  }
+
+  async function matchesQuery(item){
+    const term=q.value.trim();
+    if(!term) return true;
+    const idx=await loadSearchIndex();
+    const found=idx.find(it=>it.url===item.url);
+    if(!found) return false;
+    return matchAllTokens(found.blob,term);
+  }
+  function sortItems(arr){
+    return arr.sort((a,b)=>{
+      const sa=Number(a.year_start||0),sb=Number(b.year_start||0);
+      return state.sort==='newest'?(sb-sa):(sa-sb);
+    });
+  }
   const yearDisplay=it=>it._years.display;
 
   async function render(){
     let items=[];
-    for(const d of data){if(matchesFilters(d)&&await matchesQuery(d)){items.push(d);}}
+    for(const d of data){
+      if(matchesFilters(d) && await matchesQuery(d)){
+        items.push(d);
+      }
+    }
     items=sortItems(items);
 
     const total=Math.max(1,Math.ceil(items.length/PER_PAGE));
@@ -210,16 +258,47 @@ function matchAllTokens(hay,q){
     const start=(state.page-1)*PER_PAGE;
     const slice=items.slice(start,start+PER_PAGE);
 
-    grid.innerHTML=slice.map(it=>{const cover=it.cover||'';const title=it.title||'';const type=it.type||'';const y=yearDisplay(it)||'';const url=it.url||'#';return `<a class="card" href="${url}"><div class="thumb">${cover?`<img src="${cover}" alt="${title}">`:''}<div class="hover"><div class="meta"><div><strong>${title}</strong></div><div>${type}, ${y}</div></div></div></div></a>`;}).join('');
+    grid.innerHTML=slice.map(it=>{
+      const cover=it.cover||'';
+      const title=it.title||'';
+      const type=it.type||'';
+      const y=yearDisplay(it)||'';
+      const url=it.url||'#';
+      return `<a class="card" href="${url}"><div class="thumb">${cover?`<img src="${cover}" alt="${title}">`:''}<div class="hover"><div class="meta"><div><strong>${title}</strong></div><div>${type}, ${y}</div></div></div></div></a>`;
+    }).join('');
 
     const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
     const num=(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`;
     let html='';
-    if(total>1){html+=link(1,'<','prev');const windowSize=2;const pages=new Set([1,total]);for(let p=state.page-windowSize;p<=state.page+windowSize;p++){if(p>1&&p<total)pages.add(p);}const list=[...pages].sort((a,b)=>a-b);let last=0;for(const p of list){if(last&&p-last>1)html+=`<span class="ellipsis">…</span>`;html+=num(p,p===state.page);last=p;}html+=link(total,'>','next');}
+    if(total>1){
+      html+=link(1,'<','prev');
+      const windowSize=2;
+      const pages=new Set([1,total]);
+      for(let p=state.page-windowSize;p<=state.page+windowSize;p++){
+        if(p>1&&p<total)pages.add(p);
+      }
+      const list=[...pages].sort((a,b)=>a-b);
+      let last=0;
+      for(const p of list){
+        if(last&&p-last>1)html+=`<span class="ellipsis">…</span>`;
+        html+=num(p,p===state.page);
+        last=p;
+      }
+      html+=link(total,'>','next');
+    }
     pager.innerHTML=html;
   }
 
-  pager.addEventListener('click',e=>{const a=e.target.closest('a[data-page]');if(!a)return;e.preventDefault();const to=Number(a.dataset.page);if(!Number.isFinite(to))return;state.page=to;window.scrollTo({top:0,behavior:'smooth'});render();});
+  pager.addEventListener('click',e=>{
+    const a=e.target.closest('a[data-page]');
+    if(!a)return;
+    e.preventDefault();
+    const to=Number(a.dataset.page);
+    if(!Number.isFinite(to))return;
+    state.page=to;
+    window.scrollTo({top:0,behavior:'smooth'});
+    render();
+  });
   render();
 })();
 </script>
