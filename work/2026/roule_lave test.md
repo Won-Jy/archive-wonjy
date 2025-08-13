@@ -2,8 +2,8 @@
 layout: work
 title: "Roulé-Lavé test"
 type: "Exhibition"
-year_start: 2026
-year_end: 2026
+year_start: 2025
+year_end: 2025
 status: "Completed"
 tags: ["public", "event"]
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
