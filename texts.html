@@ -6,129 +6,302 @@ title: Texts
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Texts | archive-wonjy</title>
-  <style>
-    :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
-    body { font-family: sans-serif; margin: 0; line-height: 1.6; color: var(--text); }
-    header { display:flex; align-items:center; padding:20px 24px; border-bottom:1px solid var(--border); }
-    .title { font-size:1.2em; font-weight:bold; text-transform:lowercase; }
-    nav { margin-left: 40px; }
-    nav a { margin-left:24px; text-decoration:none; color:#555; font-size:.95em; transition:color .2s; }
-    nav a:hover, nav a.active { color: var(--blue); }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Texts | archive-wonjy</title>
+<style>
+  :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
+  html,body{margin:0;padding:0;font-family:sans-serif;line-height:1.6;color:var(--text)}
 
-    main { padding: 80px 24px 24px; max-width: 740px; margin: 0 auto; min-height: 400px; }
-    .list { display:flex; flex-direction:column; gap:10px; }
+  header{display:flex;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
+  .title{font-size:1.2em;font-weight:bold;text-transform:lowercase}
+  nav{margin-left:40px}
+  nav a{margin-left:24px;text-decoration:none;color:#555;font-size:.95em;transition:color .2s}
+  nav a:hover,nav a.active{color:var(--blue)}
 
-    .text-link {
-      display:block; padding:8px 10px; border:1px solid transparent; text-decoration:none; color:inherit;
-    }
-    .text-link:hover { color: var(--blue); border-color: var(--border); }
-    .text-link:active, .text-link:focus { color: var(--blue); outline:none; border-color: var(--blue); }
+  /* 목록 화면 */
+  main.list{padding:80px 24px 24px;max-width:740px;margin:0 auto;min-height:400px}
+  .items{display:flex;flex-direction:column;gap:10px}
+  .text-link{display:block;padding:8px 10px;border:1px solid transparent;text-decoration:none;color:inherit}
+  .text-link:hover{color:var(--blue);border-color:var(--border)}
+  .text-link:active,.text-link:focus{color:var(--blue);outline:none;border-color:var(--blue)}
+  .text-title{font-style:italic}
+  .meta-sep{margin:0 6px;color:var(--muted)}
+  .author,.year{color:#444}
+  .pagination{padding:30px 24px 60px;text-align:left;max-width:740px;margin:0 auto}
+  .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
+  .pagination a:hover,.pagination a.active{color:var(--blue)}
 
-    .text-line { display:inline; }
-    .text-title { font-style:italic; }
-    .meta-sep { margin: 0 6px; color: var(--muted); }
-    .author, .year { color:#444; }
+  /* 상세 화면 */
+  main.detail{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;max-width:1200px;margin:24px auto;padding:0 24px}
+  @media (max-width:960px){ main.detail{grid-template-columns:1fr} aside{position:static} }
+  article .text-body{max-width:70ch}
+  aside{position:sticky;top:24px;align-self:start}
+  .section{border:1px solid var(--border);padding:14px 16px}
+  .section + .section{margin-top:16px}
+  h1,h2,h3,h4{font-weight:normal;margin:.2em 0 .4em}
+  .meta{display:flex;align-items:center;gap:8px;margin:.25rem 0 .75rem;color:var(--muted);font-size:.95em}
 
-    .pagination { padding: 30px 24px 60px; text-align:left; max-width:740px; margin:0 auto; }
-    .pagination a { margin: 0 4px; text-decoration: none; color: #000; font-size: 0.95em; }
-    .pagination a:hover, .pagination a.active { color: var(--blue); }
+  .lang-tabs{display:flex;gap:8px;margin:.5rem 0 1rem}
+  .lang-tabs button{border:1px solid var(--border);background:#fff;padding:4px 8px;font:inherit;cursor:pointer;color:#444}
+  .lang-tabs button:hover{color:var(--blue)}
+  .lang-tabs button.active{color:var(--blue);border-color:var(--blue)}
+  .lang-tabs .orig-badge{margin-left:6px;font-size:.8em;color:var(--muted)}
 
-    @media (max-width: 520px) { main { padding-top: 60px; } }
-  </style>
+  .notes{margin-top:24px}
+  .notes ol{margin:0;padding-left:20px}
+  .notes li{margin:.4rem 0}
+  .note-ref{cursor:pointer;text-decoration:none;color:inherit}
+  .note-ref:hover{color:var(--blue)}
+  .footnote-back{margin-left:6px;text-decoration:none;color:var(--muted)}
+  .footnote-back:hover{color:var(--blue)}
+  .divider{height:1px;background:var(--border);margin:24px 0}
+
+  /* tooltip */
+  .tooltip{position:fixed;z-index:1000;max-width:360px;border:1px solid var(--border);background:#fff;
+    padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none}
+
+  /* back to top */
+  #backToTop{position:fixed;right:24px;bottom:24px;display:none;border:1px solid var(--border);background:#fff;padding:10px 14px;cursor:pointer}
+  #backToTop:hover{color:var(--blue);border-color:var(--blue)}
+
+  .back-link{display:inline-block;margin:12px 24px;text-decoration:none;color:#444}
+  .back-link:hover{color:var(--blue)}
+</style>
 </head>
 <body>
-  <header>
-    <div class="title">archive-wonjy.com</div>
-    <nav>
-      <a href="/index.html">Home</a>
-      <a href="/work.html">Work</a>
-      <a href="/bio.html">Bio</a>
-      <a href="/texts.html" class="active">Texts</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
+<header>
+  <div class="title">archive-wonjy.com</div>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/work.html">Work</a>
+    <a href="/bio.html">Bio</a>
+    <a href="/texts.html" class="active">Texts</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
 
-  <main>
-    <div id="list" class="list"></div>
-  </main>
-  <div id="pagination" class="pagination"></div>
+<a class="back-link" id="backLink" href="/texts.html" style="display:none">← Back to list</a>
 
-  <script>
-    // Liquid → 실제 데이터로 치환됨
-    const texts = [
-      {% assign items = site.data.texts %}
-      {% for pair in items %}
-        {% assign id = pair[0] %}
-        {% assign t = pair[1] %}
-        {
-          id: {{ id | jsonify }},
-          title_html: {{ t.title_original.text_html | jsonify }},
-          author: {{ t.author.name | jsonify }},
-          year: {{ t.year | jsonify }}
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ];
+<!-- 목록 컨테이너 -->
+<main class="list" id="listView" hidden>
+  <div id="items" class="items"></div>
+</main>
+<div id="pager" class="pagination" hidden></div>
 
-    // 최신 연도 우선 → 제목 알파벳
-    texts.sort((a,b)=>{
-      const ya = parseInt(a.year,10)||0, yb=parseInt(b.year,10)||0;
-      if (yb !== ya) return yb - ya;
+<!-- 상세 컨테이너 -->
+<main class="detail" id="detailView" hidden>
+  <article id="detailArticle"></article>
+  <aside id="detailAside"></aside>
+</main>
+
+<button id="backToTop" aria-label="Back to top">Back to top</button>
+<div id="tooltip" class="tooltip"></div>
+
+<script>
+  // 1) 모든 텍스트 데이터(yml → JS로 주입)
+  const DATA = {
+    {% for pair in site.data.texts %}
+      {% assign id = pair[0] %}{% assign t = pair[1] %}
+      "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  // 2) 라우팅: ?id= 있으면 상세, 없으면 목록
+  const params = new URLSearchParams(location.search);
+  const currentId = params.get('id');
+
+  if (currentId && DATA[currentId]) {
+    renderDetail(currentId);
+  } else {
+    renderList();
+  }
+
+  // ---------- 목록 ----------
+  function renderList(){
+    document.getElementById('listView').hidden = false;
+    document.getElementById('pager').hidden = false;
+    document.getElementById('backLink').style.display = 'none';
+
+    const arr = Object.entries(DATA).map(([id,t])=>({
+      id, title_html: t.title_original?.text_html || '', author: t.author?.name || '', year: t.year || ''
+    }));
+
+    // 최신 연도 → 제목
+    arr.sort((a,b)=>{
+      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
+      if (yb!==ya) return yb-ya;
       return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
     });
 
-    const perPage = 10;
-    let currentPage = 1;
+    const perPage = 10; let page = 1;
+    const itemsEl = document.getElementById('items');
+    const pagerEl = document.getElementById('pager');
 
-    function renderList(){
-      const start = (currentPage-1)*perPage;
-      const end = start + perPage;
-      const pageItems = texts.slice(start, end);
-      const list = document.getElementById('list');
-      list.innerHTML = '';
-
-      pageItems.forEach(it=>{
+    function draw(){
+      const start = (page-1)*perPage, end = start+perPage;
+      itemsEl.innerHTML = '';
+      arr.slice(start,end).forEach(it=>{
         const a = document.createElement('a');
         a.className = 'text-link';
-        a.href = `/texts/${it.id}.html`; // 개별 페이지(front matter: layout:text, text_id:id)
-
-        const line = document.createElement('span');
-        line.className = 'text-line';
-        line.innerHTML =
+        a.href = `?id=${encodeURIComponent(it.id)}`;
+        a.innerHTML =
           `<span class="text-title">${it.title_html}</span>`+
           `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
           `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
-        a.appendChild(line);
-
-        list.appendChild(a);
+        itemsEl.appendChild(a);
       });
-    }
 
-    function renderPager(){
-      const totalPages = Math.max(1, Math.ceil(texts.length / perPage));
-      const pag = document.getElementById('pagination');
-      pag.innerHTML = '';
-
-      for(let i=1;i<=totalPages;i++){
-        if(i>1) pag.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a');
-        link.href = '#';
-        link.textContent = i;
-        if(i===currentPage) link.classList.add('active');
+      const total = Math.max(1, Math.ceil(arr.length/perPage));
+      pagerEl.innerHTML = '';
+      for(let i=1;i<=total;i++){
+        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+        const link = document.createElement('a'); link.href='#'; link.textContent=i;
+        if(i===page) link.classList.add('active');
         link.addEventListener('click', e=>{
-          e.preventDefault();
-          currentPage = i;
-          renderList(); renderPager();
-          window.scrollTo({top:0,behavior:'smooth'});
+          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
         });
-        pag.appendChild(link);
+        pagerEl.appendChild(link);
       }
     }
+    draw();
+  }
 
-    renderList();
-    renderPager();
-  </script>
+  // ---------- 상세 ----------
+  function renderDetail(id){
+    const t = DATA[id];
+    document.getElementById('detailView').hidden = false;
+    document.getElementById('backLink').style.display = 'inline-block';
+
+    const article = document.getElementById('detailArticle');
+    const aside = document.getElementById('detailAside');
+    const origLang = (t.original?.language || 'fr').toLowerCase();
+
+    // 본문(언어 탭 + variants)
+    article.innerHTML = `
+      <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
+      <div class="meta"><span>${t.author?.name || ''}</span><span>·</span><span>${t.year || ''}</span></div>
+
+      <div class="lang-tabs" id="langTabs">
+        <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
+        ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
+      </div>
+
+      <div class="text-variants">
+        <div class="text-body variant" data-lang="${origLang}">
+          ${t.original?.body_html || ''}
+        </div>
+        ${(t.translations||[]).map(tr=>`
+          <div class="text-body variant" data-lang="${tr.language}" style="display:none">
+            ${tr.title_html ? `<h2 class="translated-title" style="margin-top:0">${tr.title_html}</h2>` : ''}
+            <div class="translator" style="color:var(--muted);font-size:.95em;margin-bottom:.5rem">
+              ${tr.translator ? `translated by ${tr.translator} · ` : ''}${tr.year||''}
+            </div>
+            ${tr.body_html || ''}
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="divider"></div>
+
+      <section class="notes">
+        <h3>각주내용</h3>
+        <ol class="notes-variants">
+          <li style="list-style:none;padding:0;margin:0">
+            <ol class="notes-list variant" data-lang="${origLang}">
+              ${(t.original?.notes||[]).map(n=>`
+                <li id="fn-${n.id}-${origLang}">${n.html} <a class="footnote-back" href="#fnref-${n.id}-${origLang}">↩</a></li>
+              `).join('')}
+            </ol>
+          </li>
+          ${(t.translations||[]).map(tr=>`
+            <li style="list-style:none;padding:0;margin:0">
+              <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
+                ${(tr.notes||[]).map(n=>`
+                  <li id="fn-${n.id}-${tr.language}">${n.html} <a class="footnote-back" href="#fnref-${n.id}-${tr.language}">↩</a></li>
+                `).join('')}
+              </ol>
+            </li>
+          `).join('')}
+        </ol>
+      </section>
+    `;
+
+    // 사이드(항상 영어)
+    aside.innerHTML = `
+      <section class="section">
+        <h4>관련 작업들</h4>
+        <div class="buttons">
+          ${(t.related_works||[]).map(r=>`<a href="/${r.slug}.html" style="border:1px solid var(--border);padding:6px 10px;text-decoration:none;color:#444" onmouseover="this.style.color='${getComputedStyle(document.documentElement).getPropertyValue('--blue')}'" onmouseout="this.style.color='#444'">보기</a>`).join('')}
+        </div>
+      </section>
+
+      <section class="section">
+        <h4>출처</h4>
+        ${t.source_html || ''}
+      </section>
+
+      <div class="divider"></div>
+
+      <section class="section">
+        <h4>저자 소개</h4>
+        ${t.author?.bio_html || ''}
+      </section>
+    `;
+
+    // 언어 전환 & 주석 연결
+    const tabs = Array.from(article.querySelectorAll('.lang-btn'));
+    const variants = Array.from(article.querySelectorAll('.variant'));
+    const tooltip = document.getElementById('tooltip');
+
+    function setLang(lang){
+      tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
+      const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
+      wireFootnotes(lang);
+    }
+
+    tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
+    const initLang = new URLSearchParams(location.search).get('lang') || origLang;
+    setLang(initLang);
+
+    function wireFootnotes(lang){
+      // 본문 sup.note-ref → a 앵커 및 id 연결
+      article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+        const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+        const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
+        if(!sup.querySelector('a')){
+          const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
+          sup.textContent=''; sup.id=refId; sup.appendChild(a);
+        }else{
+          sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
+        }
+      });
+
+      // notes map
+      const notesMap = {};
+      article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+        notesMap[li.id] = li.innerHTML.replace(/<a[^>]*class="footnote-back"[\s\S]*?<\/a>/,'').trim();
+      });
+
+      // tooltip
+      article.querySelectorAll('.note-ref').forEach(a=>{
+        a.onmouseenter = function(e){
+          const href=this.getAttribute('href').slice(1);
+          const html=notesMap[href]; if(!html) return;
+          tooltip.innerHTML=html; tooltip.style.display='block';
+          tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
+        };
+        a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
+        a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
+      });
+    }
+  }
+
+  // back to top
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>400 ? 'block' : 'none'; });
+  btt.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
