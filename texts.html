@@ -247,10 +247,10 @@ title: Texts
     aside.innerHTML = `
       <div class="aside-block">
         <h4>Related works</h4>
-<div class="buttons" style="display:flex;flex-wrap:wrap;gap:8px">
+<div class="buttons" style="display:flex;flex-direction:column;gap:4px">
   ${(t.related_works || []).map(r => {
     const label = r.label || 'View';
-    return `<a href="/${r.slug}.html" class="link-button">${label}</a>`;
+    return `<a href="/${r.slug}.html" class="link-button">- ${label}</a>`;
   }).join('')}
 </div>
 </div>
