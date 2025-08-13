@@ -5,68 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Texts | archive-wonjy</title>
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      line-height: 1.6;
+    :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
+    body { font-family: sans-serif; margin: 0; line-height: 1.6; color: var(--text); }
+    header { display:flex; align-items:center; padding:20px 24px; border-bottom:1px solid var(--border); }
+    .title { font-size:1.2em; font-weight:bold; text-transform:lowercase; }
+    nav { margin-left: 40px; }
+    nav a { margin-left:24px; text-decoration:none; color:#555; font-size:.95em; transition:color .2s; }
+    nav a:hover, nav a.active { color: var(--blue); }
+
+    main { padding: 80px 24px 24px; max-width: 740px; margin: 0 auto; min-height: 400px; }
+    .list { display:flex; flex-direction:column; gap:10px; }
+
+    /* 한 줄 전체가 버튼 */
+    .text-link {
+      display:block; padding:8px 10px; border:1px solid transparent; text-decoration:none;
+      color:inherit;
     }
-    header {
-      display: flex;
-      align-items: center;
-      padding: 20px 24px;
-      border-bottom: 1px solid #ddd;
-    }
-    .title {
-      font-size: 1.2em;
-      font-weight: bold;
-      text-transform: lowercase;
-    }
-    nav {
-      margin-left: 40px;
-    }
-    nav a {
-      margin-left: 24px;
-      text-decoration: none;
-      color: #555;
-      font-size: 0.95em;
-      transition: color 0.2s;
-    }
-    nav a:hover,
-    nav a.active {
-      color: #007BFF;
-    }
-    main {
-      padding: 80px 24px;
-      max-width: 700px;
-      min-height: 400px;
-    }
-    .text-item {
-      margin-bottom: 12px;
-    }
-    .text-title {
-      font-style: italic;
-    }
-    .lang-links a {
-      margin-left: 10px;
-      font-size: 0.95em;
-      color: #666;
-      text-decoration: none;
-    }
-    .lang-links a:hover {
-      color: #007BFF;
-    }
-    .pagination {
-      padding: 30px 24px 60px;
-    }
-    .pagination a {
-      margin: 0 4px;
-      text-decoration: none;
-      color: #000;
-      font-size: 0.95em;
-    }
-    .pagination a:hover,
-    .pagination a.active {
-      color: #007BFF;
+    .text-link:hover { color: var(--blue); border-color: var(--border); }
+    .text-link:active, .text-link:focus { color: var(--blue); outline:none; border-color: var(--blue); }
+
+    .text-line { display:inline; }
+    .text-title { font-style:italic; } /* title_html 안에 <i>가 포함되지만 안전빵 */
+    .meta-sep { margin: 0 6px; color: var(--muted); }
+    .author, .year { color:#444; }
+
+    .pagination { padding: 30px 24px 60px; text-align:left; max-width:740px; margin:0 auto; }
+    .pagination a { margin: 0 4px; text-decoration: none; color: #000; font-size: 0.95em; }
+    .pagination a:hover, .pagination a.active { color: var(--blue); }
+
+    @media (max-width: 520px) {
+      main { padding-top: 60px; }
     }
   </style>
 </head>
@@ -74,85 +42,92 @@
   <header>
     <div class="title">archive-wonjy.com</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="work.html">Work</a>
-      <a href="bio.html">Bio</a>
-      <a href="texts.html" class="active">Texts</a>
-      <a href="contact.html">Contact</a>
+      <a href="/index.html">Home</a>
+      <a href="/work.html">Work</a>
+      <a href="/bio.html">Bio</a>
+      <a href="/texts.html" class="active">Texts</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </header>
-  <main id="text-list"></main>
-  <div class="pagination" id="pagination"></div>
 
+  <main>
+    <div id="list" class="list"></div>
+  </main>
+  <div id="pagination" class="pagination"></div>
+
+  <!-- Liquid → JS로 데이터 주입 -->
   <script>
     const texts = [
-      { title: "Roulé-Lavé", author: "Guilhem Monceaux", date: "2025", fr: "texts/roule-lave-fr.html", en: "texts/roule-lave-en.html" },
-      { title: "Like a Rolling Stone", author: "Christian Skimao", date: "2025", fr: "texts/rolling-stone-fr.html", en: "texts/rolling-stone-en.html" },
-      { title: "Won Jy au CACN", author: "Bernard Teulon-Nouailles", date: "2025", fr: "#", en: "#" },
-      { title: "Label Text", author: "Alix Jolly & Else Bedoux", date: "2024", fr: "#" },
-      { title: "Murohomo", author: "Gabrielle Thérèse-Perrier", date: "2024", fr: "#" },
-      { title: "Grotto en trois temps", author: "Julie Émile Fabre", date: "2022", fr: "#", en: "#" },
-      { title: "Le temps d’avant l’effondrement", author: "Isabelle Poussier", date: "2022", fr: "#", en: "#" },
-      { title: "La quête des pierres et de soi", author: "Stéphane Cerri", date: "2021", fr: "#" },
-      { title: "Se réinventer", author: "Laurent Puech", date: "2021", fr: "#", en: "#" },
-      { title: "Entretien avec Won Jy", author: "Laurent Puech", date: "2021", fr: "#" },
-      { title: "La beauté dans le banal", author: "Maya Trufaut", date: "2020", fr: "#" },
-      { title: "Texte sur Columbarium", author: "Isabelle Poussier", date: "2019", fr: "#", en: "#" },
-      { title: "En cours et en devenir", author: "Guillaume Barborini", date: "2018", fr: "#", en: "#" }
+      {% assign items = site.data.texts %}
+      {% for pair in items %}
+        {% assign id = pair[0] %}
+        {% assign t = pair[1] %}
+        {
+          id: {{ id | jsonify }},
+          title_html: {{ t.title_original.text_html | jsonify }},
+          author: {{ t.author.name | jsonify }},
+          year: {{ t.year | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
     ];
 
-    const itemsPerPage = 10;
+    // 정렬: 연도 내림차순, 그다음 제목 오름차순
+    texts.sort((a,b)=>{
+      const ya = parseInt(a.year,10)||0, yb=parseInt(b.year,10)||0;
+      if(yb!==ya) return yb-ya;
+      return (a.title_html || '').localeCompare(b.title_html || '', undefined, {sensitivity:'base'});
+    });
+
+    const perPage = 10;
     let currentPage = 1;
 
-    function renderTexts() {
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const list = document.getElementById("text-list");
-      list.innerHTML = "";
+    function renderList(){
+      const start = (currentPage-1)*perPage;
+      const end = start + perPage;
+      const pageItems = texts.slice(start, end);
 
-      texts.slice(start, end).forEach(text => {
-        const item = document.createElement("div");
-        item.className = "text-item";
-        const langLinks = [];
-        if (text.fr) langLinks.push(`<a href="${text.fr}">(FR)</a>`);
-        if (text.en) langLinks.push(`<a href="${text.en}">(EN)</a>`);
+      const list = document.getElementById('list');
+      list.innerHTML = '';
 
-        item.innerHTML = `<span class="text-title">${text.title}</span> – ${text.author}, ${text.date} <span class="lang-links">${langLinks.join(" ")}</span>`;
-        list.appendChild(item);
+      pageItems.forEach(it=>{
+        const a = document.createElement('a');
+        a.className = 'text-link';
+        a.href = `/texts/${it.id}.html`; // 개별 페이지(front matter: layout:text, text_id:id)
+
+        // 제목(이탤릭 보존) + 저자 + 연도
+        const line = document.createElement('span');
+        line.className = 'text-line';
+        line.innerHTML = `<span class="text-title">${it.title_html}</span><span class="meta-sep">,</span><span class="author">${it.author}</span><span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+        a.appendChild(line);
+
+        list.appendChild(a);
       });
     }
 
-    function renderPagination() {
-      const totalPages = Math.ceil(texts.length / itemsPerPage);
-      const container = document.getElementById("pagination");
-      container.innerHTML = "";
+    function renderPager(){
+      const totalPages = Math.max(1, Math.ceil(texts.length / perPage));
+      const pag = document.getElementById('pagination');
+      pag.innerHTML = '';
 
-      for (let i = 1; i <= totalPages; i++) {
-        if (i > 1) {
-          const slash = document.createTextNode(" / ");
-          container.appendChild(slash);
-        }
-        const link = document.createElement("a");
-        link.href = "#";
+      for(let i=1;i<=totalPages;i++){
+        if(i>1) pag.appendChild(document.createTextNode(' / '));
+        const link = document.createElement('a');
+        link.href = '#';
         link.textContent = i;
-        if (i === currentPage) {
-          link.classList.add("active");
-        }
-        link.addEventListener("click", function (e) {
+        if(i===currentPage) link.classList.add('active');
+        link.addEventListener('click', e=>{
           e.preventDefault();
           currentPage = i;
-          renderTexts();
-          renderPagination();
+          renderList(); renderPager();
+          window.scrollTo({top:0,behavior:'smooth'});
         });
-        container.appendChild(link);
+        pag.appendChild(link);
       }
     }
 
-    renderTexts();
-    renderPagination();
+    // 초기 렌더
+    renderList();
+    renderPager();
   </script>
 </body>
 </html>
-
-
-
