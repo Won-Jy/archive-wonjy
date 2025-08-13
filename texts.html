@@ -66,8 +66,21 @@ title: Texts
   .divider{height:1px;background:var(--border);margin:16px 0}
 
   /* back to top */
-  #backToTop{position:fixed;right:24px;bottom:24px;display:none;border:1px solid var(--border);background:#fff;padding:10px 14px;cursor:pointer}
-  #backToTop:hover{color:var(--blue);border-color:var(--blue)}
+  #backToTop{
+  position: fixed;
+  right: 24px;
+  bottom: 20px;
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--blue);
+  text-decoration: none;
+  font-size: .95em;
+}
+#backToTop:hover{ text-decoration: underline; }
+#backToTop:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
 
   .link-button {
   display: inline-block;
