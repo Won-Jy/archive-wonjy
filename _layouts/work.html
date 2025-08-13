@@ -247,13 +247,71 @@
 
 
           
-          {%- elsif page.critique -%}
-            <div class="divider"></div>
-            {%- if page.critique_title -%}
-              <div class="section-title">{{ page.critique_title }}</div>
-            {%- endif -%}
-            <div class="rich critique">{{ page.critique | markdownify }}</div>
-          {%- endif -%}
+{%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
+
+{%- comment -%} Related texts — 새 형식(related_texts) 우선, 없으면 예전 방식(critique_links), 마지막으로 plain critique {%- endcomment -%}
+{%- if page.related_texts and page.related_texts.size > 0 -%}
+  <div class="divider"></div>
+  {%- if page.critique_title -%}
+    <div class="section-title">{{ page.critique_title }}</div>
+  {%- endif -%}
+
+  <ul class="related-texts">
+    {%- for r in page.related_texts -%}
+      {%- assign t = site.data.texts[r.id] -%}
+      {%- if t -%}
+        {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+        {%- assign target = r.lang | default: page_lang -%}
+
+        {%- assign has_tr = false -%}
+        {%- for tr in t.translations -%}
+          {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
+        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+
+        {%- if r.label -%}
+          {%- assign label_html = r.label -%}
+        {%- else -%}
+          {%- assign title_html = t.title_original.text_html -%}
+          {%- assign author = t.author.name -%}
+          {%- assign year = t.year -%}
+          {%- assign label_html = '<em>' | append: (title_html | strip_html) | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+        {%- endif -%}
+
+        <li><a class="link-button" href="{{ href | relative_url }}">- {{ label_html }}</a></li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+
+{%- else -%}
+  {%- if page.critique_links and page.critique_links.size > 0 -%}
+    <div class="divider"></div>
+    {%- if page.critique_title -%}
+      <div class="section-title">{{ page.critique_title }}</div>
+    {%- endif -%}
+    <ul class="related-texts">
+      {%- for item in page.critique_links -%}
+        <li>
+          {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
+          {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
+          {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- else -%}
+    {%- if page.critique -%}
+      <div class="divider"></div>
+      {%- if page.critique_title -%}
+        <div class="section-title">{{ page.critique_title }}</div>
+      {%- endif -%}
+      <div class="rich critique">{{ page.critique | markdownify }}</div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+          
         </div>
       </aside>
     </section>
