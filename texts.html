@@ -1,3 +1,8 @@
+---
+layout: none
+title: Texts
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,16 +21,14 @@
     main { padding: 80px 24px 24px; max-width: 740px; margin: 0 auto; min-height: 400px; }
     .list { display:flex; flex-direction:column; gap:10px; }
 
-    /* 한 줄 전체가 버튼 */
     .text-link {
-      display:block; padding:8px 10px; border:1px solid transparent; text-decoration:none;
-      color:inherit;
+      display:block; padding:8px 10px; border:1px solid transparent; text-decoration:none; color:inherit;
     }
     .text-link:hover { color: var(--blue); border-color: var(--border); }
     .text-link:active, .text-link:focus { color: var(--blue); outline:none; border-color: var(--blue); }
 
     .text-line { display:inline; }
-    .text-title { font-style:italic; } /* title_html 안에 <i>가 포함되지만 안전빵 */
+    .text-title { font-style:italic; }
     .meta-sep { margin: 0 6px; color: var(--muted); }
     .author, .year { color:#444; }
 
@@ -33,9 +36,7 @@
     .pagination a { margin: 0 4px; text-decoration: none; color: #000; font-size: 0.95em; }
     .pagination a:hover, .pagination a.active { color: var(--blue); }
 
-    @media (max-width: 520px) {
-      main { padding-top: 60px; }
-    }
+    @media (max-width: 520px) { main { padding-top: 60px; } }
   </style>
 </head>
 <body>
@@ -55,8 +56,8 @@
   </main>
   <div id="pagination" class="pagination"></div>
 
-  <!-- Liquid → JS로 데이터 주입 -->
   <script>
+    // Liquid → 실제 데이터로 치환됨
     const texts = [
       {% assign items = site.data.texts %}
       {% for pair in items %}
@@ -71,11 +72,11 @@
       {% endfor %}
     ];
 
-    // 정렬: 연도 내림차순, 그다음 제목 오름차순
+    // 최신 연도 우선 → 제목 알파벳
     texts.sort((a,b)=>{
       const ya = parseInt(a.year,10)||0, yb=parseInt(b.year,10)||0;
-      if(yb!==ya) return yb-ya;
-      return (a.title_html || '').localeCompare(b.title_html || '', undefined, {sensitivity:'base'});
+      if (yb !== ya) return yb - ya;
+      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
     });
 
     const perPage = 10;
@@ -85,7 +86,6 @@
       const start = (currentPage-1)*perPage;
       const end = start + perPage;
       const pageItems = texts.slice(start, end);
-
       const list = document.getElementById('list');
       list.innerHTML = '';
 
@@ -94,10 +94,12 @@
         a.className = 'text-link';
         a.href = `/texts/${it.id}.html`; // 개별 페이지(front matter: layout:text, text_id:id)
 
-        // 제목(이탤릭 보존) + 저자 + 연도
         const line = document.createElement('span');
         line.className = 'text-line';
-        line.innerHTML = `<span class="text-title">${it.title_html}</span><span class="meta-sep">,</span><span class="author">${it.author}</span><span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+        line.innerHTML =
+          `<span class="text-title">${it.title_html}</span>`+
+          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
         a.appendChild(line);
 
         list.appendChild(a);
@@ -125,7 +127,6 @@
       }
     }
 
-    // 초기 렌더
     renderList();
     renderPager();
   </script>
