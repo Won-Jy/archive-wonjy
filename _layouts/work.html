@@ -213,7 +213,7 @@
           {%- assign label_html = '<em>' | append: (title_html | strip_html) | append: '</em>, ' | append: author | append: ', ' | append: year -%}
         {%- endif -%}
 
-        <li><a class="link-button" href="{{ href | relative_url }}">- {{ label_html }}</a></li>
+        <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
       {%- endif -%}
     {%- endfor -%}
   </ul>
