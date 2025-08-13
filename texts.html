@@ -56,7 +56,10 @@ title: Texts
 .text-link .author,
 .text-link .year{ transition: color .15s; }
   .text-title{font-style:italic}
-  .meta-sep{margin:0 6px;color:var(--muted)}
+  .meta-sep{
+  margin: 0 6px 0 0;   /* right만 6px, left 0 */
+  color: var(--muted);
+}
   .author,.year{color:#444}
   .pagination{padding:30px 24px 60px;text-align:left;max-width:740px;margin:0 auto}
   .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
