@@ -23,67 +23,63 @@ title: Texts
   main.list{padding:50px 40px 60px 24px;max-width:740px;margin:0;min-height:400px}
   .items{display:flex;flex-direction:column;gap:10px}
   .text-link{
-  display:block;
-  padding:8px 10px;
-  border:none;
-  text-decoration:none;
-  color:inherit;
-}
+    display:block;
+    padding:8px 10px;
+    border:none;
+    text-decoration:none;
+    color:inherit;
+  }
+  .text-link:hover,
+  .text-link:active,
+  .text-link:focus{
+    color:var(--blue);
+    border:none;
+    outline:none;
+  }
+  /* 내부 span들도 함께 파랗게 */
+  .text-link:hover .text-title,
+  .text-link:hover .author,
+  .text-link:hover .year,
+  .text-link:active .text-title,
+  .text-link:active .author,
+  .text-link:active .year,
+  .text-link:focus .text-title,
+  .text-link:focus .author,
+  .text-link:focus .year{ color:var(--blue); }
+  /* (선택) 부드러운 전환 */
+  .text-link .text-title,
+  .text-link .author,
+  .text-link .year{ transition: color .15s; }
 
-.text-link:hover,
-.text-link:active,
-.text-link:focus{
-  color:var(--blue);
-  border:none;
-  outline:none;
-}
-
-/* 내부 span들도 함께 파랗게 */
-.text-link:hover .text-title,
-.text-link:hover .author,
-.text-link:hover .year,
-.text-link:active .text-title,
-.text-link:active .author,
-.text-link:active .year,
-.text-link:focus .text-title,
-.text-link:focus .author,
-.text-link:focus .year{
-  color:var(--blue);
-}
-
-/* (선택) 부드러운 전환 */
-.text-link .text-title,
-.text-link .author,
-.text-link .year{ transition: color .15s; }
   .text-title{font-style:italic}
-  .meta-sep{
-  margin: 0 6px 0 0;   /* right만 6px, left 0 */
-  color: var(--muted);
-}
+  .meta-sep{ margin:0 6px 0 0; color:var(--muted); }
   .author,.year{color:#444}
+
   .pagination{padding:30px 24px 60px;text-align:left;max-width:740px;margin:0 auto}
   .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
   .pagination a:hover,.pagination a.active{color:var(--blue)}
 
-  /* 상세 화면 */
-  main.detail {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) 320px;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0;                  /* 가운데 정렬 제거 */
-  padding: 50px 40px 60px 24px; /* 위/오른/아래/왼 */
-}
+  /* 상세 화면 (전체폭은 기존 그대로 유지) */
+  main.detail{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 320px;
+    gap:24px;
+    max-width:1200px;   /* ← 기존 전체폭 유지 */
+    margin:0;           /* 왼쪽 정렬 */
+    padding:50px 40px 60px 24px;
+  }
   @media (max-width:960px){ main.detail{grid-template-columns:1fr} aside{position:static} }
-  article .text-body,article .notes{max-width:80ch;}
-  aside{position:static;top:24px;align-self:start}
+
+  article .text-body, article .notes{ max-width:80ch; } /* 본문 & 각주 본문 폭 */
+  aside{ position:static; top:24px; align-self:start }
+
   h1,h2,h3,h4{font-weight:normal;margin:.2em 0 .4em}
   .meta{display:flex;align-items:center;gap:8px;margin:.25rem 0 .75rem;color:var(--muted);font-size:.95em}
 
   /* 언어 탭: 테두리 없음 */
   .lang-tabs{display:flex;gap:8px;margin:.5rem 0 1rem}
   .lang-tabs button{
-    border:none;background:#fff;padding:0px;font:inherit;cursor:pointer;color:#444
+    border:none;background:#fff;padding:0;font:inherit;cursor:pointer;color:#444
   }
   .lang-tabs button:hover{color:var(--blue)}
   .lang-tabs button.active{color:var(--blue)}
@@ -92,73 +88,79 @@ title: Texts
   /* Notes/주석 */
   .notes{margin-top:24px}
   .notes ol{margin:0;padding-left:20px}
-  .notes li{margin:.5rem 0} /*주석사이의 간격*/
+  /* 중복 규칙 정리: 각주 간격은 여기서만 관리 (기존 시각 유지 0.4rem) */
+  article .notes li{ margin:.4rem 0; }
   .note-ref{cursor:pointer;text-decoration:none;color:var(--blue)} /* 본문 주석번호 기본 파랑 */
   .note-num{color:var(--blue);text-decoration:none;margin-right:6px} /* 하단 Notes의 [n] */
   .note-num:hover{text-decoration:underline}
 
   /* tooltip */
-  .tooltip{position:fixed;z-index:1000;max-width:360px;border:1px solid var(--border);background:#fff;
-    padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none}
+  .tooltip{
+    position:fixed;z-index:1000;max-width:360px;border:1px solid var(--border);background:#fff;
+    padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none
+  }
 
   /* 사이드: 테두리 제거 + 구분선 */
   .aside-block{padding:14px 0}
   .divider{height:1px;background:var(--border);margin:16px 0}
 
+  /* 본문 쪽 구분선 길이만 본문 폭(80ch)에 맞추기 */
+  main.detail article .divider{
+    max-width:80ch;
+    width:100%;
+    margin:16px 0;
+  }
+  /* 사이드 구분선은 컬럼 전체폭 유지 */
+  main.detail aside .divider{
+    max-width:none;
+    width:100%;
+  }
+
   /* back to top */
   #backToTop{
-  position: fixed;
-  right: 24px;
-  bottom: 20px;
-  display: none;
-  background: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: var(--blue);
-  text-decoration: none;
-  font-size: .95em;
-}
-#backToTop:hover{ text-decoration: underline; }
-#backToTop:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+    position: fixed;
+    right: 24px;
+    bottom: 20px;
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: .95em;
+  }
+  #backToTop:hover{ text-decoration: underline; }
+  #backToTop:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
 
   .link-button {
-  display: inline-block;
-  border: none;       /* 테두리 제거 */
-  padding: 0;         /* 여백 제거 */
-  text-decoration: none;
-  color: #444;
-  font-size: 0.95em;
-  line-height: 1.4;
-}
+    display: inline-block;
+    border: none;
+    padding: 0;
+    text-decoration: none;
+    color: #444;
+    font-size: 0.95em;
+    line-height: 1.4;
+  }
+  .link-button:hover,
+  .link-button:focus {
+    color: var(--blue);
+    outline: none;
+  }
 
-.link-button:hover,
-.link-button:focus {
-  color: var(--blue); /* hover 시 파랑색 */
-  outline: none;
-}
-
-/* Notes: 기본 번호 숨기기 (파란 [n]만 보이게) */
-.notes .notes-list{
-  list-style: none;     /* 숫자 제거 */
-  padding-left: 0;      /* 들여쓰기 제거 */
-  margin-left: 0;
-}
-.notes .notes-list li{
-  padding-left: 0;      /* 불필요 여백 제거 */
-}
+  /* Notes: 기본 번호 숨기기 (파란 [n]만 보이게) */
+  .notes .notes-list{
+    list-style:none;
+    padding-left:0;
+    margin-left:0;
+  }
+  .notes .notes-list li{ padding-left:0; }
 
   article .notes{
-  font-size: 1.0em;
-  line-height: 1.55;
-}
-article .notes h3{
-  margin: 0 0 8px 0;
-}
-article .notes li{
-  margin: .4rem 0;
-}
-  
+    font-size:1.0em;
+    line-height:1.55;
+  }
+  article .notes h3{ margin:0 0 8px 0; }
 </style>
 </head>
 <body>
@@ -213,7 +215,10 @@ article .notes li{
     document.getElementById('pager').hidden = false;
 
     const arr = Object.entries(DATA).map(([id,t])=>({
-      id, title_html: t.title_original?.text_html || '', author: t.author?.name || '', year: t.year || ''
+      id,
+      title_html: t.title_original?.text_html || '',
+      author: t.author?.name || '',
+      year: t.year || ''
     }));
 
     // 최신 연도 → 제목
@@ -281,7 +286,7 @@ article .notes li{
         </div>
         ${(t.translations||[]).map(tr=>`
           <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-            ${tr.body_html || ''}  <!-- 번역 보기에서 제목/연도 중복 제거 -->
+            ${tr.body_html || ''}
           </div>
         `).join('')}
       </div>
@@ -319,13 +324,13 @@ article .notes li{
     aside.innerHTML = `
       <div class="aside-block">
         <h4>Related works</h4>
-<div class="buttons" style="display:flex;flex-direction:column;gap:4px">
-  ${(t.related_works || []).map(r => {
-    const label = r.label || 'View';
-    return `<a href="/${r.slug}.html" class="link-button">- ${label}</a>`;
-  }).join('')}
-</div>
-</div>
+        <div class="buttons" style="display:flex;flex-direction:column;gap:4px">
+          ${(t.related_works || []).map(r => {
+            const label = r.label || 'View';
+            return `<a href="/${r.slug}.html" class="link-button">- ${label}</a>`;
+          }).join('')}
+        </div>
+      </div>
 
       <div class="divider"></div>
 
@@ -396,12 +401,11 @@ article .notes li{
   const btt = document.getElementById('backToTop');
   window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
   btt.addEventListener('click', (e)=>{
-  e.preventDefault(); // ← 이게 없어서 점프했습니다!
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) window.scrollTo(0,0);
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) window.scrollTo(0,0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
