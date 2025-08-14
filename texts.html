@@ -1,4 +1,4 @@
----
+--- 
 layout: none
 title: Texts
 ---
@@ -57,31 +57,28 @@ title: Texts
   .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
   .pagination a:hover,.pagination a.active{color:var(--blue)}
 
-  /* 상세 화면: 왼쪽 컬럼을 '콘텐츠 폭'에 맞춤 */
+  /* 상세 화면 */
   main.detail{
     display:grid;
-    grid-template-columns: auto 320px;  /* ← 1fr 대신 auto */
-    gap:16px;                            /* 실제 컬럼 간격 */
+    grid-template-columns: auto 320px;
+    gap:16px;
     max-width:1200px;
     margin:0;
     padding:50px 40px 60px 24px;
   }
-  /* 왼쪽 그리드 셀(기사) 자체가 본문 폭만큼만 갖도록 고정 */
-  #detailArticle{ width:min(90ch, 100%); }  /* 읽기폭 유지 */
+  #detailArticle{ width:min(90ch, 100%); }
   @media (max-width:960px){
     main.detail{grid-template-columns:1fr}
     #detailArticle{ width:100%; }
     aside{position:static}
   }
 
-  /* 본문 내부 블록들은 기사 폭을 꽉 채우게 */
   article .text-body, article .notes{ max-width:100%; }
   aside{ position:static; top:24px; align-self:start }
 
   h1,h2,h3,h4{font-weight:bold;margin:.2em 0 .4em}
-  .meta{display:flex;align-items:center;gap:8px;margin:.25rem 0 .75rem;color:var(--muted);font-size:.95em,font-weight:bold;}
+  .meta{display:flex;align-items:center;gap:8px;margin:.25rem 0 .75rem;color:var(--muted);font-size:.95em;font-weight:bold;}
 
-  /* 언어 탭: 테두리 없음 */
   .lang-tabs{display:flex;gap:8px;margin:.5rem 0 1rem}
   .lang-tabs button{
     border:none;background:#fff;padding:0;font:inherit;cursor:pointer;color:#444
@@ -90,7 +87,6 @@ title: Texts
   .lang-tabs button.active{color:var(--blue)}
   .lang-tabs .orig-badge{margin-left:6px;font-size:.8em;color:var(--muted)}
 
-  /* Notes/주석 */
   .notes{margin-top:24px}
   .notes ol{margin:0;padding-left:20px}
   article .notes li{ margin:.6rem 0; }
@@ -98,21 +94,17 @@ title: Texts
   .note-num{color:var(--blue);text-decoration:none;margin-right:6px}
   .note-num:hover{text-decoration:underline}
 
-  /* tooltip */
   .tooltip{
     position:fixed;z-index:1000;max-width:360px;border:1px solid var(--border);background:#fff;
     padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none
   }
 
-  /* 사이드 */
   .aside-block{padding:14px 0}
   .divider{height:1px;background:var(--border);margin:16px 0}
 
-  /* 본문 구분선은 기사 폭을 따르게 */
   main.detail article .divider{ max-width:100%; width:100%; margin:32px 0; }
   main.detail aside .divider{ max-width:none; width:100%; }
 
-  /* back to top */
   #backToTop{
     position: fixed;
     right: 24px;
@@ -144,7 +136,6 @@ title: Texts
     outline: none;
   }
 
-  /* Notes: 기본 번호 숨기기 (파란 [n]만 보이게) */
   .notes .notes-list{
     list-style:none;
     padding-left:0;
@@ -158,43 +149,32 @@ title: Texts
   }
   article .notes h3{ margin:0 0 8px 0; }
 
+  .link-button span { white-space: nowrap; }
 
-
-.link-button span {
-  white-space: nowrap;
-}
-
-/* Related works: 기본 불릿 제거 후 대시로 교체 */
-.related-works {
-  list-style: none;
-  margin: 8px 0 0;
-  padding: 0;
-}
-
-.related-works li {
-  margin: 0 0 6px 0;
-  position: relative;
-  padding-left: 14px; /* 대시 위치 확보 */
-}
-
-.related-works li::before {
-  content: "–"; /* en dash */
-  position: absolute;
-  left: 0;
-  color: var(--muted);
-}
-
-.related-works a {
-  color: var(--blue);
-  text-decoration: none;
-}
-
-.related-works a:hover {
-  text-decoration: underline;
-}
-
-
-  
+  /* Related works: 불릿 제거 + 대시 */
+  .related-works {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+  }
+  .related-works li {
+    margin: 0 0 6px 0;
+    position: relative;
+    padding-left: 14px;
+  }
+  .related-works li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+  .related-works a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .related-works a:hover {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -209,13 +189,11 @@ title: Texts
   </nav>
 </header>
 
-<!-- 목록 컨테이너 -->
 <main class="list" id="listView" hidden>
   <div id="items" class="items"></div>
 </main>
 <div id="pager" class="pagination" hidden></div>
 
-<!-- 상세 컨테이너 -->
 <main class="detail" id="detailView" hidden>
   <article id="detailArticle"></article>
   <aside id="detailAside"></aside>
@@ -225,230 +203,227 @@ title: Texts
 <div id="tooltip" class="tooltip"></div>
 
 <script>
-  // 1) 모든 텍스트 데이터(yml → JS로 주입)
-  const DATA = {
-    {% for pair in site.data.texts %}
-      {% assign id = pair[0] %}{% assign t = pair[1] %}
-      "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  };
+const DATA = {
+  {% for pair in site.data.texts %}
+    {% assign id = pair[0] %}{% assign t = pair[1] %}
+    "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
 
-  // 2) 라우팅: ?id= 있으면 상세, 없으면 목록
-  const params = new URLSearchParams(location.search);
-  const currentId = params.get('id');
+const params = new URLSearchParams(location.search);
+const currentId = params.get('id');
 
-  if (currentId && DATA[currentId]) {
-    renderDetail(currentId);
-  } else {
-    renderList();
-  }
+if (currentId && DATA[currentId]) {
+  renderDetail(currentId);
+} else {
+  renderList();
+}
 
-  // ---------- 목록 ----------
-  function renderList(){
-    document.getElementById('listView').hidden = false;
-    document.getElementById('pager').hidden = false;
-
-    const arr = Object.entries(DATA).map(([id,t])=>({
-      id,
-      title_html: t.title_original?.text_html || '',
-      author: t.author?.name || '',
-      year: t.year || ''
-    }));
-
-    // 최신 연도 → 제목
-    arr.sort((a,b)=>{
-      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
-      if (yb!==ya) return yb-ya;
-      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
+function renderList(){
+  document.getElementById('listView').hidden = false;
+  document.getElementById('pager').hidden = false;
+  const arr = Object.entries(DATA).map(([id,t])=>({
+    id,
+    title_html: t.title_original?.text_html || '',
+    author: t.author?.name || '',
+    year: t.year || ''
+  }));
+  arr.sort((a,b)=>{
+    const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
+    if (yb!==ya) return yb-ya;
+    return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
+  });
+  const perPage = 10; let page = 1;
+  const itemsEl = document.getElementById('items');
+  const pagerEl = document.getElementById('pager');
+  function draw(){
+    const start = (page-1)*perPage, end = start+perPage;
+    itemsEl.innerHTML = '';
+    arr.slice(start,end).forEach(it=>{
+      const a = document.createElement('a');
+      a.className = 'text-link';
+      a.href = `?id=${encodeURIComponent(it.id)}`;
+      a.innerHTML =
+        `<span class="text-title">${it.title_html}</span>`+
+        `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+        `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+      itemsEl.appendChild(a);
     });
-
-    const perPage = 10; let page = 1;
-    const itemsEl = document.getElementById('items');
-    const pagerEl = document.getElementById('pager');
-
-    function draw(){
-      const start = (page-1)*perPage, end = start+perPage;
-      itemsEl.innerHTML = '';
-      arr.slice(start,end).forEach(it=>{
-        const a = document.createElement('a');
-        a.className = 'text-link';
-        a.href = `?id=${encodeURIComponent(it.id)}`;
-        a.innerHTML =
-          `<span class="text-title">${it.title_html}</span>`+
-          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
-          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
-        itemsEl.appendChild(a);
+    const total = Math.max(1, Math.ceil(arr.length/perPage));
+    pagerEl.innerHTML = '';
+    for(let i=1;i<=total;i++){
+      if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+      const link = document.createElement('a'); link.href='#'; link.textContent=i;
+      if(i===page) link.classList.add('active');
+      link.addEventListener('click', e=>{
+        e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
       });
-
-      const total = Math.max(1, Math.ceil(arr.length/perPage));
-      pagerEl.innerHTML = '';
-      for(let i=1;i<=total;i++){
-        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a'); link.href='#'; link.textContent=i;
-        if(i===page) link.classList.add('active');
-        link.addEventListener('click', e=>{
-          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
-        });
-        pagerEl.appendChild(link);
-      }
+      pagerEl.appendChild(link);
     }
-    draw();
   }
+  draw();
+}
 
-  // ---------- 상세 ----------
-  function renderDetail(id){
-    const t = DATA[id];
-    document.getElementById('detailView').hidden = false;
+function renderDetail(id){
+  const t = DATA[id];
+  document.getElementById('detailView').hidden = false;
+  const article = document.getElementById('detailArticle');
+  const aside = document.getElementById('detailAside');
+  const origLang = (t.original?.language || 'fr').toLowerCase();
 
-    const article = document.getElementById('detailArticle');
-    const aside = document.getElementById('detailAside');
-    const origLang = (t.original?.language || 'fr').toLowerCase();
+  const notesCounts = {};
+  notesCounts[origLang] = (t.original?.notes || []).length;
+  (t.translations || []).forEach(tr => {
+    notesCounts[tr.language] = (tr.notes || []).length;
+  });
+  const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
 
-    // 본문(언어 탭 + variants)
-    article.innerHTML = `
-      <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
-      <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
+  article.innerHTML = `
+    <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
+    <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
 
-      <div class="lang-tabs" id="langTabs">
-        <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
-        ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
+    <div class="lang-tabs" id="langTabs">
+      <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
+      ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
+    </div>
+
+    <div class="text-variants">
+      <div class="text-body variant" data-lang="${origLang}">
+        ${t.original?.body_html || ''}
       </div>
-
-      <div class="text-variants">
-        <div class="text-body variant" data-lang="${origLang}">
-          ${t.original?.body_html || ''}
+      ${(t.translations||[]).map(tr=>`
+        <div class="text-body variant" data-lang="${tr.language}" style="display:none">
+          ${tr.body_html || ''}
         </div>
+      `).join('')}
+    </div>
+
+    ${hasAnyNotes ? `
+    <div id="notesDivider" class="divider"></div>
+    <section id="notesSection" class="notes">
+      <h3>Notes</h3>
+      <ol class="notes-variants">
+        <li style="list-style:none;padding:0;margin:0">
+          <ol class="notes-list variant" data-lang="${origLang}">
+            ${(t.original?.notes||[]).map(n=>`
+              <li id="fn-${n.id}-${origLang}">
+                <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
+              </li>
+            `).join('')}
+          </ol>
+        </li>
         ${(t.translations||[]).map(tr=>`
-          <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-            ${tr.body_html || ''}
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="divider"></div>
-
-      <section class="notes">
-        <h3>Notes</h3>
-        <ol class="notes-variants">
           <li style="list-style:none;padding:0;margin:0">
-            <ol class="notes-list variant" data-lang="${origLang}">
-              ${(t.original?.notes||[]).map(n=>`
-                <li id="fn-${n.id}-${origLang}">
-                  <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
+            <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
+              ${(tr.notes||[]).map(n=>`
+                <li id="fn-${n.id}-${tr.language}">
+                  <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
                 </li>
               `).join('')}
             </ol>
           </li>
-          ${(t.translations||[]).map(tr=>`
-            <li style="list-style:none;padding:0;margin:0">
-              <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
-                ${(tr.notes||[]).map(n=>`
-                  <li id="fn-${n.id}-${tr.language}">
-                    <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
-                  </li>
-                `).join('')}
-              </ol>
-            </li>
-          `).join('')}
-        </ol>
-      </section>
-    `;
+        `).join('')}
+      </ol>
+    </section>
+    ` : ``}
+  `;
 
-    // 사이드
-    aside.innerHTML = `
-  <div class="aside-block">
-    <h4>Related works</h4>
-    <ul class="related-works">
-      ${(t.related_works || []).map(r => {
-        const label = r.label || 'View';
-        return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
-      }).join('')}
-    </ul>
-  </div>
+  aside.innerHTML = `
+    <div class="aside-block">
+      <h4>Related works</h4>
+      <ul class="related-works">
+        ${(t.related_works || []).map(r => {
+          const label = r.label || 'View';
+          return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+        }).join('')}
+      </ul>
+    </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <div class="aside-block">
-    <h4>Source</h4>
-    ${t.source_html || ''}
-  </div>
+    <div class="aside-block">
+      <h4>Source</h4>
+      ${t.source_html || ''}
+    </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <div class="aside-block">
-    <h4>Author</h4>
-    ${t.author?.bio_html || ''}
-  </div>
-`;
+    <div class="aside-block">
+      <h4>Author</h4>
+      ${t.author?.bio_html || ''}
+    </div>
+  `;
 
-    aside.querySelectorAll('a').forEach(a => {
-  a.setAttribute('target', '_blank');
-  a.setAttribute('rel', 'noopener noreferrer');
-});
-article.querySelectorAll('.notes a').forEach(a => {
-  a.setAttribute('target', '_blank');
-  a.setAttribute('rel', 'noopener noreferrer');
-});
+  aside.querySelectorAll('a').forEach(a => {
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
+  article.querySelectorAll('.notes a').forEach(a => {
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
 
-    // 언어 전환 & 주석 연결 + 툴팁
-    const tabs = Array.from(article.querySelectorAll('.lang-btn'));
-    const variants = Array.from(article.querySelectorAll('.variant'));
-    const tooltip = document.getElementById('tooltip');
+  const tabs = Array.from(article.querySelectorAll('.lang-btn'));
+  const variants = Array.from(article.querySelectorAll('.variant'));
+  const tooltip = document.getElementById('tooltip');
 
-    function setLang(lang){
-      tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-      variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
-      const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
-      wireFootnotes(lang);
-    }
+  function setLang(lang){
+    tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+    variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
+    const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
+    wireFootnotes(lang);
 
-    tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
-    const initLang = new URLSearchParams(location.search).get('lang') || origLang;
-    setLang(initLang);
-
-    function wireFootnotes(lang){
-      // 본문 sup.note-ref → a 앵커 및 id 연결
-      article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
-        const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
-        const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
-        if(!sup.querySelector('a')){
-          const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
-          sup.textContent=''; sup.id=refId; sup.appendChild(a);
-        }else{
-          sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
-        }
-      });
-
-      // notes map (툴팁용)
-      const notesMap = {};
-      article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
-        const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
-        notesMap[li.id] = html;
-      });
-
-      // tooltip
-      article.querySelectorAll('.note-ref').forEach(a=>{
-        a.onmouseenter = function(e){
-          const href=this.getAttribute('href').slice(1);
-          const html=notesMap[href]; if(!html) return;
-          tooltip.innerHTML=html; tooltip.style.display='block';
-          tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
-        };
-        a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
-        a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
+    if (hasAnyNotes) {
+      const notesDiv = article.querySelector('#notesDivider');
+      const notesSec = article.querySelector('#notesSection');
+      const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
+      [notesDiv, notesSec].forEach(el => {
+        if (el) el.style.display = hasThisLangNotes ? '' : 'none';
       });
     }
   }
 
-  // back to top
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
-  btt.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) window.scrollTo(0,0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
+  const initLang = new URLSearchParams(location.search).get('lang') || origLang;
+  setLang(initLang);
+
+  function wireFootnotes(lang){
+    article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+      const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+      const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
+      if(!sup.querySelector('a')){
+        const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
+        sup.textContent=''; sup.id=refId; sup.appendChild(a);
+      }else{
+        sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
+      }
+    });
+    const notesMap = {};
+    article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+      const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+      notesMap[li.id] = html;
+    });
+    article.querySelectorAll('.note-ref').forEach(a=>{
+      a.onmouseenter = function(e){
+        const href=this.getAttribute('href').slice(1);
+        const html=notesMap[href]; if(!html) return;
+        tooltip.innerHTML=html; tooltip.style.display='block';
+        tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
+      };
+      a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
+      a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
+    });
+  }
+}
+
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+btt.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) window.scrollTo(0,0);
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
