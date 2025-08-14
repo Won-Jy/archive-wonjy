@@ -15,11 +15,7 @@
     nav a:hover, nav a.active, nav a[aria-current="page"] { color: var(--blue); }
 
     /* Main container – left aligned */
-    main {
-      max-width: 1200px;
-      margin: 0;                        /* 왼쪽 정렬 */
-      padding: 50px 40px 60px 24px;     /* 위/오른/아래/왼 */
-    }
+    main { max-width: 1200px; margin: 0; padding: 50px 40px 60px 24px; }
 
     /* Intro (cover + meta) */
     .intro { display:flex; gap:40px; align-items:flex-start; margin-bottom:40px; }
@@ -30,12 +26,7 @@
 
     .intro-side { flex:1; min-width:0; font-size:0.95em; color:#333; }
     .intro-group { max-width:100%; }
-    .intro-header h1 {
-      font-size: clamp(1.4em, 2vw, 1.6em); /* 반응형(예전 1.5em 느낌) */
-      font-style: italic;
-      font-weight:600;
-      margin:0 0 4px 0;
-    }
+    .intro-header h1 { font-size: clamp(1.4em, 2vw, 1.6em); font-style: italic; font-weight:600; margin:0 0 4px 0; }
     .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
     .meta-row { margin:0 0 4px 0; }
     .meta-row .label { color:#777; margin-right:6px; }
@@ -49,7 +40,7 @@
     .rich a:hover, .rich a:focus { text-decoration: underline; }
     .section-title { margin:0 0 8px 0; font-size:1em; color:#555; }
 
-    /* Work images (이제 왼쪽 컬럼 내부에 렌더) */
+    /* Work images */
     figure.work { margin:0; }
     img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
@@ -67,12 +58,8 @@
       .intro-image, .intro-side, .intro-group { flex:none; width:100%; max-width:100%; }
     }
 
-    /* Bottom floating bar: © + Back to top */
-    #btBar {
-      position: fixed; right: 24px; bottom: 20px; z-index: 999;
-      display: none; font-size: 0.95em; background: transparent;
-      gap:16px; /* 간격 넓힘 */
-    }
+    /* Bottom floating bar */
+    #btBar { position: fixed; right: 24px; bottom: 20px; z-index: 999; display: none; font-size: 0.95em; background: transparent; gap:16px; }
     #btBar .copy { color: #888; }
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
@@ -80,7 +67,6 @@
   </style>
 </head>
 <body>
-  <!-- Global header -->
   <header class="site">
     <div class="title">archive-wonjy.com</div>
     <nav>
@@ -93,7 +79,6 @@
   </header>
 
   <main>
-    {%- comment -%} Year display logic (single / open / range) {%- endcomment -%}
     {%- assign s = page.year_start -%}
     {%- assign e = page.year_end -%}
     {%- if e -%}
@@ -107,19 +92,12 @@
     {%- endif -%}
 
     <section class="intro">
-      <!-- Left: cover + all work images -->
       <div class="intro-image">
         {%- if page.cover -%}
           <figure class="cover">
-            <img
-              src="{{ page.cover | relative_url }}"
-              alt="{{ page.title }} cover"
-              loading="lazy" decoding="async"
-              {%- if page.cover_width and page.cover_height -%}
-              width="{{page.cover_width}}" height="{{page.cover_height}}"
-              {%- endif -%}
-              sizes="(max-width:768px) 100vw, 70vw"
-            />
+            <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} cover" loading="lazy" decoding="async"
+              {%- if page.cover_width and page.cover_height -%} width="{{page.cover_width}}" height="{{page.cover_height}}" {%- endif -%}
+              sizes="(max-width:768px) 100vw, 70vw" />
             {%- if page.cover_caption -%}
               <figcaption class="caption">{{ page.cover_caption }}</figcaption>
             {%- else -%}
@@ -131,13 +109,8 @@
         {%- if page.images -%}
           {%- for img in page.images -%}
             <figure class="work">
-              <img
-                src="{{ img.src | relative_url }}"
-                alt="{{ img.alt | default: '' }}"
-                class="work"
-                loading="lazy" decoding="async"
-                {%- if img.width and img.height -%} width="{{img.width}}" height="{{img.height}}"{%- endif -%}
-              />
+              <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: '' }}" class="work" loading="lazy" decoding="async"
+                {%- if img.width and img.height -%} width="{{img.width}}" height="{{img.height}}" {%- endif -%} />
               {%- if img.caption -%}
                 <figcaption class="caption">{{ img.caption }}</figcaption>
               {%- endif -%}
@@ -146,19 +119,28 @@
         {%- endif -%}
       </div>
 
-      <!-- Right: meta + text blocks -->
       <aside class="intro-side">
         <div class="intro-group">
           <div class="intro-header">
             <h1>{{ page.title }}</h1>
             {%- if s -%}<div class="year">{{ year_display }}</div>{%- endif -%}
 
-            {%- if page.type -%}
+            {%- if page.types and page.types.size > 0 -%}
+              <p class="meta-row"><span class="label">Type</span>
+                <span class="value">
+                  {%- for t in page.types -%}
+                    <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                  {%- endfor -%}
+                </span>
+              </p>
+            {%- elsif page.type -%}
               <p class="meta-row"><span class="label">Type</span><span class="value">{{ page.type }}</span></p>
             {%- endif -%}
+
             {%- if page.status -%}
               <p class="meta-row"><span class="label">Status</span><span class="value">{{ page.status }}</span></p>
             {%- endif -%}
+
             {%- if page.tags and page.tags.size > 0 -%}
               <p class="meta-row"><span class="label">Tags</span>
                 <span class="value">
@@ -182,21 +164,8 @@
 
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-{%- comment -%} Related texts/critique: 유효 항목이 하나도 없으면 전체 블록(구분선+제목 포함) 비출력 {%- endcomment -%}
-{%- assign valid_related = "" | split: "" -%}
-{%- if page.related_texts and page.related_texts.size > 0 -%}
-  {%- for r in page.related_texts -%}
-    {%- if r.id and r.id != "" -%}
-      {%- assign t = site.data.texts[r.id] -%}
-      {%- if t -%}
-        {%- assign valid_related = valid_related | push: r -%}
-      {%- endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-
 {%- assign has_related = false -%}
-{%- if valid_related.size > 0 -%}
+{%- if page.related_texts and page.related_texts.size > 0 -%}
   {%- assign has_related = true -%}
 {%- elsif page.critique_links and page.critique_links.size > 0 -%}
   {%- assign has_related = true -%}
@@ -205,36 +174,38 @@
 {%- endif -%}
 
 {%- if has_related -%}
-  {%- if valid_related.size > 0 -%}
+  {%- if page.related_texts and page.related_texts.size > 0 -%}
     <div class="divider"></div>
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
     {%- endif -%}
 
     <ul class="related-texts">
-      {%- for r in valid_related -%}
+      {%- for r in page.related_texts -%}
         {%- assign t = site.data.texts[r.id] -%}
-        {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-        {%- assign target = r.lang | default: page_lang -%}
+        {%- if t -%}
+          {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+          {%- assign target = r.lang | default: page_lang -%}
 
-        {%- assign has_tr = false -%}
-        {%- for tr in t.translations -%}
-          {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-        {%- endfor -%}
+          {%- assign has_tr = false -%}
+          {%- for tr in t.translations -%}
+            {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+          {%- endfor -%}
 
-        {%- assign lang_final = has_tr | default: false | ternary: target, orig -%}
-        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+          {%- assign lang_final = has_tr | default: false | ternary: target, orig -%}
+          {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-        {%- if r.label -%}
-          {%- assign label_html = r.label -%}
-        {%- else -%}
-          {%- assign title_html = t.title_original.text_html -%}
-          {%- assign author = t.author.name -%}
-          {%- assign year = t.year -%}
-          {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+          {%- if r.label -%}
+            {%- assign label_html = r.label -%}
+          {%- else -%}
+            {%- assign title_html = t.title_original.text_html -%}
+            {%- assign author = t.author.name -%}
+            {%- assign year = t.year -%}
+            {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+          {%- endif -%}
+
+          <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
         {%- endif -%}
-
-        <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
       {%- endfor -%}
     </ul>
 
@@ -262,21 +233,15 @@
   {%- endif -%}
 {%- endif -%}
 
-
-          
         </div>
       </aside>
     </section>
 
-    <!-- Optional extra body from md -->
     {%- if content and content != "" -%}
-      <article class="rich">
-        {{ content }}
-      </article>
+      <article class="rich">{{ content }}</article>
     {%- endif -%}
   </main>
 
-  <!-- Floating bar: © + Back to top -->
   <div id="btBar" role="region" aria-label="Back to top bar">
     <span class="copy">© ADAGP, Paris, 2025</span>
     <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
@@ -284,25 +249,20 @@
 
   <script>
     (function(){
-      const bar = document.getElementById('btBar');
-      const btn = document.getElementById('backToTop');
-      const showAfter = 300;
-      window.addEventListener('scroll', ()=>{ bar.style.display = (window.scrollY > showAfter) ? 'flex' : 'none'; });
-      btn.addEventListener('click', (e)=>{ e.preventDefault();
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) window.scrollTo(0,0); else window.scrollTo({ top:0, behavior:'smooth' });
-      });
+      const bar=document.getElementById('btBar');
+      const btn=document.getElementById('backToTop');
+      const showAfter=300;
+      window.addEventListener('scroll',()=>{bar.style.display=(window.scrollY>showAfter)?'flex':'none';});
+      btn.addEventListener('click',(e)=>{e.preventDefault();const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)window.scrollTo(0,0);else window.scrollTo({top:0,behavior:'smooth'});});
     })();
   </script>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // summary, description, related-texts 안의 모든 a 태그는 새 탭에서 열기
-    document.querySelectorAll('.summary a, .description a, .related-texts a')
-      .forEach(function(link) {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.summary a, .description a, .related-texts a').forEach(function(link){
+        link.setAttribute('target','_blank');
+        link.setAttribute('rel','noopener noreferrer');
       });
-  });
+    });
   </script>
 </body>
 </html>
