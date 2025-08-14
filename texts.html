@@ -57,6 +57,19 @@ title: Texts
     color: inherit;              /* 방문 흔적 제거 */
   }
 
+  /* 목록 항목 링크의 자식 텍스트(span)도 색 바꾸기 */
+.text-link:hover .text-title,
+.text-link:hover .author,
+.text-link:hover .year,
+.text-link:active .text-title,
+.text-link:active .author,
+.text-link:active .year,
+.text-link:focus .text-title,
+.text-link:focus .author,
+.text-link:focus .year{
+  color: var(--blue);
+}
+
   .text-title{font-style:italic}
   .meta-sep{ margin:0 6px 0 0; color:var(--muted); }
   .author,.year{color:#444}
@@ -65,6 +78,25 @@ title: Texts
   .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
   .pagination a:hover,.pagination a.active{color:var(--blue)}
 
+/* 본문/사이드바 링크: 방문 흔적 제거 + 기존 느낌 유지 */
+main.detail article a,
+main.detail aside a{
+  color: var(--blue);          /* 기본 파랑, 밑줄 없음 */
+  text-decoration: none;
+}
+main.detail article a:hover,
+main.detail article a:active,
+main.detail aside a:hover,
+main.detail aside a:active{
+  color: var(--blue);
+  text-decoration: underline;  /* Hover/Active에서만 밑줄 */
+}
+main.detail article a:visited,
+main.detail aside a:visited{
+  color: var(--blue);          /* 방문 후에도 파랑 유지 */
+  text-decoration: none;
+}
+  
   /* 상세 화면 */
   main.detail{
     display:grid;
