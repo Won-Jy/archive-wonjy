@@ -1,0 +1,17 @@
+<!-- ===== Authoring guideline (front matter) =====
+Use the new plural key `types` when a work belongs to multiple categories. Keep `type` for backward compatibility.
+
+Examples:
+
+# Single type (old or new — both OK)
+# type: "Project"
+# OR
+# types: ["Project"]
+
+# Multiple types
+# types: ["Project", "Exhibition"]
+
+# (Optional) You can keep `type: "Project"` alongside; the code normalizes using `types` first.
+-->
+
+<!-- ===== _layouts/work.html (FULL, with Type display supporting arrays) ===== -->
