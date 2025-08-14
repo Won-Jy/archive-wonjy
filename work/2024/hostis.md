@@ -1,8 +1,7 @@
 ---
 layout: work
 title: "Hostis"
-type:
-  - "Project"
+type: "Project"
 year_start: 2023
 year_end: 2024
 status: "Completed"
