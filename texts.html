@@ -19,51 +19,44 @@ title: Texts
   nav a{margin-left:24px;text-decoration:none;color:#555;font-size:.95em;transition:color .2s}
   nav a:hover,nav a.active{color:var(--blue)}
 
-  /* === 전역 텍스트 하이퍼링크 규칙 === */
-  main.detail article a,
-  main.detail aside a,
-  main.list a {
-    color: var(--blue);
-    text-decoration: none;
-  }
-  main.detail article a:hover,
-  main.detail article a:active,
-  main.detail aside a:hover,
-  main.detail aside a:active,
-  main.list a:hover,
-  main.list a:active {
-    color: var(--blue);
-    text-decoration: underline;
-  }
-  main.detail article a:visited,
-  main.detail aside a:visited,
-  main.list a:visited {
-    color: var(--blue);
-    text-decoration: none;
-  }
-
   /* 목록 화면 */
   main.list{padding:50px 40px 60px 24px;max-width:740px;margin:0;min-height:400px}
   .items{display:flex;flex-direction:column;gap:10px}
+
+  /* ▼ 목록에서만 링크 스타일 적용 (본문·사이드바엔 영향 없음) */
+  main.list a{
+    color: inherit;              /* 기본: 일반 글씨색 */
+    text-decoration: none;
+  }
+  main.list a:hover,
+  main.list a:active{
+    color: var(--blue);          /* Hover/Active: 파랑 */
+    text-decoration: none;
+  }
+  main.list a:visited{
+    color: inherit;              /* 방문 흔적 제거 */
+    text-decoration: none;
+  }
+
   .text-link{
     display:block;
     padding:8px 10px;
     border:none;
     text-decoration:none;
-    color: var(--blue);
+    color: inherit;              /* 기본: 일반 글씨색 */
   }
   .text-link:hover,
   .text-link:active,
   .text-link:focus{
-    color:var(--blue);
-    text-decoration: underline;
+    color:var(--blue);           /* Hover/Active: 파랑 */
+    text-decoration:none;
     border:none;
     outline:none;
   }
   .text-link:visited{
-    color: var(--blue);
-    text-decoration: none;
+    color: inherit;              /* 방문 흔적 제거 */
   }
+
   .text-title{font-style:italic}
   .meta-sep{ margin:0 6px 0 0; color:var(--muted); }
   .author,.year{color:#444}
