@@ -325,30 +325,30 @@ title: Texts
 
     // 사이드
     aside.innerHTML = `
-      <div class="aside-block">
-        <h4>Related works</h4>
-        <div class="buttons related-works" style="display:flex;flex-direction:column;gap:4px">
-          ${(t.related_works || []).map(r => {
-            const label = r.label || 'View';
-            return `<span class="dash">-</span><a href="/${r.slug}.html" class="link-button">${label}</a>`;
-          }).join('')}
-        </div>
-      </div>
+  <div class="aside-block">
+    <h4>Related works</h4>
+    <ul class="related-works">
+      ${(t.related_works || []).map(r => {
+        const label = r.label || 'View';
+        return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+      }).join('')}
+    </ul>
+  </div>
 
-      <div class="divider"></div>
+  <div class="divider"></div>
 
-      <div class="aside-block">
-        <h4>Source</h4>
-        ${t.source_html || ''}
-      </div>
+  <div class="aside-block">
+    <h4>Source</h4>
+    ${t.source_html || ''}
+  </div>
 
-      <div class="divider"></div>
+  <div class="divider"></div>
 
-      <div class="aside-block">
-        <h4>Author</h4>
-        ${t.author?.bio_html || ''}
-      </div>
-    `;
+  <div class="aside-block">
+    <h4>Author</h4>
+    ${t.author?.bio_html || ''}
+  </div>
+`;
 
     // 언어 전환 & 주석 연결 + 툴팁
     const tabs = Array.from(article.querySelectorAll('.lang-btn'));
