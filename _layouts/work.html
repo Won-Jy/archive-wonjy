@@ -183,14 +183,9 @@
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
     {%- endif -%}
-    <ul class="related-texts">
-      {%- for r in valid_related -%}
-        ...
-      {%- endfor -%}
-    </ul>
 
     <ul class="related-texts">
-      {%- for r in page.related_texts -%}
+      {%- for r in valid_related -%}
         {%- assign t = site.data.texts[r.id] -%}
         {%- if t -%}
           {%- assign orig = t.original.language | default: 'fr' | downcase -%}
@@ -204,8 +199,10 @@
           {%- assign lang_final = has_tr | default: false | ternary: target, orig -%}
           {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-          {%- if r.label -%}
-            {%- assign label_html = r.label -%}
+          {%- assign raw_label = r.label | default: '' -%}
+          {%- assign cleaned = raw_label | strip | replace:'.','' | replace:'·','' | replace:'•','' -%}
+          {%- if cleaned != '' -%}
+            {%- assign label_html = raw_label -%}
           {%- else -%}
             {%- assign title_html = t.title_original.text_html -%}
             {%- assign author = t.author.name -%}
@@ -219,6 +216,12 @@
     </ul>
 
   {%- elsif page.critique_links and page.critique_links.size > 0 -%}
+    <!-- (critique_links 분기 그대로 유지) -->
+  {%- elsif page.critique -%}
+    <!-- (critique 분기 그대로 유지) -->
+  {%- endif -%}
+{%- endif -%}
+
     <div class="divider"></div>
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
