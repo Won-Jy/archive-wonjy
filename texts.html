@@ -163,6 +163,37 @@ title: Texts
 .link-button span {
   white-space: nowrap;
 }
+
+/* Related works: 기본 불릿 제거 후 대시로 교체 */
+.related-works {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.related-works li {
+  margin: 0 0 6px 0;
+  position: relative;
+  padding-left: 14px; /* 대시 위치 확보 */
+}
+
+.related-works li::before {
+  content: "–"; /* en dash */
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.related-works a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.related-works a:hover {
+  text-decoration: underline;
+}
+
+
   
 </style>
 </head>
