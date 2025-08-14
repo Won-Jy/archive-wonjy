@@ -17,81 +17,57 @@ layout: none
     nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
     nav a:hover,nav a.active{color:var(--blue)}
 
-    main{
-      max-width:1200px;
-      margin:0;
-      padding: 24px 24px 24px;
-    }
+    main{max-width:1200px;margin:0;padding:24px}
 
-    /* Topbar */
     .topbar{display:flex;align-items:center;gap:18px;justify-content:flex-end;margin:8px 0 16px;font-size:0.9em}
     .sort a{color:#555;text-decoration:none;margin-right:6px}
     .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
     .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
 
-    /* Search */
-    .search input {
-      box-sizing: border-box;
-      padding: 6px 8px;
-      border: 1px solid var(--border);
-      border-radius: 0;
-      font-size: 0.95em;
-      text-align: left;
-      outline: none;
-      width: 230px;
-    }
+    .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:0.95em;text-align:left;outline:none;width:230px}
     .search input::placeholder{color:#999}
-    .search input::-webkit-search-cancel-button{
-      -webkit-appearance:none;width:14px;height:14px;cursor:pointer;
-      background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
+    .search input::-webkit-search-cancel-button{-webkit-appearance:none;width:14px;height:14px;cursor:pointer;background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
     .search input::-webkit-search-cancel-button:hover{opacity:1}
 
-    /* Layout */
     .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
     @media (max-width:960px){.layout{grid-template-columns:1fr}}
 
-    /* Sidebar */
-    .sidebar{margin-top:-16px;}
-    @media (max-width:960px){
-      .sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px;}
-    }
-    .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px;}
-    .filter-group{margin:16px 0;border-bottom:1px solid var(--border);padding-bottom:16px;}
-    .filter-group:last-child{border-bottom:none;}
-    .filter-head{display:flex;justify-content:space-between;cursor:pointer;user-select:none;padding:6px 0;}
-    .filter-head .label{font-weight:bold;font-size:0.95em;}
-    .toggle{color:#999;}
-    .filter-body{margin:8px 0 10px;}
-    .chips{display:block;padding:0;margin:0;}
-    .chip{display:block;border:0;background:none;padding:6px 0;margin:0;font-size:0.95em;color:inherit;cursor:pointer;}
-    .sidebar .filter-body .chip{font-size:0.93em;line-height:1.0;margin-bottom:1px;color:#555;}
-    .sidebar .filter-body .chip:hover,.sidebar .filter-body .chip.active{color:var(--blue);}
-    .chips .chip[data-value="__ALL__"]{font-weight:700;}
+    .sidebar{margin-top:-16px}
+    @media (max-width:960px){.sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px}}
+    .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px}
+    .filter-group{margin:16px 0;border-bottom:1px solid var(--border);padding-bottom:16px}
+    .filter-group:last-child{border-bottom:none}
+    .filter-head{display:flex;justify-content:space-between;cursor:pointer;user-select:none;padding:6px 0}
+    .filter-head .label{font-weight:bold;font-size:0.95em}
+    .toggle{color:#999}
+    .filter-body{margin:8px 0 10px}
+    .chips{display:block;padding:0;margin:0}
+    .chip{display:block;border:0;background:none;padding:6px 0;margin:0;font-size:0.95em;color:inherit;cursor:pointer}
+    .sidebar .filter-body .chip{font-size:0.93em;line-height:1.0;margin-bottom:1px;color:#555}
+    .sidebar .filter-body .chip:hover,.sidebar .filter-body .chip.active{color:var(--blue)}
+    .chips .chip[data-value="__ALL__"]{font-weight:700}
 
-    /* Year grid */
-    .filter-group[data-filter="year"] .chips{display:grid;grid-template-columns:repeat(4, auto);gap:6px;}
-    .filter-group[data-filter="year"] .chip{display:inline-block;padding:2px 0;}
-    .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{grid-column:1 / -1;padding-bottom:6px;}
-    @media (max-width:1100px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(3, auto);}}
-    @media (max-width:720px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2, auto);}}
+    .filter-group[data-filter="year"] .chips{display:grid;grid-template-columns:repeat(4,auto);gap:6px}
+    .filter-group[data-filter="year"] .chip{display:inline-block;padding:2px 0}
+    .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{grid-column:1 / -1;padding-bottom:6px}
+    @media (max-width:1100px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(3,auto)}}
+    @media (max-width:720px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}}
 
-    /* Card */
     .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
     .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
     .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
     .card:hover .hover{opacity:1}
     .hover .meta{padding:10px 12px;font-size:0.95em}
-    .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600;}
+    .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600}
 
-    /* Grid wrap */
     .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
-    .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px;}
-    .pagination a{text-decoration:none;color:#000;font-size:0.95em;}
-    .pagination a:hover,.pagination a.current{color:var(--blue);}
-    .pagination .ellipsis{padding:0 6px;color:#999;}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px}
+    .pagination a{text-decoration:none;color:#000;font-size:0.95em}
+    .pagination a:hover,.pagination a.current{color:var(--blue)}
+    .pagination .ellipsis{padding:0 6px;color:#999}
     .sr{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
   </style>
 </head>
@@ -142,7 +118,8 @@ window.WORKS = [
   {% for p in works %}
   {
     title: {{ p.title | jsonify }},
-    type: {{ p.type | jsonify }},
+    type: {{ p.type | jsonify }},          /* legacy string or array */
+    types: {{ p.types | jsonify }},        /* NEW preferred array */
     year_start: {{ p.year_start | jsonify }},
     year_end: {{ p.year_end | jsonify }},
     status: {{ p.status | jsonify }},
@@ -155,35 +132,30 @@ window.WORKS = [
 </script>
 
 <script>
-let SEARCH_INDEX = null;
-async function loadSearchIndex(){
-  if(SEARCH_INDEX) return SEARCH_INDEX;
-  const res = await fetch('/search_index.json',{cache:'no-store'});
-  SEARCH_INDEX = await res.json();
-  return SEARCH_INDEX;
-}
-function norm(s){
-  return (s||'').toString().normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().trim();
-}
-function matchAllTokens(hay,q){
-  const H = norm(hay);
-  const tokens = norm(q).split(/\s+/).filter(Boolean);
-  if(tokens.length===0) return true;
-  return tokens.every(t => H.includes(t));
-}
+let SEARCH_INDEX=null;
+async function loadSearchIndex(){ if(SEARCH_INDEX) return SEARCH_INDEX; const res=await fetch('/search_index.json',{cache:'no-store'}); SEARCH_INDEX=await res.json(); return SEARCH_INDEX; }
+function norm(s){ return (s||'').toString().normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().trim(); }
+function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\s+/).filter(Boolean); if(tokens.length===0) return true; return tokens.every(t=>H.includes(t)); }
 </script>
 
 <script>
 (function(){
-  const PER_PAGE = 6;
-  const grid = document.getElementById('grid');
-  const pager = document.getElementById('pager');
-  const q = document.getElementById('q');
-  const state = { sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
+  const PER_PAGE=6;
+  const grid=document.getElementById('grid');
+  const pager=document.getElementById('pager');
+  const q=document.getElementById('q');
+  const state={ sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
 
-  const data = (window.WORKS||[]).map(w=>({...w,_years:(()=>{const s=Number(w.year_start||'');const e=(w.year_end==null||w.year_end==='')?null:Number(w.year_end);let d='';if(e===null){d=s?`${s} –`:'';}else if(s===e){d=`${s}`;}else{d=`${s} – ${e}`;}return {s,e,display:d};})()}));
-  const setFrom = (arr,key)=>Array.from(new Set(arr.map(o=>o[key]).filter(Boolean))).sort();
-  const types=setFrom(data,'type'),statuses=setFrom(data,'status');
+  const data=(window.WORKS||[]).map(w=>{
+    const _types = Array.isArray(w.types) ? w.types
+                 : Array.isArray(w.type) ? w.type
+                 : (w.type ? [w.type] : []);
+    const _years=(()=>{const s=Number(w.year_start||'');const e=(w.year_end==null||w.year_end==='')?null:Number(w.year_end);let d='';if(e===null){d=s?`${s} –`:'';}else if(s===e){d=`${s}`;}else{d=`${s} – ${e}`;}return {s,e,display:d};})();
+    return {...w, _types, _years};
+  });
+
+  const types = Array.from(new Set(data.flatMap(o=>o._types))).sort();
+  const statuses = Array.from(new Set(data.map(o=>o.status).filter(Boolean))).sort();
   const yearsAll=Array.from(new Set(data.flatMap(o=>{const s=Number(o.year_start||'');const e=(o.year_end==null||o.year_end==='')?s:Number(o.year_end);if(!s)return[];const ys=[];for(let y=s;y<=e;y++)ys.push(y);return ys;}))).sort((a,b)=>b-a);
   const tagsAll=Array.from(new Set(data.flatMap(o=>Array.isArray(o.tags)?o.tags:[]))).sort();
 
@@ -195,110 +167,32 @@ function matchAllTokens(hay,q){
   document.querySelectorAll('.sort a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.sort a').forEach(x=>x.classList.remove('active'));a.classList.add('active');state.sort=a.dataset.sort;state.page=1;render();});});
   q.addEventListener('input',()=>{state.page=1;render();});
 
-  // 수정된 Year 필터 OR 조건 적용
   function matchesFilters(item){
-    for(const k of ['type','status']){
-      const set=state.filters[k];
-      if(set.size && !set.has(String(item[k]))) return false;
-    }
-    const tset=state.filters.tag;
-    if(tset.size){
-      const t=new Set((item.tags||[]).map(String));
-      for(const v of tset){
-        if(!t.has(v)) return false;
-      }
-    }
-    const yset=state.filters.year;
-    if(yset.size){
-      const s=Number(item.year_start||'');
-      const e=item.year_end==null||item.year_end===''?s:Number(item.year_end);
-      const years=[];
-      if(s){
-        for(let y=s;y<=e;y++) years.push(String(y));
-      }
-      let match=false;
-      for(const v of yset){
-        if(years.includes(v)){
-          match=true;
-          break;
-        }
-      }
-      if(!match) return false;
-    }
+    // type: match if intersection (OR) is non-empty
+    const tset=state.filters.type; if(tset.size){ const has= item._types.some(t=>tset.has(String(t))); if(!has) return false; }
+    // status: single value equality
+    const sset=state.filters.status; if(sset.size && !sset.has(String(item.status))) return false;
+    // tags: require all selected tags (AND)
+    const tg=state.filters.tag; if(tg.size){ const t=new Set((item.tags||[]).map(String)); for(const v of tg){ if(!t.has(v)) return false; } }
+    // year: if any selected year falls within the range (OR)
+    const yset=state.filters.year; if(yset.size){ const s=Number(item.year_start||''); const e=item.year_end==null||item.year_end===''?s:Number(item.year_end); const years=[]; if(s){ for(let y=s;y<=e;y++) years.push(String(y)); } let match=false; for(const v of yset){ if(years.includes(v)){ match=true; break; } } if(!match) return false; }
     return true;
   }
 
-  async function matchesQuery(item){
-    const term=q.value.trim();
-    if(!term) return true;
-    const idx=await loadSearchIndex();
-    const found=idx.find(it=>it.url===item.url);
-    if(!found) return false;
-    return matchAllTokens(found.blob,term);
-  }
-  function sortItems(arr){
-    return arr.sort((a,b)=>{
-      const sa=Number(a.year_start||0),sb=Number(b.year_start||0);
-      return state.sort==='newest'?(sb-sa):(sa-sb);
-    });
-  }
+  async function matchesQuery(item){ const term=q.value.trim(); if(!term) return true; const idx=await loadSearchIndex(); const found=idx.find(it=>it.url===item.url); if(!found) return false; return matchAllTokens(found.blob,term); }
+  function sortItems(arr){ return arr.sort((a,b)=>{ const sa=Number(a.year_start||0),sb=Number(b.year_start||0); return state.sort==='newest'?(sb-sa):(sa-sb); }); }
   const yearDisplay=it=>it._years.display;
 
   async function render(){
-    let items=[];
-    for(const d of data){
-      if(matchesFilters(d) && await matchesQuery(d)){
-        items.push(d);
-      }
-    }
-    items=sortItems(items);
+    let items=[]; for(const d of data){ if(matchesFilters(d) && await matchesQuery(d)){ items.push(d); } } items=sortItems(items);
+    const total=Math.max(1,Math.ceil(items.length/PER_PAGE)); if(state.page>total)state.page=total; const start=(state.page-1)*PER_PAGE; const slice=items.slice(start,start+PER_PAGE);
+    grid.innerHTML=slice.map(it=>{ const cover=it.cover||''; const title=it.title||''; const typeLabel=(it._types||[]).join(', '); const y=yearDisplay(it)||''; const url=it.url||'#'; return `<a class="card" href="${url}"><div class="thumb">${cover?`<img src="${cover}" alt="${title}">`:''}<div class="hover"><div class="meta"><div><strong>${title}</strong></div><div>${typeLabel}${typeLabel&&y?', ':''}${y}</div></div></div></div></a>`; }).join('');
 
-    const total=Math.max(1,Math.ceil(items.length/PER_PAGE));
-    if(state.page>total)state.page=total;
-    const start=(state.page-1)*PER_PAGE;
-    const slice=items.slice(start,start+PER_PAGE);
-
-    grid.innerHTML=slice.map(it=>{
-      const cover=it.cover||'';
-      const title=it.title||'';
-      const type=it.type||'';
-      const y=yearDisplay(it)||'';
-      const url=it.url||'#';
-      return `<a class="card" href="${url}"><div class="thumb">${cover?`<img src="${cover}" alt="${title}">`:''}<div class="hover"><div class="meta"><div><strong>${title}</strong></div><div>${type}, ${y}</div></div></div></div></a>`;
-    }).join('');
-
-    const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
-    const num=(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`;
-    let html='';
-    if(total>1){
-      html+=link(1,'<','prev');
-      const windowSize=2;
-      const pages=new Set([1,total]);
-      for(let p=state.page-windowSize;p<=state.page+windowSize;p++){
-        if(p>1&&p<total)pages.add(p);
-      }
-      const list=[...pages].sort((a,b)=>a-b);
-      let last=0;
-      for(const p of list){
-        if(last&&p-last>1)html+=`<span class="ellipsis">…</span>`;
-        html+=num(p,p===state.page);
-        last=p;
-      }
-      html+=link(total,'>','next');
-    }
+    const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`; const num=(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`; let html=''; if(total>1){ html+=link(1,'<','prev'); const windowSize=2; const pages=new Set([1,total]); for(let p=state.page-windowSize;p<=state.page+windowSize;p++){ if(p>1&&p<total)pages.add(p); } const list=[...pages].sort((a,b)=>a-b); let last=0; for(const p of list){ if(last&&p-last>1)html+=`<span class="ellipsis">…</span>`; html+=num(p,p===state.page); last=p; } html+=link(total,'>','next'); }
     pager.innerHTML=html;
   }
 
-  pager.addEventListener('click',e=>{
-    const a=e.target.closest('a[data-page]');
-    if(!a)return;
-    e.preventDefault();
-    const to=Number(a.dataset.page);
-    if(!Number.isFinite(to))return;
-    state.page=to;
-    window.scrollTo({top:0,behavior:'smooth'});
-    render();
-  });
+  pager.addEventListener('click',e=>{ const a=e.target.closest('a[data-page]'); if(!a)return; e.preventDefault(); const to=Number(a.dataset.page); if(!Number.isFinite(to))return; state.page=to; window.scrollTo({top:0,behavior:'smooth'}); render(); });
   render();
 })();
 </script>
