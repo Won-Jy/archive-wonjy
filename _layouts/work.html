@@ -182,9 +182,21 @@
 
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-{%- comment -%} Related texts/critique: 내용이 하나도 없으면 전체 블록(구분선+제목 포함) 비출력 {%- endcomment -%}
-{%- assign has_related = false -%}
+{%- comment -%} Related texts/critique: 유효 항목이 하나도 없으면 전체 블록(구분선+제목 포함) 비출력 {%- endcomment -%}
+{%- assign valid_related = "" | split: "" -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
+  {%- for r in page.related_texts -%}
+    {%- if r.id and r.id != "" -%}
+      {%- assign t = site.data.texts[r.id] -%}
+      {%- if t -%}
+        {%- assign valid_related = valid_related | push: r -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign has_related = false -%}
+{%- if valid_related.size > 0 -%}
   {%- assign has_related = true -%}
 {%- elsif page.critique_links and page.critique_links.size > 0 -%}
   {%- assign has_related = true -%}
@@ -193,38 +205,36 @@
 {%- endif -%}
 
 {%- if has_related -%}
-  {%- if page.related_texts and page.related_texts.size > 0 -%}
+  {%- if valid_related.size > 0 -%}
     <div class="divider"></div>
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
     {%- endif -%}
 
     <ul class="related-texts">
-      {%- for r in page.related_texts -%}
+      {%- for r in valid_related -%}
         {%- assign t = site.data.texts[r.id] -%}
-        {%- if t -%}
-          {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-          {%- assign target = r.lang | default: page_lang -%}
+        {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+        {%- assign target = r.lang | default: page_lang -%}
 
-          {%- assign has_tr = false -%}
-          {%- for tr in t.translations -%}
-            {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-          {%- endfor -%}
+        {%- assign has_tr = false -%}
+        {%- for tr in t.translations -%}
+          {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+        {%- endfor -%}
 
-          {%- assign lang_final = has_tr | default: false | ternary: target, orig -%}
-          {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+        {%- assign lang_final = has_tr | default: false | ternary: target, orig -%}
+        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-          {%- if r.label -%}
-            {%- assign label_html = r.label -%}
-          {%- else -%}
-            {%- assign title_html = t.title_original.text_html -%}
-            {%- assign author = t.author.name -%}
-            {%- assign year = t.year -%}
-            {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
-          {%- endif -%}
-
-          <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
+        {%- if r.label -%}
+          {%- assign label_html = r.label -%}
+        {%- else -%}
+          {%- assign title_html = t.title_original.text_html -%}
+          {%- assign author = t.author.name -%}
+          {%- assign year = t.year -%}
+          {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
         {%- endif -%}
+
+        <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
       {%- endfor -%}
     </ul>
 
@@ -251,6 +261,7 @@
     <div class="rich critique">{{ page.critique | markdownify }}</div>
   {%- endif -%}
 {%- endif -%}
+
 
           
         </div>
