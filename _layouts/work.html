@@ -165,8 +165,12 @@
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
 {%- assign has_related = false -%}
+{%- assign valid_related = '' -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
-  {%- assign has_related = true -%}
+  {%- assign valid_related = page.related_texts | where_exp: "item", "item.id != ''" -%}
+  {%- if valid_related and valid_related.size > 0 -%}
+    {%- assign has_related = true -%}
+  {%- endif -%}
 {%- elsif page.critique_links and page.critique_links.size > 0 -%}
   {%- assign has_related = true -%}
 {%- elsif page.critique -%}
@@ -174,11 +178,16 @@
 {%- endif -%}
 
 {%- if has_related -%}
-  {%- if page.related_texts and page.related_texts.size > 0 -%}
+  {%- if valid_related and valid_related.size > 0 -%}
     <div class="divider"></div>
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
     {%- endif -%}
+    <ul class="related-texts">
+      {%- for r in valid_related -%}
+        ...
+      {%- endfor -%}
+    </ul>
 
     <ul class="related-texts">
       {%- for r in page.related_texts -%}
