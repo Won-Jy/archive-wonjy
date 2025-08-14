@@ -3,7 +3,6 @@ layout: work
 title: "Hostis"
 type:
   - "Project"
-  - "Exhibition"
 year_start: 2023
 year_end: 2024
 status: "Completed"
