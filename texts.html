@@ -381,6 +381,15 @@ title: Texts
   </div>
 `;
 
+    aside.querySelectorAll('a').forEach(a => {
+  a.setAttribute('target', '_blank');
+  a.setAttribute('rel', 'noopener noreferrer');
+});
+article.querySelectorAll('.notes a').forEach(a => {
+  a.setAttribute('target', '_blank');
+  a.setAttribute('rel', 'noopener noreferrer');
+});
+
     // 언어 전환 & 주석 연결 + 툴팁
     const tabs = Array.from(article.querySelectorAll('.lang-btn'));
     const variants = Array.from(article.querySelectorAll('.variant'));
