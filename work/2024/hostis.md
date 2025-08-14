@@ -14,7 +14,7 @@ description: >
   Located in the heart of the Pissevin district in Nîmes, the exhibition « Hostis » takes place in the former premises of a Mus.
 critique_title: "Related texts"
 related_texts:
-  - id: ""
+  - id:
 images:
   - src: "/images/2023/hostis/Hostis_01_Vue extérieure 02.webp"
     caption: "<em>Hostis</em>, Pissevin district of Nîmes, France, external view."
