@@ -275,5 +275,16 @@
       });
     })();
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // summary, description, related-texts 안의 모든 a 태그 선택
+  document.querySelectorAll(
+    '.summary a, .description a, .related-texts a'
+  ).forEach(function(link) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+});
+</script>
 </body>
 </html>
