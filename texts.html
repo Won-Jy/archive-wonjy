@@ -411,9 +411,15 @@ function renderDetail(id){
     a.setAttribute('rel', 'noopener noreferrer');
   });
   article.querySelectorAll('.notes a').forEach(a => {
+  const href = a.getAttribute('href') || '';
+  if (href.startsWith('#')) {
+    a.removeAttribute('target');
+    a.removeAttribute('rel');
+  } else if (/^https?:\/\//i.test(href)) {
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener noreferrer');
-  });
+  }
+});
 
   const tabs = Array.from(article.querySelectorAll('.lang-btn'));
   const variants = Array.from(article.querySelectorAll('.variant'));
