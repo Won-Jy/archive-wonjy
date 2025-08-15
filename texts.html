@@ -379,7 +379,18 @@ function renderDetail(id){
     ` : ``}
   `;
 
-  aside.innerHTML = `
+function isEmpty(val){
+  if (val == null) return true;
+  if (Array.isArray(val)) return val.length === 0;
+  if (typeof val === 'string') return val.trim() === '';
+  return false;
+}
+
+const asideBlocks = [];
+
+// Related works
+if (!isEmpty(t.related_works)) {
+  asideBlocks.push(`
     <div class="aside-block">
       <h4>Related works</h4>
       <ul class="related-works">
@@ -389,21 +400,34 @@ function renderDetail(id){
         }).join('')}
       </ul>
     </div>
+  `);
+}
 
-    <div class="divider"></div>
+// Source
+if (!isEmpty(t.source_html)) {
+  const sourceHtml = Array.isArray(t.source_html)
+    ? t.source_html.join('')
+    : t.source_html;
+  if (!isEmpty(sourceHtml)) {
+    asideBlocks.push(`
+      <div class="aside-block">
+        <h4>Source</h4>
+        ${sourceHtml}
+      </div>
+    `);
+  }
+}
 
-    <div class="aside-block">
-      <h4>Source</h4>
-      ${t.source_html || ''}
-    </div>
+// Author (항상 출력 — 원하면 조건 추가 가능)
+asideBlocks.push(`
+  <div class="aside-block">
+    <h4>Author</h4>
+    ${t.author?.bio_html || ''}
+  </div>
+`);
 
-    <div class="divider"></div>
-
-    <div class="aside-block">
-      <h4>Author</h4>
-      ${t.author?.bio_html || ''}
-    </div>
-  `;
+// 구분선 넣어서 연결
+aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
   // 외부 링크는 새 탭
   aside.querySelectorAll('a').forEach(a => {
