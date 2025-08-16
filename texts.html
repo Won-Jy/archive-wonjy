@@ -226,6 +226,20 @@ main.detail aside a:visited{
     color: var(--blue);
     text-decoration: none;
   }
+
+/* 텍스트 본문 이미지+캡션을 work와 동일하게 보이게 */
+.text-body figure.text-image{ margin:0; }
+.text-body figure.text-image img{
+  width:75%; height:auto; display:block; margin:0 auto 3px; /* 가운데 정렬 */
+}
+.text-body figure.text-image .caption{
+  max-width:75%;            /* 이미지와 동일 폭 */
+  margin:0 auto 40px;       /* 가운데 정렬 + 아래 여백 40px */
+  font-size:0.8em;          /* work .caption과 동일 */
+  color:var(--muted);       /* work .caption과 동일 */
+  text-align:left;          /* work 느낌대로 왼쪽 정렬 */
+}
+  
 </style>
 </head>
 <body>
