@@ -17,7 +17,7 @@ source_html: |
 original:
   language: "fr"
   body_html: |
-    <br><br>
+    <br>
     <figure class="text-image">
       <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_01.webp"
            alt="Risographic print, label text"
@@ -26,7 +26,7 @@ original:
         Risography, 135×95mm, 2024.
       </figcaption>
     </figure>
-    <br>
+    
     <figure class="text-image">
       <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
            alt="Risographic print, label text"
@@ -35,6 +35,8 @@ original:
         Risography, 135×95mm, 2024.
       </figcaption>
     </figure><br>
+
+    
   notes: []
 
 translations:
