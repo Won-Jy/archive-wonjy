@@ -22,7 +22,7 @@ title: Texts
   /* 목록 화면 */
   :root{
   --page-width: 1200px;     /* 사이트 공통 가로 그리드 */
-  --pager-bottom: 28px;     /* 화면 하단에서 띄우는 고정값 */
+  --pager-bottom: 220px;     /* 화면 하단에서 띄우는 고정값 */
   --pager-height: 22px;     /* 페이지네이션 실제 높이(대략 글자 높이+라인높이) */
   --gap-after-list: 40px;   /* 마지막 텍스트와 페이지네이션 사이 여유 간격(원하는 값) */
 }
@@ -89,13 +89,10 @@ title: Texts
 
   .pagination{
   position: fixed;
+  bottom: var(--pager-bottom);
+  width: var(--page-width);                /* 1200px */
   left: 50%;
   margin-left: calc(-1 * var(--page-width) / 2);
-  transform: translateX(-50%);
-  bottom: var(--pager-bottom);
-  margin: 0;
-  padding: 0;
-  background: transparent;
   text-align: center;
 }
   .pagination a{
