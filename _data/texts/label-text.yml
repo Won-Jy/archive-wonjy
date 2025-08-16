@@ -2,17 +2,15 @@ id: "label-text"
 
 title_original:
   text_html: "<i>Label Text</i>"
-  language: "fr"
+  language: "en"
 
 author:
   name: "Alix Jolly & Else Bedoux"
-  bio_html: |
-    Alix Jolly and Else Bedoux are young artists based in the south of France, who graduated from the École supérieure des beaux-arts de Nîmes in 2025 and 2022, respectively. Alix Jolly primarily engages in original artistic experimentation through mixed-genre practices such as installation, weaving, and performance. Else Bedoux, an artist and editor, is interested not only in the essence and production of images but also in their modes of circulation and consumption. Her work explores the use of Xerox printing techniques as well as the materiality of media. (written in 2025)
 
 year: 2024
 
 source_html: |
-  Text written for the group exhibition <i>Le quatre-heures de l’ésban</i> (2024), curated by Andréanne Béguin.<br>This text is presented in the form of a label printed in multiple copies, available for visitors of the exhibition to take with them.
+  Text written for the exhibition <i>Le quatre-heures de l’ésban</i> (2024).
 
 original:
   language: "fr"
@@ -20,17 +18,17 @@ original:
     <br>
 
     <figure class="text-image">
-      <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_01.webp"
+      <img src="/images/2024/le-quatre-heures-de-lesban/label-text-2024-01.webp"
            alt="Risographic print, label text"
            style="width:75%;height:auto;display:block;margin:0 auto 3px;">
-      <figcaption class="caption">Recto, risographie, 135×95mm, 2024.</figcaption>
+      <figcaption class="caption">Risography, 135×95mm, 2024.</figcaption>
     </figure>
 
     <figure class="text-image">
-      <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
+      <img src="/images/2024/le-quatre-heures-de-lesban/label-text-2024-02.webp"
            alt="Risographic print, label text"
            style="width:75%;height:auto;display:block;margin:0 auto 3px;">
-      <figcaption class="caption">Verso, risographie, 135×95mm, 2024.</figcaption>
+      <figcaption class="caption">Risography, 135×95mm, 2024.</figcaption>
     </figure>
 
     <br><br>
@@ -43,39 +41,33 @@ original:
       <i>Sans titre</i>, impression dibond et bauxites, 150 × 70 × 25 cm, 2019.
     </div>
 
-  notes: []
-
 translations:
   - language: "en"
-    translator: ""
     body_html: |
-    <br>
+      <br>
 
-    <figure class="text-image">
-      <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_01.webp"
-           alt="Risographic print, label text"
-           style="width:75%;height:auto;display:block;margin:0 auto 3px;">
-      <figcaption class="caption">Recto, risographiy, 135×95mm, 2024.</figcaption>
-    </figure>
+      <figure class="text-image">
+        <img src="/images/2024/le-quatre-heures-de-lesban/label-text-2024-01.webp"
+             alt="Risographic print, label text"
+             style="width:75%;height:auto;display:block;margin:0 auto 3px;">
+        <figcaption class="caption">Risography, 135×95mm, 2024.</figcaption>
+      </figure>
 
-    <figure class="text-image">
-      <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
-           alt="Risographic print, label text"
-           style="width:75%;height:auto;display:block;margin:0 auto 3px;">
-      <figcaption class="caption">Verso, risographiy, 135×95mm, 2024.</figcaption>
-    </figure>
+      <figure class="text-image">
+        <img src="/images/2024/le-quatre-heures-de-lesban/label-text-2024-02.webp"
+             alt="Risographic print, label text"
+             style="width:75%;height:auto;display:block;margin:0 auto 3px;">
+        <figcaption class="caption">Risography, 135×95mm, 2024.</figcaption>
+      </figure>
 
-    <br><br> tr : 
-    <div class="label-box">
-      Lean over it and perhaps you will recognize the remnants of our society.
-      His work, always in progress, when I see him it is in a phosphorescent orange vest helping teenagers.<br><br>
-      Rubble from the vessel or giant molds of the Vidourle. Won Jy teaches us to apprehend the secrets of the landscape differently.<br><br>
-      Won Jy @won__j_y_<br>
-      <i>Untitled</i>, dibond and bauxite print, 150 × 70 × 25 cm, 2019.
-    </div>
+      <br><br>
 
-  notes: []
+      <div class="label-box">
+        Lean over it and perhaps you’ll recognize the remnants of our society.
+        His work is always in progress; when I catch sight of him, he’s in a phosphorescent orange vest helping teenagers.<br><br>
+        Debris of the vessel or giant molds of the Vidourle. Won Jy teaches us to apprehend the secrets of the landscape differently.<br><br>
+        Won Jy @won__j_y_<br>
+        <i>Untitled</i>, dibond and bauxite print, 150×70×25 cm, 2019.
+      </div>
 
-related_works:
-  - slug: "work/2024/le-quatre-heures-de-l-ésban"
-    label: "<i>Le quatre-heures de l’ésban</i>, 2024"
+notes: []
