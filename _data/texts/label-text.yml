@@ -17,6 +17,7 @@ source_html: |
 original:
   language: "fr"
   body_html: |
+    <br><br>
     <figure class="text-image">
       <img src="/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_01.webp"
            alt="Risographic print, label text"
