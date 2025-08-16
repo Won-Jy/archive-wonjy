@@ -80,15 +80,14 @@ title: Texts
   .author,.year{color:#444}
 
   .pagination{
-  position:fixed;        /* 화면 하단 고정 */
-  left:24px;             /* 목록 왼쪽 패딩과 정렬 */
-  bottom:24px;           /* 하단 여백 */
-  right:auto;            /* 필요 시 조정 가능 */
-  padding:0;             /* 내부 여백 제거 */
-  text-align:left;
-  max-width:none;        /* 고정 위치에서는 폭 제한 해제 */
-  margin:0;
-  background:transparent;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -32px;          /* 경계선 '바로 밑' 오프셋(예: 32px). 취향대로 조절 */
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  text-align: center;
 }
   .pagination a{
   margin:0 4px;
