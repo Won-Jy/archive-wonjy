@@ -20,7 +20,12 @@ title: Texts
   nav a:hover,nav a.active{color:var(--blue)}
 
   /* 목록 화면 */
-  main.list{padding:50px 40px 60px 24px;max-width:740px;margin:0;min-height:400px}
+  main.list{
+  padding:50px 40px 120px 24px;  /* ← 하단 여백을 120px로 증가(겹침 방지) */
+  max-width:740px;
+  margin:0;
+  min-height:400px;
+}
   .items{display:flex;flex-direction:column;gap:10px}
 
   /* ▼ 목록에서만 링크 스타일 적용 (본문·사이드바엔 영향 없음) */
@@ -74,9 +79,25 @@ title: Texts
   .meta-sep{ margin:0 6px 0 0; color:var(--muted); }
   .author,.year{color:#444}
 
-  .pagination{padding:30px 24px 60px;text-align:left;max-width:740px;margin:0 auto}
-  .pagination a{margin:0 4px;text-decoration:none;color:#000;font-size:.95em}
-  .pagination a:hover,.pagination a.active{color:var(--blue)}
+  .pagination{
+  position:fixed;        /* 화면 하단 고정 */
+  left:24px;             /* 목록 왼쪽 패딩과 정렬 */
+  bottom:24px;           /* 하단 여백 */
+  right:auto;            /* 필요 시 조정 가능 */
+  padding:0;             /* 내부 여백 제거 */
+  text-align:left;
+  max-width:none;        /* 고정 위치에서는 폭 제한 해제 */
+  margin:0;
+  background:transparent;
+}
+  .pagination a{
+  margin:0 4px;
+  text-decoration:none;
+  color:#000;
+  font-size:.95em;
+}
+  .pagination a:hover,
+.pagination a.active{ color:var(--blue); }
 
 /* 본문/사이드바 링크: 방문 흔적 제거 + 기존 느낌 유지 */
 main.detail article a,
