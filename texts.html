@@ -20,12 +20,19 @@ title: Texts
   nav a:hover,nav a.active{color:var(--blue)}
 
   /* 목록 화면 */
+  :root{
+  --page-width: 1200px;     /* 사이트 공통 가로 그리드 */
+  --pager-bottom: 28px;     /* 화면 하단에서 띄우는 고정값 */
+  --pager-height: 22px;     /* 페이지네이션 실제 높이(대략 글자 높이+라인높이) */
+  --gap-after-list: 40px;   /* 마지막 텍스트와 페이지네이션 사이 여유 간격(원하는 값) */
+}
   main.list{
   padding:50px 40px 10px 24px;  /* ← 하단 여백을 120px로 증가(겹침 방지) */
   max-width:740px;
   margin:0;
   min-height:400px;
   position: relative;
+  padding-bottom: calc(var(--pager-bottom) + var(--pager-height) + var(--gap-after-list));
 }
   .items{display:flex;flex-direction:column;gap:10px}
 
@@ -81,10 +88,11 @@ title: Texts
   .author,.year{color:#444}
 
   .pagination{
-  position: absolute;
+  position: fixed;
   left: 50%;
+  margin-left: calc(-1 * var(--page-width) / 2);
   transform: translateX(-50%);
-  bottom: -32px;          /* 경계선 '바로 밑' 오프셋(예: 32px). 취향대로 조절 */
+  bottom: var(--pager-bottom);
   margin: 0;
   padding: 0;
   background: transparent;
