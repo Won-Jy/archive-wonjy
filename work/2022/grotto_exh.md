@@ -57,7 +57,7 @@ images:
     caption: "<i>Fontaine I</i>, cast concrete, wild herbs, water and various materials, 250×170×130cm, 2022."
   - src: "/images/2020/grotto/Grotto_07_Dark room 01.webp"
     caption: "<i>Plongement</i>, installation, HD video, color, sound, 1min 24sec(loop), 2018."
-    - src: "/images/2020/grotto/Grotto_07_Dark room 02.webp"
+  - src: "/images/2020/grotto/Grotto_07_Dark room 02.webp"
     caption: "<i>Plongement</i>, installation, HD video, color, sound, 1min 24sec(loop), 2018."
   - src: "/images/2020/grotto/Grotto_08_Dark room other side 01.webp"
     caption: "Exhibition views <i>Grotto</i>, basement of Vaisseau 3008, former social services building of the Gard Department, Nîmes, France, 2022."
