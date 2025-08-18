@@ -123,6 +123,26 @@
             </figure>
           {%- endfor -%}
         {%- endif -%}
+
+          {%- if page.videos -%}
+    {%- for v in page.videos -%}
+      <figure class="video">
+        <div class="frame">
+          <iframe
+            src="{{ v.src }}"
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+        {%- if v.caption -%}
+          <figcaption class="caption">{{ v.caption }}</figcaption>
+        {%- endif -%}
+      </figure>
+    {%- endfor -%}
+  {%- endif -%}
+        
       </div>
 
       <aside class="intro-side">
