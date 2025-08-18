@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Grotto"
-types: "Exhibition"
+type: "Exhibition"
 year_start: 2022
 year_end: 2022
 status: "Completed"
