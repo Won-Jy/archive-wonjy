@@ -24,5 +24,5 @@ images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
     caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
-    caption: "Detail caption 2"
+    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
 ---
