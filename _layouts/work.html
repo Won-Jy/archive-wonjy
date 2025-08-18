@@ -144,19 +144,11 @@
           {%- if page.videos -%}
     {%- for v in page.videos -%}
       <figure class="video">
-        <div class="frame">
-          <iframe
-            src="{{ v.src }}"
-            allow="autoplay; fullscreen; picture-in-picture"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen>
-          </iframe>
-        </div>
-        {%- if v.caption -%}
-          <figcaption class="caption">{{ v.caption }}</figcaption>
-        {%- endif -%}
-      </figure>
+  <div class="frame" {% if v.ratio %}style="aspect-ratio: {{ v.ratio }} / 1"{% endif %}>
+    <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+  </div>
+  {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
+</figure>
     {%- endfor -%}
   {%- endif -%}
         
