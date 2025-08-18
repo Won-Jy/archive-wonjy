@@ -23,5 +23,4 @@ videos:
     caption: "<i>Fantôme 3008</i>, excerpt from the teaser, 2024."
   - src: "https://player.vimeo.com/video/1094658512?title=0&byline=0&portrait=0&dnt=1&color=007BFF&playsinline=1&controls=1"
     caption: "<i>Fantôme 3008</i>, gameplay scene, 2024."
-    ratio: "2.39/1"
 ---
