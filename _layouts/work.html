@@ -46,24 +46,26 @@
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
 
     /* Video (responsive 16:9) */
-    figure.video { margin:0; }
-    .video .frame { 
-      position:relative; 
-      width:100%;         /* 이미지와 동일하게 100% */
-      padding-top:56.25%; /* 16:9 비율 유지 */
-      margin-bottom:3px; 
+    figure.video { width:100%; margin:0; }
+    .video .frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;   /* 브라우저가 지원하면 이걸 사용 */
+      margin-bottom: 3px;
     }
-    .video .frame iframe { 
-      position:absolute; 
-      inset:0; 
-      width:100%; 
-      height:100%; 
-      border:0; 
+    .video .frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-    .video .caption { 
-      font-size:0.8em; 
-      color:var(--muted); 
-      margin-bottom:40px; 
+    .video .caption { font-size:0.8em; color:var(--muted); margin-bottom:40px; }
+    
+    /* aspect-ratio 미지원 브라우저 대비 (폴백) */
+    @supports not (aspect-ratio: 1) {
+      .video .frame { padding-top:56.25%; }
+      .video .frame iframe { height:100%; }
     }
     
     /* Related texts */
