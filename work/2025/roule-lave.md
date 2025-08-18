@@ -47,7 +47,7 @@ images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0526.webp"
     caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025 — Columbarium room."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0857.webp"
-    caption: "<i>Columbarium III</i>, plastic boxes, soil, pigeon remains, neon, 35×26×14cm (each), 2017-."
+    caption: "<i>Columbarium III</i>, plastic boxes, soil, pigeon remains, neon, 35×26×14cm (each), 2017 –."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_16_IMG_0250.webp"
     caption: "<i>Columbarium VI</i>, neon, epoxy resin, pigeon remains, variable dimensions, 2025."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_17_IMG_0513.webp"
