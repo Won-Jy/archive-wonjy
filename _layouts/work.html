@@ -94,6 +94,20 @@
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+    /* 강제 통일: 비디오는 이미지와 동일 폭(컨테이너 100%) */
+.intro-image figure.video{ width:100% !important; margin:0; }
+.intro-image figure.video .frame{ width:100% !important; position:relative; aspect-ratio:16/9; margin-bottom:3px; }
+.intro-image figure.video .frame iframe{
+  position:absolute; inset:0;
+  width:100% !important; height:100% !important;
+  max-width:none !important; display:block; border:0;
+}
+/* aspect-ratio 미지원 폴백 */
+@supports not (aspect-ratio:1){
+  .intro-image figure.video .frame{ padding-top:56.25%; }
+}
+    
   </style>
 </head>
 <body>
@@ -151,7 +165,7 @@
           {%- if page.videos -%}
     {%- for v in page.videos -%}
       <figure class="video">
-  <div class="frame" {% if v.ratio %}style="aspect-ratio: {{ v.ratio }} / 1"{% endif %}>
+  <div class="frame">
     <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
   </div>
   {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
