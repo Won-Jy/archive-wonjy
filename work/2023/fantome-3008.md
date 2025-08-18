@@ -3,7 +3,7 @@ layout: work
 title: "Fantôme 3008"
 type: "Project"
 year_start: 2023
-year_end: []
+year_end: 
 status: "In progress"
 tags: ["Hospitality"]
 cover: "/images/2023/fantome-3008/Fantôme 3008_01_main views 01.webp"
