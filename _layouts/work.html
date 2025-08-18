@@ -66,11 +66,7 @@
       border:0;
     }
     
-    /* aspect-ratio 미지원 브라우저 폴백 */
-    @supports not (aspect-ratio:1){
-      .video .frame{ padding-top:56.25%; } /* 16:9 */
-      .video .frame iframe{ height:100%; }
-    }
+  
     
     /* 캡션은 이미지와 동일 */
     .video .caption{ font-size:0.8em; color:var(--muted); margin-bottom:40px; }
