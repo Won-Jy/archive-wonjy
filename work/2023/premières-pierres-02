@@ -11,19 +11,26 @@ cover_caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, va
 summary: >
   Hydrography on concrete rubble, variable dimensions. As part of the group exhibition <i>Travaux en cours</i>, City of Nîmes, France. Coordinated by Laura Bouvard and Dror Endeweld.
 description: >
-  *Roulé-Lavé* revisits various experiments carried out by Won Jy around the transformation of matter. The artist is seen going up rivers in search of the source of the water—and thus the origin of the shape of the stones he collects. We also see him appropriating the patterns of these stones to reprint them onto blocks of rubble. Won Jy also works on the theme of hospitality and how foreigners are regarded within a given territory. He explores the metaphor of colombophobia to address how architecture can include or exclude, often depending on collective decisions. Won Jy’s works are often tinged with subtle humor, allowing complex issues to be expressed through light and poetic forms.
+  A series of "fake stone" sculptures was initially conceived in 2018 during a residency in Tokyo (<i>Premières pierres I</i>). Simulating a process of artificial sedimentation, I agglomerated large chunks of concrete rubble—remnants from the demolition of a social service building of Gard Departement—which had once served as a gathering place for marginalized individuals and families. This site bore a rich, multi-generational history, especially in terms of hospitality. I then applied a rock image onto these “remains” using hydrographic printing, immersing each block in water, one by one, in an attempt to ritualize the death of this former “central of the unfortunate.” The rock image printed on each piece was inspired by the Menhir de Courbessac in Nîmes—specifically, a reproduction generated and analyzed by a GAN algorithm. The final step of this ritual consisted in placing these stones at the heart of the town hall, where its fountain is located.<br><br>See also the <i>Grotto</i> and <i>Fantôme 3008</i> projects.
 critique_title: "Related texts"
-related_texts:
-  - id: "roule-lave"
-  - id: "like-a-rolling-stone"
-  - id: "wonjy-au-cacn"
+related_texts: []
 images:
-  - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
-    caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
-  - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
-
-  - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp"
-    caption: "<i>Eau de douche</i>, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
-
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 01.1.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 01.2.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 02.1.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 02.2.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 03.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 04.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_02_detail view 05.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_03_overview 01.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
+  - src: "/images/2023/premieres-pierres-02/Premières pierres II_03_overview 02.webp"
+    caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
 ---
