@@ -47,26 +47,33 @@
 
     /* Video (responsive 16:9) */
     figure.video { width:100%; margin:0; }
-    .video .frame {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;   /* 브라우저가 지원하면 이걸 사용 */
-      margin-bottom: 3px;
+
+    /* 플레이어 프레임: 가로 100%, 세로는 16:9 (높이 자동) */
+    .video .frame{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;     /* 지원 브라우저: 이 값 사용 */
+      margin-bottom:3px;
+      box-sizing:border-box;
     }
-    .video .frame iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .video .caption { font-size:0.8em; color:var(--muted); margin-bottom:40px; }
     
-    /* aspect-ratio 미지원 브라우저 대비 (폴백) */
-    @supports not (aspect-ratio: 1) {
-      .video .frame { padding-top:56.25%; }
-      .video .frame iframe { height:100%; }
+    .video .frame iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      border:0;
     }
+    
+    /* aspect-ratio 미지원 브라우저 폴백 */
+    @supports not (aspect-ratio:1){
+      .video .frame{ padding-top:56.25%; } /* 16:9 */
+      .video .frame iframe{ height:100%; }
+    }
+    
+    /* 캡션은 이미지와 동일 */
+    .video .caption{ font-size:0.8em; color:var(--muted); margin-bottom:40px; }
     
     /* Related texts */
     .related-texts { list-style:none; margin:8px 0 0; padding:0; }
