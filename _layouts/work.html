@@ -46,22 +46,29 @@
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
 
 /* Video (responsive 16:9) */
-figure.work.video{ width:100%; margin:0; }
+figure.work.video{ width:100%; margin:0; display:block; }
 figure.work.video .frame{
-  position:relative;
-  width:100%;
-  aspect-ratio: var(--ratio, 16/9); /* ← 기본 16:9, md로 덮어씀 */
-  margin-bottom:3px;
+  position: relative;
+  width: 100% !important;
+  height: 0;                 /* 핵심: 높이를 padding으로 만들기 */
+  padding-bottom: 56.25%;    /* 16:9 = 9/16 */
+  margin-bottom: 3px;
+  box-sizing: border-box;
 }
 figure.work.video .frame iframe{
-  position:absolute; inset:0;
-  width:100% !important; height:100% !important;
-  max-width:none !important; display:block; border:0;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  display: block;
+  border: 0;
 }
 
-/* 구형 브라우저 폴백(필요시) */
-@supports not (aspect-ratio:1){
-  figure.work.video .frame{ height:0; padding-bottom:56.25%; } /* 기본 16:9 */
+/* 혹시 남아있는 전역 규칙을 무력화 */
+.intro-image figure.work.video,
+.intro-image figure.work.video *{
+  box-sizing: border-box;
 }
     
     /* Related texts */
