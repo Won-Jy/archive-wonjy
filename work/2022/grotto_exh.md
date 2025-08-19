@@ -14,8 +14,8 @@ description: |
   This exhibition is a derivative form of a site specific sculpture of the same name, <i>Grotto</i>, created in the basement of the former social services building of the Gard department — a site nicknamed “Vaisseau 3008” before its demolition in February 2023. The idea behind this poured concrete basin, which covers the entire surface of a basement room, was born from an informal residency I carried out between February and April 2021, during which I slept on-site in a tent two to three nights per week.<br>Inspired by the spatial qualities of the site — once thought to have served as the morgue of the Hôtel-Dieu in Nîmes — I constructed a kind of false sarcophagus. It was meant to be buried automatically during the building’s demolition, while also serving as a receptacle to hold the debris from that event.<br>Following the creation of the sculpture, I organized an exhibition composed of several chapters that continued until the site’s demolition. It aimed to build a collective memory of the space with the public, while also taking on a ritual dimension in response to the disappearance of a building that had long fulfilled various roles of hospitality in the city.<br><br>See also the <i>Fantôme 3008</i> and <i>Premières pierres II</i> projects.
 critique_title: "Related texts"
 related_texts:
-  - id: "grotto-en-trois-temps"
-  - id: "le-temps-davant-leffondrement"
+  - id: "_data/texts/grotto-en-trois-temps.yml"
+  - id: "_data/texts/le-temps-davant-leffondrement.yml"
 images:
   - src: "/images/2020/grotto/Grotto_02_detail views 01.webp"
     caption: "<i>Grotto</i>, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022."
