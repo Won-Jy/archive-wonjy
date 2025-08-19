@@ -15,9 +15,9 @@ description: |
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Fantôme 3008</i> (2023 –)"
-    path: "work/2023/fantome-3008.md"
+    path: "/work/2023/fantome-3008.html"
   - label: "<i>Premières pierres II</i> (2023)"
-    path: "work/2023/premières-pierres-02.md"
+    path: "/work/2023/premières-pierres-02.html"
 critique_title: "Related texts"
 related_texts:
   - id: "grotto-en-trois-temps"
