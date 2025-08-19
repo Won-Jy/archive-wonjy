@@ -18,6 +18,7 @@ description: >
 linked_works_title: "Linked works"   
 linked_works:
   - label: ""
+    path: ""
 critique_title: "Related texts"
 related_texts:
   - id: "roule-lave"
@@ -28,7 +29,6 @@ images:
     caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
     caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
-
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp"
     caption: "<i>Eau de douche</i>, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0556.webp"
