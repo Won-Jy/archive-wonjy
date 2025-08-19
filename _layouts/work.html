@@ -219,7 +219,7 @@
           
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-{%- comment -%} Compute “has_related” safely (no where_exp) {%- endcomment -%}
+{%- comment -%} Determine if we have any related texts (safe for GH Pages) {%- endcomment -%}
 {%- assign has_related = false -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
   {%- for r in page.related_texts -%}
@@ -227,18 +227,21 @@
       {%- assign has_related = true -%}{%- break -%}
     {%- endif -%}
   {%- endfor -%}
-{%- elsif page.critique_links and page.critique_links.size > 0 -%}
+{%- endif -%}
+{%- if has_related == false and page.critique_links and page.critique_links.size > 0 -%}
   {%- assign has_related = true -%}
-{%- elsif page.critique -%}
+{%- endif -%}
+{%- if has_related == false and page.critique -%}
   {%- assign has_related = true -%}
 {%- endif -%}
 
 {%- if has_related -%}
+  <div class="divider"></div>
+  {%- if page.critique_title -%}
+    <div class="section-title">{{ page.critique_title }}</div>
+  {%- endif -%}
+
   {%- if page.related_texts and page.related_texts.size > 0 -%}
-    <div class="divider"></div>
-    {%- if page.critique_title -%}
-      <div class="section-title">{{ page.critique_title }}</div>
-    {%- endif -%}
     <ul class="related-texts">
       {%- for r in page.related_texts -%}
         {%- if r.id and r.id != '' -%}
@@ -252,11 +255,11 @@
                 {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
               {%- endfor -%}
             {%- endif -%}
-            {%- assign lang_final = has_tr ? target : orig -%}
+            {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
             {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
             {%- assign raw_label = r.label | default: '' -%}
-            {%- if raw_label | strip != '' -%}
+            {%- if raw_label and raw_label | strip != '' -%}
               {%- assign label_html = raw_label -%}
             {%- else -%}
               {%- assign title_html = t.title_original.text_html -%}
@@ -272,10 +275,6 @@
     </ul>
 
   {%- elsif page.critique_links and page.critique_links.size > 0 -%}
-    <div class="divider"></div>
-    {%- if page.critique_title -%}
-      <div class="section-title">{{ page.critique_title }}</div>
-    {%- endif -%}
     <ul class="related-texts">
       {%- for item in page.critique_links -%}
         <li>
@@ -287,10 +286,6 @@
     </ul>
 
   {%- elsif page.critique -%}
-    <div class="divider"></div>
-    {%- if page.critique_title -%}
-      <div class="section-title">{{ page.critique_title }}</div>
-    {%- endif -%}
     <div class="rich critique">{{ page.critique | markdownify }}</div>
   {%- endif -%}
 {%- endif -%}
