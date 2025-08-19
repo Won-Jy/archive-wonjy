@@ -11,10 +11,10 @@ cover_caption: "<i>Baignade</i>, performance in <i>Grotto</i>, 2022."
 summary: >
   Performance (or play) in <i>Grotto</i>, 2022. In collaboration with A. Touré, S. Cordé and A. Dabo..
 description: >
-  A spontaneous action carried out within <i>Grotto</i> with the young exiles who remained in the building, made possible by the repeated postponements of its demolition. It was about finding another connection between the exiles and water—this time, a violent kind of water. Here, the water moves like leisure water, but within a raw concrete basin, in an underground space, creating a heterotopic context.<br><br>See also <a href="https://archive-wonjy.com/work/2022/grotto_exh.html"> <i>Grotto</i></a>(2022).
+  A spontaneous action carried out within <i>Grotto</i> with the young exiles who remained in the building, made possible by the repeated postponements of its demolition. It was about finding another connection between the exiles and water—this time, a violent kind of water. Here, the water moves like leisure water, but within a raw concrete basin, in an underground space, creating a heterotopic context.<br><br>See also <a href="https://archive-wonjy.com/work/2022/grotto_exh.html"> <i>Grotto</i> 2022</a>.
 critique_title: "Related texts"
-related_texts:
-  - id: []
+related_texts: 
+  - id: ""
 images:
   - src: "images/2022/baignade/Baignade_01_main views 02.webp"
     caption: "<i>Baignade</i>, performance in <i>Grotto</i>, 2022."
