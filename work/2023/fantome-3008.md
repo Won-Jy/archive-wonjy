@@ -12,6 +12,10 @@ summary: >
   Research project and online digital exhibition.
 description: >
   A research project on the social and medical services building of the Gard Department, located in the Placette neighborhood of Nîmes, in southern France, which was demolished in 2023. Using materials and interviews collected up until its demolition, and especially 3D scans of the building, it was digitally reconstructed in collaboration with developer Robert Hulland. As a prototype of a digital interactive exhibition, it was temporarily made accessible online in September 2024 during the European Heritage Days.<br>This virtual space intertwines objects and traces symbolizing the various functions the site fulfilled over the centuries (hospital, morgue, medical-social services, third place). The testimonies of six people who worked there at different times are scattered throughout in the form of letters. The graffiti murals that had turned to dust as the concrete was destroyed have been faithfully restored here, with the artists’ names included in captions whenever possible.<br>Once as imposing as a spaceship, the building has now been given a new context: it floats in space, circled by the sun. A symbolic place of hospitality for vulnerable populations, it now remains in a ghostly form.
+  - label: "<i>Grotto</i>, 2022 (exh.)"
+    path: "/work/2022/grotto_exh.html"
+  - label: "<i>Premières pierres II</i> (2023)"
+    path: "/work/2023/premières-pierres-02.html"
 related_texts: []
 images:
   - src: "/images/2023/fantome-3008/Fantôme 3008_01_main views 02.webp"
