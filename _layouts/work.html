@@ -242,7 +242,7 @@
             {%- endif -%}
 
             {%- if page.related_texts and page.related_texts.size > 0 -%}
-              <ul class="related-texts">
+            <ul class="related-texts">
   {%- for r in page.related_texts -%}
     {%- if r.id and r.id != '' -%}
       {%- assign t = site.data.texts[r.id] -%}
@@ -258,38 +258,30 @@
         {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
         {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-        {%- comment -%}
-        라벨 우선순위:
-        1) r.label (md에서 직접 지정 시 그대로 사용)
-        2) <제목(이탤릭)>, 저자, 연도  — 제목은 data에 HTML이 있으면 그대로, 없으면 <em>로 감쌈
-        {%- endcomment -%}
-      
         {%- assign raw_label = r.label | default: '' -%}
         {%- if raw_label and raw_label | strip != '' -%}
-        {%- assign label_html = raw_label -%}
+          {%- assign label_html = raw_label -%}
         {%- else -%}
-        {%- assign title_src = t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
-        {%- assign title_clean = title_src | markdownify | replace: '<p>','' | replace: '</p>','' | strip -%}
-        {%- if title_clean contains '<' -%}
-          {%- assign title_html = title_clean -%}     {# 이미 HTML(이탤릭 등)이 있으면 그대로 #}
-        {%- else -%}
-          {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
+          {%- assign title_src = t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
+          {%- assign title_clean = title_src | markdownify | replace: '<p>','' | replace: '</p>','' | strip -%}
+          {%- if title_clean contains '<' -%}
+            {%- assign title_html = title_clean -%}
+          {%- else -%}
+            {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
+          {%- endif -%}
+          {%- assign author = t.author.name | default: '' -%}
+          {%- assign year = t.year | default: '' -%}
+          {%- assign label_html = title_html -%}
+          {%- if author != '' -%}{%- assign label_html = label_html | append: ', ' | append: author -%}{%- endif -%}
+          {%- if year != '' -%}{%- assign label_html = label_html | append: ', ' | append: year -%}{%- endif -%}
         {%- endif -%}
-      
-        {%- assign author = t.author.name | default: '' -%}
-        {%- assign year = t.year | default: '' -%}
-      
-        {%- assign label_html = title_html -%}
-        {%- if author != '' -%}{%- assign label_html = label_html | append: ', ' | append: author -%}{%- endif -%}
-        {%- if year != '' -%}{%- assign label_html = label_html | append: ', ' | append: year -%}{%- endif -%}
-      {%- endif -%}
-      
-      <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
 
+        <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
       {%- endif -%}
     {%- endif -%}
   {%- endfor -%}
 </ul>
+
 
             {%- elsif page.critique_links and page.critique_links.size > 0 -%}
               <ul class="related-texts">
