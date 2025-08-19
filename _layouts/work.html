@@ -248,7 +248,7 @@
       {%- assign t = site.data.texts[r.id] -%}
       {%- if t -%}
         {%- assign orig   = t.original.language | default: 'fr' | downcase -%}
-        {%- assign target = r.lang | default: page_lang | downcase -%}
+        {%- assign target = r.lang | default: page.lang | default: site.lang | default: 'en' | downcase -%}
         {%- assign has_tr = false -%}
         {%- if t.translations -%}
           {%- for tr in t.translations -%}
@@ -284,9 +284,6 @@
     {%- endif -%}
   {%- endfor -%}
 </ul>
-
-
-
             {%- elsif page.critique_links and page.critique_links.size > 0 -%}
               <ul class="related-texts">
                 {%- for item in page.critique_links -%}
