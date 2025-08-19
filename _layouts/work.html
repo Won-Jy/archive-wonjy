@@ -45,7 +45,7 @@
     img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
     .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
 
-    /* Video (responsive 16:9) */
+    /* Video (responsive) */
     figure.work.video{ width:100%; margin:0; display:block; }
     figure.work.video .frame{ position:relative; width:100%; height:0; padding-bottom:56.25%; margin-bottom:3px; }
     figure.work.video .frame iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
@@ -76,8 +76,6 @@
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
-
-    
   </style>
 </head>
 <body>
@@ -218,7 +216,7 @@
             {%- endif -%}
           {%- endif -%}
 
-          {%- comment -%} Related texts block {%- endcomment -%}
+          {%- comment -%} Related texts block (hardened: render UL only if there is at least one valid LI) {%- endcomment -%}
           {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
           {%- assign has_related = false -%}
           {%- if page.related_texts and page.related_texts.size > 0 -%}
@@ -242,48 +240,60 @@
             {%- endif -%}
 
             {%- if page.related_texts and page.related_texts.size > 0 -%}
-           <ul class="related-texts">
-  {%- for r in page.related_texts -%}
-    {%- if r.id and r.id != '' -%}
-      {%- assign t = site.data.texts[r.id] -%}
-      {%- if t -%}
-        {%- assign orig   = t.original.language | default: 'fr' | downcase -%}
-        {%- assign target = r.lang | default: page.lang | default: site.lang | default: 'en' | downcase -%}
-        {%- assign has_tr = false -%}
-        {%- if t.translations -%}
-          {%- for tr in t.translations -%}
-            {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
-        {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
-        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+              {%- assign rel_count = 0 -%}
+              {%- assign rel_items = '' -%}
+              {%- for r in page.related_texts -%}
+                {%- if r.id and r.id != '' -%}
+                  {%- assign t = site.data.texts[r.id] -%}
+                  {%- if t -%}
+                    {%- assign orig   = t.original.language | default: 'fr' | downcase -%}
+                    {%- assign target = r.lang | default: page.lang | default: site.lang | default: 'en' | downcase -%}
+                    {%- assign has_tr = false -%}
+                    {%- if t.translations -%}
+                      {%- for tr in t.translations -%}
+                        {%- if tr.language and tr.language | downcase == target -%}
+                          {%- assign has_tr = true -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                    {%- assign lang_final = has_tr | default: false -%}
+                    {%- if lang_final -%}
+                      {%- assign lang_final = target -%}
+                    {%- else -%}
+                      {%- assign lang_final = orig -%}
+                    {%- endif -%}
+                    {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-        {%- comment -%} 라벨 만들기: r.label > (제목, 저자, 연도) {%- endcomment -%}
-        {%- assign raw_label = r.label | default: '' -%}
-        {%- if raw_label and raw_label | strip != '' -%}
-          {%- assign label_html = raw_label -%}
-        {%- else -%}
-          {%- assign title_src   = t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
-          {%- assign title_clean = title_src | markdownify | replace:'<p>','' | replace:'</p>','' | strip -%}
-          {%- if title_clean contains '<' -%}
-            {%- assign title_html = title_clean -%}
-          {%- else -%}
-            {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
-          {%- endif -%}
-          {%- assign author = t.author.name | default: '' -%}
-          {%- assign year   = t.year | default: '' -%}
-          {%- assign label_html = title_html -%}
-          {%- if author != '' -%}{%- assign label_html = label_html | append:', ' | append: author -%}{%- endif -%}
-          {%- if year   != '' -%}{%- assign label_html = label_html | append:', ' | append: year   -%}{%- endif -%}
-        {%- endif -%}
+                    {%- comment -%} Make label: r.label or <em>Title</em>, Author, Year {%- endcomment -%}
+                    {%- assign raw_label = r.label | default: '' -%}
+                    {%- if raw_label and raw_label | strip != '' -%}
+                      {%- assign label_html = raw_label -%}
+                    {%- else -%}
+                      {%- assign title_src   = t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
+                      {%- assign title_clean = title_src | markdownify | replace:'<p>','' | replace:'</p>','' | strip -%}
+                      {%- if title_clean contains '<' -%}
+                        {%- assign title_html = title_clean -%}
+                      {%- else -%}
+                        {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
+                      {%- endif -%}
+                      {%- assign author = t.author.name | default: '' -%}
+                      {%- assign year   = t.year | default: '' -%}
+                      {%- assign label_html = title_html -%}
+                      {%- if author != '' -%}{%- assign label_html = label_html | append:', ' | append: author -%}{%- endif -%}
+                      {%- if year   != '' -%}{%- assign label_html = label_html | append:', ' | append: year   -%}{%- endif -%}
+                    {%- endif -%}
 
-        {%- if label_html and label_html | strip != '' -%}
-          <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
-        {%- endif -%}
-      {%- endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-</ul>
+                    {%- if label_html and label_html | strip != '' -%}
+                      {%- assign rel_items = rel_items | append: '<li><a class="link-button" href="' | append: href | append: '">' | append: label_html | append: '</a></li>' -%}
+                      {%- assign rel_count = rel_count | plus: 1 -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if rel_count > 0 -%}
+                <ul class="related-texts">{{ rel_items }}</ul>
+              {%- endif -%}
+
             {%- elsif page.critique_links and page.critique_links.size > 0 -%}
               <ul class="related-texts">
                 {%- for item in page.critique_links -%}
@@ -344,8 +354,8 @@
           if(w && h){
             frame.style.paddingBottom = (h / w * 100) + '%';
           }
-        }).catch(function(e){ /* 무시 */ });
-      }catch(e){ /* 무시 */ }
+        }).catch(function(e){ /* ignore */ });
+      }catch(e){ /* ignore */ }
     });
   </script>
 
