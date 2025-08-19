@@ -243,36 +243,41 @@
 
             {%- if page.related_texts and page.related_texts.size > 0 -%}
               <ul class="related-texts">
-                {%- for r in page.related_texts -%}
-                  {%- if r.id and r.id != '' -%}
-                    {%- assign t = site.data.texts[r.id] -%}
-                    {%- if t -%}
-                      {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-                      {%- assign target = r.lang | default: page_lang | downcase -%}
-                      {%- assign has_tr = false -%}
-                      {%- if t.translations -%}
-                        {%- for tr in t.translations -%}
-                          {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-                        {%- endfor -%}
-                      {%- endif -%}
-                      {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
-                      {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+  {%- for r in page.related_texts -%}
+    {%- if r.id and r.id != '' -%}
+      {%- assign t = site.data.texts[r.id] -%}
+      {%- if t -%}
+        {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+        {%- assign target = r.lang | default: page_lang | downcase -%}
+        {%- assign has_tr = false -%}
+        {%- if t.translations -%}
+          {%- for tr in t.translations -%}
+            {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
+        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-                      {%- assign raw_label = r.label | default: '' -%}
-                      {%- if raw_label and raw_label | strip != '' -%}
-                        {%- assign label_html = raw_label -%}
-                      {%- else -%}
-                        {%- assign title_html = t.title_original.text_html -%}
-                        {%- assign author = t.author.name -%}
-                        {%- assign year = t.year -%}
-                        {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
-                      {%- endif -%}
+        {%- comment -%}
+          라벨 우선순위:
+          1) r.label (md에서 직접 지정)
+          2) t.title_original.text_html  또는 t.title_original.text
+          3) t.title  (혹시 있다면)
+          4) r.id     (최후 fallback)
+          + markdownify 후 <p> 래퍼 제거
+        {%- endcomment -%}
+        {%- assign base_label = r.label | default: t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
+        {%- assign label_ready = base_label | markdownify | replace: '<p>','' | replace: '</p>','' | strip -%}
 
-                      <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              </ul>
+        <li>
+          <a class="link-button" href="{{ href | relative_url }}">
+            {{ label_ready }}
+          </a>
+        </li>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
 
             {%- elsif page.critique_links and page.critique_links.size > 0 -%}
               <ul class="related-texts">
