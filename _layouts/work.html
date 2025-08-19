@@ -49,7 +49,14 @@
     figure.work.video{ width:100%; margin:0; display:block; }
     figure.work.video .frame{ position:relative; width:100%; height:0; padding-bottom:56.25%; margin-bottom:3px; }
     figure.work.video .frame iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
-    
+
+    /* Linked works */
+    .linked-works { list-style:none; margin:8px 0 0; padding:0; }
+    .linked-works li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+    .linked-works li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+    .linked-works a { color: var(--blue); text-decoration:none; margin-left:6px; }
+    .linked-works a:hover { text-decoration: underline; }
+
     /* Related texts */
     .related-texts { list-style:none; margin:8px 0 0; padding:0; }
     .related-texts li { margin:0 0 6px 0; position:relative; padding-left:14px; }
@@ -183,6 +190,33 @@
             <div class="rich description">{{ page.description | markdownify }}</div>
           {%- endif -%}
 
+{%- if page.linked_works and page.linked_works.size > 0 -%}
+            {%- assign valid_linked = page.linked_works | where_exp: "item", "(item.url and item.url != '') or (item.path and item.path != '') or (item.label and item.label != '')" -%}
+            {%- if valid_linked and valid_linked.size > 0 -%}
+              <div class="divider"></div>
+              <div class="section-title">{{ page.linked_works_title | default: "Linked works" }}</div>
+              <ul class="linked-works">
+                {%- for lw in valid_linked -%}
+                  {%- comment -%}
+                    우선순위: url > path (/work/... 경로) > 아무것도 없으면 건너뜀
+                  {%- endcomment -%}
+                  {%- assign href = lw.url | default: lw.path -%}
+                  {%- if href and href != '' -%}
+                    {%- assign raw_label = lw.label | default: '' -%}
+                    {%- assign cleaned = raw_label | strip | replace:'.','' | replace:'·','' | replace:'•','' -%}
+                    {%- if cleaned == '' -%}
+                      {%- assign label_html = href -%}
+                    {%- else -%}
+                      {%- assign label_html = raw_label -%}
+                    {%- endif -%}
+                    <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          {%- endif -%}
+          
+          
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
 {%- comment -%} Compute “has_related” safely {%- endcomment -%}
@@ -300,7 +334,7 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.summary a, .description a, .related-texts a').forEach(function(link){
+      document.querySelectorAll('.summary a, .description a, .related-texts a', .linked-works a').forEach(function(link){
         link.setAttribute('target','_blank');
         link.setAttribute('rel','noopener noreferrer');
       });
