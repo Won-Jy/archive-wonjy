@@ -19,9 +19,9 @@ linked_works_title: "Linked works"
 linked_works: []
 critique_title: "Related texts"
 related_texts:
-  - id: "_data/texts/roule-lave"
-  - id: "_data/texts/like-a-rolling-stone"
-  - id: "_data/texts/wonjy-au-cacn"
+  - id: "roule-lave"
+  - id: "like-a-rolling-stone"
+  - id: "wonjy-au-cacn"
 images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
     caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
