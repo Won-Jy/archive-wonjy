@@ -132,19 +132,18 @@
           {%- endfor -%}
         {%- endif -%}
 
-          {%- if page.videos -%}
-  {%- for v in page.videos -%}
-    <figure class="work video">
-    <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
-  <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
-</div>
-      {%- if v.caption -%}
-        <figcaption class="caption">{{ v.caption }}</figcaption>
-      {%- endif -%}
-    </figure>
-  {%- endfor -%}
-{%- endif -%}
-        
+        {%- if page.videos -%}
+          {%- for v in page.videos -%}
+            <figure class="work video">
+              <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
+                <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+              </div>
+              {%- if v.caption -%}
+                <figcaption class="caption">{{ v.caption }}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
+        {%- endif -%}
       </div>
 
       <aside class="intro-side">
@@ -190,24 +189,27 @@
             <div class="rich description">{{ page.description | markdownify }}</div>
           {%- endif -%}
 
-{%- if page.linked_works and page.linked_works.size > 0 -%}
-            {%- assign valid_linked = page.linked_works | where_exp: "item", "(item.url and item.url != '') or (item.path and item.path != '') or (item.label and item.label != '')" -%}
-            {%- if valid_linked and valid_linked.size > 0 -%}
+          {%- comment -%} Linked works block {%- endcomment -%}
+          {%- if page.linked_works and page.linked_works.size > 0 -%}
+            {%- assign has_linked = false -%}
+            {%- for lw in page.linked_works -%}
+              {%- assign href = lw.url | default: lw.path -%}
+              {%- if href and href != '' -%}
+                {%- assign has_linked = true -%}{%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if has_linked -%}
               <div class="divider"></div>
               <div class="section-title">{{ page.linked_works_title | default: "Linked works" }}</div>
               <ul class="linked-works">
-                {%- for lw in valid_linked -%}
-                  {%- comment -%}
-                    우선순위: url > path (/work/... 경로) > 아무것도 없으면 건너뜀
-                  {%- endcomment -%}
+                {%- for lw in page.linked_works -%}
                   {%- assign href = lw.url | default: lw.path -%}
                   {%- if href and href != '' -%}
                     {%- assign raw_label = lw.label | default: '' -%}
-                    {%- assign cleaned = raw_label | strip | replace:'.','' | replace:'·','' | replace:'•','' -%}
-                    {%- if cleaned == '' -%}
-                      {%- assign label_html = href -%}
-                    {%- else -%}
+                    {%- if raw_label and raw_label | strip != '' -%}
                       {%- assign label_html = raw_label -%}
+                    {%- else -%}
+                      {%- assign label_html = href -%}
                     {%- endif -%}
                     <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
                   {%- endif -%}
@@ -215,82 +217,78 @@
               </ul>
             {%- endif -%}
           {%- endif -%}
-          
-          
-{%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-{%- comment -%} Determine if we have any related texts (safe for GH Pages) {%- endcomment -%}
-{%- assign has_related = false -%}
-{%- if page.related_texts and page.related_texts.size > 0 -%}
-  {%- for r in page.related_texts -%}
-    {%- if r.id and r.id != '' -%}
-      {%- assign has_related = true -%}{%- break -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-{%- if has_related == false and page.critique_links and page.critique_links.size > 0 -%}
-  {%- assign has_related = true -%}
-{%- endif -%}
-{%- if has_related == false and page.critique -%}
-  {%- assign has_related = true -%}
-{%- endif -%}
-
-{%- if has_related -%}
-  <div class="divider"></div>
-  {%- if page.critique_title -%}
-    <div class="section-title">{{ page.critique_title }}</div>
-  {%- endif -%}
-
-  {%- if page.related_texts and page.related_texts.size > 0 -%}
-    <ul class="related-texts">
-      {%- for r in page.related_texts -%}
-        {%- if r.id and r.id != '' -%}
-          {%- assign t = site.data.texts[r.id] -%}
-          {%- if t -%}
-            {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-            {%- assign target = r.lang | default: page_lang | downcase -%}
-            {%- assign has_tr = false -%}
-            {%- if t.translations -%}
-              {%- for tr in t.translations -%}
-                {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
-            {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
-            {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
-
-            {%- assign raw_label = r.label | default: '' -%}
-            {%- if raw_label and raw_label | strip != '' -%}
-              {%- assign label_html = raw_label -%}
-            {%- else -%}
-              {%- assign title_html = t.title_original.text_html -%}
-              {%- assign author = t.author.name -%}
-              {%- assign year = t.year -%}
-              {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
-            {%- endif -%}
-
-            <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
+          {%- comment -%} Related texts block {%- endcomment -%}
+          {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
+          {%- assign has_related = false -%}
+          {%- if page.related_texts and page.related_texts.size > 0 -%}
+            {%- for r in page.related_texts -%}
+              {%- if r.id and r.id != '' -%}
+                {%- assign has_related = true -%}{%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
           {%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
+          {%- if has_related == false and page.critique_links and page.critique_links.size > 0 -%}
+            {%- assign has_related = true -%}
+          {%- endif -%}
+          {%- if has_related == false and page.critique -%}
+            {%- assign has_related = true -%}
+          {%- endif -%}
 
-  {%- elsif page.critique_links and page.critique_links.size > 0 -%}
-    <ul class="related-texts">
-      {%- for item in page.critique_links -%}
-        <li>
-          {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
-          {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
-          {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
+          {%- if has_related -%}
+            <div class="divider"></div>
+            {%- if page.critique_title -%}
+              <div class="section-title">{{ page.critique_title }}</div>
+            {%- endif -%}
 
-  {%- elsif page.critique -%}
-    <div class="rich critique">{{ page.critique | markdownify }}</div>
-  {%- endif -%}
-{%- endif -%}
+            {%- if page.related_texts and page.related_texts.size > 0 -%}
+              <ul class="related-texts">
+                {%- for r in page.related_texts -%}
+                  {%- if r.id and r.id != '' -%}
+                    {%- assign t = site.data.texts[r.id] -%}
+                    {%- if t -%}
+                      {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+                      {%- assign target = r.lang | default: page_lang | downcase -%}
+                      {%- assign has_tr = false -%}
+                      {%- if t.translations -%}
+                        {%- for tr in t.translations -%}
+                          {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                      {%- if has_tr -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
+                      {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
+                      {%- assign raw_label = r.label | default: '' -%}
+                      {%- if raw_label and raw_label | strip != '' -%}
+                        {%- assign label_html = raw_label -%}
+                      {%- else -%}
+                        {%- assign title_html = t.title_original.text_html -%}
+                        {%- assign author = t.author.name -%}
+                        {%- assign year = t.year -%}
+                        {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+                      {%- endif -%}
 
+                      <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+
+            {%- elsif page.critique_links and page.critique_links.size > 0 -%}
+              <ul class="related-texts">
+                {%- for item in page.critique_links -%}
+                  <li>
+                    {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
+                    {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
+                    {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+            {%- elsif page.critique -%}
+              <div class="rich critique">{{ page.critique | markdownify }}</div>
+            {%- endif -%}
+          {%- endif -%}
         </div>
       </aside>
     </section>
@@ -319,27 +317,27 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.summary a, .description a, .related-texts a', .linked-works a').forEach(function(link){
+      document.querySelectorAll('.summary a, .description a, .related-texts a, .linked-works a').forEach(function(link){
         link.setAttribute('target','_blank');
         link.setAttribute('rel','noopener noreferrer');
       });
     });
   </script>
   <script src="https://player.vimeo.com/api/player.js"></script>
-<script>
-  document.querySelectorAll('figure.work.video .frame').forEach(function(frame){
-    var iframe = frame.querySelector('iframe');
-    if(!iframe) return;
-    try{
-      var player = new Vimeo.Player(iframe);
-      Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function([w,h]){
-        if(w && h){
-          frame.style.paddingBottom = (h / w * 100) + '%';
-        }
-      }).catch(function(e){ /* 무시 */ });
-    }catch(e){ /* 무시 */ }
-  });
-</script>
+  <script>
+    document.querySelectorAll('figure.work.video .frame').forEach(function(frame){
+      var iframe = frame.querySelector('iframe');
+      if(!iframe) return;
+      try{
+        var player = new Vimeo.Player(iframe);
+        Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function([w,h]){
+          if(w && h){
+            frame.style.paddingBottom = (h / w * 100) + '%';
+          }
+        }).catch(function(e){ /* 무시 */ });
+      }catch(e){ /* 무시 */ }
+    });
+  </script>
 
 </body>
 </html>
