@@ -15,6 +15,10 @@ summary: >
   Curated by Guilhem Monceaux.
 description: >
   *Roulé-Lavé* revisits various experiments carried out by Won Jy around the transformation of matter. The artist is seen going up rivers in search of the source of the water—and thus the origin of the shape of the stones he collects. We also see him appropriating the patterns of these stones to reprint them onto blocks of rubble. Won Jy also works on the theme of hospitality and how foreigners are regarded within a given territory. He explores the metaphor of colombophobia to address how architecture can include or exclude, often depending on collective decisions. Won Jy’s works are often tinged with subtle humor, allowing complex issues to be expressed through light and poetic forms.
+linked_works_title: "Linked works"   
+linked_works:
+  - label: ""
+    path: ""
 critique_title: "Related texts"
 related_texts:
   - id: "roule-lave"
