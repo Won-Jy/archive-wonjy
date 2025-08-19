@@ -221,7 +221,6 @@
           {%- comment -%} Related texts block (strict rendering) {%- endcomment -%}
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-/* 1) 먼저 related_texts에서 실제 렌더 가능한 <li>만 미리 만든다 */
 {%- assign rel_count = 0 -%}
 {%- capture rel_items -%}{%- endcapture -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
@@ -269,11 +268,9 @@
   {%- endfor -%}
 {%- endif -%}
 
-/* 2) 보조 입력(critique_links / critique)도 항목이 있을 때만 따로 렌더 */
 {%- assign has_links = page.critique_links and page.critique_links.size > 0 -%}
 {%- assign has_text  = page.critique and page.critique != '' -%}
 
-/* 3) 실제로 출력할 무언가가 있을 때만 섹션을 만든다 */
 {%- if rel_count > 0 or has_links or has_text -%}
   <div class="divider"></div>
   <div class="section-title">{{ page.critique_title | default: "Related texts" }}</div>
