@@ -218,54 +218,43 @@
             {%- endif -%}
           {%- endif -%}
 
-          {%- comment -%} Related texts block (Hardened) {%- endcomment -%}
+          {%- comment -%} Related texts block (strict rendering) {%- endcomment -%}
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
-{%- assign has_related = false -%}
-{%- if page.related_texts and page.related_texts.size > 0 -%}
-  {%- for r in page.related_texts -%}
-    {%- if r.id and r.id != '' -%}{%- assign has_related = true -%}{%- break -%}{%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-{%- if has_related == false and page.critique_links and page.critique_links.size > 0 -%}{%- assign has_related = true -%}{%- endif -%}
-{%- if has_related == false and page.critique -%}{%- assign has_related = true -%}{%- endif -%}
 
-{%- if has_related -%}
-  <div class="divider"></div>
-  {%- if page.critique_title -%}<div class="section-title">{{ page.critique_title }}</div>{%- endif -%}
-
-  {%- if page.related_texts and page.related_texts.size > 0 -%}
-    {%- assign rel_count = 0 -%}
+/* 1) 먼저 related_texts에서 실제 렌더 가능한 <li>만 미리 만든다 */
+{%- assign rel_count = 0 -%}
 {%- capture rel_items -%}{%- endcapture -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
   {%- for r in page.related_texts -%}
-    {%- if r.id and r.id != '' -%}
-      {%- assign t = site.data.texts[r.id] -%}
+    {%- assign rid = r.id | to_s | strip -%}
+    {%- if rid != '' -%}
+      {%- assign t = site.data.texts[rid] -%}
       {%- if t -%}
         {%- assign orig   = t.original.language | default: 'fr' | downcase -%}
-        {%- assign target = r.lang | default: page.lang | default: site.lang | default: 'en' | downcase -%}
+        {%- assign target = r.lang | default: page_lang | downcase -%}
         {%- assign has_tr = false -%}
         {%- if t.translations -%}
           {%- for tr in t.translations -%}
             {%- if tr.language and tr.language | downcase == target -%}{%- assign has_tr = true -%}{%- endif -%}
           {%- endfor -%}
         {%- endif -%}
-        {%- assign lang_final = has_tr | default: false -%}
+        {%- assign lang_final = has_tr -%}
         {%- if lang_final -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
-        {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
+        {%- assign href = '/texts.html?id=' | append: rid | append: '&lang=' | append: lang_final -%}
 
-        {%- assign raw_label = r.label | default: '' -%}
-        {%- if raw_label and raw_label | strip != '' -%}
+        {%- assign raw_label = r.label | default: '' | strip -%}
+        {%- if raw_label != '' -%}
           {%- assign label_html = raw_label -%}
         {%- else -%}
-          {%- assign title_src   = t.title_original.text_html | default: t.title_original.text | default: t.title | default: r.id -%}
+          {%- assign title_src   = t.title_original.text_html | default: t.title_original.text | default: t.title | default: rid -%}
           {%- assign title_clean = title_src | markdownify | replace:'<p>','' | replace:'</p>','' | strip -%}
           {%- if title_clean contains '<' -%}
             {%- assign title_html = title_clean -%}
           {%- else -%}
             {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
           {%- endif -%}
-          {%- assign author = t.author.name | default: '' -%}
-          {%- assign year   = t.year | default: '' -%}
+          {%- assign author = t.author.name | default: '' | strip -%}
+          {%- assign year   = t.year | default: '' | strip -%}
           {%- assign label_html = title_html -%}
           {%- if author != '' -%}{%- assign label_html = label_html | append:', ' | append: author -%}{%- endif -%}
           {%- if year   != '' -%}{%- assign label_html = label_html | append:', ' | append: year   -%}{%- endif -%}
@@ -279,26 +268,40 @@
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
-{%- if rel_count > 0 -%}
-  <ul class="related-texts">{{ rel_items }}</ul>
-{%- endif -%}
 
+/* 2) 보조 입력(critique_links / critique)도 항목이 있을 때만 따로 렌더 */
+{%- assign has_links = page.critique_links and page.critique_links.size > 0 -%}
+{%- assign has_text  = page.critique and page.critique != '' -%}
 
-  {%- elsif page.critique_links and page.critique_links.size > 0 -%}
+/* 3) 실제로 출력할 무언가가 있을 때만 섹션을 만든다 */
+{%- if rel_count > 0 or has_links or has_text -%}
+  <div class="divider"></div>
+  <div class="section-title">{{ page.critique_title | default: "Related texts" }}</div>
+
+  {%- if rel_count > 0 -%}
+    <ul class="related-texts">{{ rel_items }}</ul>
+  {%- endif -%}
+
+  {%- if rel_count == 0 and has_links -%}
     <ul class="related-texts">
       {%- for item in page.critique_links -%}
+        {%- assign label = item.label | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+        {%- if label != '' -%}
         <li>
-          {{ item.label | markdownify | remove: '<p>' | remove: '</p>' }}
+          {{ label }}
           {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
           {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
         </li>
+        {%- endif -%}
       {%- endfor -%}
     </ul>
+  {%- endif -%}
 
-  {%- elsif page.critique -%}
+  {%- if rel_count == 0 and has_links == false and has_text -%}
     <div class="rich critique">{{ page.critique | markdownify }}</div>
   {%- endif -%}
 {%- endif -%}
+
 
         </div>
       </aside>
