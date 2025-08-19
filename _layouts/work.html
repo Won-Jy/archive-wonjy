@@ -219,14 +219,14 @@
           
 {%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
 
-{%- comment -%} Compute “has_related” safely {%- endcomment -%}
+{%- comment -%} Compute “has_related” safely (no where_exp) {%- endcomment -%}
 {%- assign has_related = false -%}
-{%- assign valid_related = '' -%}
 {%- if page.related_texts and page.related_texts.size > 0 -%}
-  {%- assign valid_related = page.related_texts | where_exp: "item", "item.id != ''" -%}
-  {%- if valid_related and valid_related.size > 0 -%}
-    {%- assign has_related = true -%}
-  {%- endif -%}
+  {%- for r in page.related_texts -%}
+    {%- if r.id and r.id != '' -%}
+      {%- assign has_related = true -%}{%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- elsif page.critique_links and page.critique_links.size > 0 -%}
   {%- assign has_related = true -%}
 {%- elsif page.critique -%}
@@ -234,50 +234,39 @@
 {%- endif -%}
 
 {%- if has_related -%}
-  {%- if valid_related and valid_related.size > 0 -%}
+  {%- if page.related_texts and page.related_texts.size > 0 -%}
     <div class="divider"></div>
     {%- if page.critique_title -%}
       <div class="section-title">{{ page.critique_title }}</div>
     {%- endif -%}
     <ul class="related-texts">
-      {%- for r in valid_related -%}
-        {%- assign t = site.data.texts[r.id] -%}
-        {%- if t -%}
-          {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-          {%- assign target = r.lang | default: page_lang -%}
+      {%- for r in page.related_texts -%}
+        {%- if r.id and r.id != '' -%}
+          {%- assign t = site.data.texts[r.id] -%}
+          {%- if t -%}
+            {%- assign orig = t.original.language | default: 'fr' | downcase -%}
+            {%- assign target = r.lang | default: page_lang | downcase -%}
+            {%- assign has_tr = false -%}
+            {%- if t.translations -%}
+              {%- for tr in t.translations -%}
+                {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- assign lang_final = has_tr ? target : orig -%}
+            {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
 
-          {%- assign has_tr = false -%}
-          {%- for tr in t.translations -%}
-            {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-          {%- endfor -%}
+            {%- assign raw_label = r.label | default: '' -%}
+            {%- if raw_label | strip != '' -%}
+              {%- assign label_html = raw_label -%}
+            {%- else -%}
+              {%- assign title_html = t.title_original.text_html -%}
+              {%- assign author = t.author.name -%}
+              {%- assign year = t.year -%}
+              {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+            {%- endif -%}
 
-          {%- assign orig = t.original.language | default: 'fr' | downcase -%}
-{%- assign target = r.lang | default: page_lang | downcase -%}
-
-{%- assign has_tr = false -%}
-{%- for tr in t.translations -%}
-  {%- if tr.language == target -%}{%- assign has_tr = true -%}{%- endif -%}
-{%- endfor -%}
-
-{%- if has_tr -%}
-  {%- assign lang_final = target -%}
-{%- else -%}
-  {%- assign lang_final = orig -%}
-{%- endif -%}
-          {%- assign href = '/texts.html?id=' | append: r.id | append: '&lang=' | append: lang_final -%}
-
-          {%- assign raw_label = r.label | default: '' -%}
-          {%- assign cleaned = raw_label | strip | replace:'.','' | replace:'·','' | replace:'•','' -%}
-          {%- if cleaned != '' -%}
-            {%- assign label_html = raw_label -%}
-          {%- else -%}
-            {%- assign title_html = t.title_original.text_html -%}
-            {%- assign author = t.author.name -%}
-            {%- assign year = t.year -%}
-            {%- assign label_html = '<em>' | append: title_html | append: '</em>, ' | append: author | append: ', ' | append: year -%}
+            <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
           {%- endif -%}
-
-          <li><a class="link-button" href="{{ href | relative_url }}">{{ label_html }}</a></li>
         {%- endif -%}
       {%- endfor -%}
     </ul>
@@ -305,6 +294,7 @@
     <div class="rich critique">{{ page.critique | markdownify }}</div>
   {%- endif -%}
 {%- endif -%}
+
 
         </div>
       </aside>
