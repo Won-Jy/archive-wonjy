@@ -191,11 +191,12 @@
 
     /* Lightbox: video container */
     .lb-video{
-      display:none;            /* 기본은 숨김, JS에서 토글 */
-      width: min(92vw, 1280px);
-      max-height: 74vh;
-      aspect-ratio: 16 / 9;    /* 기본 비율(원하면 조정 가능) */
-      background:#111;
+      display:none;
+      background:#000;                 /* 양옆 여백이 보여도 검정으로 자연스럽게 */
+      max-width:92vw;                  /* 이미지와 동일 제약 */
+      max-height:74vh;
+      width:  min(92vw, calc(74vh * var(--ratio, 16/9)));
+      height: min(74vh, calc(92vw / var(--ratio, 16/9)));
     }
     .lb-video iframe{
       width:100%;
@@ -553,6 +554,7 @@
   const lbCount = document.getElementById('lbCount');
 
   let idx = 0, open = false;
+  let lbPlayer = null;
 
   /* 3) 보조 함수 */
   function withAutoplay(url){
@@ -571,18 +573,41 @@
     lbCount.textContent = (idx+1) + '/' + gallery.length;
 
     if(it.type === 'video'){
-      lbImg.style.display = 'none';
-      lbVideo.style.display = 'block';
-      stopVideo();                         // 이전 영상 정지
-      lbIframe.src = withAutoplay(it.src); // 새 영상 로드 + 자동재생
-    }else{
-      lbVideo.style.display = 'none';
-      stopVideo();
-      lbImg.src = it.src;
-      lbImg.alt = it.el.getAttribute('alt') || '';
-      lbImg.style.display = 'block';
-    }
-  }
+  // 비디오 표시
+  lbImg.style.display = 'none';
+  lbVideo.style.display = 'block';
+
+  // 이전 비디오 정지
+  stopVideo();
+
+  // 우선 16:9로 그려두고(즉시), 실제 비율을 받아 오면 업데이트
+  lbVideo.style.setProperty('--ratio', '16/9');
+  lbIframe.src = withAutoplay(it.src);
+
+  // Vimeo 실제 비율로 재조정
+  try{
+    if(!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
+    // 이벤트 중복 방지
+    lbPlayer.off('loaded');
+    lbPlayer.on('loaded', async ()=>{
+      try{
+        const [w, h] = await Promise.all([lbPlayer.getVideoWidth(), lbPlayer.getVideoHeight()]);
+        if(w && h){
+          const ratio = (w / h); // 가로/세로
+          lbVideo.style.setProperty('--ratio', String(ratio));
+          // CSS가 vw/vh로 자동 재계산하므로 resize 핸들러 불필요
+        }
+      }catch(e){ /* no-op */ }
+    });
+  }catch(e){ /* Vimeo API가 없어도 기본 16:9로 정상 표시 */ }
+}else{
+  // 이미지 표시
+  lbVideo.style.display = 'none';
+  stopVideo();
+  lbImg.src = it.src;
+  lbImg.alt = it.el.getAttribute('alt') || '';
+  lbImg.style.display = 'block';
+}
 
   /* 5) 열고/닫기/이동 */
   function openLB(i){
