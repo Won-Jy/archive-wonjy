@@ -91,10 +91,12 @@ title: Texts
   .pagination{
   position: fixed;
   bottom: var(--pager-bottom);
-  left: var(--page-left);
-  max-width: var(--page-width);  /* ← width 대신 max-width 사용 */
+  /* 화면 정중앙 기준으로 고정 + 그리드 폭 상한 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--page-width), calc(100% - 48px)); /* 양쪽 24px 여백 보장 */
   text-align: center;
-}
+  }
   .pagination a{
   margin:0 4px;
   text-decoration:none;
