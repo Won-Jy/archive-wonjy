@@ -78,6 +78,62 @@
     #btBar a#backToTop { color: var(--blue); text-decoration: none; }
     #btBar a#backToTop:hover { text-decoration: underline; }
     #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+    /* Lightbox */
+    .lb-overlay{
+      position:fixed; inset:0; background:rgba(0,0,0,.75);
+      display:none; align-items:center; justify-content:center;
+      z-index:9999; padding:24px;
+    }
+    .lb-overlay.open{ display:flex; }
+    
+    .lb-stage{
+      position:relative; max-width:92vw; max-height:86vh;
+      display:flex; flex-direction:column; align-items:center; gap:10px;
+    }
+    
+    .lb-media{
+      max-width:92vw; max-height:74vh; display:block; object-fit:contain;
+      background:#111;
+    }
+    .lb-caption{
+      color:#eee; font-size:.9em; line-height:1.4; text-align:center;
+      max-width:92vw;
+    }
+    
+    /* Controls */
+    .lb-ctrl{
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,.0); border:none; cursor:pointer;
+      padding:8px 10px; font-size:22px; line-height:1; color:#ddd;
+    }
+    .lb-ctrl:hover, .lb-ctrl:active{ color: var(--blue); }
+    
+    .lb-prev{ left:-10px; }
+    .lb-next{ right:-10px; }
+    
+    .lb-close{
+      position:absolute; top:-8px; right:-8px;
+      background:rgba(255,255,255,.0); border:none; cursor:pointer;
+      padding:6px 10px; font-size:20px; color:#ddd;
+    }
+    .lb-close:hover, .lb-close:active{ color: var(--blue); }
+    
+    .lb-counter{
+      position:absolute; bottom:-22px; right:0; color:#bbb; font-size:.8em;
+    }
+    
+    /* 접근성 포커스 */
+    .lb-ctrl:focus-visible, .lb-close:focus-visible{
+      outline:2px solid var(--blue); outline-offset:2px;
+    }
+    
+    /* 모바일에서 터치 영역 여유 */
+    @media (max-width: 768px){
+      .lb-prev{ left:-4px; padding:10px 12px; }
+      .lb-next{ right:-4px; padding:10px 12px; }
+    }
+    
   </style>
 </head>
 <body>
@@ -309,6 +365,19 @@
     {%- endif -%}
   </main>
 
+  <!-- Lightbox -->
+  <div class="lb-overlay" id="lbOverlay" aria-modal="true" role="dialog" aria-label="Image viewer">
+    <div class="lb-stage">
+      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+      <button class="lb-ctrl lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+      <img id="lbImg" class="lb-media" alt="">
+      <button class="lb-ctrl lb-next" id="lbNext" aria-label="Next">›</button>
+      <div class="lb-caption" id="lbCap"></div>
+      <div class="lb-counter" id="lbCount"></div>
+    </div>
+  </div>
+  
+  
   <div id="btBar" role="region" aria-label="Back to top bar">
     <span class="copy">© ADAGP, Paris, 2025</span>
     <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
@@ -350,5 +419,108 @@
     });
   </script>
 
+  <script>
+(function(){
+  // 수집: 커버 + 작업 이미지 (비디오는 제외)
+  const gallery = [];
+  document.querySelectorAll('.intro-image figure.cover img, .intro-image figure.work img.work')
+    .forEach((img)=>{
+      const fig = img.closest('figure');
+      const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
+      const item = { el: img, src: img.getAttribute('src'), caption: cap };
+      gallery.push(item);
+    });
+
+  if(!gallery.length) return;
+
+  // DOM 캐시
+  const overlay = document.getElementById('lbOverlay');
+  const lbImg   = document.getElementById('lbImg');
+  const lbCap   = document.getElementById('lbCap');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
+  const lbCount = document.getElementById('lbCount');
+
+  let idx = 0;
+  let open = false;
+
+  function show(i){
+    idx = (i+gallery.length)%gallery.length;
+    const it = gallery[idx];
+    lbImg.src = it.src;
+    lbImg.alt = it.el.getAttribute('alt') || '';
+    lbCap.innerHTML = it.caption || '';
+    lbCount.textContent = (idx+1) + '/' + gallery.length;
+  }
+
+  function openLB(i){
+    show(i);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    open = true;
+    // 포커스 이동 (접근성)
+    lbClose.focus();
+  }
+
+  function closeLB(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    open = false;
+  }
+
+  function next(){ show(idx+1); }
+  function prev(){ show(idx-1); }
+
+  // 이미지 클릭으로 오픈
+  gallery.forEach((it, i)=>{
+    it.el.style.cursor = 'zoom-in';
+    it.el.addEventListener('click', (e)=>{
+      e.preventDefault();
+      openLB(i);
+    });
+  });
+
+  // 버튼
+  lbClose.addEventListener('click', closeLB);
+  lbNext.addEventListener('click', next);
+  lbPrev.addEventListener('click', prev);
+
+  // 바깥 클릭으로 닫기
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay) closeLB();
+  });
+
+  // 키보드
+  document.addEventListener('keydown', (e)=>{
+    if(!open) return;
+    if(e.key === 'Escape') closeLB();
+    else if(e.key === 'ArrowRight') next();
+    else if(e.key === 'ArrowLeft') prev();
+  });
+
+  // 터치 스와이프
+  let startX = 0, startY = 0, touching = false;
+  const minDX = 40; // 스와이프 임계치(px)
+
+  lbImg.addEventListener('touchstart', (e)=>{
+    const t = e.changedTouches[0];
+    startX = t.clientX; startY = t.clientY; touching = true;
+  }, {passive:true});
+
+  lbImg.addEventListener('touchend', (e)=>{
+    if(!touching) return;
+    touching = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = Math.abs(t.clientY - startY);
+    if(Math.abs(dx) > minDX && dy < 60){
+      if(dx < 0) next(); else prev();
+    }
+  }, {passive:true});
+
+})();
+</script>
+  
 </body>
 </html>
