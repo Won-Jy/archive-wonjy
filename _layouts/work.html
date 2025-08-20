@@ -113,9 +113,9 @@
     .lb-next{ right:-10px; }
     
     .lb-close{
-      position:absolute; top:20px; right:24px;
-      background:rgba(255,255,255,.0); border:none; cursor:pointer;
-      padding:6px 10px; font-size:20px; color:#ddd; z-index:10000;
+      position:absolute; top:-10px; right:-10px;
+      background: transparent; border:none; cursor:pointer;
+      font-size:20px; line-height: 1; color:#ddd; z-index:10;
     }
     .lb-close:hover, .lb-close:active{ color: var(--blue); }
     
@@ -132,6 +132,7 @@
     @media (max-width: 768px){
       .lb-prev{ left:-4px; padding:10px 12px; }
       .lb-next{ right:-4px; padding:10px 12px; }
+      .lb-close{ top: -6px; right: -6px; font-size: 22px; }
     }
 
     /* --- bottom controls under the caption --- */
@@ -421,8 +422,9 @@
 
   <!-- Lightbox -->
   <div class="lb-overlay" id="lbOverlay" aria-modal="true" role="dialog" aria-label="Image viewer">
-    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
     <div class="lb-stage">
+      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+      
       <img id="lbImg" class="lb-media" alt="">
       <div class="lb-caption" id="lbCap"></div>
       
