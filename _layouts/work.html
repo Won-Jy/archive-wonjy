@@ -500,34 +500,48 @@
 
   <script>
 (function(){
-  // 1) 갤러리 수집: 이미지 + 비디오
+  /* 1) 갤러리: 이미지 + 비디오를 DOM 순서대로 수집 */
   const gallery = [];
+  const nodes = document.querySelectorAll(
+    '.intro-image figure.cover img, ' +
+    '.intro-image figure.work img.work, ' +
+    '.intro-image figure.work.video iframe'
+  );
 
-  // 이미지(커버 + work 이미지)
-  document.querySelectorAll('.intro-image figure.cover img, .intro-image figure.work img.work')
-    .forEach((img)=>{
-      const fig = img.closest('figure');
-      const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
-      gallery.push({ type:'image', el:img, src:img.getAttribute('src'), caption:cap });
-      // 이미지 클릭으로 라이트박스 열기
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', (e)=>{ e.preventDefault(); openLB(gallery.length-1); });
+  nodes.forEach((node)=>{
+    const fig = node.closest('figure');
+    const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
+    const isVideo = node.tagName.toLowerCase() === 'iframe';
+    const src = node.getAttribute('src') || node.getAttribute('data-src') || '';
+
+    // 이 시점의 gallery 길이가 곧 이 항목의 "고정 인덱스"
+    const index = gallery.length;
+
+    gallery.push({
+      type: isVideo ? 'video' : 'image',
+      el: node,
+      src,
+      caption: cap
     });
 
-  // 비디오(Vimeo iframe)
-  document.querySelectorAll('.intro-image figure.work.video iframe')
-    .forEach((ifr)=>{
-      const fig = ifr.closest('figure');
-      const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
-      gallery.push({ type:'video', el:ifr, src:ifr.getAttribute('src'), caption:cap });
-      // (선택) 비디오 클릭으로 열고 싶다면 아래 두 줄 주석 해제
-      // fig?.addEventListener('click', (e)=>{ e.preventDefault(); openLB(gallery.length-1); });
-      // fig.style.cursor = 'zoom-in';
-    });
+    // 썸네일 클릭 시, 해당 인덱스로 열기 (이미지에만 기본 적용)
+    if(!isVideo){
+      node.style.cursor = 'zoom-in';
+      node.addEventListener('click', (e)=>{
+        e.preventDefault();
+        openLB(index);   // ★ length-1 대신, 캡처한 index 사용
+      });
+    }
+    // 비디오 썸네일(프레임)을 클릭해 열고 싶다면 아래 주석 해제
+    // if(isVideo){
+    //   fig.style.cursor = 'zoom-in';
+    //   fig.addEventListener('click', (e)=>{ e.preventDefault(); openLB(index); });
+    // }
+  });
 
   if(!gallery.length) return;
 
-  // DOM 캐시
+  /* 2) DOM 캐시 */
   const overlay = document.getElementById('lbOverlay');
   const lbImg   = document.getElementById('lbImg');
   const lbVideo = document.getElementById('lbVideo');
@@ -540,6 +554,7 @@
 
   let idx = 0, open = false;
 
+  /* 3) 보조 함수 */
   function withAutoplay(url){
     if(!url) return '';
     if(url.includes('autoplay=')) return url.replace(/autoplay=\d/, 'autoplay=1');
@@ -547,23 +562,20 @@
   }
   function stopVideo(){ if(lbIframe) lbIframe.src = ''; }
 
+  /* 4) 표시 로직 */
   function show(i){
     idx = (i + gallery.length) % gallery.length;
     const it = gallery[idx];
 
-    // 공통 UI
     lbCap.innerHTML = it.caption || '';
     lbCount.textContent = (idx+1) + '/' + gallery.length;
 
     if(it.type === 'video'){
-      // 비디오 표시
       lbImg.style.display = 'none';
       lbVideo.style.display = 'block';
-      // 이전 비디오 중지 후 새 소스 로드(+자동재생)
-      stopVideo();
-      lbIframe.src = withAutoplay(it.src);
+      stopVideo();                         // 이전 영상 정지
+      lbIframe.src = withAutoplay(it.src); // 새 영상 로드 + 자동재생
     }else{
-      // 이미지 표시
       lbVideo.style.display = 'none';
       stopVideo();
       lbImg.src = it.src;
@@ -572,6 +584,7 @@
     }
   }
 
+  /* 5) 열고/닫기/이동 */
   function openLB(i){
     show(i);
     overlay.classList.add('open');
@@ -582,16 +595,20 @@
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     open = false;
-    stopVideo(); // 닫을 때 비디오 정지
+    stopVideo();
   }
   function next(){ show(idx+1); }
   function prev(){ show(idx-1); }
 
-  // 버튼/키보드/바깥클릭
+  /* 6) 이벤트 */
   lbClose.addEventListener('click', closeLB);
   lbNext.addEventListener('click', next);
   lbPrev.addEventListener('click', prev);
-  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeLB(); });
+
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay) closeLB();
+  });
+
   document.addEventListener('keydown', (e)=>{
     if(!open) return;
     if(e.key==='Escape') closeLB();
@@ -599,10 +616,11 @@
     else if(e.key==='ArrowLeft') prev();
   });
 
-  // (선택) 스와이프 로직을 이미지뿐 아니라 스테이지에 붙이고 싶다면,
-  // 기존 touchstart/touchend 바인딩 대상을 lbImg 대신 .lb-stage 로 바꿔주세요.
+  // (선택) 스와이프를 이미지 뿐 아니라 스테이지에 붙이고 싶다면,
+  // 기존 touchstart/touchend 바인딩 대상을 lbImg 대신 .lb-stage로 바꾸면 됩니다.
 })();
 </script>
+
   
 </body>
 </html>
