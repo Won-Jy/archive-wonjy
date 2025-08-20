@@ -21,20 +21,23 @@ title: Texts
 
   /* 목록 화면 */
   :root{
-  --page-width: 1200px;     /* 사이트 공통 그리드 폭 */
-  --page-left: 24px;        /* 그리드의 시작점(좌측 여백) — 사이트와 동일 값으로 */
-  --pager-bottom: 240px;    /* 하단에서 띄우는 고정값: 빨간 표시 위치 맞춰 조절 */
-  --pager-height: 22px;     /* 페이지네이션 높이(대략) */
-  --gap-after-list: 5px;   /* 마지막 텍스트와 페이지네이션 사이 여유 */
-}
+  --page-width: 1200px;
+  --page-left: 24px;
+  --pager-bottom: 220px;
+  --pager-height: 22px;
+  --gap-after-list: 5px;
+  /* 추가: 목록 블록의 고정 높이 (예: 560px) */
+  --list-height: 560px;
+  }
   main.list{
-  padding:50px 40px 10px 24px;  /* ← 하단 여백을 120px로 증가(겹침 방지) */
+  padding:50px 40px 10px 24px;
   max-width:740px;
   margin:0;
-  min-height:400px;
-  position: relative;
-  padding-bottom: calc(var(--pager-bottom) + var(--pager-height) + var(--gap-after-list));
-}
+  min-height:400px;           /* 있어도 무방하지만 아래 height가 우선합니다 */
+  position: static;           /* relative 불필요 */
+  height: var(--list-height); /* ← 세로 고정 */
+  padding-bottom: 0;          /* 아래에서 페이지네이션이 차지하므로 0 */
+  }
   .items{display:flex;flex-direction:column;gap:10px}
 
   /* ▼ 목록에서만 링크 스타일 적용 (본문·사이드바엔 영향 없음) */
@@ -89,20 +92,17 @@ title: Texts
   .author,.year{color:#444}
 
   .pagination{
-  position: fixed;
-  bottom: var(--pager-bottom);
-  /* 화면 정중앙 기준으로 고정 + 그리드 폭 상한 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(var(--page-width), calc(100% - 48px)); /* 양쪽 24px 여백 보장 */
-  text-align: center;
+  position: static;                 /* 고정 해제 */
+  max-width: 740px;                 /* 리스트와 같은 폭 */
+  margin: 16px 40px 80px 24px;      /* 리스트와 같은 좌우 여백 (좌 24 / 우 40) */
+  text-align: center;               /* 중앙 정렬 */
   }
   .pagination a{
   margin:0 4px;
   text-decoration:none;
   color:#000;
   font-size:.95em;
-}
+  }
   .pagination a:hover,
 .pagination a.active{ color:var(--blue); }
 
