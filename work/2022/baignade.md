@@ -9,7 +9,7 @@ tags: ["Hospitality", "Water"]
 cover: "/images/2022/baignade/Baignade_01_main views 01.webp"
 cover_caption: "<i>Baignade</i>, performance in <i>Grotto</i>, 2022."
 summary: >
-  Performance (or play) in <i>Grotto</i>, 2022. In collaboration with A. Touré, S. Cordé and A. Dabo..
+  Performance (or play) in <i>Grotto</i>, 2022.<br>In collaboration with A.Touré, S.Cordé and A.Dabo.
 description: >
   A spontaneous action carried out within <i>Grotto</i> with the young exiles who remained in the building, made possible by the repeated postponements of its demolition. It was about finding another connection between the exiles and water—this time, a violent kind of water. Here, the water moves like leisure water, but within a raw concrete basin, in an underground space, creating a heterotopic context.
 linked_works_title: "Linked works"   
