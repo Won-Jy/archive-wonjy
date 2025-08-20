@@ -113,9 +113,9 @@
     .lb-next{ right:-10px; }
     
     .lb-close{
-      position:absolute; top:-8px; right:-8px;
+      position:absolute; top:20px; right:24px;
       background:rgba(255,255,255,.0); border:none; cursor:pointer;
-      padding:6px 10px; font-size:20px; color:#ddd;
+      padding:6px 10px; font-size:20px; color:#ddd; z-index:10000;
     }
     .lb-close:hover, .lb-close:active{ color: var(--blue); }
     
@@ -367,8 +367,8 @@
 
   <!-- Lightbox -->
   <div class="lb-overlay" id="lbOverlay" aria-modal="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
     <div class="lb-stage">
-      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
       <button class="lb-ctrl lb-prev" id="lbPrev" aria-label="Previous">‹</button>
       <img id="lbImg" class="lb-media" alt="">
       <button class="lb-ctrl lb-next" id="lbNext" aria-label="Next">›</button>
