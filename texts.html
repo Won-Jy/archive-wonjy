@@ -23,7 +23,7 @@ title: Texts
   :root{
   --page-width: 1200px;     /* 사이트 공통 그리드 폭 */
   --page-left: 24px;        /* 그리드의 시작점(좌측 여백) — 사이트와 동일 값으로 */
-  --pager-bottom: 220px;    /* 하단에서 띄우는 고정값: 빨간 표시 위치 맞춰 조절 */
+  --pager-bottom: 240px;    /* 하단에서 띄우는 고정값: 빨간 표시 위치 맞춰 조절 */
   --pager-height: 22px;     /* 페이지네이션 높이(대략) */
   --gap-after-list: 5px;   /* 마지막 텍스트와 페이지네이션 사이 여유 */
 }
@@ -91,10 +91,8 @@ title: Texts
   .pagination{
   position: fixed;
   bottom: var(--pager-bottom);
-
-  /* 1200px 그리드 박스 */
   left: var(--page-left);
-  width: var(--page-width);
+  max-width: var(--page-width);  /* ← width 대신 max-width 사용 */
   text-align: center;
 }
   .pagination a{
