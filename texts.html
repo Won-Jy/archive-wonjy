@@ -58,50 +58,79 @@ if (currentId && DATA[currentId]) {
 }
 
 function renderList(){
-  document.getElementById('listView').hidden = false;
-  document.getElementById('pager').hidden = false;
-  const arr = Object.entries(DATA).map(([id,t])=>({
-    id,
-    title_html: t.title_original?.text_html || '',
-    author: t.author?.name || '',
-    year: t.year || ''
-  }));
-  arr.sort((a,b)=>{
-    const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
-    if (yb!==ya) return yb-ya;
-    return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
-  });
-  const perPage = 10; let page = 1;
-  const itemsEl = document.getElementById('items');
-  const pagerEl = document.getElementById('pager');
-  function draw(){
-    const start = (page-1)*perPage, end = start+perPage;
-    itemsEl.innerHTML = '';
-    arr.slice(start,end).forEach(it=>{
-      const a = document.createElement('a');
-      a.className = 'text-link';
-      a.href = `?id=${encodeURIComponent(it.id)}`;
-      a.innerHTML =
-        `<span class="text-title">${it.title_html}</span>`+
-        `<span class="meta-sep">, </span><span class="author">${it.author}</span>`+
-        `<span class="meta-sep">, </span><span class="year">${it.year}</span>`;
-      itemsEl.appendChild(a);
-    });
-    const total = Math.max(1, Math.ceil(arr.length/perPage));
-    pagerEl.innerHTML = '';
-    for(let i=1;i<=total;i++){
-      if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
-      const link = document.createElement('a'); link.href='#'; link.textContent=i;
-      if(i===page) link.classList.add('active');
-      link.addEventListener('click', e=>{
-        e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
-      });
-      pagerEl.appendChild(link);
-    }
-  }
-  draw();
-}
+    document.getElementById('listView').hidden = false;
+    document.getElementById('pager').hidden = false;
 
+    const arr = Object.entries(DATA).map(([id,t])=>({
+      id,
+      title_html: t.title_original?.text_html || '',
+      author: t.author?.name || '',
+      year: t.year || ''
+    }));
+    arr.sort((a,b)=>{
+      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
+      if (yb!==ya) return yb-ya;
+      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
+    });
+
+    const perPage = 10;
+    let page = 1;
+    const itemsEl = document.getElementById('items');
+    const pagerEl = document.getElementById('pager');
+
+    let baselineHeight = null; // ✅ 1페이지 높이를 저장
+
+    function draw(){
+      // 페이지 전환 전: 기존 baseline이 있으면 먼저 적용
+      if (baselineHeight != null) {
+        itemsEl.style.minHeight = baselineHeight + 'px';
+      } else {
+        itemsEl.style.minHeight = ''; // 첫 렌더 전에는 초기화
+      }
+
+      // 목록 렌더링
+      const start = (page-1)*perPage, end = start+perPage;
+      itemsEl.innerHTML = '';
+      arr.slice(start,end).forEach(it=>{
+        const a = document.createElement('a');
+        a.className = 'text-link';
+        a.href = `?id=${encodeURIComponent(it.id)}`;
+        a.innerHTML =
+          `<span class="text-title">${it.title_html}</span>`+
+          `<span class="meta-sep">, </span><span class="author">${it.author}</span>`+
+          `<span class="meta-sep">, </span><span class="year">${it.year}</span>`;
+        itemsEl.appendChild(a);
+      });
+
+      // 페이지네이션
+      const total = Math.max(1, Math.ceil(arr.length/perPage));
+      pagerEl.innerHTML = '';
+      for(let i=1;i<=total;i++){
+        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = i;
+        if(i===page) link.classList.add('active');
+        link.addEventListener('click', e=>{
+          e.preventDefault();
+          page = i;
+          draw();
+          window.scrollTo({top:0,behavior:'smooth'});
+        });
+        pagerEl.appendChild(link);
+      }
+
+      // ✅ 첫 렌더(보통 1페이지) 직후 높이를 측정해서 baseline으로 고정
+      if (baselineHeight == null) {
+        // 렌더 완료 후 실제 높이 측정
+        baselineHeight = itemsEl.getBoundingClientRect().height;
+        itemsEl.style.minHeight = baselineHeight + 'px';
+      }
+    }
+
+    draw();
+  }
+    
 function renderDetail(id){
   const t = DATA[id];
   document.getElementById('detailView').hidden = false;
