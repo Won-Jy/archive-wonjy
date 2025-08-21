@@ -68,7 +68,7 @@ nav a:hover,
 nav a.active,
 nav a[aria-current="page"] {
   color: var(--blue);
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* ===========================
