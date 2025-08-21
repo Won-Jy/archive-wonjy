@@ -4,6 +4,7 @@ title: "Déambulatoire"
 type: "Project"
 year_start: 2020
 year_end: 2020
+date_start: 2020-07-31
 status: "Completed"
 tags: ["Topography"]
 cover: "/images/2020/deambulatoire/Déambulatoire_01_main views 01.webp"
