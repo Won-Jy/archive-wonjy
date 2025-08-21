@@ -223,3 +223,75 @@ main.list a:visited {
   color: inherit;
 }
 
+/* ===========================
+   Texts page (detail view)
+=========================== */
+
+/* 본문 영역 */
+article {
+  max-width: 740px;
+  padding: 40px 24px;
+  margin: 0;
+}
+
+/* 사이드바 */
+aside {
+  max-width: 280px;
+  padding: 40px 24px;
+  border-left: 1px solid var(--border);
+}
+
+/* 언어 탭 */
+.lang-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.lang-tabs button {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.9em;
+}
+.lang-tabs button.active {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+/* notes, 각주 */
+.notes {
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: var(--muted);
+}
+.notes p {
+  margin-bottom: 10px;
+}
+
+/* aside 안 링크 버튼 */
+.link-button {
+  display: block;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+}
+.link-button:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* 툴팁 (각주 hover) */
+.tooltip {
+  position: absolute;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  font-size: 0.85em;
+  max-width: 260px;
+  z-index: 10;
+}
