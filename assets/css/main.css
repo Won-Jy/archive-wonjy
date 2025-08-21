@@ -63,14 +63,6 @@ nav a {
   font-weight: normal;
 }
 
-/* nav hover/active: 파랑 + 밑줄 없음 */
-nav a:hover,
-nav a.active,
-nav a[aria-current="page"] {
-  color: var(--blue);
-  text-decoration: none !important;
-}
-
 /* ===========================
    Global Main spacing
 =========================== */
@@ -81,7 +73,7 @@ main {
 }
 
 /* ===========================
-   Contact page (contact.html)
+   Global link style (본문 전용)
 =========================== */
 a {
   color: var(--blue);
@@ -91,6 +83,27 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* ===========================
+   Navigation override (밑줄 제거)
+=========================== */
+header nav a,
+header nav a:link,
+header nav a:visited {
+  text-decoration: none;
+}
+
+header nav a:hover,
+header nav a.active,
+header nav a[aria-current="page"] {
+  color: var(--blue);
+  text-decoration: none !important;
+}
+
+/* ===========================
+   Contact page (contact.html)
+=========================== */
+/* (전역 a 규칙을 따르므로 별도 필요 없음) */
 
 /* ===========================
    Bio page (bio.html)
