@@ -5,11 +5,11 @@ layout: none
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Work | archive-wonjy</title>
-  <meta name="description" content="Won Jy's personal archiving site.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.png" type="image/x-icon">
   
+  <title>Work | archive-wonjy</title>
   <style>
     :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; }
     body{font-family:sans-serif;margin:0;line-height:1.6;color:var(--text)}
@@ -124,6 +124,7 @@ window.WORKS = [
     types: {{ p.types | jsonify }},        /* NEW preferred array */
     year_start: {{ p.year_start | jsonify }},
     year_end: {{ p.year_end | jsonify }},
+    date_start: {{ p.date_start | jsonify }},  /* ← NEW: use YYYY-MM-DD when possible */
     status: {{ p.status | jsonify }},
     tags: {{ p.tags | jsonify }},
     cover: {{ p.cover | jsonify }},
@@ -182,7 +183,22 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   }
 
   async function matchesQuery(item){ const term=q.value.trim(); if(!term) return true; const idx=await loadSearchIndex(); const found=idx.find(it=>it.url===item.url); if(!found) return false; return matchAllTokens(found.blob,term); }
-  function sortItems(arr){ return arr.sort((a,b)=>{ const sa=Number(a.year_start||0),sb=Number(b.year_start||0); return state.sort==='newest'?(sb-sa):(sa-sb); }); }
+
+  /* ▼ UPDATED: date_start(YYYY-MM-DD) 우선, 없으면 year_start(YYYY)로 정렬 */
+  function sortItems(arr){
+    return arr.sort((a,b)=>{
+      const parse = v=>{
+        if(!v) return null;
+        // 허용: YYYY-MM-DD / YYYY-MM / YYYY (Date가 안전하게 파싱함)
+        const d=new Date(v);
+        return isNaN(d) ? null : d;
+      };
+      const da = parse(a.date_start) || (a.year_start ? new Date(String(a.year_start)) : null) || new Date(0);
+      const db = parse(b.date_start) || (b.year_start ? new Date(String(b.year_start)) : null) || new Date(0);
+      return state.sort==='newest' ? (db - da) : (da - db);
+    });
+  }
+
   const yearDisplay=it=>it._years.display;
 
   async function render(){
