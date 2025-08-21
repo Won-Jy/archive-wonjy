@@ -126,6 +126,11 @@ permalink: /search_index.json
   color: #000;
   transition: color 0.2s;
   }
+.title:link,
+.title:visited {
+  color: #000;           /* 항상 검정 */
+  text-decoration: none; /* 밑줄 제거 */
+}
   .title:hover {
   color: #007BFF;
   }
