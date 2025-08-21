@@ -117,6 +117,7 @@ permalink: /search_index.json
 ]
 
 
+/* 타이틀 버튼 스타일 */
 .title {
   font-size: 1.2em;
   font-weight: bold;
@@ -124,9 +125,12 @@ permalink: /search_index.json
   text-decoration: none;
   color: #000;
   transition: color 0.2s;
-}
-
-.title:hover {
+  }
+  .title:hover {
   color: #007BFF;
-}
+  }
 
+/* 타이틀과 메뉴 간격 조절 */
+nav {
+  margin-left: 55px;
+  }
