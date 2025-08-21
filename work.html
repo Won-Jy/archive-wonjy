@@ -195,7 +195,7 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
       };
       const da = parse(a.date_start) || (a.year_start ? new Date(String(a.year_start)) : null) || new Date(0);
       const db = parse(b.date_start) || (b.year_start ? new Date(String(b.year_start)) : null) || new Date(0);
-      return state.sort==='newest' ? (db - da) : (da - db);
+      return state.sort==='newest' ? (da - db) : (db - da);
     });
   }
 
