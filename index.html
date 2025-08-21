@@ -63,6 +63,31 @@
     .lang-links a:hover {
       color: #007BFF;
     }
+
+    /* 타이틀 버튼 스타일 */
+  .site-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;          /* 기본 검정 */
+  transition: color .2s;
+  margin-right: 40px;   /* 오른쪽 메뉴와 간격 */
+}
+
+/* 아이콘 크기 = 글씨 크기 */
+.site-logo {
+  width: 1em;
+  height: 1em;
+  margin-right: 6px;
+}
+
+/* hover 시 파란색 */
+.site-title:hover {
+  color: var(--blue);
+}
+    
   </style>
   
   <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
@@ -70,7 +95,10 @@
 </head>
 <body>
   <header>
-    <div class="title">archive-wonjy.com</div>
+    <a href="index.html" class="site-title">
+    <img src="/favicon.ico" alt="logo" class="site-logo">
+    archive-wonjy.com
+    </a>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
