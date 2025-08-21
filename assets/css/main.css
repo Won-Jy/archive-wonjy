@@ -184,7 +184,7 @@ header nav a[aria-current="page"] {
 }
 
 /* ===========================
-   Texts page (list view)
+   Texts page — List view
 =========================== */
 main.list {
   padding: 50px 40px 60px 24px;
@@ -199,17 +199,40 @@ main.list {
   gap: 10px;
 }
 
-/* 버튼형 링크 (텍스트 항목) */
+/* 목록의 개별 항목 */
 .text-link {
   display: block;
   padding: 8px 10px;
   border: none;
   text-decoration: none;
-  color: inherit;
+  color: inherit;              /* 기본: 본문 글자색 */
 }
 
+/* hover/active: 파랑, 밑줄 없음 */
 .text-link:hover,
 .text-link:active {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+/* 쉼표 뒤 공백 문제 보정 (JS 수정 없이도 간격 확보) */
+.meta-sep { display: inline-block; margin-right: 4px; }
+.author, .year { margin-left: 4px; }
+
+/* 페이지네이션 */
+.pagination {
+  max-width: 740px;
+  margin: 16px 40px 40px 24px; /* 리스트와 같은 좌우 여백 */
+  text-align: center;
+}
+.pagination a {
+  margin: 0 4px;
+  text-decoration: none;
+  color: #000;
+  font-size: .95em;
+}
+.pagination a:hover,
+.pagination a.active {
   color: var(--blue);
   text-decoration: none;
 }
