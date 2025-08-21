@@ -89,3 +89,28 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* ===========================
+   Bio page (bio.html)
+=========================== */
+.lang-switch {
+  margin-bottom: 20px;
+}
+
+.lang-switch a {
+  font-size: 0.95em;
+  color: #555;
+  text-decoration: none;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lang-switch a:hover,
+.lang-switch a.active {
+  color: var(--blue);
+}
+
+.section-title {
+  margin-top: 40px;
+}
