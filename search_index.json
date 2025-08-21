@@ -10,22 +10,42 @@ permalink: /search_index.json
   {% comment %} ① Related texts 인덱싱 {% endcomment %}
   {% assign related_blob = "" %}
   {% if p.related_texts %}
-    {% for rel in p.related_texts %}
-      {% assign rid = rel.id | default: rel %}
-      {% assign t = site.data.texts[rid] %}
-      {% if t %}
-        {% capture one %}
-          {{ t.title_original.text_html | default: t.title_original | strip_html }}
-          {% if t.title_translated %}
-            {{ t.title_translated.text_html | default: t.title_translated | strip_html }}
-          {% endif %}
-          {% if t.author and t.author.name %} {{ t.author.name }}{% endif %}
-          {% if t.year %} {{ t.year }}{% endif %}
-        {% endcapture %}
-        {% assign related_blob = related_blob | append: " " | append: one | strip %}
+  {% for rel in p.related_texts %}
+    {% assign rid = rel.id | default: rel %}
+    {% assign t = site.data.texts[rid] %}
+    {% if t %}
+      {% capture title_part %}
+        {{ t.title_original.text_html | default: t.title_original | strip_html }}
+        {% if t.title_translated %}
+          {{ t.title_translated.text_html | default: t.title_translated | strip_html }}
+        {% endif %}
+      {% endcapture %}
+
+      {%- comment -%} author: 객체/문자열/HTML 모두 대응 {%- endcomment -%}
+      {% assign author_part = "" %}
+      {% if t.author %}
+        {% if t.author.name %}
+          {% assign author_part = t.author.name %}
+        {% else %}
+          {% assign author_part = t.author | strip_html %}
+        {% endif %}
+      {% elsif t.author_html %}
+        {% assign author_part = t.author_html | strip_html %}
       {% endif %}
-    {% endfor %}
-  {% endif %}
+
+      {%- comment -%} source_html도 strip해서 포함 (예: 크레딧에 이름이 있을 수 있음) {%- endcomment -%}
+      {% assign source_part = "" %}
+      {% if t.source_html %}
+        {% assign source_part = t.source_html | strip_html %}
+      {% endif %}
+
+      {% capture one %}
+        {{ title_part }} {{ author_part }} {% if t.year %} {{ t.year }}{% endif %} {{ source_part }}
+      {% endcapture %}
+      {% assign related_blob = related_blob | append: " " | append: one | strip %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
   {% comment %} ② Linked works 인덱싱 {% endcomment %}
   {% assign linked_blob = "" %}
