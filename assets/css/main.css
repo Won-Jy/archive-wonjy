@@ -86,8 +86,18 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+/* ===========================
+   Navigation links (override)
+=========================== */
+nav a {
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a.active,
+nav a[aria-current="page"] {
+  color: var(--blue);
+  text-decoration: none;   /* 밑줄 제거 */
 }
 
 /* ===========================
