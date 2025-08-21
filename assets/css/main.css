@@ -184,144 +184,239 @@ header nav a[aria-current="page"] {
 }
 
 /* ===========================
-   Texts page — List view
+   Texts page — List (from backup)
 =========================== */
-main.list {
-  padding: 50px 40px 60px 24px;
-  max-width: 740px;
-  margin: 0;
-  min-height: 400px;
+:root{
+  --page-width: 1200px;
+  --page-left: 24px;
+  --pager-bottom: 220px;
+  --pager-height: 22px;
+  --gap-after-list: 5px;
+  /* 목록 블록 고정 높이 */
+  --list-height: 560px;
 }
 
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+main.list{
+  padding:50px 40px 10px 24px;
+  max-width:740px;
+  margin:0;
+  min-height:400px;             /* 있어도 무방하지만 아래 height가 우선 */
+  position: static;
+  height: var(--list-height);   /* ← 세로 고정 */
+  padding-bottom: 0;
 }
 
-/* 목록의 개별 항목 */
-.text-link {
-  display: block;
-  padding: 8px 10px;
-  border: none;
+.items{display:flex;flex-direction:column;gap:10px}
+
+/* 목록 화면에서만 링크 스타일 */
+main.list a{
+  color: inherit;
   text-decoration: none;
-  color: inherit;              /* 기본: 본문 글자색 */
 }
-
-/* hover/active: 파랑, 밑줄 없음 */
-.text-link:hover,
-.text-link:active {
+main.list a:hover,
+main.list a:active{
   color: var(--blue);
   text-decoration: none;
 }
+main.list a:visited{
+  color: inherit;
+  text-decoration: none;
+}
 
-/* 쉼표 뒤 공백 문제 보정 (JS 수정 없이도 간격 확보) */
-.meta-sep { display: inline-block; margin-right: 4px; }
-.author, .year { margin-left: 4px; }
+.text-link{
+  display:block;
+  padding:8px 10px;
+  border:none;
+  text-decoration:none;
+  color: inherit;
+}
+.text-link:hover,
+.text-link:active,
+.text-link:focus{
+  color:var(--blue);
+  text-decoration:none;
+  border:none;
+  outline:none;
+}
+
+/* hover 시 자식 span도 파랑 */
+.text-link:hover .text-title,
+.text-link:hover .author,
+.text-link:hover .year,
+.text-link:active .text-title,
+.text-link:active .author,
+.text-link:active .year,
+.text-link:focus .text-title,
+.text-link:focus .author,
+.text-link:focus .year{
+  color: var(--blue);
+}
+
+.text-title{font-style:italic}
+.meta-sep{ margin:0 6px 0 0; color:var(--muted); }
+.author,.year{color:#444}
 
 /* 페이지네이션 */
-.pagination {
+.pagination{
+  position: static;
   max-width: 740px;
-  margin: 16px 40px 40px 24px; /* 리스트와 같은 좌우 여백 */
+  margin: 16px 40px 40px 24px;  /* 리스트와 같은 좌우 여백 */
   text-align: center;
 }
-.pagination a {
-  margin: 0 4px;
-  text-decoration: none;
-  color: #000;
-  font-size: .95em;
+.pagination a{
+  margin: 0 6px;
+  text-decoration:none;
+  color:#000;
+  font-size:.95em;
 }
 .pagination a:hover,
-.pagination a.active {
+.pagination a.active{ color:var(--blue); }
+
+/* ===========================
+   Texts page — Detail (from backup)
+=========================== */
+main.detail{
+  display:grid;
+  grid-template-columns: auto 320px;
+  gap:16px;
+  max-width:1200px;
+  margin:0;
+  padding:50px 40px 60px 24px;
+}
+
+#detailArticle{ width:min(90ch, 100%); }
+
+@media (max-width:960px){
+  main.detail{grid-template-columns:1fr}
+  #detailArticle{ width:100%; }
+  aside{position:static}
+}
+
+article .text-body, article .notes{ max-width:100%; }
+aside{ position:static; top:24px; align-self:start }
+
+h1,h2,h3,h4{font-weight:bold;margin:.2em 0 .4em}
+.meta{display:flex;align-items:center;gap:8px;margin:.25rem 0 .75rem;color:var(--muted);font-size:.95em;font-weight:bold;}
+
+.lang-tabs{display:flex;gap:8px;margin:.5rem 0 1rem}
+.lang-tabs button{
+  border:none;background:#fff;padding:0;font:inherit;cursor:pointer;color:#444
+}
+.lang-tabs button:hover{color:var(--blue)}
+.lang-tabs button.active{color:var(--blue)}
+.lang-tabs .orig-badge{margin-left:6px;font-size:.8em;color:var(--muted)}
+
+.notes{margin-top:24px}
+.notes ol{margin:0;padding-left:20px}
+article .notes li{ margin:.6rem 0; }
+.note-ref{cursor:pointer;text-decoration:none;color:var(--blue)}
+.note-num{color:var(--blue);text-decoration:none;margin-right:6px}
+.note-num:hover{text-decoration:underline}
+
+/* 툴팁 파랑 테두리 */
+.tooltip{
+  position:fixed;z-index:1000;max-width:360px;border:1px solid var(--blue);background:#fff;
+  padding:8px 10px;box-shadow:0 2px 10px rgba(0,0,0,.08);font-size:.95em;display:none
+}
+
+/* 사이드 블럭 & 구분선 */
+.aside-block{padding:14px 0}
+.divider{height:1px;background:var(--border);margin:16px 0}
+main.detail article .divider{ max-width:100%; width:100%; margin:32px 0; }
+main.detail aside .divider{ max-width:none; width:100%; }
+
+/* 본문/사이드바 링크: 방문 흔적 제거 + 기존 느낌 유지 */
+main.detail article a,
+main.detail aside a{
+  color: var(--blue);
+  text-decoration: none;
+}
+main.detail article a:hover,
+main.detail article a:active,
+main.detail aside a:hover,
+main.detail aside a:active{
+  color: var(--blue);
+  text-decoration: underline;
+}
+main.detail article a:visited,
+main.detail aside a:visited{
   color: var(--blue);
   text-decoration: none;
 }
 
-/* ===========================
-   Texts page — Detail view
-=========================== */
-
-/* 레이아웃 */
-main.detail{
-  display: grid;
-  grid-template-columns: minmax(0,740px) 1px minmax(0,280px);
-  gap: 0;
-  padding: 40px 24px 60px 24px;
-}
-main.detail > article{ padding-right: 24px; }
-main.detail > aside{ padding-left: 24px; }
-main.detail > .divider,
-main.detail::before{
-  content:"";
-  width:1px;height:auto;background:var(--border);
-}
-
-/* 타이틀/메타 */
-.text-title{
-  font-style: italic;       /* 제목 이탤릭 유지 */
-  font-weight: 600;
-  font-size: clamp(1.25rem, 1.6vw, 1.45rem);
-  line-height: 1.35;
-  display: inline-block;
-  margin: 0 0 6px 0;
-}
-.meta{ color:#444; font-size:.95em; margin: 0 0 18px 0; }
-
-/* 본문 타이포(필요시 최소치만) */
-.text-body p{ margin: 0 0 12px 0; }
-.text-body i, .text-body em{ font-style: italic; }
-
-/* 언어 탭 */
-.lang-tabs{ display:flex; gap:8px; margin: 16px 0 18px 0; }
-.lang-btn{
-  background:none; border:none; padding:4px 8px; cursor:pointer;
-  color:#555; font-size:.92em;
-}
-.lang-btn .orig-badge{ margin-left:6px; font-size:.85em; color:#888; }
-.lang-btn:hover,
-.lang-btn.active{ color: var(--blue); }
-
-/* 구분선 */
-.divider{ border:none; border-top:1px solid var(--border); margin: 26px 0; }
-
-/* 각주 섹션 */
-.notes{ margin-top: 24px; }
-.notes h3{ margin: 0 0 12px 0; font-size:1em; color:#000; }
-.notes-variants,
-.notes-list{ margin:0; padding-left: 20px; }
-.notes-list li{ margin: 0 0 8px 0; }
-.note-num{ color:#888; text-decoration:none; margin-right: 6px; }
-.note-num:hover{ color: var(--blue); }
-
-/* 본문 내 각주 참조(sup) */
-sup{ line-height: 0; }
-a.note-ref{ text-decoration:none; }
-a.note-ref:hover{ color: var(--blue); text-decoration: none; }
-
-/* 툴팁(요청대로 파랑 테두리) */
-.tooltip{
-  display:none; position:absolute; z-index:20;
-  background:#fff; border:1px solid var(--blue);
-  padding:6px 8px; font-size:.9em; max-width: 320px;
-  box-shadow: 0 2px 10px rgba(0,0,0,.06);
-}
-
-/* 사이드바 */
-aside .aside-block + .aside-block{ margin-top: 18px; }
-aside h4{ margin: 0 0 8px 0; font-size: 1em; color:#000; }
-
-/* Related works 리스트(대시) */
-.related-works{ list-style:none; padding:0; margin:0; }
-.related-works li{ position:relative; padding-left:14px; margin: 6px 0; }
-.related-works li::before{ content:"–"; position:absolute; left:0; color:var(--muted); }
-
 /* 사이드 링크 버튼 */
-.link-button{
-  display:inline-block; padding:6px 8px;
-  border:1px solid var(--border); text-decoration:none; color:inherit;
+.link-button {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  color: var(--blue);
+  font-size: 0.95em;
+  line-height: 1.4;
 }
-.link-button:hover{ border-color: var(--blue); color: var(--blue); text-decoration:none; }
+.link-button:hover,
+.link-button:focus,
+.link-button:active {
+  color: var(--blue);
+  text-decoration: underline;
+  outline: none;
+}
+.link-button:visited {
+  color: var(--blue);
+  text-decoration: none;
+}
 
-/* 상세 화면의 일반 링크는 본문 스타일을 유지(밑줄 X) */
-main.detail a{ text-decoration:none; }
-main.detail a:hover{ text-decoration:none; }
+/* Related works: 불릿 제거 + 대시 */
+.related-works { list-style: none; margin: 8px 0 0; padding: 0; }
+.related-works li {
+  margin: 0 0 6px 0;
+  position: relative;
+  padding-left: 14px;
+}
+.related-works li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+/* 텍스트 본문 figure(이미지+캡션) — work와 동일하게 */
+.text-body figure.text-image{ margin:0; }
+.text-body figure.text-image img{
+  width:75%; height:auto; display:block; margin:0 auto 3px; /* 가운데 정렬 */
+}
+.text-body figure.text-image .caption{
+  max-width:75%;               /* 이미지와 동일 폭 */
+  margin:0 auto 40px;          /* 가운데 정렬 + 아래 여백 */
+  font-size:0.8em;
+  color:var(--muted);
+  text-align:left;
+}
+
+/* 전시 라벨 박스 */
+.label-box{
+  border:2px solid #000;
+  padding:20px;
+  margin:40px auto;
+  max-width:75%;
+  font-size:0.95em;
+  line-height:1.6;
+  background:#fff;
+}
+
+/* Back to top */
+#backToTop{
+  position: fixed;
+  right: 24px;
+  bottom: 20px;
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--blue);
+  text-decoration: none;
+  font-size: .95em;
+}
+#backToTop:hover{ text-decoration: underline; }
+#backToTop:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
