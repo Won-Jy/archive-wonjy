@@ -88,3 +88,32 @@ header.site nav{margin-left:auto;display:flex;gap:20px;flex-wrap:wrap}
   body{letter-spacing:.1px;line-height:1.55}
   .title{font-size:1.05em}
 }
+
+
+
+/* 메인메뉴 */
+
+/* 데스크탑 기본 */
+header.site{display:flex;align-items:center;gap:24px}
+header.site .title{margin-right:auto}
+header.site nav{display:flex;gap:20px;flex-wrap:wrap}
+
+/* 992px 이하: 헤더 줄바꿈 허용 */
+@media (max-width: 992px){
+  header.site{flex-wrap:wrap}
+  header.site nav{margin-left:0}
+}
+
+/* 768px 이하: 메뉴 세로 스택 */
+@media (max-width: 768px){
+  header.site nav{
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+  header.site nav a{
+    padding:8px 0; /* 터치 간격 확보 */
+  }
+}
+
