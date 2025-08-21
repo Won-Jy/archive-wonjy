@@ -2,43 +2,51 @@
 layout: null
 permalink: /search_index.json
 ---
+
 [
 {% assign works = site.pages | where: "layout", "work" %}
 {% for p in works %}
-{% assign image_captions = "" %}
-{% if p.images %}
-  {% for im in p.images %}
-    {% if im.caption %}
-      {% assign image_captions = image_captions | append: " " | append: im.caption %}
-    {% endif %}
-  {% endfor %}
-{% endif %}
-{
-  "url": "{{ p.url | relative_url }}",
-  "title": {{ p.title | jsonify }},
-  "type": {{ p.type | jsonify }},
-  "status": {{ p.status | jsonify }},
-  "year_start": {{ p.year_start | jsonify }},
-  "year_end": {{ p.year_end | jsonify }},
-  "tags": {{ p.tags | jsonify }},
-  "summary": {{ p.summary | jsonify }},
-  "description": {{ p.description | jsonify }},
-  "cover_caption": {{ p.cover_caption | jsonify }},
-  "image_captions": {{ image_captions | strip_html | jsonify }},
-  "blob": {{
-    (p.title | append: " "
-      | append: p.type | append: " "
-      | append: p.status | append: " "
-      | append: p.year_start | append: " "
-      | append: p.year_end | append: " "
-      | append: p.tags | append: " "
-      | append: p.summary | append: " "
-      | append: p.description | append: " "
-      | append: p.cover_caption | append: " "
-      | append: image_captions | append: " "
-      | append: p.content
-    ) | strip_html | normalize_whitespace | truncate: 12000 | jsonify
-  }}
-}{% unless forloop.last %},{% endunless %}
+  {% comment %}
+    Related texts 제목 수집
+    - p.related_texts가 ["id1","id2"] 또는 [{id:"id1"}, {id:"id2"}] 어떤 형식이든 대응
+    - _data/texts/<id>.yml 구조 예:
+      title_original.text_html, (선택) title_translated.text_html, author.name ...
+  {% endcomment %}
+  {% assign related_blob = "" %}
+  {% if p.related_texts %}
+    {% for rel in p.related_texts %}
+      {% assign rid = rel.id | default: rel %}
+      {% assign t = site.data.texts[rid] %}
+      {% if t %}
+        {% capture one %}
+          {{ t.title_original.text_html | default: t.title_original | strip_html }} 
+          {% if t.title_translated %}
+            {{ t.title_translated.text_html | default: t.title_translated | strip_html }}
+          {% endif %}
+          {% if t.author and t.author.name %} {{ t.author.name }}{% endif %}
+          {% if t.year %} {{ t.year }}{% endif %}
+        {% endcapture %}
+        {% assign related_blob = related_blob | append: " " | append: one | strip %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% comment %}
+    작업 본문/메타 + related_blob을 하나의 blob으로
+  {% endcomment %}
+  {% capture blob %}
+    {{ p.title }} 
+    {% if p.summary %} {{ p.summary }} {% endif %}
+    {% if p.description %} {{ p.description }} {% endif %}
+    {% if p.types %} {{ p.types | join: " " }} {% elsif p.type %} {{ p.type }} {% endif %}
+    {% if p.status %} {{ p.status }} {% endif %}
+    {% if p.tags %} {{ p.tags | join: " " }} {% endif %}
+    {{ related_blob }}
+  {% endcapture %}
+
+  {
+    "url": {{ p.url | relative_url | jsonify }},
+    "blob": {{ blob | strip_newlines | strip | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
