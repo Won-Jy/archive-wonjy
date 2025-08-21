@@ -140,9 +140,20 @@ header nav a[aria-current="page"] {
 =========================== */
 .lang-switch.is-compact a {
   font-size: 0.9em;
-  margin-right: 8px;   /* 버튼들 사이 간격 */
-  margin-left: 6px;    /* 텍스트(Book, CV)와 첫 버튼 사이 간격 */
-  color: #666;
+  color: #666;                     /* 기본 회색 */
+  margin-right: 8px !important;    /* 버튼들 사이 */
+  margin-left: 0 !important;
+}
+
+/* 첫 번째 버튼만 텍스트와 간격 */
+.lang-switch.is-compact a:first-child {
+  margin-left: 6px !important;
+}
+
+/* hover/active 시 파랑 유지 */
+.lang-switch.is-compact a:hover,
+.lang-switch.is-compact a.active {
+  color: var(--blue) !important;
 }
 
 
