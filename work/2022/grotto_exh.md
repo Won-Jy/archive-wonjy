@@ -4,6 +4,7 @@ title: "Grotto"
 type: "Exhibition"
 year_start: 2022
 year_end: 2022
+date_start: 2022-05-05
 status: "Completed"
 tags: ["Hospitality"]
 cover: "/images/2020/grotto/Grotto_01_main views 01.webp"
