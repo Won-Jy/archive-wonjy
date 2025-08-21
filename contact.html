@@ -46,7 +46,15 @@
       color: #007BFF;
       text-decoration: none;
     }
-  </style>
+
+    /* 타이틀(헤더의 왼쪽 로고 텍스트)만 확실히 hover 파랑 */
+    header .title:link,
+    header .title:visited { color:#000; text-decoration:none; }
+
+    header .title:hover,
+    header .title:active { color:var(--blue) !important; text-decoration:none; }
+        
+    </style>
 
   <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
 
