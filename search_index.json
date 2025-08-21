@@ -47,43 +47,55 @@ permalink: /search_index.json
   {% endfor %}
 {% endif %}
 
-  {% comment %} ② Linked works 인덱싱 {% endcomment %}
-  {% assign linked_blob = "" %}
-  {% if p.linked_works %}
-    {% for lw in p.linked_works %}
-      {% comment %}
-        지원 형태:
-        - 문자열(슬러그 or URL)
-        - 객체 { id: "…" }  또는 { url: "…" }
-      {% endcomment %}
-      {% assign lw_id  = lw.id  | default: nil %}
-      {% assign lw_url = lw.url | default: nil %}
-      {% assign lw_raw = lw %}
+  {% comment %} ② Linked works 인덱싱 (label/path 지원) {% endcomment %}
+{% assign linked_blob = "" %}
+{% if p.linked_works %}
+  {% for lw in p.linked_works %}
+    {%- comment -%}
+      지원 형태:
+      - 객체 { label: "...", path: "/work/2022/....html" }
+      - (기존 호환) 문자열 / { id: "..."} / { url: "..." }
+    {%- endcomment -%}
 
-      {% assign target = nil %}
-      {% if lw_url %}
-        {% assign target = works | where: "url", lw_url | first %}
-      {% elsif lw_id %}
-        {% assign target = works | where: "id",  lw_id  | first %}
-      {% else %}
-        {% assign target = works | where: "url", lw_raw | first %}
-        {% if target == nil %}
-          {% assign target = works | where: "id",  lw_raw | first %}
-        {% endif %}
-      {% endif %}
+    {%- assign lw_label = lw.label | default: "" -%}
+    {%- assign lw_path  = lw.path  | default: "" -%}
+    {%- assign lw_id    = lw.id    | default: nil -%}
+    {%- assign lw_url   = lw.url   | default: nil -%}
+    {%- assign lw_raw   = lw -%}
 
-      {% if target %}
-        {% capture one_linked %}
-          {{ target.title }}
-          {% if target.types %} {{ target.types | join: " " }} {% elsif target.type %} {{ target.type }} {% endif %}
-          {% if target.year_start %} {{ target.year_start }}{% endif %}
-          {% if target.year_end and target.year_end != target.year_start %} – {{ target.year_end }}{% endif %}
-          {% if target.tags %} {{ target.tags | join: " " }}{% endif %}
-        {% endcapture %}
-        {% assign linked_blob = linked_blob | append: " " | append: one_linked | strip %}
+    {%- comment -%} 2-1) label을 우선 blob에 추가(HTML 제거) {%- endcomment -%}
+    {% if lw_label %}
+      {% assign linked_blob = linked_blob | append: " " | append: lw_label | strip_html | strip %}
+    {% endif %}
+
+    {%- comment -%} 2-2) 대상 페이지를 찾아 제목/연도/태그 등도 보강 {%- endcomment -%}
+    {% assign target = nil %}
+    {% if lw_path and lw_path != "" %}
+      {% assign target = works | where: "url", lw_path | first %}
+    {% elsif lw_url %}
+      {% assign target = works | where: "url", lw_url | first %}
+    {% elsif lw_id %}
+      {% assign target = works | where: "id",  lw_id  | first %}
+    {% else %}
+      {% assign target = works | where: "url", lw_raw | first %}
+      {% if target == nil %}
+        {% assign target = works | where: "id",  lw_raw | first %}
       {% endif %}
-    {% endfor %}
-  {% endif %}
+    {% endif %}
+
+    {% if target %}
+      {% capture one_linked %}
+        {{ target.title }}
+        {% if target.types %} {{ target.types | join: " " }} {% elsif target.type %} {{ target.type }} {% endif %}
+        {% if target.year_start %} {{ target.year_start }}{% endif %}
+        {% if target.year_end and target.year_end != target.year_start %} – {{ target.year_end }}{% endif %}
+        {% if target.tags %} {{ target.tags | join: " " }}{% endif %}
+      {% endcapture %}
+      {% assign linked_blob = linked_blob | append: " " | append: one_linked | strip %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 
   {% comment %} ③ 현재 작업의 본문 + Related + Linked 결합 {% endcomment %}
   {% capture blob %}
