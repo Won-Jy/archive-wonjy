@@ -1,0 +1,90 @@
+/* 0) 전역: 유동 타이포, 기본 여백 */
+:root{
+  --blue:#007BFF;
+  --text:#222;
+  --muted:#666;
+  --border:#ddd;
+  --page-max:1200px;
+  --gap:16px;
+}
+html,body{margin:0;padding:0;color:var(--text);line-height:1.6}
+body{font-family:sans-serif;font-size:clamp(14px, 2.2vw, 16px)}
+
+/* 1) 공통 컨테이너 폭 */
+main{max-width:var(--page-max);margin:0 auto;padding:24px}
+header.site{max-width:var(--page-max);margin:0 auto;padding:20px 24px}
+
+/* 2) 헤더/내비게이션 */
+header.site{display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--border)}
+.title{font-size:1.2em;text-transform:lowercase}
+header.site nav{margin-left:auto;display:flex;gap:20px;flex-wrap:wrap}
+
+/* 3) work 아카이브 리스트/그리드 기본값 */
+.items{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.item-card .thumb{aspect-ratio:4/3;object-fit:cover;width:100%;height:auto;display:block}
+.item-card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+
+/* 4) 필터/검색 바 */
+.filters{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.filters .group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.search input{box-sizing:border-box;width:220px;max-width:100%}
+
+/* 5) 작업 디테일 인트로 2열 */
+.intro{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:start}
+.intro-media img,.intro-media video{width:100%;height:auto;display:block}
+.intro-text{min-width:0}
+
+/* 6) 텍스트 세부 페이지: 본문+사이드 */
+.text-layout{display:grid;grid-template-columns:3fr 1.2fr;gap:32px}
+.text-layout .sidebar a{display:block;padding:6px 0;text-decoration:none}
+
+/* 7) 비디오 임베드: 가로 100%, 비율 유지 */
+.frame{position:relative}
+.frame iframe{width:100%;height:100%;position:absolute;inset:0;border:0}
+.frame[style*="--ratio"]::before{
+  content:"";display:block;padding-top:calc(100% / (var(--ratio)));
+}
+
+/* 8) 페이지네이션 터치 영역 */
+.pagination{display:flex;justify-content:center;gap:8px;margin:16px 0 24px}
+.pagination a{display:inline-flex;align-items:center;justify-content:center;
+  min-width:36px;min-height:36px;text-decoration:none;color:#000;border-radius:6px;padding:0 8px}
+.pagination a:hover,.pagination a.active{color:var(--blue)}
+
+/* ───────── 브레이크포인트 ───────── */
+
+/* 1200px 이하: 그리드 3→2 */
+@media (max-width: 1200px){
+  .items{grid-template-columns:repeat(2,1fr)}
+  .intro{grid-template-columns:1fr 1fr}
+}
+
+/* 992px 이하: 헤더 줄바꿈, 필터 줄바꿈 */
+@media (max-width: 992px){
+  header.site{flex-wrap:wrap}
+  header.site nav{margin-left:0}
+  .text-layout{grid-template-columns:1fr;gap:20px}
+}
+
+/* 768px 이하: 아카이브 2→1, 인트로 1열 */
+@media (max-width: 768px){
+  main{padding:20px 16px}
+  .items{grid-template-columns:1fr}
+  .intro{grid-template-columns:1fr;gap:16px}
+  .filters{flex-direction:column;align-items:stretch}
+  .filters .group{justify-content:flex-start}
+  .search input{width:100%}
+}
+
+/* 600px 이하: 여백 축소, 메타 줄바꿈 최적화 */
+@media (max-width: 600px){
+  header.site{padding:16px}
+  .item-card .meta{gap:6px}
+  .pagination{gap:6px}
+}
+
+/* 420px 이하: 아주 작은 폰에서 자간·행간 살짝 조정 */
+@media (max-width: 420px){
+  body{letter-spacing:.1px;line-height:1.55}
+  .title{font-size:1.05em}
+}
