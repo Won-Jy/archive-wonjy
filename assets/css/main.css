@@ -1,0 +1,21 @@
+/* 공통 CSS */
+:root { 
+  --blue:#007BFF; 
+  --border:#ddd; 
+  --text:#222; 
+  --muted:#666; 
+}
+
+html, body {
+  margin:0; 
+  padding:0; 
+  font-family:sans-serif; 
+  line-height:1.6; 
+  color:var(--text);
+}
+
+/* header와 main에 공통 왼쪽 여백 */
+header,
+main {
+  padding-left:40px;   /* 원래 24px → 40px */
+}
