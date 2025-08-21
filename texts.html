@@ -83,8 +83,8 @@ function renderList(){
       a.href = `?id=${encodeURIComponent(it.id)}`;
       a.innerHTML =
         `<span class="text-title">${it.title_html}</span>`+
-        `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
-        `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+        `<span class="meta-sep">, </span><span class="author">${it.author}</span>`+
+        `<span class="meta-sep">, </span><span class="year">${it.year}</span>`;
       itemsEl.appendChild(a);
     });
     const total = Math.max(1, Math.ceil(arr.length/perPage));
