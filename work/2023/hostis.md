@@ -4,6 +4,7 @@ title: "Hostis"
 types: ["Project", "Exhibition"]
 year_start: 2023
 year_end: 2024
+date_start: 2022-06-04
 status: "Completed"
 tags: ["Hospitality"]
 cover: "/images/2023/hostis/Hostis_01_Vue extérieure 01.webp"
