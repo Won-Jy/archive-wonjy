@@ -106,7 +106,19 @@ a:hover {
   transition: color 0.2s;
 }
 
-.lang-switch a:hover,
+.lang-switch a {
+  font-size: 0.95em;
+  color: #555;
+  text-decoration: none;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lang-switch a:hover {
+  color: var(--blue);
+}
+
 .lang-switch a.active {
   color: var(--blue);
 }
