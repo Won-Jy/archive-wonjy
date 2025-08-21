@@ -134,3 +134,29 @@ header nav a[aria-current="page"] {
 .section-title {
   margin-top: 40px;
 }
+
+/* ===========================
+   Home page (index.html)
+=========================== */
+.entry {
+  margin-bottom: 12px;
+}
+
+.entry-label {
+  display: inline-block;
+  min-width: 40px;
+  color: #000;
+  font-weight: normal;
+}
+
+.lang-links a {
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #666;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.lang-links a:hover {
+  color: var(--blue);
+}
