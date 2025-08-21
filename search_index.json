@@ -115,27 +115,3 @@ permalink: /search_index.json
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
-
-
-/* 타이틀 버튼 스타일 */
-.title {
-  font-size: 1.2em;
-  font-weight: bold;
-  text-transform: lowercase;
-  text-decoration: none;
-  color: #000;
-  transition: color 0.2s;
-  }
-.title:link,
-.title:visited {
-  color: #000;           /* 항상 검정 */
-  text-decoration: none; /* 밑줄 제거 */
-}
-  .title:hover {
-  color: #007BFF;
-  }
-
-/* 타이틀과 메뉴 간격 조절 */
-nav {
-  margin-left: 55px;
-  }
