@@ -200,25 +200,6 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   });
 }
 
-    const A = parseParts(a.date_start) || {y:Number(a.year_start)||0,m:0,d:0};
-    const B = parseParts(b.date_start) || {y:Number(b.year_start)||0,m:0,d:0};
-
-    if(state.sort==='newest'){
-      // 연도는 큰 값 우선
-      if(A.y!==B.y) return B.y - A.y;
-      // 연도 같으면 월은 작은 값 우선
-      if(A.m!==B.m) return A.m - B.m;
-      // 월 같으면 일도 작은 값 우선
-      return A.d - B.d;
-    }else{
-      // oldest 반대 규칙
-      if(A.y!==B.y) return A.y - B.y;
-      if(A.m!==B.m) return B.m - A.m;
-      return B.d - A.d;
-    }
-  });
-}
-
   const yearDisplay=it=>it._years.display;
 
   async function render(){
