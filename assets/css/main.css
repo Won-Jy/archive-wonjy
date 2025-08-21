@@ -140,7 +140,8 @@ header nav a[aria-current="page"] {
 =========================== */
 .lang-switch.is-compact a {
   font-size: 0.9em;
-  margin-right: 10px;
+  margin-right: 8px;   /* 버튼들 사이 간격 */
+  margin-left: 6px;    /* 텍스트(Book, CV)와 첫 버튼 사이 간격 */
   color: #666;
 }
 
