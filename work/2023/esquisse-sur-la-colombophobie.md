@@ -4,6 +4,7 @@ title: "Esquisse sur la colombophobie"
 types: ["Single work", "Writing"]
 year_start: 2023
 year_end: 2023
+date_start: 2022-12-05
 status: "Completed"
 tags: ["Pigeon"]
 cover: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 01.webp"
