@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>archive-won jy.com</title>
   <meta name="description" content="Won Jy's personal archiving site.">
-  <link rel="icon" href="/favicon.png" type="image/x-icon">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <style>
     body {
       font-family: sans-serif;
@@ -76,6 +76,17 @@
   margin-right: 40px;   /* 오른쪽 메뉴와 간격 */
 }
 
+  /* 방문/기본 색 고정 (보라색 방지) */
+  .site-title:link,
+  .site-title:visited {
+  color: #000;
+  }
+
+  /* hover 시 파랑 */
+  .site-title:hover {
+  color: #007BFF;
+  }
+
 /* 아이콘 크기 = 글씨 크기 */
 .site-logo {
   width: 1em;
@@ -83,11 +94,7 @@
   margin-right: 6px;
 }
 
-/* hover 시 파란색 */
-.site-title:hover {
-  color: var(--blue);
-}
-    
+
   </style>
   
   <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
