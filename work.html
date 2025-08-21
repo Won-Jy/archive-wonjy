@@ -186,18 +186,35 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
 
   /* ▼ UPDATED: date_start(YYYY-MM-DD) 우선, 없으면 year_start(YYYY)로 정렬 */
   function sortItems(arr){
-    return arr.sort((a,b)=>{
-      const parse = v=>{
-        if(!v) return null;
-        // 허용: YYYY-MM-DD / YYYY-MM / YYYY (Date가 안전하게 파싱함)
-        const d=new Date(v);
-        return isNaN(d) ? null : d;
+  return arr.sort((a,b)=>{
+    const parseParts = v=>{
+      if(!v) return null;
+      const parts = String(v).split('-'); // YYYY-MM-DD
+      return {
+        y: parseInt(parts[0]||0,10),
+        m: parseInt(parts[1]||0,10) || 0,
+        d: parseInt(parts[2]||0,10) || 0
       };
-      const da = parse(a.date_start) || (a.year_start ? new Date(String(a.year_start)) : null) || new Date(0);
-      const db = parse(b.date_start) || (b.year_start ? new Date(String(b.year_start)) : null) || new Date(0);
-      return state.sort==='newest' ? (da - db) : (db - da);
-    });
-  }
+    };
+
+    const A = parseParts(a.date_start) || {y:Number(a.year_start)||0,m:0,d:0};
+    const B = parseParts(b.date_start) || {y:Number(b.year_start)||0,m:0,d:0};
+
+    if(state.sort==='newest'){
+      // 연도는 큰 값 우선
+      if(A.y!==B.y) return B.y - A.y;
+      // 연도 같으면 월은 작은 값 우선
+      if(A.m!==B.m) return A.m - B.m;
+      // 월 같으면 일도 작은 값 우선
+      return A.d - B.d;
+    }else{
+      // oldest 반대 규칙
+      if(A.y!==B.y) return A.y - B.y;
+      if(A.m!==B.m) return B.m - A.m;
+      return B.d - A.d;
+    }
+  });
+}
 
   const yearDisplay=it=>it._years.display;
 
