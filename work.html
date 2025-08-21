@@ -187,16 +187,16 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   /* ▼ UPDATED: date_start(YYYY-MM-DD) 우선, 없으면 year_start(YYYY)로 정렬 */
   function sortItems(arr){
   return arr.sort((a,b)=>{
-    const parse=v=>{
-      if(!v) return null;
-      const d=new Date(v);
-      return isNaN(d)?null:d;
+    const parse = v => {
+      if (!v) return null;
+      const d = new Date(v);        // YYYY-MM-DD / YYYY-MM / YYYY 허용
+      return isNaN(d) ? null : d;
     };
     const da = parse(a.date_start) || (a.year_start ? new Date(String(a.year_start)) : null) || new Date(0);
     const db = parse(b.date_start) || (b.year_start ? new Date(String(b.year_start)) : null) || new Date(0);
 
-    // 최신순: 큰 날짜 우선
-    return state.sort==='newest' ? (db - da) : (da - db);
+    // 최신순: 큰 날짜(최근) 우선 / 오래된순: 작은 날짜(과거) 우선
+    return state.sort === 'newest' ? (db - da) : (da - db);
   });
 }
 
