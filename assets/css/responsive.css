@@ -26,3 +26,21 @@
 @media (max-width: 420px){
   body{letter-spacing:.1px;line-height:1.55}
 }
+
+
+/* ===== Title as home button (컴퓨터+반응형 공통) ===== */
+header .title:link,
+header .title:visited{
+  color:#000;
+  text-decoration:none;
+}
+
+header .title:hover,
+header .title:active{
+  color:#007BFF;
+  text-decoration:none;
+}
+
+/* (선택) 타이틀-메뉴 간격을 페이지 공통으로 맞추려면 여기에서 제어 */
+header nav{ margin-left:55px; }  /* 필요 시 값 조절 */
+
