@@ -108,32 +108,42 @@ header nav a[aria-current="page"] {
 /* ===========================
    Bio page (bio.html)
 =========================== */
+.section-title {
+  margin-top: 40px;
+}
+
+/* ===========================
+   Language switch (공통)
+=========================== */
 .lang-switch {
   margin-bottom: 20px;
 }
 
 .lang-switch a {
   font-size: 0.95em;
-  color: #555;                 /* 기본 회색 */
-  text-decoration: none;       /* 밑줄 없음 */
-  margin-right: 20px;          /* 버튼 간격 넉넉히 */
+  color: #555;
+  text-decoration: none;
+  margin-right: 20px;
   cursor: pointer;
   transition: color 0.2s;
 }
 
-.lang-switch a:hover {
-  color: var(--blue);          /* hover 시 파랑 */
-  text-decoration: none;       /* 밑줄 없음 유지 */
-}
-
+.lang-switch a:hover,
 .lang-switch a.active {
-  color: var(--blue);          /* active 시 파랑 */
-  text-decoration: none;       /* 밑줄 없음 유지 */
+  color: var(--blue);
+  text-decoration: none;
 }
 
-.section-title {
-  margin-top: 40px;
+/* ===========================
+   Modifier: compact version
+   (index.html에서 사용)
+=========================== */
+.lang-switch.is-compact a {
+  font-size: 0.9em;
+  margin-right: 10px;
+  color: #666;
 }
+
 
 /* ===========================
    Home page (index.html)
