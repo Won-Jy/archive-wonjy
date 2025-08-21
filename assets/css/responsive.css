@@ -93,11 +93,6 @@ header.site nav{margin-left:auto;display:flex;gap:20px;flex-wrap:wrap}
 
 /* 메인메뉴 */
 
-/* 데스크탑 기본 */
-header.site{display:flex;align-items:center;gap:24px}
-header.site .title{margin-right:auto}
-header.site nav{display:flex;gap:20px;flex-wrap:wrap}
-
 /* 992px 이하: 헤더 줄바꿈 허용 */
 @media (max-width: 992px){
   header.site{flex-wrap:wrap}
