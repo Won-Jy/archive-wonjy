@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.title }} | archive-wonjy</title>
+  <title>{{ page.title }} | archive-wonjy.com</title>
   <link rel="icon" href="/favicon.png" type="image/x-icon">
   <style>
     :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
@@ -12,6 +12,10 @@
     /* Header / Nav */
     header.site { display:flex; align-items:center; gap:40px; padding:20px 24px; border-bottom:1px solid var(--border); }
     .title { font-size:1.2em; font-weight:600; text-transform: lowercase; }
+    .title:link,
+    .title:visited{color:#000;text-decoration:none;}
+    .title:hover{color:var(--blue);text-decoration:none;}
+    nav { margin-left: 55px; }
     nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; transition: color .2s; }
     nav a:hover, nav a.active, nav a[aria-current="page"] { color: var(--blue); }
 
@@ -214,7 +218,7 @@
 </head>
 <body>
   <header class="site">
-    <div class="title">archive-wonjy.com</div>
+    <a href="index.html" class="title">archive-wonjy.com</a>
     <nav>
       <a href="/index.html">Home</a>
       <a href="/work.html" class="active" aria-current="page">Work</a>
