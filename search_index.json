@@ -7,7 +7,7 @@ permalink: /search_index.json
 {% assign works = site.pages | where: "layout", "work" %}
 {% for p in works %}
 
-  {%- comment -%} ① Related texts 인덱싱 (그대로 유지) {%- endcomment -%}
+  {% comment %} ① Related texts 인덱싱 {% endcomment %}
   {% assign related_blob = "" %}
   {% if p.related_texts %}
     {% for rel in p.related_texts %}
@@ -27,31 +27,30 @@ permalink: /search_index.json
     {% endfor %}
   {% endif %}
 
-  {%- comment -%} ② Linked works 인덱싱 추가 {%- endcomment -%}
+  {% comment %} ② Linked works 인덱싱 {% endcomment %}
   {% assign linked_blob = "" %}
   {% if p.linked_works %}
     {% for lw in p.linked_works %}
-      {%- comment -%}
+      {% comment %}
         지원 형태:
         - 문자열(슬러그 or URL)
-        - 객체 { id: "..."}  또는 { url: "..." }
-      {%- endcomment -%}
+        - 객체 { id: "…" }  또는 { url: "…" }
+      {% endcomment %}
       {% assign lw_id  = lw.id  | default: nil %}
       {% assign lw_url = lw.url | default: nil %}
-      {% assign lw_raw = lw %} {# 문자열일 경우 대비 #}
+      {% assign lw_raw = lw %}
 
-      {%- assign target = nil -%}
-      {%- if lw_url -%}
+      {% assign target = nil %}
+      {% if lw_url %}
         {% assign target = works | where: "url", lw_url | first %}
-      {%- elsif lw_id -%}
+      {% elsif lw_id %}
         {% assign target = works | where: "id",  lw_id  | first %}
-      {%- else -%}
-        {# 문자열로 들어온 경우: URL 우선, 없으면 id로 시도 #}
+      {% else %}
         {% assign target = works | where: "url", lw_raw | first %}
         {% if target == nil %}
           {% assign target = works | where: "id",  lw_raw | first %}
         {% endif %}
-      {%- endif -%}
+      {% endif %}
 
       {% if target %}
         {% capture one_linked %}
@@ -66,7 +65,7 @@ permalink: /search_index.json
     {% endfor %}
   {% endif %}
 
-  {%- comment -%} ③ 현재 작업의 본문 + Related + Linked 를 하나로 합치기 {%- endcomment -%}
+  {% comment %} ③ 현재 작업의 본문 + Related + Linked 결합 {% endcomment %}
   {% capture blob %}
     {{ p.title }}
     {% if p.summary %} {{ p.summary }} {% endif %}
