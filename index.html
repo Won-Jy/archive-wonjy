@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8" />
   <title>archive-won jy.com</title>
   <meta name="description" content="Won Jy's personal archiving site.">
-  <link rel="icon" href="/favicon.png" type="image/png">
   <style>
     body {
       font-family: sans-serif;
@@ -18,15 +17,22 @@
       border-bottom: 1px solid #ddd;
     }
     .title {
-      font-size: 1.2em;
-      font-weight: bold;
-      text-transform: lowercase;
-    }
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: lowercase;
+  text-decoration: none;  /* 밑줄 제거 */
+  color: #000;            /* 기본 검정 */
+  transition: color 0.2s; /* hover 애니메이션 */
+}
+
+.title:hover {
+  color: #007BFF;         /* hover 시 파랑 */
+}
     nav {
       margin-left: 40px;
     }
     nav a {
-      margin-left: 25px;
+      margin-left: 24px;
       text-decoration: none;
       color: #555;
       font-size: 0.95em;
@@ -63,49 +69,11 @@
     .lang-links a:hover {
       color: #007BFF;
     }
-
-    /* 타이틀 버튼 스타일 */
-  .site-title {
-  display: flex;
-  align-items: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;          /* 기본 검정 */
-  transition: color .2s;
-  margin-right: 30px;   /* 오른쪽 메뉴와 간격 */
-}
-
-  /* 방문/기본 색 고정 (보라색 방지) */
-  .site-title:link,
-  .site-title:visited {
-  color: #000;
-  }
-
-  /* hover 시 파랑 */
-  .site-title:hover {
-  color: #007BFF;
-  }
-
-/* 아이콘 크기 = 글씨 크기 */
-.site-logo {
-  width: 1em;
-  height: 1em;
-  margin-right: 6px;
-}
-
-
   </style>
-  
-  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
-  
 </head>
 <body>
   <header>
-    <a href="index.html" class="site-title">
-    <img src="/favicon.png" alt="logo" class="site-logo">
-    archive-wonjy.com
-    </a>
+    <a href="index.html" class="title">archive-wonjy.com</a>
     <nav>
       <a href="index.html" class="active">Home</a>
       <a href="work.html">Work</a>
