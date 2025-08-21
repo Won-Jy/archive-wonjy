@@ -63,10 +63,12 @@ nav a {
   font-weight: normal;
 }
 
+/* nav hover/active: 파랑 + 밑줄 없음 */
 nav a:hover,
 nav a.active,
 nav a[aria-current="page"] {
   color: var(--blue);
+  text-decoration: none;
 }
 
 /* ===========================
@@ -86,18 +88,8 @@ a {
   text-decoration: none;
 }
 
-/* ===========================
-   Navigation links (override)
-=========================== */
-nav a {
-  text-decoration: none;
-}
-
-nav a:hover,
-nav a.active,
-nav a[aria-current="page"] {
-  color: var(--blue);
-  text-decoration: none;   /* 밑줄 제거 */
+a:hover {
+  text-decoration: underline;
 }
 
 /* ===========================
@@ -109,7 +101,7 @@ nav a[aria-current="page"] {
 
 .lang-switch a {
   font-size: 0.95em;
-  color: #555;                 /* 디폴트 회색 */
+  color: #555;                 /* 기본 회색 */
   text-decoration: none;       /* 밑줄 없음 */
   margin-right: 20px;          /* 버튼 간격 넉넉히 */
   cursor: pointer;
@@ -126,3 +118,6 @@ nav a[aria-current="page"] {
   text-decoration: none;       /* 밑줄 없음 유지 */
 }
 
+.section-title {
+  margin-top: 40px;
+}
