@@ -4,6 +4,7 @@ title: "Baignade"
 type: "Single work"
 year_start: 2022
 year_end: 2022
+date_start: 2022-06-23
 status: "Completed"
 tags: ["Hospitality", "Water"]
 cover: "/images/2022/baignade/Baignade_01_main views 01.webp"
