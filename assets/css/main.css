@@ -19,3 +19,7 @@ header,
 main {
   padding-left:40px;   /* 원래 24px → 40px */
 }
+
+/* _layouts/work.html 덮어쓰기 */
+header.site { padding-left:40px; }
+main        { padding-left:40px; }
