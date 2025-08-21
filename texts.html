@@ -14,10 +14,12 @@ title: Texts
 <style>
   :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
   html,body{margin:0;padding:0;font-family:sans-serif;line-height:1.6;color:var(--text)}
-
   header{display:flex;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
   .title{font-size:1.2em;font-weight:bold;text-transform:lowercase}
-  nav{margin-left:40px}
+  .title:link,
+  .title:visited{color:#000;text-decoration:none;}
+  .title:hover{color:var(--blue);text-decoration:none;}
+  nav{margin-left:55px}
   nav a{margin-left:24px;text-decoration:none;color:#555;font-size:.95em;transition:color .2s}
   nav a:hover,nav a.active{color:var(--blue)}
 
@@ -287,7 +289,7 @@ main.detail aside a:visited{
 </head>
 <body>
 <header>
-  <div class="title">archive-wonjy.com</div>
+  <a href="index.html" class="title">archive-wonjy.com</a>
   <nav>
     <a href="/index.html">Home</a>
     <a href="/work.html">Work</a>
