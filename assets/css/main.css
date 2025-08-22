@@ -454,30 +454,30 @@ main.work-list{ max-width:1200px; margin:0; padding:24px; }
 .card{position:relative;border:1px solid var(--border);background:#f8f8f8}
 .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hover {
-  position:absolute;
-  inset:0;
-  background:rgba(0,123,255,.55);
-  color:#fff;
-  opacity:0;
-  transition:opacity .2s;
-  display:flex;
-  align-items:flex-end;   /* 하단 정렬 */
-  justify-content:flex-start; /* 왼쪽 정렬 */
+.hover{
+  position:absolute; inset:0; background:rgba(0,123,255,.55);
+  color:#fff; opacity:0; transition:opacity .2s;
+  display:flex; align-items:flex-end; justify-content:flex-start; /* 좌하단 */
 }
+.card:hover .hover{ opacity:1; }
 
-.hover .meta .title {
-  display:block;          /* 타이틀 줄바꿈 */
-  font-style: italic;
+.hover .meta{
+  padding:12px 14px;
+  font-size:0.95em;
+  color:#fff;           /* 전부 흰색 */
+  line-height:1.4;
+}
+.hover .meta .title{
+  display:block;        /* 타이틀 줄바꿈 */
+  font-style:italic;
+  font-weight:600;      /* 타이틀만 볼드 */
   font-size:1.15em;
-  font-weight:600;        /* 볼드 */
   margin-bottom:4px;
   color:#fff;
 }
-
-.hover .meta .info {
-  display:block;          /* 타입+연도 줄바꿈 */
-  font-weight:normal;     /* 일반체 */
+.hover .meta .info{
+  display:block;        /* 타입+연도 다음 줄 */
+  font-weight:400;      /* 볼드 아님 */
   font-size:0.95em;
   color:#fff;
 }
