@@ -396,10 +396,12 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
       return `<a class="card" href="${url}">
         <div class="thumb">
           ${cover?`<img src="${cover}" alt="${title}">`:''}
-          <div class="hover"><div class="meta">
-            <div><strong>${title}</strong></div>
-            <div>${typeLabel}${typeLabel&&y?', ':''}${y}</div>
-          </div></div>
+          <div class="hover">
+          <div class="meta">
+            <span class="title">${title}</span>
+            <span class="info">${[typeLabel, y].filter(Boolean).join(', ')}</span>
+          </div>
+        </div>
         </div>
       </a>`;
     }).join('');
