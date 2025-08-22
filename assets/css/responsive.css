@@ -2,34 +2,35 @@
 
 /* 992px 이하: 헤더 줄바꿈, 텍스트 페이지 사이드바 하단 이동 */
 @media (max-width: 992px){
-  header.site{flex-wrap:wrap}
-  header.site nav{margin-left:0}
-  .text-layout{grid-template-columns:1fr;gap:20px}
+  header.site { flex-wrap: wrap; }
+  header.site nav { margin-left: 0; }
+  .text-layout { grid-template-columns: 1fr; gap: 20px; }
 }
 
 /* 768px 이하: 공통 여백/필터/인트로 1열 전환 */
 @media (max-width: 768px){
-  main{padding:20px 16px}
-  .intro{grid-template-columns:1fr;gap:16px}
-  .filters{flex-direction:column;align-items:stretch}
-  .filters .group{justify-content:flex-start}
-  .search input{width:100%}
-  .pagination a{min-width:36px;min-height:36px}
+  main { padding: 20px 16px; }
+  .intro { grid-template-columns: 1fr; gap: 16px; }
+  .filters { flex-direction: column; align-items: stretch; }
+  .filters .group { justify-content: flex-start; }
+  .search input { width: 100%; }
+  .pagination a { min-width: 36px; min-height: 36px; }
 }
 
 /* 600px 이하: 헤더 여백 약간 축소 */
 @media (max-width: 600px){
-  header.site{padding:16px}
+  header.site { padding: 16px; }
 }
 
 /* 420px 이하: 가독성 미세 조정 */
 @media (max-width: 420px){
-  body{letter-spacing:.1px;line-height:1.55}
+  body { letter-spacing: .1px; line-height: 1.55; }
 }
 
 /* == Header: mobile compact two-rows (<=768px) == */
 @media (max-width: 768px){
-  header, header.site{
+  header,
+  header.site {
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 8px;
@@ -37,26 +38,27 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .title{
+  .title {
     font-size: 1.2em;
     line-height: 1.2;
   }
 
-  header nav, header.site nav{
-    order: 99;
-    width: 100%;
-    margin: 0;
+  header nav,
+  header.site nav {
+    order: 99 !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   header nav a,
-  header.site nav a{
-    display: inline-block;
-    margin: 0 18px 0 0;
-    padding: 10px 0 6px;
-    font-size: 1.05rem;
-    line-height: 1.2;
-    text-decoration: none;   /* 밑줄 없음 */
-    color: #555;
+  header.site nav a {
+    display: inline-block !important;
+    margin: 0 18px 0 0 !important;
+    padding: 10px 0 6px !important;
+    font-size: 1.05rem !important;
+    line-height: 1.2 !important;
+    text-decoration: none !important;  /* 밑줄 없음 */
+    color: #555 !important;
   }
 
   header nav a:hover,
@@ -64,12 +66,15 @@
   header nav a[aria-current="page"],
   header.site nav a:hover,
   header.site nav a.active,
-  header.site nav a[aria-current="page"]{
-    color: var(--blue);      /* 색상만 바뀜 */
+  header.site nav a[aria-current="page"] {
+    color: var(--blue) !important;  /* 색상만 바뀜 */
   }
 }
 
+/* 600px 이하: 헤더 여백 및 메뉴 간격 조금 더 축소 */
 @media (max-width: 600px){
-  header, header.site{ padding: 14px 16px; }
-  header nav a, header.site nav a{ margin-right: 16px; }
+  header,
+  header.site { padding: 14px 16px; }
+  header nav a,
+  header.site nav a { margin-right: 16px !important; }
 }
