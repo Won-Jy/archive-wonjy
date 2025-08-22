@@ -7,62 +7,452 @@ layout: none
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work | archive-wonjy.com</title>
   <link rel="icon" href="/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+  <title>Work | archive-wonjy.com</title>
+  <style>
+    :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; }
+    body{font-family:sans-serif;margin:0;line-height:1.6;color:var(--text)}
+    header{display:flex;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border)}
+    .title{font-size:1.2em;font-weight:bold;text-transform:lowercase}
+    .title:link,
+    .title:visited{color:#000;text-decoration:none;}
+    .title:hover{color:var(--blue);text-decoration:none;}
+    nav{margin-left:55px}
+    nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
+    nav a:hover,nav a.active{color:var(--blue)}
+
+    main{max-width:1200px;margin:0;padding:24px}
+
+    .topbar{display:flex;align-items:center;gap:18px;justify-content:flex-end;margin:8px 0 16px;font-size:0.9em}
+    .sort a{color:#555;text-decoration:none;margin-right:6px}
+    .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
+    .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
+
+    .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:0.95em;text-align:left;outline:none;width:230px}
+    .search input::placeholder{color:#999}
+    .search input::-webkit-search-cancel-button{-webkit-appearance:none;width:14px;height:14px;cursor:pointer;background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
+    .search input::-webkit-search-cancel-button:hover{opacity:1}
+
+    .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
+    @media (max-width:960px){.layout{grid-template-columns:1fr}}
+
+    .sidebar{margin-top:-16px}
+    @media (max-width:960px){.sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px}}
+    .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px}
+    .filter-group{margin:16px 0;border-bottom:1px solid var(--border);padding-bottom:16px}
+    .filter-group:last-child{border-bottom:none}
+    .filter-head{display:flex;justify-content:space-between;cursor:pointer;user-select:none;padding:6px 0}
+    .filter-head .label{font-weight:bold;font-size:0.95em}
+    .toggle{color:#999}
+    .filter-body{margin:8px 0 10px}
+    .chips{display:block;padding:0;margin:0}
+    .chip{display:block;border:0;background:none;padding:6px 0;margin:0;font-size:0.95em;color:inherit;cursor:pointer}
+    .sidebar .filter-body .chip{font-size:0.93em;line-height:1.0;margin-bottom:1px;color:#555}
+    .sidebar .filter-body .chip:hover,.sidebar .filter-body .chip.active{color:var(--blue)}
+    .chips .chip[data-value="__ALL__"]{font-weight:700}
+
+    .filter-group[data-filter="year"] .chips{display:grid;grid-template-columns:repeat(4,auto);gap:6px}
+    .filter-group[data-filter="year"] .chip{display:inline-block;padding:2px 0}
+    .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{grid-column:1 / -1;padding-bottom:6px}
+    @media (max-width:1100px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(3,auto)}}
+    @media (max-width:720px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}}
+
+    .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
+    .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
+    .card:hover .hover{opacity:1}
+    .hover .meta{padding:10px 12px;font-size:0.95em}
+    .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600}
+
+    .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px}
+    .pagination a{text-decoration:none;color:#000;font-size:0.95em}
+    .pagination a:hover,.pagination a.current{color:var(--blue)}
+    .pagination .ellipsis{padding:0 6px;color:#999}
+    .sr{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+  </style>
+
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+  
 </head>
 <body>
-<header class="site">
-  <a href="/index.html" class="title">archive-wonjy.com</a>
+<header>
+   <a href="index.html" class="title">archive-wonjy.com</a>
   <nav>
     <a href="/index.html">Home</a>
-    <a href="/work.html" class="active" aria-current="page">Work</a>
+    <a href="/work.html" class="active">Work</a>
     <a href="/bio.html">Bio</a>
     <a href="/texts.html">Texts</a>
     <a href="/contact.html">Contact</a>
   </nav>
 </header>
 
-<main class="work-list">
+<main>
   <div class="topbar">
-    <div class="sort">
-      Sort by&nbsp;
+    <div class="sort">Sort by&nbsp;
       <a href="#" data-sort="newest" class="active">newest</a> /
       <a href="#" data-sort="oldest">oldest</a>
     </div>
     <div class="search">
+      <label class="sr" for="q">Search</label>
       <input id="q" type="search" placeholder="Search" autocomplete="off"/>
     </div>
   </div>
 
   <div class="layout">
     <aside class="sidebar">
-      <div class="filter-group" data-filter="type">
-        <div class="filter-head">Type</div>
-        <div class="filter-body chips"></div>
-      </div>
-      <div class="filter-group" data-filter="year">
-        <div class="filter-head">Year</div>
-        <div class="filter-body chips"></div>
-      </div>
-      <div class="filter-group" data-filter="status">
-        <div class="filter-head">Status</div>
-        <div class="filter-body chips"></div>
-      </div>
-      <div class="filter-group" data-filter="tag">
-        <div class="filter-head">Tag</div>
-        <div class="filter-body chips"></div>
-      </div>
+      <div class="filter-group" data-filter="type"><div class="filter-head"><span class="label">Type</span><span class="toggle">−</span></div><div class="filter-body chips"></div></div>
+      <div class="filter-group" data-filter="year"><div class="filter-head"><span class="label">Year</span><span class="toggle">−</span></div><div class="filter-body chips"></div></div>
+      <div class="filter-group" data-filter="status"><div class="filter-head"><span class="label">Status</span><span class="toggle">+</span></div><div class="filter-body chips" style="display:none"></div></div>
+      <div class="filter-group" data-filter="tag"><div class="filter-head"><span class="label">Tag</span><span class="toggle">+</span></div><div class="filter-body chips" style="display:none"></div></div>
     </aside>
 
     <section>
-      <div id="grid" class="grid"></div>
-      <nav id="pagination" class="pagination"></nav>
+      <div class="grid-pager-wrap">
+        <div id="grid" class="grid"></div>
+        <nav id="pager" class="pagination"></nav>
+      </div>
     </section>
   </div>
 </main>
 
-<script src="{{ '/assets/js/work.js' | relative_url }}"></script>
+<script>
+window.WORKS = [
+  {% assign works = site.pages | where: "layout", "work" %}
+  {% for p in works %}
+  {
+    title: {{ p.title | jsonify }},
+    type: {{ p.type | jsonify }},          /* legacy string or array */
+    types: {{ p.types | jsonify }},        /* NEW preferred array */
+    year_start: {{ p.year_start | jsonify }},
+    year_end: {{ p.year_end | jsonify }},
+    date_start: {{ p.date_start | jsonify }},  /* ← NEW: use YYYY-MM-DD when possible */
+    status: {{ p.status | jsonify }},
+    tags: {{ p.tags | jsonify }},
+    cover: {{ p.cover | jsonify }},
+    url: {{ p.url | relative_url | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+</script>
+
+<script>
+let SEARCH_INDEX=null;
+async function loadSearchIndex(){ if(SEARCH_INDEX) return SEARCH_INDEX; const res=await fetch('/search_index.json',{cache:'no-store'}); SEARCH_INDEX=await res.json(); return SEARCH_INDEX; }
+function norm(s){ return (s||'').toString().normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase().trim(); }
+function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\s+/).filter(Boolean); if(tokens.length===0) return true; return tokens.every(t=>H.includes(t)); }
+</script>
+
+<script>
+(function(){
+  const PER_PAGE=6;
+  const grid=document.getElementById('grid');
+  const pager=document.getElementById('pager');
+  const q=document.getElementById('q');
+  const state={ sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
+
+  /* ── URL <-> state helpers ─────────────────────────────────────────── */
+  function encodeStateToParams(){
+    const p = new URLSearchParams();
+    const term = q.value.trim();
+    if (term) p.set('q', term);
+    if (state.sort !== 'newest') p.set('sort', state.sort);
+
+    for (const k of ['type','year','status','tag']){
+      if (state.filters[k].size){
+        p.set(k, [...state.filters[k]].join(',')); // comma separated
+      }
+    }
+    if (state.page > 1) p.set('page', String(state.page));
+    return p.toString();
+  }
+
+  function applyParamsToState(params){
+    const p = (params instanceof URLSearchParams) ? params : new URLSearchParams(params);
+
+    // 검색어
+    q.value = p.get('q') || '';
+
+    // 정렬
+    const sort = p.get('sort');
+    state.sort = (sort === 'oldest') ? 'oldest' : 'newest';
+
+    // 필터(콤마 분리)
+    for (const k of ['type','year','status','tag']){
+      state.filters[k].clear();
+      const raw = p.get(k);
+      if (raw){
+        raw.split(',').filter(Boolean).forEach(v => state.filters[k].add(v));
+      }
+    }
+
+    // 페이지
+    const page = Number(p.get('page') || '1');
+    state.page = Number.isFinite(page) && page >= 1 ? page : 1;
+  }
+
+  function syncUIFromState(){
+    // 정렬 UI
+    document.querySelectorAll('.sort a').forEach(a=>{
+      a.classList.toggle('active', a.dataset.sort === state.sort);
+    });
+
+    // 필터 칩 Active 토글
+    document.querySelectorAll('.filter-group').forEach(group=>{
+      const k = group.dataset.filter;
+      const set = state.filters[k];
+      const chips = group.querySelectorAll('.chip');
+      chips.forEach(c=>{
+        const val = c.dataset.value;
+        if (val === '__ALL__'){
+          c.classList.toggle('active', set.size === 0);
+        }else{
+          c.classList.toggle('active', set.has(val));
+        }
+      });
+    });
+  }
+
+  function updateURL(replace=true){
+    const qs = encodeStateToParams();
+    const url = qs ? (`?${qs}`) : location.pathname;
+    if (replace) history.replaceState(null, '', url);
+    else history.pushState(null, '', url);
+  }
+
+  /* ── 데이터 정리 ────────────────────────────────────────────────────── */
+  const data=(window.WORKS||[]).map(w=>{
+    const _types = Array.isArray(w.types) ? w.types
+                 : Array.isArray(w.type) ? w.type
+                 : (w.type ? [w.type] : []);
+    const _years=(()=>{const s=Number(w.year_start||'');const e=(w.year_end==null||w.year_end==='')?null:Number(w.year_end);let d='';if(e===null){d=s?`${s} –`:'';}else if(s===e){d=`${s}`;}else{d=`${s} – ${e}`;}return {s,e,display:d};})();
+    return {...w, _types, _years};
+  });
+
+  const types = Array.from(new Set(data.flatMap(o=>o._types))).sort();
+  const statuses = Array.from(new Set(data.map(o=>o.status).filter(Boolean))).sort();
+  const yearsAll=Array.from(new Set(data.flatMap(o=>{
+    const s=Number(o.year_start||'');
+    const e=(o.year_end==null||o.year_end==='')?s:Number(o.year_end);
+    if(!s)return[];
+    const ys=[];
+    for(let y=s;y<=e;y++)ys.push(y);
+    return ys;
+  }))).sort((a,b)=>b-a);
+  const tagsAll=Array.from(new Set(data.flatMap(o=>Array.isArray(o.tags)?o.tags:[]))).sort();
+
+  const mountChips=(sel,items)=>{
+    const g=document.querySelector(`.filter-group[data-filter="${sel}"] .filter-body`);
+    g.innerHTML='';
+    const all=document.createElement('span');
+    all.className='chip active';
+    all.textContent='All';
+    all.dataset.value='__ALL__';
+    g.appendChild(all);
+    items.forEach(v=>{
+      const s=document.createElement('span');
+      s.className='chip';
+      s.textContent=v;
+      s.dataset.value=String(v);
+      g.appendChild(s);
+    });
+  };
+  mountChips('type',types);
+  mountChips('year',yearsAll);
+  mountChips('status',statuses);
+  mountChips('tag',tagsAll);
+
+  // 아코디언 열고닫기
+  document.querySelectorAll('.filter-group .filter-head').forEach(h=>{
+    h.addEventListener('click',()=>{
+      const b=h.parentElement.querySelector('.filter-body');
+      const t=h.querySelector('.toggle');
+      const isOpen=b.style.display!=='none';
+      if(isOpen){b.style.display='none';t.textContent='+';}
+      else{b.style.display='';t.textContent='−';}
+    });
+  });
+
+  // 칩 클릭
+  document.querySelectorAll('.chips').forEach(g=>{
+    g.addEventListener('click',e=>{
+      const el=e.target.closest('.chip'); if(!el)return;
+      const f=el.closest('.filter-group').dataset.filter;
+      const v=el.dataset.value;
+      if(v==='__ALL__'){
+        state.filters[f].clear();
+        g.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+        el.classList.add('active');
+      }else{
+        const set=state.filters[f];
+        if(set.has(v)) set.delete(v); else set.add(v);
+        g.querySelector('[data-value="__ALL__"]').classList.remove('active');
+        el.classList.toggle('active');
+        if(set.size===0) g.querySelector('[data-value="__ALL__"]').classList.add('active');
+      }
+      state.page=1;
+      render();
+      updateURL();   // ← URL 동기화
+    });
+  });
+
+  // 정렬
+  document.querySelectorAll('.sort a').forEach(a=>{
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      document.querySelectorAll('.sort a').forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+      state.sort=a.dataset.sort;
+      state.page=1;
+      render();
+      updateURL();   // ← URL 동기화
+    });
+  });
+
+  // 검색어
+  q.addEventListener('input',()=>{
+    state.page=1;
+    render();
+    updateURL();     // ← URL 동기화
+  });
+
+  /* ── 필터/검색/정렬 로직 ───────────────────────────────────────────── */
+  function matchesFilters(item){
+    // type: 교집합(OR) 존재해야 함
+    const tset=state.filters.type;
+    if(tset.size){
+      const has= item._types.some(t=>tset.has(String(t)));
+      if(!has) return false;
+    }
+    // status: 단일 값 일치
+    const sset=state.filters.status;
+    if(sset.size && !sset.has(String(item.status))) return false;
+    // tags: 선택한 태그 전부 포함(AND)
+    const tg=state.filters.tag;
+    if(tg.size){
+      const t=new Set((item.tags||[]).map(String));
+      for(const v of tg){ if(!t.has(v)) return false; }
+    }
+    // year: 선택한 연도 중 하나라도 범위에 포함(OR)
+    const yset=state.filters.year;
+    if(yset.size){
+      const s=Number(item.year_start||'');
+      const e=item.year_end==null||item.year_end===''?s:Number(item.year_end);
+      const years=[];
+      if(s){ for(let y=s;y<=e;y++) years.push(String(y)); }
+      let match=false;
+      for(const v of yset){ if(years.includes(v)){ match=true; break; } }
+      if(!match) return false;
+    }
+    return true;
+  }
+
+  async function matchesQuery(item){
+    const term=q.value.trim();
+    if(!term) return true;
+    const idx=await loadSearchIndex();
+    const found=idx.find(it=>it.url===item.url);
+    if(!found) return false;
+    return matchAllTokens(found.blob,term);
+  }
+
+  // date_start(YYYY-MM-DD) 우선, 없으면 year_start(YYYY)로 정렬
+  function sortItems(arr){
+    return arr.sort((a,b)=>{
+      const parse = v => {
+        if (!v) return null;
+        const d = new Date(v);        // YYYY-MM-DD / YYYY-MM / YYYY 허용
+        return isNaN(d) ? null : d;
+      };
+      const da = parse(a.date_start) || (a.year_start ? new Date(String(a.year_start)) : null) || new Date(0);
+      const db = parse(b.date_start) || (b.year_start ? new Date(String(b.year_start)) : null) || new Date(0);
+      return state.sort === 'newest' ? (db - da) : (da - db);
+    });
+  }
+
+  const yearDisplay=it=>it._years.display;
+
+  async function render(){
+    let items=[];
+    for(const d of data){ if(matchesFilters(d) && await matchesQuery(d)){ items.push(d); } }
+    items=sortItems(items);
+
+    const total=Math.max(1,Math.ceil(items.length/PER_PAGE));
+    if(state.page>total) state.page=total;
+
+    const start=(state.page-1)*PER_PAGE;
+    const slice=items.slice(start,start+PER_PAGE);
+
+    grid.innerHTML=slice.map(it=>{
+      const cover=it.cover||'';
+      const title=it.title||'';
+      const typeLabel=(it._types||[]).join(', ');
+      const y=yearDisplay(it)||'';
+      const url=it.url||'#';
+      return `<a class="card" href="${url}">
+        <div class="thumb">
+          ${cover?`<img src="${cover}" alt="${title}">`:''}
+          <div class="hover"><div class="meta">
+            <div><strong>${title}</strong></div>
+            <div>${typeLabel}${typeLabel&&y?', ':''}${y}</div>
+          </div></div>
+        </div>
+      </a>`;
+    }).join('');
+
+    const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
+    const num=(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`;
+    let html='';
+    if(total>1){
+      html+=link(Math.max(1,state.page-1),'<','prev');
+      const windowSize=2;
+      const pages=new Set([1,total]);
+      for(let p=state.page-windowSize;p<=state.page+windowSize;p++){
+        if(p>1&&p<total)pages.add(p);
+      }
+      const list=[...pages].sort((a,b)=>a-b);
+      let last=0;
+      for(const p of list){
+        if(last&&p-last>1)html+=`<span class="ellipsis">…</span>`;
+        html+=num(p,p===state.page);
+        last=p;
+      }
+      html+=link(Math.min(total,state.page+1),'>','next');
+    }
+    pager.innerHTML=html;
+  }
+
+  // 페이지네이션
+  pager.addEventListener('click',e=>{
+    const a=e.target.closest('a[data-page]'); if(!a)return;
+    e.preventDefault();
+    const to=Number(a.dataset.page); if(!Number.isFinite(to))return;
+    state.page=to;
+    window.scrollTo({top:0,behavior:'smooth'});
+    render();
+    updateURL();   // ← URL 동기화
+  });
+
+  // URL -> 상태 적용 (최초 로드)
+  applyParamsToState(new URLSearchParams(location.search));
+  // 칩/정렬 UI 반영
+  syncUIFromState();
+  // 초기 렌더 & URL 반영(replace)
+  render();
+  updateURL(true);
+
+  // 뒤로/앞으로 가기
+  window.addEventListener('popstate', ()=>{
+    applyParamsToState(new URLSearchParams(location.search));
+    syncUIFromState();
+    render();
+    // popstate에서는 URL 수정 불필요
+  });
+})();
+</script>
 </body>
 </html>
