@@ -6,14 +6,14 @@ layout: none
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Work | archive-wonjy.com</title>
-  <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work | archive-wonjy</title>
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
   <header>
-    <div class="title"><a href="/">archive-wonjy.com</a></div>
+    <a class="title" href="index.html">archive-wonjy.com</a>
     <nav>
       <a href="index.html">Home</a>
       <a href="work.html" class="active">Work</a>
@@ -24,65 +24,103 @@ layout: none
   </header>
 
   <main class="list">
-    <aside class="filters">
-      <!-- 필터 UI는 그대로 두었습니다 -->
+    <aside>
+      <section>
+        <h3>Type</h3>
+        <ul>
+          <li><a href="#" onclick="filterType('')">All</a></li>
+          <li><a href="#" onclick="filterType('Exhibition')">Exhibition</a></li>
+          <li><a href="#" onclick="filterType('Project')">Project</a></li>
+          <li><a href="#" onclick="filterType('Single work')">Single work</a></li>
+          <li><a href="#" onclick="filterType('Writing')">Writing</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>Year</h3>
+        <ul>
+          <li><a href="#" onclick="filterYear('')">All</a></li>
+          <li><a href="#" onclick="filterYear(2025)">2025</a></li>
+          <li><a href="#" onclick="filterYear(2024)">2024</a></li>
+          <li><a href="#" onclick="filterYear(2023)">2023</a></li>
+          <li><a href="#" onclick="filterYear(2022)">2022</a></li>
+          <li><a href="#" onclick="filterYear(2020)">2020</a></li>
+        </ul>
+      </section>
     </aside>
 
-    <section class="items" id="grid"></section>
-
-    <div class="pagination" id="pagination"></div>
+    <section class="content">
+      <div class="toolbar">
+        <span>Sort by 
+          <a href="#" onclick="setSort('newest')">newest</a> / 
+          <a href="#" onclick="setSort('oldest')">oldest</a>
+        </span>
+        <input type="search" placeholder="Search" oninput="setQuery(this.value)">
+      </div>
+      <div id="grid" class="grid"></div>
+      <div id="pagination" class="pagination"></div>
+    </section>
   </main>
 
   <script>
-    const PER_PAGE = 10;
+    // ✅ 더미 데이터 (추후 JSON fetch로 교체 가능)
+    const data = [
+      {
+        title: "Premières pierres II",
+        cover: "/images/2023/premieres-pierres-02/Premières pierres II_01_main views 01_IMG_3028.webp",
+        _types: ["Single work"],
+        year_start: 2023,
+        year_end: 2023,
+        url: "/work/2023/premieres-pierres-02.html"
+      },
+      {
+        title: "Fantôme 3008",
+        cover: "/images/2023/fantome-3008/Fantome_3008.webp",
+        _types: ["Project"],
+        year_start: 2023,
+        url: "/work/2023/fantome-3008.html"
+      },
+      {
+        title: "Roulé-Lavé",
+        cover: "/images/2025/roule-lave/roule-lave.webp",
+        _types: ["Exhibition"],
+        year_start: 2025,
+        url: "/work/2025/roule-lave.html"
+      }
+    ];
+
+    // ✅ 상태
+    const state = { page: 1, filters: {}, query: "", sort: "newest" };
+    const PER_PAGE = 6;
     const grid = document.getElementById("grid");
     const pagination = document.getElementById("pagination");
 
-    // ✅ 연도 표기 함수
-    function yearDisplay(it) {
-      if(it.year_start && it.year_end && it.year_start !== it.year_end) {
-        return it.year_start + "–" + it.year_end;
-      }
-      return it.year_start || it.year_end || "";
+    // ✅ 필터/검색/정렬 함수
+    function matchesFilters(d) {
+      if (state.filters.type && !d._types.includes(state.filters.type)) return false;
+      if (state.filters.year && d.year_start != state.filters.year) return false;
+      return true;
+    }
+    function matchesQuery(d) {
+      if (!state.query) return true;
+      return d.title.toLowerCase().includes(state.query.toLowerCase());
+    }
+    function sortItems(arr) {
+      return arr.sort((a, b) => {
+        if (state.sort === "newest") return (b.year_start||0) - (a.year_start||0);
+        return (a.year_start||0) - (b.year_start||0);
+      });
     }
 
-    const data = [
-    {
-      title: "Premières pierres II",
-      cover: "/images/2023/premieres-pierres-02/Premières pierres II_01_main views 01_IMG_3028.webp",
-      _types: ["Single work"],
-      year_start: 2023,
-      year_end: 2023,
-      url: "/work/2023/premieres-pierres-02.html"
-    },
-    {
-      title: "Fantôme 3008",
-      cover: "/images/2023/fantome-3008/Fantome_3008.webp",
-      _types: ["Project"],
-      year_start: 2023,
-      url: "/work/2023/fantome-3008.html"
-    }
-  ];
-
-  // ✅ 상태
-  const state = { page: 1, filters: {}, query: "" };
-
-  // ✅ 필터/검색/정렬 (임시 기본 버전)
-  function matchesFilters(d) { return true; }
-  function matchesQuery(d) { return true; }
-  function sortItems(arr) { return arr; }
-
-    
-    // ✅ 렌더링 함수
-    async function render() {
+    // ✅ 렌더링
+    async function render(){
       let items = [];
-      for (const d of data) {
-        if (matchesFilters(d) && await matchesQuery(d)) items.push(d);
+      for(const d of data){
+        if(matchesFilters(d) && matchesQuery(d)){ items.push(d); }
       }
       items = sortItems(items);
 
       const total = Math.max(1, Math.ceil(items.length / PER_PAGE));
-      if (state.page > total) state.page = total;
+      if(state.page > total) state.page = total;
 
       const start = (state.page - 1) * PER_PAGE;
       const slice = items.slice(start, start + PER_PAGE);
@@ -91,7 +129,7 @@ layout: none
         const cover = it.cover || '';
         const title = it.title || '';
         const typeLabel = (it._types || []).join(', ');
-        const yearText = yearDisplay(it) || '';
+        const y = it.year_end ? `${it.year_start} – ${it.year_end}` : it.year_start;
         const url = it.url || '#';
         return `
           <a class="card" href="${url}">
@@ -99,20 +137,29 @@ layout: none
               <img src="${cover}" alt="${title}">
               <div class="hover">
                 <div class="meta">
-                  <div class="title">${title}</div>
-                  <div class="info">${[typeLabel, yearText].filter(Boolean).join(', ')}</div>
+                  <div class="title"><em>${title}</em></div>
+                  <div class="info">${[typeLabel, y].filter(Boolean).join(', ')}</div>
                 </div>
               </div>
             </div>
           </a>
         `;
-      }).join('');
+      }).join("");
 
-      pagination.innerHTML = Array.from({length: total}, (_,i)=>`
-        <a href="#" class="${i+1===state.page?'active':''}" 
-           onclick="gotoPage(${i+1});return false;">${i+1}</a>
-      `).join(' ');
+      pagination.innerHTML = Array.from({length: total}, (_, i) => {
+        const n = i+1;
+        return `<a href="#" onclick="goto(${n})" ${n===state.page?'class="active"':''}>${n}</a>`;
+      }).join(" ");
     }
+
+    // ✅ 제어 함수
+    function filterType(t){ state.filters.type = t; state.page=1; render(); }
+    function filterYear(y){ state.filters.year = y; state.page=1; render(); }
+    function setQuery(q){ state.query = q; state.page=1; render(); }
+    function setSort(s){ state.sort = s; render(); }
+    function goto(n){ state.page = n; render(); }
+
+    render();
   </script>
 </body>
 </html>
