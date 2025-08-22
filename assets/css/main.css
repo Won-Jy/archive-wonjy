@@ -455,36 +455,45 @@ main.work-list{ max-width:1200px; margin:0; padding:24px; }
 .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
 .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hover{
-  position:absolute; inset:0; background:rgba(0,123,255,.55);
-  color:#fff; opacity:0; transition:opacity .2s;
-  display:flex; align-items:flex-end; justify-content:flex-start; /* 좌하단 */
+  position:absolute; inset:0;
+  background:rgba(0,123,255,.55);
+  color:#fff;
+  opacity:0; transition:opacity .2s;
+  display:flex;                /* 아래쪽 정렬 */
+  align-items:flex-end;        /* 하단 */
+  justify-content:flex-start;  /* 좌측 */
 }
 .card:hover .hover{ opacity:1; }
 
+/* 오버레이 안 텍스트 박스 */
 .hover .meta{
-  padding:12px 14px;
-  font-size:0.95em;
-  color:#fff;           /* 전부 흰색 */
-  line-height:1.4;
-}
-.hover .meta .title,
-.hover .meta .info {
-  display:block !important;   /* 강제 줄바꿈 */
-  width:100%;
+  display:flex;
+  flex-direction:column;       /* 세로 쌓기 */
+  align-items:flex-start;      /* 좌측 정렬 */
+  padding:22px 24px;           /* 좌/하단 여백 */
+  gap:6px;                     /* 두 줄 간격 */
+  text-align:left;
 }
 
-.hover .meta .title {
+/* 1줄차지 타이틀 */
+.hover .meta .title{
+  display:block;
   font-style:italic;
-  font-weight:600;
-  font-size:1.15em;
-  margin-bottom:4px;
+  font-weight:700;
+  font-size: clamp(20px, 2.0vw, 26px);
+  line-height:1.1;
+  margin:0;
   color:#fff !important;
-  text-transform:none !important;
+  text-transform:none !important;   /* 소문자 강제 방지 */
 }
 
-.hover .meta .info {
+/* 다음 줄: 타입/연도(보통체) */
+.hover .meta .info{
+  display:block;
   font-weight:400;
-  font-size:0.95em;
+  font-size: clamp(15px, 1.5vw, 20px);
+  line-height:1.1;
+  margin:0;
   color:#fff !important;
 }
 
