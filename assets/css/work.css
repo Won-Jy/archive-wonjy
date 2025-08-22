@@ -1,0 +1,118 @@
+/* Work 페이지 레이아웃 */
+main.work-list {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+  align-items: flex-start;
+}
+
+/* 사이드바 */
+.sidebar {
+  flex: 0 0 200px;
+  font-size: 0.95em;
+  color: #333;
+}
+.filter-group {
+  margin-bottom: 20px;
+}
+.filter-head {
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.filter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.filter-body .chip {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.filter-body .chip.active {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+/* 메인 콘텐츠 */
+.layout section {
+  flex: 1;
+}
+
+/* topbar (검색+정렬) */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.topbar .sort a {
+  color: #555;
+  margin-left: 4px;
+  text-decoration: none;
+}
+.topbar .sort a.active {
+  color: var(--blue);
+  font-weight: bold;
+}
+.topbar .search input {
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9em;
+}
+
+/* 카드 그리드 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  color: inherit;
+}
+.card img {
+  width: 100%;
+  display: block;
+}
+.card .hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover .hover { opacity: 1; }
+.card .meta {
+  color: #fff;
+  font-size: 0.9em;
+}
+.card .title {
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* 페이지네이션 */
+.pagination {
+  margin-top: 24px;
+  text-align: center;
+}
+.pagination a {
+  margin: 0 6px;
+  text-decoration: none;
+  color: #000;
+}
+.pagination a.active {
+  color: var(--blue);
+}
