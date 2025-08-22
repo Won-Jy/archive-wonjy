@@ -9,55 +9,51 @@ title: Texts
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Texts | archive-wonjy.com</title>
-  <!-- 공통 CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
+  <meta name="description" content="Won Jy's personal archiving site.">
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
 </head>
 <body>
   <header>
-    <a href="index.html" class="title">archive-wonjy.com</a>
+    <a href="/index.html" class="title">archive-wonjy.com</a>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="work.html">Work</a>
-      <a href="bio.html">Bio</a>
-      <a href="texts.html" class="active">Texts</a>
-      <a href="contact.html">Contact</a>
+      <a href="/index.html">Home</a>
+      <a href="/work.html">Work</a>
+      <a href="/bio.html">Bio</a>
+      <a href="/texts.html" class="active">Texts</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </header>
-  <div class="lang-placeholder"></div>
 
+  <!-- 목록 -->
   <main class="list" id="listView" hidden>
-  <div id="items" class="items"></div>
+    <div id="items" class="items"></div>
   </main>
   <div id="pager" class="pagination" hidden></div>
 
+  <!-- 상세 -->
   <main class="detail" id="detailView" hidden>
-  <article id="detailArticle"></article>
-  <aside id="detailAside"></aside>
+    <article id="detailArticle"></article>
+    <aside id="detailAside"></aside>
   </main>
-  <!-- Tooltip + backToTop 버튼 -->
-  <div id="tooltip" class="tooltip" style="display:none; position:absolute;"></div>
-  <a href="#" id="backToTop" style="display:none;">↑ Back to top</a>
 
-  <!-- 백업에서 가져온 스크립트 -->
+  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+  <div id="tooltip" class="tooltip"></div>
+
   <script>
-const DATA = {
-  {% for pair in site.data.texts %}
-    {% assign id = pair[0] %}{% assign t = pair[1] %}
-    "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-};
+  const DATA = {
+    {% for pair in site.data.texts %}
+      {% assign id = pair[0] %}{% assign t = pair[1] %}
+      "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
 
-const params = new URLSearchParams(location.search);
-const currentId = params.get('id');
+  const params = new URLSearchParams(location.search);
+  const currentId = params.get('id');
+  if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
 
-if (currentId && DATA[currentId]) {
-  renderDetail(currentId);
-} else {
-  renderList();
-}
-
-function renderList(){
+  function renderList(){
     document.getElementById('listView').hidden = false;
     document.getElementById('pager').hidden = false;
 
@@ -73,22 +69,11 @@ function renderList(){
       return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
     });
 
-    const perPage = 10;
-    let page = 1;
+    const perPage = 10; let page = 1;
     const itemsEl = document.getElementById('items');
     const pagerEl = document.getElementById('pager');
 
-    let baselineHeight = null; // ✅ 1페이지 높이를 저장
-
     function draw(){
-      // 페이지 전환 전: 기존 baseline이 있으면 먼저 적용
-      if (baselineHeight != null) {
-        itemsEl.style.minHeight = baselineHeight + 'px';
-      } else {
-        itemsEl.style.minHeight = ''; // 첫 렌더 전에는 초기화
-      }
-
-      // 목록 렌더링
       const start = (page-1)*perPage, end = start+perPage;
       itemsEl.innerHTML = '';
       arr.slice(start,end).forEach(it=>{
@@ -97,234 +82,203 @@ function renderList(){
         a.href = `?id=${encodeURIComponent(it.id)}`;
         a.innerHTML =
           `<span class="text-title">${it.title_html}</span>`+
-          `<span class="meta-sep">, </span><span class="author">${it.author}</span>`+
-          `<span class="meta-sep">, </span><span class="year">${it.year}</span>`;
+          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
         itemsEl.appendChild(a);
       });
 
-      // 페이지네이션
       const total = Math.max(1, Math.ceil(arr.length/perPage));
       pagerEl.innerHTML = '';
       for(let i=1;i<=total;i++){
         if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a');
-        link.href = '#';
-        link.textContent = i;
+        const link = document.createElement('a'); link.href='#'; link.textContent=i;
         if(i===page) link.classList.add('active');
         link.addEventListener('click', e=>{
-          e.preventDefault();
-          page = i;
-          draw();
-          window.scrollTo({top:0,behavior:'smooth'});
+          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
         });
         pagerEl.appendChild(link);
       }
-
-      // ✅ 첫 렌더(보통 1페이지) 직후 높이를 측정해서 baseline으로 고정
-      if (baselineHeight == null) {
-        // 렌더 완료 후 실제 높이 측정
-        baselineHeight = itemsEl.getBoundingClientRect().height;
-        itemsEl.style.minHeight = baselineHeight + 'px';
-      }
     }
-
     draw();
   }
-    
-function renderDetail(id){
-  const t = DATA[id];
-  document.getElementById('detailView').hidden = false;
-  const article = document.getElementById('detailArticle');
-  const aside = document.getElementById('detailAside');
-  const origLang = (t.original?.language || 'fr').toLowerCase();
 
-  const notesCounts = {};
-  notesCounts[origLang] = (t.original?.notes || []).length;
-  (t.translations || []).forEach(tr => {
-    notesCounts[tr.language] = (tr.notes || []).length;
-  });
-  const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
+  function renderDetail(id){
+    const t = DATA[id];
+    document.getElementById('detailView').hidden = false;
+    const article = document.getElementById('detailArticle');
+    const aside = document.getElementById('detailAside');
+    const origLang = (t.original?.language || 'fr').toLowerCase();
 
-  article.innerHTML = `
-    <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
-    <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
+    const notesCounts = {};
+    notesCounts[origLang] = (t.original?.notes || []).length;
+    (t.translations || []).forEach(tr => { notesCounts[tr.language] = (tr.notes || []).length; });
+    const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
 
-    <div class="lang-tabs" id="langTabs">
-      <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
-      ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
-    </div>
+    article.innerHTML = `
+      <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
+      <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
 
-    <div class="text-variants">
-      <div class="text-body variant" data-lang="${origLang}">
-        ${t.original?.body_html || ''}
+      <div class="lang-tabs" id="langTabs">
+        <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
+        ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
       </div>
-      ${(t.translations||[]).map(tr=>`
-        <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-          ${tr.body_html || ''}
-        </div>
-      `).join('')}
-    </div>
 
-    ${hasAnyNotes ? `
-    <div id="notesDivider" class="divider"></div>
-    <section id="notesSection" class="notes">
-      <h3>Notes</h3>
-      <ol class="notes-variants">
-        <li style="list-style:none;padding:0;margin:0">
-          <ol class="notes-list variant" data-lang="${origLang}">
-            ${(t.original?.notes||[]).map(n=>`
-              <li id="fn-${n.id}-${origLang}">
-                <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
-              </li>
-            `).join('')}
-          </ol>
-        </li>
+      <div class="text-variants">
+        <div class="text-body variant" data-lang="${origLang}">
+          ${t.original?.body_html || ''}
+        </div>
         ${(t.translations||[]).map(tr=>`
+          <div class="text-body variant" data-lang="${tr.language}" style="display:none">
+            ${tr.body_html || ''}
+          </div>
+        `).join('')}
+      </div>
+
+      ${hasAnyNotes ? `
+      <div id="notesDivider" class="divider"></div>
+      <section id="notesSection" class="notes">
+        <h3>Notes</h3>
+        <ol class="notes-variants">
           <li style="list-style:none;padding:0;margin:0">
-            <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
-              ${(tr.notes||[]).map(n=>`
-                <li id="fn-${n.id}-${tr.language}">
-                  <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+            <ol class="notes-list variant" data-lang="${origLang}">
+              ${(t.original?.notes||[]).map(n=>`
+                <li id="fn-${n.id}-${origLang}">
+                  <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
                 </li>
               `).join('')}
             </ol>
           </li>
-        `).join('')}
-      </ol>
-    </section>
-    ` : ``}
-  `;
+          ${(t.translations||[]).map(tr=>`
+            <li style="list-style:none;padding:0;margin:0">
+              <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
+                ${(tr.notes||[]).map(n=>`
+                  <li id="fn-${n.id}-${tr.language}">
+                    <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+                  </li>
+                `).join('')}
+              </ol>
+            </li>
+          `).join('')}
+        </ol>
+      </section>
+      ` : ``}
+    `;
 
-function isEmpty(val){
-  if (val == null) return true;
-  if (Array.isArray(val)) return val.length === 0;
-  if (typeof val === 'string') return val.trim() === '';
-  return false;
-}
+    function isEmpty(val){
+      if (val == null) return true;
+      if (Array.isArray(val)) return val.length === 0;
+      if (typeof val === 'string') return val.trim() === '';
+      return false;
+    }
 
-const asideBlocks = [];
+    const asideBlocks = [];
 
-// Related works
-if (!isEmpty(t.related_works)) {
-  asideBlocks.push(`
-    <div class="aside-block">
-      <h4>Related works</h4>
-      <ul class="related-works">
-        ${(t.related_works || []).map(r => {
-          const label = r.label || 'View';
-          return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
-        }).join('')}
-      </ul>
-    </div>
-  `);
-}
+    if (!isEmpty(t.related_works)) {
+      asideBlocks.push(`
+        <div class="aside-block">
+          <h4>Related works</h4>
+          <ul class="related-works">
+            ${(t.related_works || []).map(r => {
+              const label = r.label || 'View';
+              return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+            }).join('')}
+          </ul>
+        </div>
+      `);
+    }
 
-// Source
-if (!isEmpty(t.source_html)) {
-  const sourceHtml = Array.isArray(t.source_html)
-    ? t.source_html.join('')
-    : t.source_html;
-  if (!isEmpty(sourceHtml)) {
+    if (!isEmpty(t.source_html)) {
+      const sourceHtml = Array.isArray(t.source_html) ? t.source_html.join('') : t.source_html;
+      if (!isEmpty(sourceHtml)) {
+        asideBlocks.push(`
+          <div class="aside-block">
+            <h4>Source</h4>
+            ${sourceHtml}
+          </div>
+        `);
+      }
+    }
+
     asideBlocks.push(`
       <div class="aside-block">
-        <h4>Source</h4>
-        ${sourceHtml}
+        <h4>Author</h4>
+        ${t.author?.bio_html || ''}
       </div>
     `);
-  }
-}
 
-// Author (항상 출력 — 원하면 조건 추가 가능)
-asideBlocks.push(`
-  <div class="aside-block">
-    <h4>Author</h4>
-    ${t.author?.bio_html || ''}
-  </div>
-`);
+    aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-// 구분선 넣어서 연결
-aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
+    // 외부 링크는 새 탭
+    aside.querySelectorAll('a').forEach(a => {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+    article.querySelectorAll('.notes a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if (href.startsWith('#')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
+      else if (/^https?:\/\//i.test(href)) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer'); }
+    });
 
-  // 외부 링크는 새 탭
-  aside.querySelectorAll('a').forEach(a => {
-    a.setAttribute('target', '_blank');
-    a.setAttribute('rel', 'noopener noreferrer');
-  });
-  article.querySelectorAll('.notes a').forEach(a => {
-  const href = a.getAttribute('href') || '';
-  if (href.startsWith('#')) {
-    a.removeAttribute('target');
-    a.removeAttribute('rel');
-  } else if (/^https?:\/\//i.test(href)) {
-    a.setAttribute('target', '_blank');
-    a.setAttribute('rel', 'noopener noreferrer');
-  }
-});
+    const tabs = Array.from(article.querySelectorAll('.lang-btn'));
+    const variants = Array.from(article.querySelectorAll('.variant'));
+    const tooltip = document.getElementById('tooltip');
 
-  const tabs = Array.from(article.querySelectorAll('.lang-btn'));
-  const variants = Array.from(article.querySelectorAll('.variant'));
-  const tooltip = document.getElementById('tooltip');
+    function setLang(lang){
+      tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
+      const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
+      wireFootnotes(lang);
 
-  function setLang(lang){
-    tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-    variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
-    const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
-    wireFootnotes(lang);
+      if (hasAnyNotes) {
+        const notesDiv = article.querySelector('#notesDivider');
+        const notesSec = article.querySelector('#notesSection');
+        const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
+        [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
+      }
+    }
 
-    if (hasAnyNotes) {
-      const notesDiv = article.querySelector('#notesDivider');
-      const notesSec = article.querySelector('#notesSection');
-      const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
-      [notesDiv, notesSec].forEach(el => {
-        if (el) el.style.display = hasThisLangNotes ? '' : 'none';
+    tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
+    const initLang = new URLSearchParams(location.search).get('lang') || origLang;
+    setLang(initLang);
+
+    function wireFootnotes(lang){
+      article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+        const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+        const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
+        if(!sup.querySelector('a')){
+          const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
+          sup.textContent=''; sup.id=refId; sup.appendChild(a);
+        }else{
+          sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
+        }
+      });
+
+      const notesMap = {};
+      article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+        const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+        notesMap[li.id] = html;
+      });
+      article.querySelectorAll('.note-ref').forEach(a=>{
+        a.onmouseenter = function(e){
+          const href=this.getAttribute('href').slice(1);
+          const html=notesMap[href]; if(!html) return;
+          tooltip.innerHTML=html; tooltip.style.display='block';
+          tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
+        };
+        a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
+        a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
       });
     }
   }
 
-  tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
-  const initLang = new URLSearchParams(location.search).get('lang') || origLang;
-  setLang(initLang);
-
-  function wireFootnotes(lang){
-    article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
-      const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
-      const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
-      if(!sup.querySelector('a')){
-        const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
-        sup.textContent=''; sup.id=refId; sup.appendChild(a);
-      }else{
-        sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
-      }
-    });
-    const notesMap = {};
-    article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
-      const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
-      notesMap[li.id] = html;
-    });
-    article.querySelectorAll('.note-ref').forEach(a=>{
-      a.onmouseenter = function(e){
-        const href=this.getAttribute('href').slice(1);
-        const html=notesMap[href]; if(!html) return;
-        tooltip.innerHTML=html; tooltip.style.display='block';
-        tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
-      };
-      a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
-      a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
-    });
-  }
-}
-
-const btt = document.getElementById('backToTop');
-window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
-btt.addEventListener('click', (e)=>{
-  e.preventDefault();
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) window.scrollTo(0,0);
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-</script>
-
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+  btt.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) window.scrollTo(0,0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   </script>
 </body>
 </html>
-
