@@ -467,13 +467,14 @@ main.work-list{ max-width:1200px; margin:0; padding:24px; }
   color:#fff;           /* 전부 흰색 */
   line-height:1.4;
 }
-.hover .meta .title{
-  display:block;        /* 타이틀 줄바꿈 */
+.hover .meta .title {
+  display:block;
   font-style:italic;
-  font-weight:600;      /* 타이틀만 볼드 */
+  font-weight:600;
   font-size:1.15em;
   margin-bottom:4px;
-  color:#fff;
+  color:#fff !important;   /* 흰색 강제 */
+  text-transform:none;     /* 소문자 변환 방지 */
 }
 .hover .meta .info{
   display:block;        /* 타입+연도 다음 줄 */
