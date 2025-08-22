@@ -473,12 +473,13 @@ main.work-list{ max-width:1200px; margin:0; padding:24px; }
   font-weight:600;
   font-size:1.15em;
   margin-bottom:4px;
-  color:#fff !important;   /* 흰색 강제 */
-  text-transform:none;     /* 소문자 변환 방지 */
+  color:#fff !important;
+  text-transform:none !important;  /* ← 소문자 강제 해제 */
 }
-.hover .meta .info{
-  display:block;        /* 타입+연도 다음 줄 */
-  font-weight:400;      /* 볼드 아님 */
+
+.hover .meta .info {
+  display:block;   /* 줄바꿈 확실히 */
+  font-weight:400; /* 볼드 아님 */
   font-size:0.95em;
   color:#fff;
 }
