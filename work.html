@@ -397,11 +397,11 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
         <div class="thumb">
           ${cover?`<img src="${cover}" alt="${title}">`:''}
           <div class="hover">
-          <div class="meta">
-            <span class="title">${title}</span>
-            <span class="info">${[typeLabel, y].filter(Boolean).join(', ')}</span>
+            <div class="meta">
+              <div class="title">${title}</div>
+              <div class="info">${[typeLabel, y].filter(Boolean).join(', ')}</div>
+            </div>
           </div>
-        </div>
         </div>
       </a>`;
     }).join('');
