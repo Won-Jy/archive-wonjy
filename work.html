@@ -387,26 +387,26 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
     const start=(state.page-1)*PER_PAGE;
     const slice=items.slice(start,start+PER_PAGE);
 
-    grid.innerHTML=slice.map(it=>{
-      const cover=it.cover||'';
-      const title=it.title||'';
-      const typeLabel=(it._types||[]).join(', ');
-      const y=yearDisplay(it)||'';
-      const url=it.url||'#';
-      return `
-  <a class="card" href="${item.url}">
-    <div class="thumb">
-      <img src="${item.cover}" alt="${title}">
-      <div class="hover">
-        <div class="meta">
-          <div class="title">${title}</div>
-          <div class="info">${[typeLabel, y].filter(Boolean).join(', ')}</div>
+    grid.innerHTML = slice.map(it => {
+  const cover = it.cover || '';
+  const title = it.title || '';
+  const typeLabel = (it._types || []).join(', ');
+  const y = yearDisplay(it) || '';
+  const url = it.url || '#';
+  return `
+    <a class="card" href="${url}">
+      <div class="thumb">
+        <img src="${cover}" alt="${title}">
+        <div class="hover">
+          <div class="meta">
+            <div class="title">${title}</div>
+            <div class="info">${[typeLabel, y].filter(Boolean).join(', ')}</div>
+          </div>
         </div>
       </div>
-    </div>
-  </a>
-`;
-    }).join('');
+    </a>
+  `;
+}).join('');
 
     const link=(p,label,cls='')=>`<a href="#" class="${cls}" data-page="${p}">${label}</a>`;
     const num=(p,current)=> current?`<a href="#" class="current" data-page="${p}">${p}</a>`:`<a href="#" data-page="${p}">${p}</a>`;
