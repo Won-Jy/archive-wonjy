@@ -2,8 +2,8 @@
 
 /* 992px 이하: 헤더 줄바꿈, 텍스트 페이지 사이드바 하단 이동 */
 @media (max-width: 992px){
-  header.site { flex-wrap: wrap; }
-  header.site nav { margin-left: 0; }
+  body > header.site { flex-wrap: wrap; }
+  body > header.site nav { margin-left: 0; }
   .text-layout { grid-template-columns: 1fr; gap: 20px; }
 }
 
@@ -19,7 +19,7 @@
 
 /* 600px 이하: 헤더 여백 약간 축소 */
 @media (max-width: 600px){
-  header.site { padding: 16px; }
+  body > header.site { padding: 16px; }
 }
 
 /* 420px 이하: 가독성 미세 조정 */
@@ -29,8 +29,8 @@
 
 /* == Header: mobile compact two-rows (<=768px) == */
 @media (max-width: 768px){
-  header,
-  header.site {
+  body > header,
+  body > header.site {
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 8px;
@@ -38,43 +38,45 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .title {
+  body > header .title,
+  body > header.site .title {
     font-size: 1.2em;
     line-height: 1.2;
   }
 
-  header nav,
-  header.site nav {
-    order: 99 !important;
-    width: 100% !important;
-    margin: 0 !important;
+  body > header nav,
+  body > header.site nav {
+    order: 99;
+    width: 100%;
+    margin: 0;
   }
 
-  header nav a,
-  header.site nav a {
-    display: inline-block !important;
-    margin: 0 18px 0 0 !important;
-    padding: 10px 0 6px !important;
-    font-size: 1.05rem !important;
-    line-height: 1.2 !important;
-    text-decoration: none !important;  /* 밑줄 없음 */
-    color: #555 !important;
+  body > header nav a,
+  body > header.site nav a {
+    display: inline-block;
+    margin: 0 18px 0 0;
+    padding: 10px 0 6px;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    text-decoration: none;  /* 밑줄 없음 */
+    color: #555;
   }
 
-  header nav a:hover,
-  header nav a.active,
-  header nav a[aria-current="page"],
-  header.site nav a:hover,
-  header.site nav a.active,
-  header.site nav a[aria-current="page"] {
-    color: var(--blue) !important;  /* 색상만 바뀜 */
+  body > header nav a:hover,
+  body > header nav a.active,
+  body > header nav a[aria-current="page"],
+  body > header.site nav a:hover,
+  body > header.site nav a.active,
+  body > header.site nav a[aria-current="page"] {
+    color: var(--blue);
   }
 }
 
 /* 600px 이하: 헤더 여백 및 메뉴 간격 조금 더 축소 */
 @media (max-width: 600px){
-  header,
-  header.site { padding: 14px 16px; }
-  header nav a,
-  header.site nav a { margin-right: 16px !important; }
+  body > header,
+  body > header.site { padding: 14px 16px; }
+
+  body > header nav a,
+  body > header.site nav a { margin-right: 16px; }
 }
