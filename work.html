@@ -2,38 +2,90 @@
 title: Work
 layout: none
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Work | archive-wonjy.com</title>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | archive-wonjy</title>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <header>
-    <div class="title"><a href="{{ '/' | relative_url }}">archive-wonjy</a></div>
+    <div class="title"><a href="/">archive-wonjy</a></div>
     <nav>
-      <a href="{{ '/work.html' | relative_url }}" class="active">work</a>
-      <a href="{{ '/bio.html' | relative_url }}">bio</a>
-      <a href="{{ '/texts.html' | relative_url }}">texts</a>
-      <a href="{{ '/contact.html' | relative_url }}">contact</a>
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="bio.html">Bio</a>
+      <a href="texts.html">Texts</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <main class="list">
-    <!-- 필터 + 정렬 -->
     <aside class="filters">
-      <!-- Type, Year, Status, Tag ... (지금 쓰시는 그대로 두세요) -->
+      <!-- 필터 UI는 그대로 두었습니다 -->
     </aside>
 
-    <!-- 카드들이 들어갈 영역 -->
-    <div id="grid" class="grid"></div>
+    <section class="items" id="grid"></section>
 
-    <!-- 페이지네이션 -->
-    <div id="pagination" class="pagination"></div>
+    <div class="pagination" id="pagination"></div>
   </main>
 
-  <script src="{{ '/assets/js/work.js' | relative_url }}"></script>
+  <script>
+    const PER_PAGE = 10;
+    const grid = document.getElementById("grid");
+    const pagination = document.getElementById("pagination");
+
+    // ✅ 연도 표기 함수
+    function yearDisplay(it) {
+      if(it.year_start && it.year_end && it.year_start !== it.year_end) {
+        return it.year_start + "–" + it.year_end;
+      }
+      return it.year_start || it.year_end || "";
+    }
+
+    // ✅ 렌더링 함수
+    async function render() {
+      let items = [];
+      for (const d of data) {
+        if (matchesFilters(d) && await matchesQuery(d)) items.push(d);
+      }
+      items = sortItems(items);
+
+      const total = Math.max(1, Math.ceil(items.length / PER_PAGE));
+      if (state.page > total) state.page = total;
+
+      const start = (state.page - 1) * PER_PAGE;
+      const slice = items.slice(start, start + PER_PAGE);
+
+      grid.innerHTML = slice.map(it => {
+        const cover = it.cover || '';
+        const title = it.title || '';
+        const typeLabel = (it._types || []).join(', ');
+        const yearText = yearDisplay(it) || '';
+        const url = it.url || '#';
+        return `
+          <a class="card" href="${url}">
+            <div class="thumb">
+              <img src="${cover}" alt="${title}">
+              <div class="hover">
+                <div class="meta">
+                  <div class="title">${title}</div>
+                  <div class="info">${[typeLabel, yearText].filter(Boolean).join(', ')}</div>
+                </div>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      pagination.innerHTML = Array.from({length: total}, (_,i)=>`
+        <a href="#" class="${i+1===state.page?'active':''}" 
+           onclick="gotoPage(${i+1});return false;">${i+1}</a>
+      `).join(' ');
+    }
+  </script>
 </body>
 </html>
