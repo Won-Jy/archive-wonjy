@@ -123,7 +123,7 @@ header nav a[aria-current="page"] {
   font-size: 0.95em;
   color: #555;
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 8px;
   cursor: pointer;
   transition: color 0.2s;
 }
