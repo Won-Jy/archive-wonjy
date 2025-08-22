@@ -197,7 +197,7 @@ header nav a[aria-current="page"] {
 }
 
 main.list{
-  padding:50px 40px 10px 24px;
+  padding:50px 40px 10px 40px;
   max-width:740px;
   margin:0;
   min-height:400px;             /* 있어도 무방하지만 아래 height가 우선 */
@@ -281,7 +281,7 @@ main.detail{
   gap:16px;
   max-width:1200px;
   margin:0;
-  padding:50px 40px 60px 24px;
+  padding:50px 40px 60px 40px;
 }
 
 #detailArticle{ width:min(90ch, 100%); }
