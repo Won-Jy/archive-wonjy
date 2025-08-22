@@ -46,6 +46,33 @@ layout: none
       return it.year_start || it.year_end || "";
     }
 
+    const data = [
+    {
+      title: "Premières pierres II",
+      cover: "/images/2023/premieres-pierres-02/Premières pierres II_01_main views 01_IMG_3028.webp",
+      _types: ["Single work"],
+      year_start: 2023,
+      year_end: 2023,
+      url: "/work/2023/premieres-pierres-02.html"
+    },
+    {
+      title: "Fantôme 3008",
+      cover: "/images/2023/fantome-3008/Fantome_3008.webp",
+      _types: ["Project"],
+      year_start: 2023,
+      url: "/work/2023/fantome-3008.html"
+    }
+  ];
+
+  // ✅ 상태
+  const state = { page: 1, filters: {}, query: "" };
+
+  // ✅ 필터/검색/정렬 (임시 기본 버전)
+  function matchesFilters(d) { return true; }
+  function matchesQuery(d) { return true; }
+  function sortItems(arr) { return arr; }
+
+    
     // ✅ 렌더링 함수
     async function render() {
       let items = [];
