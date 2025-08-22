@@ -467,21 +467,25 @@ main.work-list{ max-width:1200px; margin:0; padding:24px; }
   color:#fff;           /* 전부 흰색 */
   line-height:1.4;
 }
+.hover .meta .title,
+.hover .meta .info {
+  display:block !important;   /* 강제 줄바꿈 */
+  width:100%;
+}
+
 .hover .meta .title {
-  display:block;
   font-style:italic;
   font-weight:600;
   font-size:1.15em;
   margin-bottom:4px;
   color:#fff !important;
-  text-transform:none !important;  /* ← 소문자 강제 해제 */
+  text-transform:none !important;
 }
 
 .hover .meta .info {
-  display:block;   /* 줄바꿈 확실히 */
-  font-weight:400; /* 볼드 아님 */
+  font-weight:400;
   font-size:0.95em;
-  color:#fff;
+  color:#fff !important;
 }
 
 .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
