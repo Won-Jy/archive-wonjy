@@ -5,17 +5,19 @@ layout: none
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work | archive-wonjy.com</title>
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
 </head>
 <body>
-<header>
+<header class="site">
   <a href="/index.html" class="title">archive-wonjy.com</a>
   <nav>
     <a href="/index.html">Home</a>
-    <a href="/work.html" class="active">Work</a>
+    <a href="/work.html" class="active" aria-current="page">Work</a>
     <a href="/bio.html">Bio</a>
     <a href="/texts.html">Texts</a>
     <a href="/contact.html">Contact</a>
@@ -24,7 +26,8 @@ layout: none
 
 <main class="work-list">
   <div class="topbar">
-    <div class="sort">Sort by&nbsp;
+    <div class="sort">
+      Sort by&nbsp;
       <a href="#" data-sort="newest" class="active">newest</a> /
       <a href="#" data-sort="oldest">oldest</a>
     </div>
@@ -35,10 +38,22 @@ layout: none
 
   <div class="layout">
     <aside class="sidebar">
-      <div class="filter-group" data-filter="type"><div class="filter-head">Type</div><div class="filter-body chips"></div></div>
-      <div class="filter-group" data-filter="year"><div class="filter-head">Year</div><div class="filter-body chips"></div></div>
-      <div class="filter-group" data-filter="status"><div class="filter-head">Status</div><div class="filter-body chips"></div></div>
-      <div class="filter-group" data-filter="tag"><div class="filter-head">Tag</div><div class="filter-body chips"></div></div>
+      <div class="filter-group" data-filter="type">
+        <div class="filter-head">Type</div>
+        <div class="filter-body chips"></div>
+      </div>
+      <div class="filter-group" data-filter="year">
+        <div class="filter-head">Year</div>
+        <div class="filter-body chips"></div>
+      </div>
+      <div class="filter-group" data-filter="status">
+        <div class="filter-head">Status</div>
+        <div class="filter-body chips"></div>
+      </div>
+      <div class="filter-group" data-filter="tag">
+        <div class="filter-head">Tag</div>
+        <div class="filter-body chips"></div>
+      </div>
     </aside>
 
     <section>
