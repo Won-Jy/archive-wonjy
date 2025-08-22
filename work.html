@@ -1,106 +1,661 @@
----
-title: Work
-layout: none
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work | archive-wonjy</title>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <title>{{ page.title }} | archive-wonjy.com</title>
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+  <style>
+    :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
+    html, body { margin:0; padding:0; font-family:sans-serif; color:var(--text); line-height:1.6; }
+
+    /* Header / Nav */
+    header.site { display:flex; align-items:center; gap:40px; padding:20px 40px; border-bottom:1px solid var(--border); }
+    .title { font-size:1.2em; font-weight:600; text-transform: lowercase; }
+    .title:link,
+    .title:visited{color:#000;text-decoration:none;}
+    .title:hover{color:var(--blue);text-decoration:none;}
+    nav { margin-left: 15px; }
+    nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; transition: color .2s; }
+    nav a:hover, nav a.active, nav a[aria-current="page"] { color: var(--blue); }
+
+    /* Main container – left aligned */
+    main { max-width: 1200px; margin: 0; padding: 60px 40px; }
+
+    /* Intro (cover + meta) */
+    .intro { display:flex; gap:40px; align-items:flex-start; margin-bottom:40px; }
+    .intro-image { flex-basis:70%; min-width:0; }
+    .intro-image figure { margin:0; }
+    .intro-image img { width:100%; height:auto; display:block; }
+    .intro-image .caption { font-size:0.8em; color:var(--muted); margin-top:3px; margin-bottom:40px; }
+
+    .intro-side { flex:1; min-width:0; font-size:0.95em; color:#333; }
+    .intro-group { max-width:100%; }
+    .intro-header h1 { font-size: clamp(1.4em, 2vw, 1.6em); font-style: italic; font-weight:600; margin:0 0 4px 0; }
+    .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
+    .meta-row { margin:0 0 4px 0; }
+    .meta-row .label { color:#777; margin-right:6px; }
+    .meta-row .value { color:#333; }
+
+    .divider { border:none; border-top:1px solid var(--border); margin:30px 0; }
+
+    /* Rich text blocks */
+    .rich p { margin:0 0 1em 0; }
+    .rich a { color: var(--blue); text-decoration:none; }
+    .rich a:hover, .rich a:focus { text-decoration: underline; }
+    .section-title { margin:0 0 8px 0; font-size:1em; color:#555; }
+
+    /* Work images */
+    figure.work { margin:0; }
+    img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
+    .caption { font-size:0.8em; color: var(--muted); margin-bottom:40px; }
+
+    /* Video (responsive) */
+    figure.work.video{ width:100%; margin:0; display:block; }
+    figure.work.video .frame{ position:relative; width:100%; height:0; padding-bottom:56.25%; margin-bottom:3px; }
+    figure.work.video .frame iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
+
+    /* Linked works */
+    .linked-works { list-style:none; margin:8px 0 0; padding:0; }
+    .linked-works li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+    .linked-works li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+    .linked-works a { color: var(--blue); text-decoration:none; margin-left:6px; }
+    .linked-works a:hover { text-decoration: underline; }
+
+    /* Related texts */
+    .related-texts { list-style:none; margin:8px 0 0; padding:0; }
+    .related-texts li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+    .related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+    .related-texts a { color: var(--blue); text-decoration:none; margin-left:6px; }
+    .related-texts a:hover { text-decoration: underline; }
+    .related-texts li:not(:has(a)) { display: none; }
+    .related-texts li:empty { display: none; }
+
+    @media (max-width: 768px) {
+      main { padding:40px 20px 50px 24px; }
+      .intro { flex-direction: column; gap:24px; }
+      .intro-image, .intro-side, .intro-group { flex:none; width:100%; max-width:100%; }
+    }
+
+    /* Bottom floating bar */
+    #btBar { position: fixed; right: 24px; bottom: 20px; z-index: 999; display: none; font-size: 0.95em; background: transparent; gap:16px; }
+    #btBar .copy { color: #888; }
+    #btBar a#backToTop { color: var(--blue); text-decoration: none; }
+    #btBar a#backToTop:hover { text-decoration: underline; }
+    #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+    /* Lightbox */
+    .lb-overlay{
+      position:fixed; inset:0; background:rgba(0,0,0,.75);
+      display:none; align-items:center; justify-content:center;
+      z-index:9999; padding:24px;
+    }
+    .lb-overlay.open{ display:flex; }
+    
+    .lb-stage{
+      position:relative; max-width:92vw; max-height:86vh;
+      display:flex; flex-direction:column; align-items:center; gap:10px;
+    }
+    
+    .lb-media{
+      max-width:92vw; max-height:74vh; display:block; object-fit:contain;
+      background:#111;
+    }
+    .lb-caption{
+      color:#eee; font-size:.9em; line-height:1.4; text-align:center;
+      max-width:92vw;
+    }
+    
+    /* Controls */
+    .lb-ctrl{
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,.0); border:none; cursor:pointer;
+      padding:8px 10px; font-size:22px; line-height:1; color:#ddd;
+    }
+    .lb-ctrl:hover, .lb-ctrl:active{ color: var(--blue); }
+    
+    .lb-prev{ left:-10px; }
+    .lb-next{ right:-10px; }
+    
+    .lb-close{
+      position:absolute; top:-25px; right:-5px;
+      background: transparent; border:none; cursor:pointer;
+      font-size:20px; line-height: 1; color:#ddd; z-index:10;
+    }
+    .lb-close:hover, .lb-close:active{ color: var(--blue); }
+    
+    .lb-counter{
+      position:absolute; bottom:-22px; right:0; color:#bbb; font-size:.8em;
+    }
+    
+    /* 접근성 포커스 */
+    .lb-ctrl:focus-visible, .lb-close:focus-visible{
+      outline:2px solid var(--blue); outline-offset:2px;
+    }
+    
+    /* 모바일에서 터치 영역 여유 */
+    @media (max-width: 768px){
+      .lb-prev{ left:-4px; padding:10px 12px; }
+      .lb-next{ right:-4px; padding:10px 12px; }
+      .lb-close{ top: -6px; right: -6px; font-size: 22px; }
+    }
+
+    /* --- bottom controls under the caption --- */
+    .lb-stage{ gap:12px; }           /* 그림-캡션-컨트롤 사이 간격 살짝 */
+    .lb-caption{ text-align:center; } /* 캡션도 가운데 정렬이 자연스러워요 */
+    
+    .lb-footer{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      margin-top:4px;
+    }
+    
+    /* 기존 absolute 배치 무력화 + 버튼 기본 스타일 */
+    .lb-footer .lb-ctrl{
+      position:static;
+      top:auto; left:auto; right:auto; transform:none;
+      background:transparent; border:none; cursor:pointer;
+      padding:6px 12px; font-size:20px; line-height:1; color:#ddd;
+    }
+    .lb-footer .lb-ctrl:hover,
+    .lb-footer .lb-ctrl:active{ color: var(--blue); }
+    
+    /* 페이지 카운터를 가운데 고정 */
+    .lb-footer .lb-counter{
+      position:static;
+      color:#bbb; font-size:.85em; line-height:1;
+      min-width:52px; text-align:center;
+    }
+    
+    /* 모바일 터치 타깃 조금 키우기 */
+    @media (max-width:768px){
+      .lb-footer{ gap:18px; }
+      .lb-footer .lb-ctrl{ padding:10px 14px; font-size:24px; }
+    }
+
+    /* 라이트박스 내부 모든 버튼/컨트롤 포커스 표시 제거 */
+    .lb-overlay .lb-ctrl:focus,
+    .lb-overlay .lb-ctrl:focus-visible,
+    .lb-overlay .lb-close:focus,
+    .lb-overlay .lb-close:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    
+    .lb-overlay .lb-ctrl::-moz-focus-inner,
+    .lb-overlay .lb-close::-moz-focus-inner {
+      border: 0; /* Firefox 안쪽 기본 테두리 제거 */
+    }
+    
+    .lb-overlay .lb-ctrl,
+    .lb-overlay .lb-close {
+      -webkit-tap-highlight-color: transparent; /* 모바일 탭 하이라이트 제거 */
+    }
+
+    /* Lightbox: video container */
+    .lb-video{
+      display:none;
+      background:#000;                 /* 양옆 여백이 보여도 검정으로 자연스럽게 */
+      max-width:92vw;                  /* 이미지와 동일 제약 */
+      max-height:74vh;
+      width:  min(92vw, calc(74vh * var(--ratio, 16/9)));
+      height: min(74vh, calc(92vw / var(--ratio, 16/9)));
+    }
+    .lb-video iframe{
+      width:100%;
+      height:100%;
+      display:block;
+      border:0;
+    }
+    
+  </style>
+  
+<link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+  
 </head>
 <body>
-  <header>
-    <a class="title" href="{{ '/' | relative_url }}">archive-wonjy</a>
+  <header class="site">
+    <a href="/index.html" class="title">archive-wonjy.com</a>
     <nav>
-      <a href="{{ '/work.html' | relative_url }}" class="active">work</a>
-      <a href="{{ '/texts.html' | relative_url }}">texts</a>
-      <a href="{{ '/contact.html' | relative_url }}">contact</a>
+      <a href="/index.html">Home</a>
+      <a href="/work.html" class="active" aria-current="page">Work</a>
+      <a href="/bio.html">Bio</a>
+      <a href="/texts.html">Texts</a>
+      <a href="/contact.html">Contact</a>
     </nav>
   </header>
 
-  <main class="list">
-    <!-- 필터/검색 영역 -->
-    <div class="filters">
-      <select id="yearFilter"></select>
-      <select id="typeFilter"></select>
-      <input id="searchBox" placeholder="Search works…">
-    </div>
+  <main>
+    {%- assign s = page.year_start -%}
+    {%- assign e = page.year_end -%}
+    {%- if e -%}
+      {%- if s == e -%}
+        {%- assign year_display = s -%}
+      {%- else -%}
+        {%- assign year_display = s | append: " – " | append: e -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign year_display = s | append: " –" -%}
+    {%- endif -%}
 
-    <!-- 카드 그리드 -->
-    <div id="grid" class="grid"></div>
+    <section class="intro">
+      <div class="intro-image">
+        {%- if page.cover -%}
+          <figure class="cover">
+            <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} cover" loading="lazy" decoding="async"
+              {%- if page.cover_width and page.cover_height -%} width="{{page.cover_width}}" height="{{page.cover_height}}" {%- endif -%}
+              sizes="(max-width:768px) 100vw, 70vw" />
+            {%- if page.cover_caption -%}
+              <figcaption class="caption">{{ page.cover_caption }}</figcaption>
+            {%- else -%}
+              <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endif -%}
 
-    <!-- 페이지네이션 -->
-    <div id="pagination" class="pagination"></div>
+        {%- if page.images -%}
+          {%- for img in page.images -%}
+            <figure class="work">
+              <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: '' }}" class="work" loading="lazy" decoding="async"
+                {%- if img.width and img.height -%} width="{{img.width}}" height="{{img.height}}" {%- endif -%} />
+              {%- if img.caption -%}
+                <figcaption class="caption">{{ img.caption }}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- if page.videos -%}
+          {%- for v in page.videos -%}
+            <figure class="work video">
+              <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
+                <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+              </div>
+              {%- if v.caption -%}
+                <figcaption class="caption">{{ v.caption }}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <aside class="intro-side">
+        <div class="intro-group">
+          <div class="intro-header">
+            <h1>{{ page.title }}</h1>
+            {%- if s -%}<div class="year">{{ year_display }}</div>{%- endif -%}
+
+            {%- if page.types and page.types.size > 0 -%}
+              <p class="meta-row"><span class="label">Type</span>
+                <span class="value">
+                  {%- for t in page.types -%}
+                    <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                  {%- endfor -%}
+                </span>
+              </p>
+            {%- elsif page.type -%}
+              <p class="meta-row"><span class="label">Type</span><span class="value">{{ page.type }}</span></p>
+            {%- endif -%}
+
+            {%- if page.status -%}
+              <p class="meta-row"><span class="label">Status</span><span class="value">{{ page.status }}</span></p>
+            {%- endif -%}
+
+            {%- if page.tags and page.tags.size > 0 -%}
+              <p class="meta-row"><span class="label">Tags</span>
+                <span class="value">
+                  {%- for t in page.tags -%}
+                    <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                  {%- endfor -%}
+                </span>
+              </p>
+            {%- endif -%}
+          </div>
+
+          {%- if page.summary -%}
+            <div class="divider"></div>
+            <div class="rich summary">{{ page.summary | markdownify }}</div>
+          {%- endif -%}
+
+          {%- if page.description -%}
+            <div class="divider"></div>
+            <div class="rich description">{{ page.description | markdownify }}</div>
+          {%- endif -%}
+
+          {%- comment -%} Linked works block {%- endcomment -%}
+          {%- if page.linked_works and page.linked_works.size > 0 -%}
+            {%- assign has_linked = false -%}
+            {%- for lw in page.linked_works -%}
+              {%- assign href = lw.url | default: lw.path -%}
+              {%- if href and href != '' -%}
+                {%- assign has_linked = true -%}{%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if has_linked -%}
+              <div class="divider"></div>
+              <div class="section-title">{{ page.linked_works_title | default: "Linked works" }}</div>
+              <ul class="linked-works">
+                {%- for lw in page.linked_works -%}
+                  {%- assign href = lw.url | default: lw.path -%}
+                  {%- if href and href != '' -%}
+                    {%- assign raw_label = lw.label | default: '' -%}
+                    {%- if raw_label and raw_label | strip != '' -%}
+                      {%- assign label_html = raw_label -%}
+                    {%- else -%}
+                      {%- assign label_html = href -%}
+                    {%- endif -%}
+                    <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- comment -%} Related texts block (strict rendering) {%- endcomment -%}
+{%- assign page_lang = page.lang | default: site.lang | default: 'en' | downcase -%}
+
+{%- assign rel_count = 0 -%}
+{%- capture rel_items -%}{%- endcapture -%}
+{%- if page.related_texts and page.related_texts.size > 0 -%}
+  {%- for r in page.related_texts -%}
+    {%- assign rid = r.id | to_s | strip -%}
+    {%- if rid != '' -%}
+      {%- assign t = site.data.texts[rid] -%}
+      {%- if t -%}
+        {%- assign orig   = t.original.language | default: 'fr' | downcase -%}
+        {%- assign target = r.lang | default: page_lang | downcase -%}
+        {%- assign has_tr = false -%}
+        {%- if t.translations -%}
+          {%- for tr in t.translations -%}
+            {%- if tr.language and tr.language | downcase == target -%}{%- assign has_tr = true -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- assign lang_final = has_tr -%}
+        {%- if lang_final -%}{%- assign lang_final = target -%}{%- else -%}{%- assign lang_final = orig -%}{%- endif -%}
+        {%- assign href = '/texts.html?id=' | append: rid | append: '&lang=' | append: lang_final -%}
+
+        {%- assign raw_label = r.label | default: '' | strip -%}
+        {%- if raw_label != '' -%}
+          {%- assign label_html = raw_label -%}
+        {%- else -%}
+          {%- assign title_src   = t.title_original.text_html | default: t.title_original.text | default: t.title | default: rid -%}
+          {%- assign title_clean = title_src | markdownify | replace:'<p>','' | replace:'</p>','' | strip -%}
+          {%- if title_clean contains '<' -%}
+            {%- assign title_html = title_clean -%}
+          {%- else -%}
+            {%- assign title_html = '<em>' | append: title_clean | append: '</em>' -%}
+          {%- endif -%}
+          {%- assign author = t.author.name | default: '' | strip -%}
+          {%- assign year   = t.year | default: '' | strip -%}
+          {%- assign label_html = title_html -%}
+          {%- if author != '' -%}{%- assign label_html = label_html | append:', ' | append: author -%}{%- endif -%}
+          {%- if year   != '' -%}{%- assign label_html = label_html | append:', ' | append: year   -%}{%- endif -%}
+        {%- endif -%}
+
+        {%- if label_html and label_html | strip != '' -%}
+          {%- capture rel_items -%}{{ rel_items }}<li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>{%- endcapture -%}
+          {%- assign rel_count = rel_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- assign has_links = page.critique_links and page.critique_links.size > 0 -%}
+{%- assign has_text  = page.critique and page.critique != '' -%}
+
+{%- if rel_count > 0 or has_links or has_text -%}
+  <div class="divider"></div>
+  <div class="section-title">{{ page.critique_title | default: "Related texts" }}</div>
+
+  {%- if rel_count > 0 -%}
+    <ul class="related-texts">{{ rel_items }}</ul>
+  {%- endif -%}
+
+  {%- if rel_count == 0 and has_links -%}
+    <ul class="related-texts">
+      {%- for item in page.critique_links -%}
+        {%- assign label = item.label | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+        {%- if label != '' -%}
+        <li>
+          {{ label }}
+          {%- if item.url_fr -%} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{%- endif -%}
+          {%- if item.url_en -%} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{%- endif -%}
+        </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+  {%- if rel_count == 0 and has_links == false and has_text -%}
+    <div class="rich critique">{{ page.critique | markdownify }}</div>
+  {%- endif -%}
+{%- endif -%}
+
+
+        </div>
+      </aside>
+    </section>
+
+    {%- if content and content != "" -%}
+      <article class="rich">{{ content }}</article>
+    {%- endif -%}
   </main>
 
+  <!-- Lightbox -->
+  <div class="lb-overlay" id="lbOverlay" aria-modal="true" role="dialog" aria-label="Image viewer">
+    <div class="lb-stage">
+      <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+      
+      <img id="lbImg" class="lb-media" alt="">
+      <div id="lbVideo" class="lb-video">
+      <iframe id="lbIframe" src="" frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lb-caption" id="lbCap"></div>
+      
+      <!-- 추가: 하단 중앙 컨트롤 -->
+      <div class="lb-footer" aria-label="image navigation">
+        <button class="lb-ctrl lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+        <div class="lb-counter" id="lbCount"></div>
+        <button class="lb-ctrl lb-next" id="lbNext" aria-label="Next">›</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div id="btBar" role="region" aria-label="Back to top bar">
+    <span class="copy">© ADAGP, Paris, 2025</span>
+    <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+  </div>
+
   <script>
-  const PER_PAGE = 12;
-  const state = { page:1 };
-  let data = [];
-
-  // 필터/검색 관련 함수들
-  function matchesFilters(d){ /* ...기존 코드 유지... */ return true; }
-  async function matchesQuery(d){ /* ...기존 코드 유지... */ return true; }
-  function sortItems(items){ /* ...기존 코드 유지... */ return items; }
-  function updatePagination(total){ /* ...기존 코드 유지... */ }
-
-  async function render() {
-    let items = [];
-    for (const d of data) {
-      if (matchesFilters(d) && await matchesQuery(d)) {
-        items.push(d);
-      }
-    }
-    items = sortItems(items);
-
-    const total = Math.max(1, Math.ceil(items.length / PER_PAGE));
-    if (state.page > total) state.page = total;
-
-    const start = (state.page - 1) * PER_PAGE;
-    const slice = items.slice(start, start + PER_PAGE);
-
-    grid.innerHTML = slice.map(it => {
-      const cover = it.cover || '';
-      const title = it.title || '';
-      const typeLabel = (it._types || []).join(', ');
-      const yearText =
-        it.year_start
-          ? (it.year_end
-              ? (it.year_end === it.year_start
-                  ? `${it.year_start}`
-                  : `${it.year_start}–${it.year_end}`)
-              : `${it.year_start}–`)
-          : '';
-      const url = it.url || '#';
-
-      return `
-        <a class="card" href="${url}">
-          <div class="thumb">
-            <img src="${cover}" alt="${title}">
-            <div class="hover">
-              <div class="meta">
-                <div class="title">${title}</div>
-                <div class="info">${[typeLabel, yearText].filter(Boolean).join(', ')}</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      `;
-    }).join('');
-
-    updatePagination(total);
-  }
-
-  // 초기 데이터 로드
-  fetch('{{ "/assets/data/work.json" | relative_url }}')
-    .then(r=>r.json())
-    .then(json=>{
-      data = json;
-      render();
+    (function(){
+      const bar=document.getElementById('btBar');
+      const btn=document.getElementById('backToTop');
+      const showAfter=300;
+      window.addEventListener('scroll',()=>{bar.style.display=(window.scrollY>showAfter)?'flex':'none';});
+      btn.addEventListener('click',(e)=>{e.preventDefault();
+        const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(reduce) window.scrollTo(0,0); else window.scrollTo({top:0,behavior:'smooth'});
+      });
+    })();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.summary a, .description a, .related-texts a, .linked-works a').forEach(function(link){
+        link.setAttribute('target','_blank');
+        link.setAttribute('rel','noopener noreferrer');
+      });
     });
   </script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    document.querySelectorAll('figure.work.video .frame').forEach(function(frame){
+      var iframe = frame.querySelector('iframe');
+      if(!iframe) return;
+      try{
+        var player = new Vimeo.Player(iframe);
+        Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function([w,h]){
+          if(w && h){
+            frame.style.paddingBottom = (h / w * 100) + '%';
+          }
+        }).catch(function(e){ /* ignore */ });
+      }catch(e){ /* ignore */ }
+    });
+  </script>
+
+  <script>
+(function(){
+  /* 1) 갤러리: 이미지 + 비디오를 DOM 순서대로 수집 */
+  const gallery = [];
+  const nodes = document.querySelectorAll(
+    '.intro-image figure.cover img, ' +
+    '.intro-image figure.work img.work, ' +
+    '.intro-image figure.work.video iframe'
+  );
+
+  nodes.forEach((node)=>{
+    const fig = node.closest('figure');
+    const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
+    const isVideo = node.tagName.toLowerCase() === 'iframe';
+    const src = node.getAttribute('src') || node.getAttribute('data-src') || '';
+
+    // 이 시점의 gallery 길이가 곧 이 항목의 "고정 인덱스"
+    const index = gallery.length;
+
+    gallery.push({
+      type: isVideo ? 'video' : 'image',
+      el: node,
+      src,
+      caption: cap
+    });
+
+    // 썸네일 클릭 시, 해당 인덱스로 열기 (이미지에만 기본 적용)
+    if(!isVideo){
+      node.style.cursor = 'zoom-in';
+      node.addEventListener('click', (e)=>{
+        e.preventDefault();
+        openLB(index);   // ★ length-1 대신, 캡처한 index 사용
+      });
+    }
+    // 비디오 썸네일(프레임)을 클릭해 열고 싶다면 아래 주석 해제
+    // if(isVideo){
+    //   fig.style.cursor = 'zoom-in';
+    //   fig.addEventListener('click', (e)=>{ e.preventDefault(); openLB(index); });
+    // }
+  });
+
+  if(!gallery.length) return;
+
+  /* 2) DOM 캐시 */
+  const overlay = document.getElementById('lbOverlay');
+  const lbImg   = document.getElementById('lbImg');
+  const lbVideo = document.getElementById('lbVideo');
+  const lbIframe= document.getElementById('lbIframe');
+  const lbCap   = document.getElementById('lbCap');
+  const lbPrev  = document.getElementById('lbPrev');
+  const lbNext  = document.getElementById('lbNext');
+  const lbClose = document.getElementById('lbClose');
+  const lbCount = document.getElementById('lbCount');
+
+  let idx = 0, open = false;
+  let lbPlayer = null;
+
+  /* 3) 보조 함수 */
+  function withAutoplay(url){
+    if(!url) return '';
+    if(url.includes('autoplay=')) return url.replace(/autoplay=\d/, 'autoplay=1');
+    return url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+  }
+  function stopVideo(){ if(lbIframe) lbIframe.src = ''; }
+
+  /* 4) 표시 로직 */
+  function show(i){
+    idx = (i + gallery.length) % gallery.length;
+    const it = gallery[idx];
+
+    lbCap.innerHTML = it.caption || '';
+    lbCount.textContent = (idx+1) + '/' + gallery.length;
+
+    if(it.type === 'video'){
+  // 비디오 표시
+  lbImg.style.display = 'none';
+  lbVideo.style.display = 'block';
+
+  // 이전 비디오 정지
+  stopVideo();
+
+  // 우선 16:9로 그려두고(즉시), 실제 비율을 받아 오면 업데이트
+  lbVideo.style.setProperty('--ratio', '16/9');
+  lbIframe.src = withAutoplay(it.src);
+
+  // Vimeo 실제 비율로 재조정
+  try{
+    if(!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
+    // 이벤트 중복 방지
+    lbPlayer.off('loaded');
+    lbPlayer.on('loaded', async ()=>{
+      try{
+        const [w, h] = await Promise.all([lbPlayer.getVideoWidth(), lbPlayer.getVideoHeight()]);
+        if(w && h){
+          const ratio = (w / h); // 가로/세로
+          lbVideo.style.setProperty('--ratio', String(ratio));
+          // CSS가 vw/vh로 자동 재계산하므로 resize 핸들러 불필요
+        }
+      }catch(e){ /* no-op */ }
+    });
+  }catch(e){ /* Vimeo API가 없어도 기본 16:9로 정상 표시 */ }
+}else{
+  // 이미지 표시
+  lbVideo.style.display = 'none';
+  stopVideo();
+  lbImg.src = it.src;
+  lbImg.alt = it.el.getAttribute('alt') || '';
+  lbImg.style.display = 'block';
+}
+}
+
+  /* 5) 열고/닫기/이동 */
+  function openLB(i){
+    show(i);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    open = true;
+  }
+  function closeLB(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    open = false;
+    stopVideo();
+  }
+  function next(){ show(idx+1); }
+  function prev(){ show(idx-1); }
+
+  /* 6) 이벤트 */
+  lbClose.addEventListener('click', closeLB);
+  lbNext.addEventListener('click', next);
+  lbPrev.addEventListener('click', prev);
+
+  overlay.addEventListener('click', (e)=>{
+    if(e.target === overlay) closeLB();
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(!open) return;
+    if(e.key==='Escape') closeLB();
+    else if(e.key==='ArrowRight') next();
+    else if(e.key==='ArrowLeft') prev();
+  });
+
+  // (선택) 스와이프를 이미지 뿐 아니라 스테이지에 붙이고 싶다면,
+  // 기존 touchstart/touchend 바인딩 대상을 lbImg 대신 .lb-stage로 바꾸면 됩니다.
+})();
+</script>
+
+  
 </body>
 </html>
+
