@@ -52,6 +52,19 @@ title: Texts
       padding-top: 0;   /* 원래 간격 유지하고 싶으면 16~24px로 조절 */
       margin-top: 0;
     }
+
+      /* 모바일일 때만: 세부페이지에서 쓰는 상/하 이동 버튼 위치 */
+#backToTop, #goToBottom { z-index: 999; }
+#backToTop { position: fixed; right: 12px; bottom: 16px; }
+#goToBottom  { position: fixed; right: 12px; top: 16px; }
+
+/* 모바일에서 backToTop을 기호처럼 작게 보이게 (텍스트 겹침 방지) */
+#backToTop {
+  padding: 4px 8px;      /* 기존보다 작게 */
+  line-height: 1;        /* 높이 축소 */
+  font-size: 1.2em;      /* 아이콘처럼 보이도록 */
+}
+      
   }
 
   /* (옵션) 데스크탑에선 main.css 값이 확실히 적용되도록 명시해도 됩니다 */
@@ -87,6 +100,7 @@ title: Texts
   </main>
 
   <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+  <a id="goToBottom" href="#" aria-label="Go to bottom" style="display:none">∨</a>
   <div id="tooltip" class="tooltip"></div>
 
   <script>
@@ -166,6 +180,10 @@ title: Texts
         draw();     // 다시 그리기
       }
     });
+
+    toggleScrollButtons(false);
+
+    
   }
 
   function renderDetail(id){
@@ -175,6 +193,8 @@ title: Texts
     const aside = document.getElementById('detailAside');
     const origLang = (t.original?.language || 'fr').toLowerCase();
 
+    toggleScrollButtons(true);
+    
     const notesCounts = {};
     notesCounts[origLang] = (t.original?.notes || []).length;
     (t.translations || []).forEach(tr => { notesCounts[tr.language] = (tr.notes || []).length; });
@@ -359,8 +379,60 @@ window.addEventListener('resize', applyAsideLinkTargets);
     }
   }
 
+    // === 상단/하단 버튼 제어 ===
+const btt = document.getElementById('backToTop');
+const gtb = document.getElementById('goToBottom');
+
+function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
+
+// 모바일·세부페이지에서만: backToTop 텍스트를 ∧ 로 축약
+function updateBackToTopLabel(inDetail){
+  if (isMobile() && inDetail){
+    if (btt.textContent !== '∧') btt.textContent = '∧';
+  } else {
+    if (btt.textContent !== 'Back to top') btt.textContent = 'Back to top';
+  }
+}
+
+// 목록/세부 컨텍스트에 따라 버튼 노출 제어
+function toggleScrollButtons(inDetail){
+  if (isMobile()){
+    // 모바일: 세부페이지일 때만 상단(∨) 버튼 보임, backToTop은 스크롤에 따라 표시
+    gtb.style.display = inDetail ? 'block' : 'none';
+    // backToTop은 스크롤 핸들러에서 on/off, 목록일 땐 강제 숨김
+    if (!inDetail) btt.style.display = 'none';
+  } else {
+    // 데스크탑: 기존 동작을 그대로 — goToBottom은 데스크탑에선 항상 숨김
+    gtb.style.display = 'none';
+    // backToTop은 기존 스크롤 로직에 맡김(변경 없음)
+  }
+  updateBackToTopLabel(inDetail);
+}
+
+// 하단으로 이동
+gtb.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+  if (reduce) window.scrollTo(0, bottom);
+  else window.scrollTo({ top: bottom, behavior: 'smooth' });
+});
+
+// 반응형 전환 시 라벨/노출 갱신
+window.addEventListener('resize', ()=>{
+  const inDetail = !document.getElementById('detailView').hidden;
+  toggleScrollButtons(inDetail);
+});
+    
   const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+  window.addEventListener('scroll', ()=>{
+  const inDetail = !document.getElementById('detailView').hidden;
+  if (isMobile() && !inDetail){
+    btt.style.display = 'none';            // 모바일 목록: 숨김
+  } else {
+    btt.style.display = window.scrollY>300 ? 'block' : 'none';  // 기존 동작 유지
+  }
+});
   btt.addEventListener('click', (e)=>{
     e.preventDefault();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
