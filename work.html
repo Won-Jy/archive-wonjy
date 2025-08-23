@@ -10,69 +10,114 @@ layout: none
   <link rel="icon" href="/favicon.png" type="image/x-icon">
   <title>Work | archive-wonjy.com</title>
   <style>
-    :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; }
-    body{font-family:sans-serif;margin:0;line-height:1.6;color:var(--text)}
-    header{display:flex;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border)}
-    .title{font-size:1.2em;font-weight:bold;text-transform:lowercase}
-    .title:link,
-    .title:visited{color:#000;text-decoration:none;}
-    .title:hover{color:var(--blue);text-decoration:none;}
-    nav{margin-left:55px}
-    nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
-    nav a:hover,nav a.active{color:var(--blue)}
-
-    main{max-width:1200px;margin:0;padding:20px 40px;}
-
-    .topbar{display:flex;align-items:center;gap:18px;justify-content:flex-end;margin:8px 0 16px;font-size:0.9em}
-    .sort a{color:#555;text-decoration:none;margin-right:6px}
-    .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
-    .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
-
-    .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:0.95em;text-align:left;outline:none;width:230px}
-    .search input::placeholder{color:#999}
-    .search input::-webkit-search-cancel-button{-webkit-appearance:none;width:14px;height:14px;cursor:pointer;background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
-    .search input::-webkit-search-cancel-button:hover{opacity:1}
-
-    .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
-    @media (max-width:960px){.layout{grid-template-columns:1fr}}
-
-    .sidebar{margin-top:-16px}
-    @media (max-width:960px){.sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px}}
-    .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px}
-    .filter-group{margin:16px 0;border-bottom:1px solid var(--border);padding-bottom:16px}
-    .filter-group:last-child{border-bottom:none}
-    .filter-head{display:flex;justify-content:space-between;cursor:pointer;user-select:none;padding:6px 0}
-    .filter-head .label{font-weight:bold;font-size:0.95em}
-    .toggle{color:#999}
-    .filter-body{margin:8px 0 10px}
-    .chips{display:block;padding:0;margin:0}
-    .chip{display:block;border:0;background:none;padding:6px 0;margin:0;font-size:0.95em;color:inherit;cursor:pointer}
-    .sidebar .filter-body .chip{font-size:0.93em;line-height:1.0;margin-bottom:1px;color:#555}
-    .sidebar .filter-body .chip:hover,.sidebar .filter-body .chip.active{color:var(--blue)}
-    .chips .chip[data-value="__ALL__"]{font-weight:700}
-
-    .filter-group[data-filter="year"] .chips{display:grid;grid-template-columns:repeat(4,auto);gap:6px}
-    .filter-group[data-filter="year"] .chip{display:inline-block;padding:2px 0}
-    .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{grid-column:1 / -1;padding-bottom:6px}
-    @media (max-width:1100px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(3,auto)}}
-    @media (max-width:720px){.filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}}
-
-    .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
-    .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
-    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
-    .card:hover .hover{opacity:1}
-    .hover .meta{padding:10px 12px;font-size:0.95em}
-    .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600}
-
-    .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
-    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px}
-    .pagination a{text-decoration:none;color:#000;font-size:0.95em}
-    .pagination a:hover,.pagination a.current{color:var(--blue)}
-    .pagination .ellipsis{padding:0 6px;color:#999}
-    .sr{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+      /* 0) Variables */
+      :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; }
+    
+      /* 1) Base */
+      body{font-family:sans-serif;margin:0;line-height:1.6;color:var(--text)}
+      header{display:flex;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border)}
+      .title{font-size:1.2em;font-weight:bold;text-transform:lowercase}
+      .title:link,
+      .title:visited{color:#000;text-decoration:none;}
+      .title:hover{color:var(--blue);text-decoration:none;}
+      nav{margin-left:55px}
+      nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
+      nav a:hover,nav a.active{color:var(--blue)}
+    
+      main{max-width:1200px;margin:0;padding:20px 40px;}
+    
+      /* 2) Top bar */
+      .topbar{display:flex;align-items:center;gap:18px;justify-content:flex-end;margin:8px 0 16px;font-size:0.9em}
+      .sort a{color:#555;text-decoration:none;margin-right:6px}
+      .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
+      .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
+    
+      /* 3) Search */
+      .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:0.95em;text-align:left;outline:none;width:230px}
+      .search input::placeholder{color:#999}
+      .search input::-webkit-search-cancel-button{-webkit-appearance:none;width:14px;height:14px;cursor:pointer;background:no-repeat center / contain url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMiAxMic+PGxpbmUgeDE9JzMnIHkxPSczJyB4Mj0nOScgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PGxpbmUgeDE9JzknIHkxPSczJyB4Mj0nMycgeTI9JzknIHN0cm9rZT0nIzk5OScgc3Ryb2tlLXdpZHRoPScxJy8+PC9zdmc+");opacity:.9}
+      .search input::-webkit-search-cancel-button:hover{opacity:1}
+    
+      /* 4) Layout */
+      .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
+      .sidebar{margin-top:-16px}
+    
+      /* 5) Sidebar filters */
+      .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px}
+      .filter-group{margin:16px 0;border-bottom:1px solid var(--border);padding-bottom:16px}
+      .filter-group:last-child{border-bottom:none}
+      .filter-head{display:flex;justify-content:space-between;cursor:pointer;user-select:none;padding:6px 0}
+      .filter-head .label{font-weight:bold;font-size:0.95em}
+      .toggle{color:#999}
+      .filter-body{margin:8px 0 10px}
+      .chips{display:block;padding:0;margin:0}
+      .chip{display:block;border:0;background:none;padding:6px 0;margin:0;font-size:0.95em;color:inherit;cursor:pointer}
+      .sidebar .filter-body .chip{font-size:0.93em;line-height:1.0;margin-bottom:1px;color:#555}
+      .sidebar .filter-body .chip:hover,.sidebar .filter-body .chip.active{color:var(--blue)}
+      .chips .chip[data-value="__ALL__"]{font-weight:700}
+    
+      .filter-group[data-filter="year"] .chips{display:grid;grid-template-columns:repeat(4,auto);gap:6px}
+      .filter-group[data-filter="year"] .chip{display:inline-block;padding:2px 0}
+      .filter-group[data-filter="year"] .chip[data-value="__ALL__"]{grid-column:1 / -1;padding-bottom:6px}
+    
+      /* 6) Cards */
+      .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
+      .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
+      .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+      .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
+      .card:hover .hover{opacity:1}
+      .hover .meta{padding:10px 12px;font-size:0.95em}
+      .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600}
+    
+      /* 7) Grid & Pagination */
+      .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
+      .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+      .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px}
+      .pagination a{text-decoration:none;color:#000;font-size:0.95em}
+      .pagination a:hover,.pagination a.current{color:var(--blue)}
+      .pagination .ellipsis{padding:0 6px;color:#999}
+    
+      /* 8) Utilities */
+      .sr{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+    
+      /* 9) Responsive: single breakpoint (≤768px) */
+      @media (max-width:768px){
+        header{
+          display:flex;
+          flex-direction:column;
+          align-items:flex-start;
+          padding:16px 20px;
+          border-bottom:1px solid var(--border);
+          }
+          header .title{ align-self:flex-start; }
+        
+          /* 데스크톱에서 쓰던 nav 좌여백(55px) 무효화 */
+          nav{
+            margin:12px 0 0 0;
+            margin-left:0;               /* override */
+          }
+        
+          /* 모바일 메뉴 간격/크기 */
+          nav a{
+          margin-left:30px;
+          text-decoration:none;
+          color:#555;
+          font-size:1.05em;
+          transition:color .2s;
+          font-weight:normal;
+          }
+          nav a:first-child{ margin-left:0; }
+          nav a:hover,
+          nav a.active{ color:var(--blue); }
+        
+          /* 이미 있으신 work 전용 레이아웃 전환 규칙도 계속 유지 */
+          /* .layout{grid-template-columns:1fr}
+             .sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px}
+             .grid{grid-template-columns:1fr}
+             .filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}
+             .topbar{flex-wrap:wrap;gap:10px} */
+        }
+      }
   </style>
   
 </head>
