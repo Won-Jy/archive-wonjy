@@ -131,7 +131,7 @@ main.contact-links p a:focus {
 =========================== */
 main {
   padding: 60px 40px 60px 40px;   /* 안쪽 여백: 위아래 60, 좌우 40 */
-  max-width: 775px;     /* 본문 최대 너비 제한 */
+  max-width: 740px;     /* 본문 최대 너비 제한 */
   margin: 0;            /* 바깥쪽 여백 없음 (즉, 좌우 중앙정렬은 안 됨) */
 }
 .section-title {
