@@ -53,7 +53,13 @@ title: Texts
       margin-top: 0;
     }
 
-      .tooltip{ position:fixed; z-index: 9999; }
+    .tooltip{
+    position: absolute;       /* 문서 좌표 기준으로 이동 */
+    z-index: 9999;
+    max-width: min(90vw, 320px);
+    box-sizing: border-box;
+    word-wrap: break-word;
+    }
 
   }
 
@@ -316,13 +322,40 @@ window.addEventListener('resize', applyAsideLinkTargets);
     function showTipAt(x, y, html){
       tooltip.innerHTML = html;
       tooltip.style.display = 'block';
-      tooltip.style.left = (x + 10) + 'px';
-      tooltip.style.top  = (y + 10) + 'px';
-    }
-    function hideTip(){
+      // 우선 임시 배치 후 실제 크기 얻기
+      tooltip.style.left = '-9999px';
+      tooltip.style.top  = '-9999px';
+      }
+    
+      requestAnimationFrame(()=>{
+      const margin = 8;
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+  
+      const r = el.getBoundingClientRect();           // 앵커(각주번호) 위치
+      const tr = tooltip.getBoundingClientRect();     // 툴팁 실제 크기
+  
+      // 기본: 앵커 아래 중앙
+      let left = r.left + (r.width - tr.width)/2;
+      let top  = r.bottom + margin;
+  
+      // 아래로 못 내려가면 위로
+      if (top + tr.height + margin > vh) {
+        top = r.top - tr.height - margin;
+      }
+      // 좌우 클램프
+      if (left < margin) left = margin;
+      if (left + tr.width + margin > vw) left = vw - tr.width - margin;
+  
+      // 문서 좌표로 변환해 absolute 배치
+      tooltip.style.left = (left + window.scrollX) + 'px';
+      tooltip.style.top  = (top  + window.scrollY) + 'px';
+      });
+    
+      function hideTip(){
       tooltip.style.display = 'none';
       tooltip.innerHTML = '';
-    }
+      }
 
     function setLang(lang){
       tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
@@ -352,10 +385,10 @@ window.addEventListener('resize', applyAsideLinkTargets);
 
   // 3) 데스크탑: hover 툴팁 (기존 로직 유지)
   article.querySelectorAll('.note-ref').forEach(a=>{
-    a.onmouseenter = function(e){
+    a.onmouseenter = function(){
       const href=this.getAttribute('href').slice(1);
       const html=notesMap[href]; if(!html) return;
-      showTipAt(e.clientX, e.clientY, html);
+      showTipNear(this, html);
     };
     a.onmouseleave = ()=>{ hideTip(); };
     a.onmousemove = (e)=>{ showTipAt(e.clientX, e.clientY, notesMap[this.getAttribute('href').slice(1)] || ''); };
