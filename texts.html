@@ -13,59 +13,53 @@ title: Texts
   <link rel="icon" href="/favicon.png" type="image/x-icon">
 
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-
+  
   <style>
     @media (max-width: 768px){
-      :root{
-        --list-height: 350px;  /* 데스크탑 기본 670px → 모바일용으로 낮춰줌 */
-      }
-      header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
-      header .title{ align-self:flex-start; }
-      nav{ margin:12px 0 0 0; }
-      nav a{ margin-left:30px; text-decoration:none; color:#555; font-size:1.05em; transition:color .2s; font-weight:normal; }
-      nav a:first-child{ margin-left:0; }
-      nav a:hover, nav a.active{ color:#007BFF; }
+    :root{
+    --list-height: 350px;  /* 데스크톱 기본 670px → 모바일용으로 낮춰줌 */
+  }
+    header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
+    header .title{ align-self:flex-start; }
+    nav{ margin:12px 0 0 0; }
+    nav a{ margin-left:30px; text-decoration:none; color:#555; font-size:1.05em; transition:color .2s; font-weight:normal; }
+    nav a:first-child{ margin-left:0; }
+    nav a:hover, nav a.active{ color:#007BFF; }
 
-      /* ✅ 메인 영역은 모바일에서만 700px로 제한 */
-      main{ padding:60px 40px 60px 24px; max-width:700px; }
-      main.list{ padding:50px 24px 30px 24px; max-width:700px; min-height:auto }
-      main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
-      .text-link{ padding-left: 0; padding-right: 0; }
-
-      /* 목록 화면에는 보더 제거 */
-      main.list,
-      #listView,
-      #pager { border: 0 !important; }
-      main.detail { border: 0 !important; }
-      
-      /* ✅ 모바일: 세부 화면에서 '본문(각주 포함) 바로 밑'에만 구분선 1줄 */
-      #detailView:not([hidden]) #detailArticle {
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 24px;
-        margin-bottom: 12px;
-      }
-      /* ✅ 모바일: aside 쪽 보더 제거(이중선 방지) */
-      #detailView #detailAside {
-        border-top: 0 !important;
-        padding-top: 0;
-        margin-top: 0;
-      }
-
-      /* ✅ 모바일에서만: 상/하 이동 버튼 위치 */
-      #backToTop, #goToBottom { z-index: 999; }
-      #backToTop { position: fixed; right: 12px; bottom: 16px; }
-      #goToBottom{ position: fixed; right: 12px; top: 16px; }
-
-      /* 모바일에서 backToTop을 기호처럼 작게 보이게 (텍스트 겹침 방지) */
-      #backToTop { padding: 4px 8px; line-height: 1; font-size: 1.2em; }
+    /* ✅ 메인 영역은 모바일에서만 700px로 제한 */
+    main{ padding:60px 40px 60px 24px; max-width:700px; }
+    main.list{ padding:50px 24px 30px 24px; max-width:700px; min-height:auto }  /* 왼쪽 24px로 맞춤 */
+    main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
+      .text-link{ padding-left: 0; padding-right: 0; }  /* ← 항목 좌우 패딩 제거 */
+    /* 목록 화면에는 보더 절대 금지 */
+    main.list,
+    #listView,
+    #pager { border: 0 !important; }
+    
+    /* 과거에 넣었을지 모를 main.detail 전체 보더 제거 */
+    main.detail { border: 0 !important; }
+    
+    /* ✅ 모바일: 세부 화면에서 '본문(각주 포함) 바로 밑'에만 구분선 1줄 */
+    #detailView:not([hidden]) #detailArticle {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 12px;
     }
-
-    /* (옵션) 데스크탑에선 main.css 값이 확실히 적용되도록 명시 */
-    @media (min-width: 769px){
-      main{ padding:60px 40px; max-width:1200px; }
-      main.list{ padding:50px 40px 10px 40px; max-width:740px; }
-      main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
+    
+    /* ✅ 모바일: aside 쪽 보더는 없앰(두 줄 방지) */
+    #detailView #detailAside {
+      border-top: 0 !important;
+      padding-top: 0;   /* 원래 간격 유지하고 싶으면 16~24px로 조절 */
+      margin-top: 0;
     }
+  }
+
+  /* (옵션) 데스크탑에선 main.css 값이 확실히 적용되도록 명시해도 됩니다 */
+  @media (min-width: 769px){
+    main{ padding:60px 40px; max-width:1200px; }
+    main.list{ padding:50px 40px 10px 40px; max-width:740px; }
+    main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
+  }
   </style>
 </head>
 <body>
@@ -92,66 +86,10 @@ title: Texts
     <aside id="detailAside"></aside>
   </main>
 
-  <!-- 스크롤 버튼 -->
-  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a> <!-- 데스크탑은 그대로 사용 -->
-  <a id="goToBottom" href="#" aria-label="Go to bottom" style="display:none">∨</a>
+  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
   <div id="tooltip" class="tooltip"></div>
 
   <script>
-  /* ===== 상/하 이동 버튼 로직 (최상단 배치) ===== */
-  const btt = document.getElementById('backToTop');
-  const gtb = document.getElementById('goToBottom');
-
-  function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
-
-  function updateBackToTopLabel(inDetail){
-    if (isMobile() && inDetail){
-      if (btt.textContent !== '∧') btt.textContent = '∧';
-    } else {
-      if (btt.textContent !== 'Back to top') btt.textContent = 'Back to top';
-    }
-  }
-
-  function toggleScrollButtons(inDetail){
-    if (isMobile()){
-      gtb.style.display = inDetail ? 'block' : 'none';
-      if (!inDetail) btt.style.display = 'none';
-    } else {
-      gtb.style.display = 'none';
-    }
-    updateBackToTopLabel(inDetail);
-  }
-
-  gtb.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-    if (reduce) window.scrollTo(0, bottom);
-    else window.scrollTo({ top: bottom, behavior: 'smooth' });
-  });
-
-  window.addEventListener('resize', ()=>{
-    const inDetail = !document.getElementById('detailView').hidden;
-    toggleScrollButtons(inDetail);
-  });
-
-  window.addEventListener('scroll', ()=>{
-    const inDetail = !document.getElementById('detailView').hidden;
-    if (isMobile() && !inDetail){
-      btt.style.display = 'none';
-    } else {
-      btt.style.display = window.scrollY > 300 ? 'block' : 'none';
-    }
-  });
-
-  btt.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) window.scrollTo(0,0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  /* ===== 데이터 로드 ===== */
   const DATA = {
     {% for pair in site.data.texts %}
       {% assign id = pair[0] %}{% assign t = pair[1] %}
@@ -163,23 +101,79 @@ title: Texts
   const currentId = params.get('id');
   if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
 
-  /* ===== 목록 렌더 ===== */
   function renderList(){
     document.getElementById('listView').hidden = false;
     document.getElementById('pager').hidden = false;
-    ...
-    toggleScrollButtons(false);
+
+    const arr = Object.entries(DATA).map(([id,t])=>({
+      id,
+      title_html: t.title_original?.text_html || '',
+      author: t.author?.name || '',
+      year: t.year || ''
+    }));
+    arr.sort((a,b)=>{
+      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
+      if (yb!==ya) return yb-ya;
+      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
+    });
+
+    // ✅ 화면폭에 따라 perPage 결정
+    function getPerPage(){
+      return window.innerWidth <= 768 ? 6 : 10; // 모바일: 6개, 그 외: 10개
+    }
+    let perPage = getPerPage();
+    let page = 1;
+
+    // ✅ 여기 한 번만 선언
+    const itemsEl = document.getElementById('items');
+    const pagerEl = document.getElementById('pager');
+
+    // ✅ 여기 한 번만 선언
+    function draw(){
+      const start = (page-1)*perPage, end = start+perPage;
+      itemsEl.innerHTML = '';
+      arr.slice(start,end).forEach(it=>{
+        const a = document.createElement('a');
+        a.className = 'text-link';
+        a.href = `?id=${encodeURIComponent(it.id)}`;
+        a.innerHTML =
+          `<span class="text-title">${it.title_html}</span>`+
+          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+        itemsEl.appendChild(a);
+      });
+
+      const total = Math.max(1, Math.ceil(arr.length/perPage));
+      pagerEl.innerHTML = '';
+      for(let i=1;i<=total;i++){
+        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+        const link = document.createElement('a'); link.href='#'; link.textContent=i;
+        if(i===page) link.classList.add('active');
+        link.addEventListener('click', e=>{
+          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
+        });
+        pagerEl.appendChild(link);
+      }
+    }
+    draw();
+
+    // ✅ 리사이즈 시 perPage 변경 감지
+    window.addEventListener('resize', ()=>{
+      const newPerPage = getPerPage();
+      if(newPerPage !== perPage){
+        perPage = newPerPage;
+        page = 1;   // 페이지 리셋
+        draw();     // 다시 그리기
+      }
+    });
   }
 
-  /* ===== 상세 렌더 ===== */
   function renderDetail(id){
     const t = DATA[id];
     document.getElementById('detailView').hidden = false;
     const article = document.getElementById('detailArticle');
     const aside = document.getElementById('detailAside');
     const origLang = (t.original?.language || 'fr').toLowerCase();
-
-    toggleScrollButtons(true);
 
     const notesCounts = {};
     notesCounts[origLang] = (t.original?.notes || []).length;
@@ -189,10 +183,12 @@ title: Texts
     article.innerHTML = `
       <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
       <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
+
       <div class="lang-tabs" id="langTabs">
         <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
         ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
       </div>
+
       <div class="text-variants">
         <div class="text-body variant" data-lang="${origLang}">
           ${t.original?.body_html || ''}
@@ -203,38 +199,174 @@ title: Texts
           </div>
         `).join('')}
       </div>
+
+      ${hasAnyNotes ? `
+      <div id="notesDivider" class="divider"></div>
+      <section id="notesSection" class="notes">
+        <h3>Notes</h3>
+        <ol class="notes-variants">
+          <li style="list-style:none;padding:0;margin:0">
+            <ol class="notes-list variant" data-lang="${origLang}">
+              ${(t.original?.notes||[]).map(n=>`
+                <li id="fn-${n.id}-${origLang}">
+                  <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
+                </li>
+              `).join('')}
+            </ol>
+          </li>
+          ${(t.translations||[]).map(tr=>`
+            <li style="list-style:none;padding:0;margin:0">
+              <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
+                ${(tr.notes||[]).map(n=>`
+                  <li id="fn-${n.id}-${tr.language}">
+                    <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+                  </li>
+                `).join('')}
+              </ol>
+            </li>
+          `).join('')}
+        </ol>
+      </section>
+      ` : ``}
     `;
 
-    if (hasAnyNotes) {
-      ...
-      article.innerHTML += notesHTML;
+    function isEmpty(val){
+      if (val == null) return true;
+      if (Array.isArray(val)) return val.length === 0;
+      if (typeof val === 'string') return val.trim() === '';
+      return false;
     }
 
-    function isEmpty(val){ ... }
-
     const asideBlocks = [];
-    if (!isEmpty(t.related_works)) { ... }
-    if (!isEmpty(t.source_html)) { ... }
-    asideBlocks.push('<div class="aside-block"><h4>Author</h4>'+(t.author?.bio_html||'')+'</div>');
-    document.getElementById('detailAside').innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-    function applyAsideLinkTargets(){ ... }
-    applyAsideLinkTargets();
-    window.addEventListener('resize', applyAsideLinkTargets);
+    if (!isEmpty(t.related_works)) {
+      asideBlocks.push(`
+        <div class="aside-block">
+          <h4>Related works</h4>
+          <ul class="related-works">
+            ${(t.related_works || []).map(r => {
+              const label = r.label || 'View';
+              return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+            }).join('')}
+          </ul>
+        </div>
+      `);
+    }
 
-    article.querySelectorAll('.notes a').forEach(a => { ... });
+    if (!isEmpty(t.source_html)) {
+      const sourceHtml = Array.isArray(t.source_html) ? t.source_html.join('') : t.source_html;
+      if (!isEmpty(sourceHtml)) {
+        asideBlocks.push(`
+          <div class="aside-block">
+            <h4>Source</h4>
+            ${sourceHtml}
+          </div>
+        `);
+      }
+    }
+
+    asideBlocks.push(`
+      <div class="aside-block">
+        <h4>Author</h4>
+        ${t.author?.bio_html || ''}
+      </div>
+    `);
+
+    aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
+
+    // 외부 링크는 새 탭
+    function applyAsideLinkTargets() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  aside.querySelectorAll('a').forEach(a => {
+    if (isMobile) {
+      // 모바일: 같은 탭
+      a.removeAttribute('target');
+      a.removeAttribute('rel');
+    } else {
+      // 데스크톱: 전부 새 탭
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}
+
+// aside 내용 렌더 직후
+applyAsideLinkTargets();
+
+// 화면 크기 변경 시 반영
+window.addEventListener('resize', applyAsideLinkTargets);
+
+// 최초 적용
+applyAsideLinkTargets();
+
+// 화면 크기 변화 시 모드 전환 반영
+window.addEventListener('resize', applyAsideLinkTargets);
+    article.querySelectorAll('.notes a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if (href.startsWith('#')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
+      else if (/^https?:\/\//i.test(href)) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener noreferrer'); }
+    });
 
     const tabs = Array.from(article.querySelectorAll('.lang-btn'));
     const variants = Array.from(article.querySelectorAll('.variant'));
     const tooltip = document.getElementById('tooltip');
 
-    function setLang(lang){ ... }
+    function setLang(lang){
+      tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
+      const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
+      wireFootnotes(lang);
+
+      if (hasAnyNotes) {
+        const notesDiv = article.querySelector('#notesDivider');
+        const notesSec = article.querySelector('#notesSection');
+        const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
+        [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
+      }
+    }
+
     tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
     const initLang = new URLSearchParams(location.search).get('lang') || origLang;
     setLang(initLang);
 
-    function wireFootnotes(lang){ ... }
+    function wireFootnotes(lang){
+      article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+        const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+        const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
+        if(!sup.querySelector('a')){
+          const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
+          sup.textContent=''; sup.id=refId; sup.appendChild(a);
+        }else{
+          sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
+        }
+      });
+
+      const notesMap = {};
+      article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+        const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+        notesMap[li.id] = html;
+      });
+      article.querySelectorAll('.note-ref').forEach(a=>{
+        a.onmouseenter = function(e){
+          const href=this.getAttribute('href').slice(1);
+          const html=notesMap[href]; if(!html) return;
+          tooltip.innerHTML=html; tooltip.style.display='block';
+          tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px';
+        };
+        a.onmouseleave = ()=>{ tooltip.style.display='none'; tooltip.innerHTML=''; };
+        a.onmousemove = (e)=>{ tooltip.style.left=(e.clientX+10)+'px'; tooltip.style.top=(e.clientY+10)+'px'; };
+      });
+    }
   }
+
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+  btt.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) window.scrollTo(0,0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   </script>
 </body>
 </html>
