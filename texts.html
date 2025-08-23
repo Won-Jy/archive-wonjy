@@ -278,25 +278,23 @@ title: Texts
     function applyAsideLinkTargets() {
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
   aside.querySelectorAll('a').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    const isExternal = /^https?:\/\//i.test(href);
-
     if (isMobile) {
-      // 모바일: 모두 같은 탭
+      // 모바일: 같은 탭
       a.removeAttribute('target');
       a.removeAttribute('rel');
     } else {
-      // 데스크톱: 외부 링크만 새 탭
-      if (isExternal) {
-        a.setAttribute('target', '_blank');
-        a.setAttribute('rel', 'noopener noreferrer');
-      } else {
-        a.removeAttribute('target');
-        a.removeAttribute('rel');
-      }
+      // 데스크톱: 전부 새 탭
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
     }
   });
 }
+
+// aside 내용 렌더 직후
+applyAsideLinkTargets();
+
+// 화면 크기 변경 시 반영
+window.addEventListener('resize', applyAsideLinkTargets);
 
 // 최초 적용
 applyAsideLinkTargets();
