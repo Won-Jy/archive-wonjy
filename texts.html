@@ -310,12 +310,97 @@ window.addEventListener('resize', applyAsideLinkTargets);
     const tabs = Array.from(article.querySelectorAll('.lang-btn'));
     const variants = Array.from(article.querySelectorAll('.variant'));
     const tooltip = document.getElementById('tooltip');
+    function showTipAt(x, y, html){
+      tooltip.innerHTML = html;
+      tooltip.style.display = 'block';
+      tooltip.style.left = (x + 10) + 'px';
+      tooltip.style.top  = (y + 10) + 'px';
+    }
+    function hideTip(){
+      tooltip.style.display = 'none';
+      tooltip.innerHTML = '';
+    }
 
     function setLang(lang){
       tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
       variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
       const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
       wireFootnotes(lang);
+
+      function wireFootnotes(lang){
+  // 1) 본문 sup → a 링크 보정 (기존 로직 그대로)
+  article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+    const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+    const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
+    if(!sup.querySelector('a')){
+      const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
+      sup.textContent=''; sup.id=refId; sup.appendChild(a);
+    }else{
+      sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
+    }
+  });
+
+  // 2) 각주 내용 매핑 (기존 로직 그대로)
+  const notesMap = {};
+  article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+    const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+    notesMap[li.id] = html;
+  });
+
+  // 3) 데스크탑: hover 툴팁 (기존 로직 유지)
+  article.querySelectorAll('.note-ref').forEach(a=>{
+    a.onmouseenter = function(e){
+      const href=this.getAttribute('href').slice(1);
+      const html=notesMap[href]; if(!html) return;
+      showTipAt(e.clientX, e.clientY, html);
+    };
+    a.onmouseleave = ()=>{ hideTip(); };
+    a.onmousemove = (e)=>{ showTipAt(e.clientX, e.clientY, notesMap[this.getAttribute('href').slice(1)] || ''); };
+  });
+
+  // 4) 모바일: 첫 탭은 툴팁만, 두 번째 탭은 아래 각주로 이동
+  article.querySelectorAll('.note-ref').forEach(a=>{
+    a.addEventListener('click', function(e){
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if(!isMobile) return; // 데스크탑은 기본 동작(스크롤 점프)
+
+      const href = this.getAttribute('href').slice(1);
+      const html = notesMap[href];
+      if(!html) return;
+
+      const alreadyPeeked = this.dataset.peek === '1';
+
+      if(!alreadyPeeked){
+        // 첫 탭: 툴팁만 보여주고 이동 막기
+        e.preventDefault();
+        this.dataset.peek = '1';
+
+        const rect = this.getBoundingClientRect();
+        const x = rect.left + rect.width/2;
+        const y = rect.top + rect.height + 6;
+        showTipAt(x, y, html);
+
+        // 밖을 누르거나 3초 후 자동 닫힘
+        const clear = ()=>{
+          this.dataset.peek = '0';
+          hideTip();
+          document.removeEventListener('click', outsideHandler, true);
+        };
+        const outsideHandler = (evt)=>{
+          if(!this.contains(evt.target)) clear();
+        };
+        document.addEventListener('click', outsideHandler, true);
+        setTimeout(clear, 3000);
+      }else{
+        // 두 번째 탭: 기본 동작 허용(각주로 점프)
+        this.dataset.peek = '0';
+        hideTip();
+        // e.preventDefault() 하지 않음
+      }
+    }, {passive:false});
+  });
+}
+
 
       if (hasAnyNotes) {
         const notesDiv = article.querySelector('#notesDivider');
