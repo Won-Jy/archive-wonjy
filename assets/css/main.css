@@ -103,16 +103,22 @@ header nav a[aria-current="page"] {
 /* ===========================
    Contact page (contact.html)
 =========================== */
-.contact-links a {
-  margin-left: 10px;
-  font-size: 0.9em;
-  color: #666;
-  text-decoration: none;
+/* Contact page: link style override */
+main.contact-links p a {
+  color: #666;                /* 기본 회색 */
+  text-decoration: none;      /* 기본 밑줄 제거 */
   font-weight: normal;
+  margin-left: 6px;           /* 라벨과 약간 간격 */
 }
 
-.contact-links a:hover {
-  color: var(--blue);
+main.contact-links p a:visited {
+  color: #666;                /* 방문 후에도 회색 유지 */
+}
+
+main.contact-links p a:hover,
+main.contact-links p a:focus {
+  color: var(--blue);         /* hover 시 파랑 */
+  text-decoration: none;      /* hover 시에도 밑줄 없음 */
 }
 
 /* ===========================
