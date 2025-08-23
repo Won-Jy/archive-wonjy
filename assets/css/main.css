@@ -103,22 +103,25 @@ header nav a[aria-current="page"] {
 /* ===========================
    Contact page (contact.html)
 =========================== */
-/* Contact page: link style override */
+main.contact {
+  max-width: 740px;    
+}
+
 main.contact-links p a {
-  color: #666;                /* 기본 회색 */
-  text-decoration: none;      /* 기본 밑줄 제거 */
+  color: #666;               
+  text-decoration: none;     
   font-weight: normal;
-  margin-left: 6px;           /* 라벨과 약간 간격 */
+  margin-left: 6px;           
 }
 
 main.contact-links p a:visited {
-  color: #666;                /* 방문 후에도 회색 유지 */
+  color: #666;               
 }
 
 main.contact-links p a:hover,
 main.contact-links p a:focus {
-  color: var(--blue);         /* hover 시 파랑 */
-  text-decoration: none;      /* hover 시에도 밑줄 없음 */
+  color: var(--blue);        
+  text-decoration: none;      
 }
 
 /* ===========================
@@ -181,6 +184,10 @@ main {
 /* ===========================
    Home page (index.html)
 =========================== */
+main.index {
+  max-width: 1200px;
+}
+
 .entry {
   margin-bottom: 12px;
 }
