@@ -103,7 +103,17 @@ header nav a[aria-current="page"] {
 /* ===========================
    Contact page (contact.html)
 =========================== */
-/* (전역 a 규칙을 따르므로 별도 필요 없음) */
+.contact-links a {
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #666;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.contact-links a:hover {
+  color: var(--blue);
+}
 
 /* ===========================
    Bio page (bio.html)
