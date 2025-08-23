@@ -31,16 +31,26 @@ title: Texts
     main.list{ padding:50px 24px 30px 24px; max-width:700px; min-height:auto }  /* 왼쪽 24px로 맞춤 */
     main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
       .text-link{ padding-left: 0; padding-right: 0; }  /* ← 항목 좌우 패딩 제거 */
-      /* ✅ 구분선 추가 */
-        main.detail article {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 24px;  /* 본문과 구분선 사이 간격 */
-            margin-bottom: 24px;   /* 구분선과 aside 사이 간격 */
-          }
-          main.detail aside {
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-            margin-top: 0;
+    /* 목록 화면에는 보더 절대 금지 */
+    main.list,
+    #listView,
+    #pager { border: 0 !important; }
+    
+    /* 과거에 넣었을지 모를 main.detail 전체 보더 제거 */
+    main.detail { border: 0 !important; }
+    
+    /* ✅ 모바일: 세부 화면에서 '본문(각주 포함) 바로 밑'에만 구분선 1줄 */
+    #detailView:not([hidden]) #detailArticle {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+    
+    /* ✅ 모바일: aside 쪽 보더는 없앰(두 줄 방지) */
+    #detailView #detailAside {
+      border-top: 0 !important;
+      padding-top: 0;   /* 원래 간격 유지하고 싶으면 16~24px로 조절 */
+      margin-top: 0;
     }
   }
 
