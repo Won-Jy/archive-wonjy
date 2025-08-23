@@ -16,63 +16,63 @@ title: Texts
   
   <style>
     @media (max-width: 768px){
-    :root{
-    --list-height: 350px;  /* 데스크톱 기본 670px → 모바일용으로 낮춰줌 */
-  }
-    header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
-    header .title{ align-self:flex-start; }
-    nav{ margin:12px 0 0 0; }
-    nav a{ margin-left:30px; text-decoration:none; color:#555; font-size:1.05em; transition:color .2s; font-weight:normal; }
-    nav a:first-child{ margin-left:0; }
-    nav a:hover, nav a.active{ color:#007BFF; }
+      :root{
+        --list-height: 350px;  /* 데스크톱 기본 670px → 모바일용으로 낮춰줌 */
+      }
+      header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
+      header .title{ align-self:flex-start; }
+      nav{ margin:12px 0 0 0; }
+      nav a{ margin-left:30px; text-decoration:none; color:#555; font-size:1.05em; transition:color .2s; font-weight:normal; }
+      nav a:first-child{ margin-left:0; }
+      nav a:hover, nav a.active{ color:#007BFF; }
 
-    /* ✅ 메인 영역은 모바일에서만 700px로 제한 */
-    main{ padding:60px 40px 60px 24px; max-width:700px; }
-    main.list{ padding:50px 24px 30px 24px; max-width:700px; min-height:auto }  /* 왼쪽 24px로 맞춤 */
-    main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
+      /* ✅ 메인 영역은 모바일에서만 700px로 제한 */
+      main{ padding:60px 40px 60px 24px; max-width:700px; }
+      main.list{ padding:50px 24px 30px 24px; max-width:700px; min-height:auto }  /* 왼쪽 24px로 맞춤 */
+      main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
       .text-link{ padding-left: 0; padding-right: 0; }  /* ← 항목 좌우 패딩 제거 */
-    /* 목록 화면에는 보더 절대 금지 */
-    main.list,
-    #listView,
-    #pager { border: 0 !important; }
-    
-    /* 과거에 넣었을지 모를 main.detail 전체 보더 제거 */
-    main.detail { border: 0 !important; }
-    
-    /* ✅ 모바일: 세부 화면에서 '본문(각주 포함) 바로 밑'에만 구분선 1줄 */
-    #detailView:not([hidden]) #detailArticle {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 12px;
-    }
-    
-    /* ✅ 모바일: aside 쪽 보더는 없앰(두 줄 방지) */
-    #detailView #detailAside {
-      border-top: 0 !important;
-      padding-top: 0;   /* 원래 간격 유지하고 싶으면 16~24px로 조절 */
-      margin-top: 0;
-    }
 
-      /* 모바일일 때만: 세부페이지에서 쓰는 상/하 이동 버튼 위치 */
-#backToTop, #goToBottom { z-index: 999; }
-#backToTop { position: fixed; right: 12px; bottom: 16px; }
-#goToBottom  { position: fixed; right: 12px; top: 16px; }
-
-/* 모바일에서 backToTop을 기호처럼 작게 보이게 (텍스트 겹침 방지) */
-#backToTop {
-  padding: 4px 8px;      /* 기존보다 작게 */
-  line-height: 1;        /* 높이 축소 */
-  font-size: 1.2em;      /* 아이콘처럼 보이도록 */
-}
+      /* 목록 화면에는 보더 제거 */
+      main.list,
+      #listView,
+      #pager { border: 0 !important; }
       
-  }
+      /* 과거에 넣었을지 모를 main.detail 전체 보더 제거 */
+      main.detail { border: 0 !important; }
+      
+      /* ✅ 모바일: 세부 화면에서 '본문(각주 포함) 바로 밑'에만 구분선 1줄 */
+      #detailView:not([hidden]) #detailArticle {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 24px;
+        margin-bottom: 12px;
+      }
+      
+      /* ✅ 모바일: aside 쪽 보더는 없앰(두 줄 방지) */
+      #detailView #detailAside {
+        border-top: 0 !important;
+        padding-top: 0;
+        margin-top: 0;
+      }
 
-  /* (옵션) 데스크탑에선 main.css 값이 확실히 적용되도록 명시해도 됩니다 */
-  @media (min-width: 769px){
-    main{ padding:60px 40px; max-width:1200px; }
-    main.list{ padding:50px 40px 10px 40px; max-width:740px; }
-    main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
-  }
+      /* ✅ 모바일에서만: 상/하 이동 버튼 위치 */
+      #backToTop, #goToBottom { z-index: 999; }
+      #backToTop { position: fixed; right: 12px; bottom: 16px; }
+      #goToBottom  { position: fixed; right: 12px; top: 16px; }
+
+      /* 모바일에서 backToTop을 기호처럼 작게 보이게 (텍스트 겹침 방지) */
+      #backToTop {
+        padding: 4px 8px;
+        line-height: 1;
+        font-size: 1.2em;
+      }
+    }
+
+    /* (옵션) 데스크탑에선 main.css 값이 확실히 적용되도록 명시 */
+    @media (min-width: 769px){
+      main{ padding:60px 40px; max-width:1200px; }
+      main.list{ padding:50px 40px 10px 40px; max-width:740px; }
+      main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
+    }
   </style>
 </head>
 <body>
@@ -99,7 +99,8 @@ title: Texts
     <aside id="detailAside"></aside>
   </main>
 
-  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
+  <!-- 스크롤 버튼 -->
+  <a id="backToTop" href="#" aria-label="Back to top">Back to top</a> <!-- 데스크탑은 그대로 사용 -->
   <a id="goToBottom" href="#" aria-label="Go to bottom" style="display:none">∨</a>
   <div id="tooltip" class="tooltip"></div>
 
@@ -138,11 +139,9 @@ title: Texts
     let perPage = getPerPage();
     let page = 1;
 
-    // ✅ 여기 한 번만 선언
     const itemsEl = document.getElementById('items');
     const pagerEl = document.getElementById('pager');
 
-    // ✅ 여기 한 번만 선언
     function draw(){
       const start = (page-1)*perPage, end = start+perPage;
       itemsEl.innerHTML = '';
@@ -176,14 +175,13 @@ title: Texts
       const newPerPage = getPerPage();
       if(newPerPage !== perPage){
         perPage = newPerPage;
-        page = 1;   // 페이지 리셋
-        draw();     // 다시 그리기
+        page = 1;
+        draw();
       }
     });
 
+    // 목록 화면: 모바일 버튼 숨김
     toggleScrollButtons(false);
-
-    
   }
 
   function renderDetail(id){
@@ -193,6 +191,7 @@ title: Texts
     const aside = document.getElementById('detailAside');
     const origLang = (t.original?.language || 'fr').toLowerCase();
 
+    // 세부 화면: 모바일 버튼 노출/라벨 축약
     toggleScrollButtons(true);
     
     const notesCounts = {};
@@ -228,8 +227,8 @@ title: Texts
           <li style="list-style:none;padding:0;margin:0">
             <ol class="notes-list variant" data-lang="${origLang}">
               ${(t.original?.notes||[]).map(n=>`
-                <li id="fn-${n.id}-${origLang}">
-                  <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
+                <li id="fn-\${n.id}-${origLang}">
+                  <a class="note-num" href="#fnref-\${n.id}-${origLang}">[\${n.id}]</a> \${n.html}
                 </li>
               `).join('')}
             </ol>
@@ -238,8 +237,8 @@ title: Texts
             <li style="list-style:none;padding:0;margin:0">
               <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
                 ${(tr.notes||[]).map(n=>`
-                  <li id="fn-${n.id}-${tr.language}">
-                    <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+                  <li id="fn-\${n.id}-${tr.language}">
+                    <a class="note-num" href="#fnref-\${n.id}-${tr.language}">[\${n.id}]</a> \${n.html}
                   </li>
                 `).join('')}
               </ol>
@@ -294,33 +293,23 @@ title: Texts
 
     aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-    // 외부 링크는 새 탭
+    // 외부 링크 target 처리
     function applyAsideLinkTargets() {
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  aside.querySelectorAll('a').forEach(a => {
-    if (isMobile) {
-      // 모바일: 같은 탭
-      a.removeAttribute('target');
-      a.removeAttribute('rel');
-    } else {
-      // 데스크톱: 전부 새 탭
-      a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener noreferrer');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      aside.querySelectorAll('a').forEach(a => {
+        if (isMobile) {
+          a.removeAttribute('target');
+          a.removeAttribute('rel');
+        } else {
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
     }
-  });
-}
+    applyAsideLinkTargets();
+    window.addEventListener('resize', applyAsideLinkTargets);
 
-// aside 내용 렌더 직후
-applyAsideLinkTargets();
-
-// 화면 크기 변경 시 반영
-window.addEventListener('resize', applyAsideLinkTargets);
-
-// 최초 적용
-applyAsideLinkTargets();
-
-// 화면 크기 변화 시 모드 전환 반영
-window.addEventListener('resize', applyAsideLinkTargets);
+    // 각주 링크 target 처리
     article.querySelectorAll('.notes a').forEach(a => {
       const href = a.getAttribute('href') || '';
       if (href.startsWith('#')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
@@ -379,65 +368,65 @@ window.addEventListener('resize', applyAsideLinkTargets);
     }
   }
 
-    // === 상단/하단 버튼 제어 (단일 정의) ===
-const btt = document.getElementById('backToTop');
-const gtb = document.getElementById('goToBottom');
+  /* ===== 상/하 이동 버튼 로직 (중복 선언 금지) ===== */
+  const btt = document.getElementById('backToTop');
+  const gtb = document.getElementById('goToBottom');
 
-function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
+  function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
 
-// 모바일·세부페이지에서만: backToTop 라벨을 ∧ 로 축약
-function updateBackToTopLabel(inDetail){
-  if (isMobile() && inDetail){
-    if (btt.textContent !== '∧') btt.textContent = '∧';
-  } else {
-    if (btt.textContent !== 'Back to top') btt.textContent = 'Back to top';
+  // 모바일·세부페이지에서만: backToTop 라벨을 ∧ 로 축약, 그 외엔 원래 라벨 유지
+  function updateBackToTopLabel(inDetail){
+    if (isMobile() && inDetail){
+      if (btt.textContent !== '∧') btt.textContent = '∧';
+    } else {
+      if (btt.textContent !== 'Back to top') btt.textContent = 'Back to top';
+    }
   }
-}
 
-// 목록/세부 컨텍스트에 따라 버튼 노출 제어
-function toggleScrollButtons(inDetail){
-  if (isMobile()){
-    gtb.style.display = inDetail ? 'block' : 'none'; // 모바일: 세부일 때만 ∨
-    if (!inDetail) btt.style.display = 'none';       // 모바일 목록: ∧ 숨김
-  } else {
-    gtb.style.display = 'none';                      // 데스크탑: ∨ 항상 숨김
-    // 데스크탑의 Back to top 동작/스타일은 기존 그대로
+  // 목록/세부 컨텍스트에 따라 버튼 노출 제어
+  function toggleScrollButtons(inDetail){
+    if (isMobile()){
+      gtb.style.display = inDetail ? 'block' : 'none';  // 모바일: 세부일 때만 ∨
+      if (!inDetail) btt.style.display = 'none';        // 모바일 목록: ∧ 숨김
+    } else {
+      gtb.style.display = 'none';                       // 데스크탑: ∨ 숨김
+      // 데스크탑 Back to top은 기존 동작 그대로
+    }
+    updateBackToTopLabel(inDetail);
   }
-  updateBackToTopLabel(inDetail);
-}
 
-// 하단으로 이동(∨)
-gtb.addEventListener('click', (e)=>{
-  e.preventDefault();
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  if (reduce) window.scrollTo(0, bottom);
-  else window.scrollTo({ top: bottom, behavior: 'smooth' });
-});
+  // 하단으로 이동(∨)
+  gtb.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    if (reduce) window.scrollTo(0, bottom);
+    else window.scrollTo({ top: bottom, behavior: 'smooth' });
+  });
 
-// 반응형 전환 시 라벨/노출 갱신
-window.addEventListener('resize', ()=>{
-  const inDetail = !document.getElementById('detailView').hidden;
-  toggleScrollButtons(inDetail);
-});
+  // 반응형 전환 시 라벨/노출 갱신
+  window.addEventListener('resize', ()=>{
+    const inDetail = !document.getElementById('detailView').hidden;
+    toggleScrollButtons(inDetail);
+  });
 
-// 스크롤 시 ∧ 표시(모바일 목록 제외)
-window.addEventListener('scroll', ()=>{
-  const inDetail = !document.getElementById('detailView').hidden;
-  if (isMobile() && !inDetail){
-    btt.style.display = 'none';
-  } else {
-    btt.style.display = window.scrollY > 300 ? 'block' : 'none';
-  }
-});
+  // 스크롤 시 ∧ 표시(모바일 목록 제외)
+  window.addEventListener('scroll', ()=>{
+    const inDetail = !document.getElementById('detailView').hidden;
+    if (isMobile() && !inDetail){
+      btt.style.display = 'none';
+    } else {
+      btt.style.display = window.scrollY > 300 ? 'block' : 'none';
+    }
+  });
 
-// ∧ 클릭 시 맨 위로
-btt.addEventListener('click', (e)=>{
-  e.preventDefault();
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) window.scrollTo(0,0);
-  else window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  // ∧ 클릭 시 맨 위로
+  btt.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) window.scrollTo(0,0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   </script>
 </body>
 </html>
