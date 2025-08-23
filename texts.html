@@ -122,7 +122,55 @@ main {
       return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
     });
 
-    const perPage = 10; let page = 1;
+    // perPage 값을 화면 폭에 따라 동적으로 결정
+function getPerPage(){
+  return window.innerWidth <= 768 ? 6 : 10;  // 모바일: 6개, 그 외: 10개
+}
+
+let perPage = getPerPage();
+let page = 1;
+
+const itemsEl = document.getElementById('items');
+const pagerEl = document.getElementById('pager');
+
+function draw(){
+  const start = (page-1)*perPage, end = start+perPage;
+  itemsEl.innerHTML = '';
+  arr.slice(start,end).forEach(it=>{
+    const a = document.createElement('a');
+    a.className = 'text-link';
+    a.href = `?id=${encodeURIComponent(it.id)}`;
+    a.innerHTML =
+      `<span class="text-title">${it.title_html}</span>`+
+      `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+      `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+    itemsEl.appendChild(a);
+  });
+
+  const total = Math.max(1, Math.ceil(arr.length/perPage));
+  pagerEl.innerHTML = '';
+  for(let i=1;i<=total;i++){
+    if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+    const link = document.createElement('a'); link.href='#'; link.textContent=i;
+    if(i===page) link.classList.add('active');
+    link.addEventListener('click', e=>{
+      e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
+    });
+    pagerEl.appendChild(link);
+  }
+}
+draw();
+
+// 창 크기 바뀔 때도 perPage 갱신
+window.addEventListener('resize', ()=>{
+  const newPerPage = getPerPage();
+  if(newPerPage !== perPage){
+    perPage = newPerPage;
+    page = 1;   // 페이지 리셋
+    draw();     // 다시 그리기
+  }
+});
+
     const itemsEl = document.getElementById('items');
     const pagerEl = document.getElementById('pager');
 
