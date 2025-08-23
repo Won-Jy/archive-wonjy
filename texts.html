@@ -275,10 +275,34 @@ title: Texts
     aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
     // 외부 링크는 새 탭
-    aside.querySelectorAll('a').forEach(a => {
-      a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener noreferrer');
-    });
+    function applyAsideLinkTargets() {
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  aside.querySelectorAll('a').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    const isExternal = /^https?:\/\//i.test(href);
+
+    if (isMobile) {
+      // 모바일: 모두 같은 탭
+      a.removeAttribute('target');
+      a.removeAttribute('rel');
+    } else {
+      // 데스크톱: 외부 링크만 새 탭
+      if (isExternal) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      } else {
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+      }
+    }
+  });
+}
+
+// 최초 적용
+applyAsideLinkTargets();
+
+// 화면 크기 변화 시 모드 전환 반영
+window.addEventListener('resize', applyAsideLinkTargets);
     article.querySelectorAll('.notes a').forEach(a => {
       const href = a.getAttribute('href') || '';
       if (href.startsWith('#')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
