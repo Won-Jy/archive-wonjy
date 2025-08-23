@@ -103,8 +103,10 @@ header nav a[aria-current="page"] {
 /* ===========================
    Contact page (contact.html)
 =========================== */
-main.contact {
-  max-width: 740px;    
+main {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: 0;
 }
 
 main.contact-links p a {
