@@ -20,6 +20,28 @@ layout: none
     nav{margin-left:55px}
     nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
     nav a:hover,nav a.active{color:var(--blue)}
+    /* index.html의 모바일 헤더 스타일 그대로 복사 */
+          @media (max-width: 768px){
+            header {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              padding: 16px 20px;
+              border-bottom: 1px solid #ddd;
+            }
+            header .title { align-self: flex-start; }
+            nav { margin: 12px 0 0 0; }
+            nav a {
+              margin-left: 30px;
+              text-decoration: none;
+              color: #555;
+              font-size: 1.05em;
+              transition: color 0.2s;
+              font-weight: normal;
+            }
+            nav a:first-child { margin-left: 0; }
+            nav a:hover, nav a.active { color: #007BFF; }
+          }
 
     main{max-width:1200px;margin:0;padding:20px 40px;}
 
