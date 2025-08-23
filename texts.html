@@ -11,8 +11,41 @@ title: Texts
   <title>Texts | archive-wonjy.com</title>
   <meta name="description" content="Won Jy's personal archiving site.">
   <link rel="icon" href="/favicon.png" type="image/x-icon">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}">
+  <style>
+@media (max-width: 768px){
+  header.site {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  header.site .title {
+    font-size: 1.2em;
+    line-height: 1.2;
+  }
+  header.site nav {
+    order: 99;
+    width: 100%;
+    margin: 0;
+  }
+  header.site nav a {
+    display: inline-block;
+    margin: 0 18px 0 0;
+    padding: 10px 0 6px;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    text-decoration: none;
+    color: #555;
+  }
+  header.site nav a:hover,
+  header.site nav a.active {
+    color: #007BFF;
+  }
+}
 </head>
 <body>
   <header>
