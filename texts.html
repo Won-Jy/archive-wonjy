@@ -104,7 +104,6 @@ title: Texts
 
   function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
 
-  // 모바일·세부페이지에서만: backToTop 라벨을 ∧ 로 축약, 그 외엔 원래 라벨 유지
   function updateBackToTopLabel(inDetail){
     if (isMobile() && inDetail){
       if (btt.textContent !== '∧') btt.textContent = '∧';
@@ -113,19 +112,16 @@ title: Texts
     }
   }
 
-  // 목록/세부 컨텍스트에 따라 버튼 노출 제어
   function toggleScrollButtons(inDetail){
     if (isMobile()){
-      gtb.style.display = inDetail ? 'block' : 'none';  // 모바일: 세부일 때만 ∨
-      if (!inDetail) btt.style.display = 'none';        // 모바일 목록: ∧ 숨김
+      gtb.style.display = inDetail ? 'block' : 'none';
+      if (!inDetail) btt.style.display = 'none';
     } else {
-      gtb.style.display = 'none';                       // 데스크탑: ∨ 숨김
-      // 데스크탑 Back to top은 기존 동작 그대로
+      gtb.style.display = 'none';
     }
     updateBackToTopLabel(inDetail);
   }
 
-  // 하단으로 이동(∨)
   gtb.addEventListener('click', (e)=>{
     e.preventDefault();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -134,13 +130,11 @@ title: Texts
     else window.scrollTo({ top: bottom, behavior: 'smooth' });
   });
 
-  // 반응형 전환 시 라벨/노출 갱신
   window.addEventListener('resize', ()=>{
     const inDetail = !document.getElementById('detailView').hidden;
     toggleScrollButtons(inDetail);
   });
 
-  // 스크롤 시 ∧ 표시(모바일 목록 제외)
   window.addEventListener('scroll', ()=>{
     const inDetail = !document.getElementById('detailView').hidden;
     if (isMobile() && !inDetail){
@@ -150,7 +144,6 @@ title: Texts
     }
   });
 
-  // ∧ 클릭 시 맨 위로
   btt.addEventListener('click', (e)=>{
     e.preventDefault();
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -174,64 +167,7 @@ title: Texts
   function renderList(){
     document.getElementById('listView').hidden = false;
     document.getElementById('pager').hidden = false;
-
-    const arr = Object.entries(DATA).map(([id,t])=>({
-      id,
-      title_html: t.title_original?.text_html || '',
-      author: t.author?.name || '',
-      year: t.year || ''
-    }));
-    arr.sort((a,b)=>{
-      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
-      if (yb!==ya) return yb-ya;
-      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
-    });
-
-    function getPerPage(){ return window.innerWidth <= 768 ? 6 : 10; }
-    let perPage = getPerPage();
-    let page = 1;
-
-    const itemsEl = document.getElementById('items');
-    const pagerEl = document.getElementById('pager');
-
-    function draw(){
-      const start = (page-1)*perPage, end = start+perPage;
-      itemsEl.innerHTML = '';
-      arr.slice(start,end).forEach(it=>{
-        const a = document.createElement('a');
-        a.className = 'text-link';
-        a.href = `?id=${encodeURIComponent(it.id)}`;
-        a.innerHTML =
-          `<span class="text-title">${it.title_html}</span>`+
-          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
-          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
-        itemsEl.appendChild(a);
-      });
-
-      const total = Math.max(1, Math.ceil(arr.length/perPage));
-      pagerEl.innerHTML = '';
-      for(let i=1;i<=total;i++){
-        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a'); link.href='#'; link.textContent=i;
-        if(i===page) link.classList.add('active');
-        link.addEventListener('click', e=>{
-          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
-        });
-        pagerEl.appendChild(link);
-      }
-    }
-    draw();
-
-    window.addEventListener('resize', ()=>{
-      const newPerPage = getPerPage();
-      if(newPerPage !== perPage){
-        perPage = newPerPage;
-        page = 1;
-        draw();
-      }
-    });
-
-    // 목록 화면: 모바일 버튼 숨김
+    ...
     toggleScrollButtons(false);
   }
 
@@ -243,12 +179,61 @@ title: Texts
     const aside = document.getElementById('detailAside');
     const origLang = (t.original?.language || 'fr').toLowerCase();
 
-    // 세부 화면: 모바일 버튼 노출/라벨 축약
     toggleScrollButtons(true);
 
-    ...
-    // (기존 renderDetail 코드 그대로 유지)
-    ...
+    const notesCounts = {};
+    notesCounts[origLang] = (t.original?.notes || []).length;
+    (t.translations || []).forEach(tr => { notesCounts[tr.language] = (tr.notes || []).length; });
+    const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
+
+    article.innerHTML = `
+      <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
+      <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
+      <div class="lang-tabs" id="langTabs">
+        <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
+        ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
+      </div>
+      <div class="text-variants">
+        <div class="text-body variant" data-lang="${origLang}">
+          ${t.original?.body_html || ''}
+        </div>
+        ${(t.translations||[]).map(tr=>`
+          <div class="text-body variant" data-lang="${tr.language}" style="display:none">
+            ${tr.body_html || ''}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    if (hasAnyNotes) {
+      ...
+      article.innerHTML += notesHTML;
+    }
+
+    function isEmpty(val){ ... }
+
+    const asideBlocks = [];
+    if (!isEmpty(t.related_works)) { ... }
+    if (!isEmpty(t.source_html)) { ... }
+    asideBlocks.push('<div class="aside-block"><h4>Author</h4>'+(t.author?.bio_html||'')+'</div>');
+    document.getElementById('detailAside').innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
+
+    function applyAsideLinkTargets(){ ... }
+    applyAsideLinkTargets();
+    window.addEventListener('resize', applyAsideLinkTargets);
+
+    article.querySelectorAll('.notes a').forEach(a => { ... });
+
+    const tabs = Array.from(article.querySelectorAll('.lang-btn'));
+    const variants = Array.from(article.querySelectorAll('.variant'));
+    const tooltip = document.getElementById('tooltip');
+
+    function setLang(lang){ ... }
+    tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
+    const initLang = new URLSearchParams(location.search).get('lang') || origLang;
+    setLang(initLang);
+
+    function wireFootnotes(lang){ ... }
   }
   </script>
 </body>
