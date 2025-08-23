@@ -379,13 +379,13 @@ window.addEventListener('resize', applyAsideLinkTargets);
     }
   }
 
-    // === 상단/하단 버튼 제어 ===
+    // === 상단/하단 버튼 제어 (단일 정의) ===
 const btt = document.getElementById('backToTop');
 const gtb = document.getElementById('goToBottom');
 
 function isMobile(){ return window.matchMedia('(max-width: 768px)').matches; }
 
-// 모바일·세부페이지에서만: backToTop 텍스트를 ∧ 로 축약
+// 모바일·세부페이지에서만: backToTop 라벨을 ∧ 로 축약
 function updateBackToTopLabel(inDetail){
   if (isMobile() && inDetail){
     if (btt.textContent !== '∧') btt.textContent = '∧';
@@ -397,19 +397,16 @@ function updateBackToTopLabel(inDetail){
 // 목록/세부 컨텍스트에 따라 버튼 노출 제어
 function toggleScrollButtons(inDetail){
   if (isMobile()){
-    // 모바일: 세부페이지일 때만 상단(∨) 버튼 보임, backToTop은 스크롤에 따라 표시
-    gtb.style.display = inDetail ? 'block' : 'none';
-    // backToTop은 스크롤 핸들러에서 on/off, 목록일 땐 강제 숨김
-    if (!inDetail) btt.style.display = 'none';
+    gtb.style.display = inDetail ? 'block' : 'none'; // 모바일: 세부일 때만 ∨
+    if (!inDetail) btt.style.display = 'none';       // 모바일 목록: ∧ 숨김
   } else {
-    // 데스크탑: 기존 동작을 그대로 — goToBottom은 데스크탑에선 항상 숨김
-    gtb.style.display = 'none';
-    // backToTop은 기존 스크롤 로직에 맡김(변경 없음)
+    gtb.style.display = 'none';                      // 데스크탑: ∨ 항상 숨김
+    // 데스크탑의 Back to top 동작/스타일은 기존 그대로
   }
   updateBackToTopLabel(inDetail);
 }
 
-// 하단으로 이동
+// 하단으로 이동(∨)
 gtb.addEventListener('click', (e)=>{
   e.preventDefault();
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -423,22 +420,24 @@ window.addEventListener('resize', ()=>{
   const inDetail = !document.getElementById('detailView').hidden;
   toggleScrollButtons(inDetail);
 });
-    
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', ()=>{
+
+// 스크롤 시 ∧ 표시(모바일 목록 제외)
+window.addEventListener('scroll', ()=>{
   const inDetail = !document.getElementById('detailView').hidden;
   if (isMobile() && !inDetail){
-    btt.style.display = 'none';            // 모바일 목록: 숨김
+    btt.style.display = 'none';
   } else {
-    btt.style.display = window.scrollY>300 ? 'block' : 'none';  // 기존 동작 유지
+    btt.style.display = window.scrollY > 300 ? 'block' : 'none';
   }
 });
-  btt.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) window.scrollTo(0,0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+
+// ∧ 클릭 시 맨 위로
+btt.addEventListener('click', (e)=>{
+  e.preventDefault();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) window.scrollTo(0,0);
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
+});
   </script>
 </body>
 </html>
