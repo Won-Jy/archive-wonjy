@@ -548,26 +548,7 @@
       let idx = 0, open = false;
       let lbPlayer = null;
 
-      /* 👇 라이트박스 히스토리 제어 플래그 + 유틸 */
-      let lbHistoryActive = false;
-
-      function pushLbState(replace=false){
-        try{
-          const state = { lb:true, idx };
-          if(replace && lbHistoryActive){
-            history.replaceState(state, '');
-          }else{
-            history.pushState(state, '');
-            lbHistoryActive = true;
-          }
-        }catch(e){}
-      }
-
-      // 뒤로가기가 눌리면(모바일 제스처 포함) 라이트박스만 닫기
-      window.addEventListener('popstate', function(){
-        if(open){ closeLB(true); } // fromPop=true -> history.back() 재호출 방지
-      });
-
+      // 더 이상 히스토리 관련 기능 없음
       function withAutoplay(url){
         if(!url) return '';
         if(url.includes('autoplay=')) return url.replace(/autoplay=\d/, 'autoplay=1');
@@ -612,48 +593,34 @@
         }
       }
 
-      /* 👇 히스토리 한 칸만 쓰도록 수정된 함수들 */
       function openLB(i){
         show(i);
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         open = true;
-        pushLbState(false);     // 열 때 1칸 push
       }
 
-      function closeLB(fromPop){
+      function closeLB(){
         overlay.classList.remove('open');
         document.body.style.overflow = '';
         open = false;
         stopVideo();
-
-        // X/오버레이/Escape로 닫은 경우: 우리가 만든 1칸을 회수
-        if(lbHistoryActive && !fromPop){
-          try{ history.back(); }catch(e){}
-        }
-        lbHistoryActive = false;
       }
 
-      function next(){
-        show(idx+1);
-        if(open) pushLbState(true);  // replace 로 같은 한 칸만 덮기
-      }
-      function prev(){
-        show(idx-1);
-        if(open) pushLbState(true);  // replace 로 같은 한 칸만 덮기
-      }
+      function next(){ show(idx+1); }
+      function prev(){ show(idx-1); }
 
-      lbClose.addEventListener('click', ()=>closeLB(false));
+      lbClose.addEventListener('click', closeLB);
       lbNext.addEventListener('click', next);
       lbPrev.addEventListener('click', prev);
 
       overlay.addEventListener('click', (e)=>{
-        if(e.target === overlay) closeLB(false);
+        if(e.target === overlay) closeLB();
       });
 
       document.addEventListener('keydown', (e)=>{
         if(!open) return;
-        if(e.key==='Escape') closeLB(false);
+        if(e.key==='Escape') closeLB();
         else if(e.key==='ArrowRight') next();
         else if(e.key==='ArrowLeft') prev();
       });
