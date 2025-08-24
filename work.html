@@ -31,6 +31,8 @@ layout: none
       .sort a{color:#555;text-decoration:none;margin-right:6px}
       .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
       .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
+      .sort-label{ margin-right:8px; color:#555; }
+      .sep{ margin:0 4px; }
     
       /* 3) Search */
       .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:0.95em;text-align:left;outline:none;width:var(--search-w);max-width: 100%;}
@@ -119,6 +121,7 @@ layout: none
 
            main{ padding:20px 24px; }
            .layout{ display:grid; grid-template-columns: var(--sidebar-w) 1fr; gap:24px; }
+           .sort-label{ display:none; }
 
         }
   </style>
@@ -138,7 +141,7 @@ layout: none
 
 <main>
   <div class="topbar">
-    <div class="sort">Sort by&nbsp;
+    <div class="sort"><span class="sort-label">Sort by</span>&nbsp;
       <a href="#" data-sort="newest" class="active">newest</a> /
       <a href="#" data-sort="oldest">oldest</a>
     </div>
