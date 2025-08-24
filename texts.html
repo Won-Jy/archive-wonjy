@@ -16,7 +16,7 @@ title: Texts
   
   <style>
     @media (max-width: 768px){
-    :root{ --list-height: 400px; --btn-top-gap: 72px; }
+    :root{ --list-height: 400px; --btn-top-gap: 72px; --btn-bottom-gap: 72px }
     header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
     header .title{ align-self:flex-start; }
     nav{ margin:12px 0 0 0; }
@@ -71,7 +71,7 @@ title: Texts
         pointer-events: none;   /* 슬롯은 클릭 비활성 */
         }
       .sticky-slot.top{ top: var(--btn-top-gap); }  /* 헤더 높이에 맞춰 필요시 조절 (예: 8~64px) */
-      .sticky-slot.bottom{ bottom: 56px; }
+      .sticky-slot.bottom{ top: var(--btn-bottom-gap); }
 
     /* 실제 버튼: 슬롯 안에서 절대 위치 → 레이아웃 영향 0 */
     .sticky-slot .mobile-nav-btn{
