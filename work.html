@@ -551,6 +551,35 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
 })();
 </script>
 
+<script>
+(function(){
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+  function setMobileOpen(){
+    document.querySelectorAll('.filter-group[data-filter="status"], .filter-group[data-filter="tag"]').forEach(g=>{
+      const body = g.querySelector('.filter-body');
+      const tog  = g.querySelector('.toggle');
+
+      if (isMobile()){
+        // 모바일에서는 기본 펼침
+        if (body) body.style.display = 'block';
+        if (tog)  tog.textContent = '−';
+        g.classList.add('open-mobile');
+      } else {
+        // 데스크톱 복귀 시, 우리가 열어둔 것만 원래대로
+        if (g.classList.contains('open-mobile')){
+          if (body) body.style.display = 'none';
+          if (tog)  tog.textContent = '+';
+          g.classList.remove('open-mobile');
+        }
+      }
+    });
+  }
+
+  setMobileOpen();
+  window.addEventListener('resize', setMobileOpen);
+})();
+</script>
 
 </body>
 </html>
