@@ -61,28 +61,31 @@ title: Texts
     }
 
     #backToTop{ display:none !important; }
+    #detailView{ position: relative; }
 
-    #detailView { position: relative; }
-    .sticky-slot{
-      position: sticky;
-      height: 0;               /* ✅ 레이아웃 밀지 않음 */
-      z-index: 10;
-      pointer-events: none;    /* 슬롯은 클릭 안 받게 */
-      }
-      .sticky-slot.top{    top: 8px; }
-      .sticky-slot.bottom{ bottom: 8px; }
-      .sticky-slot .mobile-nav-btn{
-        position: absolute;
-        right: 0;                /* main의 우측 안쪽 끝에 붙이기 (본문 침범 최소) */
-        color: #007BFF;
-        font-size: 1.2em;
-        text-decoration: none;
-        pointer-events: auto;    /* ✅ 버튼은 클릭 가능 */
+    /* 레이아웃을 밀지 않는 '0px' sticky 슬롯 */
+      .sticky-slot{
+        position: sticky;
+        height: 0;
+        z-index: 10;
+        pointer-events: none;   /* 슬롯은 클릭 비활성 */
         }
-      .sticky-slot .mobile-nav-btn:hover,
-      .sticky-slot .mobile-nav-btn:active{
+      .sticky-slot.top{    top: 56px; }  /* 헤더 높이에 맞춰 필요시 조절 (예: 8~64px) */
+      .sticky-slot.bottom{ bottom: 8px; }
+
+    /* 실제 버튼: 슬롯 안에서 절대 위치 → 레이아웃 영향 0 */
+    .sticky-slot .mobile-nav-btn{
+      position: absolute;
+      right: 0;              /* 필요시 8px, -4px 등으로 미세 조정 */
+      color: #007BFF;
+      font-size: 1.2em;
+      text-decoration: none;
+      pointer-events: auto;  /* 버튼은 클릭 가능 */
+    }
+    .sticky-slot .mobile-nav-btn:hover,
+    .sticky-slot .mobile-nav-btn:active{
       text-decoration: underline;
-      }
+    }
 
 }
 
