@@ -119,13 +119,14 @@ layout: none
              .filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}
              .topbar{flex-wrap:wrap;gap:10px} */
 
-           main{ padding:10px 24px; }
+           main{ padding:15px 24px; }
            .layout{ display:grid; grid-template-columns: var(--sidebar-w) 1fr; gap:24px; }
            .topbar{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; }
            .topbar .sort a { text-transform: capitalize; }
            .sort{ order: -1; white-space:nowrap; }
            .sort-label{ display:none; }
            .search{ order:2; margin-left:auto; }
+           .filter-group[data-filter="year"] .chips{rid-template-columns: repeat(3, auto); }
 
         }
   </style>
