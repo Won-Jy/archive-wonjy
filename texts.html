@@ -70,7 +70,7 @@ title: Texts
         z-index: 10;
         pointer-events: none;   /* 슬롯은 클릭 비활성 */
         }
-      .sticky-slot.top{    top: 56px; }  /* 헤더 높이에 맞춰 필요시 조절 (예: 8~64px) */
+      .sticky-slot.top{    top: 60px; }  /* 헤더 높이에 맞춰 필요시 조절 (예: 8~64px) */
       .sticky-slot.bottom{ bottom: 56px; }
 
     /* 실제 버튼: 슬롯 안에서 절대 위치 → 레이아웃 영향 0 */
@@ -78,9 +78,10 @@ title: Texts
       position: absolute;
       right: 0;              /* 필요시 8px, -4px 등으로 미세 조정 */
       color: #007BFF;
-      font-size: 1.0em;
+      font-size: 1.2em;
       text-decoration: none;
-      pointer-events: auto;  /* 버튼은 클릭 가능 */
+      pointer-events: auto;
+      z-index:5;
     }
     .sticky-slot .mobile-nav-btn:hover,
     .sticky-slot .mobile-nav-btn:active{
