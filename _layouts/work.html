@@ -165,6 +165,16 @@
     .intro{ grid-template-columns: 1fr; grid-row-gap:24px; grid-template-areas:"cover" "side" "sep" "media"; }
     .intro-cover .caption{ margin-bottom:5px; } /* 캡션 아래 여백 줄이기 */
 
+    .intro-side .rich.description + .divider{ margin-top:16px; margin-bottom:10px; } /* description 아래쪽 여백 느낌 조절 / 섹션 타이틀과의 간격 */
+
+    .intro-side .section-title + .linked-works{ margin-top:6px; } /* 타이틀 바로 뒤 리스트 간격 미세조정(선택) */
+    .intro-side .section-title + .related-texts{ margin-top:6px; } /* 타이틀 바로 뒤 리스트 간격 미세조정(선택) */
+
+    /* Responsive only divider */
+    .intro{ grid-row-gap:0; }
+    .intro-sep { display:block; grid-area:sep; margin-top:18px; margin-bottom:12px; }  /* B. (Linked/Related) 묶음 끝 → intro-sep 사이 간격 */
+  
+
     /* Lightbox touch targets */
     .lb-prev { left:-4px; padding:10px 12px; }
     .lb-next { right:-4px; padding:10px 12px; }
@@ -172,8 +182,7 @@
     .lb-footer { gap:18px; }
     .lb-footer .lb-ctrl { padding:10px 14px; font-size:24px; }
 
-    /* Responsive only divider */
-    .intro-sep { display:block; grid-area:sep; }
+
 
   }
 </style>
