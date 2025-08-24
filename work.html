@@ -31,7 +31,7 @@ layout: none
       .sort a{color:#555;text-decoration:none;margin-right:6px}
       .sort a:hover,.sort a:active,.sort a:focus{color:var(--blue);text-decoration:none}
       .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
-      .sort-label{ margin-right:3px; color:#555; }
+      .sort-label{ margin-right:3px; color:#555; display:inline; }
       .sep{ margin:0 4px; }
     
       /* 3) Search */
@@ -121,9 +121,9 @@ layout: none
 
            main{ padding:20px 24px; }
            .layout{ display:grid; grid-template-columns: var(--sidebar-w) 1fr; gap:24px; }
-           .sort-label{ display:none; }
            .topbar{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; }
-           .sort{ order: -1; white-space:nowrap; }
+           .sort{ white-space:normal; }
+           .sort-label{ display:block; margin:0 0 6px; }
            .search{ order:2; margin-left:auto; }
 
         }
