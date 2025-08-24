@@ -115,11 +115,13 @@ title: Texts
       id,
       title_html: t.title_original?.text_html || '',
       author: t.author?.name || '',
-      year: t.year || ''
+      year: t.year || '',
+      date_written: t.date_written || ''
     }));
     arr.sort((a,b)=>{
-      const ya = parseInt(a.year,10)||0, yb = parseInt(b.year,10)||0;
-      if (yb!==ya) return yb-ya;
+      const da = new Date(a.date_written || a.year || 0);
+      const db = new Date(b.date_written || b.year || 0);
+      if (db.getTime() !== da.getTime()) return db - da; // 최신순
       return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
     });
 
