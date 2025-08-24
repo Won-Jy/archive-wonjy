@@ -66,7 +66,7 @@ layout: none
       .card{position:relative;border:1px solid var(--border);overflow:hidden;background:#f8f8f8}
       .thumb{position:relative;width:100%;padding-top:75%;overflow:hidden}
       .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-      .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end}
+      .hover{position:absolute;inset:0;background:rgba(0,123,255,.55);color:#fff;opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;pointer-events:none;}
       .card:hover .hover{opacity:1}
       .hover .meta{padding:10px 12px;font-size:0.95em}
       .hover .meta strong{font-style: italic;font-size: 1.2em;font-weight: 600}
@@ -128,6 +128,7 @@ layout: none
            .pagination a{ flex: 0 1 auto; font-size: .85rem; padding: 2px 2px; min-width: 0px; min-height: 28px; line-height: 1.2; }
            .pagination .ellipsis{ padding: 0 2px; }
            .grid-pager-wrap{ width:100%; max-width:100%; }
+           .card.preview .hover{ opacity:1; }
            
         }
   </style>
@@ -508,5 +509,52 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   });
 })();
 </script>
+
+<script>
+(function(){
+  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+  function clearPreviews(except){
+    document.querySelectorAll('.card.preview').forEach(c=>{
+      if (c !== except) c.classList.remove('preview');
+    });
+  }
+
+  function bindTapPreview(){
+    // 카드 안의 첫 번째 링크를 대상으로 처리 (전체 카드 링크/썸네일 링크 모두 커버)
+    document.querySelectorAll('.grid .card a[href]').forEach(a=>{
+      const card = a.closest('.card');
+      if(!card) return;
+
+      a.addEventListener('click', function(e){
+        if(!isMobile()) return;              // 데스크톱은 원래대로
+        if(!card.classList.contains('preview')){
+          // 첫 탭: 미리보기만 띄우고 이동 막기
+          e.preventDefault();
+          clearPreviews(card);
+          card.classList.add('preview');
+        }else{
+          // 두 번째 탭: 미리보기 해제하고 정상 이동 (e.preventDefault 안 함)
+          clearPreviews();
+        }
+      }, {passive:false});
+    });
+
+    // 카드 바깥 탭하면 미리보기 닫기
+    document.addEventListener('click', function(e){
+      if(!isMobile()) return;
+      if(!e.target.closest('.card')) clearPreviews();
+    });
+  }
+
+  bindTapPreview();
+
+  // 화면 크기 바뀌면 미리보기 상태 정리
+  window.addEventListener('resize', ()=>{
+    if(!isMobile()) clearPreviews();
+  });
+})();
+</script>
+  
 </body>
 </html>
