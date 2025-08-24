@@ -117,7 +117,7 @@ layout: none
            .sidebar{ grid-area: sidebar; border:0; padding:0; margin:-16px 0 0; }
            .layout > :not(.sidebar){ grid-area: main; }
            .grid{ grid-template-columns: 1fr; }
-           .topbar{ display:flex; align-items:center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; }
+           .topbar{ display:flex; grid-column: 1 / -1; align-items:center; gap: 10px; flex-wrap: wrap; justify-content: flex-start; }
            .topbar .sort a { text-transform: capitalize; }
            .sort{ order: 1; white-space:nowrap; }
            .sort-label{ display:none; }
@@ -157,6 +157,9 @@ layout: none
   </div>
 
   <div class="layout">
+    <div class="topbar">…</div>
+    <aside class="sidebar">…</aside>
+    <div class="grid">…</div>
     <aside class="sidebar">
       <div class="filter-group" data-filter="type"><div class="filter-head"><span class="label">Type</span><span class="toggle">−</span></div><div class="filter-body chips"></div></div>
       <div class="filter-group" data-filter="year"><div class="filter-head"><span class="label">Year</span><span class="toggle">−</span></div><div class="filter-body chips"></div></div>
