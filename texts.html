@@ -61,31 +61,28 @@ title: Texts
     }
 
     #backToTop{ display:none !important; }
-    #detailView { position: relative; }
 
-    .mobile-nav-btn {
-    position: sticky;
-    display: inline-block;
-    color: #007BFF;
-    font-size: 1.2em;
-    text-decoration: none;
-    z-index: 10;
-    margin-left: auto;
-    }
-    .mobile-nav-btn:hover,
-    .mobile-nav-btn:active {
-    text-decoration: underline;
-    }
-    .mobile-nav-btn.top{
-    top: 8px;
-    float: right;
-    margin-right: 8px;
-    }
-    .mobile-nav-btn.bottom{
-    bottom: 8px;
-    float: right;
-    margin-right: 8px;
-    }
+    #detailView { position: relative; }
+    .sticky-slot{
+      position: sticky;
+      height: 0;               /* ✅ 레이아웃 밀지 않음 */
+      z-index: 10;
+      pointer-events: none;    /* 슬롯은 클릭 안 받게 */
+      }
+      .sticky-slot.top{    top: 8px; }
+      .sticky-slot.bottom{ bottom: 8px; }
+      .sticky-slot .mobile-nav-btn{
+        position: absolute;
+        right: 0;                /* main의 우측 안쪽 끝에 붙이기 (본문 침범 최소) */
+        color: #007BFF;
+        font-size: 1.2em;
+        text-decoration: none;
+        pointer-events: auto;    /* ✅ 버튼은 클릭 가능 */
+        }
+      .sticky-slot .mobile-nav-btn:hover,
+      .sticky-slot .mobile-nav-btn:active{
+      text-decoration: underline;
+      }
 
 }
 
