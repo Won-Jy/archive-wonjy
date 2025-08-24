@@ -11,7 +11,7 @@ layout: none
   <title>Work | archive-wonjy.com</title>
   <style>
       /* 0) Variables */
-      :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; --search-w: 200px; --sidebar-w: 120px; }
+      :root { --blue:#007BFF; --text:#222; --muted:#666; --border:#ddd; --search-w: 210px; --sidebar-w: 120px; }
     
       /* 1) Base */
       body{font-family:sans-serif;margin:0;line-height:1.6;color:var(--text)}
@@ -112,14 +112,7 @@ layout: none
           nav a:hover,
           nav a.active{ color:var(--blue); }
         
-          /* 이미 있으신 work 전용 레이아웃 전환 규칙도 계속 유지 */
-          /* .layout{grid-template-columns:1fr}
-             .sidebar{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:8px}
-             .grid{grid-template-columns:1fr}
-             .filter-group[data-filter="year"] .chips{grid-template-columns:repeat(2,auto)}
-             .topbar{flex-wrap:wrap;gap:10px} */
-
-           main{ padding:15px 24px; }
+        main{ padding:15px 24px; }
            .layout{ display:grid; grid-template-columns: var(--sidebar-w, 120px) minmax(0,1fr); gap:18px; align-items:start; grid-template-areas:"sidebar main"; }
            .sidebar{ grid-area: sidebar; border:0; padding:0; margin:-16px 0 0; }
            .layout > :not(.sidebar){ grid-area: main; }
@@ -131,7 +124,6 @@ layout: none
            .search{ order:2; margin-left:auto; }
            .filter-group[data-filter="year"] .chips{grid-template-columns: repeat(2, auto); }
            
-
         }
   </style>
   
