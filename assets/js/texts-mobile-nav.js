@@ -25,7 +25,7 @@
     // ↓ 버튼: 화면 상단 쪽에 붙음
     const downBtn = document.createElement('a');
     downBtn.href = '#';
-    downBtn.textContent = '✱';
+    downBtn.textContent = 'ᐯ';
     downBtn.className = 'mobile-nav-btn top';
     downBtn.addEventListener('click', e => {
       e.preventDefault();
@@ -39,7 +39,7 @@
     // ↑ 버튼: 화면 하단 쪽에 붙음
     const upBtn = document.createElement('a');
     upBtn.href = '#';
-    upBtn.textContent = '∧';
+    upBtn.textContent = 'ᐱ';
     upBtn.className = 'mobile-nav-btn bottom';
     upBtn.addEventListener('click', e => {
       e.preventDefault();
