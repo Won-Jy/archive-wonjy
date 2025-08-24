@@ -41,10 +41,8 @@ layout: none
       .search input::-webkit-search-cancel-button:hover{opacity:1}
     
       /* 4) Layout */
-      .layout{display:grid;grid-template-columns:240px 1fr;gap:24;pxgrid-template-areas:"topbar topbar" "sidebar main";}
-      .sidebar{grid-area: sidebar;margin-top:-16px;}
-      .topbar{grid-area: topbar;}   /* ← topbar를 전체 행으로 */
-      .layout > :not(.sidebar):not(.topbar){ grid-area: main; }
+      .layout{display:grid;grid-template-columns:240px 1fr;gap:24px}
+      .sidebar{margin-top:-16px}
     
       /* 5) Sidebar filters */
       .sidebar .filter-group:first-of-type{border-top:1px solid var(--border);padding-top:12px}
