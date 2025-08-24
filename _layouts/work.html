@@ -165,10 +165,14 @@
     .intro{ grid-template-columns: 1fr; grid-row-gap:24px; grid-template-areas:"cover" "side" "sep" "media"; }
     .intro-cover .caption{ margin-bottom:5px; } /* 캡션 아래 여백 줄이기 */
 
+    .intro-side .divider{ margin:0; }
     .intro-side .rich.description + .divider{ margin-top:16px; margin-bottom:10px; } /* description 아래쪽 여백 느낌 조절 / 섹션 타이틀과의 간격 */
+    .intro-side .divider + .section-title:first-of-type{ margin-top:10px; }
+    .intro-side .section-title:first-of-type + .linked-works{ margin-top:6px; }
 
-    .intro-side .section-title + .linked-works{ margin-top:6px; } /* 타이틀 바로 뒤 리스트 간격 미세조정(선택) */
-    .intro-side .section-title + .related-texts{ margin-top:6px; } /* 타이틀 바로 뒤 리스트 간격 미세조정(선택) */
+    .intro-side .linked-works + .divider{ margin-top:18px; margin-bottom:10px; }
+    .intro-side .divider + .section-title:not(:first-of-type){ margin-top:10px; }
+    .intro-side .section-title + .related-texts, .intro-side .section-title + .rich.critique{ margin-top:6px; }
 
     /* Responsive only divider */
     .intro{ grid-row-gap:0; }
