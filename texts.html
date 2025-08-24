@@ -65,20 +65,27 @@ title: Texts
 
     .mobile-nav-btn {
     position: sticky;
-    float: right;
-    margin-right: 8px;
+    display: inline-block;
     color: #007BFF;
     font-size: 1.2em;
     text-decoration: none;
     z-index: 10;
+    margin-left: auto;
     }
     .mobile-nav-btn:hover,
     .mobile-nav-btn:active {
     text-decoration: underline;
     }
-    /* detail 영역 기준 상단/하단 위치 */
-    .mobile-nav-btn.up { bottom: 8px; }
-    .mobile-nav-btn.down { top: 8px }
+    .mobile-nav-btn.top{
+    top: 8px;
+    float: right;
+    margin-right: 8px;
+    }
+    .mobile-nav-btn.bottom{
+    bottom: 8px;
+    float: right;
+    margin-right: 8px;
+    }
 
 }
 
