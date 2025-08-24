@@ -461,13 +461,33 @@
   </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.summary a, .description a, .related-texts a, .linked-works a').forEach(function(link){
-        link.setAttribute('target','_blank');
-        link.setAttribute('rel','noopener noreferrer');
-      });
+(function(){
+  const SELECTOR = '.summary a, .description a, .related-texts a, .linked-works a';
+  const mq = window.matchMedia('(max-width:768px)');
+
+  function applyLinkTargets(){
+    const isMobile = mq.matches;
+    document.querySelectorAll(SELECTOR).forEach(a=>{
+      if(isMobile){
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+      }else{
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener noreferrer');
+      }
     });
-  </script>
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyLinkTargets);
+  } else {
+    applyLinkTargets();
+  }
+
+  if (mq.addEventListener) mq.addEventListener('change', applyLinkTargets);
+  else window.addEventListener('resize', applyLinkTargets);
+})();
+</script>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
