@@ -520,41 +520,37 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
     });
   }
 
-  function bindTapPreview(){
-    // 카드 안의 첫 번째 링크를 대상으로 처리 (전체 카드 링크/썸네일 링크 모두 커버)
-    document.querySelectorAll('.grid .card a[href]').forEach(a=>{
-      const card = a.closest('.card');
-      if(!card) return;
+  // ✅ 이벤트 위임: 그리드가 재렌더돼도 한 번만 바인딩하면 됨
+  document.addEventListener('click', function(e){
+    if(!isMobile()) return;                           // 데스크탑은 원래대로
+    const link = e.target.closest('.grid a.card[href]'); // 카드 자체(a.card)
+    if(!link) return;
 
-      a.addEventListener('click', function(e){
-        if(!isMobile()) return;              // 데스크톱은 원래대로
-        if(!card.classList.contains('preview')){
-          // 첫 탭: 미리보기만 띄우고 이동 막기
-          e.preventDefault();
-          clearPreviews(card);
-          card.classList.add('preview');
-        }else{
-          // 두 번째 탭: 미리보기 해제하고 정상 이동 (e.preventDefault 안 함)
-          clearPreviews();
-        }
-      }, {passive:false});
-    });
+    if(!link.classList.contains('preview')){
+      // 첫 탭: 이동 막고 미리보기만
+      e.preventDefault();
+      clearPreviews(link);
+      link.classList.add('preview');
+      return;
+    }
+    // 두 번째 탭: 이동 (e.preventDefault 안 함)
+    clearPreviews(); // 깔끔히 정리
+  }, {passive:false});
 
-    // 카드 바깥 탭하면 미리보기 닫기
-    document.addEventListener('click', function(e){
-      if(!isMobile()) return;
-      if(!e.target.closest('.card')) clearPreviews();
-    });
-  }
-
-  bindTapPreview();
-
-  // 화면 크기 바뀌면 미리보기 상태 정리
-  window.addEventListener('resize', ()=>{
-    if(!isMobile()) clearPreviews();
+  // 카드 바깥을 탭하면 미리보기 닫기 (선택)
+  document.addEventListener('click', function(e){
+    if(!isMobile()) return;
+    if(!e.target.closest('.grid a.card')) clearPreviews();
   });
+
+  // 화면 크기 바뀌면 정리
+  window.addEventListener('resize', ()=>{ if(!isMobile()) clearPreviews(); });
+
+  // 브라우저 뒤/앞으로 가기 시 잔상 정리(선택)
+  window.addEventListener('popstate', ()=> clearPreviews());
 })();
 </script>
-  
+
+
 </body>
 </html>
