@@ -7,12 +7,8 @@
     if (reduce) window.scrollTo(0, y);
     else window.scrollTo({ top: y, behavior: 'smooth' });
   }
-
-  function toTop(){
-    smoothScrollTo(0);
-  }
-
-  function toBottom(){
+  const toTop = () => smoothScrollTo(0);
+  const toBottom = () => {
     const notes = document.querySelector('#notesSection');
     const isVisible = el => el && el.style.display !== 'none';
     if (notes && isVisible(notes)) {
@@ -21,38 +17,39 @@
     } else {
       smoothScrollTo(document.documentElement.scrollHeight);
     }
-  }
+  };
 
   function createButtons(){
     const detail = document.getElementById('detailView');
-    if (!detail || detail.hidden) return null;
-    if (document.querySelector('.mobile-nav-btn.top')) return null;
+    if (!detail || detail.hidden) return;
+    if (detail.querySelector('.mobile-nav-btn')) return;
 
-    // 상단 버튼
-    const topBtn = document.createElement('a');
-    topBtn.href = "#";
-    topBtn.textContent = "↑";
-    topBtn.className = "mobile-nav-btn top";
-    topBtn.addEventListener('click', e => { e.preventDefault(); toTop(); });
+    // ↓ 버튼: main 상단 sticky
+    const downBtn = document.createElement('a');
+    downBtn.href = "#";
+    downBtn.textContent = "↓";
+    downBtn.className = "mobile-nav-btn top";      // ← CSS와 맞춤 (top)
+    downBtn.addEventListener('click', e => { e.preventDefault(); toBottom(); });
 
-    // 하단 버튼
-    const bottomBtn = document.createElement('a');
-    bottomBtn.href = "#";
-    bottomBtn.textContent = "↓";
-    bottomBtn.className = "mobile-nav-btn bottom";
-    bottomBtn.addEventListener('click', e => { e.preventDefault(); toBottom(); });
+    // ↑ 버튼: main 하단 sticky
+    const upBtn = document.createElement('a');
+    upBtn.href = "#";
+    upBtn.textContent = "↑";
+    upBtn.className = "mobile-nav-btn bottom";     // ← CSS와 맞춤 (bottom)
+    upBtn.addEventListener('click', e => { e.preventDefault(); toTop(); });
 
-    detail.appendChild(topBtn);
-    detail.appendChild(bottomBtn);
+    // detail 맨 앞/뒤에 배치해 sticky 동작 명확하게
+    detail.insertAdjacentElement('afterbegin', downBtn);
+    detail.insertAdjacentElement('beforeend', upBtn);
   }
 
   function destroyButtons(){
-    document.querySelectorAll('.mobile-nav-btn').forEach(btn => btn.remove());
+    document.querySelectorAll('.mobile-nav-btn').forEach(el => el.remove());
   }
 
   function sync(){
     if (MQ.matches) {
-      requestAnimationFrame(() => { createButtons(); });
+      requestAnimationFrame(createButtons);
     } else {
       destroyButtons();
     }
