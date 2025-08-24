@@ -123,6 +123,37 @@
        Mobile only
        =========================== */
     @media (max-width:768px){
+       header.site {
+            display: flex;
+            flex-direction: column;  /* 세로 쌓기 */
+            align-items: flex-start; /* 왼쪽 정렬 */
+            padding: 16px 20px;
+            border-bottom: 1px solid #ddd;
+            gap: 0; /* 데스크톱 gap 제거 */
+        }
+        header.site .title {
+            align-self: flex-start;
+            margin-bottom: 8px;
+        }
+        header.site nav {
+            margin: 12px 0 0 0;
+        }
+        header.site nav a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #555;
+            font-size: 1.05em;
+            transition: color 0.2s;
+            font-weight: normal;
+        }
+        header.site nav a:first-child {
+            margin-left: 0;
+        }
+        header.site nav a:hover,
+        header.site nav a.active {
+            color: #007BFF;
+        }
+        
       /* Layout paddings and flow */
       main { padding:40px 20px 50px 24px; }
       .intro { flex-direction:column; gap:24px; }
@@ -543,3 +574,10 @@
   </script>
 </body>
 </html>
+필요하면 이 구조를 기준으로 추가 섹션을 더 쪼개거나, 모바일 기준폭(768px)만 바꾸는 것도 바로 가능해요. 다음 단계로는 texts.html, bio.html 등에도 동일한 패턴으로 리팩터링해 드릴 수 있어요.
+
+
+
+
+선택된 파일 없음선택된 파일 없음
+ChatGPT는 실수를 할 수 있습니다. 중요한 정보는 재차 확인하세요. 쿠키 기본 설정을 참고하세요.
