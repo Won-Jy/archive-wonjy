@@ -113,7 +113,7 @@ main.contact-links p a {
   color: #666;               
   text-decoration: none;     
   font-weight: normal;
-  margin-left: 6px;           
+  margin-left: 10px;           
 }
 
 main.contact-links p a:visited {
