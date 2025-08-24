@@ -163,7 +163,7 @@
 
     /* Intro: 순서 cover → side → media */
     .intro{ grid-template-columns: 1fr; grid-row-gap:24px; grid-template-areas:"cover" "side" "sep" "media"; }
-    
+
     .intro-cover .caption{ margin-bottom:12px; } /* 캡션 아래 여백 줄이기 */
 
     .intro-side .divider{ margin:0; }
@@ -179,6 +179,8 @@
     .intro-side .rich.summary + .divider{ margin-top:14px; }
     .intro-side .intro-header + .divider{ margin-top:14px; }
     .intro-side .divider + .rich.summary{ margin-top:16px; }
+
+    .intro-media .caption{ margin-bottom:16px; }
 
     /* Responsive only divider */
     .intro{ grid-row-gap:0; }
