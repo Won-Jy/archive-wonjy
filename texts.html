@@ -71,14 +71,14 @@ title: Texts
         pointer-events: none;   /* 슬롯은 클릭 비활성 */
         }
       .sticky-slot.top{    top: 56px; }  /* 헤더 높이에 맞춰 필요시 조절 (예: 8~64px) */
-      .sticky-slot.bottom{ bottom: 8px; }
+      .sticky-slot.bottom{ bottom: 56px; }
 
     /* 실제 버튼: 슬롯 안에서 절대 위치 → 레이아웃 영향 0 */
     .sticky-slot .mobile-nav-btn{
       position: absolute;
-      right: 0;              /* 필요시 8px, -4px 등으로 미세 조정 */
+      right: 4;              /* 필요시 8px, -4px 등으로 미세 조정 */
       color: #007BFF;
-      font-size: 1.2em;
+      font-size: 1.0em;
       text-decoration: none;
       pointer-events: auto;  /* 버튼은 클릭 가능 */
     }
