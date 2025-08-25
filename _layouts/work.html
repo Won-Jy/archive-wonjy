@@ -1,6 +1,3 @@
----
-layout: work
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,108 +6,199 @@ layout: work
   <title>{{ page.title }} | archive-wonjy.com</title>
   <link rel="icon" href="/favicon.png" type="image/x-icon">
 <style>
-  :root{--blue:#007BFF;--border:#ddd;--text:#222;--muted:#666}
-  html,body{margin:0;padding:0;font-family:sans-serif;color:var(--text);line-height:1.6}
-  header.site{display:flex;align-items:center;gap:40px;padding:20px 40px;border-bottom:1px solid var(--border)}
-  .title{font-size:1.2em;font-weight:600;text-transform:lowercase}
-  .title:link,.title:visited{color:#000;text-decoration:none}
-  .title:hover{color:var(--blue);text-decoration:none}
-  nav{margin-left:15px}
-  nav a{margin-left:24px;text-decoration:none;color:#555;font-size:.95em;transition:color .2s}
-  nav a:hover,nav a.active,nav a[aria-current="page"]{color:var(--blue)}
-  main{max-width:1200px;margin:0;padding:60px 40px}
-  .intro{display:grid;grid-template-columns:70% 1fr;grid-column-gap:40px;grid-row-gap:24px;align-items:start;margin-bottom:40px;grid-template-areas:"cover side" "media side"}
-  .intro-cover{grid-area:cover;min-width:0}
-  .intro-side{grid-area:side;min-width:0;font-size:.95em;color:#333}
-  .intro-media{grid-area:media;min-width:0}
-  .intro-cover figure{margin:0}
-  .intro-cover img{width:100%;height:auto;display:block}
-  .intro-cover .caption{font-size:.8em;color:var(--muted);margin-top:3px;margin-bottom:40px}
-  .intro-group{max-width:100%}
-  .intro-header h1{font-size:clamp(1.4em,2vw,1.6em);font-style:italic;font-weight:600;margin:0 0 4px}
-  .intro-header .year{font-size:1.05em;font-weight:500;color:#777;margin-bottom:16px}
-  .meta-row{margin:0 0 4px}
-  .meta-row .label{color:#777;margin-right:6px}
-  .meta-row .value{color:#333}
-  .divider{border:none;border-top:1px solid var(--border);margin:30px 0}
-  .intro-sep{display:none}
-  .rich p{margin:0 0 1em}
-  .rich a{color:var(--blue);text-decoration:none}
-  .rich a:hover,.rich a:focus{text-decoration:underline}
-  .section-title{margin:0 0 8px;font-size:1em;color:#555}
-  .intro-media figure.work{margin:0}
-  .intro-media img.work{width:100%;height:auto;display:block;margin-bottom:3px}
-  .caption{font-size:.8em;color:var(--muted);margin-bottom:40px}
-  .intro-media figure.work.video{width:100%;margin:0;display:block}
-  .intro-media figure.work.video .frame{position:relative;width:100%;height:0;padding-bottom:56.25%;margin-bottom:3px}
-  .intro-media figure.work.video .frame iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
-  .linked-works{list-style:none;margin:8px 0 0;padding:0}
-  .linked-works li{margin:0 0 6px;position:relative;padding-left:14px}
-  .linked-works li::before{content:"–";position:absolute;left:0;color:var(--muted)}
-  .linked-works a{color:var(--blue);text-decoration:none;margin-left:6px}
-  .linked-works a:hover{text-decoration:underline}
-  .related-texts{list-style:none;margin:8px 0 0;padding:0}
-  .related-texts li{margin:0 0 6px;position:relative;padding-left:14px}
-  .related-texts li::before{content:"–";position:absolute;left:0;color:var(--muted)}
-  .related-texts a{color:var(--blue);text-decoration:none;margin-left:6px}
-  .related-texts a:hover{text-decoration:underline}
-  .related-texts li:not(:has(a)),.related-texts li:empty{display:none}
-  #btBar{position:fixed;right:24px;bottom:20px;z-index:999;display:none;font-size:.95em;background:transparent;gap:16px}
-  #btBar .copy{color:#888}
-  #btBar a#backToTop{color:var(--blue);text-decoration:none}
-  #btBar a#backToTop:hover{text-decoration:underline}
-  #btBar a#backToTop:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-  .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px}
-  .lb-overlay.open{display:flex}
-  .lb-stage{position:relative;max-width:92vw;max-height:86vh;display:flex;flex-direction:column;align-items:center;gap:12px}
-  .lb-media{max-width:92vw;max-height:74vh;display:block;object-fit:contain;background:#111}
-  .lb-caption{color:#eee;font-size:.9em;line-height:1.4;text-align:center;max-width:92vw}
-  .lb-ctrl{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0);border:none;cursor:pointer;padding:8px 10px;font-size:22px;line-height:1;color:#ddd}
-  .lb-ctrl:hover,.lb-ctrl:active{color:var(--blue)}
-  .lb-prev{left:-10px}
-  .lb-next{right:-10px}
-  .lb-close{position:absolute;top:-25px;right:-5px;background:transparent;border:none;cursor:pointer;font-size:20px;line-height:1;color:#ddd;z-index:10}
-  .lb-close:hover,.lb-close:active{color:var(--blue)}
-  .lb-counter{position:absolute;bottom:-22px;right:0;color:#bbb;font-size:.8em}
-  .lb-footer{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:4px}
-  .lb-footer .lb-ctrl{position:static;transform:none;background:transparent;border:none;cursor:pointer;padding:6px 12px;font-size:20px;line-height:1;color:#ddd}
-  .lb-footer .lb-ctrl:hover,.lb-footer .lb-ctrl:active{color:var(--blue)}
-  .lb-footer .lb-counter{position:static;color:#bbb;font-size:.85em;line-height:1;min-width:52px;text-align:center}
-  .lb-ctrl:focus-visible,.lb-close:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-  .lb-overlay .lb-ctrl,.lb-overlay .lb-close{-webkit-tap-highlight-color:transparent}
-  .lb-video{display:none;background:#000;max-width:92vw;max-height:74vh;width:min(92vw,calc(74vh * var(--ratio,16/9)));height:min(74vh,calc(92vw / var(--ratio,16/9)))}
-  .lb-video iframe{width:100%;height:100%;display:block;border:0}
+  /* ===========================
+     Base (Desktop-first) CSS
+     =========================== */
+  :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
+  html, body { margin:0; padding:0; font-family:sans-serif; color:var(--text); line-height:1.6; }
+
+  /* Header / Nav */
+  header.site { display:flex; align-items:center; gap:40px; padding:20px 40px; border-bottom:1px solid var(--border); }
+  .title { font-size:1.2em; font-weight:600; text-transform: lowercase; }
+  .title:link,
+  .title:visited { color:#000; text-decoration:none; }
+  .title:hover { color:var(--blue); text-decoration:none; }
+  nav { margin-left:15px; }
+  nav a { margin-left:24px; text-decoration:none; color:#555; font-size:0.95em; transition:color .2s; }
+  nav a:hover, nav a.active, nav a[aria-current="page"] { color:var(--blue); }
+
+  /* Main */
+  main { max-width:1200px; margin:0; padding:60px 40px; }
+
+  /* ===========================
+     Intro (cover + meta + media)
+     데스크탑: cover & media(좌) / side(우)
+     모바일: cover → side → media
+     =========================== */
+  .intro{
+    display:grid;
+    grid-template-columns: 70% 1fr;   /* 좌 70% / 우 30% */
+    grid-column-gap:40px;
+    grid-row-gap:24px;
+    align-items:start;
+    margin-bottom:40px;
+    grid-template-areas:
+      "cover side"
+      "media side";
+  }
+  .intro-cover{ grid-area:cover; min-width:0; }
+  .intro-side{  grid-area:side;  min-width:0; font-size:0.95em; color:#333; }
+  .intro-media{ grid-area:media; min-width:0; }
+
+  /* Cover */
+  .intro-cover figure{ margin:0; }
+  .intro-cover img{ width:100%; height:auto; display:block; }
+  .intro-cover .caption{ font-size:0.8em; color:var(--muted); margin-top:3px; margin-bottom:40px; }
+
+  /* Side (meta + texts) */
+  .intro-group { max-width:100%; }
+  .intro-header h1 { font-size:clamp(1.4em, 2vw, 1.6em); font-style:italic; font-weight:600; margin:0 0 4px 0; }
+  .intro-header .year { font-size:1.05em; font-weight:500; color:#777; margin-bottom:16px; }
+  .meta-row { margin:0 0 4px 0; }
+  .meta-row .label { color:#777; margin-right:6px; }
+  .meta-row .value { color:#333; }
+
+  .divider { border:none; border-top:1px solid var(--border); margin:30px 0; }
+  .intro-sep { display:none; }
+
+  /* Rich text blocks */
+  .rich p { margin:0 0 1em 0; }
+  .rich a { color:var(--blue); text-decoration:none; }
+  .rich a:hover, .rich a:focus { text-decoration:underline; }
+  .section-title { margin:0 0 8px 0; font-size:1em; color:#555; }
+
+  /* Work media (images) */
+  .intro-media figure.work { margin:0; }
+  .intro-media img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
+  .caption { font-size:0.8em; color:var(--muted); margin-bottom:40px; }
+
+  /* Work media (video) */
+  .intro-media figure.work.video { width:100%; margin:0; display:block; }
+  .intro-media figure.work.video .frame { position:relative; width:100%; height:0; padding-bottom:56.25%; margin-bottom:3px; }
+  .intro-media figure.work.video .frame iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
+
+  /* Linked works */
+  .linked-works { list-style:none; margin:8px 0 0; padding:0; }
+  .linked-works li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+  .linked-works li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+  .linked-works a { color:var(--blue); text-decoration:none; margin-left:6px; }
+  .linked-works a:hover { text-decoration:underline; }
+
+  /* Related texts */
+  .related-texts { list-style:none; margin:8px 0 0; padding:0; }
+  .related-texts li { margin:0 0 6px 0; position:relative; padding-left:14px; }
+  .related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
+  .related-texts a { color:var(--blue); text-decoration:none; margin-left:6px; }
+  .related-texts a:hover { text-decoration:underline; }
+  .related-texts li:not(:has(a)) { display:none; }
+  .related-texts li:empty { display:none; }
+
+  /* Bottom floating bar */
+  #btBar { position:fixed; right:24px; bottom:20px; z-index:999; display:none; font-size:0.95em; background:transparent; gap:16px; }
+  #btBar .copy { color:#888; }
+  #btBar a#backToTop { color:var(--blue); text-decoration:none; }
+  #btBar a#backToTop:hover { text-decoration:underline; }
+  #btBar a#backToTop:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+  /* Lightbox: layout */
+  .lb-overlay { position:fixed; inset:0; background:rgba(0,0,0,.75); display:none; align-items:center; justify-content:center; z-index:9999; padding:24px; }
+  .lb-overlay.open { display:flex; }
+  .lb-stage { position:relative; max-width:92vw; max-height:86vh; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .lb-media { max-width:92vw; max-height:74vh; display:block; object-fit:contain; background:#111; }
+  .lb-caption { color:#eee; font-size:.9em; line-height:1.4; text-align:center; max-width:92vw; }
+
+  /* Lightbox: controls (default positions) */
+  .lb-ctrl { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0); border:none; cursor:pointer; padding:8px 10px; font-size:22px; line-height:1; color:#ddd; }
+  .lb-ctrl:hover, .lb-ctrl:active { color:var(--blue); }
+  .lb-prev { left:-10px; }
+  .lb-next { right:-10px; }
+  .lb-close { position:absolute; top:-25px; right:-5px; background:transparent; border:none; cursor:pointer; font-size:20px; line-height:1; color:#ddd; z-index:10; }
+  .lb-close:hover, .lb-close:active { color:var(--blue); }
+  .lb-counter { position:absolute; bottom:-22px; right:0; color:#bbb; font-size:.8em; }
+
+  /* Lightbox: footer controls under caption */
+  .lb-footer { display:flex; align-items:center; justify-content:center; gap:14px; margin-top:4px; }
+  .lb-footer .lb-ctrl { position:static; top:auto; left:auto; right:auto; transform:none; background:transparent; border:none; cursor:pointer; padding:6px 12px; font-size:20px; line-height:1; color:#ddd; }
+  .lb-footer .lb-ctrl:hover, .lb-footer .lb-ctrl:active { color:var(--blue); }
+  .lb-footer .lb-counter { position:static; color:#bbb; font-size:.85em; line-height:1; min-width:52px; text-align:center; }
+
+  /* Lightbox: focus/tap aesthetics */
+  .lb-ctrl:focus-visible, .lb-close:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+  .lb-overlay .lb-ctrl:focus,
+  .lb-overlay .lb-ctrl:focus-visible,
+  .lb-overlay .lb-close:focus,
+  .lb-overlay .lb-close:focus-visible { outline:none !important; box-shadow:none !important; }
+  .lb-overlay .lb-ctrl::-moz-focus-inner, .lb-overlay .lb-close::-moz-focus-inner { border:0; }
+  .lb-overlay .lb-ctrl, .lb-overlay .lb-close { -webkit-tap-highlight-color:transparent; }
+
+  /* Lightbox: video container */
+  .lb-video { display:none; background:#000; max-width:92vw; max-height:74vh;
+              width:min(92vw, calc(74vh * var(--ratio, 16/9)));
+              height:min(74vh, calc(92vw / var(--ratio, 16/9))); }
+  .lb-video iframe { width:100%; height:100%; display:block; border:0; }
+
+  /* ===========================
+     Mobile only
+     =========================== */
   @media (max-width:768px){
-    header.site{display:flex;flex-direction:column;align-items:flex-start;padding:16px 20px;border-bottom:1px solid #ddd;gap:0}
-    header.site .title{align-self:flex-start;margin-bottom:0}
-    header.site nav{margin:12px 0 0 0}
-    header.site nav a{margin-left:30px;color:#555;font-size:1.05em}
-    header.site nav a:first-child{margin-left:0}
-    main{padding:30px 20px 50px 24px}
-    .intro{grid-template-columns:1fr;grid-row-gap:24px;grid-template-areas:"cover" "side" "sep" "media"}
-    .intro-cover .caption{margin-bottom:12px}
-    .intro-side .divider{margin:0}
-    .intro-side .rich.description + .divider{margin-top:16px;margin-bottom:14px}
-    .intro-side .divider + .section-title:first-of-type{margin-top:10px}
-    .intro-side .section-title:first-of-type + .linked-works{margin-top:6px}
-    .intro-side .linked-works + .divider{margin-top:18px;margin-bottom:10px}
-    .intro-side .section-title + .related-texts,.intro-side .section-title + .rich.critique{margin-top:6px}
-    .intro-side .divider + .rich.description{margin-top:16px}
-    .intro-side .divider + .rich.summary{margin-top:16px}
-    .intro-side .rich.summary + .divider{margin-top:14px}
-    .intro-side .intro-header + .divider{margin-top:14px}
-    .intro-media .caption{margin-bottom:25px}
-    .intro{grid-row-gap:0}
-    .intro-sep{display:block;grid-area:sep;margin-top:18px;margin-bottom:12px}
-    .lb-prev{left:-4px;padding:10px 12px}
-    .lb-next{right:-4px;padding:10px 12px}
-    .lb-close{top:-30px;right:-6px;font-size:22px}
-    .lb-caption{font-size:.85em;line-height:1.5;padding:0 10px}
-    .lb-footer{gap:20px}
-    .lb-footer .lb-ctrl{padding:10px 14px;font-size:24px}
+    header.site {
+      display:flex;
+      flex-direction:column;  /* 세로 쌓기 */
+      align-items:flex-start; /* 왼쪽 정렬 */
+      padding:16px 20px;
+      border-bottom:1px solid #ddd;
+      gap:0; /* 데스크톱 gap 제거 */
+    }
+    header.site .title { align-self:flex-start; margin-bottom:0; }
+    header.site nav { margin:12px 0 0 0; }
+    header.site nav a {
+      margin-left:30px; text-decoration:none; color:#555;
+      font-size:1.05em; transition:color .2s; font-weight:normal;
+    }
+    header.site nav a:first-child { margin-left:0; }
+    header.site nav a:hover, header.site nav a.active { color:#007BFF; }
+
+    /* paddings */
+    main { padding:30px 20px 50px 24px; }
+
+    /* Intro: 순서 cover → side → media */
+    .intro{ grid-template-columns: 1fr; grid-row-gap:24px; grid-template-areas:"cover" "side" "sep" "media"; }
+
+    .intro-cover .caption{ margin-bottom:12px; } /* 캡션 아래 여백 줄이기 */
+
+    .intro-side .divider{ margin:0; }
+    .intro-side .rich.description + .divider{ margin-top:16px; margin-bottom:14px; } /* description 아래쪽 여백 느낌 조절 / 섹션 타이틀과의 간격 */
+    .intro-side .divider + .section-title:first-of-type{ margin-top:10px; }
+    .intro-side .section-title:first-of-type + .linked-works{ margin-top:6px; }
+
+    .intro-side .linked-works + .divider{ margin-top:18px; margin-bottom:10px; }
+    .intro-side .divider + .section-title:not(:first-of-type){ margin-top:10px; }
+    .intro-side .section-title + .related-texts, .intro-side .section-title + .rich.critique{ margin-top:6px; }
+    .intro-side .divider + .rich.description{ margin-top:16px; }
+    .intro-side .divider + .rich.summary{ margin-top:16px; }
+    .intro-side .rich.summary + .divider{ margin-top:14px; }
+    .intro-side .intro-header + .divider{ margin-top:14px; }
+    .intro-side .divider + .rich.summary{ margin-top:16px; }
+
+    .intro-media .caption{ margin-bottom:25px; }
+
+    /* Responsive only divider */
+    .intro{ grid-row-gap:0; }
+    .intro-sep { display:block; grid-area:sep; margin-top:18px; margin-bottom:12px; }  /* B. (Linked/Related) 묶음 끝 → intro-sep 사이 간격 */
+  
+
+    /* Lightbox touch targets */
+    .lb-prev { left:-4px; padding:10px 12px; }
+    .lb-next { right:-4px; padding:10px 12px; }
+    .lb-close { top:-30px; right:-6px; font-size:22px; }
+    .lb-caption{ font-size: .85em; line-height: 1.5; padding: 0 10px; }
+    .lb-footer { gap:20px; }
+    .lb-footer .lb-ctrl { padding:10px 14px; font-size:24px; }
+
   }
 </style>
 </head>
+
 <body>
   <header class="site">
     <a href="/index.html" class="title">archive-wonjy.com</a>
@@ -124,7 +212,211 @@ layout: work
   </header>
 
   <main>
-    <!-- (본문 부분은 동일, 생략) -->
+    {%- assign s = page.year_start -%}
+    {%- assign e = page.year_end -%}
+    {%- if e -%}
+      {%- if s == e -%}
+        {%- assign year_display = s -%}
+      {%- else -%}
+        {%- assign year_display = s | append: " – " | append: e -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign year_display = s | append: " –" -%}
+    {%- endif -%}
+
+    <section class="intro">
+        <!-- ① Cover -->
+        <div class="intro-cover">
+          {% if page.cover %}
+            <figure class="cover">
+              <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} cover" loading="lazy" decoding="async"
+                  {% if page.cover_width and page.cover_height %} width="{{page.cover_width}}" height="{{page.cover_height}}"{% endif %}
+                  sizes="(max-width:768px) 100vw, 70vw" />
+              {% if page.cover_caption %}
+                <figcaption class="caption">{{ page.cover_caption }}</figcaption>
+              {% else %}
+                <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
+              {% endif %}
+            </figure>
+          {% endif %}
+        </div>
+
+        <!-- ② 오른쪽 정보/텍스트(기존 aside 내용 그대로) -->
+        <aside class="intro-side">
+          <div class="intro-group">
+            <div class="intro-header">
+              <h1>{{ page.title }}</h1>
+              {% if s %}<div class="year">{{ year_display }}</div>{% endif %}
+              {% if page.types and page.types.size > 0 %}
+                <p class="meta-row"><span class="label">Type</span>
+                  <span class="value">
+                    {% for t in page.types %}
+                      <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                    {% endfor %}
+                  </span>
+                </p>
+              {% elsif page.type %}
+                <p class="meta-row"><span class="label">Type</span><span class="value">{{ page.type }}</span></p>
+              {% endif %}
+              {% if page.status %}
+                <p class="meta-row"><span class="label">Status</span><span class="value">{{ page.status }}</span></p>
+              {% endif %}
+              {% if page.tags and page.tags.size > 0 %}
+                <p class="meta-row"><span class="label">Tags</span>
+                  <span class="value">
+                    {% for t in page.tags %}
+                      <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
+                    {% endfor %}
+                  </span>
+                </p>
+              {% endif %}
+            </div>
+
+            {% if page.summary %}
+              <div class="divider"></div>
+              <div class="rich summary">{{ page.summary | markdownify }}</div>
+            {% endif %}
+
+            {% if page.description %}
+              <div class="divider"></div>
+              <div class="rich description">{{ page.description | markdownify }}</div>
+            {% endif %}
+
+            {% comment %} Linked works {% endcomment %}
+            {% if page.linked_works and page.linked_works.size > 0 %}
+              {% assign has_linked = false %}
+              {% for lw in page.linked_works %}
+                {% assign href = lw.url | default: lw.path %}
+                {% if href and href != '' %}{% assign has_linked = true %}{% break %}{% endif %}
+              {% endfor %}
+              {% if has_linked %}
+                <div class="divider"></div>
+                <div class="section-title">{{ page.linked_works_title | default: "Linked works" }}</div>
+                <ul class="linked-works">
+                  {% for lw in page.linked_works %}
+                    {% assign href = lw.url | default: lw.path %}
+                    {% if href and href != '' %}
+                      {% assign raw_label = lw.label | default: '' %}
+                      {% assign label_html = raw_label | strip | default: href %}
+                      <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+
+            {% comment %} Related texts (strict) — 기존 로직 그대로 {% endcomment %}
+            {% assign page_lang = page.lang | default: site.lang | default: 'en' | downcase %}
+            {% assign rel_count = 0 %}
+            {% capture rel_items %}{% endcapture %}
+            {% if page.related_texts and page.related_texts.size > 0 %}
+              {% for r in page.related_texts %}
+                {% assign rid = r.id | to_s | strip %}
+                {% if rid != '' %}
+                  {% assign t = site.data.texts[rid] %}
+                  {% if t %}
+                    {% assign orig = t.original.language | default: 'fr' | downcase %}
+                    {% assign target = r.lang | default: page_lang | downcase %}
+                    {% assign has_tr = false %}
+                    {% if t.translations %}
+                      {% for tr in t.translations %}
+                        {% if tr.language and tr.language | downcase == target %}{% assign has_tr = true %}{% endif %}
+                      {% endfor %}
+                    {% endif %}
+                    {% assign lang_final = has_tr %}
+                    {% if lang_final %}{% assign lang_final = target %}{% else %}{% assign lang_final = orig %}{% endif %}
+                    {% assign href = '/texts.html?id=' | append: rid | append: '&lang=' | append: lang_final %}
+
+                    {% assign raw_label = r.label | default: '' | strip %}
+                    {% if raw_label != '' %}
+                      {% assign label_html = raw_label %}
+                    {% else %}
+                      {% assign title_src = t.title_original.text_html | default: t.title_original.text | default: t.title | default: rid %}
+                      {% assign title_clean = title_src | markdownify | replace:'<p>','' | replace:'</p>','' | strip %}
+                      {% if title_clean contains '<' %}
+                        {% assign title_html = title_clean %}
+                      {% else %}
+                        {% assign title_html = '<em>' | append: title_clean | append: '</em>' %}
+                      {% endif %}
+                      {% assign author = t.author.name | default: '' | strip %}
+                      {% assign year   = t.year | default: '' | strip %}
+                      {% assign label_html = title_html %}
+                      {% if author != '' %}{% assign label_html = label_html | append:', ' | append: author %}{% endif %}
+                      {% if year   != '' %}{% assign label_html = label_html | append:', ' | append: year   %}{% endif %}
+                    {% endif %}
+
+                    {% if label_html and label_html | strip != '' %}
+                      {% capture rel_items %}{{ rel_items }}<li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>{% endcapture %}
+                      {% assign rel_count = rel_count | plus: 1 %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+            {% assign has_links = page.critique_links and page.critique_links.size > 0 %}
+            {% assign has_text  = page.critique and page.critique != '' %}
+
+            {% if rel_count > 0 or has_links or has_text %}
+              <div class="divider"></div>
+              <div class="section-title">{{ page.critique_title | default: "Related texts" }}</div>
+
+              {% if rel_count > 0 %}
+                <ul class="related-texts">{{ rel_items }}</ul>
+              {% endif %}
+
+              {% if rel_count == 0 and has_links %}
+                <ul class="related-texts">
+                  {% for item in page.critique_links %}
+                    {% assign label = item.label | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+                    {% if label != '' %}
+                      <li>
+                        {{ label }}
+                        {% if item.url_fr %} <a href="{{ item.url_fr }}" class="text-link">(FR)</a>{% endif %}
+                        {% if item.url_en %} <a href="{{ item.url_en }}" class="text-link">(EN)</a>{% endif %}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+
+              {% if rel_count == 0 and has_links == false and has_text %}
+                <div class="rich critique">{{ page.critique | markdownify }}</div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </aside>
+
+        <div class="intro-sep divider"></div>
+
+        <!-- ③ 갤러리(이미지/비디오) -->
+        <div class="intro-media">
+          {% if page.images %}
+            {% for img in page.images %}
+              <figure class="work">
+                <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: '' }}" class="work" loading="lazy" decoding="async"
+                    {% if img.width and img.height %} width="{{img.width}}" height="{{img.height}}"{% endif %} />
+                {% if img.caption %}<figcaption class="caption">{{ img.caption }}</figcaption>{% endif %}
+              </figure>
+            {% endfor %}
+          {% endif %}
+
+          {% if page.videos %}
+            {% for v in page.videos %}
+              <figure class="work video">
+                <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
+                  <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+                </div>
+                {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
+              </figure>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </section>
+
+    {%- if content and content != "" -%}
+      <article class="rich">{{ content }}</article>
+    {%- endif -%}
   </main>
 
   <!-- Lightbox -->
@@ -133,7 +425,7 @@ layout: work
       <button class="lb-close" id="lbClose" aria-label="Close">×</button>
       <img id="lbImg" class="lb-media" alt="">
       <div id="lbVideo" class="lb-video">
-        <iframe id="lbIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen tabindex="-1"></iframe>
+        <iframe id="lbIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="lb-caption" id="lbCap"></div>
       <div class="lb-footer" aria-label="image navigation">
@@ -144,66 +436,194 @@ layout: work
     </div>
   </div>
 
-  <div id="btBar"><span class="copy">© ADAGP, Paris, 2025</span>
-    <a id="backToTop" href="#">Back to top</a>
+  <div id="btBar" role="region" aria-label="Back to top bar">
+    <span class="copy">© ADAGP, Paris, 2025</span>
+    <a id="backToTop" href="#" aria-label="Back to top">Back to top</a>
   </div>
+
+  <!-- Scripts -->
+  <script>
+    (function(){
+      const bar = document.getElementById('btBar');
+      const btn = document.getElementById('backToTop');
+      const showAfter = 300;
+      window.addEventListener('scroll', () => {
+        bar.style.display = (window.scrollY > showAfter) ? 'flex' : 'none';
+      });
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) window.scrollTo(0,0);
+        else window.scrollTo({ top:0, behavior:'smooth' });
+      });
+    })();
+  </script>
+
+  <script>
+(function(){
+  const SELECTOR = '.summary a, .description a, .related-texts a, .linked-works a';
+  const mq = window.matchMedia('(max-width:768px)');
+
+  function applyLinkTargets(){
+    const isMobile = mq.matches;
+    document.querySelectorAll(SELECTOR).forEach(a=>{
+      if(isMobile){
+        a.removeAttribute('target');
+        a.removeAttribute('rel');
+      }else{
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener noreferrer');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyLinkTargets);
+  } else {
+    applyLinkTargets();
+  }
+
+  if (mq.addEventListener) mq.addEventListener('change', applyLinkTargets);
+  else window.addEventListener('resize', applyLinkTargets);
+})();
+</script>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script>
-    (function(){
-      const gallery=[],overlay=document.getElementById('lbOverlay');
-      const lbImg=document.getElementById('lbImg'),lbVideo=document.getElementById('lbVideo'),lbIframe=document.getElementById('lbIframe');
-      const lbCap=document.getElementById('lbCap'),lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext'),lbClose=document.getElementById('lbClose'),lbCount=document.getElementById('lbCount');
-      let idx=0,open=false,lbPlayer=null,didPushState=false;
+    document.querySelectorAll('figure.work.video .frame').forEach(function(frame){
+      var iframe = frame.querySelector('iframe');
+      if(!iframe) return;
+      try{
+        var player = new Vimeo.Player(iframe);
+        Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function([w,h]){
+          if(w && h){
+            frame.style.paddingBottom = (h / w * 100) + '%';
+          }
+        }).catch(function(e){});
+      }catch(e){}
+    });
+  </script>
 
-      function onPopStateCloseLB(){ if(open) closeLB(); }
-      function vimeoIdFromUrl(u){const m=String(u||'').match(/vimeo\.com\/(?:video\/)?(\d+)/);return m?m[1]:null;}
-      async function stopVideo(){try{if(lbPlayer&&typeof lbPlayer.unload==='function'){await lbPlayer.unload();}}catch(e){}}
-      function preloadAround(index){
-        const prev=gallery[(index-1+gallery.length)%gallery.length],next=gallery[(index+1)%gallery.length];
-        [prev,next].forEach(it=>{if(it&&it.type==='image'){const im=new Image();im.src=it.src;}});
+  <script>
+    (function(){
+      const gallery = [];
+      const nodes = document.querySelectorAll(
+        '.intro-cover figure.cover img, ' +
+        '.intro-media figure.work img.work, ' +
+        '.intro-media figure.work.video iframe'
+      );
+
+      nodes.forEach((node)=>{
+        const fig = node.closest('figure');
+        const cap = fig ? (fig.querySelector('.caption')?.innerHTML || '') : '';
+        const isVideo = node.tagName.toLowerCase() === 'iframe';
+        const src = node.getAttribute('src') || node.getAttribute('data-src') || '';
+        const index = gallery.length;
+
+        gallery.push({ type: isVideo ? 'video' : 'image', el: node, src, caption: cap });
+
+        if(!isVideo){
+          node.style.cursor = 'zoom-in';
+          node.addEventListener('click', (e)=>{
+            e.preventDefault();
+            openLB(index);
+          });
+        }
+        // 비디오도 썸네일 클릭으로 열고 싶다면 아래 주석 해제
+        // if(isVideo){ fig.style.cursor='zoom-in'; fig.addEventListener('click',(e)=>{ e.preventDefault(); openLB(index); }); }
+      });
+
+      if(!gallery.length) return;
+
+      const overlay = document.getElementById('lbOverlay');
+      const lbImg   = document.getElementById('lbImg');
+      const lbVideo = document.getElementById('lbVideo');
+      const lbIframe= document.getElementById('lbIframe');
+      const lbCap   = document.getElementById('lbCap');
+      const lbPrev  = document.getElementById('lbPrev');
+      const lbNext  = document.getElementById('lbNext');
+      const lbClose = document.getElementById('lbClose');
+      const lbCount = document.getElementById('lbCount');
+
+      let idx = 0, open = false;
+      let lbPlayer = null;
+
+      // 더 이상 히스토리 관련 기능 없음
+      function withAutoplay(url){
+        if(!url) return '';
+        if(url.includes('autoplay=')) return url.replace(/autoplay=\d/, 'autoplay=1');
+        return url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
       }
 
-      async function show(i){
-        idx=(i+gallery.length)%gallery.length;
-        const it=gallery[idx];
-        lbCap.innerHTML=it.caption||''; lbCount.textContent=(idx+1)+'/'+gallery.length;
+      function stopVideo(){ if(lbIframe) lbIframe.src=''; }
 
-        if(it.type==='video'){
-          lbImg.style.display='none'; lbVideo.style.display='block'; lbVideo.style.setProperty('--ratio','16/9');
-          const vid=vimeoIdFromUrl(it.src);
+      function show(i){
+        idx = (i + gallery.length) % gallery.length;
+        const it = gallery[idx];
+
+        lbCap.innerHTML = it.caption || '';
+        lbCount.textContent = (idx+1) + '/' + gallery.length;
+
+        if(it.type === 'video'){
+          lbImg.style.display = 'none';
+          lbVideo.style.display = 'block';
+          stopVideo();
+          lbVideo.style.setProperty('--ratio', '16/9');
+          lbIframe.src = withAutoplay(it.src);
+
           try{
-            if(!lbPlayer){
-              lbPlayer=new Vimeo.Player(lbIframe,{id:vid||undefined,autoplay:true,muted:true,playsinline:true,byline:false,title:false,portrait:false});
-            }else{
-              stopVideo(); if(vid) await lbPlayer.loadVideo(vid);
-            }
-            try{await lbPlayer.play();}
-            catch(e){
-              const oncePlay=()=>{lbPlayer.play().catch(()=>{});overlay.removeEventListener('click',oncePlay,true);overlay.removeEventListener('touchend',oncePlay,true);};
-              overlay.addEventListener('click',oncePlay,true);overlay.addEventListener('touchend',oncePlay,true);
-            }
-            try{const [w,h]=await Promise.all([lbPlayer.getVideoWidth(),lbPlayer.getVideoHeight()]);if(w&&h) lbVideo.style.setProperty('--ratio',String(w/h));}catch(e){}
-          }catch(e){lbIframe.src=it.src;}
+            if(!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
+            lbPlayer.off('loaded');
+            lbPlayer.on('loaded', async ()=>{
+              try{
+                const [w,h] = await Promise.all([lbPlayer.getVideoWidth(), lbPlayer.getVideoHeight()]);
+                if(w && h){
+                  const ratio = (w / h);
+                  lbVideo.style.setProperty('--ratio', String(ratio));
+                }
+              }catch(e){}
+            });
+          }catch(e){}
         }else{
-          lbVideo.style.display='none'; lbImg.src=it.src; lbImg.alt=it.el.getAttribute('alt')||''; lbImg.style.display='block';
-          setTimeout(()=>{stopVideo();},0); preloadAround(idx);
+          lbVideo.style.display = 'none';
+          stopVideo();
+          lbImg.src = it.src;
+          lbImg.alt = it.el.getAttribute('alt') || '';
+          lbImg.style.display = 'block';
         }
       }
 
       function openLB(i){
-        show(i); overlay.classList.add('open'); document.body.style.overflow='hidden'; open=true;
-        if(!didPushState){history.pushState({lightbox:true},'',location.href);didPushState=true;window.addEventListener('popstate',onPopStateCloseLB);}
+        show(i);
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        open = true;
       }
+
       function closeLB(){
-        overlay.classList.remove('open'); document.body.style.overflow=''; open=false;
-        try{lbIframe&&lbIframe.blur&&lbIframe.blur();}catch(e){} stopVideo();
-        if(didPushState){window.removeEventListener('popstate',onPopStateCloseLB);didPushState=false;setTimeout(()=>history.back(),0);}
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        open = false;
+        stopVideo();
       }
-      function next(){show(idx+1);} function prev(){show(idx-1);}
-      lbClose.addEventListener('click',closeLB); lbNext.addEventListener('click',next); lbPrev.addEventListener('click',prev);
-      overlay.addEventListener('click',(e)=>{if(e.target===overlay) closeLB();});
-      document.addEventListener('keydown',(e)=>{if(!open) return; if(e.key==='Escape') closeLB(); else if(e.key==='ArrowRight') next(); else if(e.key==='ArrowLeft') prev();});
+
+      function next(){ show(idx+1); }
+      function prev(){ show(idx-1); }
+
+      lbClose.addEventListener('click', closeLB);
+      lbNext.addEventListener('click', next);
+      lbPrev.addEventListener('click', prev);
+
+      overlay.addEventListener('click', (e)=>{
+        if(e.target === overlay) closeLB();
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(!open) return;
+        if(e.key==='Escape') closeLB();
+        else if(e.key==='ArrowRight') next();
+        else if(e.key==='ArrowLeft') prev();
+      });
     })();
   </script>
 </body>
