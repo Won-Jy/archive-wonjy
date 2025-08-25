@@ -425,7 +425,8 @@
       <button class="lb-close" id="lbClose" aria-label="Close">×</button>
       <img id="lbImg" class="lb-media" alt="">
       <div id="lbVideo" class="lb-video">
-        <iframe id="lbIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <!-- tabindex="-1" 추가 (iOS 포커스 이슈 완화) -->
+        <iframe id="lbIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen tabindex="-1"></iframe>
       </div>
       <div class="lb-caption" id="lbCap"></div>
       <div class="lb-footer" aria-label="image navigation">
@@ -548,16 +549,29 @@
       let idx = 0, open = false;
       let lbPlayer = null;
 
-      // 더 이상 히스토리 관련 기능 없음
-      function withAutoplay(url){
-        if(!url) return '';
-        if(url.includes('autoplay=')) return url.replace(/autoplay=\d/, 'autoplay=1');
-        return url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+      /* ====== 추가: 히스토리 센티넬 + Vimeo id 헬퍼 ====== */
+      let didPushState = false;
+      function onPopStateCloseLB(){ if(open) closeLB(); }
+
+      function vimeoIdFromUrl(u){
+        const m = String(u||'').match(/vimeo\.com\/(?:video\/)?(\d+)/);
+        return m ? m[1] : null;
       }
 
-      function stopVideo(){ if(lbIframe) lbIframe.src=''; }
+      /* ====== 변경: autoplay 쿼리 미사용 ====== */
+      function withAutoplay(url){ return url || ''; }
 
-      function show(i){
+      /* ====== 변경: 비디오 정리는 unload 기반 ====== */
+      async function stopVideo(){
+        try{
+          if (lbPlayer && typeof lbPlayer.unload === 'function'){
+            await lbPlayer.unload();
+          }
+        }catch(e){}
+      }
+
+      /* ====== 변경: show() 비디오 전환에 loadVideo 사용 ====== */
+      async function show(i){
         idx = (i + gallery.length) % gallery.length;
         const it = gallery[idx];
 
@@ -567,44 +581,70 @@
         if(it.type === 'video'){
           lbImg.style.display = 'none';
           lbVideo.style.display = 'block';
-          stopVideo();
-          lbVideo.style.setProperty('--ratio', '16/9');
-          lbIframe.src = withAutoplay(it.src);
 
+          // 플레이어 1회 초기화
           try{
-            if(!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
-            lbPlayer.off('loaded');
-            lbPlayer.on('loaded', async ()=>{
-              try{
-                const [w,h] = await Promise.all([lbPlayer.getVideoWidth(), lbPlayer.getVideoHeight()]);
-                if(w && h){
-                  const ratio = (w / h);
-                  lbVideo.style.setProperty('--ratio', String(ratio));
-                }
-              }catch(e){}
-            });
+            if (!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
           }catch(e){}
+
+          // 이전 재생 정리
+          await stopVideo();
+
+          // 기본 비율
+          lbVideo.style.setProperty('--ratio', '16/9');
+
+          const vid = vimeoIdFromUrl(it.src);
+          if (vid && lbPlayer){
+            try{
+              await lbPlayer.loadVideo(vid);        // iframe 히스토리 누적 없음
+              await lbPlayer.play().catch(()=>{});
+              try{
+                const w = await lbPlayer.getVideoWidth();
+                const h = await lbPlayer.getVideoHeight();
+                if(w && h) lbVideo.style.setProperty('--ratio', String(w/h));
+              }catch(e){}
+            }catch(e){}
+          }else{
+            // 최후수단: id 추출 실패 시에만 src 변경(가능한 피하기)
+            lbIframe.src = withAutoplay(it.src);
+          }
+
         }else{
           lbVideo.style.display = 'none';
-          stopVideo();
+          await stopVideo();
           lbImg.src = it.src;
           lbImg.alt = it.el.getAttribute('alt') || '';
           lbImg.style.display = 'block';
         }
       }
 
+      /* ====== 변경: open/close 에 히스토리 1칸 센티넬 적용 ====== */
       function openLB(i){
         show(i);
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
         open = true;
+
+        if (!didPushState){
+          history.pushState({ lightbox:true }, '', location.href);
+          didPushState = true;
+          window.addEventListener('popstate', onPopStateCloseLB);
+        }
       }
 
       function closeLB(){
         overlay.classList.remove('open');
         document.body.style.overflow = '';
         open = false;
+
+        try{ lbIframe && lbIframe.blur && lbIframe.blur(); }catch(e){}
         stopVideo();
+
+        if (didPushState){
+          window.removeEventListener('popstate', onPopStateCloseLB);
+          didPushState = false;
+          setTimeout(()=>history.back(), 0); // 센티넬 1칸 회수
+        }
       }
 
       function next(){ show(idx+1); }
