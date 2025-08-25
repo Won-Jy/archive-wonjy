@@ -463,6 +463,19 @@ title: Texts
       hideTip();
     }
 
+    const langTabsEl = document.getElementById('langTabs');
+    if (langTabsEl) {
+      langTabsEl.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.lang-btn');
+        if (!btn) return;
+        setLang(btn.dataset.lang);
+       });
+
+    const initialLang = (new URLSearchParams(location.search)).get('lang') || origLang;
+    setLang(initialLang);
+    }
+
+
     const btt = document.getElementById('backToTop');
     window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
     btt.addEventListener('click', (e)=>{
