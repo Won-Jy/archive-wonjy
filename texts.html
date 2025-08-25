@@ -45,8 +45,9 @@ title: Texts
       margin-top: 0;
     }
 
+    /* 모바일은 absolute 좌표(문서 좌표) */
     .tooltip{
-      position: absolute;       
+      position: absolute;
       z-index: 9999;
       max-width: min(90vw, 320px);
       box-sizing: border-box;
@@ -66,6 +67,7 @@ title: Texts
     main{ padding:60px 40px; max-width:1200px; }
     main.list{ padding:50px 40px 10px 40px; max-width:740px; }
     main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
+    /* 데스크톱은 main.css의 .tooltip{ position:fixed }가 적용됩니다. */
   }
   </style>
 </head>
@@ -102,197 +104,193 @@ title: Texts
       {% endfor %}
      };
 
-      const params = new URLSearchParams(location.search);
-      const currentId = params.get('id');
-      if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
+    const params = new URLSearchParams(location.search);
+    const currentId = params.get('id');
+    if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
 
-      function renderList(){
+    function renderList(){
       document.getElementById('listView').hidden = false;
       document.getElementById('pager').hidden = false;
 
-    const arr = Object.entries(DATA).map(([id,t])=>({
-      id,
-      title_html: t.title_original?.text_html || '',
-      author: t.author?.name || '',
-      year: t.year || '',
-      date_written: t.date_written || ''
-    }));
+      const arr = Object.entries(DATA).map(([id,t])=>({
+        id,
+        title_html: t.title_original?.text_html || '',
+        author: t.author?.name || '',
+        year: t.year || '',
+        date_written: t.date_written || ''
+      }));
 
-    arr.sort((a,b)=>{
-      const da = new Date(a.date_written || a.year || 0);
-      const db = new Date(b.date_written || b.year || 0);
-      if (db.getTime() !== da.getTime()) return db - da; // 최신순
-      return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
-    });
-
-    function getPerPage(){ return window.innerWidth <= 768 ? 7 : 10; }
-    let perPage = getPerPage();
-    let page = 1;
-
-    const itemsEl = document.getElementById('items');
-    const pagerEl = document.getElementById('pager');
-
-    function draw(){
-      const start = (page-1)*perPage, end = start+perPage;
-      itemsEl.innerHTML = '';
-      arr.slice(start,end).forEach(it=>{
-        const a = document.createElement('a');
-        a.className = 'text-link';
-        a.href = `?id=${encodeURIComponent(it.id)}`;
-        a.innerHTML =
-          `<span class="text-title">${it.title_html}</span>`+
-          `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
-          `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
-        itemsEl.appendChild(a);
+      arr.sort((a,b)=>{
+        const da = new Date(a.date_written || a.year || 0);
+        const db = new Date(b.date_written || b.year || 0);
+        if (db.getTime() !== da.getTime()) return db - da; // 최신순
+        return (a.title_html||'').localeCompare(b.title_html||'', undefined, {sensitivity:'base'});
       });
 
-      const total = Math.max(1, Math.ceil(arr.length/perPage));
-      pagerEl.innerHTML = '';
-      for(let i=1;i<=total;i++){
-        if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
-        const link = document.createElement('a'); link.href='#'; link.textContent=i;
-        if(i===page) link.classList.add('active');
-        link.addEventListener('click', e=>{
-          e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
+      function getPerPage(){ return window.innerWidth <= 768 ? 7 : 10; }
+      let perPage = getPerPage();
+      let page = 1;
+
+      const itemsEl = document.getElementById('items');
+      const pagerEl = document.getElementById('pager');
+
+      function draw(){
+        const start = (page-1)*perPage, end = start+perPage;
+        itemsEl.innerHTML = '';
+        arr.slice(start,end).forEach(it=>{
+          const a = document.createElement('a');
+          a.className = 'text-link';
+          a.href = `?id=${encodeURIComponent(it.id)}`;
+          a.innerHTML =
+            `<span class="text-title">${it.title_html}</span>`+
+            `<span class="meta-sep">,</span><span class="author">${it.author}</span>`+
+            `<span class="meta-sep">,</span><span class="year">${it.year}</span>`;
+          itemsEl.appendChild(a);
         });
-        pagerEl.appendChild(link);
+
+        const total = Math.max(1, Math.ceil(arr.length/perPage));
+        pagerEl.innerHTML = '';
+        for(let i=1;i<=total;i++){
+          if(i>1) pagerEl.appendChild(document.createTextNode(' / '));
+          const link = document.createElement('a'); link.href='#'; link.textContent=i;
+          if(i===page) link.classList.add('active');
+          link.addEventListener('click', e=>{
+            e.preventDefault(); page=i; draw(); window.scrollTo({top:0,behavior:'smooth'});
+          });
+          pagerEl.appendChild(link);
+        }
       }
-    }
-    draw();
-    window.addEventListener('resize', ()=>{
-      const newPerPage = getPerPage();
-      if(newPerPage !== perPage){ perPage = newPerPage; page=1; draw(); }
-    });
+      draw();
+      window.addEventListener('resize', ()=>{
+        const newPerPage = getPerPage();
+        if(newPerPage !== perPage){ perPage = newPerPage; page=1; draw(); }
+      });
     }
 
     function renderDetail(id){
-    const t = DATA[id];
-    document.getElementById('detailView').hidden = false;
-    const article = document.getElementById('detailArticle');
-    const aside = document.getElementById('detailAside');
-    const origLang = (t.original?.language || 'fr').toLowerCase();
+      const t = DATA[id];
+      document.getElementById('detailView').hidden = false;
+      const article = document.getElementById('detailArticle');
+      const aside = document.getElementById('detailAside');
+      const origLang = (t.original?.language || 'fr').toLowerCase();
 
-    const notesCounts = {};
-    notesCounts[origLang] = (t.original?.notes || []).length;
-    (t.translations || []).forEach(tr => { notesCounts[tr.language] = (tr.notes || []).length; });
-    const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
+      const notesCounts = {};
+      notesCounts[origLang] = (t.original?.notes || []).length;
+      (t.translations || []).forEach(tr => { notesCounts[tr.language] = (tr.notes || []).length; });
+      const hasAnyNotes = Object.values(notesCounts).some(n => n > 0);
 
-    article.innerHTML = `
-      <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
-      <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
+      article.innerHTML = `
+        <h1 class="text-title">${t.title_original?.text_html || ''}</h1>
+        <div class="meta"><span>${t.author?.name || ''}, ${t.year || ''}</span></div>
 
-      <div class="lang-tabs" id="langTabs">
-        <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
-        ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
-      </div>
-
-      <div class="text-variants">
-        <div class="text-body variant" data-lang="${origLang}">
-          ${t.original?.body_html || ''}
+        <div class="lang-tabs" id="langTabs">
+          <button class="lang-btn" data-lang="${origLang}">(${origLang.toUpperCase()})<span class="orig-badge">orig.</span></button>
+          ${(t.translations||[]).map(tr=>`<button class="lang-btn" data-lang="${tr.language}">(${String(tr.language).toUpperCase()})</button>`).join('')}
         </div>
-        ${(t.translations||[]).map(tr=>`
-          <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-            ${tr.body_html || ''}
-          </div>
-        `).join('')}
-      </div>
 
-      ${hasAnyNotes ? `
-      <div id="notesDivider" class="divider"></div>
-      <section id="notesSection" class="notes">
-        <h3>Notes</h3>
-        <ol class="notes-variants">
-          <li style="list-style:none;padding:0;margin:0">
-            <ol class="notes-list variant" data-lang="${origLang}">
-              ${(t.original?.notes||[]).map(n=>`
-                <li id="fn-${n.id}-${origLang}">
-                  <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
-                </li>
-              `).join('')}
-            </ol>
-          </li>
+        <div class="text-variants">
+          <div class="text-body variant" data-lang="${origLang}">
+            ${t.original?.body_html || ''}
+          </div>
           ${(t.translations||[]).map(tr=>`
+            <div class="text-body variant" data-lang="${tr.language}" style="display:none">
+              ${tr.body_html || ''}
+            </div>
+          `).join('')}
+        </div>
+
+        ${hasAnyNotes ? `
+        <div id="notesDivider" class="divider"></div>
+        <section id="notesSection" class="notes">
+          <h3>Notes</h3>
+          <ol class="notes-variants">
             <li style="list-style:none;padding:0;margin:0">
-              <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
-                ${(tr.notes||[]).map(n=>`
-                  <li id="fn-${n.id}-${tr.language}">
-                    <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+              <ol class="notes-list variant" data-lang="${origLang}">
+                ${(t.original?.notes||[]).map(n=>`
+                  <li id="fn-${n.id}-${origLang}">
+                    <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
                   </li>
                 `).join('')}
               </ol>
             </li>
-          `).join('')}
-        </ol>
-      </section>
-      ` : ``}
-    `;
+            ${(t.translations||[]).map(tr=>`
+              <li style="list-style:none;padding:0;margin:0">
+                <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
+                  ${(tr.notes||[]).map(n=>`
+                    <li id="fn-${n.id}-${tr.language}">
+                      <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+                    </li>
+                  `).join('')}
+                </ol>
+              </li>
+            `).join('')}
+          </ol>
+        </section>
+        ` : ``}
+      `;
 
-        // === ASIDE 채우기 (백업본 로직 이식) ===
-    function isEmpty(val){
-      if (val == null) return true;
-      if (Array.isArray(val)) return val.length === 0;
-      if (typeof val === 'string') return val.trim() === '';
-      return false;
-    }
+      // === ASIDE 채우기 ===
+      function isEmpty(val){
+        if (val == null) return true;
+        if (Array.isArray(val)) return val.length === 0;
+        if (typeof val === 'string') return val.trim() === '';
+        return false;
+      }
+      const asideBlocks = [];
 
-    const asideBlocks = [];
-
-    // Related works: [{ slug, label }]
-    if (!isEmpty(t.related_works)) {
-      asideBlocks.push(`
-        <div class="aside-block">
-          <h4>Related works</h4>
-          <ul class="related-works">
-            ${(t.related_works || []).map(r => {
-              const label = r.label || 'View';
-              return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
-            }).join('')}
-          </ul>
-        </div>
-      `);
-    }
-
-    // Source: source_html (string or array of strings with HTML)
-    if (!isEmpty(t.source_html)) {
-      const sourceHtml = Array.isArray(t.source_html) ? t.source_html.join('') : t.source_html;
-      if (!isEmpty(sourceHtml)) {
+      // Related works
+      if (!isEmpty(t.related_works)) {
         asideBlocks.push(`
           <div class="aside-block">
-            <h4>Source</h4>
-            ${sourceHtml}
+            <h4>Related works</h4>
+            <ul class="related-works">
+              ${(t.related_works || []).map(r => {
+                const label = r.label || 'View';
+                return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+              }).join('')}
+            </ul>
           </div>
         `);
       }
-    }
 
-    // Author: author.bio_html
-    asideBlocks.push(`
-      <div class="aside-block">
-        <h4>Author</h4>
-        ${t.author?.bio_html || ''}
-      </div>
-    `);
-
-    // 구분선으로 묶어서 주입
-    aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
-
-    // 데스크톱: 새 탭 / 모바일: 같은 탭
-    function applyAsideLinkTargets() {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      aside.querySelectorAll('a').forEach(a => {
-        if (isMobile) {
-          a.removeAttribute('target');
-          a.removeAttribute('rel');
-        } else {
-          a.setAttribute('target', '_blank');
-          a.setAttribute('rel', 'noopener noreferrer');
+      // Source
+      if (!isEmpty(t.source_html)) {
+        const sourceHtml = Array.isArray(t.source_html) ? t.source_html.join('') : t.source_html;
+        if (!isEmpty(sourceHtml)) {
+          asideBlocks.push(`
+            <div class="aside-block">
+              <h4>Source</h4>
+              ${sourceHtml}
+            </div>
+          `);
         }
-      });
-    }
-    applyAsideLinkTargets();
-    window.addEventListener('resize', applyAsideLinkTargets);
+      }
 
+      // Author
+      asideBlocks.push(`
+        <div class="aside-block">
+          <h4>Author</h4>
+          ${t.author?.bio_html || ''}
+        </div>
+      `);
 
+      aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
+
+      // 데스크톱: 새 탭 / 모바일: 같은 탭
+      function applyAsideLinkTargets() {
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        aside.querySelectorAll('a').forEach(a => {
+          if (isMobile) {
+            a.removeAttribute('target');
+            a.removeAttribute('rel');
+          } else {
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+          }
+        });
+      }
+      applyAsideLinkTargets();
+      window.addEventListener('resize', applyAsideLinkTargets);
 
       // === Tooltip anchoring ===
       let tipAnchor = null;
@@ -351,7 +349,7 @@ title: Texts
         const tooltip = document.getElementById('tooltip');
         if (tooltip.style.display === 'none' || !tipAnchor) return;
         const isFixed = getComputedStyle(tooltip).position === 'fixed';
-        if (!isFixed) return;           // 모바일(absolute)은 문서와 같이 움직여서 추가 처리 불필요
+        if (!isFixed) return; // 모바일은 문서와 같이 움직임
         const r = tipAnchor.getBoundingClientRect();
         // 앵커가 화면에서 벗어나면 닫기
         if (r.bottom < 0 || r.top > window.innerHeight) { hideTip(); return; }
@@ -364,127 +362,142 @@ title: Texts
         if (tooltip.style.display !== 'none' && tipAnchor) placeTooltipNear(tipAnchor);
       });
 
+      // === Footnotes wiring ===
+      function wireFootnotes(lang){
+        // sup.note-ref → a.note-ref 로 래핑 (그리고 sup에서 note-ref 클래스 제거)
+        article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
+          const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
+          const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
 
-
-
-
-    function wireFootnotes(lang){
-      article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
-        const n = (sup.textContent.match(/\d+/)||[])[0]; if(!n) return;
-        const refId = 'fnref-'+n+'-'+lang, noteId='fn-'+n+'-'+lang;
-        if(!sup.querySelector('a')){
-          const a=document.createElement('a'); a.href='#'+noteId; a.textContent=sup.textContent; a.className='note-ref';
-          sup.textContent=''; sup.id=refId; sup.appendChild(a);
-        }else{
-          sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
-        }
-      });
-
-      const notesMap = {};
-      article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
-      const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
-      notesMap[li.id] = html;
-      });
-
-     const isMobileQuery = window.matchMedia('(max-width: 768px)');
-
-      // hover
-      article.querySelectorAll('.note-ref').forEach(a=>{
-        a.onmouseenter = null;
-        a.onmouseleave = null;
-        if(!isMobileQuery.matches){
-         a.onmouseenter = function(){
-          const href=this.getAttribute('href').slice(1);
-          const html=notesMap[href]; if(!html) return;
-          showTipNear(this, html);
-          };
-          a.onmouseleave = ()=>{ hideTip(); };
+          let a = sup.querySelector('a');
+          if(!a){
+            a = document.createElement('a');
+            a.href = '#'+noteId;
+            a.textContent = sup.textContent;
+            a.className = 'note-ref';
+            sup.textContent = '';
+            sup.appendChild(a);
+          }else{
+            a.classList.add('note-ref');
+            a.setAttribute('href', '#'+noteId);
           }
-      });
+          sup.id = refId;
+          sup.classList.remove('note-ref'); // sup에서는 제거 (핸들러 중복 방지)
+        });
 
-      // 모바일 click
-      article.querySelectorAll('.note-ref').forEach(a=>{
-          if(a.dataset.bound === '1') return; // 중복 바인딩 방지
+        // 각주 내용 맵
+        const notesMap = {};
+        article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
+          const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+          notesMap[li.id] = html;
+        });
+
+        const isMobileQuery = window.matchMedia('(max-width: 768px)');
+
+        // 데스크톱: hover (대상은 반드시 a.note-ref)
+        article.querySelectorAll('a.note-ref').forEach(a=>{
+          a.onmouseenter = null;
+          a.onmouseleave = null;
+
+          if(!isMobileQuery.matches){
+            a.onmouseenter = function(){
+              const href = this.getAttribute('href'); if(!href) return;
+              const key = href.slice(1);
+              const html = notesMap[key]; if(!html) return;
+              showTipNear(this, html);
+            };
+            a.onmouseleave = ()=>{ hideTip(); };
+          }
+        });
+
+        // 모바일: 첫 탭=툴팁, 두 번째 탭=각주 이동 (중복 바인딩 방지)
+        article.querySelectorAll('a.note-ref').forEach(a=>{
+          if(a.dataset.bound === '1') return;
           a.dataset.bound = '1';
 
-       a.addEventListener('click', function(e){
-          const isMobile = isMobileQuery.matches;
-          if(!isMobile) return;
+          a.addEventListener('click', function(e){
+            const isMobile = isMobileQuery.matches;
+            if(!isMobile) return; // 데스크톱은 기본 앵커 이동 + hover
 
-          const href = this.getAttribute('href').slice(1);
-          const html = notesMap[href]; if(!html) return;
+            const href = this.getAttribute('href'); if(!href) return;
+            const key = href.slice(1);
+            const html = notesMap[key]; if(!html) return;
 
-        e.preventDefault();
-        const opened = this.dataset.peek === '1';
+            e.preventDefault();
+            const opened = this.dataset.peek === '1';
 
-        if(!opened){
-          this.dataset.peek = '1';
-          showTipNear(this, html);
-          
-         const tip = document.getElementById('tooltip');
-         const outside = (evt)=>{
-          if(!this.contains(evt.target) && !(tip && tip.contains(evt.target))){
-            this.dataset.peek='0';
-            hideTip();
-            document.removeEventListener('click', outside, true);
+            if(!opened){
+              this.dataset.peek = '1';
+              showTipNear(this, html);
+
+              const tip = document.getElementById('tooltip');
+              const outside = (evt)=>{
+                if(!this.contains(evt.target) && !(tip && tip.contains(evt.target))){
+                  this.dataset.peek='0';
+                  hideTip();
+                  document.removeEventListener('click', outside, true);
+                }
+              };
+              document.addEventListener('click', outside, true);
+            }else{
+              this.dataset.peek='0';
+              hideTip();
+              location.hash = '#'+key;
             }
-          };
-          document.addEventListener('click', outside, true);
-         }else{
-          this.dataset.peek='0';
-          hideTip();
-          location.hash = '#'+href;
-              }
-            }, {passive:false});
-      });
-    }
-
-    const tabs = Array.from(article.querySelectorAll('.lang-btn'));
-    const variants = Array.from(article.querySelectorAll('.variant'));
-
-    function setLang(lang){
-      tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-      variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
-
-      const url = new URL(location);
-      url.searchParams.set('id', id);
-      url.searchParams.set('lang', lang);
-      history.replaceState({}, '', url);
-
-      wireFootnotes(lang);
-
-      if (hasAnyNotes) {
-        const notesDiv = article.querySelector('#notesDivider');
-        const notesSec = article.querySelector('#notesSection');
-        const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
-        [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
+          }, {passive:false});
+        });
       }
-      article.querySelectorAll('.note-ref').forEach(a=>{ a.dataset.peek = '0'; });
-      hideTip();
-    }
 
-    const langTabsEl = document.getElementById('langTabs');
-    if (langTabsEl) {
-      langTabsEl.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.lang-btn');
-        if (!btn) return;
-        setLang(btn.dataset.lang);
-       });
+      // 언어 탭 & 전환
+      const tabs = Array.from(article.querySelectorAll('.lang-btn'));
+      const variants = Array.from(article.querySelectorAll('.variant'));
 
-    const initialLang = (new URLSearchParams(location.search)).get('lang') || origLang;
-    setLang(initialLang);
-    }
+      function setLang(lang){
+        tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+        variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
 
+        const url = new URL(location);
+        url.searchParams.set('id', id);
+        url.searchParams.set('lang', lang);
+        history.replaceState({}, '', url);
 
-    const btt = document.getElementById('backToTop');
-    window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
-    btt.addEventListener('click', (e)=>{
-      e.preventDefault();
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) window.scrollTo(0,0);
-      else window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+        wireFootnotes(lang);
+
+        if (hasAnyNotes) {
+          const notesDiv = article.querySelector('#notesDivider');
+          const notesSec = article.querySelector('#notesSection');
+          const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
+          [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
+        }
+
+        // 상태 초기화: a.note-ref만
+        article.querySelectorAll('a.note-ref').forEach(a=>{ a.dataset.peek = '0'; });
+        hideTip();
+      }
+
+      const langTabsEl = document.getElementById('langTabs');
+      if (langTabsEl) {
+        langTabsEl.addEventListener('click', (e)=>{
+          const btn = e.target.closest('.lang-btn');
+          if (!btn) return;
+          setLang(btn.dataset.lang);
+        });
+
+        // 초기 언어 세팅
+        const initialLang = (new URLSearchParams(location.search)).get('lang') || origLang;
+        setLang(initialLang);
+      }
+
+      // Back to top (상세 페이지에서도 표시/동작)
+      const btt = document.getElementById('backToTop');
+      window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+      btt.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) window.scrollTo(0,0);
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    } // ← renderDetail 닫는 중괄호 (중요)
   </script>
 </body>
 </html>
