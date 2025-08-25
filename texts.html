@@ -46,7 +46,7 @@ title: Texts
     }
 
     .tooltip{
-      position: absolute;       /* 문서 좌표 기준 */
+      position: absolute;       
       z-index: 9999;
       max-width: min(90vw, 320px);
       box-sizing: border-box;
@@ -59,26 +59,32 @@ title: Texts
       line-height: 1.3;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
+    #backToTop{ display:none !important; }
+    #detailView{ position: relative; }
 
-    /* ====== [추가] 모바일용 Top / Bottom 버튼 ====== */
-    #detailView{ position: relative; }           /* 버튼 기준점 */
     .sticky-slot{
-      position: sticky; height: 0; z-index: 10; pointer-events: none;
-    }
-    .sticky-slot.top{ top: 28px; }               /* 필요시 미세조정 */
-    .sticky-slot.bottom{ bottom: 40px; }
-
-    .sticky-slot .mobile-nav-btn{
-      position: absolute; right: -30px;
-      pointer-events: auto; text-decoration: none;
-      font-size: 1.0em; color: #007BFF;
-      background: transparent; border: 0; padding: 0;
+        position: sticky;
+        height: 0;
+        z-index: 10;
+        pointer-events: none; 
+        }
+      .sticky-slot.top{ top: 56px; }  
+      .sticky-slot.bottom{ bottom: 56px }
+      
+      .sticky-slot .mobile-nav-btn{
+      position: absolute;
+      right: -30px;
+      color: #007BFF;
+      font-size: 1.0em;
+      text-decoration: none;
+      pointer-events: auto;
+      z-index:5;
     }
     .sticky-slot .mobile-nav-btn:hover,
     .sticky-slot .mobile-nav-btn:active{
       text-decoration: underline;
     }
-    /* ============================================ */
+
   }
 
   @media (min-width: 769px){
@@ -106,15 +112,6 @@ title: Texts
   <div id="pager" class="pagination" hidden></div>
 
   <main class="detail" id="detailView" hidden>
-    <!-- ====== [추가] 모바일용 Top/Bottom 버튼 (sticky) ====== -->
-    <div class="sticky-slot top">
-      <a href="#" class="mobile-nav-btn" id="mobBtnTop">Top ↑</a>
-    </div>
-    <div class="sticky-slot bottom">
-      <a href="#" class="mobile-nav-btn" id="mobBtnBottom">Bottom ↓</a>
-    </div>
-    <!-- ================================================ -->
-
     <article id="detailArticle"></article>
     <aside id="detailAside"></aside>
   </main>
@@ -419,28 +416,9 @@ title: Texts
     if (reduce) window.scrollTo(0,0);
     else window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
-  /* ====== [추가] 모바일 Top/Bottom 버튼 동작 ====== */
-  (function(){
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const topBtn = document.getElementById('mobBtnTop');
-    const bottomBtn = document.getElementById('mobBtnBottom');
-    if (!topBtn || !bottomBtn) return;
-
-    function toTop(e){ e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function toBottom(e){ 
-      e.preventDefault();
-      const h = Math.max(
-        document.body.scrollHeight, document.documentElement.scrollHeight
-      );
-      window.scrollTo({ top: h, behavior: 'smooth' });
-    }
-
-    // 모바일에서만 의미있지만, 데스크탑은 CSS로 숨기므로 그냥 바인딩해도 무방
-    topBtn.addEventListener('click', toTop);
-    bottomBtn.addEventListener('click', toBottom);
-  })();
-  /* ============================================ */
   </script>
+
+  <script src="/assets/js/texts-mobile-nav.js" defer></script>
+
 </body>
 </html>
