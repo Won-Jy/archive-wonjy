@@ -626,7 +626,9 @@
         didPushState = false;
 
         setTimeout(()=>history.back(), 0);
-       }
+        }
+        
+       try{ lbIframe.blur(); }catch(e){}
       }
 
       function next(){ show(idx+1); }
