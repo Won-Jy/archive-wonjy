@@ -163,9 +163,9 @@ title: Texts
       const newPerPage = getPerPage();
       if(newPerPage !== perPage){ perPage = newPerPage; page=1; draw(); }
     });
-  }
+    }
 
-  function renderDetail(id){
+    function renderDetail(id){
     const t = DATA[id];
     document.getElementById('detailView').hidden = false;
     const article = document.getElementById('detailArticle');
@@ -293,41 +293,80 @@ title: Texts
     window.addEventListener('resize', applyAsideLinkTargets);
 
 
-    const tooltip = document.getElementById('tooltip');
 
-    function showTipNear(el, html){
-      const tooltip = document.getElementById('tooltip');
-      tooltip.innerHTML = html;
-      tooltip.style.display = 'block';
+      // === Tooltip anchoring ===
+      let tipAnchor = null;
 
-      tooltip.style.left = '-9999px';
-      tooltip.style.top  = '-9999px';
-
-      requestAnimationFrame(()=>{
+      function placeTooltipNear(el){
+        const tooltip = document.getElementById('tooltip');
         const margin = 8;
+
+        // 일단 화면 밖으로 보내고 크기 측정
+        tooltip.style.left = '-9999px';
+        tooltip.style.top  = '-9999px';
+
         const vw = document.documentElement.clientWidth;
         const vh = document.documentElement.clientHeight;
         const r  = el.getBoundingClientRect();
         const tr = tooltip.getBoundingClientRect();
 
+        // 기본 배치: 앵커 아래 중앙
         let left = r.left + (r.width - tr.width)/2;
         let top  = r.bottom + margin;
 
-        if (top + tr.height + margin > vh) { top = r.top - tr.height - margin; }
+        // 아래가 넘치면 위로 뒤집기
+        if (top + tr.height + margin > vh) top = r.top - tr.height - margin;
 
+        // 좌우 클램프
         if (left < margin) left = margin;
         if (left + tr.width + margin > vw) left = vw - tr.width - margin;
 
+        // fixed(뷰포트 좌표) vs absolute(문서 좌표) 보정
         const isFixed = getComputedStyle(tooltip).position === 'fixed';
         const finalLeft = isFixed ? left : left + window.scrollX;
         const finalTop  = isFixed ? top  : top  + window.scrollY;
 
-        tooltip.style.left = (left + window.scrollX) + 'px';
-        tooltip.style.top  = (top  + window.scrollY) + 'px';
-      });
-    }
+        tooltip.style.left = finalLeft + 'px';
+        tooltip.style.top  = finalTop  + 'px';
+      }
 
-    function hideTip(){ tooltip.style.display = 'none'; tooltip.innerHTML = ''; }
+      function showTipNear(el, html){
+        const tooltip = document.getElementById('tooltip');
+        tipAnchor = el;
+        tooltip.innerHTML = html;
+        tooltip.style.display = 'block';
+        // 한 프레임 뒤에 실제 위치로 배치(정확한 크기 측정을 위해)
+        requestAnimationFrame(()=> placeTooltipNear(el));
+      }
+
+      function hideTip(){
+        const tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'none';
+        tooltip.innerHTML = '';
+        tipAnchor = null;
+      }
+
+      // 데스크톱(fixed)일 때는 스크롤 중에도 앵커를 따라오게
+      window.addEventListener('scroll', ()=>{
+        const tooltip = document.getElementById('tooltip');
+        if (tooltip.style.display === 'none' || !tipAnchor) return;
+        const isFixed = getComputedStyle(tooltip).position === 'fixed';
+        if (!isFixed) return;           // 모바일(absolute)은 문서와 같이 움직여서 추가 처리 불필요
+        const r = tipAnchor.getBoundingClientRect();
+        // 앵커가 화면에서 벗어나면 닫기
+        if (r.bottom < 0 || r.top > window.innerHeight) { hideTip(); return; }
+        placeTooltipNear(tipAnchor);
+      }, {passive:true});
+
+      // 리사이즈/회전에선 재배치
+      window.addEventListener('resize', ()=>{
+        const tooltip = document.getElementById('tooltip');
+        if (tooltip.style.display !== 'none' && tipAnchor) placeTooltipNear(tipAnchor);
+      });
+
+
+
+
 
     function wireFootnotes(lang){
       article.querySelectorAll('.text-body.variant[data-lang="'+lang+'"] sup.note-ref').forEach(sup=>{
@@ -395,16 +434,16 @@ title: Texts
     tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
     const initLang = new URLSearchParams(location.search).get('lang') || origLang;
     setLang(initLang);
-  }
+    }
 
-  const btt = document.getElementById('backToTop');
-  window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
-  btt.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) window.scrollTo(0,0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
+    btt.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) window.scrollTo(0,0);
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
