@@ -379,39 +379,63 @@ title: Texts
           sup.id=refId; const a=sup.querySelector('a'); a.classList.add('note-ref'); a.setAttribute('href','#'+noteId);
         }
       });
+
       const notesMap = {};
       article.querySelectorAll('.notes-list.variant[data-lang="'+lang+'"] li[id^="fn-"]').forEach(li=>{
-        const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
-        notesMap[li.id] = html;
+      const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
+      notesMap[li.id] = html;
       });
+
+     const isMobileQuery = window.matchMedia('(max-width: 768px)');
+
       // hover
       article.querySelectorAll('.note-ref').forEach(a=>{
-        a.onmouseenter = function(){
+        a.onmouseenter = null;
+        a.onmouseleave = null;
+        if(!isMobileQuery.matches){
+         a.onmouseenter = function(){
           const href=this.getAttribute('href').slice(1);
           const html=notesMap[href]; if(!html) return;
           showTipNear(this, html);
-        };
-        a.onmouseleave = ()=>{ hideTip(); };
+          };
+          a.onmouseleave = ()=>{ hideTip(); };
+          }
       });
+
       // 모바일 click
       article.querySelectorAll('.note-ref').forEach(a=>{
-        a.addEventListener('click', function(e){
-          const isMobile = window.matchMedia('(max-width: 768px)').matches;
+          if(a.dataset.bound === '1') return; // 중복 바인딩 방지
+          a.dataset.bound = '1';
+
+       a.addEventListener('click', function(e){
+          const isMobile = isMobileQuery.matches;
           if(!isMobile) return;
+
           const href = this.getAttribute('href').slice(1);
           const html = notesMap[href]; if(!html) return;
-          const alreadyPeeked = this.dataset.peek === '1';
-          if(!alreadyPeeked){
-            e.preventDefault();
-            this.dataset.peek = '1';
-            showTipNear(this, html);
-            const clear=()=>{this.dataset.peek='0';hideTip();document.removeEventListener('click',outside,true);};
-            const outside=(evt)=>{if(!this.contains(evt.target)) clear();};
-            document.addEventListener('click',outside,true);
-          }else{
-            this.dataset.peek='0'; hideTip();
-          }
-        },{passive:false});
+
+        e.preventDefault();
+        const opened = this.dataset.peek === '1';
+
+        if(!opened){
+          this.dataset.peek = '1';
+          showTipNear(this, html);
+          
+         const tip = document.getElementById('tooltip');
+         const outside = (evt)=>{
+          if(!this.contains(evt.target) && !(tip && tip.contains(evt.target))){
+            this.dataset.peek='0';
+            hideTip();
+            document.removeEventListener('click', outside, true);
+            }
+          };
+          document.addEventListener('click', outside, true);
+         }else{
+          this.dataset.peek='0';
+          hideTip();
+          location.hash = '#'+href;
+              }
+            }, {passive:false});
       });
     }
 
@@ -421,19 +445,22 @@ title: Texts
     function setLang(lang){
       tabs.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
       variants.forEach(v=> v.style.display = (v.dataset.lang===lang) ? '' : 'none');
-      const url = new URL(location); url.searchParams.set('id', id); url.searchParams.set('lang', lang); history.replaceState({}, '', url);
+
+      const url = new URL(location);
+      url.searchParams.set('id', id);
+      url.searchParams.set('lang', lang);
+      history.replaceState({}, '', url);
+
       wireFootnotes(lang);
+
       if (hasAnyNotes) {
         const notesDiv = article.querySelector('#notesDivider');
         const notesSec = article.querySelector('#notesSection');
         const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
         [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
-        }
+      }
+      article.querySelectorAll('.note-ref').forEach(a=>{ a.dataset.peek = '0'; });
       hideTip();
-    }
-    tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
-    const initLang = new URLSearchParams(location.search).get('lang') || origLang;
-    setLang(initLang);
     }
 
     const btt = document.getElementById('backToTop');
