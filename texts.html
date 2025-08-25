@@ -15,56 +15,89 @@ title: Texts
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   
   <style>
-    @media (max-width: 768px){
-    :root{ --list-height: 400px; }
-    header{ display:flex; flex-direction:column; align-items:flex-start; padding:16px 20px; border-bottom:1px solid #ddd; }
+  /* ====== 모바일 전용 (반응형 마무리본의 변경사항만 적용) ====== */
+  @media (max-width: 768px){
+    :root{
+      --list-height: 400px;
+      --btn-top-gap: 30px;
+      --btn-bottom-gap: 50px;
+    }
+
+    header{
+      display:flex; flex-direction:column; align-items:flex-start;
+      padding:16px 20px; border-bottom:1px solid #ddd;
+    }
     header .title{ align-self:flex-start; }
     nav{ margin:12px 0 0 0; }
-    nav a{ margin-left:30px; text-decoration:none; color:#555; font-size:1.05em; transition:color .2s; font-weight:normal; }
+    nav a{
+      margin-left:30px; text-decoration:none; color:#555;
+      font-size:1.05em; transition:color .2s; font-weight:normal;
+    }
     nav a:first-child{ margin-left:0; }
     nav a:hover, nav a.active{ color:#007BFF; }
 
+    /* 메인 레이아웃 (모바일) */
     main{ padding:60px 40px 60px 24px; max-width:700px; }
-    main.list{ padding:40px 24px 30px 24px; max-width:700px; min-height:auto }
-    main.detail{ padding:40px 40px 60px 24px; max-width:700px; }
+    main.list{ padding:40px 24px 30px 24px; max-width:700px; min-height:auto; }
+    main.detail{
+      padding:20px 40px 60px 24px; max-width:700px;
+      padding-top:15px !important; /* 모바일에서만 상단 살짝 여유 */
+    }
     .text-link{ padding-left:0; padding-right:0; }
 
-    main.list,
-    #listView,
-    #pager { border: 0 !important; }
-    main.detail { border: 0 !important; }
+    /* 불필요한 보더 제거(모바일) */
+    main.list, #listView, #pager{ border:0 !important; }
+    main.detail{ border:0 !important; }
 
-    #detailView:not([hidden]) #detailArticle {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 24px;
-      margin-bottom: 12px;
+    /* 디테일 구역 내 분리선/여백(모바일) */
+    #detailView:not([hidden]) #detailArticle{
+      border-bottom:1px solid var(--border);
+      padding-bottom:24px; margin-bottom:12px;
     }
-    #detailView #detailAside {
-      border-top: 0 !important;
-      padding-top: 0;
-      margin-top: 0;
+    #detailView #detailAside{
+      border-top:0 !important; padding-top:0; margin-top:0;
     }
 
+    /* 툴팁 (모바일/데스크 공통 스타일이지만 안전하게 모바일에도 둠) */
     .tooltip{
-      position: absolute;       /* 문서 좌표 기준 */
-      z-index: 9999;
-      max-width: min(90vw, 320px);
-      box-sizing: border-box;
-      word-wrap: break-word;
-      background: #fff;
-      border: 1px solid #007BFF;
-      padding: 6px 8px;
-      border-radius: 0px;
-      font-size: 0.85em;
-      line-height: 1.3;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position:absolute; z-index:9999; max-width:min(90vw, 320px);
+      box-sizing:border-box; word-wrap:break-word; background:#fff;
+      border:1px solid #007BFF; padding:6px 8px; border-radius:0;
+      font-size:0.85em; line-height:1.3; box-shadow:0 2px 6px rgba(0,0,0,0.2);
     }
-  }
 
+    /* Back to top 버튼은 모바일에서 숨김 */
+    #backToTop{ display:none !important; }
+
+    /* 포지셔닝 컨텍스트 */
+    #detailView{ position:relative; }
+
+    /* sticky-slot: 레이아웃에 영향 0 */
+    .sticky-slot{
+      position:sticky; height:0; z-index:10; pointer-events:none;
+    }
+    .sticky-slot.top{ top: var(--btn-top-gap); }
+    .sticky-slot.bottom{ bottom: var(--btn-bottom-gap); }
+
+    .sticky-slot .mobile-nav-btn{
+      position:absolute; right:-30px;
+      color:#007BFF; font-size:1.0em; text-decoration:none;
+      pointer-events:auto; z-index:5;
+    }
+    .sticky-slot .mobile-nav-btn:hover,
+    .sticky-slot .mobile-nav-btn:active{
+      text-decoration:underline;
+    }
+  } /* /@media max-width */
+
+  /* ====== 데스크톱 전용 (백업용 버전 유지) ====== */
   @media (min-width: 769px){
     main{ padding:60px 40px; max-width:1200px; }
     main.list{ padding:50px 40px 10px 40px; max-width:740px; }
     main.detail{ padding:50px 40px 60px 40px; max-width:1200px; }
+
+    /* 데스크톱에선 BackToTop 버튼 기본 표시(스크롤 JS로 토글) */
+    #backToTop{ display:block; }
   }
   </style>
 </head>
@@ -225,7 +258,7 @@ title: Texts
       ` : ``}
     `;
 
-        // === ASIDE 채우기 (백업본 로직 이식) ===
+    /* ===== Aside 채우기 ===== */
     function isEmpty(val){
       if (val == null) return true;
       if (Array.isArray(val)) return val.length === 0;
@@ -235,7 +268,6 @@ title: Texts
 
     const asideBlocks = [];
 
-    // Related works: [{ slug, label }]
     if (!isEmpty(t.related_works)) {
       asideBlocks.push(`
         <div class="aside-block">
@@ -250,7 +282,6 @@ title: Texts
       `);
     }
 
-    // Source: source_html (string or array of strings with HTML)
     if (!isEmpty(t.source_html)) {
       const sourceHtml = Array.isArray(t.source_html) ? t.source_html.join('') : t.source_html;
       if (!isEmpty(sourceHtml)) {
@@ -263,7 +294,6 @@ title: Texts
       }
     }
 
-    // Author: author.bio_html
     asideBlocks.push(`
       <div class="aside-block">
         <h4>Author</h4>
@@ -271,10 +301,9 @@ title: Texts
       </div>
     `);
 
-    // 구분선으로 묶어서 주입
     aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-    // 데스크톱: 새 탭 / 모바일: 같은 탭
+    /* 링크 타깃: 모바일=같은탭 / 데스크탑=새탭 */
     function applyAsideLinkTargets() {
       const isMobile = window.matchMedia('(max-width: 768px)').matches;
       aside.querySelectorAll('a').forEach(a => {
@@ -290,7 +319,7 @@ title: Texts
     applyAsideLinkTargets();
     window.addEventListener('resize', applyAsideLinkTargets);
 
-
+    /* ===== 각주 툴팁 ===== */
     const tooltip = document.getElementById('tooltip');
 
     function showTipNear(el, html){
@@ -331,7 +360,6 @@ title: Texts
         const html = li.innerHTML.replace(/^\s*<a[^>]*class="note-num"[\s\S]*?<\/a>\s*/,'').trim();
         notesMap[li.id] = html;
       });
-      // hover
       article.querySelectorAll('.note-ref').forEach(a=>{
         a.onmouseenter = function(){
           const href=this.getAttribute('href').slice(1);
@@ -340,7 +368,6 @@ title: Texts
         };
         a.onmouseleave = ()=>{ hideTip(); };
       });
-      // 모바일 click
       article.querySelectorAll('.note-ref').forEach(a=>{
         a.addEventListener('click', function(e){
           const isMobile = window.matchMedia('(max-width: 768px)').matches;
@@ -382,6 +409,7 @@ title: Texts
     setLang(initLang);
   }
 
+  /* Back to top 버튼 (데스크톱에서만 보이게 CSS 분리) */
   const btt = document.getElementById('backToTop');
   window.addEventListener('scroll', ()=>{ btt.style.display = window.scrollY>300 ? 'block' : 'none'; });
   btt.addEventListener('click', (e)=>{
@@ -391,5 +419,8 @@ title: Texts
     else window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   </script>
+
+  <!-- 모바일 전용 내비 스크립트(파일 내부에서 뷰포트 조건 검사한다고 가정) -->
+  <script src="/assets/js/texts-mobile-nav.js" defer></script>
 </body>
 </html>
