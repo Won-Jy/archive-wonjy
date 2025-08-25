@@ -95,20 +95,20 @@ title: Texts
   <div id="tooltip" class="tooltip" style="display:none"></div>
 
   <script>
-  const DATA = {
-    {% for pair in site.data.texts %}
-      {% assign id = pair[0] %}{% assign t = pair[1] %}
-      "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  };
+    const DATA = {
+      {% for pair in site.data.texts %}
+        {% assign id = pair[0] %}{% assign t = pair[1] %}
+        "{{ id }}": {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+     };
 
-  const params = new URLSearchParams(location.search);
-  const currentId = params.get('id');
-  if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
+      const params = new URLSearchParams(location.search);
+      const currentId = params.get('id');
+      if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
 
-  function renderList(){
-    document.getElementById('listView').hidden = false;
-    document.getElementById('pager').hidden = false;
+      function renderList(){
+      document.getElementById('listView').hidden = false;
+      document.getElementById('pager').hidden = false;
 
     const arr = Object.entries(DATA).map(([id,t])=>({
       id,
@@ -117,6 +117,7 @@ title: Texts
       year: t.year || '',
       date_written: t.date_written || ''
     }));
+
     arr.sort((a,b)=>{
       const da = new Date(a.date_written || a.year || 0);
       const db = new Date(b.date_written || b.year || 0);
@@ -295,25 +296,37 @@ title: Texts
     const tooltip = document.getElementById('tooltip');
 
     function showTipNear(el, html){
+      const tooltip = document.getElementById('tooltip');
       tooltip.innerHTML = html;
       tooltip.style.display = 'block';
+
       tooltip.style.left = '-9999px';
       tooltip.style.top  = '-9999px';
+
       requestAnimationFrame(()=>{
         const margin = 8;
         const vw = document.documentElement.clientWidth;
         const vh = document.documentElement.clientHeight;
         const r  = el.getBoundingClientRect();
         const tr = tooltip.getBoundingClientRect();
+
         let left = r.left + (r.width - tr.width)/2;
         let top  = r.bottom + margin;
+
         if (top + tr.height + margin > vh) { top = r.top - tr.height - margin; }
+
         if (left < margin) left = margin;
         if (left + tr.width + margin > vw) left = vw - tr.width - margin;
+
+        const isFixed = getComputedStyle(tooltip).position === 'fixed';
+        const finalLeft = isFixed ? left : left + window.scrollX;
+        const finalTop  = isFixed ? top  : top  + window.scrollY;
+
         tooltip.style.left = (left + window.scrollX) + 'px';
         tooltip.style.top  = (top  + window.scrollY) + 'px';
       });
     }
+
     function hideTip(){ tooltip.style.display = 'none'; tooltip.innerHTML = ''; }
 
     function wireFootnotes(lang){
@@ -376,7 +389,8 @@ title: Texts
         const notesSec = article.querySelector('#notesSection');
         const hasThisLangNotes = (notesCounts[lang] || 0) > 0;
         [notesDiv, notesSec].forEach(el => { if (el) el.style.display = hasThisLangNotes ? '' : 'none'; });
-      }
+        }
+      hideTip();
     }
     tabs.forEach(b=> b.addEventListener('click', ()=> setLang(b.dataset.lang)));
     const initLang = new URLSearchParams(location.search).get('lang') || origLang;
