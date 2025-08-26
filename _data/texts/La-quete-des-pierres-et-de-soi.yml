@@ -1,4 +1,4 @@
-id: "La-quête-des-pierres-et-de-soi"
+id: "La-quete-des-pierres-et-de-soi"
 
 title_original:
   text_html: "<i>La quête des pierres et de soi</i>"
@@ -37,5 +37,5 @@ translations:
     notes: []
 
 related_works:
-  - slug: "work/2021/flâner-passer-ou-habiter"
+  - slug: "work/2021/flaner-passer-ou-habiter"
     label: "<i>Flâner passer ou habiter</i> (2021)"
