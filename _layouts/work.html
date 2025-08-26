@@ -179,10 +179,12 @@
     .intro-side .rich.summary + .divider{ margin-top:14px; }
     .intro-side .intro-header + .divider{ margin-top:14px; }
     .intro-side .divider + .rich.summary{ margin-top:16px; }
+    
+    /* 모바일: summary + description 문단 간격 줄이기 */
+    .intro-side .rich.summary p, .intro-side .rich.description p { margin: 0 0 0.5em 0; }
+    .intro-side .rich.summary p:last-child, .intro-side .rich.description p:last-child { margin-bottom: 0; }
 
-    .intro-side .rich.summary p{ margin: 0 0 0.5em 0; }
-    .intro-side .rich.summary p:last-child{ margin-bottom: 0; }
-
+    
     .intro-media .caption{ margin-bottom:25px; }
 
     /* Responsive only divider */
