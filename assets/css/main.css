@@ -342,6 +342,7 @@ article .notes li{ margin:.6rem 0; }
 .note-ref{cursor:pointer;text-decoration:none;color:var(--blue)}
 .note-num{color:var(--blue);text-decoration:none;margin-right:6px}
 .note-num:hover{text-decoration:underline}
+sup.note-ref, a.note-ref, .note-num { font-style: normal; } /* 각주번호 이태릭체 방지  */
 
 /* 툴팁 파랑 테두리 */
 .tooltip{
