@@ -48,5 +48,5 @@ images:
   - src: "/images/2021/flaner-passer-ou-habiter/F.P.H_2021_13.webp"
     caption: "Process view of <i>Untitled</i>, 2021."
   - src: "/images/2021/flaner-passer-ou-habiter/F.P.H_2021_14.webp"
-    caption: "Process view of <i>Untitled</i>, 2021."
+    caption: "Mascaron of the disused fountain in Château d'Assas, Le Vigan, 2021. "
 ---
