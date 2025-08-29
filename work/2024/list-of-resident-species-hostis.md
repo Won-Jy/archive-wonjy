@@ -6,8 +6,8 @@ year_start: 2024
 year_end: 2025
 status: "Completed"
 tags: ["Hospitality", "Garden"]
-cover: ""
-cover_caption: "Resident species list recorded in the Hostis garden."
+cover: "/images/2024/list-of-resident-species-hostis/cover_list-of-resident-species-hostis.webp"
+cover_caption: "Print version"
 summary: >
   <p>A working list of plant and animal species observed in the <i>Hostis</i> garden (2023-2024), recorded in order of discovery.</p><p>The tables can be updated as new species are identified.</p>
 linked_works_title: "Linked works"   
