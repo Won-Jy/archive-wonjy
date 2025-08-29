@@ -6,7 +6,7 @@ year_start: 2023
 year_end: 2024
 date_start: 2023-06-04
 status: "Completed"
-tags: ["Hospitality"]
+tags: ["Hospitality", "Garden"]
 cover: "/images/2023/hostis/Hostis_01_Vue extérieure 01.webp"
 cover_caption: "<em>Hostis</em>, Pissevin district of Nîmes, France, 2023 — External view."
 summary: >
