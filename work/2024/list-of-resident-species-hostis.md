@@ -9,9 +9,8 @@ tags: ["Hospitality", "Garden"]
 cover: ""
 cover_caption: "Resident species list recorded in the Hostis garden."
 summary: >
-  <p>A working list of plant and animal species observed in the <i>Hostis</i> garden (2023-2024), recorded in order of discovery.</p>
-description: >
-  The tables can be updated as new species are identified.
+  <p>A working list of plant and animal species observed in the <i>Hostis</i> garden (2023-2024), recorded in order of discovery.</p><p>The tables can be updated as new species are identified.</p>
+description: []
 linked_works_title: "Linked works"
 linked_works: []
 critique_title: "Related texts"
