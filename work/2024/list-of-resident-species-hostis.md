@@ -30,7 +30,7 @@ related_texts: []
   }
 </style>
 
-<h3>Plant residents <small>(listed by order of discovery in the garden)</small></h3>
+<h3>Plant residents</h3>
 
 <table class="spec-table">
   <thead>
@@ -63,7 +63,7 @@ related_texts: []
   </tbody>
 </table>
 
-<h3>Animal residents <small>(listed by order of discovery in the garden)</small></h3>
+<h3>Animal residents</h3>
 
 <table class="spec-table">
   <thead>
