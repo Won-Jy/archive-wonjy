@@ -49,4 +49,7 @@ images:
     caption: "Process view of <i>Untitled</i>, 2021."
   - src: "/images/2021/flaner-passer-ou-habiter/F.P.H_2021_14.webp"
     caption: "Mascaron of the disused fountain in Château d'Assas, Le Vigan, 2021. "
+videos:
+  - src: "https://player.vimeo.com/video/1114371321?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
+    caption: "Source: Département du Gard. Filming and editing: Cédric Larrieux, 2022. "
 ---
