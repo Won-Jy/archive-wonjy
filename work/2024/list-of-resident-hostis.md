@@ -1,6 +1,6 @@
 ---
 layout: work
-title: "List of resident species of the Hostis garden"
+title: "List of resident species of Hostis"
 types: ["Project", "Writing"]
 year_start: 2024
 year_end: 2025
