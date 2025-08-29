@@ -1,6 +1,6 @@
 ---
 layout: work
-title: "Resident species of the Hostis garden"
+title: "List of resident species of the Hostis garden"
 types: ["Project", "Writing"]
 year_start: 2024
 year_end: 2025
@@ -11,7 +11,7 @@ cover_caption: "Resident species list recorded in the Hostis garden."
 summary: >
   <p>A working list of plant and animal species observed in the <i>Hostis</i> garden (2023-2024), recorded in order of discovery.</p>
 description: >
-  Notes are field observations made during maintenance and care of the site. The tables can be updated as new species appear.
+  The tables can be updated as new species are identified.
 linked_works_title: "Linked works"
 linked_works: []
 critique_title: "Related texts"
