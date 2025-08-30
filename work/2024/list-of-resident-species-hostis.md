@@ -39,11 +39,12 @@ related_texts: []
   table.spec-table th, table.spec-table td{ text-align:left; }
   table.spec-table td.img{ text-align:center; }
 
-  /* Force the first column (#) to be right-aligned */
+  /* Force the first column (#) to be center-aligned */
   table.spec-table > thead > tr > th:first-child,
   table.spec-table > tbody > tr > td:first-child{
-    text-align:right;
-    padding-right:.6em;
+    text-align:center;
+    padding-right:.3em;
+    padding-left:.3em;
     width:2.5em; /* adjust if needed */
     font-variant-numeric: tabular-nums;
   }
