@@ -32,6 +32,7 @@ related_texts: []
   @media (max-width:768px){
     .spec-table{font-size:1em}
   }
+  .spec-table figure.thumb .caption{display:none;}
 </style>
 
 <h3>Plant residents <small>(order of discovery)</small></h3>
