@@ -144,7 +144,15 @@
   .lb-video iframe { width:100%; height:100%; display:block; border:0; }
 
   /* 사진 없이 텍스트만 들어가는 경우 공간관리 */
-  .rich :is(h1,h2,h3,h4,h5,h6,p,table,figure):first-child{ margin-top:0 !important; }
+  .rich > h1:first-of-type,
+  .rich > h2:first-of-type,
+  .rich > h3:first-of-type,
+  .rich > h4:first-of-type,
+  .rich > h5:first-of-type,
+  .rich > h6:first-of-type,
+  .rich > p:first-of-type,
+  .rich > table:first-of-type,
+  .rich > figure:first-of-type{ margin-top:0 !important; }
 
   /* ===========================
      Mobile only
