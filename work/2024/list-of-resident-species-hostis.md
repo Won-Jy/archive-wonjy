@@ -20,6 +20,7 @@ related_texts: []
 
 
 <style>
+  
   .spec-table{width:100%; border-collapse:collapse; font-size:.95em}
   .spec-table th,.spec-table td{border:1px solid #ddd; padding:.5em .6em; vertical-align:top}
   .spec-table thead th{background:#f7f7f7; white-space:nowrap}
@@ -31,7 +32,20 @@ related_texts: []
   @media (max-width:768px){
     .spec-table{font-size:1em}
   }
+
+  .spec-table td.img{ width:90px; vertical-align:middle; text-align:center; }
+  .spec-table .thumb img.work{ width:74px !important; height:auto; display:block; margin:0 auto; }
+
+  .spec-table th:first-child,
+  .spec-table td:first-child{
+  text-align:left !important;
+  width:2.5em;          /* 필요 없으면 지워도 됨 */
+  padding-left:.6em;
+  font-variant-numeric: tabular-nums; /* 숫자 정렬 안정화(선택) */
+  }
+
 </style>
+
 
 <h3>Plant residents</h3>
 <div class="intro-media">
