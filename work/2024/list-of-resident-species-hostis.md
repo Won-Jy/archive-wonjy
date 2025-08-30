@@ -51,6 +51,9 @@ related_texts: []
   @media (max-width:768px){
     .spec-table{ font-size:1em; }
   }
+
+  .intro{ margin-bottom:24px; } /* 예: 24px */
+  
 </style>
 
 
