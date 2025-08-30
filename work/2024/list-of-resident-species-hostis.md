@@ -35,7 +35,7 @@ related_texts: []
   .spec-table figure.thumb .caption{display:none;}
 </style>
 
-<h3>Plant residents <small>(order of discovery)</small></h3>
+<h3>Plant residents</h3>
 
 <!-- 라이트박스 스크립트가 인식하도록 .intro-media 래퍼 안에 표를 둡니다 -->
 <div class="intro-media">
@@ -65,7 +65,7 @@ related_texts: []
   </table>
 </div>
 
-<h3>Animal residents <small>(order of discovery)</small></h3>
+<h3>Animal residents</h3>
 
 <div class="intro-media">
   <table class="spec-table">
