@@ -52,7 +52,7 @@ related_texts: []
     .spec-table{ font-size:1em; }
   }
 
-  .intro{ margin-bottom:24px; } /* 예: 24px */
+  .intro{ margin-bottom:12px; } /* 예: 24px */
   
 </style>
 
