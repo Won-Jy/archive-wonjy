@@ -98,8 +98,6 @@
 
     /* 최하단에 공간넣기 */
   article.rich{ margin-bottom:40px; }
-  /* 사진 없이 텍스트만 들어가는 경우 공간관리 */
-  .rich :is(h1,h2,h3,h4,h5,h6,p,table,figure):first-child{ margin-top:0 !important; }
   
   /* Bottom floating bar */
   #btBar { position:fixed; right:24px; bottom:20px; z-index:999; display:none; font-size:0.95em; background:transparent; gap:16px; }
@@ -144,6 +142,9 @@
               width:min(92vw, calc(74vh * var(--ratio, 16/9)));
               height:min(74vh, calc(92vw / var(--ratio, 16/9))); }
   .lb-video iframe { width:100%; height:100%; display:block; border:0; }
+
+  /* 사진 없이 텍스트만 들어가는 경우 공간관리 */
+  .rich :is(h1,h2,h3,h4,h5,h6,p,table,figure):first-child{ margin-top:0 !important; }
 
   /* ===========================
      Mobile only
