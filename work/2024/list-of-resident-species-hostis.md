@@ -69,7 +69,7 @@ related_texts: []
         <td>Chénopode blanc</td>
         <td>White goosefoot</td>
         <td><i>Chenopodium album</i></td>
-        <td class="spec-note">Malgré sa grande taille, cette plante a des racines peu profondes et se replante facilement. Elle semble apprécier les arrosages fréquents.</td>
+        <td class="spec-note">Despite its large size, this plant has shallow roots and replants easily. It seems to appreciate frequent watering.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_01.webp" alt="White goosefoot — Chenopodium album" loading="lazy" decoding="async">
   <figcaption class="caption">White goosefoot — <i>Chenopodium album</i></figcaption>
@@ -91,7 +91,7 @@ related_texts: []
         <td>Sureau hièble</td>
         <td>Dwarf elder</td>
         <td><i>Sambucus ebulus</i></td>
-        <td class="spec-note">Les racines des tiges forment un vaste réseau souterrain, ce qui rend le repiquage difficile et l’adaptation incertaine.</td>
+        <td class="spec-note">Roots from the stems form a wide underground network, which makes repotting difficult and adaptation uncertain.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_03.webp" alt="Dwarf elder — Sambucus ebulus" loading="lazy" decoding="async">
   <figcaption class="caption">Dwarf elder — <i>Sambucus ebulus</i></figcaption>
@@ -113,7 +113,7 @@ related_texts: []
         <td>Morelle noire</td>
         <td>Black nightshade</td>
         <td><i>Solanum nigrum</i></td>
-        <td class="spec-note">Parmi les espèces les plus sensibles après transplantation, elle fane très rapidement.</td>
+        <td class="spec-note">Among the most sensitive species after transplantation; it wilts very quickly.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_05.webp" alt="Black nightshade — Solanum nigrum" loading="lazy" decoding="async">
   <figcaption class="caption">Black nightshade — <i>Solanum nigrum</i></figcaption>
@@ -124,7 +124,7 @@ related_texts: []
         <td>Armoise annuelle</td>
         <td>Sweet wormwood</td>
         <td><i>Artemisia annua</i></td>
-        <td class="spec-note">Plante à l’odeur d’armoise, bien adaptée près de la fontaine.</td>
+        <td class="spec-note">Artemisia-scented plant, well adapted near the fountain.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_06.webp" alt="Sweet wormwood — Artemisia annua" loading="lazy" decoding="async">
   <figcaption class="caption">Sweet wormwood — <i>Artemisia annua</i></figcaption>
@@ -146,7 +146,7 @@ related_texts: []
         <td>Laiteron délicat</td>
         <td>Slender sow-thistle</td>
         <td><i>Sonchus tenerrimus</i></td>
-        <td class="spec-note">Plante ressemblant à un pissenlit.</td>
+        <td class="spec-note">Plant resembling a dandelion.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_08.webp" alt="Slender sow-thistle — Sonchus tenerrimus" loading="lazy" decoding="async">
   <figcaption class="caption">Slender sow-thistle — <i>Sonchus tenerrimus</i></figcaption>
@@ -179,7 +179,7 @@ related_texts: []
         <td>Chardon-Marie</td>
         <td>Milk thistle</td>
         <td><i>Silybum marianum</i></td>
-        <td class="spec-note">Plante très piquante et difficile à manipuler. Les jeunes plants repiqués ont été fortement attaqués par des chenilles.</td>
+        <td class="spec-note">Very prickly and difficult to handle. Young transplanted plants were heavily attacked by caterpillars.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_11.webp" alt="Milk thistle — Silybum marianum" loading="lazy" decoding="async">
   <figcaption class="caption">Milk thistle — <i>Silybum marianum</i></figcaption>
@@ -190,7 +190,7 @@ related_texts: []
         <td>Sorgo commun</td>
         <td>Common sorghum</td>
         <td><i>Sorghum bicolor</i></td>
-        <td class="spec-note">Cette plante a poussé spontanément à partir de graines de nourriture pour pigeons.</td>
+        <td class="spec-note">This plant sprouted spontaneously from pigeon feed seeds.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_12.webp" alt="Common sorghum — Sorghum bicolor" loading="lazy" decoding="async">
   <figcaption class="caption">Common sorghum — <i>Sorghum bicolor</i></figcaption>
@@ -212,7 +212,7 @@ related_texts: []
         <td>Paulownia</td>
         <td>Princess tree</td>
         <td><i>Paulownia tomentosa</i></td>
-        <td class="spec-note">Rappelle une fleur de courge ; semble souffrir rapidement après transplantation.</td>
+        <td class="spec-note">Reminiscent of a squash blossom; seems to suffer quickly after transplantation.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_14.webp" alt="Princess tree — Paulownia tomentosa" loading="lazy" decoding="async">
   <figcaption class="caption">Princess tree — <i>Paulownia tomentosa</i></figcaption>
@@ -234,7 +234,7 @@ related_texts: []
         <td>Sauge de Russie</td>
         <td>Russian sage</td>
         <td><i>Perovskia atriplicifolia</i></td>
-        <td class="spec-note">Plante agréable au parfum herbacé ; ses fleurs étaient de couleur violette.</td>
+        <td class="spec-note">Pleasant herbaceous fragrance; its flowers were purple.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_16.webp" alt="Russian sage — Perovskia atriplicifolia" loading="lazy" decoding="async">
   <figcaption class="caption">Russian sage — <i>Perovskia atriplicifolia</i></figcaption>
@@ -245,7 +245,7 @@ related_texts: []
         <td>Fenouil</td>
         <td>Fennel</td>
         <td><i>Foeniculum vulgare</i></td>
-        <td class="spec-note">Les feuilles ont été infusées pour préparer une tisane.</td>
+        <td class="spec-note">Leaves were infused to make a herbal tea.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_17.webp" alt="Fennel — Foeniculum vulgare" loading="lazy" decoding="async">
   <figcaption class="caption">Fennel — <i>Foeniculum vulgare</i></figcaption>
@@ -267,7 +267,7 @@ related_texts: []
         <td>Sureau rouge</td>
         <td>Red elder</td>
         <td><i>Sambucus racemosa</i></td>
-        <td class="spec-note">Espèce locale apparue spontanément dans le jardin. Les feuilles ont été utilisées pour faire une infusion.</td>
+        <td class="spec-note">Local species that appeared spontaneously in the garden. The leaves were used to make an infusion.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_19.webp" alt="Red elder — Sambucus racemosa" loading="lazy" decoding="async">
   <figcaption class="caption">Red elder — <i>Sambucus racemosa</i></figcaption>
@@ -289,7 +289,7 @@ related_texts: []
         <td>Géranium citronnelle</td>
         <td>Citronella geranium</td>
         <td><i>Pelargonium citrosum</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_21.webp" alt="Citronella geranium — Pelargonium citrosum" loading="lazy" decoding="async">
   <figcaption class="caption">Citronella geranium — <i>Pelargonium citrosum</i></figcaption>
@@ -300,7 +300,7 @@ related_texts: []
         <td>Crossandra</td>
         <td>Firecracker flower</td>
         <td><i>Crossandra infundibuliformis</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_22.webp" alt="Firecracker flower — Crossandra infundibuliformis" loading="lazy" decoding="async">
   <figcaption class="caption">Firecracker flower — <i>Crossandra infundibuliformis</i></figcaption>
@@ -311,7 +311,7 @@ related_texts: []
         <td>Herbe à chat / Avoine</td>
         <td>Oat (cat grass)</td>
         <td><i>Avena sativa</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_23.webp" alt="Oat (cat grass) — Avena sativa" loading="lazy" decoding="async">
   <figcaption class="caption">Oat (cat grass) — <i>Avena sativa</i></figcaption>
@@ -322,7 +322,7 @@ related_texts: []
         <td>Herbe à chat / Cataire</td>
         <td>Catnip</td>
         <td><i>Nepeta cataria</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_24.webp" alt="Catnip — Nepeta cataria" loading="lazy" decoding="async">
   <figcaption class="caption">Catnip — <i>Nepeta cataria</i></figcaption>
@@ -333,7 +333,7 @@ related_texts: []
         <td>Romarin</td>
         <td>Rosemary</td>
         <td><i>Salvia rosmarinus</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_25.webp" alt="Rosemary — Salvia rosmarinus" loading="lazy" decoding="async">
   <figcaption class="caption">Rosemary — <i>Salvia rosmarinus</i></figcaption>
@@ -388,7 +388,7 @@ related_texts: []
         <td>Immortelle commune</td>
         <td>Mediterranean helichrysum</td>
         <td><i>Helichrysum stoechas</i></td>
-        <td class="spec-note">Plante à forte odeur herbacée. Même après la floraison, les tiges sont restées étonnamment vivantes.</td>
+        <td class="spec-note">Strong herbaceous scent. Even after flowering, the stems remained surprisingly alive.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_30.webp" alt="Mediterranean helichrysum — Helichrysum stoechas" loading="lazy" decoding="async">
   <figcaption class="caption">Mediterranean helichrysum — <i>Helichrysum stoechas</i></figcaption>
@@ -399,7 +399,7 @@ related_texts: []
         <td>Bambou sacré</td>
         <td>Heavenly bamboo</td>
         <td><i>Nandina domestica</i></td>
-        <td class="spec-note">Plante initialement cultivée à la maison par ma fille, puis transplantée dans le jardin.</td>
+        <td class="spec-note">Initially grown at home by my daughter, then transplanted into the garden.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_31.webp" alt="Heavenly bamboo — Nandina domestica" loading="lazy" decoding="async">
   <figcaption class="caption">Heavenly bamboo — <i>Nandina domestica</i></figcaption>
@@ -410,7 +410,7 @@ related_texts: []
         <td>Meruliaceae</td>
         <td>Meruliaceae (fungal family)</td>
         <td><i>Meruliaceae</i></td>
-        <td class="spec-note">Champignon de type mycélium.</td>
+        <td class="spec-note">Mycelium-type fungus.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_32.webp" alt="Meruliaceae (fungal family) — Meruliaceae" loading="lazy" decoding="async">
   <figcaption class="caption">Meruliaceae (fungal family) — <i>Meruliaceae</i></figcaption>
@@ -421,7 +421,7 @@ related_texts: []
         <td>Moisissure Aspergillus</td>
         <td>Aspergillus mold</td>
         <td><i>Aspergillus</i></td>
-        <td class="spec-note">Moisissure ressemblant à un lichen, apparue sur les murs.</td>
+        <td class="spec-note">Mold resembling a lichen, appeared on the walls.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_33.webp" alt="Aspergillus mold — Aspergillus" loading="lazy" decoding="async">
   <figcaption class="caption">Aspergillus mold — <i>Aspergillus</i></figcaption>
@@ -432,7 +432,7 @@ related_texts: []
         <td>Mérule pleureuse</td>
         <td>Dry rot fungus</td>
         <td><i>Serpula lacrymans</i></td>
-        <td class="spec-note">Moisissure jaune en forme de duvet, poussant sur les murs.</td>
+        <td class="spec-note">Yellow downy fungus growing on the walls.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_34.webp" alt="Dry rot fungus — Serpula lacrymans" loading="lazy" decoding="async">
   <figcaption class="caption">Dry rot fungus — <i>Serpula lacrymans</i></figcaption>
@@ -443,7 +443,7 @@ related_texts: []
         <td>Séneçon commun</td>
         <td>Common groundsel</td>
         <td><i>Senecio vulgaris</i></td>
-        <td class="spec-note">La plante s’est propagée par graines, à la manière des pissenlits.</td>
+        <td class="spec-note">The plant spread by seed, like dandelions.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_35.webp" alt="Common groundsel — Senecio vulgaris" loading="lazy" decoding="async">
   <figcaption class="caption">Common groundsel — <i>Senecio vulgaris</i></figcaption>
@@ -454,7 +454,7 @@ related_texts: []
         <td>Bégonia cucullata</td>
         <td>Wax begonia</td>
         <td><i>Begonia cucullata</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se (Cyrill : bouturage possible dans l’eau).</td>
+        <td class="spec-note">Pot offered by a visitor (Cyrill: can be propagated in water).</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_36.webp" alt="Wax begonia — Begonia cucullata" loading="lazy" decoding="async">
   <figcaption class="caption">Wax begonia — <i>Begonia cucullata</i></figcaption>
@@ -465,7 +465,7 @@ related_texts: []
         <td>Phalaenopsis aphrodite</td>
         <td>Aphrodite moth orchid</td>
         <td><i>Phalaenopsis aphrodite</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_37.webp" alt="Aphrodite moth orchid — Phalaenopsis aphrodite" loading="lazy" decoding="async">
   <figcaption class="caption">Aphrodite moth orchid — <i>Phalaenopsis aphrodite</i></figcaption>
@@ -498,7 +498,7 @@ related_texts: []
         <td>Iris d'Allemagne</td>
         <td>German bearded iris</td>
         <td><i>Iris germanica</i></td>
-        <td class="spec-note"> Les rhizomes sont fortement connectés, mais même après division, la plante s’est bien adaptée au jardin.</td>
+        <td class="spec-note">The rhizomes are strongly connected, but even after division the plant adapted well to the garden.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_40.webp" alt="German bearded iris — Iris germanica" loading="lazy" decoding="async">
   <figcaption class="caption">German bearded iris — <i>Iris germanica</i></figcaption>
@@ -509,7 +509,7 @@ related_texts: []
         <td>Stipe chevelue</td>
         <td>Feather grass</td>
         <td><i>Stipa capillata</i></td>
-        <td class="spec-note">Plante à l’aspect capillaire, facile à transplanter et appréciant probablement les environnements secs.</td>
+        <td class="spec-note">Hairlike aspect; easy to transplant and likely appreciates dry environments.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_41.webp" alt="Feather grass — Stipa capillata" loading="lazy" decoding="async">
   <figcaption class="caption">Feather grass — <i>Stipa capillata</i></figcaption>
@@ -520,7 +520,7 @@ related_texts: []
         <td>Bois de chandelle</td>
         <td>Pleomele (song of India)</td>
         <td><i>Dracaena reflexa</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_42.webp" alt="Pleomele (song of India) — Dracaena reflexa" loading="lazy" decoding="async">
   <figcaption class="caption">Pleomele (song of India) — <i>Dracaena reflexa</i></figcaption>
@@ -531,7 +531,7 @@ related_texts: []
         <td>Calla rose</td>
         <td>Pink arum lily</td>
         <td><i>Zantedeschia rehmannii</i></td>
-        <td class="spec-note">Pot offert par un·e visiteur·se.</td>
+        <td class="spec-note">Pot offered by a visitor.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_43.webp" alt="Pink arum lily — Zantedeschia rehmannii" loading="lazy" decoding="async">
   <figcaption class="caption">Pink arum lily — <i>Zantedeschia rehmannii</i></figcaption>
@@ -542,7 +542,7 @@ related_texts: []
         <td>Ronce à feuilles d’orme</td>
         <td>Elmleaf blackberry</td>
         <td><i>Rubus ulmifolius</i></td>
-        <td class="spec-note">Plante très épineuse, extrêmement difficile à manipuler.</td>
+        <td class="spec-note">Very thorny plant, extremely difficult to handle.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_44.webp" alt="Elmleaf blackberry — Rubus ulmifolius" loading="lazy" decoding="async">
   <figcaption class="caption">Elmleaf blackberry — <i>Rubus ulmifolius</i></figcaption>
@@ -553,7 +553,7 @@ related_texts: []
         <td>Urosperme de picride</td>
         <td>Prickly goldenfleece</td>
         <td><i>Urospermum picroides</i></td>
-        <td class="spec-note">Plante ressemblant à un pissenlit.</td>
+        <td class="spec-note">Plant resembling a dandelion.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_45.webp" alt="Prickly goldenfleece — Urospermum picroides" loading="lazy" decoding="async">
   <figcaption class="caption">Prickly goldenfleece — <i>Urospermum picroides</i></figcaption>
@@ -564,7 +564,7 @@ related_texts: []
         <td>Crépis fétide</td>
         <td>Stinking hawksbeard</td>
         <td><i>Crepis Foetida</i></td>
-        <td class="spec-note">Probablement une autre espèce semblable au pissenlit, mais elle n’a jamais fleuri.</td>
+        <td class="spec-note">Probably another dandelion-like species, but it never flowered.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_46.webp" alt="Stinking hawksbeard — Crepis Foetida" loading="lazy" decoding="async">
   <figcaption class="caption">Stinking hawksbeard — <i>Crepis Foetida</i></figcaption>
@@ -575,7 +575,7 @@ related_texts: []
         <td>Laiteron épineux</td>
         <td>Spiny sowthistle</td>
         <td><i>Sonchus asper</i></td>
-        <td class="spec-note">Espèce également propagée par dispersion de graines, à la manière des pissenlits.</td>
+        <td class="spec-note">Also spread by seed dispersal, like dandelions.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_47.webp" alt="Spiny sowthistle — Sonchus asper" loading="lazy" decoding="async">
   <figcaption class="caption">Spiny sowthistle — <i>Sonchus asper</i></figcaption>
@@ -586,7 +586,7 @@ related_texts: []
         <td>Fumeterre officinale</td>
         <td>Common fumitory</td>
         <td><i>Fumaria officinalis</i></td>
-        <td class="spec-note">Feuillage rappelant celui de la carotte.</td>
+        <td class="spec-note">Foliage reminiscent of carrot leaves.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_48.webp" alt="Common fumitory — Fumaria officinalis" loading="lazy" decoding="async">
   <figcaption class="caption">Common fumitory — <i>Fumaria officinalis</i></figcaption>
@@ -597,7 +597,7 @@ related_texts: []
         <td>Stramoine commune</td>
         <td>Jimsonweed (thorn apple)</td>
         <td><i>Datura stramonium</i></td>
-        <td class="spec-note">Le fruit de cette espèce est appelé « pomme épineuse » dans les pays francophones.</td>
+        <td class="spec-note">The fruit of this species is known as “thorn apple” in French-speaking countries.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_plant_49.webp" alt="Jimsonweed (thorn apple) — Datura stramonium" loading="lazy" decoding="async">
   <figcaption class="caption">Jimsonweed (thorn apple) — <i>Datura stramonium</i></figcaption>
@@ -621,7 +621,7 @@ related_texts: []
         <td>Araignée de cave</td>
         <td>Cellar spider</td>
         <td><i>Pholcus phalangioides</i></td>
-        <td class="spec-note">Avant même l’installation du jardin, une araignée locale que j’appelais « Mamipatte » vivait déjà ici. Après l’installation, elle s’est largement reproduite et a prospéré.</td>
+        <td class="spec-note">Before the garden was installed, a local spider I called “Mamipatte” already lived here. After the installation it reproduced widely and thrived.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_01.webp" alt="Cellar spider — Pholcus phalangioides" loading="lazy" decoding="async">
   <figcaption class="caption">Cellar spider — <i>Pholcus phalangioides</i></figcaption>
@@ -632,7 +632,7 @@ related_texts: []
         <td>Pigeon biset</td>
         <td>Rock dove (feral pigeon)</td>
         <td><i>Columba livia</i></td>
-        <td class="spec-note">Quatre pigeons juvéniles, malades ou perdus, ont été hébergés dans le jardin. Ils étaient nommés Ika, Tempête, Bébé et Fatiti.</td>
+        <td class="spec-note">Four juvenile pigeons, sick or lost, were sheltered in the garden. They were named Ika, Tempête, Bébé and Fatiti.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_02.webp" alt="Rock dove (feral pigeon) — Columba livia" loading="lazy" decoding="async">
   <figcaption class="caption">Rock dove (feral pigeon) — <i>Columba livia</i></figcaption>
@@ -643,7 +643,7 @@ related_texts: []
         <td>Punaise écuyère</td>
         <td>Black-and-red true bug</td>
         <td><i>Lygaeus equestris</i></td>
-        <td class="spec-note">Observé sur une graminée du type Bothriochloa barbinodis, où il est resté assez longtemps.</td>
+        <td class="spec-note">Observed on a grass of the Bothriochloa barbinodis type, where it stayed for quite a long time.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_03.webp" alt="Black-and-red true bug — Lygaeus equestris" loading="lazy" decoding="async">
   <figcaption class="caption">Black-and-red true bug — <i>Lygaeus equestris</i></figcaption>
@@ -654,7 +654,7 @@ related_texts: []
         <td>Empuse commune</td>
         <td>Conehead mantis</td>
         <td><i>Empusa pennata</i></td>
-        <td class="spec-note">Une mante au physique étrange a été observée lors d’une journée particulièrement fraîche.</td>
+        <td class="spec-note">A mantis with a peculiar physique was observed on a particularly cool day.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_04.webp" alt="Conehead mantis — Empusa pennata" loading="lazy" decoding="async">
   <figcaption class="caption">Conehead mantis — <i>Empusa pennata</i></figcaption>
@@ -665,7 +665,7 @@ related_texts: []
         <td>Escargot petit-gris</td>
         <td>Brown garden snail</td>
         <td><i>Helix aspersa</i></td>
-        <td class="spec-note">Après reproduction, plusieurs jeunes escargots étaient visibles accrochés aux murs.</td>
+        <td class="spec-note">After reproducing, several young snails were visible clinging to the walls.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_05.webp" alt="Brown garden snail — Helix aspersa" loading="lazy" decoding="async">
   <figcaption class="caption">Brown garden snail — <i>Helix aspersa</i></figcaption>
@@ -676,7 +676,7 @@ related_texts: []
         <td>Cloporte commun</td>
         <td>Common pillbug</td>
         <td><i>Armadillidium vulgare</i></td>
-        <td class="spec-note">Observé près de la tombe de Ratiti.</td>
+        <td class="spec-note">Observed near Ratiti’s grave.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_06.webp" alt="Common pillbug — Armadillidium vulgare" loading="lazy" decoding="async">
   <figcaption class="caption">Common pillbug — <i>Armadillidium vulgare</i></figcaption>
@@ -687,7 +687,7 @@ related_texts: []
         <td>Pyrale de la farine (présumé)</td>
         <td>Meal moth (suspected)</td>
         <td><i>Pyralis farinalis (présumé)</i></td>
-        <td class="spec-note">Papillon abondamment présent dans le jardin, probablement une espèce nuisible se nourrissant de céréales.</td>
+        <td class="spec-note">Moth abundantly present in the garden, probably a pest feeding on cereals.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_07.webp" alt="Meal moth (suspected) — Pyralis farinalis (présumé)" loading="lazy" decoding="async">
   <figcaption class="caption">Meal moth (suspected) — <i>Pyralis farinalis (présumé)</i></figcaption>
@@ -698,7 +698,7 @@ related_texts: []
         <td>Noctuelle de la tomate (présumé)</td>
         <td>Cotton bollworm (suspected)</td>
         <td><i>Helicoverpa armigera (présumé)</i></td>
-        <td class="spec-note">Un insecte ressemblant à la chenille de cette espèce a été observé.</td>
+        <td class="spec-note">An insect resembling the caterpillar of this species was observed.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_08.webp" alt="Cotton bollworm (suspected) — Helicoverpa armigera (présumé)" loading="lazy" decoding="async">
   <figcaption class="caption">Cotton bollworm (suspected) — <i>Helicoverpa armigera (présumé)</i></figcaption>
@@ -709,7 +709,7 @@ related_texts: []
         <td>Mouche bleue de la viande (présumé)</td>
         <td>Bluebottle fly (suspected)</td>
         <td><i>Calliphora vicina (présumé)</i></td>
-        <td class="spec-note">Mouches ayant pondu et proliféré sur des cadavres de pigeons ; elles ont constitué une source de nourriture importante pour les araignées.</td>
+        <td class="spec-note">Flies laid eggs and proliferated on pigeon carcasses; they became an important food source for the spiders.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_09.webp" alt="Bluebottle fly (suspected) — Calliphora vicina (présumé)" loading="lazy" decoding="async">
   <figcaption class="caption">Bluebottle fly (suspected) — <i>Calliphora vicina (présumé)</i></figcaption>
@@ -764,7 +764,7 @@ related_texts: []
         <td>Rat brun</td>
         <td>Brown rat</td>
         <td><i>Rattus norvegicus</i></td>
-        <td class="spec-note">Une famille de rats bruns a longuement séjourné dans le jardin. L’un d’eux, Ratiti, découvert à la place de Bastide, a été enterré près du bassin. Un autre a décapité le pigeon Tempête dans sa cage. Une inondation a même eu lieu après un robinet resté ouvert par eux.</td>
+        <td class="spec-note">A family of brown rats stayed in the garden for a long time. One, Ratiti, found at Place de la Bastide, was buried near the basin. Another decapitated the pigeon “Tempête” in its cage. There was even flooding after they left a tap open.</td>
         <td class="img"><figure class="work thumb">
   <img class="work" src="/images/2024/list-of-resident-species-hostis/list_animal_14.webp" alt="Brown rat — Rattus norvegicus" loading="lazy" decoding="async">
   <figcaption class="caption">Brown rat — <i>Rattus norvegicus</i></figcaption>
