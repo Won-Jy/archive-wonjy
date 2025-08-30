@@ -51,9 +51,6 @@ related_texts: []
   @media (max-width:768px){
     .spec-table{ font-size:1em; }
   }
-
-  .intro{ margin-bottom:10px; } /* 예: 24px */
-  .intro-media .caption{ margin-bottom:10px; }
   
 </style>
 
