@@ -52,8 +52,8 @@ related_texts: []
     .spec-table{ font-size:1em; }
   }
 
-  .intro{ margin-bottom:12px; } /* 예: 24px */
-  .intro-media .caption{ margin-bottom:20px; }
+  .intro{ margin-bottom:10px; } /* 예: 24px */
+  .intro-media .caption{ margin-bottom:10px; }
   
 </style>
 
