@@ -51,6 +51,11 @@ related_texts: []
   @media (max-width:768px){
     .spec-table{ font-size:1em; }
   }
+
+  table.spec-table thead th{
+  text-align:center !important;
+  vertical-align:middle;
+  }
   
 </style>
 
