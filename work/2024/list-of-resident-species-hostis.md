@@ -18,33 +18,41 @@ critique_title: "Related texts"
 related_texts: []
 ---
 
-
 <style>
-  
-  .spec-table{width:100%; border-collapse:collapse; font-size:.95em}
-  .spec-table th,.spec-table td{border:1px solid #ddd; padding:.5em .6em; vertical-align:top}
-  .spec-table thead th{background:#f7f7f7; white-space:nowrap}
-  .spec-note{color:#555}
-  .spec-table td.img{width:90px}
-  .spec-table .thumb img.work{width:74px !important; height:auto; display:block}
-  .spec-table figure.thumb{margin:0}
-  .spec-table figure.thumb .caption{display:none} /* hide captions in table */
-  @media (max-width:768px){
-    .spec-table{font-size:1em}
-  }
+  /* Base */
+  .spec-table{ width:100%; border-collapse:collapse; font-size:.95em; }
+  .spec-table th, .spec-table td{ border:1px solid #ddd; padding:.5em .6em; vertical-align:top; }
+  .spec-table thead th{ background:#f7f7f7; white-space:nowrap; }
+  .spec-note{ color:#555; }
 
+  /* Thumbnails in table */
   .spec-table td.img{ width:90px; vertical-align:middle; text-align:center; }
-  .spec-table .thumb img.work{ width:74px !important; height:auto; display:block; margin:0 auto; }
+  .spec-table figure.thumb{ margin:0; }
+  .spec-table .thumb img.work{
+    width:74px !important; height:auto; display:block; margin:0 auto; /* center */
+    /* optional: remove global gallery spacing just for table thumbnails */
+    margin-bottom:0 !important;
+  }
+  .spec-table figure.thumb .caption{ display:none; } /* hide captions only in table */
 
-  .spec-table th:first-child,
-  .spec-table td:first-child{
-  text-align:left !important;
-  width:2.5em;          /* 필요 없으면 지워도 됨 */
-  padding-left:.6em;
-  font-variant-numeric: tabular-nums; /* 숫자 정렬 안정화(선택) */
+  /* Make table cells left by default; then re-center image column */
+  table.spec-table th, table.spec-table td{ text-align:left; }
+  table.spec-table td.img{ text-align:center; }
+
+  /* Force the first column (#) to be left-aligned */
+  table.spec-table > thead > tr > th:first-child,
+  table.spec-table > tbody > tr > td:first-child{
+    text-align:left !important;
+    padding-left:.6em;
+    width:2.5em; /* adjust if needed */
+    font-variant-numeric: tabular-nums;
   }
 
+  @media (max-width:768px){
+    .spec-table{ font-size:1em; }
+  }
 </style>
+
 
 
 <h3>Plant residents</h3>
