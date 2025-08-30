@@ -53,6 +53,7 @@ related_texts: []
   }
 
   .intro{ margin-bottom:12px; } /* 예: 24px */
+  .intro-media .caption{ margin-bottom:20px; }
   
 </style>
 
