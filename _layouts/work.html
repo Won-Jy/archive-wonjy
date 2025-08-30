@@ -37,7 +37,7 @@
     grid-column-gap:40px;
     grid-row-gap:24px;
     align-items:start;
-    margin-bottom:40px;
+    margin-bottom:0px;
     grid-template-areas:
       "cover side"
       "media side";
@@ -96,6 +96,9 @@
   .related-texts li:not(:has(a)) { display:none; }
   .related-texts li:empty { display:none; }
 
+    /* 최하단에 공간넣기 */
+  article.rich{ margin-bottom:40px; }
+  
   /* Bottom floating bar */
   #btBar { position:fixed; right:24px; bottom:20px; z-index:999; display:none; font-size:0.95em; background:transparent; gap:16px; }
   #btBar .copy { color:#888; }
