@@ -12,7 +12,7 @@ cover_caption: "<i>Spike</i>, cardboard, gravel, glue and chrome paint, 30×30×
 summary: >
   <p>Solo exhibition at Château d’Assas Le Vigan.</p><p>Curated by Laurent Puech.</p>
 description: >
-  This exhibition retraces a journey through the rivers and rocks of the Cévennes, as well as the traces left by human presence. The artist mixed stones, sand, and pebbles collected from the riverbed into concrete, creating sculptures that evoke beds or pieces of furniture, while also presenting installations that reinterpret inverted ornamental molds and fountain decorations. In the interplay between natural elements and artificial structures, the work explores the different sensibilities of “inhabiting, passing through, or wandering,” prompting reflection on the various ways of engaging with the world.
+  <p>This exhibition retraces my journey through the rivers and rocks of the Cévennes, as well as the traces left by human presence. It also reflects a stone’s journey, floating down the river from the top of the mountain to the bottom, rolling and colliding with other stones — a movement that I associate with <i>wandering, passing through, or inhabiting</i>. I displayed stones in diverse scales and states: sand, pebbles, and stones — either simply placed, manipulated, or mixed.</p><p>I also integrated materials collected from the riverbed into concrete, creating sculptures that evoke hostile architectural structures. Alongside these, I engaged with existing elements of the exhibition space itself — such as wall scones and the mascaron of a disused fountain — by reinterpreting their forms and counter-forms.</p>
 linked_works_title: "Linked works"   
 linked_works:
   - label: ""
