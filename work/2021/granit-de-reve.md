@@ -21,5 +21,5 @@ related_texts: []
 videos:
   - src: "https://www.youtube.com/embed/HWKL1DoWn88?controls=1&rel=0&modestbranding=1&playsinline=1"
     caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 3sec, 2021."
-    ratio: "2.50"
+    pb: "41.84%"
 ---
