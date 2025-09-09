@@ -8,7 +8,7 @@ date_start: 2023-02-09
 status: "In progress"
 tags: ["Hospitality"]
 cover: "/images/2023/fantome-3008/Fantôme 3008_01_main views 01.webp"
-cover_caption: "<i>Fantôme 3008</i>, gameplay scene, 2024."
+cover_caption: "<i>Gameplay scene, 2024."
 summary: >
   Research project and online digital exhibition.
 description: >
@@ -22,12 +22,12 @@ linked_works:
 related_texts: []
 images:
   - src: "/images/2023/fantome-3008/Fantôme 3008_01_main views 02.webp"
-    caption: "<i>Fantôme 3008</i>, gameplay scene, 2024."
+    caption: "Gameplay scene, 2024."
   - src: "/images/2023/fantome-3008/Fantôme 3008_02_Capture 3D 01.webp"
     caption: "3D capture of the building, made before its demolition, 2023."
 videos:
   - src: "https://player.vimeo.com/video/1117140161?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
-    caption: "<i>Fantôme 3008</i>, excerpt from the teaser, 2024."
+    caption: "Excerpt from the teaser, 2024."
   - src: "https://player.vimeo.com/video/1117140556?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
-    caption: "<i>Fantôme 3008</i>, gameplay scene, 2024."
+    caption: "Gameplay scene, 2024."
 ---
