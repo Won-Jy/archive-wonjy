@@ -26,8 +26,8 @@ images:
   - src: "/images/2023/fantome-3008/Fantôme 3008_02_Capture 3D 01.webp"
     caption: "3D capture of the building, made before its demolition, 2023."
 videos:
-  - src: "https://player.vimeo.com/video/1094653185?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
+  - src: "https://player.vimeo.com/video/1117140161?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
     caption: "<i>Fantôme 3008</i>, excerpt from the teaser, 2024."
-  - src: "https://player.vimeo.com/video/1094658512?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
+  - src: "https://player.vimeo.com/video/1117140556?title=0&byline=0&portrait=0&dnt=1&controls=1&like=0&watchlater=0&share=0"
     caption: "<i>Fantôme 3008</i>, gameplay scene, 2024."
 ---
