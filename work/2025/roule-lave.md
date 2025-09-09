@@ -8,7 +8,7 @@ date_start: 2025-01-24
 status: "Completed"
 tags: ["Rolling stone", "Hospitality"]
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
-cover_caption: "<i>Fontaine</i>, concrete rubble from Pissevin, 220×200×130cm, 2025."
+cover_caption: "<i>Fontaine II</i>, concrete rubble from Pissevin, 220×200×130cm, 2025."
 summary: >
   <p>Solo exhibition at CACN – Centre d’Art Contemporain de Nîmes.</p><p>Curated by Guilhem Monceaux.</p>
 description: >
