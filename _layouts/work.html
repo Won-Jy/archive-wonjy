@@ -138,10 +138,14 @@
   .lb-overlay .lb-ctrl, .lb-overlay .lb-close { -webkit-tap-highlight-color:transparent; }
 
   /* Lightbox: video container */
-  .lb-video { display:none; background:#000; max-width:92vw; max-height:74vh;
-              width:min(92vw, calc(74vh * var(--ratio, 16/9)));
-              height:min(74vh, calc(92vw / var(--ratio, 16/9))); }
-  .lb-video iframe { width:100%; height:100%; display:block; border:0; }
+    .lb-video{
+    display:none;
+    background:#000;
+    width:min(92vw, 1200px);
+    aspect-ratio: var(--ratio, 16/9);
+    max-height:74vh;
+    }
+    .lb-video iframe{ width:100%; height:100%; display:block; border:0; }
 
   /* 사진 없이 텍스트만 들어가는 경우 공간관리 */
   .rich > h1:first-of-type,
@@ -580,40 +584,53 @@
       function stopVideo(){ if(lbIframe) lbIframe.src=''; }
 
       function show(i){
-        idx = (i + gallery.length) % gallery.length;
-        const it = gallery[idx];
+      idx = (i + gallery.length) % gallery.length;
+      const it = gallery[idx];
 
-        lbCap.innerHTML = it.caption || '';
-        lbCount.textContent = (idx+1) + '/' + gallery.length;
+      lbCap.innerHTML = it.caption || '';
+      lbCount.textContent = (idx + 1) + '/' + gallery.length;
 
-        if(it.type === 'video'){
-          lbImg.style.display = 'none';
-          lbVideo.style.display = 'block';
-          stopVideo();
-          lbVideo.style.setProperty('--ratio', '16/9');
-          lbIframe.src = withAutoplay(it.src);
+      if(it.type === 'video'){
+        lbImg.style.display = 'none';
+        lbVideo.style.display = 'block';
+        stopVideo();
 
+        // 기본 비율 16:9
+        lbVideo.style.setProperty('--ratio', '16/9');
+
+        const url = it.src || '';
+        const isYouTube = /(?:youtube\.com\/embed|youtube-nocookie\.com\/embed|youtu\.be)/.test(url);
+
+        // iframe 주입 (자동재생 등 파라미터는 withAutoplay에서 처리)
+        lbIframe.src = withAutoplay(url);
+
+        // YouTube는 Vimeo API가 없으므로 비율 보정 스킵
+        if(!isYouTube){
           try{
             if(!lbPlayer) lbPlayer = new Vimeo.Player(lbIframe);
             lbPlayer.off('loaded');
             lbPlayer.on('loaded', async ()=>{
               try{
-                const [w,h] = await Promise.all([lbPlayer.getVideoWidth(), lbPlayer.getVideoHeight()]);
+                const [w, h] = await Promise.all([
+                  lbPlayer.getVideoWidth(),
+                  lbPlayer.getVideoHeight()
+                ]);
                 if(w && h){
-                  const ratio = (w / h);
-                  lbVideo.style.setProperty('--ratio', String(ratio));
+                  lbVideo.style.setProperty('--ratio', String(w / h));
                 }
               }catch(e){}
             });
           }catch(e){}
-        }else{
-          lbVideo.style.display = 'none';
-          stopVideo();
-          lbImg.src = it.src;
-          lbImg.alt = it.el.getAttribute('alt') || '';
-          lbImg.style.display = 'block';
         }
+
+      } else {
+        lbVideo.style.display = 'none';
+        stopVideo();
+        lbImg.src = it.src;
+        lbImg.alt = it.el.getAttribute('alt') || '';
+        lbImg.style.display = 'block';
       }
+    }
 
       function openLB(i){
         show(i);
