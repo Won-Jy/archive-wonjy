@@ -15,8 +15,8 @@ description: >
   <p>This exhibition retraces my journey through the rivers and rocks of the Cévennes, as well as the traces left by human presence. It also reflects a stone’s journey, floating down the river from the top of the mountain to the bottom, rolling and colliding with other stones — a movement that I associate with <i>wandering, passing through, or inhabiting</i>. I displayed stones in diverse scales and states: sand, pebbles, and stones — either simply placed, manipulated, or mixed.</p><p>I also integrated materials collected from the riverbed into concrete, creating sculptures that evoke hostile architectural structures. Alongside these, I engaged with existing elements of the exhibition space itself — such as wall scones and the mascaron of a disused fountain — by reinterpreting their forms and counter-forms.</p>
 linked_works_title: "Linked works"   
 linked_works:
-  - label: ""
-    path: ""
+  - label: "<i>Granit de rêve</i> (2021)"
+    path: "/work/2021/granit-de-reve.html"
 critique_title: "Related texts"
 related_texts:
   - id: "se-reinventer"
