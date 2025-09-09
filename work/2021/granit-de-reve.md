@@ -10,9 +10,9 @@ tags: ["Rolling stone", "Urbanism"]
 cover: "/images/2021/granit-de-reve/granit_de_reve_screenshot_01.webp"
 cover_caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 2sec, 2021."
 summary: >
-  -
+  HD video, color, sound, 13min 3sec, 2021.
 description: >
-  -
+  This semi-documentary video retraces my journey in search of a <i>dream granite</i> along the Hérault River in 2021, as part of an exhibition in Le Vigan. To do so, I followed the river upstream to its source in the heart of the Aigoual massif. During this process, the camera captured natural landscapes, the various types of granite I encountered, as well as other details in the riverside scenery, such as fragments of artifacts left behind by floods or riverside villages undergoing urbanization. Each granite stone collected during this journey was photographed and processed through a GAN algorithm.
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Flâner passer ou habiter</i> (2021)"
@@ -20,6 +20,6 @@ linked_works:
 related_texts: []
 videos:
   - src: "https://www.youtube.com/embed/HWKL1DoWn88?controls=1&rel=0&modestbranding=1&playsinline=1"
-    caption: "Granit de rêve</i>, HD video, color, sound, 13min 2sec, 2021."
-    pb: "56.25%"
+    caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 3sec, 2021."
+    ratio: "2.39"
 ---
