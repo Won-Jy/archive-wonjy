@@ -8,7 +8,7 @@ date_start: 2021-12-09
 status: "Completed"
 tags: ["Rolling stone", "Urbanism"]
 cover: "/images/2021/granit-de-reve/granit_de_reve_screenshot_01.webp"
-cover_caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 2sec, 2021."
+cover_caption: "A still from the video."
 summary: >
   HD video, color, sound, 13min 3sec, 2021.
 description: >
@@ -21,5 +21,5 @@ related_texts: []
 videos:
   - src: "https://www.youtube.com/embed/HWKL1DoWn88?controls=1&rel=0&modestbranding=1&playsinline=1"
     caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 3sec, 2021."
-    ratio: "2.39"
+    ratio: "2.50"
 ---
