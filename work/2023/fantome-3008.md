@@ -8,7 +8,7 @@ date_start: 2023-02-09
 status: "In progress"
 tags: ["City"]
 cover: "/images/2023/fantome-3008/Fantôme 3008_01_main views 01.webp"
-cover_caption: "<i>Gameplay scene, 2024."
+cover_caption: "Gameplay scene, 2024."
 summary: >
   Research project and online digital exhibition.
 description: >
