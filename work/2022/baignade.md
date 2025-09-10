@@ -6,7 +6,7 @@ year_start: 2022
 year_end: 2022
 date_start: 2022-06-23
 status: "Completed"
-tags: ["Hospitality", "Water"]
+tags: ["Water"]
 cover: "/images/2022/baignade/Baignade_01_main views 01.webp"
 cover_caption: "<i>Baignade</i>, performance in <i>Grotto</i>, 2022."
 summary: >
