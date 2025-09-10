@@ -6,7 +6,7 @@ year_start: 2023
 year_end: 2023
 date_start: 2023-05-09
 status: "Completed"
-tags: ["Rolling stone"]
+tags: ["Rolling stone", "City"]
 cover: "/images/2023/premieres-pierres-02/Premières pierres II_01_main views 01_IMG_3028.webp"
 cover_caption: "<i>Premières pierres II</i>, hydrography on concrete rubble, variable dimensions, 2023."
 summary: >
