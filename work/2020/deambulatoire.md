@@ -6,7 +6,7 @@ year_start: 2020
 year_end: 2020
 date_start: 2020-07-31
 status: "Completed"
-tags: ["Topography"]
+tags: ["Map"]
 cover: "/images/2020/deambulatoire/Déambulatoire_01_main views 01.webp"
 cover_caption: "View of the residency showcase <i>Déambulatoire</i>, 2020."
 summary: >
