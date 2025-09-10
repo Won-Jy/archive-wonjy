@@ -6,7 +6,7 @@ year_start: 2022
 year_end: 2022
 date_start: 2022-05-05
 status: "Completed"
-tags: ["Hospitality"]
+tags: ["Cave", "City"]
 cover: "/images/2020/grotto/Grotto_01_main views 01.webp"
 cover_caption: "<i>Grotto</i>, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022."
 summary: >
