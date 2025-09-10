@@ -6,7 +6,7 @@ year_start: 2021
 year_end: 2021
 date_start: 2021-12-09
 status: "Completed"
-tags: ["Rolling stone", "City"]
+tags: ["Stone", "City"]
 cover: "/images/2021/granit-de-reve/granit_de_reve_screenshot_01.webp"
 cover_caption: "A still from the video."
 summary: >
