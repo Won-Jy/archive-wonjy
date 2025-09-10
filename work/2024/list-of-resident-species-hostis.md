@@ -5,7 +5,7 @@ types: ["Project", "Writing"]
 year_start: 2024
 year_end: 2025
 status: "In progress"
-tags: ["Hospitality", "Garden"]
+tags: ["Garden"]
 cover: "/images/2024/list-of-resident-species-hostis/cover_list-of-resident-species-hostis.webp"
 cover_caption: "<i>List of resident species in Hostis</i> (FR), print version, 210×297mm, 2025."
 summary: >
