@@ -6,7 +6,7 @@ year_start: 2021
 year_end: 2021
 date_start: 2021-12-13
 status: "Completed"
-tags: ["Rolling stone", "Hospitality"]
+tags: ["Rolling stone", "City"]
 cover: "/images/2021/flaner-passer-ou-habiter/F.P.H_2021_01.webp"
 cover_caption: "<i>Spike</i>, cardboard, gravel, glue and chrome paint, 30×30×80cm, 2021."
 summary: >
