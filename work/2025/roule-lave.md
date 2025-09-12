@@ -8,7 +8,7 @@ date_start: 2025-01-24
 status: "Completed"
 tags: ["Stone", "Pigeon"]
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
-cover_caption: "<i>Fontaine II</i>, concrete rubble from Pissevin, 220×200×130cm, 2025."
+cover_caption: "<i>Fontaine II</i>, concrete rubble from Pissevin, water, 220×200×130cm, 2025."
 summary: >
   <p>Solo exhibition at CACN – Centre d’Art Contemporain de Nîmes.</p><p>Curated by Guilhem Monceaux.</p>
 description: >
@@ -24,7 +24,7 @@ related_texts:
   - id: "wonjy-au-cacn"
 images:
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
-    caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, 220×200×110cm, 2025."
+    caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, water, 220×200×110cm, 2025."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
     caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
   - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp"
