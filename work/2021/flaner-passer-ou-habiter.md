@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Flâner passer ou habiter"
-type: "Exhibition"
+types: ["Highlight", "Exhibition"]
 year_start: 2021
 year_end: 2021
 date_start: 2021-12-13
