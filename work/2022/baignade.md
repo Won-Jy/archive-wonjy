@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Baignade"
-type: "Single work"
+types: ["Highlight", "Single work"]
 year_start: 2022
 year_end: 2022
 date_start: 2022-06-23
