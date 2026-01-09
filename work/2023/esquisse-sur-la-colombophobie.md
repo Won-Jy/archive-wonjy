@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Esquisse sur la colombophobie"
-types: ["Single work", "Writing"]
+types: ["Highlight", "Single work", "Writing"]
 year_start: 2023
 year_end: 2023
 date_start: 2023-01-01
