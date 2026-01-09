@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Grotto"
-type: "Exhibition"
+types: ["Highlight", "Exhibition"]
 year_start: 2022
 year_end: 2022
 date_start: 2022-05-05
