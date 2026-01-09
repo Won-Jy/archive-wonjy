@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Hostis"
-types: ["Project", "Exhibition"]
+types: ["Highlight", "Project", "Exhibition"]
 year_start: 2023
 year_end: 2024
 date_start: 2023-06-04
