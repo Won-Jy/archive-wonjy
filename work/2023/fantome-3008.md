@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Fantôme 3008"
-type: "Project"
+types: ["Highlight", "Project"]
 year_start: 2023
 year_end: 
 date_start: 2023-02-09
