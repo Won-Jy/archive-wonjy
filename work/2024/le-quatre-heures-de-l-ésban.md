@@ -11,16 +11,18 @@ cover: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban
 cover_caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
 summary: >
   <p>Group exhibition at École supérieure des beaux-arts de Nîmes, as part of the first edition of the <i>Contemporaine de Nîmes</i> triennial.</p> <p>Curated by Andréanne Béguin.</p>
-description: >
-  *Roulé-Lavé* revisits various ex.....
 linked_works_title: "Linked works"   
 linked_works:
-  - label: ""
-    path: ""
+  - label: "<i>Untitled</i> (2019)"
+    path: "/work/2019/untitled_bauxite.md"
 critique_title: "Related texts"
 related_texts:
   - id: "label-text"
 images:
-  - src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
-    caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, water, 220×200×110cm, 2025."
+  - src: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_02.webp"
+    caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
+  - src: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_03.webp"
+    caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
+  - src: "/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
+    caption: "View of the paper labels designed for the exhibition."
 ---
