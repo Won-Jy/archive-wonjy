@@ -1,4 +1,4 @@
-id: "texte-sur-loeuvre-de-wonjy"
+id: "texte-sur-l-oeuvre-de-wonjy"
 
 title_original:
   text_html: "<i>Texte sur l’œuvre de Won Jy</i>"
@@ -146,5 +146,5 @@ translations:
     notes: []
 
 related_works:
-  - slug: "work/2025/roule-lave"
-    label: "<i>Roulé-Lavé</i> (2025)"
+  - slug: "work/2025/residency-at-maison-daura"
+    label: "<i>Residency at Maison Daura</i> (2025)"
