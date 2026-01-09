@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Déambulatoire"
-type: "Project"
+types: ["Highlight", "Project"]
 year_start: 2020
 year_end: 2020
 date_start: 2020-07-31
