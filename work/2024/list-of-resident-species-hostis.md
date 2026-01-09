@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "List of resident species in Hostis"
-types: ["Project", "Writing"]
+types: ["Highlight", "Project", "Writing"]
 year_start: 2024
 year_end: 2025
 status: "In progress"
