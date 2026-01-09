@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Premières pierres II"
-type: "Single work"
+types: ["Highlight", "Single work"]
 year_start: 2023
 year_end: 2023
 date_start: 2023-05-09
