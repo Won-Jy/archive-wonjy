@@ -1,7 +1,7 @@
 ---
 layout: work
 title: "Granit de rêve"
-type: "Single work"
+types: ["Highlight", "Single work"]
 year_start: 2021
 year_end: 2021
 date_start: 2021-12-09
