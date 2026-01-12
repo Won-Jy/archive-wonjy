@@ -276,21 +276,21 @@ title: Texts
 
       aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-      // 데스크톱: 새 탭 / 모바일: 같은 탭
-      function applyAsideLinkTargets() {
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
-        aside.querySelectorAll('a').forEach(a => {
-          if (isMobile) {
+      <script>
+      (function(){
+        function applyAsideLinkTargets() {
+          const aside = document.getElementById('detailAside');
+          if (!aside) return;
+          aside.querySelectorAll('a').forEach(a => {
             a.removeAttribute('target');
             a.removeAttribute('rel');
-          } else {
-            a.setAttribute('target', '_blank');
-            a.setAttribute('rel', 'noopener noreferrer');
-          }
-        });
-      }
-      applyAsideLinkTargets();
-      window.addEventListener('resize', applyAsideLinkTargets);
+          });
+        }
+      
+        applyAsideLinkTargets();
+      })();
+      </script>
+
 
       // === Tooltip anchoring ===
       let tipAnchor = null;
