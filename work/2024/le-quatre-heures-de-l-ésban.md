@@ -24,5 +24,5 @@ images:
   - src: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_03.webp"
     caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
   - src: "/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
-    caption: "Paper labels designed for the exhibition."
+    caption: "Paper labels designed for the exhibition, printed in multiple copies and made available for visitors to take freely from a designated spot."
 ---
