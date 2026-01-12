@@ -14,7 +14,7 @@ summary: >
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Untitled</i> (2019)"
-    path: "/work/2019/untitled_bauxite.md"
+    path: "/work/2019/untitled_bauxite.html"
 critique_title: "Related texts"
 related_texts:
   - id: "label-text"
