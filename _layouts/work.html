@@ -273,16 +273,30 @@
             <div class="intro-header">
               <h1>{{ page.title }}</h1>
               {% if s %}<div class="year">{{ year_display }}</div>{% endif %}
+              {% assign shown_types = "" %}
               {% if page.types and page.types.size > 0 %}
-                <p class="meta-row"><span class="label">Type</span>
-                  <span class="value">
-                    {% for t in page.types %}
-                      <span>{{ t }}{% unless forloop.last %}, {% endunless %}</span>
-                    {% endfor %}
-                  </span>
-                </p>
+                {% for t in page.types %}
+                  {% if t != "Highlight" %}
+                    {% if shown_types == "" %}
+                      {% assign shown_types = t %}
+                    {% else %}
+                      {% assign shown_types = shown_types | append: ", " | append: t %}
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% if shown_types != "" %}
+                  <p class="meta-row">
+                    <span class="label">Type</span>
+                    <span class="value">{{ shown_types }}</span>
+                  </p>
+                {% endif %}
               {% elsif page.type %}
-                <p class="meta-row"><span class="label">Type</span><span class="value">{{ page.type }}</span></p>
+                {% if page.type != "Highlight" %}
+                  <p class="meta-row">
+                    <span class="label">Type</span>
+                    <span class="value">{{ page.type }}</span>
+                  </p>
+                {% endif %}
               {% endif %}
               {% if page.status %}
                 <p class="meta-row"><span class="label">Status</span><span class="value">{{ page.status }}</span></p>
