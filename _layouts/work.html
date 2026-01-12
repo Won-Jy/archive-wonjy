@@ -502,18 +502,11 @@
   <script>
 (function(){
   const SELECTOR = '.summary a, .description a, .related-texts a, .linked-works a';
-  const mq = window.matchMedia('(max-width:768px)');
 
   function applyLinkTargets(){
-    const isMobile = mq.matches;
     document.querySelectorAll(SELECTOR).forEach(a=>{
-      if(isMobile){
-        a.removeAttribute('target');
-        a.removeAttribute('rel');
-      }else{
-        a.setAttribute('target','_blank');
-        a.setAttribute('rel','noopener noreferrer');
-      }
+      a.removeAttribute('target');
+      a.removeAttribute('rel');
     });
   }
 
@@ -522,9 +515,6 @@
   } else {
     applyLinkTargets();
   }
-
-  if (mq.addEventListener) mq.addEventListener('change', applyLinkTargets);
-  else window.addEventListener('resize', applyLinkTargets);
 })();
 </script>
 
