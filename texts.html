@@ -276,21 +276,14 @@ title: Texts
 
       aside.innerHTML = asideBlocks.filter(Boolean).join('<div class="divider"></div>');
 
-      <script>
-      (function(){
-        function applyAsideLinkTargets() {
-          const aside = document.getElementById('detailAside');
-          if (!aside) return;
-          aside.querySelectorAll('a').forEach(a => {
-            a.removeAttribute('target');
-            a.removeAttribute('rel');
-          });
-        }
-      
-        applyAsideLinkTargets();
-      })();
-      </script>
-
+    // 항상 현재 탭에서 열기
+function applyAsideLinkTargets() {
+  aside.querySelectorAll('a').forEach(a => {
+    a.removeAttribute('target');
+    a.removeAttribute('rel');
+  });
+}
+applyAsideLinkTargets();
 
       // === Tooltip anchoring ===
       let tipAnchor = null;
