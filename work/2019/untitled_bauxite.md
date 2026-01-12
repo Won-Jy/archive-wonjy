@@ -16,9 +16,9 @@ description: >
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Corpus</i> (2019)"
-    path: "/work/2019/corpus.md"
+    path: "/work/2019/corpus.html"
   - label: "<i>Le quatre-heures de l’ésban</i> (2024)"
-    path: "/work/2024/le-quatre-heures-de-l-ésban.md"
+    path: "/work/2024/le-quatre-heures-de-l-ésban.html"
 critique_title: "Related texts"
 related_texts:
   - id: ""
