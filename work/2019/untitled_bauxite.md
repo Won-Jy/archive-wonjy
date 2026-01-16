@@ -27,4 +27,10 @@ images:
     caption: "<i>Untitled</i>, dibond print and bauxite stones, 150×70×25cm, 2019."
   - src: "/images/2019/untitled_bauxite/Untitled_bauxite_03.webp"
     caption: "<i>Untitled</i>, dibond print and bauxite stones, 150×70×25cm, 2019."
+  - src: "/images/2019/untitled_bauxite/Untitled_bauxite_04.webp"
+    caption: "View of the Villeveyrac quarry, photo taken during my trip in February 2019."
+  - src: "/images/2019/untitled_bauxite/Untitled_bauxite_05.webp"
+    caption: "View of the Villeveyrac quarry, photo taken during my trip in February 2019."
+  - src: "/images/2019/untitled_bauxite/Untitled_bauxite_06.webp"
+    caption: "View of the Villeveyrac quarry, photo taken during my trip in February 2019."
 ---
