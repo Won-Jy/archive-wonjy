@@ -483,49 +483,7 @@
                     loading="lazy"
                     allowfullscreen></iframe>
           </div>
-          {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
-        </figure>
-      {% endfor %}
-    {% endif %}
-
-  {% endif %}
-
-</div>
-
-        {% if m.caption %}
-          <figcaption class="caption">{{ m.caption }}</figcaption>
-        {% endif %}
-      </figure>
-    {% endif %}
-  {% endfor %}
-
-{% else %}
-
-  {% if page.images %}
-    {% for img in page.images %}
-      <figure class="work">
-        <img src="{{ img.src | relative_url }}"
-             alt="{{ img.alt | default: '' }}"
-             class="work"
-             loading="lazy"
-             decoding="async"
-             {% if img.width and img.height %} width="{{ img.width }}" height="{{ img.height }}"{% endif %} />
-        {% if img.caption %}
-          <figcaption class="caption">{{ img.caption }}</figcaption>
-        {% endif %}
-      </figure>
-    {% endfor %}
-  {% endif %}
-
-  {% if page.videos %}
-    {% for v in page.videos %}
-      <figure class="work video">
-        <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
-          <iframe src="{{ v.src }}"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  allowfullscreen></iframe>
-
+         
       </section>
 
     {%- if content and content != "" -%}
