@@ -431,27 +431,64 @@
 
         <!-- ③ 갤러리(이미지/비디오) -->
         <div class="intro-media">
-          {% if page.images %}
-            {% for img in page.images %}
-              <figure class="work">
-                <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: '' }}" class="work" loading="lazy" decoding="async"
-                    {% if img.width and img.height %} width="{{img.width}}" height="{{img.height}}"{% endif %} />
-                {% if img.caption %}<figcaption class="caption">{{ img.caption }}</figcaption>{% endif %}
-              </figure>
-            {% endfor %}
-          {% endif %}
 
-          {% if page.videos %}
-            {% for v in page.videos %}
-              <figure class="work video">
-                <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
-                  <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
-                </div>
-                {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
-              </figure>
-            {% endfor %}
-          {% endif %}
+{% if page.media %}
+  {% for m in page.media %}
+    {% if m.type == "image" %}
+      <figure class="work">
+        <img src="{{ m.src | relative_url }}"
+             alt="{{ m.alt | default: '' }}"
+             class="work"
+             loading="lazy"
+             decoding="async"
+             {% if m.width and m.height %} width="{{ m.width }}" height="{{ m.height }}"{% endif %} />
+        {% if m.caption %}
+          <figcaption class="caption">{{ m.caption }}</figcaption>
+        {% endif %}
+      </figure>
+
+    {% elsif m.type == "video" %}
+      <figure class="work video">
+        <div class="frame" {% if m.pb %}style="padding-bottom: {{ m.pb }}"{% endif %}>
+          <iframe src="{{ m.src }}"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  allowfullscreen></iframe>
         </div>
+        {% if m.caption %}
+          <figcaption class="caption">{{ m.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endif %}
+  {% endfor %}
+
+{% else %}
+
+  {% if page.images %}
+    {% for img in page.images %}
+      <figure class="work">
+        <img src="{{ img.src | relative_url }}"
+             alt="{{ img.alt | default: '' }}"
+             class="work"
+             loading="lazy"
+             decoding="async"
+             {% if img.width and img.height %} width="{{ img.width }}" height="{{ img.height }}"{% endif %} />
+        {% if img.caption %}
+          <figcaption class="caption">{{ img.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.videos %}
+    {% for v in page.videos %}
+      <figure class="work video">
+        <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
+          <iframe src="{{ v.src }}"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  allowfullscreen></iframe>
+
       </section>
 
     {%- if content and content != "" -%}
