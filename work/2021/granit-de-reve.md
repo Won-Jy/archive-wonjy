@@ -9,6 +9,7 @@ status: "Completed"
 tags: ["Stone", "City"]
 cover: "/images/2021/granit-de-reve/granit_de_reve_screenshot_01.webp"
 cover_caption: "A still from the video."
+hide_cover_if_video_top: true
 summary: >
   HD video, color, sound, 13min 3sec, 2021.
 description: >
