@@ -47,7 +47,13 @@
   .meta-row .label { color:#777; margin-right:6px; }
   .meta-row .value { color:#333; }
 
-  .divider { border:none; border-top:1px solid var(--border); margin:30px 0; }
+  .divider,
+  hr.divider{
+    border:none;
+    border-top:1px solid var(--border);
+    margin:30px 0;
+  }
+
   .intro-sep { display:none; }
   .summary p, .description p { margin: 0 0 0.5em 0; }
 
@@ -60,11 +66,6 @@
   .intro-media img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
   .caption { font-size:0.8em; color:var(--muted); margin-bottom:40px; }
 
-  /* Divider 바로 위(비디오 캡션)의 여백을 줄여서 위/아래 균형 맞추기 */
-  .intro-media figure.work.video .caption{
-    margin-bottom: 10px;
-  }
-  
   .intro-media figure.work.video,
   .intro-cover figure.work.video { width:100%; margin:0; display:block; }
 
@@ -73,12 +74,6 @@
 
   .intro-media figure.work.video .frame iframe,
   .intro-cover figure.work.video .frame iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; display:block; }
-
-  .media-divider{
-    border:0;
-    border-top:1px solid var(--border);
-    margin:10px 0;
-  }
 
   .linked-works { list-style:none; margin:8px 0 0; padding:0; }
   .linked-works li { margin:0 0 6px 0; position:relative; padding-left:14px; }
@@ -200,8 +195,6 @@
     .lb-caption{ font-size: .85em; line-height: 1.5; padding: 0 10px; }
     .lb-footer { gap:20px; }
     .lb-footer .lb-ctrl { padding:10px 14px; font-size:24px; }
-
-    .media-divider{ margin:10px 0; }
   }
 </style>
 </head>
@@ -432,35 +425,33 @@
       <div class="intro-media">
         {% if page.media %}
 
-          {% assign seen_video = false %}
-          {% assign divider_inserted = false %}
-
           {% for m in page.media %}
 
             {% if cover_hidden and forloop.first and m.type == "video" %}
-              {% assign seen_video = true %}
               {% continue %}
             {% endif %}
 
-            {% if m.type == "video" %}
-              {% assign seen_video = true %}
-            {% endif %}
+            {% if m.type == "divider" %}
+              <hr class="divider">
 
-            {% if seen_video and m.type == "image" and divider_inserted == false %}
-              <hr class="media-divider">
-              {% assign divider_inserted = true %}
-            {% endif %}
-
-            {% if m.type == "image" %}
+            {% elsif m.type == "image" %}
               <figure class="work">
-                <img src="{{ m.src | relative_url }}" alt="{{ m.alt | default: '' }}" class="work" loading="lazy" decoding="async"
-                  {% if m.width and m.height %} width="{{ m.width }}" height="{{ m.height }}"{% endif %} />
+                <img src="{{ m.src | relative_url }}"
+                     alt="{{ m.alt | default: '' }}"
+                     class="work"
+                     loading="lazy"
+                     decoding="async"
+                     {% if m.width and m.height %} width="{{ m.width }}" height="{{ m.height }}"{% endif %} />
                 {% if m.caption %}<figcaption class="caption">{{ m.caption }}</figcaption>{% endif %}
               </figure>
+
             {% elsif m.type == "video" %}
               <figure class="work video">
                 <div class="frame" {% if m.pb %}style="padding-bottom: {{ m.pb }}"{% endif %}>
-                  <iframe src="{{ m.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+                  <iframe src="{{ m.src }}"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          loading="lazy"
+                          allowfullscreen></iframe>
                 </div>
                 {% if m.caption %}<figcaption class="caption">{{ m.caption }}</figcaption>{% endif %}
               </figure>
@@ -473,8 +464,12 @@
           {% if page.images %}
             {% for img in page.images %}
               <figure class="work">
-                <img src="{{ img.src | relative_url }}" alt="{{ img.alt | default: '' }}" class="work" loading="lazy" decoding="async"
-                  {% if img.width and img.height %} width="{{ img.width }}" height="{{ img.height }}"{% endif %} />
+                <img src="{{ img.src | relative_url }}"
+                     alt="{{ img.alt | default: '' }}"
+                     class="work"
+                     loading="lazy"
+                     decoding="async"
+                     {% if img.width and img.height %} width="{{ img.width }}" height="{{ img.height }}"{% endif %} />
                 {% if img.caption %}<figcaption class="caption">{{ img.caption }}</figcaption>{% endif %}
               </figure>
             {% endfor %}
@@ -482,10 +477,12 @@
 
           {% if page.videos %}
             {% for v in page.videos %}
-              <hr class="media-divider">
               <figure class="work video">
                 <div class="frame" {% if v.pb %}style="padding-bottom: {{ v.pb }}"{% endif %}>
-                  <iframe src="{{ v.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
+                  <iframe src="{{ v.src }}"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          loading="lazy"
+                          allowfullscreen></iframe>
                 </div>
                 {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
               </figure>
