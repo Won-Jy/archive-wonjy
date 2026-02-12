@@ -23,6 +23,7 @@ media:
   - type: video
     src: "https://www.youtube.com/embed/HWKL1DoWn88?controls=1&rel=0&modestbranding=1&playsinline=1"
     caption: "<i>Granit de rêve</i>, HD video, color, sound, 13min 3sec, 2021."
+  - type: divider
   - type: image
     src: "/images/2021/granit-de-reve/granit_de_reve_02_GAN image01.webp"
     caption: "GAN image generated from video footage, 2021."
