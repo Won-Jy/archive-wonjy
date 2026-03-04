@@ -45,7 +45,7 @@ original:
     - id: 2
       html: "Won Jy, <i>Roulé-Lavé</i>, CACN, Centre d’Art Contemporain de Nîmes, du 24 janvier au 19 avril 2025."
     - id: 3
-      html: "Voir le texte précédent."
+      html: "Voir le texte précédent : « Ma rencontre avec Pamela », dans le même ouvrage."
     - id: 4
       html: "Dominique Cabrera, <i>Chroniques d’une banlieue ordinaire</i>, 1992, à propos de quatre tours du Val Fourré à Mantes-la-Jolie."
     - id: 5
@@ -82,7 +82,7 @@ translations:
       - id: 2
         html: "Won Jy, <i>Roulé-Lavé</i>, CACN – Contemporary Art Center of Nîmes, from January 24 to April 19, 2025."
       - id: 3
-        html: "See the previous text."
+        html: "See the previous text in the book: “Ma rencontre avec Pamela”."
       - id: 4
         html: "Dominique Cabrera, <i>Chroniques d’une banlieue ordinaire</i>, 1992, about four towers in Val Fourré, Mantes-la-Jolie."
       - id: 5
