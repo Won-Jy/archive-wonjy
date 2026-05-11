@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>CV | archive-wonjy.com</title>
@@ -22,17 +22,18 @@
     .cv-section-title { font-size:1em; font-weight:normal; color:#333; margin:0 0 0.6em 0; }
     .cv-entries { list-style:none; margin:0; padding:0; }
     .cv-entry { display:flex; gap:1.5em; margin-bottom:0.35em; color:#555; font-size:0.95em; line-height:1.5; }
-    .cv-entry-year { flex-shrink:0; width:2.8em; color:#555; }
+    .cv-entry-year { flex-shrink:0; width:5em; color:#555; padding-left:1.5em; }
     .cv-entry-desc em { font-style:italic; }
     .cv-avenir { color:#aaa; font-style:normal; }
-    .cv-bio { margin-bottom:2.5em; color:#555; font-size:0.95em; line-height:1.6; }
+    .cv-bio { margin-bottom:2.5em; color:#555; font-size:0.95em; line-height:1.6; padding-left:6.5em; }
     .cv-bio p { margin:0 0 0.4em 0; }
     .cv-bio a { color:#555; text-decoration:none; }
     .cv-bio a:hover { text-decoration:underline; }
     .cv-name { font-size:1em; font-weight:normal; color:#333; margin:0 0 1.5em 0; }
-    .cv-print-btn { display:inline-block; margin-bottom:2em; font-size:0.9em; color:#aaa; cursor:pointer; border:none; background:none; padding:0; text-decoration:none; }
+    .cv-topbar { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.5em; }
+    .cv-print-btn { font-size:0.9em; color:#aaa; cursor:pointer; border:none; background:none; padding:0; text-decoration:none; }
     .cv-print-btn:hover { color:#555; }
-    @media print { header, .lang-switch, .cv-print-btn { display:none; } main { padding:0; } }
+    @media print { header, .cv-topbar { display:none; } main { padding:0; } }
   </style>
 </head>
 <body>
@@ -48,13 +49,14 @@
   </header>
 
   <main>
-    <div class="lang-switch">
-      <a data-lang="fr" onclick="showLang('fr')">(FR)</a>
-      <a data-lang="en" onclick="showLang('en')">(EN)</a>
-      <a data-lang="ko" onclick="showLang('ko')">(KO)</a>
+    <div class="cv-topbar">
+      <div class="lang-switch">
+        <a data-lang="en" onclick="showLang('en')">(EN)</a>
+        <a data-lang="fr" onclick="showLang('fr')">(FR)</a>
+        <a data-lang="ko" onclick="showLang('ko')">(KO)</a>
+      </div>
+      <button class="cv-print-btn" onclick="window.print()">&#x2193; PDF</button>
     </div>
-
-    <button class="cv-print-btn" onclick="window.print()">&#x2193; PDF</button>
 
     <!-- FRANCAIS -->
     <div id="fr">
@@ -197,13 +199,13 @@
       <div class="cv-section">
         <p class="cv-section-title">Formation</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2020&#x2013;23</span><span class="cv-entry-desc">DNSEP avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2016&#x2013;19</span><span class="cv-entry-desc">DNA avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&#x2013;15</span><span class="cv-entry-desc">P&#xe9;riode sans domicile fixe, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&#x2013;15</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2011&#x2013;14</span><span class="cv-entry-desc">Commerce ambulant, S&#xe9;oul, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2009&#x2013;11</span><span class="cv-entry-desc">Service militaire, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2005&#x2013;08</span><span class="cv-entry-desc">Lyc&#xe9;e des Arts de Daejeon, Cor&#xe9;e du sud.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">P&#xe9;riode sans domicile fixe, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">Commerce ambulant, S&#xe9;oul, Cor&#xe9;e du sud.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">Service militaire, Cor&#xe9;e du sud.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Lyc&#xe9;e des Arts de Daejeon, Cor&#xe9;e du sud.</span></li>
         </ul>
       </div>
     </div>
@@ -334,13 +336,13 @@
       <div class="cv-section">
         <p class="cv-section-title">Education</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2020&ndash;23</span><span class="cv-entry-desc">DNSEP with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2016&ndash;19</span><span class="cv-entry-desc">DNA with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&ndash;15</span><span class="cv-entry-desc">Period of homelessness, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&ndash;15</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2011&ndash;14</span><span class="cv-entry-desc">Street trading, Seoul, South Korea.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2009&ndash;11</span><span class="cv-entry-desc">Military service, South Korea.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2005&ndash;08</span><span class="cv-entry-desc">Daejeon Arts High School, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">Period of homelessness, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">Street trading, Seoul, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">Military service, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Daejeon Arts High School, South Korea.</span></li>
         </ul>
       </div>
     </div>
@@ -470,13 +472,13 @@
       <div class="cv-section">
         <p class="cv-section-title">학력</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2020&ndash;23</span><span class="cv-entry-desc">DNSEP 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2016&ndash;19</span><span class="cv-entry-desc">DNA 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&ndash;15</span><span class="cv-entry-desc">노숙 생활, 파리, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014&ndash;15</span><span class="cv-entry-desc">ISPEM FLE, 파리, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2011&ndash;14</span><span class="cv-entry-desc">노점상, 서울, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2009&ndash;11</span><span class="cv-entry-desc">군 복무, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2005&ndash;08</span><span class="cv-entry-desc">대전예술고등학교, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">노숙 생활, 파리, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, 파리, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">노점상, 서울, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">군 복무, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">대전예술고등학교, 대한민국.</span></li>
         </ul>
       </div>
     </div>
@@ -492,7 +494,7 @@
       var active = document.querySelector('.lang-switch a[data-lang="' + lang + '"]');
       if (active) active.classList.add('active');
     }
-    window.onload = function() { showLang('fr'); };
+    window.onload = function() { showLang('en'); };
   </script>
 </body>
 </html>
