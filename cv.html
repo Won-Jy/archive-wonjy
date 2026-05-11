@@ -25,11 +25,12 @@
     .cv-entry-year { flex-shrink:0; width:3.5em; color:#555; padding-left:1.5em; }
     .cv-entry-desc em { font-style:italic; }
     .cv-avenir { color:#aaa; font-style:normal; }
-    .cv-bio { margin-bottom:2.5em; color:#555; font-size:0.95em; line-height:1.6; padding-left:calc(1.5em + 3.5em + 0.8em); }
-    .cv-bio p { margin:0 0 0.4em 0; }
-    .cv-bio a { color:#555; text-decoration:none; }
-    .cv-bio a:hover { text-decoration:underline; }
-    .cv-name { font-size:1em; font-weight:normal; color:#333; margin:0 0 1.5em 0; }
+    .cv-bio { margin-bottom:2.5em; color:#555; font-size:0.95em; line-height:1.6; display:flex; gap:0.8em; }
+    .cv-bio-spacer { flex-shrink:0; width:3.5em; padding-left:1.5em; }
+    .cv-bio-content p { margin:0 0 0.4em 0; }
+
+    .cv-bio-content a { color:#555; text-decoration:none; }
+    .cv-bio-content a:hover { text-decoration:underline; }
     .cv-topbar { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.5em; }
     .cv-print-btn { font-size:0.9em; color:#aaa; cursor:pointer; border:none; background:none; padding:0; text-decoration:none; }
     .cv-print-btn:hover { color:#555; }
@@ -62,13 +63,16 @@
     <div id="fr">
       <p class="cv-name">Won Jy</p>
       <div class="cv-bio">
-        <p>Ne en 1990 a Daejeon, Coree du sud.<br>Vit et travaille a Nimes, France.</p>
-        <p>Membre fondateur du GRAH ! - Groupe de Recherche artistique et d'Action sur l'Hospitalite, France.</p>
-        <p>Membre du RESF 30 - Reseau Education Sans Frontieres Gard, France.</p>
-        <p>Membre de la Coordination Nimoise des jeunes exile.e.s en danger, Nimes, France.</p>
-        <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        <span class="cv-bio-spacer"></span>
+        <div class="cv-bio-content">
+          <p>N&#xe9; en 1990 &#xe0; Daejeon, Cor&#xe9;e du sud.<br>Vit et travaille &#xe0; N&#xee;mes, France.</p>
+          <p>Membre fondateur du GRAH ! &#x2013; Groupe de Recherche artistique et d&#x27;Action sur l&#x27;Hospitalit&#xe9;, France.</p>
+          <p>Membre du RESF 30 &#x2013; R&#xe9;seau &#xc9;ducation Sans Fronti&#xe8;res Gard, France.</p>
+          <p>Membre de la Coordination N&#xee;moise des jeunes exil&#xe9;.e.s en danger, N&#xee;mes, France.</p>
+          <p>wonjungyun1@gmail.com<br>
+          <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+          <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        </div>
       </div>
 
       <div class="cv-section">
@@ -214,13 +218,16 @@
     <div id="en" style="display:none">
       <p class="cv-name">Won Jy</p>
       <div class="cv-bio">
-        <p>Born in 1990 in Daejeon, South Korea.<br>Lives and works in N&icirc;mes, France.</p>
-        <p>Founding member of GRAH ! &ndash; Groupe de Recherche artistique et d&rsquo;Action sur l&rsquo;Hospitalit&eacute;, France.</p>
-        <p>Member of RESF 30 &ndash; R&eacute;seau &Eacute;ducation Sans Fronti&egrave;res Gard, France.</p>
-        <p>Member of the Coordination N&icirc;moise des jeunes exil&eacute;.e.s en danger, N&icirc;mes, France.</p>
-        <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        <span class="cv-bio-spacer"></span>
+        <div class="cv-bio-content">
+          <p>Born in 1990 in Daejeon, South Korea.<br>Lives and works in N&icirc;mes, France.</p>
+          <p>Founding member of GRAH ! &ndash; Groupe de Recherche artistique et d&rsquo;Action sur l&rsquo;Hospitalit&eacute;, France.</p>
+          <p>Member of RESF 30 &ndash; R&eacute;seau &Eacute;ducation Sans Fronti&egrave;res Gard, France.</p>
+          <p>Member of the Coordination N&icirc;moise des jeunes exil&eacute;.e.s en danger, N&icirc;mes, France.</p>
+          <p>wonjungyun1@gmail.com<br>
+          <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+          <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        </div>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Solo &amp; duo exhibitions</p>
@@ -351,13 +358,16 @@
     <div id="ko" style="display:none">
       <p class="cv-name">원 지</p>
       <div class="cv-bio">
-        <p>1990년 대전 출생, 대한민국.<br>프랑스 님 거주 및 작업.</p>
-        <p>GRAH ! 창립 멤버, 프랑스.</p>
-        <p>RESF 30 회원, 프랑스.</p>
-        <p>님 위기 청소년 조정위원회 회원, 님, 프랑스.</p>
-        <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        <span class="cv-bio-spacer"></span>
+        <div class="cv-bio-content">
+          <p>1990년 대전 출생, 대한민국.<br>프랑스 님 거주 및 작업.</p>
+          <p>GRAH ! 창립 멤버, 프랑스.</p>
+          <p>RESF 30 회원, 프랑스.</p>
+          <p>님 위기 청소년 조정위원회 회원, 님, 프랑스.</p>
+          <p>wonjungyun1@gmail.com<br>
+          <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+          <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+        </div>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">개인전 &amp; 2인전</p>
