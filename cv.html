@@ -17,7 +17,6 @@
       nav a:hover, nav a.active { color:#007BFF; }
       main { padding:40px 40px 60px 24px; max-width:700px; }
     }
-
     .cv-section { margin-bottom:2em; }
     .cv-section-title { font-size:1em; font-weight:normal; color:#333; margin:0 0 0.6em 0; }
     .cv-entries { list-style:none; margin:0; padding:0; }
@@ -29,6 +28,7 @@
     .cv-bio p { margin:0 0 0.4em 0; }
     .cv-bio a { color:#555; text-decoration:none; }
     .cv-bio a:hover { text-decoration:underline; }
+    .cv-name { font-size:1em; font-weight:normal; color:#333; margin:0 0 1.5em 0; }
     .cv-topbar { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.5em; }
     .cv-print-btn { font-size:0.9em; color:#aaa; cursor:pointer; border:none; background:none; padding:0; text-decoration:none; }
     .cv-print-btn:hover { color:#555; }
@@ -57,431 +57,443 @@
       <button class="cv-print-btn" onclick="window.print()">&#x2193; PDF</button>
     </div>
 
-    <!-- FRANCAIS -->
-    <div id="fr">
+    <!-- FR -->
+    <div id="fr" style="display:none">
       <p class="cv-name">Won Jy</p>
       <div class="cv-bio">
-        <p>N&#xe9; en 1990 &#xe0; Daejeon, Cor&#xe9;e du sud.<br>Vit et travaille &#xe0; N&#xee;mes, France.</p>
-        <p>Membre fondateur du GRAH ! &#x2013; Groupe de Recherche artistique et d&#x27;Action sur l&#x27;Hospitalit&#xe9;, France.</p>
-        <p>Membre du RESF 30 &#x2013; R&#xe9;seau &#xc9;ducation Sans Fronti&#xe8;res Gard, France.</p>
-        <p>Membre de la Coordination N&#xee;moise des jeunes exil&#xe9;.e.s en danger, N&#xee;mes, France.</p>
+        <p>Né en 1990 à Daejeon, Corée du sud.<br>Vit et travaille à Nîmes, France.</p>
+        <p>Membre fondateur du GRAH ! – Groupe de Recherche artistique et d'Action sur l'Hospitalité, France.</p>
+        <p>Membre du RESF 30 – Réseau Éducation Sans Frontières Gard, France.</p>
+        <p>Membre de la Coordination Nîmoise des jeunes exilé.e.s en danger, Nîmes, France.</p>
         <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+                <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+                <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
       </div>
 
       <div class="cv-section">
         <p class="cv-section-title">Exposition solo &amp; duo</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, programmation de la &#x22;Sm&#xe5;landstriennale&#x22;, Kalmar, Su&#xe8;de. <span class="cv-avenir">(&#xe0; venir)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roul&#xe9;-lav&#xe9;</em>, CACN &#x2013; Centre d&#x27;Art Contemporain de N&#xee;mes, France &#x2013; commissaire Guilhem Monceaux.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fant&#xf4;me 3008</em>, avec Robert Hulland, exposition num&#xe9;rique.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, programmation associ&#xe9;e &#xe0; la triennale &#x22;Contemporaine de N&#xee;mes&#x22;, France &#x2013; direction Anna Labouze &amp; Keimis Henni.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, Ancien local des Pompes Fun&#xe8;bres Musulmanes du quartier Pissevin, N&#xee;mes, France &#x2013; commissaire Julie &#xc9;mile Fabre.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, Ancien b&#xe2;timent des services sociaux du d&#xe9;partement du Gard, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Fl&#xe2;ner passer ou habiter</em>, Ch&#xe2;teau d&#x27;Assas, Le Vigan, France &#x2013; commissaire Laurent Puech.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, &quot;Smålandstriennale&quot; 기획, Kalmar, 스웨덴. <span class="cv-avenir">(à venir)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roulé-lavé</em>, CACN – Centre d'Art Contemporain de Nîmes, 프랑스 – 큐레이터 Guilhem Monceaux.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fantôme 3008</em>, Robert Hulland과 함께, 디지털 전시.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, 트리엔날레 &quot;Contemporaine de Nîmes&quot; 연계 기획, 프랑스 – 디렉션 Anna Labouze &amp; Keimis Henni.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, Pissevin 지구 구 Pompes Funèbres Musulmanes 건물, Nîmes, 프랑스 – 큐레이터 Julie Émile Fabre.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, Gard 도 사회복지서비스 구 건물, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Flâner passer ou habiter</em>, Château d'Assas, Le Vigan, 프랑스 – 큐레이터 Laurent Puech.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Exposition collective</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, programmation du Nouveau Printemps, Lieu-Commun, Toulouse, France. <span class="cv-avenir">(&#xe0; venir)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D&#x27;une cellule l&#x27;autre</em>, La Chartreuse, Villeneuve lez Avignon, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l&#x27;&#xe9;sban</em>, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, Ville de N&#xee;mes, France &#x2013; commissaire Andr&#xe9;anne B&#xe9;guin.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France &#x2013; coordination Laura Bouvard et Dror Endeweld.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, Nouveau Printemps 프로그래밍, Lieu-Commun, Toulouse, France. <span class="cv-avenir">(à venir)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D'une cellule l'autre</em>, La Chartreuse, Villeneuve lez Avignon, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l'ésban</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France – 큐레이터 Andréanne Béguin.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, École supérieure des beaux-arts de Nîmes, France – 코디네이션 Laura Bouvard, Dror Endeweld.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Une lune de carbone dans un ciel de calcium</em>, Le Houloc, Aubervilliers, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, Saint-Paul-Trois-Ch&#xe2;teaux, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N&#x27;importe qui peut faire n&#x27;importe quoi</em>, Place Joseph-S&#xe9;bastien Pons, Perpignan, France &#x2013; coordination Georges Cazenove.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous r&#xea;vons !</em>, Pamela artist-run-space, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, Ch&#xe2;teau d&#x27;Aubais, France &#x2013; commissaire Annette Gibert.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop b&#xea;te ! l&#x27;homme et sa nature</em>, Ch&#xe2;teau d&#x27;Aubais, France &#x2013; commissaire Pierrette Gaudiat.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, &#xc9;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, Mende, France &#x2013; coordination Brigitte Bauer et Jean-Marc Cerino.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Parall&#xe8;les // Obliques</em>, Arai building, Yokohama, Japon.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, Saint-Paul-Trois-Châteaux, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N'importe qui peut faire n'importe quoi</em>, Place Joseph-Sébastien Pons, Perpignan, France – 코디네이션 Georges Cazenove.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous rêvons !</em>, Pamela artist-run-space, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, Château d'Aubais, France – 큐레이터 Annette Gibert.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop bête ! l'homme et sa nature</em>, Château d'Aubais, France – 큐레이터 Pierrette Gaudiat.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, Mende, France – 코디네이션 Brigitte Bauer, Jean-Marc Cerino.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Parallèles // Obliques</em>, Arai building, Yokohama, Japan.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Crossing view</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Alléluia !</em>, Étant donné, Nîmes, France – 큐레이터 Pierrette Gaudiat.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Bourse &amp; Prix</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Culture Moves Europe, Goethe-Institut, Union europ&#xe9;enne.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS &#x2013; International Programme for Visual and Applied Arts, Konstn&#xe4;rsnämnden, Su&#xe8;de.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, Ghost House, Fondation des Artistes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Dotation Temps de recherche artistique, ADAGP, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laur&#xe9;at, Bourse de cr&#xe9;ation, M&#xe9;c&#xe8;nes du Sud, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laur&#xe9;at, Bourse de r&#xe9;sidence ADAGP X Cit&#xe9; internationale des arts de Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Allocation d&#x27;installation d&#x27;atelier et d&#x27;achat de mat&#xe9;riel (AIA), DRAC Occitanie, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Aide exceptionnelle, CNAP, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Bourse de r&#xe9;sidence, D&#xe9;partement du Gard et DRAC Occitanie, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">Bourse de r&#xe9;sidence, D&#xe9;partement du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Culture Moves Europe, Goethe-Institut, 유럽연합.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS – International Programme for Visual and Applied Arts, Konstnärsnämnden, 스웨덴.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, École supérieure des beaux-arts de Nîmes, Ghost House, Fondation des Artistes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Dotation Temps de recherche artistique, ADAGP, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상자, 창작 지원금, Mécènes du Sud, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상자, 레지던시 지원금 ADAGP X Cité internationale des arts de Paris, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Allocation d'installation d'atelier et d'achat de matériel (AIA), DRAC Occitanie, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Aide exceptionnelle, CNAP, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">레지던시 지원금, Département du Gard 및 DRAC Occitanie, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">레지던시 지원금, Département du Gard, 프랑스.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
-        <p class="cv-section-title">R&#xe9;sidence artistique</p>
+        <p class="cv-section-title">Résidence artistique</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, Saint-Cirq-Lapopie, France &#x2013; organisation Maison des arts Georges et Claude Pompidou. <span class="cv-avenir">(&#xe0; venir)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, Kalmar, Su&#xe8;de. <span class="cv-avenir">(&#xe0; venir)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Horizons, Maisons Daura, Saint-Cirq-Lapopie, France &#x2013; organisation Maison des arts Georges et Claude Pompidou.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Cit&#xe9; internationale des arts de Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">R&#xe9;sidence d&#x27;artiste de proximit&#xe9;, Le On/Off, N&#xee;mes, France &#x2013; organisation Sylvaine Louradour.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">R&#xe9;sidence d&#x27;artistes en territoire, D&#xe9;partement du Gard et DRAC Occitanie, France &#x2013; organisation &#xc9;tant donn&#xe9;.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">R&#xe9;sidence de ressource, &#xc9;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Artiste au coll&#xe8;ge, D&#xe9;partement du Gard, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Projet H|E|P, &#xc9;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&#x22;D&#xe9;ambulatoire&#x22;, Pop-Up17, La Filature du Mazel, Notre-Dame-de-la-Rouvière, France &#x2013; organisation Julien Bouissou.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Mobility #2, &#xc9;changeur 22, Tokyo, Japon.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&#xc9;changeur22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, Saint-Cirq-Lapopie, France – Maison des arts Georges et Claude Pompidou 주관. <span class="cv-avenir">(à venir)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, Kalmar, 스웨덴. <span class="cv-avenir">(à venir)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Horizons</em>, Maisons Daura, Saint-Cirq-Lapopie, France – Maison des arts Georges et Claude Pompidou 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Cité internationale des arts de Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Résidence d'artiste de proximité</em>, Le On/Off, Nîmes, France – Sylvaine Louradour 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Résidence d'artistes en territoire</em>, Département du Gard 및 DRAC Occitanie, France – Étant donné 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Résidence de ressource</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Artiste au collège</em>, Département du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Projet H|E|P</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&quot;Déambulatoire&quot;, <em>Pop-Up17</em>, La Filature du Mazel, Notre-Dame-de-la-Rouvière, France – Julien Bouissou 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Mobility #2</em>, Échangeur 22, Tokyo, 일본.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Échangeur22, Saint-Laurent-des-Arbres, France.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Collection</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Coques Vidourle, collection particuli&#xe8;re, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Autoportraits, collections priv&#xe9;es, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Coques Vidourle</em>, 개인 소장, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Autoportraits</em>, 개인 소장품들, France.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Curating</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, exposition collective, Ch&#xe2;teau d&#x27;Aubais, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Exposition des &#xe9;tudiant.e.s, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, Ville de N&#xee;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, 단체전, Château d'Aubais, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Exposition des étudiant.e.s</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Intervention scolaire</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, N&#xee;mes Universit&#xe9;, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, Lyc&#xe9;e Ernest Hemingway, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, workshop, Stage de l&#x27;&#xe9;galit&#xe9; des chances, Fondation Culture &amp; Diversit&#xe9;, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&#xe9;e Albert Camus, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Coll&#xe8;ge Elsa Triolet, Beaucaire, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&#xe9;e Alphonse Daudet, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Coll&#xe8;ge Feuch&#xe8;res, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Aide &#xe0; l&#x27;installation de l&#x27;&#x153;uvre collective des &#xe9;l&#xe8;ves, Lyc&#xe9;e Alphonse Daudet, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets traduits</em>, Coll&#xe8;ge R&#xe9;volution, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&#xe9;e Alphonse Daudet, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Coll&#xe8;ge Gaston Doumergue, Sommi&#xe8;res, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, &#xc9;cole Tour Magne, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Atelier de cr&#xe9;ation, Foyer Albert, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Atelier de dessin, &#xc9;cole les Aires Blanches, Fourn&#xe8;s, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Claudie Haigneré, Rochefort-du-Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Lycée Charles Gide, Uzès, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, Nîmes Université, École supérieure des beaux-arts de Nîmes, Lycée Ernest Hemingway, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, 워크숍, Stage de l'égalité des chances, Fondation Culture &amp; Diversité, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Albert Camus, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Elsa Triolet, Beaucaire, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Feuchères, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">학생 공동 작품 설치 지원, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets traduits</em>, Collège Révolution, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Collège Gaston Doumergue, Sommières, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, École Tour Magne, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">창작 워크숍, Foyer Albert, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">드로잉 워크숍, École les Aires Blanches, Fournès, France.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
-        <p class="cv-section-title">Autre exp&#xe9;rience</p>
+        <p class="cv-section-title">Autre expérience</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Coordinateur d&#x27;&#xe9;change international, Temiorae (&#xd14c;&#xbbf8;&#xc624;&#xb798;), Daejeon, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Assistant, <em>IAV &#x2013; Intelligence Artificielle Vivante</em> de Jimmy Richer, Pont du Gard, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Agent Technique de Fabrication, Lafarge Rh&#xf4;ne-M&#xe9;diterran&#xe9;e, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Assistant, Hubert Duprat, Mus&#xe9;e d&#x27;Art Moderne de Paris, France &#x2013; commissaire Jessica Castex.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">M&#xe9;diateur, <em>Teatro</em> de Peter Friedl, Carr&#xe9; d&#x27;Art, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Traducteur pour un symposium, SojaeCreating Community, Daejeon, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Something/Around</em> de Soizic Stokvis, La Vigie, N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Art Concret en Uz&#xe8;ge</em>, A.A.T, Uz&#xe8;s, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">M&#xe9;diateur, <em>10ans d&#x27;Audaces</em>, Cours et Jardins, Vers-Pont-du-Gard, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">Coordinateur d&#x27;&#xe9;change international, SojaeCreating Community, Cor&#xe9;e du sud et France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">국제교류 코디네이터, Temiorae (테미오래), 대전, 한국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">어시스턴트, Jimmy Richer의 <em>IAV – Intelligence Artificielle Vivante</em>, Pont du Gard, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">제조 기술 요원, Lafarge Rhône-Méditerranée, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">어시스턴트, <em>Hubert Duprat</em>, Musée d'Art Moderne de Paris, 프랑스 – 큐레이터 Jessica Castex.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">중재자, Peter Friedl의 <em>Teatro</em>, Carré d'Art, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">심포지엄 번역가, SojaeCreating Community, 대전, 한국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">어시스턴트, Soizic Stokvis의 <em>Something/Around</em>, La Vigie, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">어시스턴트, <em>Art Concret en Uzège</em>, A.A.T, Uzès, 프랑스 – 큐레이터 Pascal Fancony.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">중재자, <em>10ans d'Audaces</em>, Cours et Jardins, Vers-Pont-du-Gard, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">국제교류 코디네이터, SojaeCreating Community, 한국과 프랑스.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Publication</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, m&#xe9;moire de master, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, 석사 학위 논문, École supérieure des beaux-arts de Nîmes, France.</span></li>
         </ul>
       </div>
-
       <div class="cv-section">
         <p class="cv-section-title">Formation</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA avec f&#xe9;licitations du jury, &#xc9;cole sup&#xe9;rieure des beaux-arts de N&#xee;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">P&#xe9;riode sans domicile fixe, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP 심사위원 축하와 함께, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA 심사위원 축하와 함께, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">노숙 생활 기간, Paris, France.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">Commerce ambulant, S&#xe9;oul, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">Service militaire, Cor&#xe9;e du sud.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Lyc&#xe9;e des Arts de Daejeon, Cor&#xe9;e du sud.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">노점상, 서울, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">병역, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Lycée des Arts de Daejeon, 대한민국.</span></li>
         </ul>
       </div>
     </div>
 
-    <!-- ENGLISH -->
-    <div id="en" style="display:none">
+    <!-- EN -->
+    <div id="en">
       <p class="cv-name">Won Jy</p>
       <div class="cv-bio">
-        <p>Born in 1990 in Daejeon, South Korea.<br>Lives and works in N&icirc;mes, France.</p>
-        <p>Founding member of GRAH ! &ndash; Groupe de Recherche artistique et d&rsquo;Action sur l&rsquo;Hospitalit&eacute;, France.</p>
-        <p>Member of RESF 30 &ndash; R&eacute;seau &Eacute;ducation Sans Fronti&egrave;res Gard, France.</p>
-        <p>Member of the Coordination N&icirc;moise des jeunes exil&eacute;.e.s en danger, N&icirc;mes, France.</p>
+        <p>Born in 1990 in Daejeon, South Korea.<br>Lives and works in Nîmes, France.</p>
+        <p>Founding member of GRAH ! – Groupe de Recherche artistique et d'Action sur l'Hospitalité, France.</p>
+        <p>Member of RESF 30 – Réseau Éducation Sans Frontières Gard, France.</p>
+        <p>Member of the Coordination Nîmoise des jeunes exilé.e.s en danger, Nîmes, France.</p>
         <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+                <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+                <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
       </div>
+
       <div class="cv-section">
         <p class="cv-section-title">Solo &amp; duo exhibitions</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, &ldquo;Sm&aring;landstriennale&rdquo; programme, Kalmar, Sweden. <span class="cv-avenir">(forthcoming)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roul&eacute;-lav&eacute;</em>, CACN &ndash; Centre d&rsquo;Art Contemporain de N&icirc;mes, France &ndash; curator Guilhem Monceaux.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fant&ocirc;me 3008</em>, with Robert Hulland, digital exhibition.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, associated programme of the &ldquo;Contemporaine de N&icirc;mes&rdquo; triennial, France &ndash; direction Anna Labouze &amp; Keimis Henni.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, Former Muslim Funeral Parlour, Pissevin district, N&icirc;mes, France &ndash; curator Julie &Eacute;mile Fabre.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, Former social services building, Gard department, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Fl&acirc;ner passer ou habiter</em>, Ch&acirc;teau d&rsquo;Assas, Le Vigan, France &ndash; curator Laurent Puech.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, programming of the &quot;Smålandstriennale&quot;, Kalmar, Sweden. <span class="cv-avenir">(forthcoming)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roulé-lavé</em>, CACN – Centre d'Art Contemporain de Nîmes, France – curator Guilhem Monceaux.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fantôme 3008</em>, with Robert Hulland, digital exhibition.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, programming associated with the triennial &quot;Contemporaine de Nîmes&quot;, France – direction Anna Labouze &amp; Keimis Henni.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, Former premises of Pompes Funèbres Musulmanes in Pissevin district, Nîmes, France – curator Julie Émile Fabre.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, Former building of social services of Gard department, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Flâner passer ou habiter</em>, Château d'Assas, Le Vigan, France – curator Laurent Puech.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Group exhibitions</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, Nouveau Printemps programme, Lieu-Commun, Toulouse, France. <span class="cv-avenir">(forthcoming)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D&rsquo;une cellule l&rsquo;autre</em>, La Chartreuse, Villeneuve lez Avignon, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l&rsquo;&eacute;sban</em>, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France &ndash; curator Andr&eacute;anne B&eacute;guin.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France &ndash; coordination Laura Bouvard &amp; Dror Endeweld.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, programming of Nouveau Printemps, Lieu-Commun, Toulouse, France. <span class="cv-avenir">(forthcoming)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D'une cellule l'autre</em>, La Chartreuse, Villeneuve lez Avignon, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l'ésban</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France – curator Andréanne Béguin.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, École supérieure des beaux-arts de Nîmes, France – coordination Laura Bouvard and Dror Endeweld.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Une lune de carbone dans un ciel de calcium</em>, Le Houloc, Aubervilliers, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, Saint-Paul-Trois-Ch&acirc;teaux, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N&rsquo;importe qui peut faire n&rsquo;importe quoi</em>, Perpignan, France &ndash; coordination Georges Cazenove.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous r&ecirc;vons !</em>, Pamela artist-run-space, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, Ch&acirc;teau d&rsquo;Aubais, France &ndash; curator Annette Gibert.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop b&ecirc;te ! l&rsquo;homme et sa nature</em>, Ch&acirc;teau d&rsquo;Aubais, France &ndash; curator Pierrette Gaudiat.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, &Eacute;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, Mende, France &ndash; coordination Brigitte Bauer &amp; Jean-Marc Cerino.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Parall&egrave;les // Obliques</em>, Arai building, Yokohama, Japan.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, Saint-Paul-Trois-Châteaux, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N'importe qui peut faire n'importe quoi</em>, Place Joseph-Sébastien Pons, Perpignan, France – coordination Georges Cazenove.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous rêvons !</em>, Pamela artist-run-space, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, Château d'Aubais, France – curator Annette Gibert.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop bête ! l'homme et sa nature</em>, Château d'Aubais, France – curator Pierrette Gaudiat.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, Mende, France – coordination Brigitte Bauer and Jean-Marc Cerino.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Parallèles // Obliques</em>, Arai building, Yokohama, Japan.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Crossing view</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Alléluia !</em>, Étant donné, Nîmes, France – curator Pierrette Gaudiat.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Grants &amp; Awards</p>
         <ul class="cv-entries">
           <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Culture Moves Europe, Goethe-Institut, European Union.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS &ndash; International Programme for Visual and Applied Arts, Konstn&auml;rsnämnden, Sweden.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, Ghost House, Fondation des Artistes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Research time grant, ADAGP, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laureate, Creation grant, M&eacute;c&egrave;nes du Sud, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laureate, Residency grant ADAGP &times; Cit&eacute; internationale des arts de Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Studio installation &amp; materials grant (AIA), DRAC Occitanie, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Exceptional support, CNAP, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Residency grant, D&eacute;partement du Gard &amp; DRAC Occitanie, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">Residency grant, D&eacute;partement du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS – International Programme for Visual and Applied Arts, Konstnärsnämnden, Sweden.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, École supérieure des beaux-arts de Nîmes, Ghost House, Fondation des Artistes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Dotation Temps de recherche artistique, ADAGP, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laureate, Creation Grant, Mécènes du Sud, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Laureate, Residency Grant ADAGP X Cité internationale des arts de Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Allocation d'installation d'atelier et d'achat de matériel (AIA), DRAC Occitanie, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Aide exceptionnelle, CNAP, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Residency Grant, Département du Gard and DRAC Occitanie, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">Residency Grant, Département du Gard, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Artist residencies</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, Saint-Cirq-Lapopie, France &ndash; org. Maison des arts Georges et Claude Pompidou. <span class="cv-avenir">(forthcoming)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, Saint-Cirq-Lapopie, France – organized by Maison des arts Georges et Claude Pompidou. <span class="cv-avenir">(forthcoming)</span></span></li>
           <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, Kalmar, Sweden. <span class="cv-avenir">(forthcoming)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Horizons, Maisons Daura, Saint-Cirq-Lapopie, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Cit&eacute; internationale des arts de Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Artist residency, Le On/Off, N&icirc;mes, France &ndash; org. Sylvaine Louradour.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">Territorial artist residency, D&eacute;partement du Gard &amp; DRAC Occitanie, France &ndash; org. &Eacute;tant donn&eacute;.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Resource residency, &Eacute;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Artist in schools, D&eacute;partement du Gard, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Projet H|E|P, &Eacute;changeur 22, Saint-Laurent-des-Arbres, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&ldquo;D&eacute;ambulatoire&rdquo;, Pop-Up17, La Filature du Mazel, Notre-Dame-de-la-Rouvière, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Mobility #2, &Eacute;changeur 22, Tokyo, Japan.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&Eacute;changeur22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Horizons</em>, Maisons Daura, Saint-Cirq-Lapopie, France – organized by Maison des arts Georges et Claude Pompidou.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Cité internationale des arts de Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Résidence d'artiste de proximité</em>, Le On/Off, Nîmes, France – organized by Sylvaine Louradour.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Résidence d'artistes en territoire</em>, Département du Gard and DRAC Occitanie, France – organized by Étant donné.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Résidence de ressource</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Artiste au collège</em>, Département du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Projet H|E|P</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&quot;Déambulatoire&quot;, <em>Pop-Up17</em>, La Filature du Mazel, Notre-Dame-de-la-Rouvière, France – organized by Julien Bouissou.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Mobility #2</em>, Échangeur 22, Tokyo, Japan.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Échangeur22, Saint-Laurent-des-Arbres, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Collection</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Coques Vidourle, private collection, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Self-portraits, private collections, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Coques Vidourle</em>, private collection, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Autoportraits</em>, private collections, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Curating</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, group exhibition, Ch&acirc;teau d&rsquo;Aubais, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Student exhibition, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, group exhibition, Château d'Aubais, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Exposition des étudiant.e.s</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Educational interventions</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, N&icirc;mes Universit&eacute;, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, Lyc&eacute;e Ernest Hemingway, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, workshop, equal opportunities programme, Fondation Culture &amp; Diversit&eacute;, ESBA N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&eacute;e Albert Camus, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Coll&egrave;ge Elsa Triolet, Beaucaire, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&eacute;e Alphonse Daudet, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Coll&egrave;ge Gaston Doumergue, Sommi&egrave;res, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, &Eacute;cole Tour Magne, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Art workshop, Foyer Albert, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Drawing workshop, &Eacute;cole les Aires Blanches, Fourn&egrave;s, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Claudie Haigneré, Rochefort-du-Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Lycée Charles Gide, Uzès, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, Nîmes Université, École supérieure des beaux-arts de Nîmes, Lycée Ernest Hemingway, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, workshop, Stage de l'égalité des chances, Fondation Culture &amp; Diversité, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Albert Camus, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Elsa Triolet, Beaucaire, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Feuchères, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Assistance with installation of students' collective work, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets traduits</em>, Collège Révolution, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Collège Gaston Doumergue, Sommières, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, École Tour Magne, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Creation workshop, Foyer Albert, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Drawing workshop, École les Aires Blanches, Fournès, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Other experience</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">International exchange coordinator, Temiorae (&#xd14c;&#xbbf8;&#xc624;&#xb798;), Daejeon, South Korea.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Assistant, <em>IAV &ndash; Intelligence Artificielle Vivante</em> by Jimmy Richer, Pont du Gard, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Production technician, Lafarge Rh&ocirc;ne-M&eacute;diterran&eacute;e, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Assistant, Hubert Duprat, Mus&eacute;e d&rsquo;Art Moderne de Paris &ndash; curator Jessica Castex.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Mediator, <em>Teatro</em> by Peter Friedl, Carr&eacute; d&rsquo;Art, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Translator, symposium, SojaeCreating Community, Daejeon, South Korea.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Something/Around</em> by Soizic Stokvis, La Vigie, N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Art Concret en Uz&egrave;ge</em>, A.A.T, Uz&egrave;s, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">International exchange coordinator, SojaeCreating Community, South Korea &amp; France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">International Exchange Coordinator, Temiorae (테미오래), Daejeon, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Assistant, <em>IAV – Intelligence Artificielle Vivante</em> by Jimmy Richer, Pont du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">Manufacturing Technical Agent, Lafarge Rhône-Méditerranée, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">Assistant, <em>Hubert Duprat</em>, Musée d'Art Moderne de Paris, France – curator Jessica Castex.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Mediator, <em>Teatro</em> by Peter Friedl, Carré d'Art, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Translator for a symposium, SojaeCreating Community, Daejeon, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Something/Around</em> by Soizic Stokvis, La Vigie, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Assistant, <em>Art Concret en Uzège</em>, A.A.T, Uzès, France – curator Pascal Fancony.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Mediator, <em>10ans d'Audaces</em>, Cours et Jardins, Vers-Pont-du-Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">International Exchange Coordinator, SojaeCreating Community, South Korea and France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Publication</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, master thesis, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, master's thesis, École supérieure des beaux-arts de Nîmes, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">Education</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA with jury commendation, &Eacute;cole sup&eacute;rieure des beaux-arts de N&icirc;mes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP with jury congratulations, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA with jury congratulations, École supérieure des beaux-arts de Nîmes, France.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">Period of homelessness, Paris, France.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">Street trading, Seoul, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">Street vending, Seoul, South Korea.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">Military service, South Korea.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Daejeon Arts High School, South Korea.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Lycée des Arts de Daejeon, South Korea.</span></li>
         </ul>
       </div>
     </div>
 
-    <!-- 한국어 -->
+    <!-- KO -->
     <div id="ko" style="display:none">
       <p class="cv-name">원 지</p>
       <div class="cv-bio">
-        <p>1990년 대전 출생, 대한민국.<br>프랑스 님 거주 및 작업.</p>
-        <p>GRAH ! 창립 멤버, 프랑스.</p>
-        <p>RESF 30 회원, 프랑스.</p>
-        <p>님 위기 청소년 조정위원회 회원, 님, 프랑스.</p>
+        <p>1990년 대한민국 대전에서 태어남.<br>프랑스 님에서 거주하며 활동.</p>
+        <p>GRAH ! – Groupe de Recherche artistique et d'Action sur l'Hospitalité, France 창립 멤버.</p>
+        <p>RESF 30 – Réseau Éducation Sans Frontières Gard, France 멤버.</p>
+        <p>Coordination Nîmoise des jeunes exilé.e.s en danger, Nîmes, France 멤버.</p>
         <p>wonjungyun1@gmail.com<br>
-        <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
-        <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
+                <a href="https://www.archive-wonjy.com/">https://www.archive-wonjy.com/</a><br>
+                <a href="https://ddaoccitanie-emergence.org/artiste/jy-won">https://ddaoccitanie-emergence.org/artiste/jy-won</a></p>
       </div>
+
       <div class="cv-section">
         <p class="cv-section-title">개인전 &amp; 2인전</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, &ldquo;Sm&aring;landstriennale&rdquo; 프로그램, 칼마르, 스웨덴. <span class="cv-avenir">(예정)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roul&eacute;-lav&eacute;</em>, CACN &ndash; 님 현대미술센터, 프랑스 &ndash; 큐레이터 Guilhem Monceaux.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fant&ocirc;me 3008</em>, Robert Hulland과 함께, 디지털 전시.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, &ldquo;Contemporaine de N&icirc;mes&rdquo; 트리엔날레 연계 프로그램, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, 님 피스뱅 지구 옛 이슬람 장례식장, 프랑스 &ndash; 큐레이터 Julie &Eacute;mile Fabre.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, 가르 도청 구 사회복지관, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Fl&acirc;ner passer ou habiter</em>, 아사스 성, 르비강, 프랑스 &ndash; 큐레이터 Laurent Puech.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, &quot;Smålandstriennale&quot; 기획, Kalmar, 스웨덴. <span class="cv-avenir">(예정)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Roulé-lavé</em>, CACN – Centre d'Art Contemporain de Nîmes, 프랑스 – 큐레이터 Guilhem Monceaux.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Fantôme 3008</em>, Robert Hulland과 함께, 디지털 전시.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Extra-muros</em>, Le On/Off, 트리엔날레 &quot;Contemporaine de Nîmes&quot; 연계 기획, 프랑스 – 디렉션 Anna Labouze &amp; Keimis Henni.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Hostis</em>, Pissevin 지구 구 Pompes Funèbres Musulmanes 건물, Nîmes, 프랑스 – 큐레이터 Julie Émile Fabre.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Grotto</em>, Gard 도 사회복지서비스 구 건물, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Flâner passer ou habiter</em>, Château d'Assas, Le Vigan, 프랑스 – 큐레이터 Laurent Puech.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">단체전</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, Nouveau Printemps 프로그램, 툴루즈, 프랑스. <span class="cv-avenir">(예정)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D&rsquo;une cellule l&rsquo;autre</em>, La Chartreuse, 빌뇌브 레 아비뇽, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l&rsquo;&eacute;sban</em>, 님 미술대학, 프랑스 &ndash; 큐레이터 Andr&eacute;anne B&eacute;guin.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Une lune de carbone dans un ciel de calcium</em>, Le Houloc, 오베르빌리에, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, 생폴트루아샤토, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N&rsquo;importe qui peut faire n&rsquo;importe quoi</em>, 페르피냥, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous r&ecirc;vons !</em>, Pamela 자주운영공간, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, 오바이 성, 프랑스 &ndash; 큐레이터 Annette Gibert.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop b&ecirc;te ! l&rsquo;homme et sa nature</em>, 오바이 성, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, &Eacute;changeur 22, 생로랑데자르브르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, 망드, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Parall&egrave;les // Obliques</em>, Arai building, 요코하마, 일본.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Entre les deux, des chemins</em>, Nouveau Printemps 프로그래밍, Lieu-Commun, Toulouse, France. <span class="cv-avenir">(예정)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>D'une cellule l'autre</em>, La Chartreuse, Villeneuve lez Avignon, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Le quatre-heures de l'ésban</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France – 큐레이터 Andréanne Béguin.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Travaux en cours</em>, École supérieure des beaux-arts de Nîmes, France – 코디네이션 Laura Bouvard, Dror Endeweld.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Une lune de carbone dans un ciel de calcium</em>, Le Houloc, Aubervilliers, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Intervalle.s</em>, Angle art contemporain, Saint-Paul-Trois-Châteaux, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>N'importe qui peut faire n'importe quoi</em>, Place Joseph-Sébastien Pons, Perpignan, France – 코디네이션 Georges Cazenove.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Le quart de ce que nous rêvons !</em>, Pamela artist-run-space, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Prise de terre</em>, Château d'Aubais, France – 큐레이터 Annette Gibert.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Trop bête ! l'homme et sa nature</em>, Château d'Aubais, France – 큐레이터 Pierrette Gaudiat.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Dents creuses II</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Corpus</em>, Maison Consulaire, Mende, France – 코디네이션 Brigitte Bauer, Jean-Marc Cerino.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Parallèles // Obliques</em>, Arai building, Yokohama, Japan.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Crossing view</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc"><em>Alléluia !</em>, Étant donné, Nîmes, France – 큐레이터 Pierrette Gaudiat.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">수상 &amp; 지원금</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Culture Moves Europe, 괴테 인스티튜트, 유럽연합.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS &ndash; 시각예술 국제 프로그램, Konstn&auml;rsnämnden, 스웨덴.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, 님 미술대학, Ghost House, Fondation des Artistes, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">예술 연구 시간 지원, ADAGP, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상, 창작 지원금, M&eacute;c&egrave;nes du Sud, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상, ADAGP &times; 파리 국제예술도시 레지던시 지원금, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">작업실 설치 및 재료 구입 지원금(AIA), DRAC 옥시타니, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">특별 지원, CNAP, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">레지던시 지원금, 가르 도청 &amp; DRAC 옥시타니, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">레지던시 지원금, 가르 도청, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Culture Moves Europe, Goethe-Institut, 유럽연합.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">IASPIS – International Programme for Visual and Applied Arts, Konstnärsnämnden, 스웨덴.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Quilt II, École supérieure des beaux-arts de Nîmes, Ghost House, Fondation des Artistes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Dotation Temps de recherche artistique, ADAGP, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상자, 창작 지원금, Mécènes du Sud, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">수상자, 레지던시 지원금 ADAGP X Cité internationale des arts de Paris, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">Allocation d'installation d'atelier et d'achat de matériel (AIA), DRAC Occitanie, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Aide exceptionnelle, CNAP, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">레지던시 지원금, Département du Gard 및 DRAC Occitanie, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">레지던시 지원금, Département du Gard, 프랑스.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">레지던시</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, 생시르크라포피, 프랑스. <span class="cv-avenir">(예정)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, 칼마르, 스웨덴. <span class="cv-avenir">(예정)</span></span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Horizons, Maisons Daura, 생시르크라포피, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">파리 국제예술도시, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">근린 작가 레지던시, Le On/Off, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc">지역 작가 레지던시, 가르 도청 &amp; DRAC 옥시타니, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">리소스 레지던시, &Eacute;changeur 22, 생로랑데자르브르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">학교 파견 작가, 가르 도청, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">Projet H|E|P, &Eacute;changeur 22, 생로랑데자르브르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&ldquo;D&eacute;ambulatoire&rdquo;, Pop-Up17, La Filature du Mazel, 노트르담드라루비에르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Mobility #2, &Eacute;changeur 22, 도쿄, 일본.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&Eacute;changeur22, 생로랑데자르브르, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Maisons Daura, Saint-Cirq-Lapopie, France – Maison des arts Georges et Claude Pompidou 주관. <span class="cv-avenir">(예정)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc">Teatergalleriet, Kalmar, 스웨덴. <span class="cv-avenir">(예정)</span></span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Horizons</em>, Maisons Daura, Saint-Cirq-Lapopie, France – Maison des arts Georges et Claude Pompidou 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc">Cité internationale des arts de Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Résidence d'artiste de proximité</em>, Le On/Off, Nîmes, France – Sylvaine Louradour 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2022</span><span class="cv-entry-desc"><em>Résidence d'artistes en territoire</em>, Département du Gard 및 DRAC Occitanie, France – Étant donné 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Résidence de ressource</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Artiste au collège</em>, Département du Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Projet H|E|P</em>, Échangeur 22, Saint-Laurent-des-Arbres, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">&quot;Déambulatoire&quot;, <em>Pop-Up17</em>, La Filature du Mazel, Notre-Dame-de-la-Rouvière, France – Julien Bouissou 주관.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc"><em>Mobility #2</em>, Échangeur 22, Tokyo, 일본.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">Échangeur22, Saint-Laurent-des-Arbres, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">컬렉션</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">Coques Vidourle, 개인 컬렉션, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">자화상, 개인 컬렉션, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Coques Vidourle</em>, 개인 소장, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Autoportraits</em>, 개인 소장품들, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">큐레이팅</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, 단체전, 오바이 성, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">학생 전시, 님 미술대학, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Chantier de loisir</em>, 단체전, Château d'Aubais, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc"><em>Exposition des étudiant.e.s</em>, École supérieure des beaux-arts de Nîmes, Ville de Nîmes, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">교육 활동</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, 님 대학교, 님 미술대학, Lyc&eacute;e Ernest Hemingway, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, 워크숍, 기회균등 스테이지, Fondation Culture &amp; Diversit&eacute;, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&eacute;e Albert Camus, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Coll&egrave;ge Elsa Triolet, 보케르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lyc&eacute;e Alphonse Daudet, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Coll&egrave;ge Gaston Doumergue, 소미에르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, &Eacute;cole Tour Magne, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">창작 워크숍, Foyer Albert, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">드로잉 워크숍, &Eacute;cole les Aires Blanches, 푸르네스, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Claudie Haigneré, Rochefort-du-Gard, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Lycée Charles Gide, Uzès, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2026</span><span class="cv-entry-desc"><em>Image, objet de soin</em>, Nîmes Université, École supérieure des beaux-arts de Nîmes, Lycée Ernest Hemingway, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2025</span><span class="cv-entry-desc"><em>Sous un palais tombant</em>, 워크숍, Stage de l'égalité des chances, Fondation Culture &amp; Diversité, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Albert Camus, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Elsa Triolet, Beaucaire, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets de la nuit traduits</em>, Collège Feuchères, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc">학생 공동 작품 설치 지원, Lycée Alphonse Daudet, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2024</span><span class="cv-entry-desc"><em>Objets traduits</em>, Collège Révolution, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc"><em>Pierre, miroir du soi</em>, Collège Gaston Doumergue, Sommières, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc"><em>Nature, je peins ton nom</em>, École Tour Magne, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">창작 워크숍, Foyer Albert, Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">드로잉 워크숍, École les Aires Blanches, Fournès, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">기타 경력</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">국제 교류 코디네이터, 테미오래, 대전, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">어시스턴트, <em>IAV &ndash; Intelligence Artificielle Vivante</em> (Jimmy Richer 작), 퐁뒤가르, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">생산 기술원, Lafarge Rh&ocirc;ne-M&eacute;diterran&eacute;e, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">어시스턴트, Hubert Duprat, 파리 현대미술관, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">매개자, <em>Teatro</em> (Peter Friedl 작), Carr&eacute; d&rsquo;Art, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">통역, 심포지엄, SojaeCreating Community, 대전, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">어시스턴트, <em>Something/Around</em> (Soizic Stokvis 작), La Vigie, 님, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">국제 교류 코디네이터, SojaeCreating Community, 대한민국 &amp; 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">국제교류 코디네이터, Temiorae (테미오래), 대전, 한국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">어시스턴트, Jimmy Richer의 <em>IAV – Intelligence Artificielle Vivante</em>, Pont du Gard, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2021</span><span class="cv-entry-desc">제조 기술 요원, Lafarge Rhône-Méditerranée, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2020</span><span class="cv-entry-desc">어시스턴트, <em>Hubert Duprat</em>, Musée d'Art Moderne de Paris, 프랑스 – 큐레이터 Jessica Castex.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">중재자, Peter Friedl의 <em>Teatro</em>, Carré d'Art, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">심포지엄 번역가, SojaeCreating Community, 대전, 한국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">어시스턴트, Soizic Stokvis의 <em>Something/Around</em>, La Vigie, Nîmes, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">어시스턴트, <em>Art Concret en Uzège</em>, A.A.T, Uzès, 프랑스 – 큐레이터 Pascal Fancony.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2018</span><span class="cv-entry-desc">중재자, <em>10ans d'Audaces</em>, Cours et Jardins, Vers-Pont-du-Gard, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2017</span><span class="cv-entry-desc">국제교류 코디네이터, SojaeCreating Community, 한국과 프랑스.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">출판</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, 석사 논문, 님 미술대학, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc"><em>Esquisse sur la Colombophobie</em>, 석사 학위 논문, École supérieure des beaux-arts de Nîmes, France.</span></li>
         </ul>
       </div>
       <div class="cv-section">
         <p class="cv-section-title">학력</p>
         <ul class="cv-entries">
-          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA 심사위원 특별 추천, 님 미술대학, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">노숙 생활, 파리, 프랑스.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, 파리, 프랑스.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2023</span><span class="cv-entry-desc">DNSEP 심사위원 축하와 함께, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2019</span><span class="cv-entry-desc">DNA 심사위원 축하와 함께, École supérieure des beaux-arts de Nîmes, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">노숙 생활 기간, Paris, France.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2015</span><span class="cv-entry-desc">ISPEM FLE, Paris, France.</span></li>
           <li class="cv-entry"><span class="cv-entry-year">2014</span><span class="cv-entry-desc">노점상, 서울, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">군 복무, 대한민국.</span></li>
-          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">대전예술고등학교, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2011</span><span class="cv-entry-desc">병역, 대한민국.</span></li>
+          <li class="cv-entry"><span class="cv-entry-year">2008</span><span class="cv-entry-desc">Lycée des Arts de Daejeon, 대한민국.</span></li>
         </ul>
       </div>
     </div>
-
   </main>
 
   <script>
