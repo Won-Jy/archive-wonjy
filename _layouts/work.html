@@ -199,6 +199,14 @@
     .lb-footer .lb-ctrl { padding:10px 14px; font-size:24px; }
     .intro-side .divider:last-of-type{ display:none; }
     .intro-media hr.divider{ margin-top:12px; margin-bottom:30px; }
+
+    /* 모바일: 이미지 작업 페이지에서 미디어 영역 위 구분선 (비디오 페이지 제외) */
+    .intro-media > figure.work:not(.video):first-child::before {
+      content: "";
+      display: block;
+      border-top: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
   }
 </style>
 </head>
