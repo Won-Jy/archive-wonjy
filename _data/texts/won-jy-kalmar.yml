@@ -7,7 +7,7 @@ title_original:
 author:
   name: "Gunilla Petri"
   bio_html: |
-    Gunilla Petri is a journalist and art critic who writes on culture for <i>Barometern-OT</i>, a regional daily newspaper based in Kalmar, Sweden.
+    Gunilla Petri (Gunilla Petri-Westin) is a Swedish art critic and journalist. She is the art writer (<i>konstskribent</i>) for <i>Barometern-OT</i>, the regional daily of Kalmar County, where she has long reviewed exhibitions across Kalmar, Öland, and the surrounding region. She has also co-authored several books on Swedish artists, published by Barometerns förlag in Kalmar.
 
 year: 2026
 date_written: 2026-07-02
@@ -106,6 +106,6 @@ translations:
 
       <em>Gunilla Petri</em>
 
-# related_works:
-#   - slug: "work/2026/about-warding"
-#     label: "<i>About Warding</i> (2026)"
+related_works:
+   - slug: "work/2026/about-warding"
+     label: "<i>About Warding</i> (2026)"
