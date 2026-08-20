@@ -190,7 +190,7 @@ title: Texts
 
         <div class="text-variants">
           <div class="text-body variant" data-lang="${origLang}">
-            ${t.original?.body_html || ''}
+            ${(t.title_en && origLang !== 'en') ? `English title: ${t.title_en}<br><br>` : ''}${t.original?.body_html || ''}
           </div>
           ${(t.translations||[]).map(tr=>`
             <div class="text-body variant" data-lang="${tr.language}" style="display:none">
