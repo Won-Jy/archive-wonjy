@@ -190,11 +190,11 @@ title: Texts
 
         <div class="text-variants">
           <div class="text-body variant" data-lang="${origLang}">
-            ${(t.title_en && origLang !== 'en') ? `English title: ${t.title_en}<br><br>` : ''}${t.original?.body_html || ''}
+            ${t.original?.body_html || ''}
           </div>
           ${(t.translations||[]).map(tr=>`
             <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-              ${tr.body_html || ''}
+              ${(t.title_en && tr.language === 'en') ? `<span class="title-en-note">English title: ${t.title_en}</span><br><br>` : ''}${tr.body_html || ''}
             </div>
           `).join('')}
         </div>
