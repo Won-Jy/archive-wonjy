@@ -286,6 +286,8 @@ main.list a:visited{
 .meta-sep{ margin:0 6px 0 0; color:var(--muted); }
 .author,.year{color:#444}
 
+.title-en-note{ font-size:.9em; color:var(--muted); }
+
 /* 페이지네이션 */
 .pagination{
   position: static;
