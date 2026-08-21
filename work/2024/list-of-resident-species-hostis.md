@@ -54,7 +54,7 @@ tables:
       - num: 4
         fr:  "Vergerette de Sumatra"
         en:  "Sumatran fleabane"
-        sci: "Sambucus ebulus"
+        sci: "Erigeron sumatrensis"
         images: [list_plant_04.webp]
       - num: 5
         fr:  "Morelle noire"
