@@ -22,17 +22,23 @@ images: []
 ---
 
 <style>
-  .fn-ref { font-style: normal; text-decoration: none; }
-  .fn-list { margin-top: 32px; padding-top: 16px; border-top: 1px solid #ddd; font-size: 0.85em; color: #666; }
-  .fn-list ol { padding-left: 1.2em; margin: 0; }
-  .fn-list li { margin: 0 0 0.5em 0; }
+  /* Matches the footnote styling used on the Texts page (assets/css/main.css),
+     reproduced locally since this layout (work.html) doesn't load main.css. */
+  .notes{ margin-top:24px; }
+  .notes h3{ font-weight:bold; margin:.2em 0 .4em; }
+  .notes ol{ margin:0; padding-left:0; list-style:none; }
+  .notes li{ margin:.6rem 0; }
+  .note-ref{ cursor:pointer; text-decoration:none; color:var(--blue); }
+  .note-num{ color:var(--blue); text-decoration:none; margin-right:6px; }
+  .note-num:hover{ text-decoration:underline; }
+  sup .note-ref, a.note-ref, .note-num { font-style: normal; }
 </style>
 
-When I had my first Zoom meeting with the Teatergalleriet team for this roughly six-week residency in Småland, Sweden, I asked them what they thought was the most remarkable feature of Kalmar's<sup class="fn-ref"><a href="#fn1" id="fnref1">1</a></sup> landscape. Their first answer was: "We have a spot where you can see the city prison really clearly."
+When I had my first Zoom meeting with the Teatergalleriet team for this roughly six-week residency in Småland, Sweden, I asked them what they thought was the most remarkable feature of Kalmar's<sup><a class="note-ref" href="#fn1" id="fnref1">[1]</a></sup> landscape. Their first answer was: "We have a spot where you can see the city prison really clearly."
 
 When I arrived in Kalmar, I could see it right away — the prison, fenced in and standing proudly on an island with sharp, angular corners. It sat in what could literally be called the city center, between the old town and the new town.
 
-This topological position of the Kalmar prison led me, quite naturally, to recall the Hôtel-Dieu<sup class="fn-ref"><a href="#fn2" id="fnref2">2</a></sup> at the very heart of Paris, on the Île de la Cité. Each is a place that was once both hospital and prison, yet the distinction between those functions grows more blurred the further back in time one goes. All that matters, in the end, is that we set <i>them</i> apart from <i>us</i>. But why is the place where we set them apart our own navel?
+This topological position of the Kalmar prison led me, quite naturally, to recall the Hôtel-Dieu<sup><a class="note-ref" href="#fn2" id="fnref2">[2]</a></sup> at the very heart of Paris, on the Île de la Cité. Each is a place that was once both hospital and prison, yet the distinction between those functions grows more blurred the further back in time one goes. All that matters, in the end, is that we set <i>them</i> apart from <i>us</i>. But why is the place where we set them apart our own navel?
 
 In two different cities — Kalmar and Paris — these places lie at the center of the map; what is it that they stir within the landscape of our minds? Are we caring for those we have pushed inside that wall, or those we have pushed <i>outside</i> the "wall"? Or are we surveilling them — through that transparent glass wall?
 
@@ -42,7 +48,7 @@ As it happened, the official name of the Swedish prison service was "Kriminalvå
 
 In the mid-17th century, to defend itself against foreign invasion, the inland city "collectively relocated" to a nearby island and fortified it, raising high walls along the island's edge.
 
-On the ravelin island — which became the principal passage linking the mainland and the island — outside the city walls, they decided to build a prison to hold lawbreakers<sup class="fn-ref"><a href="#fn3" id="fnref3">3</a></sup>. Less than a century later, with the prison at its center, the mainland opposite the island, where the old city had once stood, was redeveloped, and somehow this prison ended up "wedged" between today's old town and new town, belonging to neither.
+On the ravelin island — which became the principal passage linking the mainland and the island — outside the city walls, they decided to build a prison to hold lawbreakers<sup><a class="note-ref" href="#fn3" id="fnref3">[3]</a></sup>. Less than a century later, with the prison at its center, the mainland opposite the island, where the old city had once stood, was redeveloped, and somehow this prison ended up "wedged" between today's old town and new town, belonging to neither.
 
 Exclusions overlapped; the excluded came to occupy the center, and it radiates its own presence, unfailingly, to everyone who lives here.
 
@@ -54,7 +60,7 @@ As the residency went on, while I lived and worked in Kalmar I had to travel eac
 
 This commute let me watch the region's rural scenery and terrain pass by through the bus window, like a broken panorama returning to its beginning again and again: no matter what detail I missed on a given day, the same scenery would roll past when I rode the bus the next.
 
-Among the landscapes I saw this way, the first thing to catch my eye on the residency's opening day was the walls built of <i>pierre sèche</i><sup class="fn-ref"><a href="#fn4" id="fnref4">4</a></sup>. The moment I saw them, I could tell they were very different from the dry-stone structures I knew in southern France — few of the lines are straight; they break off from one another midway, or wander off to the side. In other words, you can easily tell they were built organically rather than to a plan.
+Among the landscapes I saw this way, the first thing to catch my eye on the residency's opening day was the walls built of <i>pierre sèche</i><sup><a class="note-ref" href="#fn4" id="fnref4">[4]</a></sup>. The moment I saw them, I could tell they were very different from the dry-stone structures I knew in southern France — few of the lines are straight; they break off from one another midway, or wander off to the side. In other words, you can easily tell they were built organically rather than to a plan.
 
 According to a text I read later, granite boulders split by glacial force and left "slid" away lie scattered like shrapnel throughout the ground here. To the first humans who tried to settle this land, they must have been like landmines in the earth, for they took up the very places where crops were meant to grow.
 
@@ -74,7 +80,7 @@ These little squares are like the cavities of a mold, into which the liquid-like
 
 Why is it that I feel the square of a parcel — the square of a cell — is, conversely, like the walls with which our soul imprisons its own body?
 
-In the late 18th century, in discussing human punishment, it is a curious coincidence that Mably said: let the penalty strike the soul rather than the body<sup class="fn-ref"><a href="#fn5" id="fnref5">5</a></sup>.
+In the late 18th century, in discussing human punishment, it is a curious coincidence that Mably said: let the penalty strike the soul rather than the body<sup><a class="note-ref" href="#fn5" id="fnref5">[5]</a></sup>.
 
 My residency was, in this sense, a kind of process of re-applying and blending the formal language I had developed in France onto the newly given natural-topographical and socio-geopolitical context of Småland and Kalmar.
 
@@ -86,12 +92,14 @@ The body and soul that the prison intake form asks after; the festival of contor
 
 June 2026
 
-<div class="fn-list">
+<div class="divider"></div>
+<section class="notes">
+<h3>Notes</h3>
 <ol>
-<li id="fn1">Located in Småland; the city where I stayed during the residency and where the host, Teatergalleriet, is based. <a href="#fnref1">↩</a></li>
-<li id="fn2">The name of an early, medieval-style hospital form in France — not exactly identical, but comparable to Sweden's "Helgeandshuset." <a href="#fnref2">↩</a></li>
-<li id="fn3">This actually took place in the mid-19th century. <a href="#fnref3">↩</a></li>
-<li id="fn4"><i>Dry stone</i> — a French term for the dry-masonry technique, common in rural southern France, of building structures from stacked stone alone, without any binding material. <a href="#fnref4">↩</a></li>
-<li id="fn5">Gabriel Bonnot de Mably, <i>De la législation</i>, Œuvres complètes, t. IX, 1789, p. 326; requoted in Michel Foucault, <i>Surveiller et punir</i>, Gallimard, 1975. <a href="#fnref5">↩</a></li>
+<li id="fn1"><a class="note-num" href="#fnref1">[1]</a> Located in Småland; the city where I stayed during the residency and where the host, Teatergalleriet, is based.</li>
+<li id="fn2"><a class="note-num" href="#fnref2">[2]</a> The name of an early, medieval-style hospital form in France — not exactly identical, but comparable to Sweden's "Helgeandshuset."</li>
+<li id="fn3"><a class="note-num" href="#fnref3">[3]</a> This actually took place in the mid-19th century.</li>
+<li id="fn4"><a class="note-num" href="#fnref4">[4]</a> <i>Dry stone</i> — a French term for the dry-masonry technique, common in rural southern France, of building structures from stacked stone alone, without any binding material.</li>
+<li id="fn5"><a class="note-num" href="#fnref5">[5]</a> Gabriel Bonnot de Mably, <i>De la législation</i>, Œuvres complètes, t. IX, 1789, p. 326; requoted in Michel Foucault, <i>Surveiller et punir</i>, Gallimard, 1975.</li>
 </ol>
-</div>
+</section>
