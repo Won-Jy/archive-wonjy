@@ -4,7 +4,7 @@ title: "About Warding"
 types: ["Writing"]
 year_start: 2026
 year_end: 2026
-date_start: 2026-06-01
+date_start: 2026-06-24
 status: "Completed"
 tags: ["City", "Wall", "Stone"]
 cover: "/images/2026/text_about-warding/cover_text_about-warding.webp"
