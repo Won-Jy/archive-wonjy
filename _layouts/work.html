@@ -442,9 +442,13 @@
                     {% endif %}
 
                     {% assign as_link = true %}
-                    {% if is_internal %}
-                      {% unless built_works contains href %}{% assign as_link = false %}{% endunless %}
-                    {% endif %}
+                      {% if is_internal %}
+                        {% assign href_esc = href | uri_escape %}
+                        {% assign found = false %}
+                        {% if built_works contains href %}{% assign found = true %}{% endif %}
+                        {% if built_works contains href_esc %}{% assign found = true %}{% endif %}
+                        {% unless found %}{% assign as_link = false %}{% endunless %}
+                      {% endif %}
 
                     {% if as_link %}
                       <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
