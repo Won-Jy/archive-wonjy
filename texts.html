@@ -104,6 +104,15 @@ title: Texts
       {% endfor %}
      };
 
+    /* Every work page Jekyll actually builds. A related_works slug outside this
+       list is a page that hasn't been written yet — it shows as plain text and
+       becomes a real link on its own once the page exists. */
+    const BUILT_WORKS = new Set([
+      {% assign built = site.pages | where: "layout", "work" | map: "url" %}
+      {% for u in built %}{{ u | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}
+    ]);
+    const PENDING_LABEL = {{ site.pending_label | default: "forthcoming" | jsonify }};
+
     const params = new URLSearchParams(location.search);
     const currentId = params.get('id');
     if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
@@ -246,7 +255,11 @@ title: Texts
             <ul class="related-works">
               ${(t.related_works || []).map(r => {
                 const label = r.label || 'View';
-                return `<li><a href="/${r.slug}.html" class="link-button">${label}</a></li>`;
+                const href  = `/${String(r.slug || '').replace(/^\/+/, '')}.html`;
+                if (!BUILT_WORKS.has(href)) {
+                  return `<li><span class="pending">${label}<span class="pending-note">${PENDING_LABEL}</span></span></li>`;
+                }
+                return `<li><a href="${href}" class="link-button">${label}</a></li>`;
               }).join('')}
             </ul>
           </div>
