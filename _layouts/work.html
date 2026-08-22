@@ -83,6 +83,14 @@
   .linked-works a { color:var(--blue); text-decoration:none; margin-left:6px; }
   .linked-works a:hover { text-decoration:underline; }
 
+  /* A linked work whose page hasn't been written yet: shown, but not a link.
+     It becomes a link on its own the moment the page exists. */
+  .linked-works .pending,
+  .related-texts .pending { color:var(--muted); margin-left:6px; }
+  .pending-note{ font-size:.85em; color:#999; margin-left:6px; white-space:nowrap; }
+  .pending-note::before{ content:"("; }
+  .pending-note::after{ content:")"; }
+
   .related-texts { list-style:none; margin:8px 0 0; padding:0; }
   .related-texts li { margin:0 0 6px 0; position:relative; padding-left:14px; }
   .related-texts li::before { content:"–"; position:absolute; left:0; color:var(--muted); }
@@ -406,6 +414,14 @@
           {% endif %}
 
           {% if page.linked_works and page.linked_works.size > 0 %}
+            {% comment %}
+              Every work page that Jekyll will actually build. A linked_works entry
+              pointing outside this list is a page that doesn't exist yet: it shows
+              as plain text and turns into a real link on its own once the page is
+              written. Nothing to maintain by hand.
+            {% endcomment %}
+            {% assign built_works = site.pages | where: "layout", "work" | map: "url" %}
+
             {% assign has_linked = false %}
             {% for lw in page.linked_works %}
               {% assign href = lw.url | default: lw.path %}
@@ -420,7 +436,21 @@
                   {% if href and href != '' %}
                     {% assign raw_label = lw.label | default: '' %}
                     {% assign label_html = raw_label | strip | default: href %}
-                    <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                    {% assign is_internal = false %}
+                    {% if href contains '/work/' %}
+                      {% if href contains '.html' %}{% assign is_internal = true %}{% endif %}
+                    {% endif %}
+
+                    {% assign as_link = true %}
+                    {% if is_internal %}
+                      {% unless built_works contains href %}{% assign as_link = false %}{% endunless %}
+                    {% endif %}
+
+                    {% if as_link %}
+                      <li><a href="{{ href | relative_url }}">{{ label_html }}</a></li>
+                    {% else %}
+                      <li><span class="pending">{{ label_html }}<span class="pending-note">{{ site.pending_label | default: "forthcoming" }}</span></span></li>
+                    {% endif %}
                   {% endif %}
                 {% endfor %}
               </ul>
