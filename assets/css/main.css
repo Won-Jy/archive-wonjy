@@ -414,6 +414,13 @@ main.detail aside a:visited{
   color: var(--muted);
 }
 
+/* A related work whose page hasn't been written yet: shown, but not a link.
+   It becomes a link on its own the moment the page exists. */
+.related-works .pending { color: var(--muted); }
+.pending-note { font-size: .85em; color: #999; margin-left: 6px; white-space: nowrap; }
+.pending-note::before { content: "("; }
+.pending-note::after  { content: ")"; }
+
 /* 텍스트 본문 figure(이미지+캡션) — work와 동일하게 */
 .text-body figure.text-image{ margin:0; }
 .text-body figure.text-image img{
