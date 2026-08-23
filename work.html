@@ -33,6 +33,15 @@ layout: none
       .sort a.active{color:var(--blue);font-weight:normal;text-decoration:none}
       .sort-label{ margin-right:3px; color:#555; }
       .sep{ margin:0 4px; }
+
+      /* 2b) Combine filters toggle — sits at the far left of the same row as
+             "Sort by", directly above the sidebar. margin-right:auto keeps the
+             sort/search block exactly where it was. */
+      .combine{ display:flex; align-items:center; gap:6px; margin-right:auto;
+                color:#555; cursor:pointer; user-select:none; white-space:nowrap; }
+      .combine input{ width:13px; height:13px; margin:0; accent-color:var(--blue); cursor:pointer; }
+      .combine:hover{ color:var(--blue); }
+      .combine input:focus-visible{ outline:2px solid var(--blue); outline-offset:1px; }
     
       /* 3) Search */
       .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:16px;text-align:left;outline:none;width:var(--search-w);max-width: 100%;}
@@ -122,6 +131,7 @@ layout: none
            .sort{ order: 1; white-space:nowrap; }
            .sort-label{ display:none; }
            .search{ order:2; margin-left:auto; }
+           .combine{ display:none; }   /* 모바일에서는 숨김 */
            .filter-group[data-filter="year"] .chips{grid-template-columns: repeat(2, auto); }
            .pagination{ display:flex; justify-content:center; align-content:flex-start; flex-wrap: nowrap; gap: 0px 2px; margin: 20px 0 30px; }
            .pagination > *{ flex: 0 0 auto; }
@@ -148,6 +158,10 @@ layout: none
 
 <main>
   <div class="topbar">
+    <label class="combine" for="combine">
+      <input type="checkbox" id="combine">
+      <span>Combine filters</span>
+    </label>
     <div class="sort"><span class="sort-label">Sort by</span>&nbsp;
       <a href="#" data-sort="newest" class="active">newest</a> /
       <a href="#" data-sort="oldest">oldest</a>
@@ -208,7 +222,10 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   const grid=document.getElementById('grid');
   const pager=document.getElementById('pager');
   const q=document.getElementById('q');
-  const state={ sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
+  const combine=document.getElementById('combine');
+  /* multi=false : 한 항목만 선택 (일반 방문자용 기본값)
+     multi=true  : 여러 항목을 겹쳐 선택 (URL로 공유 가능) */
+  const state={ multi:false, sort:'newest', page:1, filters:{ type:new Set(), year:new Set(), status:new Set(), tag:new Set() } };
 
   /* ── URL <-> state helpers ─────────────────────────────────────────── */
   function encodeStateToParams(){
@@ -216,6 +233,7 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
     const term = q.value.trim();
     if (term) p.set('q', term);
     if (state.sort !== 'newest') p.set('sort', state.sort);
+    if (state.multi) p.set('combine', '1');
 
     for (const k of ['type','year','status','tag']){
       if (state.filters[k].size){
@@ -245,6 +263,11 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
       }
     }
 
+    // 겹쳐 보기: combine=1 이거나, 한 항목에 값이 둘 이상 들어온 URL이면 켠다.
+    // (후자는 이 기능이 생기기 전에 공유한 링크도 그대로 열리게 하기 위함)
+    const stacked = ['type','year','status','tag'].some(k => state.filters[k].size > 1);
+    state.multi = p.get('combine') === '1' || stacked;
+
     // 최초 진입 시(All 대신) Highlight를 기본 필터로 사용
     // - URL에 type 파라미터가 없을 때만 적용
     // - 실제로 Highlight 타입이 존재할 때만 적용
@@ -258,6 +281,9 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
   }
 
   function syncUIFromState(){
+    // 겹쳐 보기 체크박스
+    combine.checked = state.multi;
+
     // 정렬 UI
     document.querySelectorAll('.sort a').forEach(a=>{
       a.classList.toggle('active', a.dataset.sort === state.sort);
@@ -265,17 +291,15 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
 
     // 필터 칩 Active 토글
     document.querySelectorAll('.filter-group').forEach(group=>{
-      const k = group.dataset.filter;
-      const set = state.filters[k];
-      const chips = group.querySelectorAll('.chip');
-      chips.forEach(c=>{
-        const val = c.dataset.value;
-        if (val === '__ALL__'){
-          c.classList.toggle('active', set.size === 0);
-        }else{
-          c.classList.toggle('active', set.has(val));
-        }
-      });
+      syncChips(group.querySelector('.filter-body'), state.filters[group.dataset.filter]);
+    });
+  }
+
+  /* 한 필터 묶음의 칩 표시를 상태에 맞춘다. 아무것도 안 골랐으면 All이 켜진다. */
+  function syncChips(container, set){
+    container.querySelectorAll('.chip').forEach(c=>{
+      const val = c.dataset.value;
+      c.classList.toggle('active', val === '__ALL__' ? set.size === 0 : set.has(val));
     });
   }
 
@@ -352,21 +376,46 @@ function matchAllTokens(hay,q){ const H=norm(hay); const tokens=norm(q).split(/\
       const el=e.target.closest('.chip'); if(!el)return;
       const f=el.closest('.filter-group').dataset.filter;
       const v=el.dataset.value;
+      const set=state.filters[f];
       if(v==='__ALL__'){
-        state.filters[f].clear();
-        g.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-        el.classList.add('active');
-      }else{
-        const set=state.filters[f];
+        set.clear();
+      }else if(state.multi){
+        // 겹쳐 보기 ON: 누를 때마다 더하고 빼기
         if(set.has(v)) set.delete(v); else set.add(v);
-        g.querySelector('[data-value="__ALL__"]').classList.remove('active');
-        el.classList.toggle('active');
-        if(set.size===0) g.querySelector('[data-value="__ALL__"]').classList.add('active');
+      }else{
+        // 기본: 한 항목만. 같은 걸 다시 누르면 All로 돌아간다.
+        const only = set.size===1 && set.has(v);
+        set.clear();
+        if(!only) set.add(v);
       }
+      syncChips(g, set);
       state.page=1;
       render();
       updateURL();   // ← URL 동기화
     });
+  });
+
+  // 겹쳐 보기 켜고 끄기
+  combine.addEventListener('change',()=>{
+    state.multi = combine.checked;
+    if(!state.multi){
+      // 끌 때 여러 개가 켜져 있으면, 각 묶음에서 목록상 첫 번째 것만 남긴다.
+      document.querySelectorAll('.filter-group').forEach(group=>{
+        const body = group.querySelector('.filter-body');
+        const set  = state.filters[group.dataset.filter];
+        if(set.size > 1){
+          const first = [...body.querySelectorAll('.chip')]
+            .map(c=>c.dataset.value)
+            .find(v=>v!=='__ALL__' && set.has(v));
+          set.clear();
+          if(first) set.add(first);
+        }
+        syncChips(body, set);
+      });
+    }
+    state.page=1;
+    render();
+    updateURL();
   });
 
   // 정렬
