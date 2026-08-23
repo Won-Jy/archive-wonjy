@@ -34,14 +34,15 @@ layout: none
       .sort-label{ margin-right:3px; color:#555; }
       .sep{ margin:0 4px; }
 
-      /* 2b) Combine filters toggle — sits at the far left of the same row as
+      /* 2b) combine mode toggle — sits at the far left of the same row as
              "Sort by", directly above the sidebar. margin-right:auto keeps the
-             sort/search block exactly where it was. */
+             sort/search block exactly where it was.
+             Only the box is clickable; the wording is plain text. */
       .combine{ display:flex; align-items:center; gap:6px; margin-right:auto;
-                color:#555; cursor:pointer; user-select:none; white-space:nowrap; }
-      .combine input{ width:13px; height:13px; margin:0; accent-color:var(--blue); cursor:pointer; }
-      .combine:hover{ color:var(--blue); }
+                color:#555; font-size:0.85em; user-select:none; white-space:nowrap; }
+      .combine input{ width:12px; height:12px; margin:0; accent-color:var(--blue); cursor:pointer; flex:none; }
       .combine input:focus-visible{ outline:2px solid var(--blue); outline-offset:1px; }
+      .combine-text{ cursor:default; }
     
       /* 3) Search */
       .search input{box-sizing:border-box;padding:6px 8px;border:1px solid var(--border);border-radius:0;font-size:16px;text-align:left;outline:none;width:var(--search-w);max-width: 100%;}
@@ -158,10 +159,10 @@ layout: none
 
 <main>
   <div class="topbar">
-    <label class="combine" for="combine">
-      <input type="checkbox" id="combine">
-      <span>Combine filters</span>
-    </label>
+    <span class="combine">
+      <input type="checkbox" id="combine" aria-label="combine mode">
+      <span class="combine-text">combine mode</span>
+    </span>
     <div class="sort"><span class="sort-label">Sort by</span>&nbsp;
       <a href="#" data-sort="newest" class="active">newest</a> /
       <a href="#" data-sort="oldest">oldest</a>
