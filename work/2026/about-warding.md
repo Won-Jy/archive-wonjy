@@ -21,8 +21,8 @@ cover: View_about_warding_01_01-01.webp
 cover_caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
 summary: |-
   <p>Residency exhibition at Teatergalleriet, Kalmar, Sweden.</p>
-  <p>Presented as part of Småland Triennale 2026.</p>ㄴㄷㄹㄴㄹ
-description: 'About Warding developed from a six-week residency during which Won Jy examined Kalmar''s prison — an island fortress at the exact center of the city — alongside the Hôtel-Dieu in Paris, another site where care and confinement have historically overlapped. Tracing this line between "us" and "them," the artist turned to the region''s granite: boulders once cleared from farmland by hand, piled into dry-stone walls, and later reproduced as garden ornaments in suburban housing developments. Working between his established vocabulary in concrete rubble and Pukeberg''s glassblowing tradition, Won Jy translated these findings into sculptures combining stone, cast and blown glass, clay, silicone, and plaster — objects that carry the same administrative and architectural logic of protection and exclusion, wherever they are found. ㄴㄷㄹㄷㄴㄹㄴㄹㄴㄷㄹ'
+  <p>Presented as part of Småland Triennale 2026.</p>
+description: 'About Warding developed from a six-week residency during which Won Jy examined Kalmar''s prison — an island fortress at the exact center of the city — alongside the Hôtel-Dieu in Paris, another site where care and confinement have historically overlapped. Tracing this line between "us" and "them," the artist turned to the region''s granite: boulders once cleared from farmland by hand, piled into dry-stone walls, and later reproduced as garden ornaments in suburban housing developments. Working between his established vocabulary in concrete rubble and Pukeberg''s glassblowing tradition, Won Jy translated these findings into sculptures combining stone, cast and blown glass, clay, silicone, and plaster — objects that carry the same administrative and architectural logic of protection and exclusion, wherever they are found.'
 media:
   - type: image
     src: View_about_warding_02_01-03.webp
