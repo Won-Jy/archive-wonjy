@@ -15,6 +15,10 @@ collections:
     label_singular: Work
     folder: work
     create: true
+    editor:
+      preview: false
+    media_folder: "/images/{{fields.year_start}}/{{slug}}"
+    public_folder: "/images/{{fields.year_start}}/{{slug}}"
     extension: md
     format: yaml-frontmatter
     path: "{{fields.year_start}}/{{slug}}"
@@ -28,6 +32,9 @@ collections:
       - { name: layout, widget: hidden, default: work }
 
       - { name: title, label: Title, widget: string }
+
+      - { name: drafts, label: "초고 (사이트에 안 나감)", widget: text, required: false,
+          hint: "자유롭게 쓰세요. 다듬어지면 아래 Summary나 Description으로 옮기시면 됩니다." }
 
       - name: types
         label: Type
@@ -59,21 +66,9 @@ collections:
           hint: "<i>기울임</i> 같은 HTML을 쓸 수 있습니다." }
 
       # ── 사이트에 나가는 글 ────────────────────────────────────
-      - { name: summary, label: Summary (사이트에 표시), widget: text, required: false }
-      - { name: description, label: Description (사이트에 표시), widget: text, required: false }
-
-      # ── 사이트에 안 나가는 글 ──────────────────────────────────
-      - name: drafts
-        label: 초고 (사이트에 안 나감)
-        label_singular: 초고
-        widget: list
-        required: false
-        collapsed: true
-        summary: "{{fields.label}}"
-        hint: "자유롭게 쓰세요. 다듬어지면 위 Summary나 Description으로 옮기시면 됩니다."
-        fields:
-          - { name: label, label: 제목, widget: string, required: false }
-          - { name: text, label: 내용, widget: text }
+      - { name: summary, label: "Summary (사이트에 표시)", widget: text, required: false }
+      - { name: description, label: "Description (사이트에 표시)", widget: text, required: false,
+          hint: "긴 글은 여기에 씁니다." }
 
       # ── 미디어 ────────────────────────────────────────────────
       - name: media
@@ -103,11 +98,10 @@ collections:
               - { name: spacer, widget: hidden, required: false }
 
       - { name: hide_cover_if_video_top, label: "영상이 첫 항목이면 커버 숨기기",
-          widget: boolean, required: false, default: false }
+          widget: boolean, required: false }
 
       # ── 연결 ──────────────────────────────────────────────────
-      - { name: linked_works_title, label: "Linked works 제목", widget: string,
-          required: false, default: "Linked works" }
+      - { name: linked_works_title, widget: hidden, default: "Linked works" }
       - name: linked_works
         label: Linked works
         widget: list
@@ -119,8 +113,7 @@ collections:
           - { name: path, label: 주소, widget: string, required: false,
               hint: "/work/2023/hostis.html — 아직 없는 페이지를 적어두면 회색으로 표시됩니다." }
 
-      - { name: critique_title, label: "Related texts 제목", widget: string,
-          required: false, default: "Related texts" }
+      - { name: critique_title, widget: hidden, default: "Related texts" }
       - name: related_texts
         label: Related texts
         widget: list
@@ -140,12 +133,14 @@ collections:
     label_singular: Text
     folder: _data/texts
     create: true
+    editor:
+      preview: false
     extension: yml
     format: yaml
     slug: "{{title_en}}"
     identifier_field: id
-    summary: "{{title_en}} — {{author.name}}, {{year}}"
-    sortable_fields: [year, id]
+    summary: "{{year}}  {{author.name}} — {{title_en}}"
+    sortable_fields: [year, author.family, title_en, id]
     fields:
       - { name: id, label: ID, widget: string,
           hint: "파일 이름과 같아야 합니다. 작업에서 이 글을 연결할 때 쓰는 이름입니다." }
@@ -164,7 +159,10 @@ collections:
         label: 필자
         widget: object
         fields:
-          - { name: name, label: 이름, widget: string, required: false }
+          - { name: name, label: 이름 (표시용), widget: string, required: false,
+              hint: "사이트에 나오는 이름입니다. 예: Gunilla Petri" }
+          - { name: family, label: 성 (정렬용), widget: string, required: false,
+              hint: "에디터 목록을 성으로 정렬할 때만 씁니다. 사이트에는 안 나옵니다." }
           - { name: bio_html, label: 소개, widget: text, required: false }
 
       - { name: year, label: 연도, widget: number, value_type: int }
