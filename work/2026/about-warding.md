@@ -18,7 +18,7 @@ tags:
   - City
   - Map
 cover: View_about_warding_01_01-01.webp
-cover_caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+cover_caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
 summary: |-
   <p>Residency exhibition at Teatergalleriet, Kalmar, Sweden.</p>
   <p>Presented as part of Småland Triennale 2026.</p>ㄴㄷㄹㄴㄹ
