@@ -203,7 +203,14 @@ window.WORKS = [
     date_start: {{ p.date_start | jsonify }},  /* ← NEW: use YYYY-MM-DD when possible */
     status: {{ p.status | jsonify }},
     tags: {{ p.tags | jsonify }},
-    cover: {{ p.cover | jsonify }},
+    {%- comment -%}
+      에디터는 media_folder 안의 파일을 이름만 저장한다.
+      _layouts/work.html 과 같은 규칙으로 폴더를 되돌린다.
+    {%- endcomment -%}
+    {%- assign cbase = p.url | replace: '/work/', '/images/' | replace: '.html', '' | append: '/' -%}
+    {%- assign csrc = p.cover -%}
+    {%- unless csrc contains '/' -%}{%- assign csrc = cbase | append: csrc -%}{%- endunless -%}
+    cover: {{ csrc | jsonify }},
     url: {{ p.url | relative_url | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
