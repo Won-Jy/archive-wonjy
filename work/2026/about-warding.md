@@ -18,7 +18,7 @@ tags:
   - City
   - Map
 cover: View_about_warding_01_01-01.webp
-cover_caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+cover_caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
 summary: |-
   <p>Residency exhibition at Teatergalleriet, Kalmar, Sweden.</p>
   <p>Presented as part of Småland Triennale 2026.</p>
@@ -53,13 +53,13 @@ media:
     caption: <i>Untitled</i>, glass droplet, stone, fly remains, variable dimensions, 2026.
   - type: image
     src: View_about_warding_04_02-18.webp
-    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_04_03-19.webp
     caption: <i>Cullet Fountain</i>, glass cullet, water, 58×65×33cm, 2026.
   - type: image
     src: View_about_warding_05_01-22.webp
-    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_05_02-23.webp
     caption: <i>Vårda Kalmar</i>, cast glass , 23×22.5×1.5cm, 2026.
@@ -68,7 +68,7 @@ media:
     caption: <i>CCTV</i>, glass cullet, plaster, fly remains, ⌀12×8.5cm, 2026.
   - type: image
     src: View_about_warding_07_02-28.webp
-    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_08_01-29.webp
     caption: <i>Crunch</i>, stone, plaster, 50×16×1cm, 2026.
@@ -92,7 +92,7 @@ media:
     caption: <i>Kalmar Plan</i>, pigmented plaster, 38×26.5×1cm, 2026.
   - type: image
     src: View_about_warding_11_01-39.webp
-    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_11_02-40.webp
     caption: <i>CCTV</i>, glass cullet, plaster, fly remains, ⌀12×8.5cm, 2026.
