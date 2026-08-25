@@ -18,11 +18,11 @@ tags:
   - City
   - Map
 cover: View_about_warding_01_01-01.webp
-cover_caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
+cover_caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
 summary: |-
   <p>Residency exhibition at Teatergalleriet, Kalmar, Sweden.</p>
-  <p>Presented as part of Småland Triennale 2026.</p>
-description: 'About Warding developed from a six-week residency during which Won Jy examined Kalmar''s prison — an island fortress at the exact center of the city — alongside the Hôtel-Dieu in Paris, another site where care and confinement have historically overlapped. Tracing this line between "us" and "them," the artist turned to the region''s granite: boulders once cleared from farmland by hand, piled into dry-stone walls, and later reproduced as garden ornaments in suburban housing developments. Working between his established vocabulary in concrete rubble and Pukeberg''s glassblowing tradition, Won Jy translated these findings into sculptures combining stone, cast and blown glass, clay, silicone, and plaster — objects that carry the same administrative and architectural logic of protection and exclusion, wherever they are found.'
+  <p>Presented as part of Småland Triennale 2026.</p>ㄴㄷㄹㄴㄹ
+description: 'About Warding developed from a six-week residency during which Won Jy examined Kalmar''s prison — an island fortress at the exact center of the city — alongside the Hôtel-Dieu in Paris, another site where care and confinement have historically overlapped. Tracing this line between "us" and "them," the artist turned to the region''s granite: boulders once cleared from farmland by hand, piled into dry-stone walls, and later reproduced as garden ornaments in suburban housing developments. Working between his established vocabulary in concrete rubble and Pukeberg''s glassblowing tradition, Won Jy translated these findings into sculptures combining stone, cast and blown glass, clay, silicone, and plaster — objects that carry the same administrative and architectural logic of protection and exclusion, wherever they are found. ㄴㄷㄹㄷㄴㄹㄴㄹㄴㄷㄹ'
 media:
   - type: image
     src: View_about_warding_02_01-03.webp
@@ -53,13 +53,13 @@ media:
     caption: <i>Untitled</i>, glass droplet, stone, fly remains, variable dimensions, 2026.
   - type: image
     src: View_about_warding_04_02-18.webp
-    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_04_03-19.webp
     caption: <i>Cullet Fountain</i>, glass cullet, water, 58×65×33cm, 2026.
   - type: image
     src: View_about_warding_05_01-22.webp
-    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_05_02-23.webp
     caption: <i>Vårda Kalmar</i>, cast glass , 23×22.5×1.5cm, 2026.
@@ -68,7 +68,7 @@ media:
     caption: <i>CCTV</i>, glass cullet, plaster, fly remains, ⌀12×8.5cm, 2026.
   - type: image
     src: View_about_warding_07_02-28.webp
-    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_08_01-29.webp
     caption: <i>Crunch</i>, stone, plaster, 50×16×1cm, 2026.
@@ -92,7 +92,7 @@ media:
     caption: <i>Kalmar Plan</i>, pigmented plaster, 38×26.5×1cm, 2026.
   - type: image
     src: View_about_warding_11_01-39.webp
-    caption: Exhibition view <i>About Warding</i>, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: Exhibition view <i>About Warding<i>, Teatergalleriet, Kalmar, Sweden, 2026.
   - type: image
     src: View_about_warding_11_02-40.webp
     caption: <i>CCTV</i>, glass cullet, plaster, fly remains, ⌀12×8.5cm, 2026.
