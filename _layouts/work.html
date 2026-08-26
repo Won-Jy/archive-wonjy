@@ -422,8 +422,9 @@
 
           {%- comment -%}
             Liquid 에서 빈 문자열('')은 참으로 취급된다. 에디터는 비워둔 칸을
-            description: '' 처럼 저장하므로, 그냥 {% if page.description %} 로 검사하면
-            내용 없는 구분선이 하나 더 생긴다. 공백을 털어내고 길이로 판단한다.
+            description: '' 처럼 저장하므로, 값이 있는지만 검사하면 내용 없는
+            구분선이 하나 더 생긴다. 공백을 털어내고 길이로 판단한다.
+            (주의: 주석 안에도 Liquid 태그를 쓰면 안 된다. 실제로 파싱된다.)
           {%- endcomment -%}
           {%- assign _summary = page.summary | default: '' | strip -%}
           {%- assign _description = page.description | default: '' | strip -%}
