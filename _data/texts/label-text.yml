@@ -3,6 +3,7 @@ id: "label-text"
 title_original:
   text_html: "<i>Label Text</i>"
   language: "en"
+title_en: "Label Text"
 
 author:
   name: "Alix Jolly & Else Bedoux"
