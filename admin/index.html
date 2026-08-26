@@ -7,6 +7,20 @@
   <title>archive-wonjy — 편집</title>
   <link rel="icon" href="/favicon.png">
   <link href="config.yml" type="text/yaml" rel="cms-config-url">
+  <style>
+    /* Images & videos 목록의 각 항목에 번호를 붙인다 (표시만; 저장되는 내용과 무관) */
+    .item-list { counter-reset: wj-item; }
+    .item-list > .item-wrapper { counter-increment: wj-item; }
+    .item-list > .item-wrapper .header .start .type::before {
+      content: counter(wj-item) ".";
+      display: inline-block;
+      min-width: 1.6em;
+      margin-right: 4px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.75;
+    }
+  </style>
 </head>
 <body>
   <script src="sveltia-cms.js"></script>
