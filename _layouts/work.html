@@ -321,9 +321,8 @@
     {%- endif -%}
 
     {%- comment -%}
-      에디터는 media_folder 안에 있는 파일을 이름만 저장한다
-      (config.yml 의 media_folder: /images/{{year_start}}/{{slug}}).
-      사이트도 같은 규칙으로 폴더를 되돌린다:
+      안전망. 지금 에디터(config.yml)는 이미지 경로를 통째로 저장하지만,
+      옛날 파일처럼 파일 이름만 있는 경우에도 폴더를 되돌려 준다:
         /work/2026/about-warding.html  ->  /images/2026/about-warding/
       경로가 이미 / 를 포함하면 그대로 쓴다.
     {%- endcomment -%}
