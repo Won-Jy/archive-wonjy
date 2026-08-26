@@ -23,8 +23,7 @@ linked_works:
   - label: <i>About Warding</i> (2026)
     path: /work/2026/about-warding.html
 critique_title: Related texts
-related_texts:
-  - id: won-jy-kalmar
+related_texts: []
 ---
 
 <style>
