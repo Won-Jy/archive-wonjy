@@ -15,8 +15,6 @@ collections:
     label_singular: Work
     folder: work
     create: true
-    editor:
-      preview: false
     media_folder: "/images/{{fields.year_start}}/{{slug}}"
     public_folder: "/images/{{fields.year_start}}/{{slug}}"
     extension: md
@@ -133,13 +131,11 @@ collections:
     label_singular: Text
     folder: _data/texts
     create: true
-    editor:
-      preview: false
     extension: yml
     format: yaml
     slug: "{{title_en}}"
     identifier_field: id
-    summary: "{{year}}  {{author.name}} — {{title_en}}"
+    summary: "{{date_written | date('YYYY')}}  {{author.name}} — {{title_en}}"
     sortable_fields: [year, author.family, title_en, id]
     fields:
       - { name: id, label: ID, widget: string,
