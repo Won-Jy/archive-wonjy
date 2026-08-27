@@ -81,7 +81,8 @@
     '.wt-cell:focus{outline:2px solid #007BFF;outline-offset:-2px;background:var(--sui-primary-background-color,#fff)}',
     '.wt-cont{padding:5px 7px;opacity:.45;font-size:.9em;cursor:pointer;white-space:nowrap}',
     '.wt-cont:hover{opacity:.9;text-decoration:underline}',
-    '.wt-merge{font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;text-decoration:none;color:inherit}',
+    '.wt-merge{font:inherit;font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;',
+    'border:0;background:transparent;padding:0;text-decoration:none;color:inherit}',
     '.wt-merge:hover{opacity:1;text-decoration:underline;color:#007BFF}',
     '.wt-chips{display:flex;flex-wrap:wrap;gap:4px;padding:5px 7px}',
     '.wt-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--sui-secondary-border-color,#ccc);',
@@ -114,9 +115,9 @@
     '.wt-grid th.addcol{border-right:0}',
     '.wt-grid td.addcol{border:0;background:transparent;min-width:3.5em}',
     '.wt-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:2px 7px 5px}',
-    '.wt-foot a{font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;',
-    'text-decoration:none;color:inherit}',
-    '.wt-foot a:hover{opacity:1;text-decoration:underline;color:#007BFF}',
+    '.wt-foot button{font:inherit;font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;',
+    'border:0;background:transparent;padding:0;text-decoration:none;color:inherit}',
+    '.wt-foot button:hover{opacity:1;text-decoration:underline;color:#007BFF}',
     '.wt-cap{font-size:.8em;opacity:.6;padding:0 7px 4px;line-height:1.4;word-break:break-word}',
     '.wt-chip.hascap{border-color:#007BFF}',
     '.wt-big{width:100%;min-height:14em;box-sizing:border-box;font:inherit;line-height:1.6;padding:8px;',
@@ -1003,8 +1004,8 @@
     else {
       td.appendChild(textCell(inst, table, rows, ri, col, ci));
       /* 긴 글을 큰 창에서 — 스크롤바에 가리지 않도록 칸 아래에 둔다 */
-      var more = el('a', null, '⤢ 크게');
-      more.href = 'javascript:void(0)';
+      var more = el('button', null, '⤢ 크게');
+      more.type = 'button';
       more.title = '큰 창에서 고치기';
       more.onclick = function () { openBigEditor(inst, rows, ri, col); };
       foot.appendChild(more);
@@ -1012,8 +1013,8 @@
 
     if (merge && rows.length > ri + 1) {
       var span = spanOf(rows, ri, key);
-      var a = el('a', 'wt-merge', span > 1 ? (span + '칸 병합 — 나누기') : '아래 칸과 합치기');
-      a.href = 'javascript:void(0)';
+      var a = el('button', 'wt-merge', span > 1 ? (span + '칸 병합 — 나누기') : '아래 칸과 합치기');
+      a.type = 'button';
       a.onclick = function () {
         pushUndo(inst);
         if (span > 1) {
