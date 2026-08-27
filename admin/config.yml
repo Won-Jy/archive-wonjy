@@ -107,6 +107,9 @@ collections:
       - { name: hide_cover_if_video_top, label: "영상이 첫 항목이면 커버 숨기기",
           widget: boolean, required: false }
 
+      # ── 표 ────────────────────────────────────────────────────
+      - { name: tables, label: "표", widget: worktable, required: false, preview: false }
+
       # ── 연결 ──────────────────────────────────────────────────
       - { name: linked_works_title, widget: hidden, default: "Linked works" }
       - name: linked_works
