@@ -27,71 +27,56 @@ tables:
     filter: true
     rows:
       - num: 1
-        images:
-          - 001_Suaire_01.webp
-          - 001_Suaire_05.webp
-        name: Suaire
-        date: 2016.11.12
         place: |-
           43°50'16.3"N 4°21'59.0"E 
           (Nîmes, France)
-        note_en: |-
-          The first dead pigeon I saw after moving from Paris to Nîmes.
-          It lay on its back on the iron plate of a bouche d'égout on the pavement, completely dried by the sun; the eyes were already gone and the feathers had dried out. The rounded keel of the breastbone rose through the breast feathers. Its posture in death, the size of the plate it lay on, and the proportions of its body on that plate were so well matched that it looked like a mise en scène. It brought back the pigeon I had found and drawn the year before, in 2015, while sleeping rough in Paris.
-          It lay right in front of the flat I had just moved into, so I passed it often, and looking at it I came, quite naturally, to feel that I could not leave it there. I brought down a pizza box from the night before, collected the body, and kept it in the cellar of the building for a few days. After several days of thinking it over, I decided to give it a burial.
-          I used one of the baby towels we had a lot of at home as a shroud — my daughter was two at the time, and it was the softest cloth in the house — wrapped the body in it, and buried it in a plastic box filled with soil.
-        links:
-          - columbarium-i
-          - figure-de-pigeon
-          - photogramme-de-pigeon
-          - columbarium-iii
+        name: Suaire
+        date: 2016.11.12
         note_ko: |-
           내가 파리에서 Nîmes으로 이주한 이후 처음으로 보는 비둘기 시신.
           인도위 bouche d'egout 철판위에 등을 바닥애 대고있었고, 햇빛에 완전히 건조되어 눈이 이미  사라져있었고, 깃털들은 말라져있었다. 가슴 깃털위로 둥그런 흉골 (용골돌기)이 솟아나있었다. 그의 죽은 자세와 놓여져있는 철판의 크기 , 그위에서 그의 몸의  크기들이 너무나 조화로워서 마치 mise en scene 같았다. 나는 지난해 2015년에 파리에서 노숙하다가 발견해서 그림그리게 된 비둘기사체를 떠오르게되었다. 
           이사온 집 바로 앞이여서 그 앞으로 내가 자주 지나치게됬고, 나는 그를 바라보며 그를 이대로 둘수없겠다는 생각을 자연스럽게 하게되었다. 지난 날에 먹은 피자박스를 집에서 가지고 내려와 그의 몸을 수거하고 그것을 아파트 cave에 넣어두고 몇일을 두었다. 몇일을 고심한 끝에 그를 장례를 하기로 결정하였다. 
           집에 많이 있던 아기수건을 수의로 삼아 (당시 2살이였던 딸이 있어서 그것이 가장 보드라운 천이였다.) 그를 감싸고 흙으로 채워진 플라스틱박스 속에 묻었다.
         status: 부재
-      - num: 2
+        note_en: |-
+          The first dead pigeon I saw after moving from Paris to Nîmes.
+          It lay on its back on the iron plate of a bouche d'égout on the pavement, completely dried by the sun; the eyes were already gone and the feathers had dried out. The rounded keel of the breastbone rose through the breast feathers. Its posture in death, the size of the plate it lay on, and the proportions of its body on that plate were so well matched that it looked like a mise en scène. It brought back the pigeon I had found and drawn the year before, in 2015, while sleeping rough in Paris.
+          It lay right in front of the flat I had just moved into, so I passed it often, and looking at it I came, quite naturally, to feel that I could not leave it there. I brought down a pizza box from the night before, collected the body, and kept it in the cellar of the building for a few days. After several days of thinking it over, I decided to give it a burial.
+          I used one of the baby towels we had a lot of at home as a shroud — my daughter was two at the time, and it was the softest cloth in the house — wrapped the body in it, and buried it in a plastic box filled with soil.
         images:
-          - 002_Cat_02.webp
-          - 002_Cat_04.webp
-        name: Cat
-        date: 2017.01.30
+          - 001_Suaire_01.webp
+          - 001_Suaire_05.webp
+        links:
+          - columbarium-i
+          - figure-de-pigeon
+          - photogramme-de-pigeon
+          - columbarium-iii
+      - num: 2
         place: |-
           43°50'14.2"N 4°21'58.0"E 
           (Nîmes, France)
-        note_en: |-
-          A pigeon found on the way from home into town in the winter of 2017.
-          It had not been dead long; the breast was torn open and the red organs were visible.
-          Probably bitten by a cat or a rat.
-        links:
-          - columbarium-iii
+        name: Cat
+        date: 2017.01.30
         note_ko: |-
           2017년 겨울 집에서 시내로 가는길에 발견한 비둘기.
           죽은지 별로 되지않은 상태였으며, 가슴쪽이 찢겨져 붉은 장기의 모습이 보였음.
           고양이나 들쥐에게 물어뜯겨진것으로 추정됨.
         status: 부재
-      - num: 3
+        note_en: |-
+          A pigeon found on the way from home into town in the winter of 2017.
+          It had not been dead long; the breast was torn open and the red organs were visible.
+          Probably bitten by a cat or a rat.
         images:
-          - 003_Volet_01.webp
-        name: Volet
-        date: 2018.02.16
+          - 002_Cat_02.webp
+          - 002_Cat_04.webp
+        links:
+          - columbarium-iii
+      - num: 3
         place: |-
           43°50'15.5"N 4°21'52.1"E 
           (Nîmes, France)
-        note_en: |-
-          At some point I had half-noticed, without registering it, a dead pigeon at the window of a ground-floor flat on my way from home to school.
-          It lay in the hidden corner where the volet folds back, in the gap between the window and the metal frame.
-          That gap worked like a friche: things caught on the frame fell into it and piled up, and over time more things piled on top of them.
-          If anyone had been living there they would have cleared it long before, since it would have caught on the window — but it had been left like that for months.
-          A space out of reach of passers-by and street cleaners, yet quietly exposed to them.
-          The things lying in that gap had been catching my eye for a while, but it was quite some time before I realised that one of them was a pigeon.
-          In February 2018 I collected the body. Part of it I buried; part I ground to a powder in a blender.
-          I mixed the powder with a liant as if it were a pigment, made it into something like paint, and used it to draw the figure of a pigeon.
-        links:
-          - collection-des-contenants-en-plastique
-          - couleur-de-pigeon
-          - columbarium-iii
+        name: Volet
+        date: 2018.02.16
         note_ko: |-
           언제부터인가, 집에서 학교가는길에 어느 1층 집 창가에 죽어있는 비둘기가 알게모르게 보였었던거같다. 
           그가 위치했던 위치는 창문과 쇠창틀 사이의 volet 가 접어진 그 공간의 은밀한 구석이였다.
@@ -102,6 +87,21 @@ tables:
           2018년 2월, 나는 그의 몸을 수거해서 일부는 장례를 치루었고, 일부는 믹서기로 갈아내서 가루로 만들었다. 
           나는 그 가루를 마치 안료인것마냥liant 가 섞어서 물감같이 만들어서 그걸로 비둘기 형상을 그렸다.
         status: 부재
+        note_en: |-
+          At some point I had half-noticed, without registering it, a dead pigeon at the window of a ground-floor flat on my way from home to school.
+          It lay in the hidden corner where the volet folds back, in the gap between the window and the metal frame.
+          That gap worked like a friche: things caught on the frame fell into it and piled up, and over time more things piled on top of them.
+          If anyone had been living there they would have cleared it long before, since it would have caught on the window — but it had been left like that for months.
+          A space out of reach of passers-by and street cleaners, yet quietly exposed to them.
+          The things lying in that gap had been catching my eye for a while, but it was quite some time before I realised that one of them was a pigeon.
+          In February 2018 I collected the body. Part of it I buried; part I ground to a powder in a blender.
+          I mixed the powder with a liant as if it were a pigment, made it into something like paint, and used it to draw the figure of a pigeon.
+        images:
+          - 003_Volet_01.webp
+        links:
+          - collection-des-contenants-en-plastique
+          - couleur-de-pigeon
+          - columbarium-iii
       - num: 4
         images:
           - 004_Fondu_01.webp
@@ -158,7 +158,7 @@ tables:
         images:
           - 007_Unknown_01.webp
         name: Unknown
-        date: 2018.9월 경
+        date: '2018.09'
         place: |-
           Nîmes, France
           (exact location not recorded)
@@ -227,22 +227,11 @@ tables:
       - num: 13
         name: Pneu II
       - num: 14
-        images:
-          - 014_Sonic_01.webp
-          - 014_Sonic_02.webp
-        name: Sonic
-        date: 2019.03.15
         place: |-
           43°50'16.5"N 4°21'36.9"E
           (Nîmes, France)
-        note_en: |-
-          Classmates who had gone to the storage rooms of the Musée du Vieux Nîmes for a school project told me they had seen a pigeon inside the building; later I had reason to go to the same place for another project, and was able to collect it then.
-          Its body, in the corridor of the museum store, was almost through decomposition — flesh and feathers gone, only bone and the sharp quills left, so that it looked like a hedgehog.
-          Some months later, in the winter of 2020, "Folk Assemblage" — an exhibition by Olivier Vadrot in which visitors take part by placing objects on a large wooden support — was held at the Chapelle des Jésuites, just in front of the school. I decided to show the pigeon together with the plastic box it had been kept in, and took them to the exhibition and set them on the support.
-          On 9 March 2020, the day the show came down, I was in Paris working as an assistant to Hubert Duprat, so a classmate agreed to take care of the pigeon — and in the process, unfortunately, it was lost.
-        links:
-          - columbarium-iii
-          - folk-assemblageby-olivier-vadrot
+        name: Sonic
+        date: 2019.03.15
         note_ko: |-
           학교 프로젝트로 Musée du Vieux Nîmes의 보관실을 갔던 학교친구들이 건물안에서 비둘기사체를 봤다고알려주었고, 나는 차후에 다른 프로젝트로 같은장소에 들릴일이 생겨서 그때 사체를 수거할수있었다.
           박물관 창고 복도에서 있었던 그의 신체는 부패가 거의 끝나서, 살과 깃털을 온데간데없고 뼈와 뾰족한 깃대 만 남아서 마치 고슴도치와 같은 모습이였다.
@@ -251,6 +240,17 @@ tables:
           전시가 철수하는날이였던 2020.03.09 당시 나는 Hubert Duprat조수일을 하기위해 
           파리로 떠나있던 상황이라 당시 학교 동급생이 비둘기를 맡아주기로하였는데 불행히도 그 과정에서 비둘기가 분실되었다.
         status: 부재
+        note_en: |-
+          Classmates who had gone to the storage rooms of the Musée du Vieux Nîmes for a school project told me they had seen a pigeon inside the building; later I had reason to go to the same place for another project, and was able to collect it then.
+          Its body, in the corridor of the museum store, was almost through decomposition — flesh and feathers gone, only bone and the sharp quills left, so that it looked like a hedgehog.
+          Some months later, in the winter of 2020, "Folk Assemblage" — an exhibition by Olivier Vadrot in which visitors take part by placing objects on a large wooden support — was held at the Chapelle des Jésuites, just in front of the school. I decided to show the pigeon together with the plastic box it had been kept in, and took them to the exhibition and set them on the support.
+          On 9 March 2020, the day the show came down, I was in Paris working as an assistant to Hubert Duprat, so a classmate agreed to take care of the pigeon — and in the process, unfortunately, it was lost.
+        images:
+          - 014_Sonic_01.webp
+          - 014_Sonic_02.webp
+        links:
+          - columbarium-iii
+          - folk-assemblageby-olivier-vadrot
       - num: 15
         images:
           - 015_Virevoltant (1).webp
@@ -304,18 +304,18 @@ tables:
           레지던시 Échangeur22에 거주할 때 전에 비둘기들을 찾았던 옛 빨래터의 다른 구석에서 양쪽날개만 남기고 뜯겨진 비둘기를 발견했다.
           마찬가지로 고양이가 한짓이라고 추측이된다.
       - num: 22
-        images:
-          - 022_Pomme de pin_01.webp
-        name: Pomme de pin
-        date: 2021.01.05
         place: |-
           43°50'20.7"N 4°21'42.0"E
           (Nîmes, France)
-        note_en: A pigeon I went to find after a tip-off from a classmate. It lay right in front of the door of a flat in central Nîmes, with what looked like pine cones placed by its head.
-        links:
-          - columbarium-iv
+        name: Pomme de pin
+        date: 2021.01.05
         note_ko: 학교 동급생한테 제보를 받고 찾은 비둘기. Nîmes 시내 한 아파트 문 바로앞에 누워있었고, 그 머리쪽에 솔방울처럼 보이는 것들이 놓여져있었다.
         status: Columbarium IV
+        note_en: A pigeon I went to find after a tip-off from a classmate. It lay right in front of the door of a flat in central Nîmes, with what looked like pine cones placed by its head.
+        images:
+          - 022_Pomme de pin_01.webp
+        links:
+          - columbarium-iv
       - num: 23
         images:
           - 023_Petit_blanc_01.webp
@@ -333,23 +333,23 @@ tables:
           학교 동급생으로부터 자신이 아파보이는 한 비둘기를 거리에서 주워서 집에서 보살피다가 죽어버렸다고 연락이 왔다.
           그래서 그의 Nîmes 시내에서 북쪽에 위치한 Gambetta 동네에 아파트에 방문 (학생이 지낼만한 조그만한 원룸 스튜디오였다.)해서 발코니에서 죽은 그의 시신을 수습해서 장례를 치루었다.
       - num: 24
-        images:
-          - 024_Devauvert_01.webp
-          - 024_Devauvert_02.webp
-        name: Devauvert I
-        date: 2021.10.28
         place: |-
           43°48'32.5"N 4°19'60.0"E
           (Nîmes, France)
-        note_en: |-
-          Around that time I met Vianney Forest, an archaeozoologist at Inrap (Institut national de recherches archéologiques préventives) in Nîmes, several times to talk about pigeons. His colleague Richard got in touch to say he had found two pigeons in the henhouse at his home in Vauvert.
-          I met Richard separately at Inrap, and he handed them over in an Adidas shoebox.
-        links:
-          - columbarium-iv
+        name: Devauvert I
+        date: 2021.10.28
         note_ko: |-
           Nîmes에 위치한 Inrap(뜻 : Institut national de recherches archéologiques préventives)에서 고고동물학자로 일하시는 Vianney Forest와 당시에 몇번 만나서 비둘기 관련 주제로 얘기할일이 있었는데, 그의 직장동료였던 Richard가 Vauvert에 있는 자신의 집의 닭장에서 두마리의 비둘기를 찾았다고 연락이 왔었음.
           그래서 Inrap에서 Richard와 따로 만났고, 그는 그 비둘기를 아디다스 신발상자에 넣어와 건네주었음.
         status: Columbarium IV
+        note_en: |-
+          Around that time I met Vianney Forest, an archaeozoologist at Inrap (Institut national de recherches archéologiques préventives) in Nîmes, several times to talk about pigeons. His colleague Richard got in touch to say he had found two pigeons in the henhouse at his home in Vauvert.
+          I met Richard separately at Inrap, and he handed them over in an Adidas shoebox.
+        images:
+          - 024_Devauvert_01.webp
+          - 024_Devauvert_02.webp
+        links:
+          - columbarium-iv
       - num: 25
         name: Devauvert II
         status: Columbarium IV
@@ -457,40 +457,40 @@ tables:
           - d-une-cellule-l-autre
         note_ko: Villeneuve lez Avignon에 소재한 La Chartreuse 단체전을 위해 방문중에 옥상의 종탑으로 올라가는 계단길에서 발견한 한 날개부분의 비둘기 사체.
       - num: 33
-        images:
-          - 033_Andre_01.webp
-        name: André
-        date: 2024.09.02
         place: |-
           43°57'56.3"N 4°48'04.8"E
           (Villeneuve-lès-Avignon, France)
-        note_en: For the group exhibition at La Chartreuse I had contacted the heritage teams around Villeneuve lez Avignon and asked them to let me know if they came across a dead pigeon — there are usually a good number living in old fortresses and heritage buildings. Word came from Fort Saint-André, just behind La Chartreuse, and I found a recently dead pigeon in a corner of the courtyard inside the ramparts.
-        links:
-          - columbarium-iii
+        name: André
+        date: 2024.09.02
         note_ko: La Chartreuse 단체전을 위해 당시 Villeneuve lez Avignon 근방에 있는 문화재 관리팀들에게 연락을해서 혹시 그곳에서 죽은 비둘기가 보이면 연락달라고 부탁을했었는데 (보통 그런 고성이나 문화재건물에서 사는 비둘기들이 적지 않기때문에), 마침 La Chartreuse 바로 뒷편에 있는 Fort Saint-André에서 연락이 왔고 성벽의 안뜰의 한 구석에 죽은지 별로 되지않은 비둘기를 찾을수있었다.
         status: 안치 대기중
-      - num: 34
+        note_en: For the group exhibition at La Chartreuse I had contacted the heritage teams around Villeneuve lez Avignon and asked them to let me know if they came across a dead pigeon — there are usually a good number living in old fortresses and heritage buildings. Word came from Fort Saint-André, just behind La Chartreuse, and I found a recently dead pigeon in a corner of the courtyard inside the ramparts.
         images:
-          - 034_Cocteau_01.webp
-          - 034_Cocteau_02.webp
-          - 034_Cocteau_03.webp
-          - 034_Cocteau_04.webp
-        name: Cocteau I
-        date: 2024.09.30
+          - 033_Andre_01.webp
+        links:
+          - columbarium-iii
+      - num: 34
         place: |-
           43°49'13.5"N 4°20'15.9"E
           (Nîmes, France)
-        note_en: |-
-          Among the so-called "grands ensembles" built in the 1960s and 70s in the Pissevin quarter there are a good many abandoned flats; where a building is not maintained it ages, windows break, and pigeons settle inside.
-          Around September 2024 I began talking about these spaces with M. Hazza of H4 IMMO, the company managing the co-owned buildings in the quarter, and with him I visited an abandoned flat on Boulevard Jean Cocteau, where I was able to collect a large number of pigeons.
-          As he explained it, pigeons that had come in through the broken window glass could not get out again because of the strong draught, and had died slowly, trapped.
-        links:
-          - columbarium-iii
+        name: Cocteau I
+        date: 2024.09.30
         note_ko: |-
           Pissevin 구역에 위치한 60-70년대 지어진 소위 "거대" 공동주거건물들중 버려진 세대들이 꽤 있는데, 관리가 되지않는 아파트는 노후화가 되면서 창문이 깨지거나 하는 과정으로 비둘기들이 그 안에 자리 잡는 경우들이 생김.
           2024년 9월경 구역의 공동소유 건물 관리업체소속인 M. Hazza(H4 IMMO)와 이런 공간들에 대해 이야기를 나누기 시작했고, 그의 동행으로 Boulevard Jean Cocteau에 위치한 버려진 한 아파트 세대를 방문해서 거기에 있던 다량의 비둘기 사체들을 수거할수있었다. 
           그의 설명에 따르면, 깨진 창문유리를 통해 건물안에 들어온 비둘기들이 강한 풍속의 기류때문에 밖으로 나가지못해 갇혀서 서서히 죽은것이라고 한다.
         status: 부재
+        note_en: |-
+          Among the so-called "grands ensembles" built in the 1960s and 70s in the Pissevin quarter there are a good many abandoned flats; where a building is not maintained it ages, windows break, and pigeons settle inside.
+          Around September 2024 I began talking about these spaces with M. Hazza of H4 IMMO, the company managing the co-owned buildings in the quarter, and with him I visited an abandoned flat on Boulevard Jean Cocteau, where I was able to collect a large number of pigeons.
+          As he explained it, pigeons that had come in through the broken window glass could not get out again because of the strong draught, and had died slowly, trapped.
+        images:
+          - 034_Cocteau_01.webp
+          - 034_Cocteau_02.webp
+          - 034_Cocteau_03.webp
+          - 034_Cocteau_04.webp
+        links:
+          - columbarium-iii
       - num: 35
         name: Cocteau II
         status: 부재
