@@ -1,3 +1,7 @@
+---
+# Jekyll 이 처리하도록 비워둔 front matter. 아래 ?v= 를 빌드 때마다 갱신해서
+# 브라우저가 옛 table-editor.js 를 계속 쓰는 일을 막는다.
+---
 <!doctype html>
 <html lang="ko">
 <head>
@@ -28,7 +32,7 @@
     /* 표 편집기가 사진 목록을 읽을 때 쓰는 저장소 정보 */
     window.CMS_CONFIG_BACKEND = { repo: 'Won-Jy/archive-wonjy', branch: 'main' };
   </script>
-  <script src="table-editor.js"></script>
+  <script src="table-editor.js?v={{ site.time | date: '%s' }}"></script>
   <script>CMS.init();</script>
 </body>
 </html>
