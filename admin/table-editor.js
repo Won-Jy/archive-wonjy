@@ -52,6 +52,9 @@
     '.wt.wt-wide{position:fixed;inset:0;z-index:9998;background:var(--sui-primary-background-color,#fff);',
     'padding:16px;overflow:auto;display:flex;flex-direction:column}',
     '.wt.wt-wide .wt-scroll{max-height:none;flex:1}',
+    '.wt.wt-wide .wt-grid td{max-width:26em}',
+    'body.wt-wide-open{overflow:hidden}',
+    '.wt-btn.wide{font-weight:600}',
     '.wt-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 8px}',
     '.wt-bar .sp{flex:1}',
     '.wt-btn{font:inherit;font-size:.85em;padding:4px 10px;border:1px solid var(--sui-secondary-border-color,#ccc);',
@@ -59,7 +62,8 @@
     '.wt-btn:hover:not(:disabled){border-color:#888}',
     '.wt-btn:disabled{opacity:.4;cursor:default}',
     '.wt-btn.on{background:#007BFF;border-color:#007BFF;color:#fff}',
-    '.wt-tabs{display:flex;gap:4px;flex-wrap:wrap;margin:0 0 8px}',
+    '.wt-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:0 0 8px}',
+    '.wt-tabs .sp{flex:1}',
     '.wt-scroll{overflow:auto;max-height:70vh;border:1px solid var(--sui-secondary-border-color,#ddd)}',
     '.wt-grid{border-collapse:collapse;font-size:.85em;width:max-content;min-width:100%}',
     '.wt-grid th,.wt-grid td{border:1px solid var(--sui-secondary-border-color,#ddd);padding:0;vertical-align:top}',
@@ -242,6 +246,15 @@
     addT.title = '표를 하나 더 만듭니다';
     addT.onclick = function () { addTable(inst); };
     tabs.appendChild(addT);
+
+    /* 전체 화면 — 항상 보이는 자리에 둔다 (좁은 칸에서 표를 다루기 힘들다) */
+    tabs.appendChild(el('span', 'sp'));
+    var wide = el('button', 'wt-btn wide' + (inst.wide ? ' on' : ''),
+      inst.wide ? '✕  전체 화면 닫기' : '⛶  전체 화면으로 편집');
+    wide.type = 'button';
+    wide.title = '표를 화면 가득 펼쳐서 편집합니다';
+    wide.onclick = function () { setWide(inst, !inst.wide); };
+    tabs.appendChild(wide);
     root.appendChild(tabs);
 
     var table = inst.tables[inst.active];
@@ -307,7 +320,8 @@
     var note = el('p', 'wt-note',
       '칸을 비우면 위 칸이 이어져 내려옵니다 (엑셀의 셀 병합과 같습니다). ' +
       '왼쪽 번호를 눌러 행을 고르면 삭제·이동할 수 있습니다. ' +
-      'Tab · 화살표로 옆 칸, 엑셀에서 복사한 여러 칸을 그대로 붙여넣을 수 있고, Ctrl+Z 로 되돌립니다.');
+      'Tab · 화살표로 옆 칸, 엑셀에서 복사한 여러 칸을 그대로 붙여넣을 수 있고, Ctrl+Z 로 되돌립니다. ' +
+      '⚠ Esc 는 누르지 마세요 — 편집 화면이 닫히면서 저장 안 한 내용이 사라집니다 (에디터 자체 동작입니다).');
     root.appendChild(note);
 
     if (inst.wantFocus) {
@@ -375,6 +389,12 @@
       ph.disabled = !fc.checked;
       inst.emit();
     };
+
+    var capBtn = el('button', 'wt-btn', '사진 캡션…');
+    capBtn.type = 'button';
+    capBtn.title = '사진을 크게 열었을 때 밑에 붙는 글을 어느 열들로 만들지 정합니다';
+    capBtn.onclick = function () { openCaptionRecipe(inst, table); };
+    box.appendChild(capBtn);
 
     box.appendChild(el('span', 'sp'));
 
@@ -731,11 +751,13 @@
 
     bar.appendChild(el('span', 'sp'));
     bar.appendChild(el('span', 'wt-note', rows.length + '행'));
-    var wide = el('button', 'wt-btn' + (inst.wide ? ' on' : ''), inst.wide ? '창 닫기' : '넓게 보기');
-    wide.type = 'button';
-    wide.onclick = function () { inst.wide = !inst.wide; inst.render(); };
-    bar.appendChild(wide);
     return bar;
+  }
+
+  function setWide(inst, on) {
+    inst.wide = !!on;
+    inst.render();
+    if (inst.wide) inst.root.scrollIntoView({ block: 'start' });
   }
 
   /* 번호 열(style: num)의 키 */
@@ -1016,7 +1038,7 @@
     /* 칸이 너무 길어지면 행 전체가 늘어나므로 높이를 제한하고 안에서 스크롤한다 */
     var grow = function () {
       ta.style.height = 'auto';
-      ta.style.height = Math.min(ta.scrollHeight + 2, 150) + 'px';
+      ta.style.height = Math.min(ta.scrollHeight + 2, inst.wide ? 260 : 150) + 'px';
     };
     setTimeout(grow, 0);
     bindTyping(inst, ta);
@@ -1369,6 +1391,16 @@
     }
     return mn + ' ' + p[0];
   }
+  /* 장소 열은 좌표가 아니라 도시·나라만 쓴다 (° 가 없는 첫 줄, 괄호 벗김) */
+  function cityOf(v) {
+    var lines = String(v).split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].indexOf('°') === -1) {
+        return lines[i].replace(/[()]/g, '').trim();
+      }
+    }
+    return '';
+  }
   function autoCaption(table, row) {
     var styleOf = {};
     (table.columns || []).forEach(function (c) { styleOf[c.key] = c.style || 'text'; });
@@ -1376,9 +1408,124 @@
     (table.image_caption || []).forEach(function (cc) {
       var v = row[cc.column];
       if (v == null || String(v).trim() === '') return;
-      out.push(styleOf[cc.column] === 'date' ? prettyDate(v) : String(v).trim());
+      var st = styleOf[cc.column];
+      var piece = st === 'date' ? prettyDate(v) : (st === 'place' ? cityOf(v) : String(v).trim());
+      if (piece) out.push(piece);
     });
     return out.join(' — ');
+  }
+
+  /* ---------- 사진 캡션 조합 ---------- */
+  function openCaptionRecipe(inst, table) {
+    var parts = (table.image_caption || []).map(function (x) {
+      return { column: x.column, italic: !!x.italic };
+    });
+    var cols = (table.columns || []).filter(function (c) {
+      return (c.style || 'text') !== 'images' && (c.style || 'text') !== 'links';
+    });
+
+    var overlay = el('div', 'wt-modal');
+    var box = el('div', 'box narrow');
+    box.appendChild(el('h3', null, '사진 캡션 조합'));
+    var body = el('div', 'body');
+    body.appendChild(el('p', 'wt-hint',
+      '사진을 크게 열었을 때 밑에 붙는 글입니다. 고른 열들의 값을 “ — ” 로 이어 붙입니다. ' +
+      '값이 빈 열은 저절로 빠집니다. 사진마다 따로 쓴 캡션이 있으면 그쪽이 우선입니다.'));
+    var list = el('div');
+    body.appendChild(list);
+    var addBtn = el('button', 'wt-add', '+ 부분 추가');
+    addBtn.type = 'button';
+    addBtn.onclick = function () {
+      parts.push({ column: (cols[0] || {}).key || '', italic: false });
+      draw();
+    };
+    body.appendChild(addBtn);
+    var pv = el('p', 'wt-hint');
+    pv.style.marginTop = '12px';
+    body.appendChild(pv);
+    box.appendChild(body);
+
+    function preview() {
+      var row = (table.rows || [])[0];
+      if (!row) { pv.textContent = ''; return; }
+      var fake = { columns: table.columns, image_caption: parts };
+      var out = autoCaption(fake, row);
+      pv.innerHTML = '';
+      pv.appendChild(el('span', null, '1행으로 미리보기: '));
+      var strong = el('strong');
+      strong.innerHTML = out || '(비어 있음)';
+      pv.appendChild(strong);
+    }
+
+    function draw() {
+      clear(list);
+      if (!parts.length) {
+        list.appendChild(el('p', 'wt-hint', '아직 아무 열도 안 골랐습니다. 캡션이 안 나옵니다.'));
+      }
+      parts.forEach(function (pt, i) {
+        var row = el('div', 'wt-bar');
+        row.style.margin = '0 0 6px';
+
+        var sel = el('select');
+        sel.style.minWidth = '11em';
+        cols.forEach(function (c) { sel.appendChild(new Option(c.label || c.key, c.key)); });
+        if (!cols.some(function (c) { return c.key === pt.column; })) {
+          sel.appendChild(new Option(pt.column + ' (없는 열)', pt.column));
+        }
+        sel.value = pt.column;
+        sel.onchange = function () { pt.column = sel.value; preview(); };
+        row.appendChild(sel);
+
+        var it = el('label', 'wt-note');
+        it.style.display = 'flex'; it.style.alignItems = 'center'; it.style.gap = '4px';
+        var cb = el('input'); cb.type = 'checkbox'; cb.checked = pt.italic;
+        cb.onchange = function () { pt.italic = cb.checked; preview(); };
+        it.appendChild(cb);
+        it.appendChild(el('span', null, '이탤릭'));
+        row.appendChild(it);
+
+        row.appendChild(el('span', 'sp'));
+
+        var up = el('button', 'wt-btn', '↑');
+        up.type = 'button'; up.disabled = i === 0;
+        up.onclick = function () { var t = parts[i - 1]; parts[i - 1] = parts[i]; parts[i] = t; draw(); };
+        var dn = el('button', 'wt-btn', '↓');
+        dn.type = 'button'; dn.disabled = i === parts.length - 1;
+        dn.onclick = function () { var t = parts[i + 1]; parts[i + 1] = parts[i]; parts[i] = t; draw(); };
+        var rm = el('button', 'wt-btn wt-danger', '빼기');
+        rm.type = 'button';
+        rm.onclick = function () { parts.splice(i, 1); draw(); };
+        row.appendChild(up); row.appendChild(dn); row.appendChild(rm);
+        list.appendChild(row);
+      });
+      preview();
+    }
+    draw();
+
+    var foot = el('div', 'foot');
+    function close() { overlay.remove(); }
+    foot.appendChild(el('span', 'sp'));
+    var cancel = el('button', 'wt-btn', '취소');
+    cancel.type = 'button'; cancel.onclick = close;
+    var ok = el('button', 'wt-btn on', '저장');
+    ok.type = 'button';
+    ok.onclick = function () {
+      pushUndo(inst);
+      var out = parts.filter(function (p) { return p.column; }).map(function (p) {
+        var o = { column: p.column };
+        if (p.italic) o.italic = true;
+        return o;
+      });
+      if (out.length) table.image_caption = out; else delete table.image_caption;
+      close();
+      inst.emit(); inst.render();
+    };
+    foot.appendChild(cancel);
+    foot.appendChild(ok);
+    box.appendChild(foot);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
   }
 
   function openCaptionEditor(inst, table, rows, ri, col, index) {
