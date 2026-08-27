@@ -358,11 +358,19 @@
 
     <section class="intro">
 
+      {%- comment -%}
+        에디터가 저장할 때 빈 칸을 '' 로 채워 넣는다. Liquid 에서 빈 문자열은 참이라
+        page.cover 가 있는지만 보면 src="/" 인 깨진 이미지가 나온다.
+        그래서 반드시 문자열을 걷어내고 빈 문자열과 비교한다.
+      {%- endcomment -%}
+      {%- assign _cover = page.cover | default: '' | strip -%}
+      {%- assign _cover_cap = page.cover_caption | default: '' | strip -%}
+
       {% unless cover_hidden %}
-        <div class="intro-cover">
-          {% if page.cover %}
+        {% if _cover != '' %}
+          <div class="intro-cover">
             <figure class="cover">
-              {%- assign cover_src = page.cover -%}
+              {%- assign cover_src = _cover -%}
               {%- unless cover_src contains '/' -%}{%- assign cover_src = img_base | append: cover_src -%}{%- endunless -%}
               <img src="{{ cover_src | relative_url }}" alt="{{ page.title }} cover" loading="lazy" decoding="async"
                 {% if page.cover_width and page.cover_height %} width="{{page.cover_width}}" height="{{page.cover_height}}"{% endif %}
@@ -372,15 +380,15 @@
                 삼켜 레이아웃 전체가 무너진다. 짝이 안 맞으면 태그를 떼고 글자만 남긴다 —
                 서식은 잃되 페이지는 살아남는다.
               {%- endcomment -%}
-              {% if page.cover_caption %}
-                {%- assign _o = page.cover_caption | split: '<i>' | size -%}{%- assign _c = page.cover_caption | split: '</i>' | size -%}{%- assign _oe = page.cover_caption | split: '<em>' | size -%}{%- assign _ce = page.cover_caption | split: '</em>' | size -%}{%- assign safe_cover_cap = page.cover_caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cover_cap = page.cover_caption | strip_html -%}{%- endif -%}
+              {% if _cover_cap != '' %}
+                {%- assign _o = _cover_cap | split: '<i>' | size -%}{%- assign _c = _cover_cap | split: '</i>' | size -%}{%- assign _oe = _cover_cap | split: '<em>' | size -%}{%- assign _ce = _cover_cap | split: '</em>' | size -%}{%- assign safe_cover_cap = _cover_cap -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cover_cap = _cover_cap | strip_html -%}{%- endif -%}
                 <figcaption class="caption">{{ safe_cover_cap }}</figcaption>
               {% else %}
                 <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
               {% endif %}
             </figure>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       {% endunless %}
 
       {% if cover_hidden %}
