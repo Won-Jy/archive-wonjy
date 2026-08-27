@@ -287,6 +287,10 @@
   .spec-table td.nowrap{ white-space:nowrap; }
   .spec-table td.c-place{ color:#555; }
   .spec-table td.c-place .coord{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .spec-table td.c-place a.maplink{ color:inherit; text-decoration:none; }
+  .spec-table td.c-place a.maplink:hover,
+  .spec-table td.c-place a.maplink:focus-visible{ color:var(--blue); }
+  .spec-table td.c-date{ white-space:nowrap; font-variant-numeric:tabular-nums; }
   .spec-table th.h-place, .spec-table td.c-place{ width:13em; }
   .spec-table td.c-note{ color:#555; }
   .spec-table th.h-note, .spec-table td.c-note{ width:26em; }
@@ -728,6 +732,30 @@
                     {%- for cc in t.image_caption -%}
                       {%- assign cv = row[cc.column] | default: '' -%}
                       {%- assign cv = cv | strip -%}
+                      {%- comment -%}
+                        표의 날짜 열과 캡션이 어긋나지 않도록 여기서도 같은 규칙을 쓴다.
+                        숫자와 점만으로 된 값일 때만 바꾼다.
+                      {%- endcomment -%}
+                      {%- assign cleft = cv | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9' | remove: '.' | strip -%}
+                      {%- assign cdots = cv | split: '.' -%}
+                      {%- if cleft == '' and cdots.size >= 2 -%}
+                        {%- assign CMON = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' -%}
+                        {%- assign cm = cdots[1] | plus: 0 -%}
+                        {%- if cm >= 1 and cm <= 12 -%}
+                          {%- assign cmi = cm | minus: 1 -%}
+                          {%- assign cmn = CMON[cmi] -%}
+                          {%- if cdots.size >= 3 -%}
+                            {%- assign cd = cdots[2] | plus: 0 -%}
+                            {%- if cd >= 1 -%}
+                              {%- assign cv = cd | append: ' ' | append: cmn | append: ' ' | append: cdots[0] -%}
+                            {%- else -%}
+                              {%- assign cv = cmn | append: ' ' | append: cdots[0] -%}
+                            {%- endif -%}
+                          {%- else -%}
+                            {%- assign cv = cmn | append: ' ' | append: cdots[0] -%}
+                          {%- endif -%}
+                        {%- endif -%}
+                      {%- endif -%}
                       {%- if cv != '' -%}
                         {%- if cc.italic -%}
                           {%- assign piece = '<i>' | append: cv | append: '</i>' -%}
@@ -831,9 +859,48 @@
                           {%- assign pparts = val | split: nl -%}
                           <td class="c-place"{% if rs != '' %} rowspan="{{ rs }}"{% endif %} data-v="{{ val | strip_html | escape }}">
                             {%- for pp in pparts -%}
-                              {%- if forloop.first -%}<span class="coord">{{ pp }}</span>{%- else -%}<br>{{ pp }}{%- endif -%}
+                              {%- if forloop.first -%}
+                                {%- comment -%} 첫 줄이 좌표면 구글 지도로 연다. 좌표가 없는 행도 있다. {%- endcomment -%}
+                                {%- if pp contains '°' -%}
+                                  {%- assign mapq = pp | strip | url_encode -%}
+                                  <a class="coord maplink" href="https://www.google.com/maps/search/?api=1&amp;query={{ mapq }}" target="_blank" rel="noopener" title="Open in Google Maps">{{ pp }}</a>
+                                {%- else -%}
+                                  <span class="coord">{{ pp }}</span>
+                                {%- endif -%}
+                              {%- else -%}<br>{{ pp }}{%- endif -%}
                             {%- endfor -%}
                           </td>
+                        {%- elsif cls == 'date' -%}
+                          {%- comment -%}
+                            파일에는 2016.11.12 로 두고 페이지에서만 12 Nov 2016 으로 보여준다.
+                            숫자와 점만으로 이루어진 값일 때만 바꾼다 — "2018.9월 경" 같은 값은 그대로 둔다.
+                            date 필터는 쓰지 않는다 (엔진마다 파싱이 달라진다).
+                          {%- endcomment -%}
+                          {%- assign val = row[c.key] -%}
+                          {%- assign dtxt = val -%}
+                          {%- assign leftover = val | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9' | remove: '.' | strip -%}
+                          {%- if leftover == '' -%}
+                            {%- assign MON = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec' | split: ',' -%}
+                            {%- assign dp = val | split: '.' -%}
+                            {%- assign mnum = 0 -%}
+                            {%- if dp.size >= 2 -%}{%- assign mnum = dp[1] | plus: 0 -%}{%- endif -%}
+                            {%- if mnum >= 1 and mnum <= 12 -%}
+                              {%- assign midx = mnum | minus: 1 -%}
+                              {%- assign mname = MON[midx] -%}
+                              {%- if dp.size >= 3 -%}
+                                {%- assign dnum = dp[2] | plus: 0 -%}
+                                {%- if dnum >= 1 -%}
+                                  {%- assign dtxt = dnum | append: ' ' | append: mname | append: ' ' | append: dp[0] -%}
+                                {%- else -%}
+                                  {%- assign dtxt = mname | append: ' ' | append: dp[0] -%}
+                                {%- endif -%}
+                              {%- else -%}
+                                {%- assign dtxt = mname | append: ' ' | append: dp[0] -%}
+                              {%- endif -%}
+                            {%- endif -%}
+                          {%- endif -%}
+                          {%- comment -%} 검색은 두 표기 모두로 걸리게 한다 {%- endcomment -%}
+                          <td class="c-date{% if c.nowrap %} nowrap{% endif %}"{% if rs != '' %} rowspan="{{ rs }}"{% endif %} data-v="{{ val | append: ' ' | append: dtxt | strip_html | escape }}">{{ dtxt }}</td>
                         {%- else -%}
                           {%- assign val = row[c.key] -%}
                           {%- assign vhtml = val | newline_to_br -%}
@@ -1104,20 +1171,32 @@
         if(original.length) blocks.push([bStart, bReach]);
         const hasMerges = blocks.some(([a, b])=>b > a);
 
-        /* --- per-row lightbox --- */
+        /* --- lightbox: 표 전체가 하나로 이어진다 ---
+           예전 HTML 표처럼 사진 하나를 열면 화살표로 표 끝까지 넘어간다.
+           검색으로 숨겨진 행은 빼서, 보고 있는 것과 넘기는 것이 어긋나지 않게 한다. */
         table.addEventListener('click', (e)=>{
           const btn = e.target.closest('.spec-thumb');
           if(!btn) return;
           e.preventDefault();
-          const gal = btn.parentNode.querySelector('.spec-gal');
-          if(!gal) return;
-          const items = Array.from(gal.children).map((n)=>({
-            type: 'image',
-            src: n.getAttribute('data-src'),
-            alt: n.getAttribute('data-cap') || '',
-            caption: n.getAttribute('data-cap') || ''
-          }));
-          window.WorkLightbox.open(items, 0);
+          const mine = btn.parentNode.querySelector('.spec-gal');
+          const items = [];
+          let start = 0;
+          Array.from(tbody.rows).forEach((tr)=>{
+            if(tr.hidden) return;
+            tr.querySelectorAll('.spec-gal').forEach((gal)=>{
+              if(gal === mine) start = items.length;
+              Array.from(gal.children).forEach((n)=>{
+                items.push({
+                  type: 'image',
+                  src: n.getAttribute('data-src'),
+                  alt: n.getAttribute('data-cap') || '',
+                  caption: n.getAttribute('data-cap') || ''
+                });
+              });
+            });
+          });
+          if(!items.length) return;
+          window.WorkLightbox.open(items, start);
         });
 
         /* --- sorting --- */
@@ -1169,7 +1248,14 @@
             /* 한 덩어리 안의 글자를 다 모아서 본다. 병합된 칸의 내용은 첫 행에만
                들어 있으므로, 이렇게 해야 아래 행을 검색해도 걸린다. */
             let text = '';
-            for(let i = a; i <= b; i++) text += original[i].textContent + ' ';
+            for(let i = a; i <= b; i++){
+              text += original[i].textContent + ' ';
+              /* data-v 에는 원래 표기도 들어 있다 (예: 날짜 2016.11.12 와 12 Nov 2016) */
+              Array.from(original[i].cells).forEach((td)=>{
+                const v = td.getAttribute('data-v');
+                if(v) text += v + ' ';
+              });
+            }
             const hit = !q || text.toLowerCase().indexOf(q) !== -1;
             for(let i = a; i <= b; i++){
               original[i].hidden = !hit;
