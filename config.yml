@@ -3,6 +3,12 @@ backend:
   repo: Won-Jy/archive-wonjy
   branch: main
 
+# 주소(파일 이름) 규칙: 악센트를 떼고 영문 알파벳·숫자·하이픈만 남긴다.
+# 이미 있는 페이지 주소는 그대로고, 앞으로 만드는 것부터 적용된다.
+slug:
+  encoding: ascii
+  clean_accents: true
+
 media_folder: images
 public_folder: /images
 
@@ -29,7 +35,8 @@ collections:
     fields:
       - { name: layout, widget: hidden, default: work }
 
-      - { name: title, label: Title, widget: string }
+      - { name: title, label: Title, widget: string,
+          hint: "페이지 주소가 이 제목으로 만들어집니다. 한글만 적으면 주소가 임의의 문자가 되니 영문/불어 제목으로 적어주세요." }
 
       - { name: drafts, label: "초고 (사이트에 안 나감)", widget: text, required: false,
           preview: false,
@@ -76,6 +83,7 @@ collections:
         widget: list
         required: false
         collapsed: true
+        thumbnail: src
         types:
           - name: image
             label: Image
@@ -121,8 +129,9 @@ collections:
         summary: "{{fields.id}}"
         fields:
           - { name: id, label: Text, widget: relation, required: false,
-              collection: texts, search_fields: [title_en, id], value_field: id,
-              display_fields: [title_en] }
+              collection: texts, value_field: id,
+              search_fields: [title_en, id, "author.name"],
+              display_fields: ["{{year}}  {{author.name}} — {{title_en}}"] }
 
   # ─────────────────────────────────────────────────────────────
   # Texts — _data/texts/{id}.yml (front matter 없는 순수 YAML)
@@ -136,7 +145,7 @@ collections:
     format: yaml
     slug: "{{title_en}}"
     identifier_field: id
-    summary: "{{date_written | date('YYYY')}}  {{author.name}} — {{title_en}}"
+    summary: "{{year}}  {{author.name}} — {{title_en}}"
     sortable_fields: [year, author.family, title_en, id]
     fields:
       - { name: id, label: ID, widget: string,
@@ -150,19 +159,20 @@ collections:
           - { name: language, label: 언어, widget: string,
               hint: "fr, en, sv 처럼 두 글자로." }
 
-      - { name: title_en, label: 영문 제목, widget: string, required: false }
+      - { name: title_en, label: 영문 제목, widget: string,
+          hint: "목록과 작업 페이지의 '연결된 글'에 이 제목이 쓰입니다. 영문 제목이 없으면 원문 제목을 그대로 적어주세요." }
 
       - name: author
         label: 필자
         widget: object
         fields:
-          - { name: name, label: 이름 (표시용), widget: string, required: false,
+          - { name: name, label: 이름 (표시용), widget: string,
               hint: "사이트에 나오는 이름입니다. 예: Gunilla Petri" }
           - { name: family, label: 성 (정렬용), widget: string, required: false,
               hint: "에디터 목록을 성으로 정렬할 때만 씁니다. 사이트에는 안 나옵니다." }
           - { name: bio_html, label: 소개, widget: text, required: false }
 
-      - { name: year, label: 연도, widget: number, value_type: int, preview: false }
+      - { name: year, label: 연도, widget: number, value_type: string, preview: false }
       - { name: date_written, label: 작성일, widget: datetime,
           date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
 
