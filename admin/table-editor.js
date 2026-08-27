@@ -102,7 +102,24 @@
     'padding:4px;cursor:pointer;color:inherit;font:inherit;font-size:.75em;text-align:center}',
     '.wt-pick button.on{border-color:#007BFF;box-shadow:inset 0 0 0 2px #007BFF}',
     '.wt-pick img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px}',
-    '.wt-pick .nm{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
+    '.wt-pick .nm{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '.wt-grid thead th .colbtn{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;',
+    'opacity:.4;padding:0 3px;margin-left:5px;line-height:1}',
+    '.wt-grid thead th .colbtn:hover{opacity:1;color:#007BFF}',
+    '.wt-grid thead th.addcol{padding:2px 6px;text-align:center;font-weight:400}',
+    '.wt-grid th.addcol{border-right:0}',
+    '.wt-grid td.addcol{border:0;background:transparent;min-width:3.5em}',
+    '.wt-modal .box.narrow{max-width:460px}',
+    '.wt-form{display:grid;grid-template-columns:auto 1fr;gap:9px 10px;align-items:center;font-size:.9em}',
+    '.wt-form .full{grid-column:1/-1}',
+    '.wt-form input[type=text],.wt-form select{font:inherit;font-size:1em;padding:4px 6px;border-radius:0;',
+    'border:1px solid var(--sui-secondary-border-color,#ccc);width:100%;box-sizing:border-box;',
+    'background:var(--sui-primary-background-color,#fff);color:inherit}',
+    '.wt-opts{display:flex;flex-wrap:wrap;gap:6px 14px}',
+    '.wt-opts label{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;cursor:pointer}',
+    '.wt-hint{font-size:.85em;opacity:.65;line-height:1.55;margin:0}',
+    '.wt-danger{color:#c00}',
+    '.wt-sep{width:1px;align-self:stretch;background:var(--sui-secondary-border-color,#ddd);margin:0 2px}'
   ].join('');
 
   function injectCSS() {
@@ -190,17 +207,20 @@
       return;
     }
 
-    /* 표가 여러 개면 탭 */
-    if (inst.tables.length > 1) {
-      var tabs = el('div', 'wt-tabs');
-      inst.tables.forEach(function (t, i) {
-        var b = el('button', 'wt-btn' + (i === inst.active ? ' on' : ''), t.heading || t.id || ('표 ' + (i + 1)));
-        b.type = 'button';
-        b.onclick = function () { inst.active = i; inst.selected.clear(); inst.render(); };
-        tabs.appendChild(b);
-      });
-      root.appendChild(tabs);
-    }
+    /* 표 탭 — 표가 하나여도 보여준다 (여기에 "표 추가" 가 붙어 있으므로) */
+    var tabs = el('div', 'wt-tabs');
+    inst.tables.forEach(function (t, i) {
+      var b = el('button', 'wt-btn' + (i === inst.active ? ' on' : ''), t.heading || t.id || ('표 ' + (i + 1)));
+      b.type = 'button';
+      b.onclick = function () { inst.active = i; inst.selected.clear(); inst.render(); };
+      tabs.appendChild(b);
+    });
+    var addT = el('button', 'wt-add', '+ 표');
+    addT.type = 'button';
+    addT.title = '표를 하나 더 만듭니다';
+    addT.onclick = function () { addTable(inst); };
+    tabs.appendChild(addT);
+    root.appendChild(tabs);
 
     var table = inst.tables[inst.active];
     if (!table) return;
@@ -216,11 +236,23 @@
     var thead = el('thead');
     var htr = el('tr');
     htr.appendChild(el('th', null, ''));
-    cols.forEach(function (c) {
+    cols.forEach(function (c, ci) {
       var th = el('th', null, c.label || c.key);
       if (c.private) { var m = el('span', 'priv', '(비공개)'); th.appendChild(m); }
+      var gear = el('button', 'colbtn', '▾');
+      gear.type = 'button';
+      gear.title = '열 고치기';
+      gear.onclick = function () { openColumnEditor(inst, table, ci); };
+      th.appendChild(gear);
       htr.appendChild(th);
     });
+    var addTh = el('th', 'addcol');
+    var addC = el('button', 'wt-add', '+ 열');
+    addC.type = 'button';
+    addC.title = '열을 하나 더 만듭니다';
+    addC.onclick = function () { openColumnEditor(inst, table, -1); };
+    addTh.appendChild(addC);
+    htr.appendChild(addTh);
     thead.appendChild(htr);
     grid.appendChild(thead);
 
@@ -243,6 +275,7 @@
       cols.forEach(function (c) {
         tr.appendChild(cellFor(inst, table, rows, ri, c));
       });
+      tr.appendChild(el('td', 'addcol'));
       tbody.appendChild(tr);
     });
     grid.appendChild(tbody);
@@ -260,7 +293,6 @@
     return {
       id: 'table1',
       heading: '새 표',
-      image_base: '',
       filter: true,
       columns: [
         { key: 'num', label: '#', style: 'num', sortable: false },
@@ -272,7 +304,7 @@
     };
   }
 
-  /* 표 자체의 설정 (제목 / 사진 폴더) */
+  /* 표 자체의 설정 (제목 / 사진 폴더 / 검색상자 / 표 순서·삭제) */
   function tableSettings(inst, table) {
     var box = el('div', 'wt-bar');
     function field(label, key, width) {
@@ -285,13 +317,323 @@
       i.style.width = width;
       i.style.padding = '3px 6px';
       i.value = table[key] == null ? '' : String(table[key]);
-      i.oninput = function () { table[key] = i.value; inst.emit(); };
+      i.oninput = function () {
+        if (i.value === '') delete table[key]; else table[key] = i.value;
+        inst.emit();
+      };
       w.appendChild(i);
       box.appendChild(w);
+      return i;
     }
-    field('표 제목', 'heading', '16em');
-    field('사진 폴더', 'image_base', '24em');
+    field('표 제목', 'heading', '14em');
+    field('사진 폴더', 'image_base', '20em');
+
+    /* 페이지에 검색상자를 둘지 */
+    var fw = el('label', 'wt-note');
+    fw.style.display = 'flex'; fw.style.alignItems = 'center'; fw.style.gap = '5px';
+    fw.title = '사이트 페이지에서 이 표 위에 검색상자를 보여줍니다.';
+    var fc = el('input');
+    fc.type = 'checkbox';
+    fc.checked = table.filter !== false;
+    fw.appendChild(fc);
+    fw.appendChild(el('span', null, '검색상자'));
+    box.appendChild(fw);
+    var ph = field('안내 문구', 'filter_placeholder', '12em');
+    ph.disabled = !fc.checked;
+    fc.onchange = function () {
+      table.filter = fc.checked;
+      ph.disabled = !fc.checked;
+      inst.emit();
+    };
+
+    box.appendChild(el('span', 'sp'));
+
+    var i = inst.active;
+    var mvL = el('button', 'wt-btn', '◀');
+    mvL.type = 'button'; mvL.title = '표를 왼쪽으로';
+    mvL.disabled = i <= 0;
+    mvL.onclick = function () { moveTable(inst, -1); };
+    var mvR = el('button', 'wt-btn', '▶');
+    mvR.type = 'button'; mvR.title = '표를 오른쪽으로';
+    mvR.disabled = i >= inst.tables.length - 1;
+    mvR.onclick = function () { moveTable(inst, 1); };
+    var del = el('button', 'wt-btn', '표 삭제');
+    del.type = 'button';
+    del.onclick = function () { removeTable(inst); };
+    if (inst.tables.length > 1) { box.appendChild(mvL); box.appendChild(mvR); }
+    box.appendChild(del);
     return box;
+  }
+
+  /* ---------- 표 자체를 다루기 ---------- */
+  function addTable(inst) {
+    var t = starterTable();
+    var used = {};
+    inst.tables.forEach(function (x) { used[x.id] = true; });
+    var n = inst.tables.length + 1;
+    while (used['table' + n]) n++;
+    t.id = 'table' + n;
+    t.heading = '새 표 ' + n;
+    inst.tables.push(t);
+    inst.active = inst.tables.length - 1;
+    inst.selected.clear();
+    inst.emit(); inst.render();
+  }
+
+  function removeTable(inst) {
+    var t = inst.tables[inst.active];
+    if (!t) return;
+    var n = (t.rows || []).length;
+    var name = t.heading || t.id || '이 표';
+    if (!window.confirm('"' + name + '" 을 지웁니다. 행 ' + n + '개가 함께 사라집니다.\n계속할까요?')) return;
+    inst.tables.splice(inst.active, 1);
+    if (inst.active >= inst.tables.length) inst.active = inst.tables.length - 1;
+    if (inst.active < 0) inst.active = 0;
+    inst.selected.clear();
+    inst.emit(); inst.render();
+  }
+
+  function moveTable(inst, dir) {
+    var i = inst.active, j = i + dir;
+    if (j < 0 || j >= inst.tables.length) return;
+    var t = inst.tables[i];
+    inst.tables[i] = inst.tables[j];
+    inst.tables[j] = t;
+    inst.active = j;
+    inst.emit(); inst.render();
+  }
+
+  /* ---------- 열 다루기 ---------- */
+  var STYLES = [
+    ['text', '글'],
+    ['num', '번호'],
+    ['note', '긴 글 (노트)'],
+    ['place', '장소 — 첫 줄은 줄바꿈 안 함'],
+    ['images', '사진'],
+    ['links', '작업 링크']
+  ];
+  var LIST_STYLES = { images: 1, links: 1 };
+
+  /* 속이름으로 쓸 수 있는 모양으로 다듬는다 */
+  function slugKey(v) {
+    var k = String(v || '').trim().toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/g, '');
+    if (!k || /^[0-9]/.test(k)) k = 'c' + (k ? '_' + k : '');
+    if (k === 'no') k = 'num';   /* YAML 에서 no 는 false 가 된다 */
+    return k;
+  }
+  function uniqueKey(cols, base, skipIndex) {
+    var k = base, n = 2;
+    var taken = function (x) {
+      return cols.some(function (c, i) { return i !== skipIndex && c.key === x; });
+    };
+    while (taken(k)) { k = base + '_' + n; n++; }
+    return k;
+  }
+  /* 행의 키 순서를 열 순서와 맞춘다 — 파일이 읽기 쉬워진다 */
+  function orderRowKeys(table) {
+    var order = (table.columns || []).map(function (c) { return c.key; });
+    (table.rows || []).forEach(function (r, i) {
+      var out = {};
+      order.forEach(function (k) { if (k in r) out[k] = r[k]; });
+      Object.keys(r).forEach(function (k) { if (!(k in out)) out[k] = r[k]; });
+      table.rows[i] = out;
+    });
+  }
+  function filledCount(table, key) {
+    return (table.rows || []).filter(function (r) { return !isBlank(r[key]); }).length;
+  }
+
+  function openColumnEditor(inst, table, index) {
+    var cols = table.columns || (table.columns = []);
+    var isNew = index < 0;
+    var col = isNew ? { key: '', label: '', style: 'text' } : cols[index];
+    var draft = clone(col);
+    if (!draft.style) draft.style = 'text';
+
+    var overlay = el('div', 'wt-modal');
+    var box = el('div', 'box narrow');
+    box.appendChild(el('h3', null, isNew ? '열 추가' : '열 고치기'));
+
+    var body = el('div', 'body');
+    var form = el('div', 'wt-form');
+
+    function row(label, node) {
+      form.appendChild(el('span', null, label));
+      form.appendChild(node);
+    }
+
+    var labelIn = el('input'); labelIn.type = 'text';
+    labelIn.value = draft.label == null ? '' : String(draft.label);
+    labelIn.placeholder = '표 머리에 보이는 글자';
+    row('보이는 이름', labelIn);
+
+    var keyIn = el('input'); keyIn.type = 'text';
+    keyIn.value = draft.key == null ? '' : String(draft.key);
+    keyIn.placeholder = '영문 소문자';
+    row('속이름', keyIn);
+
+    var styleSel = el('select');
+    STYLES.forEach(function (p) { styleSel.appendChild(new Option(p[1], p[0])); });
+    styleSel.value = draft.style;
+    row('종류', styleSel);
+
+    var opts = el('div', 'wt-opts');
+    function check(key, text, title) {
+      var w = el('label');
+      w.title = title || '';
+      var c = el('input'); c.type = 'checkbox'; c.checked = !!draft[key];
+      c.onchange = function () { draft[key] = c.checked; };
+      w.appendChild(c);
+      w.appendChild(el('span', null, text));
+      opts.appendChild(w);
+      return c;
+    }
+    check('private', '비공개', '파일에는 남지만 사이트 페이지에는 안 나옵니다.');
+    check('merge', '세로 병합', '칸을 비우면 위 칸이 이어져 내려옵니다.');
+    check('nowrap', '줄바꿈 금지', '내용이 한 줄로 유지됩니다.');
+    check('italic', '이탤릭', '페이지에서 기울임체로 나옵니다.');
+    row('옵션', opts);
+
+    var hint = el('p', 'wt-hint full');
+    body.appendChild(form);
+    body.appendChild(hint);
+    box.appendChild(body);
+
+    function refreshHint() {
+      var msgs = [];
+      if (!isNew) {
+        var n = filledCount(table, col.key);
+        msgs.push('이 열에 값이 든 행 ' + n + '개.');
+        if (keyIn.value.trim() && slugKey(keyIn.value) !== col.key) {
+          msgs.push('속이름을 바꾸면 값들도 같이 옮겨집니다.');
+        }
+        if (styleSel.value !== (col.style || 'text') && n > 0) {
+          msgs.push('종류를 바꾸면 이미 든 값의 표시가 달라질 수 있습니다.');
+        }
+      } else {
+        msgs.push('속이름은 파일 안에서만 쓰는 이름입니다. 비워두면 보이는 이름에서 만들어 드립니다.');
+      }
+      hint.textContent = msgs.join(' ');
+    }
+    labelIn.oninput = refreshHint;
+    keyIn.oninput = refreshHint;
+    styleSel.onchange = refreshHint;
+    refreshHint();
+
+    var foot = el('div', 'foot');
+    function close() { overlay.remove(); }
+
+    /* 초안을 실제 열로 옮긴다. 반환값은 성공 여부 */
+    function commit() {
+      var label = labelIn.value.trim();
+      var raw = keyIn.value.trim() || label;
+      /* 한글만 적힌 이름은 속이름으로 못 쓴다 → col1, col2 … 로 대신한다 */
+      var base = /[A-Za-z0-9]/.test(raw) ? slugKey(raw) : ('col' + (cols.length + 1));
+      var newKey = uniqueKey(cols, base, isNew ? -1 : index);
+      var oldKey = isNew ? null : col.key;
+
+      var next = { key: newKey, label: label || newKey, style: styleSel.value };
+      ['private', 'merge', 'nowrap', 'italic'].forEach(function (k) {
+        if (draft[k]) next[k] = true;
+      });
+      /* 원래 열에 있던 다른 설정은 그대로 둔다 */
+      if (!isNew) {
+        Object.keys(col).forEach(function (k) {
+          if (['key', 'label', 'style', 'private', 'merge', 'nowrap', 'italic'].indexOf(k) === -1) {
+            next[k] = col[k];
+          }
+        });
+      }
+
+      if (isNew) {
+        cols.push(next);
+      } else {
+        cols[index] = next;
+        if (oldKey !== newKey) {
+          (table.rows || []).forEach(function (r) {
+            if (oldKey in r) { r[newKey] = r[oldKey]; delete r[oldKey]; }
+          });
+          (table.image_caption || []).forEach(function (cc) {
+            if (cc.column === oldKey) cc.column = newKey;
+          });
+        }
+        /* 목록형으로 바뀌면 글자 하나를 목록으로 감싼다 */
+        if (LIST_STYLES[next.style] && !LIST_STYLES[col.style || 'text']) {
+          (table.rows || []).forEach(function (r) {
+            var v = r[newKey];
+            if (typeof v === 'string' && v !== '') r[newKey] = [v];
+          });
+        }
+        if (!LIST_STYLES[next.style] && LIST_STYLES[col.style || 'text']) {
+          (table.rows || []).forEach(function (r) {
+            if (Array.isArray(r[newKey])) r[newKey] = r[newKey].join(', ');
+          });
+        }
+      }
+      orderRowKeys(table);
+      return true;
+    }
+
+    if (!isNew) {
+      var left = el('button', 'wt-btn', '◀');
+      left.type = 'button'; left.title = '왼쪽으로';
+      left.disabled = index <= 0;
+      left.onclick = function () { commit(); moveColumn(inst, table, index, -1); close(); };
+      var right = el('button', 'wt-btn', '▶');
+      right.type = 'button'; right.title = '오른쪽으로';
+      right.disabled = index >= cols.length - 1;
+      right.onclick = function () { commit(); moveColumn(inst, table, index, 1); close(); };
+      var del = el('button', 'wt-btn wt-danger', '열 삭제');
+      del.type = 'button';
+      del.onclick = function () {
+        var n = filledCount(table, col.key);
+        var msg = '"' + (col.label || col.key) + '" 열을 지웁니다.';
+        if (n > 0) msg += '\n값이 든 행 ' + n + '개의 내용도 함께 사라집니다.';
+        msg += '\n계속할까요?';
+        if (!window.confirm(msg)) return;
+        cols.splice(index, 1);
+        (table.rows || []).forEach(function (r) { delete r[col.key]; });
+        if (table.image_caption) {
+          table.image_caption = table.image_caption.filter(function (cc) { return cc.column !== col.key; });
+          if (!table.image_caption.length) delete table.image_caption;
+        }
+        close();
+        inst.emit(); inst.render();
+      };
+      foot.appendChild(left);
+      foot.appendChild(right);
+      foot.appendChild(el('span', 'wt-sep'));
+      foot.appendChild(del);
+    }
+    foot.appendChild(el('span', 'sp'));
+    var cancel = el('button', 'wt-btn', '취소');
+    cancel.type = 'button';
+    cancel.onclick = close;
+    var save = el('button', 'wt-btn on', isNew ? '열 추가' : '저장');
+    save.type = 'button';
+    save.onclick = function () {
+      if (!commit()) return;
+      close();
+      inst.emit(); inst.render();
+    };
+    foot.appendChild(cancel);
+    foot.appendChild(save);
+    box.appendChild(foot);
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
+    setTimeout(function () { labelIn.focus(); }, 0);
+  }
+
+  function moveColumn(inst, table, index, dir) {
+    var cols = table.columns;
+    var j = index + dir;
+    if (j < 0 || j >= cols.length) return;
+    var t = cols[index]; cols[index] = cols[j]; cols[j] = t;
+    orderRowKeys(table);
+    inst.emit(); inst.render();
   }
 
   function toolbar(inst, table, rows) {
