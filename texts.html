@@ -113,6 +113,21 @@ title: Texts
     ]);
     const PENDING_LABEL = {{ site.pending_label | default: "forthcoming" | jsonify }};
 
+    /* 원제가 이미 영어인 글은 영역본에서 "English title: …" 를 또 보여줄 필요가 없다.
+       태그·악센트·대소문자·문장부호를 걷어내고 견줘서 같으면 감춘다.
+       (예: "Like a rolling stone" 과 "Like a Rolling Stone" 은 같은 것으로 본다.) */
+    function normTitle(v){
+      return String(v || '')
+        .replace(/<[^>]*>/g, '')
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '');
+    }
+    function sameTitle(a, b){
+      const x = normTitle(a);
+      return x !== '' && x === normTitle(b);
+    }
+
     const params = new URLSearchParams(location.search);
     const currentId = params.get('id');
     if (currentId && DATA[currentId]) { renderDetail(currentId); } else { renderList(); }
@@ -203,7 +218,7 @@ title: Texts
           </div>
           ${(t.translations||[]).map(tr=>`
             <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-              ${(t.title_en && tr.language === 'en') ? `<span class="title-en-note">English title: ${t.title_en}</span><br><br>` : ''}${tr.body_html || ''}
+              ${(t.title_en && tr.language === 'en' && !sameTitle(t.title_original?.text_html, t.title_en)) ? `<span class="title-en-note">English title: ${t.title_en}</span><br><br>` : ''}${tr.body_html || ''}
             </div>
           `).join('')}
         </div>
