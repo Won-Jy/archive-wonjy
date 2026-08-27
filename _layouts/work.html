@@ -237,7 +237,7 @@
   .spec-tools{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 10px; }
   .spec-filter{
     font:inherit; font-size:.9em; padding:6px 10px;
-    border:1px solid var(--border); border-radius:6px;
+    border:1px solid var(--border); border-radius:0;
     color:var(--text); background:#fff; min-width:210px;
   }
   .spec-filter:focus{ outline:2px solid var(--blue); outline-offset:-1px; border-color:var(--blue); }
@@ -644,7 +644,13 @@
       </div>
     </section>
 
-    {%- if content and content != "" -%}
+    {%- comment -%}
+      본문이 비어 있으면 <article> 자체를 만들지 않는다. Jekyll은 빈 본문에도
+      줄바꿈 하나를 넘겨주는데, 그러면 모바일에서 section.intro + article.rich 규칙이
+      페이지 맨 아래에 구분선 하나를 그려버린다. strip 후 비교해야 걸러진다.
+    {%- endcomment -%}
+    {%- assign _body = content | strip -%}
+    {%- if _body != "" -%}
       <article class="rich">{{ content }}</article>
     {%- endif -%}
 
