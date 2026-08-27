@@ -3,6 +3,12 @@ backend:
   repo: Won-Jy/archive-wonjy
   branch: main
 
+# 주소(파일 이름) 규칙: 악센트를 떼고 영문 알파벳·숫자·하이픈만 남긴다.
+# 이미 있는 페이지 주소는 그대로고, 앞으로 만드는 것부터 적용된다.
+slug:
+  encoding: ascii
+  clean_accents: true
+
 media_folder: images
 public_folder: /images
 
@@ -29,7 +35,8 @@ collections:
     fields:
       - { name: layout, widget: hidden, default: work }
 
-      - { name: title, label: Title, widget: string }
+      - { name: title, label: Title, widget: string,
+          hint: "페이지 주소가 이 제목으로 만들어집니다. 한글만 적으면 주소가 임의의 문자가 되니 영문/불어 제목으로 적어주세요." }
 
       - { name: drafts, label: "초고 (사이트에 안 나감)", widget: text, required: false,
           preview: false,
