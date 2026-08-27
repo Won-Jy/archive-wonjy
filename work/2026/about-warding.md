@@ -28,7 +28,7 @@ media:
     src: /images/2026/about-warding/View_about_warding_02_01-03.webp
     caption: <i>Intake Form</i>, cast glass, 34×56×1.5cm, 2026.
   - type: image
-    src: /images/2026/about-warding/View_about_warding_03_01-06.webp
+    src: /images/2026/about-warding/View_about_warding_03_01-06-1.webp
     caption: <i>Intake Form</i>, cast glass, 34×56×1.5cm, 2026.
   - type: image
     src: /images/2026/about-warding/View_about_warding_03_02-07.webp
