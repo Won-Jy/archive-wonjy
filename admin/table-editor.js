@@ -77,8 +77,8 @@
     '.wt-cell:focus{outline:2px solid #007BFF;outline-offset:-2px;background:var(--sui-primary-background-color,#fff)}',
     '.wt-cont{padding:5px 7px;opacity:.45;font-size:.9em;cursor:pointer;white-space:nowrap}',
     '.wt-cont:hover{opacity:.9;text-decoration:underline}',
-    '.wt-merge{display:block;padding:2px 7px 5px;font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap}',
-    '.wt-merge:hover{opacity:1;text-decoration:underline}',
+    '.wt-merge{font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;text-decoration:none;color:inherit}',
+    '.wt-merge:hover{opacity:1;text-decoration:underline;color:#007BFF}',
     '.wt-chips{display:flex;flex-wrap:wrap;gap:4px;padding:5px 7px}',
     '.wt-chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--sui-secondary-border-color,#ccc);',
     'padding:1px 4px;font-size:.9em;max-width:16em}',
@@ -109,11 +109,12 @@
     '.wt-grid thead th.addcol{padding:2px 6px;text-align:center;font-weight:400}',
     '.wt-grid th.addcol{border-right:0}',
     '.wt-grid td.addcol{border:0;background:transparent;min-width:3.5em}',
-    '.wt-grid td{position:relative}',
-    '.wt-exp{position:absolute;top:1px;right:1px;z-index:1;border:0;background:transparent;color:inherit;',
-    'font:inherit;font-size:.85em;line-height:1;padding:2px 3px;cursor:pointer;opacity:0}',
-    '.wt-grid td:hover .wt-exp,.wt-grid td:focus-within .wt-exp{opacity:.45}',
-    '.wt-exp:hover{opacity:1 !important;color:#007BFF}',
+    '.wt-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:2px 7px 5px}',
+    '.wt-foot a{font-size:.8em;opacity:.55;cursor:pointer;white-space:nowrap;',
+    'text-decoration:none;color:inherit}',
+    '.wt-foot a:hover{opacity:1;text-decoration:underline;color:#007BFF}',
+    '.wt-cap{font-size:.8em;opacity:.6;padding:0 7px 4px;line-height:1.4;word-break:break-word}',
+    '.wt-chip.hascap{border-color:#007BFF}',
     '.wt-big{width:100%;min-height:14em;box-sizing:border-box;font:inherit;line-height:1.6;padding:8px;',
     'border:1px solid var(--sui-secondary-border-color,#ccc);border-radius:0;resize:vertical;',
     'background:var(--sui-primary-background-color,#fff);color:inherit}',
@@ -439,6 +440,7 @@
   var STYLES = [
     ['text', '글'],
     ['num', '번호'],
+    ['date', '날짜 — 2016.11.12 을 12 Nov 2016 으로 보여줌'],
     ['note', '긴 글 (노트)'],
     ['place', '장소 — 첫 줄은 줄바꿈 안 함'],
     ['images', '사진'],
@@ -972,20 +974,23 @@
     }
 
     var style = col.style || 'text';
+    var foot = el('div', 'wt-foot');
+
     if (style === 'images') td.appendChild(imagesCell(inst, table, rows, ri, col));
     else if (style === 'links') td.appendChild(linksCell(inst, table, rows, ri, col));
     else {
       td.appendChild(textCell(inst, table, rows, ri, col, ci));
-      var exp = el('button', 'wt-exp', '⤢');
-      exp.type = 'button';
-      exp.title = '큰 창에서 고치기';
-      exp.onclick = function () { openBigEditor(inst, rows, ri, col); };
-      td.appendChild(exp);
+      /* 긴 글을 큰 창에서 — 스크롤바에 가리지 않도록 칸 아래에 둔다 */
+      var more = el('a', null, '⤢ 크게');
+      more.href = 'javascript:void(0)';
+      more.title = '큰 창에서 고치기';
+      more.onclick = function () { openBigEditor(inst, rows, ri, col); };
+      foot.appendChild(more);
     }
 
     if (merge && rows.length > ri + 1) {
       var span = spanOf(rows, ri, key);
-      var a = el('a', 'wt-merge', span > 1 ? ('▏' + span + '칸 병합 — 나누기') : '▏아래 칸과 합치기');
+      var a = el('a', 'wt-merge', span > 1 ? (span + '칸 병합 — 나누기') : '아래 칸과 합치기');
       a.href = 'javascript:void(0)';
       a.onclick = function () {
         pushUndo(inst);
@@ -996,8 +1001,9 @@
         }
         inst.emit(); inst.render();
       };
-      td.appendChild(a);
+      foot.appendChild(a);
     }
+    if (foot.childNodes.length) td.appendChild(foot);
     return td;
   }
 
@@ -1055,13 +1061,18 @@
 
   function linksCell(inst, table, rows, ri, col) {
     var wrap = el('div', 'wt-chips');
-    var dict = table.links || {};
+    var dict = table.links || (table.links = {});
     var vals = Array.isArray(rows[ri][col.key]) ? rows[ri][col.key] : [];
     vals.forEach(function (k, i) {
       var d = dict[k] || {};
       var chip = el('div', 'wt-chip');
-      chip.appendChild(el('span', null, d.title || k));
-      var x = el('button', null, '×'); x.type = 'button'; x.title = '빼기';
+      var lbl = el('button', null, d.title || k);
+      lbl.type = 'button';
+      lbl.style.opacity = '1';
+      lbl.title = '이 작업의 표기와 주소를 고칩니다 (표 전체에 반영됩니다)';
+      lbl.onclick = function () { openLinkEditor(inst, table, k); };
+      chip.appendChild(lbl);
+      var x = el('button', null, '×'); x.type = 'button'; x.title = '이 행에서 빼기';
       x.onclick = function () {
         pushUndo(inst);
         vals.splice(i, 1);
@@ -1072,34 +1083,251 @@
       wrap.appendChild(chip);
     });
     var keys = Object.keys(dict).filter(function (k) { return vals.indexOf(k) === -1; });
-    if (keys.length) {
-      var sel = el('select', 'wt-add');
-      sel.appendChild(new Option('+ 작업', ''));
-      keys.forEach(function (k) { sel.appendChild(new Option(dict[k].title || k, k)); });
-      sel.onchange = function () {
-        if (!sel.value) return;
-        pushUndo(inst);
-        rows[ri][col.key] = vals.concat([sel.value]);
-        inst.emit(); inst.render();
-      };
-      wrap.appendChild(sel);
-    }
+    var sel = el('select', 'wt-add');
+    sel.appendChild(new Option('+ 작업', ''));
+    keys.forEach(function (k) { sel.appendChild(new Option(dict[k].title || k, k)); });
+    sel.appendChild(new Option('+ 새 작업 만들기…', '__new__'));
+    sel.onchange = function () {
+      var v = sel.value;
+      sel.value = '';
+      if (!v) return;
+      if (v === '__new__') {
+        openLinkEditor(inst, table, null, function (newKey) {
+          pushUndo(inst);
+          rows[ri][col.key] = vals.concat([newKey]);
+          inst.emit(); inst.render();
+        });
+        return;
+      }
+      pushUndo(inst);
+      rows[ri][col.key] = vals.concat([v]);
+      inst.emit(); inst.render();
+    };
+    wrap.appendChild(sel);
     return wrap;
   }
 
+  /* ---------- 작업 링크 목록 ---------- */
+  /* 저장소에 이미 있는 작업 페이지 목록 (공개 저장소라 인증 없이 읽힌다) */
+  var pagesCache = null;
+  function listWorkPages(repo, branch) {
+    if (pagesCache) return Promise.resolve(pagesCache);
+    if (!repo) return Promise.reject(new Error('저장소를 모릅니다'));
+    var url = 'https://api.github.com/repos/' + repo + '/git/trees/' +
+      encodeURIComponent(branch || 'main') + '?recursive=1';
+    function sortPages(list) {
+      return list.sort(function (a, b) { return a.slug < b.slug ? -1 : (a.slug > b.slug ? 1 : 0); });
+    }
+    /* 한 번에 가져오기 */
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function (j) {
+      if (j.truncated) throw new Error('truncated');
+      var out = (j.tree || [])
+        .filter(function (x) { return /^work\/[0-9]{4}\/[^/]+\.md$/.test(x.path); })
+        .map(function (x) {
+          var m = x.path.match(/^work\/([0-9]{4})\/(.+)\.md$/);
+          return { year: m[1], slug: m[2], path: '/work/' + m[1] + '/' + m[2] + '.html' };
+        });
+      if (!out.length) throw new Error('빈 목록');
+      pagesCache = sortPages(out);
+      return pagesCache;
+    }).catch(function () {
+      /* 안 되면 사진 목록과 같은 방식으로 연도 폴더를 하나씩 훑는다 */
+      var api = 'https://api.github.com/repos/' + repo + '/contents/';
+      var ref = '?ref=' + encodeURIComponent(branch || 'main');
+      return fetch(api + 'work' + ref).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }).then(function (list) {
+        var years = (Array.isArray(list) ? list : [])
+          .filter(function (x) { return x.type === 'dir' && /^[0-9]{4}$/.test(x.name); });
+        return Promise.all(years.map(function (y) {
+          return fetch(api + 'work/' + y.name + ref).then(function (r) {
+            return r.ok ? r.json() : [];
+          }).then(function (files) {
+            return (Array.isArray(files) ? files : [])
+              .filter(function (f) { return f.type === 'file' && /\.md$/.test(f.name); })
+              .map(function (f) {
+                var slug = f.name.replace(/\.md$/, '');
+                return { year: y.name, slug: slug, path: '/work/' + y.name + '/' + slug + '.html' };
+              });
+          });
+        }));
+      }).then(function (chunks) {
+        var out = [];
+        chunks.forEach(function (c) { out = out.concat(c); });
+        pagesCache = sortPages(out);
+        return pagesCache;
+      });
+    });
+  }
+
+  function openLinkEditor(inst, table, key, onSaved) {
+    var dict = table.links || (table.links = {});
+    var isNew = !key;
+    var src = isNew ? { title: '', year: '', note: '', path: '' } : (dict[key] || {});
+    var used = 0;
+    if (!isNew) {
+      (table.rows || []).forEach(function (r) {
+        Object.keys(r).forEach(function (k) {
+          if (Array.isArray(r[k]) && r[k].indexOf(key) !== -1) used++;
+        });
+      });
+    }
+
+    var overlay = el('div', 'wt-modal');
+    var box = el('div', 'box narrow');
+    box.appendChild(el('h3', null, isNew ? '새 작업 만들기' : '작업 고치기'));
+    var body = el('div', 'body');
+    var form = el('div', 'wt-form');
+    function row(label, node) {
+      form.appendChild(el('span', null, label));
+      form.appendChild(node);
+    }
+    function text(v, ph) {
+      var i = el('input'); i.type = 'text';
+      i.value = v == null ? '' : String(v);
+      if (ph) i.placeholder = ph;
+      return i;
+    }
+    var titleIn = text(src.title, '예: Columbarium VII');
+    row('제목', titleIn);
+    var yearIn = text(src.year, '예: 2027  ·  2019 –');
+    row('연도', yearIn);
+    var noteIn = text(src.note, '예: by Olivier Vadrot');
+    row('덧말', noteIn);
+    var pathIn = text(src.path, '/work/2027/columbarium-vii.html');
+    row('주소', pathIn);
+
+    var pick = el('select');
+    pick.appendChild(new Option('불러오는 중…', ''));
+    pick.disabled = true;
+    row('있는 페이지', pick);
+    body.appendChild(form);
+
+    var hint = el('p', 'wt-hint');
+    hint.textContent = isNew
+      ? '주소를 비워두면 페이지에서 회색 글씨로 나오고, 나중에 주소만 채우면 표 전체가 한꺼번에 링크가 됩니다.'
+      : ('이 작업을 쓰고 있는 칸 ' + used + '개. 여기서 고치면 그 칸들이 모두 같이 바뀝니다.');
+    body.appendChild(hint);
+    box.appendChild(body);
+
+    listWorkPages(inst.backend.repo, inst.backend.branch).then(function (pages) {
+      clear(pick);
+      pick.appendChild(new Option('(고르면 주소가 채워집니다)', ''));
+      pages.forEach(function (pg) {
+        pick.appendChild(new Option(pg.slug + '  (' + pg.year + ')', pg.path));
+      });
+      pick.disabled = false;
+      pick.value = '';
+      pick.onchange = function () { if (pick.value) pathIn.value = pick.value; };
+    }).catch(function (e) {
+      clear(pick);
+      pick.appendChild(new Option('목록을 못 불러왔습니다 — 주소를 직접 적어주세요', ''));
+    });
+
+    var foot = el('div', 'foot');
+    function close() { overlay.remove(); }
+
+    if (!isNew) {
+      var del = el('button', 'wt-btn wt-danger', '목록에서 지우기');
+      del.type = 'button';
+      del.onclick = function () {
+        var msg = '"' + (src.title || key) + '" 을 작업 목록에서 지웁니다.';
+        if (used > 0) msg += '\n이 작업이 들어 있던 칸 ' + used + '개에서도 빠집니다.';
+        msg += '\n계속할까요?';
+        if (!window.confirm(msg)) return;
+        pushUndo(inst);
+        delete dict[key];
+        (table.rows || []).forEach(function (r) {
+          Object.keys(r).forEach(function (k) {
+            if (!Array.isArray(r[k])) return;
+            var i = r[k].indexOf(key);
+            if (i !== -1) {
+              r[k].splice(i, 1);
+              if (!r[k].length) delete r[k];
+            }
+          });
+        });
+        close();
+        inst.emit(); inst.render();
+      };
+      foot.appendChild(del);
+    }
+    foot.appendChild(el('span', 'sp'));
+    var cancel = el('button', 'wt-btn', '취소');
+    cancel.type = 'button'; cancel.onclick = close;
+    var save = el('button', 'wt-btn on', isNew ? '만들기' : '저장');
+    save.type = 'button';
+    save.onclick = function () {
+      var title = titleIn.value.trim();
+      if (!title) { window.alert('제목을 적어주세요.'); titleIn.focus(); return; }
+      pushUndo(inst);
+      var base = /[A-Za-z0-9]/.test(title)
+        ? String(title).trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+        : 'work';
+      if (!base) base = 'work';
+      var newKey = base, n = 2;
+      while (dict[newKey] && newKey !== key) { newKey = base + '_' + n; n++; }
+
+      var entry = { title: title };
+      if (yearIn.value.trim()) entry.year = yearIn.value.trim();
+      entry.note = noteIn.value.trim();
+      entry.path = pathIn.value.trim();
+
+      if (!isNew && newKey !== key) {
+        delete dict[key];
+        (table.rows || []).forEach(function (r) {
+          Object.keys(r).forEach(function (k) {
+            if (!Array.isArray(r[k])) return;
+            var i = r[k].indexOf(key);
+            if (i !== -1) r[k][i] = newKey;
+          });
+        });
+      }
+      dict[newKey] = entry;
+      close();
+      if (onSaved) onSaved(newKey);
+      else { inst.emit(); inst.render(); }
+    };
+    foot.appendChild(cancel);
+    foot.appendChild(save);
+    box.appendChild(foot);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
+    setTimeout(function () { titleIn.focus(); }, 0);
+  }
+
+  /* 사진 항목은 파일 이름(문자열)이거나 {file, caption} 이다 */
+  function fileOf(v) { return (v && typeof v === 'object') ? (v.file || '') : (v == null ? '' : String(v)); }
+  function capOf(v) { return (v && typeof v === 'object') ? (v.caption || '') : ''; }
+  function srcOf(base, name) { return /^https?:|^\//.test(name) ? name : base + name; }
+
   function imagesCell(inst, table, rows, ri, col) {
+    var box = el('div');
     var wrap = el('div', 'wt-chips');
     var vals = Array.isArray(rows[ri][col.key]) ? rows[ri][col.key] : [];
     var base = (table.image_base || '').replace(/\/+$/, '') + '/';
-    vals.forEach(function (name, i) {
-      var chip = el('div', 'wt-chip');
+    vals.forEach(function (v, i) {
+      var name = fileOf(v), cap = capOf(v);
+      var chip = el('div', 'wt-chip' + (cap ? ' hascap' : ''));
       var img = el('img');
-      img.src = /^https?:|^\//.test(name) ? name : base + name;
+      img.src = srcOf(base, name);
       img.alt = '';
       img.loading = 'lazy';
       img.onerror = function () { img.remove(); };
       chip.appendChild(img);
       chip.appendChild(el('span', null, name));
+
+      var ed = el('button', null, '✎');
+      ed.type = 'button';
+      ed.title = cap ? ('캡션: ' + cap) : '이 사진만 캡션 따로 쓰기';
+      ed.onclick = function () { openCaptionEditor(inst, table, rows, ri, col, i); };
+      chip.appendChild(ed);
+
       var x = el('button', null, '×'); x.type = 'button'; x.title = '빼기';
       x.onclick = function () {
         pushUndo(inst);
@@ -1114,7 +1342,99 @@
     add.type = 'button';
     add.onclick = function () { openPicker(inst, table, rows, ri, col); };
     wrap.appendChild(add);
-    return wrap;
+    box.appendChild(wrap);
+
+    /* 따로 쓴 캡션은 칸 안에 보여준다 — 안 그러면 있는 줄도 모른다 */
+    vals.forEach(function (v) {
+      var cap = capOf(v);
+      if (cap) box.appendChild(el('div', 'wt-cap', '“' + cap + '”'));
+    });
+    return box;
+  }
+
+  /* 표에 설정된 자동 캡션이 어떻게 나오는지 미리 만들어 본다 */
+  /* 사이트가 날짜를 보여주는 방식과 같게 (숫자와 점만일 때만 바꾼다) */
+  var MONTHS_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function prettyDate(v) {
+    var t = String(v).trim();
+    if (!/^[0-9.]+$/.test(t)) return t;
+    var p = t.split('.');
+    if (p.length < 2) return t;
+    var m = parseInt(p[1], 10);
+    if (!(m >= 1 && m <= 12)) return t;
+    var mn = MONTHS_EN[m - 1];
+    if (p.length >= 3) {
+      var d = parseInt(p[2], 10);
+      if (d >= 1) return d + ' ' + mn + ' ' + p[0];
+    }
+    return mn + ' ' + p[0];
+  }
+  function autoCaption(table, row) {
+    var styleOf = {};
+    (table.columns || []).forEach(function (c) { styleOf[c.key] = c.style || 'text'; });
+    var out = [];
+    (table.image_caption || []).forEach(function (cc) {
+      var v = row[cc.column];
+      if (v == null || String(v).trim() === '') return;
+      out.push(styleOf[cc.column] === 'date' ? prettyDate(v) : String(v).trim());
+    });
+    return out.join(' — ');
+  }
+
+  function openCaptionEditor(inst, table, rows, ri, col, index) {
+    var vals = rows[ri][col.key];
+    var v = vals[index];
+    var name = fileOf(v);
+    var base = (table.image_base || '').replace(/\/+$/, '') + '/';
+
+    var overlay = el('div', 'wt-modal');
+    var box = el('div', 'box narrow');
+    box.appendChild(el('h3', null, '사진 캡션 — ' + name));
+    var body = el('div', 'body');
+
+    var pv = el('img');
+    pv.src = srcOf(base, name);
+    pv.alt = '';
+    pv.style.maxWidth = '100%';
+    pv.style.maxHeight = '200px';
+    pv.style.display = 'block';
+    pv.style.margin = '0 auto 10px';
+    pv.onerror = function () { pv.remove(); };
+    body.appendChild(pv);
+
+    var auto = autoCaption(table, rows[ri]);
+    body.appendChild(el('p', 'wt-hint',
+      auto ? ('비워두면 자동 캡션이 쓰입니다: “' + auto + '”')
+           : '이 표에는 자동 캡션 설정이 없습니다. 비워두면 캡션이 안 나옵니다.'));
+
+    var ta = el('textarea', 'wt-big');
+    ta.style.minHeight = '6em';
+    ta.value = capOf(v);
+    body.appendChild(ta);
+    box.appendChild(body);
+
+    var foot = el('div', 'foot');
+    function close() { overlay.remove(); }
+    var cancel = el('button', 'wt-btn', '취소');
+    cancel.type = 'button'; cancel.onclick = close;
+    var ok = el('button', 'wt-btn on', '저장');
+    ok.type = 'button';
+    ok.onclick = function () {
+      pushUndo(inst);
+      var text = ta.value.trim();
+      vals[index] = text ? { file: name, caption: text } : name;
+      rows[ri][col.key] = vals;
+      close();
+      inst.emit(); inst.render();
+    };
+    foot.appendChild(el('span', 'sp'));
+    foot.appendChild(cancel);
+    foot.appendChild(ok);
+    box.appendChild(foot);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
+    setTimeout(function () { ta.focus(); }, 0);
   }
 
   /* ---------- 사진 고르기 ---------- */
@@ -1194,7 +1514,8 @@
   function addImages(inst, rows, ri, col, names) {
     pushUndo(inst);
     var vals = Array.isArray(rows[ri][col.key]) ? rows[ri][col.key].slice() : [];
-    names.forEach(function (n) { if (vals.indexOf(n) === -1) vals.push(n); });
+    var have = vals.map(fileOf);
+    names.forEach(function (n) { if (have.indexOf(n) === -1) { vals.push(n); have.push(n); } });
     rows[ri][col.key] = vals;
     inst.emit(); inst.render();
   }
