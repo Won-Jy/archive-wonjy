@@ -109,6 +109,14 @@
     '.wt-grid thead th.addcol{padding:2px 6px;text-align:center;font-weight:400}',
     '.wt-grid th.addcol{border-right:0}',
     '.wt-grid td.addcol{border:0;background:transparent;min-width:3.5em}',
+    '.wt-grid td{position:relative}',
+    '.wt-exp{position:absolute;top:1px;right:1px;z-index:1;border:0;background:transparent;color:inherit;',
+    'font:inherit;font-size:.85em;line-height:1;padding:2px 3px;cursor:pointer;opacity:0}',
+    '.wt-grid td:hover .wt-exp,.wt-grid td:focus-within .wt-exp{opacity:.45}',
+    '.wt-exp:hover{opacity:1 !important;color:#007BFF}',
+    '.wt-big{width:100%;min-height:14em;box-sizing:border-box;font:inherit;line-height:1.6;padding:8px;',
+    'border:1px solid var(--sui-secondary-border-color,#ccc);border-radius:0;resize:vertical;',
+    'background:var(--sui-primary-background-color,#fff);color:inherit}',
     '.wt-modal .box.narrow{max-width:460px}',
     '.wt-form{display:grid;grid-template-columns:auto 1fr;gap:9px 10px;align-items:center;font-size:.9em}',
     '.wt-form .full{grid-column:1/-1}',
@@ -158,8 +166,21 @@
       lastSent: null,
       drawn: false,
       onChange: null,
-      backend: { repo: '', branch: 'main' }
+      backend: { repo: '', branch: 'main' },
+      undoStack: [],
+      redoStack: [],
+      editSnapshot: null,
+      editDirty: null,
+      wantFocus: null
     };
+
+    /* 되돌리기 — 격자 안에서만 잡는다 */
+    inst.root.addEventListener('keydown', function (e) {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      var k = (e.key || '').toLowerCase();
+      if (k === 'z' && !e.shiftKey) { e.preventDefault(); e.stopPropagation(); doUndo(inst); }
+      else if (k === 'y' || (k === 'z' && e.shiftKey)) { e.preventDefault(); e.stopPropagation(); doRedo(inst); }
+    });
 
     inst.attach = function (node) {
       if (!node) return;
@@ -272,8 +293,8 @@
       rh.appendChild(rb);
       tr.appendChild(rh);
 
-      cols.forEach(function (c) {
-        tr.appendChild(cellFor(inst, table, rows, ri, c));
+      cols.forEach(function (c, ci) {
+        tr.appendChild(cellFor(inst, table, rows, ri, c, ci));
       });
       tr.appendChild(el('td', 'addcol'));
       tbody.appendChild(tr);
@@ -284,8 +305,15 @@
 
     var note = el('p', 'wt-note',
       '칸을 비우면 위 칸이 이어져 내려옵니다 (엑셀의 셀 병합과 같습니다). ' +
-      '왼쪽 번호를 눌러 행을 고르면 삭제·이동할 수 있습니다.');
+      '왼쪽 번호를 눌러 행을 고르면 삭제·이동할 수 있습니다. ' +
+      'Tab · 화살표로 옆 칸, 엑셀에서 복사한 여러 칸을 그대로 붙여넣을 수 있고, Ctrl+Z 로 되돌립니다.');
     root.appendChild(note);
+
+    if (inst.wantFocus) {
+      var f = inst.wantFocus;
+      inst.wantFocus = null;
+      setTimeout(function () { focusAt(inst, f.r, f.c, false); }, 0);
+    }
   }
 
   /* 새 표의 기본 뼈대. 열 구성을 바꾸려면 아직 config 쪽에서 손봐야 한다. */
@@ -317,6 +345,7 @@
       i.style.width = width;
       i.style.padding = '3px 6px';
       i.value = table[key] == null ? '' : String(table[key]);
+      bindTyping(inst, i);
       i.oninput = function () {
         if (i.value === '') delete table[key]; else table[key] = i.value;
         inst.emit();
@@ -367,6 +396,7 @@
 
   /* ---------- 표 자체를 다루기 ---------- */
   function addTable(inst) {
+    pushUndo(inst);
     var t = starterTable();
     var used = {};
     inst.tables.forEach(function (x) { used[x.id] = true; });
@@ -386,6 +416,7 @@
     var n = (t.rows || []).length;
     var name = t.heading || t.id || '이 표';
     if (!window.confirm('"' + name + '" 을 지웁니다. 행 ' + n + '개가 함께 사라집니다.\n계속할까요?')) return;
+    pushUndo(inst);
     inst.tables.splice(inst.active, 1);
     if (inst.active >= inst.tables.length) inst.active = inst.tables.length - 1;
     if (inst.active < 0) inst.active = 0;
@@ -396,6 +427,7 @@
   function moveTable(inst, dir) {
     var i = inst.active, j = i + dir;
     if (j < 0 || j >= inst.tables.length) return;
+    pushUndo(inst);
     var t = inst.tables[i];
     inst.tables[i] = inst.tables[j];
     inst.tables[j] = t;
@@ -526,6 +558,7 @@
 
     /* 초안을 실제 열로 옮긴다. 반환값은 성공 여부 */
     function commit() {
+      pushUndo(inst);
       var label = labelIn.value.trim();
       var raw = keyIn.value.trim() || label;
       /* 한글만 적힌 이름은 속이름으로 못 쓴다 → col1, col2 … 로 대신한다 */
@@ -592,6 +625,7 @@
         if (n > 0) msg += '\n값이 든 행 ' + n + '개의 내용도 함께 사라집니다.';
         msg += '\n계속할까요?';
         if (!window.confirm(msg)) return;
+        pushUndo(inst);
         cols.splice(index, 1);
         (table.rows || []).forEach(function (r) { delete r[col.key]; });
         if (table.image_caption) {
@@ -631,6 +665,7 @@
     var cols = table.columns;
     var j = index + dir;
     if (j < 0 || j >= cols.length) return;
+    pushUndo(inst);
     var t = cols[index]; cols[index] = cols[j]; cols[j] = t;
     orderRowKeys(table);
     inst.emit(); inst.render();
@@ -649,15 +684,26 @@
     var sel = Array.from(inst.selected).sort(function (a, b) { return a - b; });
 
     btn('행 추가', function () {
+      pushUndo(inst);
       var at = sel.length ? sel[sel.length - 1] + 1 : rows.length;
       rows.splice(at, 0, {});
       renumber(table, rows);
       inst.selected = new Set([at]);
       inst.emit(); inst.render();
     });
+    btn('행 복제 (' + sel.length + ')', function () {
+      if (!sel.length) return;
+      pushUndo(inst);
+      var at = sel[sel.length - 1] + 1;
+      var copies = sel.map(function (i) { return clone(rows[i]); });
+      copies.reverse().forEach(function (r) { rows.splice(at, 0, r); });
+      inst.selected = new Set(copies.map(function (_, k) { return at + k; }));
+      inst.emit(); inst.render();
+    }, sel.length > 0);
     btn('행 삭제 (' + sel.length + ')', function () {
       if (!sel.length) return;
       if (!window.confirm(sel.length + '개 행을 지웁니다. 계속할까요?')) return;
+      pushUndo(inst);
       sel.slice().reverse().forEach(function (i) { rows.splice(i, 1); });
       inst.selected.clear();
       inst.emit(); inst.render();
@@ -668,10 +714,18 @@
     btn('선택 해제', function () { inst.selected.clear(); inst.render(); }, sel.length > 0);
     if (numKey(table)) {
       btn('번호 다시 매기기', function () {
+        pushUndo(inst);
         renumber(table, rows, true);
         inst.emit(); inst.render();
       });
     }
+
+    bar.appendChild(el('span', 'wt-sep'));
+    var ub = btn('되돌리기' + (inst.undoStack.length ? ' (' + inst.undoStack.length + ')' : ''),
+      function () { doUndo(inst); }, inst.undoStack.length > 0);
+    ub.title = 'Ctrl+Z';
+    var rb2 = btn('다시', function () { doRedo(inst); }, inst.redoStack.length > 0);
+    rb2.title = 'Ctrl+Shift+Z';
 
     bar.appendChild(el('span', 'sp'));
     bar.appendChild(el('span', 'wt-note', rows.length + '행'));
@@ -698,6 +752,7 @@
 
   function moveRows(inst, rows, sel, dir) {
     if (!sel.length) return;
+    pushUndo(inst);
     var order = dir < 0 ? sel.slice() : sel.slice().reverse();
     var next = new Set();
     order.forEach(function (i) {
@@ -710,8 +765,194 @@
     inst.emit(); inst.render();
   }
 
+  /* ---------- 되돌리기 ---------- */
+  function pushSnapshot(inst, snap) {
+    if (snap == null) return;
+    var top = inst.undoStack[inst.undoStack.length - 1];
+    if (top === snap) return;
+    inst.undoStack.push(snap);
+    if (inst.undoStack.length > 60) inst.undoStack.shift();
+    inst.redoStack.length = 0;
+  }
+  function pushUndo(inst) { pushSnapshot(inst, JSON.stringify(inst.tables)); }
+
+  function restore(inst, stackFrom, stackTo) {
+    if (!stackFrom.length) return;
+    stackTo.push(JSON.stringify(inst.tables));
+    inst.tables = JSON.parse(stackFrom.pop());
+    if (inst.active >= inst.tables.length) inst.active = Math.max(0, inst.tables.length - 1);
+    inst.selected.clear();
+    inst.editDirty = null;
+    inst.emit(); inst.render();
+  }
+  function doUndo(inst) { restore(inst, inst.undoStack, inst.redoStack); }
+  function doRedo(inst) { restore(inst, inst.redoStack, inst.undoStack); }
+
+  /* 글자를 치기 시작할 때 딱 한 번만 스냅샷을 남긴다 (글자마다 쌓이면 못 쓴다) */
+  function bindTyping(inst, node) {
+    node.addEventListener('focus', function () {
+      inst.editSnapshot = JSON.stringify(inst.tables);
+    });
+    node.addEventListener('input', function () {
+      if (inst.editDirty !== node) {
+        pushSnapshot(inst, inst.editSnapshot);
+        inst.editDirty = node;
+      }
+    });
+    node.addEventListener('blur', function () {
+      if (inst.editDirty === node) inst.editDirty = null;
+    });
+  }
+
+  /* ---------- 키보드로 칸 옮기기 ---------- */
+  function cellList(inst) {
+    return [].slice.call(inst.root.querySelectorAll('textarea.wt-cell[data-r]'))
+      .map(function (t) { return { el: t, r: +t.dataset.r, c: +t.dataset.c }; })
+      .sort(function (a, b) { return a.r - b.r || a.c - b.c; });
+  }
+  function focusAt(inst, r, c, toEnd) {
+    var t = inst.root.querySelector('textarea.wt-cell[data-r="' + r + '"][data-c="' + c + '"]');
+    if (!t) return false;
+    t.focus();
+    var pos = toEnd ? t.value.length : 0;
+    try { t.setSelectionRange(pos, pos); } catch (e) { /* 무시 */ }
+    return true;
+  }
+  function moveFocus(inst, r, c, dr, dc) {
+    var list = cellList(inst);
+    if (dc) {
+      var i = list.findIndex(function (x) { return x.r === r && x.c === c; });
+      var j = i + (dc > 0 ? 1 : -1);
+      if (j < 0 || j >= list.length) return;
+      focusAt(inst, list[j].r, list[j].c, false);
+      return;
+    }
+    var same = list.filter(function (x) { return x.c === c; });
+    var cand = dr > 0
+      ? same.filter(function (x) { return x.r > r; })[0]
+      : same.filter(function (x) { return x.r < r; }).pop();
+    if (cand) focusAt(inst, cand.r, cand.c, dr < 0);
+  }
+  function atFirstLine(ta) {
+    return ta.selectionStart === ta.selectionEnd &&
+      ta.value.lastIndexOf('\n', ta.selectionStart - 1) === -1;
+  }
+  function atLastLine(ta) {
+    return ta.selectionStart === ta.selectionEnd &&
+      ta.value.indexOf('\n', ta.selectionStart) === -1;
+  }
+
+  /* ---------- 엑셀에서 붙여넣기 ---------- */
+  /* 엑셀·구글시트가 주는 형식: 칸은 탭, 행은 줄바꿈. 안에 탭이나 줄바꿈이 든 칸은 " 로 감싼다. */
+  function parseGrid(text) {
+    text = String(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\n+$/, '');
+    var rows = [], row = [], cur = '', i = 0, quoted = false;
+    while (i < text.length) {
+      var ch = text.charAt(i);
+      if (quoted) {
+        if (ch === '"') {
+          if (text.charAt(i + 1) === '"') { cur += '"'; i += 2; continue; }
+          quoted = false; i++; continue;
+        }
+        cur += ch; i++; continue;
+      }
+      if (ch === '"' && cur === '') { quoted = true; i++; continue; }
+      if (ch === '\t') { row.push(cur); cur = ''; i++; continue; }
+      if (ch === '\n') { row.push(cur); rows.push(row); row = []; cur = ''; i++; continue; }
+      cur += ch; i++;
+    }
+    row.push(cur); rows.push(row);
+    return rows;
+  }
+
+  function setPasted(table, rows, r, col, v) {
+    var key = col.key;
+    if (v === '') { delete rows[r][key]; return; }
+    if (col.style === 'images') { rows[r][key] = v.split(/\s*,\s*/).filter(Boolean); return; }
+    if (col.style === 'num' && !isNaN(Number(v))) { rows[r][key] = Number(v); return; }
+    rows[r][key] = v;
+  }
+
+  function applyPaste(inst, table, rows, r0, c0, grid) {
+    var cols = table.columns || [];
+    var wide = 0;
+    grid.forEach(function (g) { if (g.length > wide) wide = g.length; });
+
+    var need = (r0 + grid.length) - rows.length;
+    var spill = (c0 + wide) - cols.length;
+    var overwrite = 0, skipped = 0;
+    grid.forEach(function (g, gi) {
+      g.forEach(function (v, gj) {
+        var r = r0 + gi, c = c0 + gj;
+        if (c >= cols.length) return;
+        if (cols[c].style === 'links') { skipped++; return; }
+        if (r >= rows.length) return;
+        var cur = rows[r][cols[c].key];
+        if (!isBlank(cur) && String(cur) !== v) overwrite++;
+      });
+    });
+
+    var msg = grid.length + '행 × ' + wide + '열 을 붙여넣습니다.';
+    if (need > 0) msg += '\n행 ' + need + '개가 새로 만들어집니다.';
+    if (spill > 0) msg += '\n오른쪽으로 ' + spill + '열이 넘쳐서 그만큼은 버려집니다.';
+    if (skipped > 0) msg += '\n작업 링크 열 ' + skipped + '칸은 건너뜁니다.';
+    if (overwrite > 0) msg += '\n이미 값이 있는 칸 ' + overwrite + '개를 덮어씁니다.';
+    msg += '\n계속할까요?';
+    if (!window.confirm(msg)) return false;
+
+    pushUndo(inst);
+    for (var k = 0; k < need; k++) rows.push({});
+    grid.forEach(function (g, gi) {
+      g.forEach(function (v, gj) {
+        var r = r0 + gi, c = c0 + gj;
+        if (c >= cols.length) return;
+        if (cols[c].style === 'links') return;
+        setPasted(table, rows, r, cols[c], v);
+      });
+    });
+    renumber(table, rows);
+    inst.wantFocus = { r: r0, c: c0 };
+    inst.emit(); inst.render();
+    return true;
+  }
+
+  /* ---------- 칸을 큰 창에서 ---------- */
+  function openBigEditor(inst, rows, ri, col, label) {
+    var overlay = el('div', 'wt-modal');
+    var box = el('div', 'box narrow');
+    box.appendChild(el('h3', null, (label || col.label || col.key) + ' — ' + (ri + 1) + '행'));
+    var body = el('div', 'body');
+    var ta = el('textarea', 'wt-big');
+    ta.value = rows[ri][col.key] == null ? '' : String(rows[ri][col.key]);
+    body.appendChild(ta);
+    box.appendChild(body);
+    var foot = el('div', 'foot');
+    function close() { overlay.remove(); }
+    var cancel = el('button', 'wt-btn', '취소');
+    cancel.type = 'button'; cancel.onclick = close;
+    var ok = el('button', 'wt-btn on', '저장');
+    ok.type = 'button';
+    ok.onclick = function () {
+      pushUndo(inst);
+      var v = ta.value;
+      if (v === '') delete rows[ri][col.key];
+      else if (col.style === 'num' && !isNaN(Number(v))) rows[ri][col.key] = Number(v);
+      else rows[ri][col.key] = v;
+      close();
+      inst.emit(); inst.render();
+    };
+    foot.appendChild(el('span', 'sp'));
+    foot.appendChild(cancel);
+    foot.appendChild(ok);
+    box.appendChild(foot);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    overlay.onclick = function (e) { if (e.target === overlay) close(); };
+    setTimeout(function () { ta.focus(); }, 0);
+  }
+
   /* ---------- 칸 ---------- */
-  function cellFor(inst, table, rows, ri, col) {
+  function cellFor(inst, table, rows, ri, col, ci) {
     var key = col.key;
     var td = el('td', col.private ? 'priv' : null);
     var merge = isMergeCol(col);
@@ -720,6 +961,7 @@
       var cont = el('div', 'wt-cont', '↑ 위 칸에 이어짐');
       cont.title = '눌러서 나누기 — 위 칸의 값을 이 행에 따로 복사합니다';
       cont.onclick = function () {
+        pushUndo(inst);
         var src = ri;
         while (src > 0 && isBlank(rows[src][key])) src--;
         rows[ri][key] = clone(rows[src][key]);
@@ -732,13 +974,21 @@
     var style = col.style || 'text';
     if (style === 'images') td.appendChild(imagesCell(inst, table, rows, ri, col));
     else if (style === 'links') td.appendChild(linksCell(inst, table, rows, ri, col));
-    else td.appendChild(textCell(inst, rows, ri, col));
+    else {
+      td.appendChild(textCell(inst, table, rows, ri, col, ci));
+      var exp = el('button', 'wt-exp', '⤢');
+      exp.type = 'button';
+      exp.title = '큰 창에서 고치기';
+      exp.onclick = function () { openBigEditor(inst, rows, ri, col); };
+      td.appendChild(exp);
+    }
 
     if (merge && rows.length > ri + 1) {
       var span = spanOf(rows, ri, key);
       var a = el('a', 'wt-merge', span > 1 ? ('▏' + span + '칸 병합 — 나누기') : '▏아래 칸과 합치기');
       a.href = 'javascript:void(0)';
       a.onclick = function () {
+        pushUndo(inst);
         if (span > 1) {
           for (var i = ri + 1; i < ri + span; i++) rows[i][key] = clone(rows[ri][key]);
         } else {
@@ -751,9 +1001,11 @@
     return td;
   }
 
-  function textCell(inst, rows, ri, col) {
+  function textCell(inst, table, rows, ri, col, ci) {
     var ta = el('textarea', 'wt-cell');
     ta.rows = 1;
+    ta.dataset.r = ri;
+    ta.dataset.c = ci;
     ta.value = rows[ri][col.key] == null ? '' : String(rows[ri][col.key]);
     /* 칸이 너무 길어지면 행 전체가 늘어나므로 높이를 제한하고 안에서 스크롤한다 */
     var grow = function () {
@@ -761,6 +1013,7 @@
       ta.style.height = Math.min(ta.scrollHeight + 2, 150) + 'px';
     };
     setTimeout(grow, 0);
+    bindTyping(inst, ta);
     ta.addEventListener('input', function () {
       grow();
       var v = ta.value;
@@ -768,6 +1021,34 @@
       else if (v === '') delete rows[ri][col.key];
       else rows[ri][col.key] = v;
       inst.emit();
+    });
+
+    /* 화살표·탭으로 옆 칸 (엑셀처럼) */
+    ta.addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      var r = +ta.dataset.r, c = +ta.dataset.c;
+      if (e.key === 'Tab') { e.preventDefault(); moveFocus(inst, r, c, 0, e.shiftKey ? -1 : 1); }
+      else if (e.key === 'ArrowDown' && atLastLine(ta)) { e.preventDefault(); moveFocus(inst, r, c, 1, 0); }
+      else if (e.key === 'ArrowUp' && atFirstLine(ta)) { e.preventDefault(); moveFocus(inst, r, c, -1, 0); }
+      else if (e.key === 'Escape') { ta.blur(); }
+    });
+
+    /* 엑셀에서 여러 칸을 복사해 붙여넣기 */
+    ta.addEventListener('paste', function (e) {
+      var cb = e.clipboardData || window.clipboardData;
+      if (!cb) return;
+      var text = cb.getData('text/plain');
+      if (!text) return;
+      var body = text.replace(/\r\n/g, '\n').replace(/\n+$/, '');
+      var hasTab = body.indexOf('\t') !== -1;
+      var multi = body.indexOf('\n') !== -1;
+      if (!hasTab && !multi) return;                    /* 한 칸짜리 — 그냥 붙여넣기 */
+      if (!hasTab && multi) {
+        if (!window.confirm('여러 줄입니다. 아래 칸들로 한 줄씩 나눠 넣을까요?\n' +
+                            '(취소하면 이 칸 안에 여러 줄 그대로 들어갑니다.)')) return;
+      }
+      e.preventDefault();
+      applyPaste(inst, table, rows, +ta.dataset.r, +ta.dataset.c, parseGrid(body));
     });
     return ta;
   }
@@ -782,6 +1063,7 @@
       chip.appendChild(el('span', null, d.title || k));
       var x = el('button', null, '×'); x.type = 'button'; x.title = '빼기';
       x.onclick = function () {
+        pushUndo(inst);
         vals.splice(i, 1);
         if (!vals.length) delete rows[ri][col.key]; else rows[ri][col.key] = vals;
         inst.emit(); inst.render();
@@ -796,6 +1078,7 @@
       keys.forEach(function (k) { sel.appendChild(new Option(dict[k].title || k, k)); });
       sel.onchange = function () {
         if (!sel.value) return;
+        pushUndo(inst);
         rows[ri][col.key] = vals.concat([sel.value]);
         inst.emit(); inst.render();
       };
@@ -819,6 +1102,7 @@
       chip.appendChild(el('span', null, name));
       var x = el('button', null, '×'); x.type = 'button'; x.title = '빼기';
       x.onclick = function () {
+        pushUndo(inst);
         vals.splice(i, 1);
         if (!vals.length) delete rows[ri][col.key]; else rows[ri][col.key] = vals;
         inst.emit(); inst.render();
@@ -908,6 +1192,7 @@
   }
 
   function addImages(inst, rows, ri, col, names) {
+    pushUndo(inst);
     var vals = Array.isArray(rows[ri][col.key]) ? rows[ri][col.key].slice() : [];
     names.forEach(function (n) { if (vals.indexOf(n) === -1) vals.push(n); });
     rows[ri][col.key] = vals;
