@@ -264,7 +264,7 @@
   }
   .spec-table td.c-sci{ font-style:italic; }
   .spec-table td.c-note{ color:#555; }
-  .spec-table td.c-images{ width:90px; text-align:center; vertical-align:middle; }
+  .spec-table td.c-images{ width:90px; text-align:center; vertical-align:top; }
 
   .spec-thumbwrap{ position:relative; display:inline-block; line-height:0; }
   .spec-thumb{
@@ -276,12 +276,28 @@
   .spec-badge{
     position:absolute; right:-6px; bottom:-6px;
     background:var(--blue); color:#fff;
-    font-size:.68em; font-weight:700; line-height:17px;
+    font-size:.64em; font-weight:700; line-height:18px;
     font-variant-numeric:tabular-nums;
-    min-width:17px; height:17px; padding:0 4px; text-align:center;
-    border-radius:9px; border:2px solid #fff; pointer-events:none;
+    width:18px; height:18px; padding:0; text-align:center;
+    border-radius:50%; border:2px solid #fff; pointer-events:none;
+    box-sizing:content-box;
   }
   .spec-gal{ display:none; }
+
+  .spec-table td.nowrap{ white-space:nowrap; }
+  .spec-table td.c-place{ color:#555; }
+  .spec-table td.c-place .coord{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .spec-table th.h-place, .spec-table td.c-place{ width:13em; }
+  .spec-table td.c-note{ color:#555; }
+  .spec-table th.h-note, .spec-table td.c-note{ width:26em; }
+  .spec-table th.h-links, .spec-table td.c-links{ width:15em; }
+  .cell-links{ list-style:none; margin:0; padding:0; }
+  .cell-links li{ position:relative; padding-left:12px; margin:0 0 3px; }
+  .cell-links li:last-child{ margin-bottom:0; }
+  .cell-links li::before{ content:"–"; position:absolute; left:0; color:var(--muted); }
+  .cell-links a{ color:var(--blue); text-decoration:none; }
+  .cell-links a:hover{ text-decoration:underline; }
+  .cell-links .pending{ color:var(--muted); }
 
   .spec-empty{ padding:24px 10px; text-align:center; color:var(--muted); font-size:.9em; }
 
@@ -306,6 +322,12 @@
       <a href="/contact.html">Contact</a>
     </nav>
   </header>
+
+  {%- comment -%}
+    Jekyll이 실제로 만들 작업 페이지 목록. 여기 없는 주소는 아직 없는 페이지라
+    링크 대신 회색 글씨로 나온다. 본문의 linked_works 와 표의 links 열이 같이 쓴다.
+  {%- endcomment -%}
+  {%- assign built_works = site.pages | where: "layout", "work" | map: "url" -%}
 
   <main>
     {%- assign s = page.year_start -%}
@@ -445,7 +467,6 @@
               as plain text and turns into a real link on its own once the page is
               written. Nothing to maintain by hand.
             {% endcomment %}
-            {% assign built_works = site.pages | where: "layout", "work" | map: "url" %}
 
             {% assign has_linked = false %}
             {% for lw in page.linked_works %}
@@ -673,19 +694,27 @@
                 <thead>
                   <tr>
                     {%- for c in t.columns -%}
-                      {%- assign cls = c.style | default: 'text' -%}
-                      {%- if c.sortable == false or cls == 'images' -%}
-                        <th class="plain h-{{ cls }}" scope="col">{{ c.label }}</th>
-                      {%- else -%}
-                        <th class="h-{{ cls }}" scope="col">
-                          <button type="button" class="spec-sort" data-key="{{ c.key }}" data-kind="{{ cls }}">{{ c.label }}<span class="spec-arrow"></span></button>
-                        </th>
-                      {%- endif -%}
+                      {%- unless c.private -%}
+                        {%- assign cls = c.style | default: 'text' -%}
+                        {%- if c.sortable == false or cls == 'images' or cls == 'links' -%}
+                          <th class="plain h-{{ cls }}" scope="col">{{ c.label }}</th>
+                        {%- else -%}
+                          <th class="h-{{ cls }}" scope="col">
+                            <button type="button" class="spec-sort" data-key="{{ c.key }}" data-kind="{{ cls }}">{{ c.label }}<span class="spec-arrow"></span></button>
+                          </th>
+                        {%- endif -%}
+                      {%- endunless -%}
                     {%- endfor -%}
                   </tr>
                 </thead>
                 <tbody>
+                  {%- comment -%}
+                    세로 병합. merge: true 인 열은 엑셀의 셀 병합과 똑같이 동작한다:
+                    값이 있는 행에서 칸이 시작되고, 그 아래 값이 비어 있는 행들을 덮는다.
+                    다음으로 값이 있는 행에서 새 칸이 시작된다. 따로 묶음을 표시할 필요가 없다.
+                  {%- endcomment -%}
                   {%- for row in t.rows -%}
+                    {%- assign ri = forloop.index0 -%}
                     {%- comment -%} caption shared by every image on this row {%- endcomment -%}
                     {%- assign cap = '' -%}
                     {%- for cc in t.image_caption -%}
@@ -708,9 +737,33 @@
                     <tr>
                       {%- for c in t.columns -%}
                         {%- assign cls = c.style | default: 'text' -%}
-                        {%- if cls == 'images' -%}
+                        {%- assign skip_cell = false -%}
+                        {%- assign rs = '' -%}
+                        {%- if c.private -%}{%- assign skip_cell = true -%}{%- endif -%}
+                        {%- if c.merge -%}
+                          {%- assign has_val = false -%}
+                          {%- if row[c.key] -%}{%- assign has_val = true -%}{%- endif -%}
+                          {%- if has_val == false and ri > 0 -%}
+                            {%- comment -%} 위 칸이 이어져 내려오는 자리 {%- endcomment -%}
+                            {%- assign skip_cell = true -%}
+                          {%- else -%}
+                            {%- comment -%} 아래로 몇 칸을 덮는지 세어 본다 {%- endcomment -%}
+                            {%- assign span_n = 1 -%}
+                            {%- assign k = ri | plus: 1 -%}
+                            {%- for _hop in t.rows -%}
+                              {%- assign nxt = t.rows[k] -%}
+                              {%- unless nxt -%}{%- break -%}{%- endunless -%}
+                              {%- if nxt[c.key] -%}{%- break -%}{%- endif -%}
+                              {%- assign span_n = span_n | plus: 1 -%}
+                              {%- assign k = k | plus: 1 -%}
+                            {%- endfor -%}
+                            {%- if span_n > 1 -%}{%- assign rs = span_n -%}{%- endif -%}
+                          {%- endif -%}
+                        {%- endif -%}
+                        {%- if skip_cell -%}
+                        {%- elsif cls == 'images' -%}
                           {%- assign imgs = row[c.key] -%}
-                          <td class="c-images">
+                          <td class="c-images"{% if rs != '' %} rowspan="{{ rs }}"{% endif %}>
                             {%- if imgs and imgs.size > 0 -%}
                               <span class="spec-thumbwrap">
                                 <span class="spec-gal" aria-hidden="true">
@@ -741,9 +794,43 @@
                               </span>
                             {%- endif -%}
                           </td>
+                        {%- elsif cls == 'links' -%}
+                          {%- assign keys = row[c.key] -%}
+                          <td class="c-links"{% if rs != '' %} rowspan="{{ rs }}"{% endif %}>
+                            {%- if keys and keys.size > 0 -%}
+                              <ul class="cell-links">
+                                {%- for k in keys -%}
+                                  {%- assign L = t.links[k] -%}
+                                  {%- if L -%}
+                                    {%- assign lpath = L.path | default: '' -%}
+                                    {%- assign lfound = false -%}
+                                    {%- if lpath != '' -%}
+                                      {%- assign lesc = lpath | uri_escape -%}
+                                      {%- if built_works contains lpath %}{% assign lfound = true %}{% endif -%}
+                                      {%- if built_works contains lesc %}{% assign lfound = true %}{% endif -%}
+                                    {%- endif -%}
+                                    {%- capture ltext -%}<i>{{ L.title | default: L.label }}</i>{% if L.year %} ({{ L.year }}){% endif %}{% if L.note %} {{ L.note }}{% endif %}{%- endcapture -%}
+                                    <li>{% if lfound %}<a href="{{ lpath | relative_url }}">{{ ltext }}</a>{% else %}<span class="pending">{{ ltext }}</span>{% endif %}</li>
+                                  {%- endif -%}
+                                {%- endfor -%}
+                              </ul>
+                            {%- endif -%}
+                          </td>
+                        {%- elsif cls == 'place' -%}
+                          {%- assign val = row[c.key] -%}
+                          {%- assign nl = '
+' -%}
+                          {%- assign pparts = val | split: nl -%}
+                          <td class="c-place"{% if rs != '' %} rowspan="{{ rs }}"{% endif %} data-v="{{ val | strip_html | escape }}">
+                            {%- for pp in pparts -%}
+                              {%- if forloop.first -%}<span class="coord">{{ pp }}</span>{%- else -%}<br>{{ pp }}{%- endif -%}
+                            {%- endfor -%}
+                          </td>
                         {%- else -%}
                           {%- assign val = row[c.key] -%}
-                          <td class="c-{{ cls }}" data-v="{{ val | strip_html | escape }}">{{ val }}</td>
+                          {%- assign vhtml = val | newline_to_br -%}
+                          {%- if c.italic -%}{%- assign vhtml = '<i>' | append: vhtml | append: '</i>' -%}{%- endif -%}
+                          <td class="c-{{ cls }}{% if c.nowrap %} nowrap{% endif %}"{% if rs != '' %} rowspan="{{ rs }}"{% endif %} data-v="{{ val | strip_html | escape }}">{{ vhtml }}</td>
                         {%- endif -%}
                       {%- endfor -%}
                     </tr>
@@ -992,6 +1079,23 @@
         const statusEl = section ? section.querySelector('.spec-status') : null;
         let sortKey = null, sortDir = 1;
 
+        /* --- 세로로 병합된 칸이 있는 표는 묶음 단위로 다룬다 ---
+           행 하나만 숨기면 rowspan 이 걸쳐 있는 칸의 격자가 무너진다. rowspan 으로
+           서로 이어진 행들을 한 덩어리로 묶어서, 검색은 덩어리째 보이거나 숨긴다.
+           (정렬은 어차피 이런 표에서 성립하지 않아 아래에서 막아둔다.) */
+        const blocks = [];
+        let bStart = 0, bReach = 0;
+        original.forEach((tr, i)=>{
+          if(i > bReach){ blocks.push([bStart, bReach]); bStart = i; bReach = i; }
+          Array.from(tr.cells).forEach((td)=>{
+            const rs = parseInt(td.getAttribute('rowspan') || '1', 10);
+            if(i + rs - 1 > bReach) bReach = i + rs - 1;
+          });
+          if(bReach < i) bReach = i;
+        });
+        if(original.length) blocks.push([bStart, bReach]);
+        const hasMerges = blocks.some(([a, b])=>b > a);
+
         /* --- per-row lightbox --- */
         table.addEventListener('click', (e)=>{
           const btn = e.target.closest('.spec-thumb');
@@ -1030,6 +1134,11 @@
         }
 
         table.querySelectorAll('.spec-sort').forEach((btn)=>{
+          if(hasMerges){
+            /* 병합된 칸이 있으면 행을 옮길 수 없다 */
+            btn.disabled = true;
+            return;
+          }
           btn.addEventListener('click', ()=>{
             const key = btn.getAttribute('data-key');
             if(sortKey === key){ sortDir = -sortDir; }
@@ -1048,10 +1157,16 @@
         function applyFilter(){
           const q = filterEl ? filterEl.value.trim().toLowerCase() : '';
           let shown = 0;
-          original.forEach((r)=>{
-            const hit = !q || r.textContent.toLowerCase().indexOf(q) !== -1;
-            r.hidden = !hit;
-            if(hit) shown++;
+          blocks.forEach(([a, b])=>{
+            /* 한 덩어리 안의 글자를 다 모아서 본다. 병합된 칸의 내용은 첫 행에만
+               들어 있으므로, 이렇게 해야 아래 행을 검색해도 걸린다. */
+            let text = '';
+            for(let i = a; i <= b; i++) text += original[i].textContent + ' ';
+            const hit = !q || text.toLowerCase().indexOf(q) !== -1;
+            for(let i = a; i <= b; i++){
+              original[i].hidden = !hit;
+              if(hit) shown++;
+            }
           });
           if(statusEl){
             statusEl.textContent = q
