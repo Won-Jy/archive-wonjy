@@ -17,10 +17,6 @@ summary: A record of pigeons for which I have held funerals since 2016, as part 
 description: The _Columbarium_ series brings together various forms created from pigeon remains collected in my daily life. Each one takes on a distinct sculptural form, enacting a simple funerary protocol for these abandoned bodies.
 media: []
 hide_cover_if_video_top: false
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 tables:
   - image_caption:
       - column: name
@@ -664,7 +660,7 @@ tables:
         title: Collection des contenants en plastique
         year: '2018'
         note: ''
-        path: ''
+        path: /work/2018/collection-des-contenants-en-plastique.html
       columbarium-v:
         title: Columbarium V
         year: '2024'
@@ -742,4 +738,8 @@ tables:
         label: 비고
         style: text
         private: true
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 ---
