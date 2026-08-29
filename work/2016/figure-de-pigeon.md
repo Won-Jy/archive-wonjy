@@ -15,7 +15,7 @@ date_start: 2016-11-13
 status: Completed
 tags:
   - Pigeon
-cover: /imagesimages/2016/figure-de-pigeon/01.webp
+cover: ''
 cover_caption: _Figure de pigeon_, digital image, 2096×2764px, 2016.
 summary: Image projection, 2096×2764px, 2016
 description: |-
