@@ -41,6 +41,8 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
+  - label: <i>Book of the Dead — Columbarium</i> (2016 –)
+    path: /work/2016/book-of-the-dead-columbarium.html
   - label: <i>Figure de pigeon</i> (2016)
     path: /work/2016/figure-de-pigeon.html
   - label: <i>Collection des contenants en plastique</i> (2018)
