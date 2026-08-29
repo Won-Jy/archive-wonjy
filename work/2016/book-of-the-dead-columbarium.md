@@ -13,10 +13,14 @@ tags:
   - Pigeon
 cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
 cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
-summary: A record of pigeons for which Won Jy has held funerals since 2016, as part of the <i>Columbarium</i> project.
+summary: A record of pigeons for which I have held funerals since 2016, as part of the <i>Columbarium</i> project.
 description: ''
 media: []
 hide_cover_if_video_top: false
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 tables:
   - image_caption:
       - column: name
@@ -737,8 +741,4 @@ tables:
         label: 비고
         style: text
         private: true
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 ---
