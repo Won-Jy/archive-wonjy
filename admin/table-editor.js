@@ -64,7 +64,8 @@
     '.wt-btn.on{background:#007BFF;border-color:#007BFF;color:#fff}',
     '.wt-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:0 0 8px}',
     '.wt-tabs .sp{flex:1}',
-    '.wt-scroll{overflow:auto;max-height:70vh;border:1px solid var(--sui-secondary-border-color,#ddd)}',
+    '.wt-scroll{overflow:auto;max-height:70vh;scroll-behavior:auto;',
+    'border:1px solid var(--sui-secondary-border-color,#ddd)}',
     '.wt-grid{border-collapse:collapse;font-size:.85em;width:max-content;min-width:100%}',
     '.wt-grid th,.wt-grid td{border:1px solid var(--sui-secondary-border-color,#ddd);padding:0;vertical-align:top}',
     '.wt-grid td{max-width:22em}',
@@ -177,7 +178,10 @@
       redoStack: [],
       editSnapshot: null,
       editDirty: null,
-      wantFocus: null
+      wantFocus: null,
+      scrollPos: null,
+      scrollEl: null,
+      restoreUntil: 0
     };
 
     /* 되돌리기 — 격자 안에서만 잡는다 */
@@ -190,7 +194,12 @@
 
     inst.attach = function (node) {
       if (!node) return;
-      if (inst.root.parentNode !== node) { clear(node); node.appendChild(inst.root); }
+      if (inst.root.parentNode !== node) {
+        clear(node);
+        node.appendChild(inst.root);
+        /* 노드를 옮기면 안쪽 스크롤이 0 이 된다 — 보던 자리로 되돌린다 */
+        restoreScroll(inst, inst.scrollEl);
+      }
     };
 
     inst.emit = function () {
@@ -216,10 +225,54 @@
     return inst;
   }
 
+  /* 표가 맨 위로 튀어 오르는 문제.
+     두 군데에서 스크롤이 날아간다:
+       1) 다시 그린 직후 — 칸 높이가 setTimeout 으로 늘어나고 전체 화면은 flex 배치가
+          한 번 더 계산돼서, 바로 넣은 scrollTop 은 0 으로 잘린다.
+       2) React 가 커스텀 필드를 다시 붙일 때 — inst.root 가 새 부모로 옮겨 가는데,
+          DOM 에서 노드를 옮기면 그 안의 스크롤이 초기화된다.
+     그리고 되돌릴 때 함정이 하나 더: **에디터가 전역으로 scroll-behavior:smooth 를
+     걸어 둬서** el.scrollTop = x 가 애니메이션이 되고 바로 읽으면 옛 값이 나온다.
+     매 프레임 다시 넣으면 애니메이션이 계속 처음부터 시작해 영영 도착하지 않는다.
+     scrollTo({behavior:'instant'}) 로 넣어야 한다.
+     그래서 "사용자가 마지막으로 본 위치" 를 인스턴스에 들고 있다가, 그릴 때와
+     다시 붙일 때 자리가 잡힐 때까지 몇 프레임 되돌린다. */
+  function rememberScroll(inst, el) {
+    el.addEventListener('scroll', function () {
+      if (Date.now() < (inst.restoreUntil || 0)) return;   /* 되돌리는 중엔 안 받는다 */
+      inst.scrollPos = { top: el.scrollTop, left: el.scrollLeft };
+    });
+  }
+  function restoreScroll(inst, el) {
+    var pos = inst.scrollPos;
+    if (!el || !pos || (!pos.top && !pos.left)) return;
+    inst.restoreUntil = Date.now() + 500;
+    var tries = 0;
+    function go() {
+      try {
+        el.scrollTo({ top: pos.top, left: pos.left, behavior: 'instant' });
+      } catch (e) {
+        el.style.scrollBehavior = 'auto';
+        el.scrollTop = pos.top;
+        el.scrollLeft = pos.left;
+      }
+      tries++;
+      if (Math.abs(el.scrollTop - pos.top) > 1 && tries < 40) {
+        if (window.requestAnimationFrame) window.requestAnimationFrame(go);
+        else setTimeout(go, 16);
+      }
+    }
+    go();
+    setTimeout(go, 0);
+    setTimeout(go, 80);
+    setTimeout(go, 220);
+  }
+
   /* ---------- 그리기 ---------- */
   function render(inst) {
     injectCSS();
     var root = inst.root;
+
     clear(root);
     root.classList.toggle('wt-wide', !!inst.wide);
     if (inst.wide) document.body.classList.add('wt-wide-open');
@@ -317,6 +370,10 @@
     grid.appendChild(tbody);
     scroll.appendChild(grid);
     root.appendChild(scroll);
+
+    rememberScroll(inst, scroll);
+    inst.scrollEl = scroll;
+    restoreScroll(inst, scroll);
 
     var note = el('p', 'wt-note',
       '칸을 비우면 위 칸이 이어져 내려옵니다 (엑셀의 셀 병합과 같습니다). ' +
