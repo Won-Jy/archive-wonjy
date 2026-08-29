@@ -9,10 +9,14 @@ status: "Completed"
 tags: ["Stone", "City"]
 cover: "/images/2021/flaner-passer-ou-habiter/F.P.H_2021_01.webp"
 cover_caption: "<i>Spike</i>, cardboard, gravel, glue and chrome paint, 30×30×80cm, 2021."
-summary: >
-  <p>Solo exhibition at Château d’Assas Le Vigan.</p><p>Curated by Laurent Puech.</p>
-description: >
-  <p>This exhibition retraces my journey through the rivers and rocks of the Cévennes, as well as the traces left by human presence. It also reflects a stone’s journey, floating down the river from the top of the mountain to the bottom, rolling and colliding with other stones — a movement that I associate with <i>wandering, passing through, or inhabiting</i>. I displayed stones in diverse scales and states: sand, pebbles, and stones — either simply placed, manipulated, or mixed.</p><p>I also integrated materials collected from the riverbed into concrete, creating sculptures that evoke hostile architectural structures. Alongside these, I engaged with existing elements of the exhibition space itself — such as wall scones and the mascaron of a disused fountain — by reinterpreting their forms and counter-forms.</p>
+summary: |
+  Solo exhibition at Château d’Assas Le Vigan.
+
+  Curated by Laurent Puech.
+description: |
+  This exhibition retraces my journey through the rivers and rocks of the Cévennes, as well as the traces left by human presence. It also reflects a stone’s journey, floating down the river from the top of the mountain to the bottom, rolling and colliding with other stones — a movement that I associate with *wandering, passing through, or inhabiting*. I displayed stones in diverse scales and states: sand, pebbles, and stones — either simply placed, manipulated, or mixed.
+
+  I also integrated materials collected from the riverbed into concrete, creating sculptures that evoke hostile architectural structures. Alongside these, I engaged with existing elements of the exhibition space itself — such as wall scones and the mascaron of a disused fountain — by reinterpreting their forms and counter-forms.
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Granit de rêve</i> (2021)"

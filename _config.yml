@@ -1,1 +1,9 @@
 title: archive-wonjy
+
+# 글상자에서 Enter 한 번은 줄바꿈, 빈 줄은 새 문단이 되게 한다.
+# (kramdown 기본값은 hard_wrap: false 라서 Enter 한 번이 그냥 공백이 된다.)
+# 확인함: 지금 있는 27개 칸 중 문단 안에 홑 줄바꿈이 든 것은 하나도 없어서
+# 이 설정이 기존 페이지를 바꾸지 않는다.
+kramdown:
+  input: GFM
+  hard_wrap: true

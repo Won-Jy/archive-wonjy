@@ -12,8 +12,8 @@ cover_caption: "A still from the video."
 hide_cover_if_video_top: true
 summary: >
   HD video, color, sound, 13min 3sec, 2021.
-description: >
-  This semi-documentary video retraces my journey in search of a <i>dream granite</i> along the Hérault River in 2021, as part of an exhibition in Le Vigan. To do so, I followed the river upstream to its source in the heart of the Aigoual massif. During this process, the camera captured natural landscapes, the various types of granite I encountered, as well as other details in the riverside scenery, such as fragments of artifacts left behind by floods or riverside villages undergoing urbanization. Each granite stone collected during this journey was photographed and processed through a GAN algorithm.
+description: |
+  This semi-documentary video retraces my journey in search of a *dream granite* along the Hérault River in 2021, as part of an exhibition in Le Vigan. To do so, I followed the river upstream to its source in the heart of the Aigoual massif. During this process, the camera captured natural landscapes, the various types of granite I encountered, as well as other details in the riverside scenery, such as fragments of artifacts left behind by floods or riverside villages undergoing urbanization. Each granite stone collected during this journey was photographed and processed through a GAN algorithm.
 linked_works_title: "Linked works"   
 linked_works:
   - label: "<i>Flâner passer ou habiter</i> (2021)"
