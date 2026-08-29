@@ -21,8 +21,13 @@ collections:
     label_singular: Work
     folder: work
     create: true
-    media_folder: "/images{{dirname}}/{{filename}}"
-    public_folder: "/images{{dirname}}/{{filename}}"
+    # 이미지가 저장되는 곳: images/<작업주소>/  (예: images/book-of-the-dead/)
+    # 주의 — 한 칸(슬래시와 슬래시 사이)에 글자와 {{...}} 를 섞으면 안 된다.
+    # 예전 설정 "/images{{dirname}}/{{filename}}" 은 'images' 와 '{{dirname}}' 이
+    # 한 칸에 붙어 있어서, 이미 올라간 사진을 고를 때 주소가
+    # /imagesimages/2016/... 처럼 'images' 가 두 번 붙어 나왔다.
+    media_folder: "/images/{{slug}}"
+    public_folder: "/images/{{slug}}"
     extension: md
     format: yaml-frontmatter
     path: "{{fields.year_start}}/{{slug}}"
