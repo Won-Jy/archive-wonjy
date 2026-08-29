@@ -493,8 +493,12 @@
                 {% for lw in page.linked_works %}
                   {% assign href = lw.url | default: lw.path %}
                   {% if href and href != '' %}
-                    {% assign raw_label = lw.label | default: '' %}
-                    {% assign label_html = raw_label | strip | default: href %}
+                    {%- assign raw_label = lw.label | default: '' | strip -%}
+                    {%- if raw_label == '' -%}
+                      {%- assign label_html = href -%}
+                    {%- else -%}
+                      {%- assign label_html = raw_label | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+                    {%- endif -%}
                     {% assign is_internal = false %}
                     {% if href contains '/work/' %}
                       {% if href contains '.html' %}{% assign is_internal = true %}{% endif %}
