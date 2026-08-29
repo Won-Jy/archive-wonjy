@@ -91,7 +91,7 @@ media:
     caption: '*Premières pierres II* (prototype), hydrography on concrete rubble, 63×70×76cm, 2022.'
   - type: image
     src: /images/2020/grotto/Grotto_08_Dark room other side 03.webp
-    caption: _Figure de pigeon_, digital image, 2096×2764px, 2016.
+    caption: _Figure de pigeon_, single-channel image projection, 2096×2764px, 2016.
   - type: image
     src: /images/2020/grotto/Grotto_09_Orange room 01.webp
     caption: '*Maisonnette inondée*, various materials, variable dimensions, 2022.'
