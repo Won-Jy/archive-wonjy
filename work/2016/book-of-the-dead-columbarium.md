@@ -260,11 +260,11 @@ tables:
       - num: 15
         images:
           - file: 015_Virevoltant (1).webp
-            caption: Virevoltant I-VI — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+            caption: Virevoltant (I-VI) — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
           - file: 015_Virevoltant (2).webp
             caption: Former wash-house in Saint-Laurent-des-Arbres (2019).
           - file: 015_Virevoltant (3).webp
-            caption: Virevoltant I-VI — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+            caption: Virevoltant (I-VI) — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
           - 015_Virevoltant (4).webp
           - file: 015_Virevoltant (5).webp
             caption: Virevoltant II — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
