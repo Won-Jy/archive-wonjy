@@ -14,7 +14,7 @@ tags:
 cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
 cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
 summary: A record of pigeons for which I have held funerals since 2016, as part of the _Columbarium_ project.
-description: ''
+description: The _Columbarium_ series brings together various forms created from pigeon remains collected in my daily life. Each one takes on a distinct sculptural form, enacting a simple funerary protocol for these abandoned bodies.
 media: []
 hide_cover_if_video_top: false
 linked_works_title: Linked works
