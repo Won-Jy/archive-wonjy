@@ -65,6 +65,10 @@
   .intro-media figure.work { margin:0; }
   .intro-media img.work { width:100%; height:auto; display:block; margin-bottom:3px; }
   .caption { font-size:0.8em; color:var(--muted); margin-bottom:40px; }
+  /* 캡션 안의 링크도 본문 링크와 같은 파랑으로. :visited 를 함께 지정하지 않으면
+     브라우저 기본값이 남아서 한 번 누른 링크가 보라색 밑줄로 변한다. */
+  .caption a, .caption a:visited { color:var(--blue); text-decoration:none; }
+  .caption a:hover, .caption a:focus { text-decoration:underline; }
   /* 커버(상단)로 올라간 비디오 캡션은 divider와 겹치지 않게 여백을 줄임 */
   .intro-cover figure.work.video .caption{ margin-bottom: 0px; }
 
@@ -112,6 +116,8 @@
   .lb-stage { position:relative; max-width:92vw; max-height:86vh; display:flex; flex-direction:column; align-items:center; gap:12px; }
   .lb-media { max-width:92vw; max-height:74vh; display:block; object-fit:contain; background:#111; }
   .lb-caption { color:#eee; font-size:.9em; line-height:1.4; text-align:center; max-width:92vw; }
+  /* 큰 화면(슬라이드)은 배경이 검정이라 파랑 대신 캡션 색을 그대로 쓴다. */
+  .lb-caption a, .lb-caption a:visited { color:inherit; text-decoration:underline; }
 
   .lb-ctrl { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0); border:none; cursor:pointer; padding:8px 10px; font-size:22px; line-height:1; color:#ddd; }
   .lb-ctrl:hover, .lb-ctrl:active { color:var(--blue); }
