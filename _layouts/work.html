@@ -386,6 +386,7 @@
               {%- endcomment -%}
               {% if _cover_cap != '' %}
                 {%- assign _o = _cover_cap | split: '<i>' | size -%}{%- assign _c = _cover_cap | split: '</i>' | size -%}{%- assign _oe = _cover_cap | split: '<em>' | size -%}{%- assign _ce = _cover_cap | split: '</em>' | size -%}{%- assign safe_cover_cap = _cover_cap -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cover_cap = _cover_cap | strip_html -%}{%- endif -%}
+                {%- assign safe_cover_cap = safe_cover_cap | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
                 <figcaption class="caption">{{ safe_cover_cap }}</figcaption>
               {% else %}
                 <figcaption class="caption"><em>{{ page.title }}</em></figcaption>
@@ -401,7 +402,7 @@
             <div class="frame" {% if first_media.pb %}style="padding-bottom: {{ first_media.pb }}"{% endif %}>
               <iframe src="{{ first_media.src }}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy" allowfullscreen></iframe>
             </div>
-            {%- assign _o = first_media.caption | split: '<i>' | size -%}{%- assign _c = first_media.caption | split: '</i>' | size -%}{%- assign _oe = first_media.caption | split: '<em>' | size -%}{%- assign _ce = first_media.caption | split: '</em>' | size -%}{%- assign safe_fcap = first_media.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_fcap = first_media.caption | strip_html -%}{%- endif -%}{% if first_media.caption %}<figcaption class="caption">{{ safe_fcap }}</figcaption>{% endif %}
+            {%- assign _o = first_media.caption | split: '<i>' | size -%}{%- assign _c = first_media.caption | split: '</i>' | size -%}{%- assign _oe = first_media.caption | split: '<em>' | size -%}{%- assign _ce = first_media.caption | split: '</em>' | size -%}{%- assign safe_fcap = first_media.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_fcap = first_media.caption | strip_html -%}{%- endif -%}{%- assign safe_fcap = safe_fcap | markdownify | remove: '<p>' | remove: '</p>' | strip -%}{% if first_media.caption %}<figcaption class="caption">{{ safe_fcap }}</figcaption>{% endif %}
           </figure>
         </div>
       {% endif %}
@@ -624,7 +625,7 @@
                      loading="lazy"
                      decoding="async"
                      {% if m.width and m.height %} width="{{ m.width }}" height="{{ m.height }}"{% endif %} />
-                {%- assign _o = m.caption | split: '<i>' | size -%}{%- assign _c = m.caption | split: '</i>' | size -%}{%- assign _oe = m.caption | split: '<em>' | size -%}{%- assign _ce = m.caption | split: '</em>' | size -%}{%- assign safe_cap = m.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cap = m.caption | strip_html -%}{%- endif -%}{% if m.caption %}<figcaption class="caption">{{ safe_cap }}</figcaption>{% endif %}
+                {%- assign _o = m.caption | split: '<i>' | size -%}{%- assign _c = m.caption | split: '</i>' | size -%}{%- assign _oe = m.caption | split: '<em>' | size -%}{%- assign _ce = m.caption | split: '</em>' | size -%}{%- assign safe_cap = m.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cap = m.caption | strip_html -%}{%- endif -%}{%- assign safe_cap = safe_cap | markdownify | remove: '<p>' | remove: '</p>' | strip -%}{% if m.caption %}<figcaption class="caption">{{ safe_cap }}</figcaption>{% endif %}
               </figure>
 
             {% elsif m.type == "video" %}
@@ -635,7 +636,7 @@
                           loading="lazy"
                           allowfullscreen></iframe>
                 </div>
-                {%- assign _o = m.caption | split: '<i>' | size -%}{%- assign _c = m.caption | split: '</i>' | size -%}{%- assign _oe = m.caption | split: '<em>' | size -%}{%- assign _ce = m.caption | split: '</em>' | size -%}{%- assign safe_cap = m.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cap = m.caption | strip_html -%}{%- endif -%}{% if m.caption %}<figcaption class="caption">{{ safe_cap }}</figcaption>{% endif %}
+                {%- assign _o = m.caption | split: '<i>' | size -%}{%- assign _c = m.caption | split: '</i>' | size -%}{%- assign _oe = m.caption | split: '<em>' | size -%}{%- assign _ce = m.caption | split: '</em>' | size -%}{%- assign safe_cap = m.caption -%}{%- if _o != _c or _oe != _ce -%}{%- assign safe_cap = m.caption | strip_html -%}{%- endif -%}{%- assign safe_cap = safe_cap | markdownify | remove: '<p>' | remove: '</p>' | strip -%}{% if m.caption %}<figcaption class="caption">{{ safe_cap }}</figcaption>{% endif %}
               </figure>
             {% endif %}
 
@@ -654,7 +655,8 @@
                      loading="lazy"
                      decoding="async"
                      {% if img.width and img.height %} width="{{ img.width }}" height="{{ img.height }}"{% endif %} />
-                {% if img.caption %}<figcaption class="caption">{{ img.caption }}</figcaption>{% endif %}
+                {%- assign img_cap = img.caption | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+                {% if img.caption %}<figcaption class="caption">{{ img_cap }}</figcaption>{% endif %}
               </figure>
             {% endfor %}
           {% endif %}
@@ -668,7 +670,8 @@
                           loading="lazy"
                           allowfullscreen></iframe>
                 </div>
-                {% if v.caption %}<figcaption class="caption">{{ v.caption }}</figcaption>{% endif %}
+                {%- assign v_cap = v.caption | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+                {% if v.caption %}<figcaption class="caption">{{ v_cap }}</figcaption>{% endif %}
               </figure>
             {% endfor %}
           {% endif %}

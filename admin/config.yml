@@ -68,8 +68,16 @@ collections:
         options: [Cave, City, Garden, Map, Newcomer, Pigeon, Stone, Wall, Water]
 
       - { name: cover, label: Cover image, widget: image, required: false }
-      - { name: cover_caption, label: Cover caption, widget: string, required: false,
-          hint: "<i>기울임</i> 같은 HTML을 쓸 수 있습니다." }
+      - name: cover_caption
+        label: Cover caption
+        widget: markdown
+        required: false
+        modes: [rich_text, raw]
+        buttons: [bold, italic, link]
+        editor_components: []
+        minimal: true
+        hint: "작품 제목은 글자를 고르고 기울임(Ctrl+I)을 누르세요."
+
 
       # ── 사이트에 나가는 글 ────────────────────────────────────
       # 글상자. 글자를 고르고 버튼(또는 Ctrl+B / Ctrl+I)을 누르면 서식이 붙는다.
@@ -108,14 +116,28 @@ collections:
             summary: "{{fields.caption}}"
             fields:
               - { name: src, label: File, widget: image }
-              - { name: caption, label: Caption, widget: string, required: false }
+              - name: caption
+                label: Caption
+                widget: markdown
+                required: false
+                modes: [rich_text, raw]
+                buttons: [bold, italic, link]
+                editor_components: []
+                minimal: true
           - name: video
             label: Video
             summary: "{{fields.caption}}"
             fields:
               - { name: src, label: Embed URL, widget: string,
                   hint: "Vimeo나 YouTube의 embed 주소를 넣으세요." }
-              - { name: caption, label: Caption, widget: string, required: false }
+              - name: caption
+                label: Caption
+                widget: markdown
+                required: false
+                modes: [rich_text, raw]
+                buttons: [bold, italic, link]
+                editor_components: []
+                minimal: true
           - name: divider
             label: Divider
             summary: "— 구분선 —"
@@ -137,7 +159,15 @@ collections:
         collapsed: true
         summary: "{{fields.label}}"
         fields:
-          - { name: label, label: 표시 이름, widget: string, required: false }
+          - name: label
+            label: 표시 이름
+            widget: markdown
+            required: false
+            modes: [rich_text, raw]
+            buttons: [bold, italic, link]
+            editor_components: []
+            minimal: true
+            hint: "작업 제목은 기울임(Ctrl+I)으로." 
           - { name: path, label: 주소, widget: string, required: false,
               hint: "/work/2023/hostis.html — 아직 없는 페이지를 적어두면 회색으로 표시됩니다." }
 

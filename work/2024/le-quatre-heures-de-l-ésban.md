@@ -8,7 +8,7 @@ date_start: 2024-04-06
 status: "Completed"
 tags: ["Stone"]
 cover: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_01.webp"
-cover_caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
+cover_caption: "Exhibition view *Le quatre-heures de l’ésban*, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
 summary: |
   Group exhibition at École supérieure des beaux-arts de Nîmes, as part of the first edition of the *Contemporaine de Nîmes* triennial.
 
@@ -17,7 +17,7 @@ summary: |
   Curated by Andréanne Béguin.
 linked_works_title: "Linked works"   
 linked_works:
-  - label: "<i>Untitled</i> (2019)"
+  - label: "*Untitled* (2019)"
     path: "/work/2019/untitled_bauxite.html"
 critique_title: "Related texts"
 related_texts:
@@ -25,10 +25,10 @@ related_texts:
 media:
   - type: image
     src: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_02.webp"
-    caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
+    caption: "Exhibition view *Le quatre-heures de l’ésban*, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
   - type: image
     src: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_03.webp"
-    caption: "Exhibition view <i>Le quatre-heures de l’ésban</i>, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
+    caption: "Exhibition view *Le quatre-heures de l’ésban*, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
   - type: image
     src: "/images/2024/le-quatre-heures-de-l-ésban/Label Text_2024_02.webp"
     caption: "Paper labels designed for the exhibition, printed in multiple copies and made available for visitors to take freely from a designated spot."

@@ -17,9 +17,9 @@ description: |
   Once as imposing as a spaceship, the building has now been given a new context: it floats in space, circled by the sun. A symbolic place of hospitality for vulnerable populations, it now remains in a ghostly form.
 linked_works_title: "Linked works"   
 linked_works:
-  - label: "<i>Grotto</i> (2022)"
+  - label: "*Grotto* (2022)"
     path: "/work/2022/grotto_exh.html"
-  - label: "<i>Premières pierres II</i> (2023)"
+  - label: "*Premières pierres II* (2023)"
     path: "/work/2023/premières-pierres-02.html"
 related_texts: []
 media:

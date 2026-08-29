@@ -8,7 +8,7 @@ date_start: 2025-01-24
 status: "Completed"
 tags: ["Stone", "Pigeon"]
 cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
-cover_caption: "<i>Fontaine II</i>, concrete rubble from Pissevin, water, 220×200×130cm, 2025."
+cover_caption: "*Fontaine II*, concrete rubble from Pissevin, water, 220×200×130cm, 2025."
 summary: |
   Solo exhibition at CACN – Centre d’Art Contemporain de Nîmes.
 
@@ -27,110 +27,110 @@ related_texts:
 media:
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
-    caption: "<em>Fontaine II</em>, concrete rubble from Pissevin, water, 220×200×110cm, 2025."
+    caption: "*Fontaine II*, concrete rubble from Pissevin, water, 220×200×110cm, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp"
-    caption: "<i>Eau de douche</i>, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
+    caption: "*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0556.webp"
-    caption: "<i>Eau de douche</i>, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
+    caption: "*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_08_IMG_0419.webp"
-    caption: "<i>Acryllite</i>, acrylic paint, variable dimensions, 2018."
+    caption: "*Acryllite*, acrylic paint, variable dimensions, 2018."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_09_IMG_0078.webp"
-    caption: "<i>Banc en granito</i>, cement, Bellegarde stone, 95×40×10cm, 2024."
+    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_10_IMG_0448.webp"
-    caption: "<i>Banc en granito</i>, cement, Bellegarde stone, 95×40×10cm, 2024."
+    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_11_IMG_0454.webp"
-    caption: "<i>Banc en granito</i>, cement, Bellegarde stone, 95×40×10cm, 2024."
+    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_12_IMG_0462.webp"
-    caption: "<i>Banc en granito</i>, cement, Bellegarde stone, 95×40×10cm, 2024."
+    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_13_IMG_0184.webp"
-    caption: "<i>Granit de rêve</i>, HD video, color, sound, 13 min, 2021."
+    caption: "*Granit de rêve*, HD video, color, sound, 13 min, 2021."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_14_IMG_0174.webp"
-    caption: "<i>Banc en granito</i>, cement, Bellegarde stone, 95×40×10cm, 2024."
+    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0526.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025 — Columbarium room."
+    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Columbarium room."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0857.webp"
-    caption: "<i>Columbarium III</i>, plastic boxes, soil, pigeon remains, neon, 35×26×14cm (each), 2017 –."
+    caption: "*Columbarium III*, plastic boxes, soil, pigeon remains, neon, 35×26×14cm (each), 2017 –."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_16_IMG_0250.webp"
-    caption: "<i>Columbarium VI</i>, neon, epoxy resin, pigeon remains, variable dimensions, 2025."
+    caption: "*Columbarium VI*, neon, epoxy resin, pigeon remains, variable dimensions, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_17_IMG_0513.webp"
-    caption: "<i>Columbarium IV</i>, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
+    caption: "*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_19_IMG_0325.webp"
-    caption: "<i>Columbarium IV</i>, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
+    caption: "*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_20_IMG_0708.webp"
-    caption: "<i>Columbarium V</i>, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
+    caption: "*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_21_IMG_0683.webp"
-    caption: "<i>Columbarium V</i>, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
+    caption: "*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_23_IMG_0316.webp"
-    caption: "<i>Premières pierres III</i>, hydrography on concrete debris, dimensions variables, 2025."
+    caption: "*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_24_IMG_0575.webp"
-    caption: "<i>Premières pierres III</i>, hydrography on concrete debris, dimensions variables, 2025."
+    caption: "*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_25_IMG_0297.webp"
-    caption: "<i>Matelas</i>, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
+    caption: "*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_26_IMG_0322.webp"
-    caption: "<i>Matelas</i>, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
+    caption: "*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_27_IMG_0754.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025 — Research table."
+    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Research table."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0339.webp"
-    caption: "<i>Tombés-Montés</i>, floral foam, hair, 23×11×14cm, 2024."
+    caption: "*Tombés-Montés*, floral foam, hair, 23×11×14cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0378.webp"
-    caption: "<i>Troué-Rebouché</i>, limestone, filler, 13×7×5cm, 2018."
+    caption: "*Troué-Rebouché*, limestone, filler, 13×7×5cm, 2018."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0776.webp"
-    caption: "<i>Baudile</i>, pigeon powder, keratin, dimensions variables, 2024."
+    caption: "*Baudile*, pigeon powder, keratin, dimensions variables, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0382.webp"
-    caption: "<i>Évaluation de Gharib</i>, cast silicone, 42×58×3cm, 2024."
+    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0384.webp"
-    caption: "<i>Évaluation de Gharib</i>, cast silicone, 42×58×3cm, 2024."
+    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0387.webp"
-    caption: "<i>Évaluation de Gharib</i>, cast silicone, 42×58×3cm, 2024."
+    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_30_IMG_0272.webp"
-    caption: "<i>Voyage avec Oumar</i>, HD video, color, sound, 1min 53sec, 2024."
+    caption: "*Voyage avec Oumar*, HD video, color, sound, 1min 53sec, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_31.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_32_IMG_0328.webp"
-    caption: "<i>Talon</i>, limestone, 10×17×8cm, 2024."
+    caption: "*Talon*, limestone, 10×17×8cm, 2024."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_33_IMG_0398.webp"
-    caption: "Exhibition view <i>Roulé-Lavé</i>, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_34_IMG_0406.webp"
-    caption: "<i>Porte de guano</i>, wood, paint, pigeon droppings, 70×208×4cm, 2019."
+    caption: "*Porte de guano*, wood, paint, pigeon droppings, 70×208×4cm, 2019."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_35_IMG_0413.webp"
-    caption: "<i>Chaussures de hammam</i>, shoes, facade coating, dimensions variables, 2025."
+    caption: "*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025."
   - type: image
     src: "/images/2025/roule-lave/Vue_Roulé-Lavé_36_IMG_0599.webp"
-    caption: "<i>Chaussures de hammam</i>, shoes, facade coating, dimensions variables, 2025."
+    caption: "*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025."
 ---

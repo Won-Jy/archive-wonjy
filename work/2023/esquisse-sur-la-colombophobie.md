@@ -1,57 +1,50 @@
 ---
 layout: work
-title: Esquisse sur la colombophobie
-drafts: ''
-types:
-  - Highlight
-  - Single work
-  - Writing
+title: "Esquisse sur la colombophobie"
+types: ["Highlight", "Single work", "Writing"]
 year_start: 2023
 year_end: 2023
 date_start: 2023-01-01
-status: Completed
-tags:
-  - Pigeon
-cover: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 01.webp
-cover_caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
-summary: |-
+status: "Completed"
+tags: ["Pigeon"]
+cover: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 01.webp"
+cover_caption: "*Esquisse sur la colombophobie*, edition, 2023."
+summary: |
   Edition.
 
   Color, 115×180×10mm, 128 pages, 10 copies.
 
   Production : Atelier des Oliviers, École supérieure des beaux-arts de Nîmes, France.
-description: |-
+description: |
   This thesis begins with my earliest memories related to the species Columba livia, particularly my experience in 2015, when I was homeless in Paris and spent time drawing pigeons as well as people without shelter. By documenting these personal experiences and conducting research across various fields such as ornithology and sociology, I traced the history of human-pigeon relations.
   Throughout this process, I identified five physiological and behavioral characteristics of pigeons. These five traits help explain how pigeons were once seen as sacred or privileged animals in human societies, and how those same traits later contributed to their rejection and disgust in contemporary society.
-  In the final section, I draw a connection between pigeons—now despised—and marginalized people in human society, a connection I refer to as the “Pigeon-human.” Through the concepts of _Colombophobia_ and _Pigeon-human_, I sketch out the mechanisms of hatred, exploring how aversion to others, self-hatred, taboo, and sacredness intersect, while seeking to understand the psychological coexistence of these contradictory emotions.
+  In the final section, I draw a connection between pigeons—now despised—and marginalized people in human society, a connection I refer to as the “Pigeon-human.” Through the concepts of *Colombophobia* and *Pigeon-human*, I sketch out the mechanisms of hatred, exploring how aversion to others, self-hatred, taboo, and sacredness intersect, while seeking to understand the psychological coexistence of these contradictory emotions.
 
-  Consult the digital version of [_Sketch on Colombophobia_ (FR)](https://drive.google.com/file/d/1hmiiCgGec1jx7Ai7Htf5vK3mNZr5QG4j/view).
+  Consult the digital version of [*Sketch on Colombophobia* (FR)](https://drive.google.com/file/d/1hmiiCgGec1jx7Ai7Htf5vK3mNZr5QG4j/view).
+linked_works_title: "Linked works"   
+linked_works:
+  - label: ""
+    path: ""
+critique_title: "Related texts"
+related_texts:
+  - id: ""
 media:
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 02.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 02.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 01.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 01.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 02.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 02.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 03.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_02_contents 03.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_03_texts 01.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_03_texts 01.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
   - type: image
-    src: /images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_03_texts 02.webp
-    caption: <i>Esquisse sur la colombophobie</i>, edition, 2023.
-hide_cover_if_video_top: false
-tables: ''
-linked_works_title: Linked works
-linked_works:
-  - label: ''
-    path: ''
-critique_title: Related texts
-related_texts:
-  - id: ''
+    src: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_03_texts 02.webp"
+    caption: "*Esquisse sur la colombophobie*, edition, 2023."
 ---

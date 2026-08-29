@@ -13,7 +13,7 @@ tags:
   - Wall
   - Stone
 cover: /images/2026/text_about-warding/cover_text_about-warding.webp
-cover_caption: <i>About Warding</i>, text, 2026.
+cover_caption: "*About Warding*, text, 2026."
 summary: |
   Text written during the residency at Teatergalleriet, Kalmar, Sweden (June 2026), on the occasion of the exhibition *About Warding*, part of the Småland Triennial 2026.
 description: ''
@@ -21,7 +21,7 @@ media: []
 hide_cover_if_video_top: false
 linked_works_title: Linked works
 linked_works:
-  - label: <i>About Warding</i> (2026)
+  - label: "*About Warding* (2026)"
     path: /work/2026/about-warding.html
 critique_title: Related texts
 related_texts: []

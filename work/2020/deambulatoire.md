@@ -8,7 +8,7 @@ date_start: 2020-07-31
 status: "Completed"
 tags: ["Map"]
 cover: "/images/2020/deambulatoire/Déambulatoire_01_main views 01.webp"
-cover_caption: "View of the residency showcase <i>Déambulatoire</i>, 2020."
+cover_caption: "View of the residency showcase *Déambulatoire*, 2020."
 summary: |
   Residency program *Pop-Up 17*, at La Filature du Mazel, Notre-Dame-de-la-Rouvière, France.
 
@@ -22,7 +22,7 @@ related_texts: []
 media:
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 02.webp"
-    caption: "View of the residency showcase <i>Déambulatoire</i>, 2020."
+    caption: "View of the residency showcase *Déambulatoire*, 2020."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 03.1.webp"
     caption: "Caddisfly cocoons on a quartz stone."
@@ -34,16 +34,16 @@ media:
     caption: "Small branches fallen from a large branch, embedded in a pedestal."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 04.webp"
-    caption: "View of the residency showcase <i>Déambulatoire</i>, 2020."
+    caption: "View of the residency showcase *Déambulatoire*, 2020."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 05.webp"
-    caption: "The remaining pedestals after their arrangement in <i>Déambulatoire</i>."
+    caption: "The remaining pedestals after their arrangement in *Déambulatoire*."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 06.webp"
     caption: "A broken pedestal."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 07.webp"
-    caption: "View of the residency showcase <i>Déambulatoire</i>, 2020."
+    caption: "View of the residency showcase *Déambulatoire*, 2020."
   - type: image
     src: "/images/2020/deambulatoire/Déambulatoire_01_main views 08.webp"
     caption: "A screen embedded in the back of a fake column made of pedestals, imitating the columns of the residency space."

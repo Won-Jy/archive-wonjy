@@ -7,14 +7,14 @@ year_end: 2025
 status: "In progress"
 tags: ["Garden"]
 cover: "/images/2024/list-of-resident-species-hostis/cover_list-of-resident-species-hostis.webp"
-cover_caption: "<i>List of resident species in Hostis</i> (FR), print version, 210×297mm, 2025."
+cover_caption: "*List of resident species in Hostis* (FR), print version, 210×297mm, 2025."
 summary: |
   A working list of plant and animal species observed in the *Hostis* garden (2023-2024), recorded in order of discovery.
 
   The tables can be updated as new species are identified.
 linked_works_title: "Linked works"   
 linked_works:
-  - label: "<i>Hostis</i> (2023-2024)"
+  - label: "*Hostis* (2023-2024)"
     path: "/work/2023/hostis.html"
 critique_title: "Related texts"
 related_texts: []
