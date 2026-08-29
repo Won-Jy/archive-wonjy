@@ -53,6 +53,7 @@ tables:
           - figure-de-pigeon
           - photogramme-de-pigeon
           - columbarium-iii
+          - collection-des-contenants-en-plastique_2
       - num: 2
         place: |-
           43°50'14.2"N 4°21'58.0"E 
@@ -669,6 +670,11 @@ tables:
         title: Columbarium VI
         year: '2025'
         path: /work/2025/columbarium-vi.html
+      collection-des-contenants-en-plastique_2:
+        title: Collection des contenants en plastique
+        year: '2018'
+        note: ''
+        path: ''
     id: pigeons
     columns:
       - key: num
