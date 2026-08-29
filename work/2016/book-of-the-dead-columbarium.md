@@ -19,7 +19,6 @@ media: []
 hide_cover_if_video_top: false
 tables:
   - image_caption:
-      - column: num
       - column: name
         italic: true
       - column: date
@@ -47,7 +46,8 @@ tables:
           I used one of the baby towels we had a lot of at home as a shroud — my daughter was two at the time, and it was the softest cloth in the house — wrapped the body in it, and buried it in a plastic box filled with soil.
         images:
           - 001_Suaire_01.webp
-          - 001_Suaire_05.webp
+          - file: 001_Suaire_05.webp
+            caption: Pigeon wrapped in a baby towel.
         links:
           - columbarium-i
           - figure-de-pigeon
@@ -108,7 +108,8 @@ tables:
       - num: 4
         images:
           - 004_Fondu_01.webp
-          - 004_Fondu_02.webp
+          - file: 004_Fondu_02.webp
+            caption: Sticky part revealed after removing the wing.
         name: Fondu
         date: 2018.06.08
         place: |-
@@ -125,7 +126,8 @@ tables:
       - num: 5
         images:
           - 005_Filfil_01.webp
-          - 005_Filfil_02.webp
+          - file: 005_Filfil_02.webp
+            caption: White strings sprouting up, about six months after burying the pigeon.
         name: Filfil
         date: 2018.06.28
         place: |-
@@ -250,21 +252,30 @@ tables:
           On 9 March 2020, the day the show came down, I was in Paris working as an assistant to Hubert Duprat, so a classmate agreed to take care of the pigeon — and in the process, unfortunately, it was lost.
         images:
           - 014_Sonic_01.webp
-          - 014_Sonic_02.webp
+          - file: 014_Sonic_02.webp
+            caption: Pigeon shown in <i>Folk Assemblage</i> (2019), Olivier Vadrot's exhibition at Chapelle des Jésuites, Nîmes.
         links:
           - columbarium-iii
           - folk-assemblageby-olivier-vadrot
       - num: 15
         images:
-          - 015_Virevoltant (1).webp
-          - 015_Virevoltant (2).webp
-          - 015_Virevoltant (3).webp
+          - file: 015_Virevoltant (1).webp
+            caption: Virevoltant I-VI — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+          - file: 015_Virevoltant (2).webp
+            caption: Former wash-house in Saint-Laurent-des-Arbres (2019).
+          - file: 015_Virevoltant (3).webp
+            caption: Virevoltant I-VI — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
           - 015_Virevoltant (4).webp
-          - 015_Virevoltant (5).webp
-          - 015_Virevoltant (6).webp
-          - 015_Virevoltant (7).webp
-          - 015_Virevoltant (8).webp
-          - 015_Virevoltant (9).webp
+          - file: 015_Virevoltant (5).webp
+            caption: Virevoltant II — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+          - file: 015_Virevoltant (6).webp
+            caption: Virevoltant III — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+          - file: 015_Virevoltant (7).webp
+            caption: Virevoltant IV — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+          - file: 015_Virevoltant (8).webp
+            caption: Virevoltant V — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
+          - file: 015_Virevoltant (9).webp
+            caption: Virevoltant VI — 17 Sep 2019 — Saint-Laurent-des-Arbres, France
         name: Virevoltant I
         date: 2019.09.17
         place: |-
@@ -638,6 +649,11 @@ tables:
         title: Columbarium II
         year: '2019'
         path: /work/2019/columbarium-ii.html
+      collection-des-contenants-en-plastique_2:
+        title: Collection des contenants en plastique
+        year: '2018'
+        note: ''
+        path: ''
       columbarium-v:
         title: Columbarium V
         year: '2024'
@@ -670,11 +686,6 @@ tables:
         title: Columbarium VI
         year: '2025'
         path: /work/2025/columbarium-vi.html
-      collection-des-contenants-en-plastique_2:
-        title: Collection des contenants en plastique
-        year: '2018'
-        note: ''
-        path: ''
     id: pigeons
     columns:
       - key: num
