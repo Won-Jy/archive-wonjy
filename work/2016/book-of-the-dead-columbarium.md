@@ -52,8 +52,8 @@ tables:
           - columbarium-i
           - figure-de-pigeon
           - photogramme-de-pigeon
-          - columbarium-iii
           - collection-des-contenants-en-plastique_2
+          - columbarium-iii
       - num: 2
         place: |-
           43°50'14.2"N 4°21'58.0"E 
