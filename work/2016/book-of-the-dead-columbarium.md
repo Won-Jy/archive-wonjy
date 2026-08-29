@@ -13,19 +13,17 @@ tags:
   - Pigeon
 cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
 cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
-summary: ''
+summary: A record of pigeons for which Won Jy has held funerals since 2016, as part of the <i>Columbarium</i> project.
 description: ''
 media: []
 hide_cover_if_video_top: false
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 tables:
   - image_caption:
+      - column: num
       - column: name
         italic: true
       - column: date
+      - column: place
     filter_placeholder: Search…
     image_base: /images/2016/book-of-the-dead-columbarium/
     filter: true
@@ -440,7 +438,7 @@ tables:
           (Nîmes, France)
         note_en: |-
           One day in June 2024, with the sound of the marteau piqueur ringing out from the demolition as usual, a young pigeon that seemed to have left the nest only recently was sitting on the ground at Place Debussy, in front of the Pissevin studio. It looked unwell, so I brought it into the studio and put it with some feed on a chest of drawers, up off the floor. Before long, with its eyes closed, it thrashed — writhing, or shuddering — and dropped straight to the floor. I went to it, startled; it went on making those last movements, lying on the floor, and then died.
-          I buried it in the ground of the hostis garden inside the studio, and on 3 December moved it to the Columbarium.
+          I buried it in the ground of the hostis garden inside the studio, and on 3 December moved it to the <i>Columbarium</i>.
         links:
           - columbarium-iii
           - hostis
@@ -716,4 +714,8 @@ tables:
         label: 비고
         style: text
         private: true
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 ---
