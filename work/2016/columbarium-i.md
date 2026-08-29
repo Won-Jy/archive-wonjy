@@ -19,7 +19,9 @@ tags:
   - Pigeon
 cover: /images/2016/columbarium-i/Columbarium I_01.webp
 cover_caption: <i>Columbarium I</i>, pigeon remains, soil, plastic box, 35×26×14cm, 2016.
-summary: A pigeon buried in soil, inside a plastic box. The first pigeon I ever gave a burial to. This would later lead to the Columbarium project.
+summary: |-
+  A pigeon buried in soil, inside a plastic box. The first pigeon I ever gave a burial to. 
+  This would later lead to the Columbarium project.
 description: |-
   He was lying on his back on a sewer grate on the sidewalk, completely dried out by the sun — his eyes were already gone, and his feathers had gone brittle. Above his breast feathers, the rounded sternum (keel bone) rose up. The way he lay in death, the size of the grate beneath him, and the proportions of his body upon it were so harmonious it felt like a mise en scène. It reminded me of a pigeon carcass I had found the year before, in 2015, while sleeping rough in Paris — one I had gone on to draw.
 
