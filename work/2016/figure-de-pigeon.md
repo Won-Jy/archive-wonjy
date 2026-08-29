@@ -15,17 +15,14 @@ date_start: 2016-11-13
 status: Completed
 tags:
   - Pigeon
-cover: ''
+cover: /imagesimages/2016/figure-de-pigeon/01.webp
 cover_caption: _Figure de pigeon_, digital image, 2096×2764px, 2016.
 summary: Image projection, 2096×2764px, 2016
 description: |-
   The first pigeon I gave a burial to ([_Columbarium I_](https://archive-wonjy.com/work/2016/columbarium-i.html), 2016) was wrapped in a baby bath towel — which I had plenty of at home at the time — in place of a white cloth, inspired by the Shroud of Turin, and buried in soil.
 
   Three days later, I removed only the towel from his body in the soil and photographed it in high resolution. This image is a projection of that photograph as a negative, via video projector.
-media:
-  - type: image
-    src: /imagesimages/2016/columbarium-i/Columbarium I_03.webp
-    caption: ''
+media: []
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
