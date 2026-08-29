@@ -105,7 +105,9 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
-linked_works: []
+linked_works:
+  - label: ''
+    path: ''
 critique_title: Related texts
 related_texts: []
 ---
