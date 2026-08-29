@@ -40,7 +40,21 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
-linked_works: []
+linked_works:
+  - label: <i>Figure de pigeon</i> (2016)
+    path: ''
+  - label: <i>Collection des contenants en plastique</i> (2018)
+    path: ''
+  - label: <i>Columbarium II</i> (2019)
+    path: ''
+  - label: <i>Columbarium III</i> (2019)
+    path: ''
+  - label: <i>Columbarium IV</i> (2023)
+    path: ''
+  - label: <i>Columbarium V</i> (2024)
+    path: ''
+  - label: <i>Columbarium VI</i> (2025)
+    path: ''
 critique_title: Related texts
 related_texts: []
 ---
