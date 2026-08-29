@@ -11,12 +11,16 @@ date_start: 2016-11-12
 status: In progress
 tags:
   - Pigeon
-cover: ''
-cover_caption: ''
+cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
+cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
 summary: ''
 description: ''
 media: []
 hide_cover_if_video_top: false
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 tables:
   - image_caption:
       - column: name
@@ -712,8 +716,4 @@ tables:
         label: 비고
         style: text
         private: true
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 ---
