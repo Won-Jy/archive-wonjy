@@ -104,6 +104,32 @@ title: Texts
       {% endfor %}
      };
 
+    /* 본문과 주석은 마크다운으로 저장한다. 화면에 꽂을 HTML 은 빌드할 때 미리 만들어 둔다.
+       (사이트가 마크다운을 읽는 곳은 여기 한 군데다.) */
+    const RENDERED = {
+      {% for pair in site.data.texts %}{% assign id = pair[0] %}{% assign t = pair[1] %}
+      {{ id | jsonify }}: {
+        "bodies": {
+          {{ t.original.language | jsonify }}: {{ t.original.body | markdownify | jsonify }}{% for tr in t.translations %},
+          {{ tr.language | jsonify }}: {{ tr.body | markdownify | jsonify }}{% endfor %}
+        },
+        "notes": {
+          {{ t.original.language | jsonify }}: [{% for n in t.original.notes %}{% capture nh %}{{ n.text | markdownify }}{% endcapture %}{{ nh | replace: '<p>', '' | replace: '</p>', '' | strip | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]{% for tr in t.translations %},
+          {{ tr.language | jsonify }}: [{% for n in tr.notes %}{% capture nh %}{{ n.text | markdownify }}{% endcapture %}{{ nh | replace: '<p>', '' | replace: '</p>', '' | strip | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}]{% endfor %}
+        }
+      }{% unless forloop.last %},{% endunless %}{% endfor %}
+    };
+
+    /* 본문 안의 주석 번호는 [[1]] 로 적어둔다 — 글을 읽기 쉽고, 여기서 위첨자로 되돌린다. */
+    function bodyHtml(id, lang){
+      const r = RENDERED[id] && RENDERED[id].bodies ? (RENDERED[id].bodies[lang] || '') : '';
+      return r.replace(/\[\[(\d+)\]\]/g, '<sup class="note-ref">[$1]</sup>');
+    }
+    function noteHtml(id, lang, i){
+      const r = RENDERED[id] && RENDERED[id].notes ? (RENDERED[id].notes[lang] || []) : [];
+      return r[i] || '';
+    }
+
     /* Every work page Jekyll actually builds. A related_works slug outside this
        list is a page that hasn't been written yet — it shows as plain text and
        becomes a real link on its own once the page exists. */
@@ -214,11 +240,11 @@ title: Texts
 
         <div class="text-variants">
           <div class="text-body variant" data-lang="${origLang}">
-            ${t.original?.body_html || ''}
+            ${bodyHtml(id, origLang)}
           </div>
           ${(t.translations||[]).map(tr=>`
             <div class="text-body variant" data-lang="${tr.language}" style="display:none">
-              ${(t.title_en && tr.language === 'en' && !sameTitle(t.title_original?.text_html, t.title_en)) ? `<span class="title-en-note">English title: ${t.title_en}</span><br><br>` : ''}${tr.body_html || ''}
+              ${(t.title_en && tr.language === 'en' && !sameTitle(t.title_original?.text_html, t.title_en)) ? `<span class="title-en-note">English title: ${t.title_en}</span><br><br>` : ''}${bodyHtml(id, tr.language)}
             </div>
           `).join('')}
         </div>
@@ -230,9 +256,9 @@ title: Texts
           <ol class="notes-variants">
             <li style="list-style:none;padding:0;margin:0">
               <ol class="notes-list variant" data-lang="${origLang}">
-                ${(t.original?.notes||[]).map(n=>`
+                ${(t.original?.notes||[]).map((n,i)=>`
                   <li id="fn-${n.id}-${origLang}">
-                    <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${n.html}
+                    <a class="note-num" href="#fnref-${n.id}-${origLang}">[${n.id}]</a> ${noteHtml(id, origLang, i)}
                   </li>
                 `).join('')}
               </ol>
@@ -240,9 +266,9 @@ title: Texts
             ${(t.translations||[]).map(tr=>`
               <li style="list-style:none;padding:0;margin:0">
                 <ol class="notes-list variant" data-lang="${tr.language}" style="display:none">
-                  ${(tr.notes||[]).map(n=>`
+                  ${(tr.notes||[]).map((n,i)=>`
                     <li id="fn-${n.id}-${tr.language}">
-                      <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${n.html}
+                      <a class="note-num" href="#fnref-${n.id}-${tr.language}">[${n.id}]</a> ${noteHtml(id, tr.language, i)}
                     </li>
                   `).join('')}
                 </ol>

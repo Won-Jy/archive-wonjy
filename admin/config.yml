@@ -199,12 +199,32 @@ collections:
 
       - { name: source_html, label: 출처, widget: text, required: false }
 
+      # 본문은 마크다운으로 저장한다. 사이트(texts.html)가 빌드할 때 HTML 로 바꾼다.
+      # 주석은 원문 안·번역본 안에 각각 들어 있다 — 예전 설정은 글 맨 바깥을 가리켜서
+      # 주석 86개가 에디터에서 아예 안 보였다.
       - name: original
         label: 원문
         widget: object
         fields:
           - { name: language, label: 언어, widget: string }
-          - { name: body_html, label: 본문, widget: text }
+          - name: body
+            label: 본문
+            widget: markdown
+            modes: [rich_text, raw]
+            buttons: [bold, italic, link]
+            editor_components: []
+            hint: "주석 번호는 [[1]] 처럼 적으면 사이트에서 위첨자로 나옵니다."
+          - name: notes
+            label: 주석
+            widget: list
+            required: false
+            collapsed: true
+            summary: "[{{fields.id}}] {{fields.text}}"
+            fields:
+              - { name: id, label: 번호, widget: number, value_type: int,
+                  hint: "본문의 [[1]] 과 같은 번호." }
+              - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
+                  buttons: [bold, italic, link], editor_components: [], minimal: true }
 
       - name: translations
         label: 번역
@@ -215,15 +235,24 @@ collections:
         fields:
           - { name: language, label: 언어, widget: string }
           - { name: translator, label: 번역자, widget: string, required: false }
-          - { name: body_html, label: 본문, widget: text }
-
-      - name: notes
-        label: 주석
-        widget: list
-        required: false
-        collapsed: true
-        fields:
-          - { name: text, label: 내용, widget: text, required: false }
+          - name: body
+            label: 본문
+            widget: markdown
+            modes: [rich_text, raw]
+            buttons: [bold, italic, link]
+            editor_components: []
+            hint: "주석 번호는 [[1]] 처럼 적으면 사이트에서 위첨자로 나옵니다."
+          - name: notes
+            label: 주석
+            widget: list
+            required: false
+            collapsed: true
+            summary: "[{{fields.id}}] {{fields.text}}"
+            fields:
+              - { name: id, label: 번호, widget: number, value_type: int,
+                  hint: "본문의 [[1]] 과 같은 번호." }
+              - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
+                  buttons: [bold, italic, link], editor_components: [], minimal: true }
 
       - name: related_works
         label: 관련 작업
