@@ -361,7 +361,8 @@ tables:
           I met Richard separately at Inrap, and he handed them over in an Adidas shoebox.
         images:
           - 024_Devauvert_01.webp
-          - 024_Devauvert_02.webp
+          - file: 024_Devauvert_02.webp
+            caption: Box that once held <i>Devauverts</i>, from Vauvert.
         links:
           - columbarium-iv
       - num: 25
@@ -499,10 +500,14 @@ tables:
           Around September 2024 I began talking about these spaces with M. Hazza of H4 IMMO, the company managing the co-owned buildings in the quarter, and with him I visited an abandoned flat on Boulevard Jean Cocteau, where I was able to collect a large number of pigeons.
           As he explained it, pigeons that had come in through the broken window glass could not get out again because of the strong draught, and had died slowly, trapped.
         images:
-          - 034_Cocteau_01.webp
-          - 034_Cocteau_02.webp
-          - 034_Cocteau_03.webp
-          - 034_Cocteau_04.webp
+          - file: 034_Cocteau_01.webp
+            caption: Cocteau (I-XXII) — 30 Sep 2024 — Nîmes, France
+          - file: 034_Cocteau_02.webp
+            caption: Cocteau (I-XXII) — 30 Sep 2024 — Nîmes, France
+          - file: 034_Cocteau_03.webp
+            caption: Cocteau (I-XXII) — 30 Sep 2024 — Nîmes, France
+          - file: 034_Cocteau_04.webp
+            caption: Entrance of the building.
         links:
           - columbarium-iii
       - num: 35
@@ -605,7 +610,8 @@ tables:
       - num: 59
         images:
           - 059_Terrazzo_01.webp
-          - 059_Terrazzo_02.webp
+          - file: 059_Terrazzo_02.webp
+            caption: Terrazzo (packed in the plastic bag before being buried) and pigeon eggs found on the same balcony.
         name: Terrazzo
         date: 2026.04.25
         place: |-
