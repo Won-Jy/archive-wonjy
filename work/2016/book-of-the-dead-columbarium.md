@@ -17,10 +17,6 @@ summary: A record of pigeons for which I have held funerals since 2016, as part 
 description: ''
 media: []
 hide_cover_if_video_top: false
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 tables:
   - image_caption:
       - column: name
@@ -641,6 +637,7 @@ tables:
       columbarium-i:
         title: Columbarium I
         year: '2016'
+        note: ''
         path: /work/2016/columbarium-i.html
       columbarium-iii:
         title: Columbarium III
@@ -741,4 +738,8 @@ tables:
         label: 비고
         style: text
         private: true
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 ---
