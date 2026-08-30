@@ -46,8 +46,8 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
-  - label: _Hostis_ (2023 – 2024)
-    path: /work/2023/hostis.html
+  - label: _Columbarium I_ (2016)
+    path: /work/2016/columbarium-i.html
 critique_title: Related texts
 related_texts: []
 ---
