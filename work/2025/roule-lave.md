@@ -70,10 +70,7 @@ media:
     caption: '*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023.'
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_20_IMG_0708.webp
-    caption: '*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024.'
-  - type: image
-    src: /images/2025/roule-lave/Vue_Roulé-Lavé_21_IMG_0683.webp
-    caption: '*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024.'
+    caption: '[_Columbarium V_](https://archive-wonjy.com/work/2024/columbarium-v.html), epoxy resin, glue, pigeon remains, ⌀66×23,5cm, 2024.'
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_23_IMG_0316.webp
     caption: '*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025.'
