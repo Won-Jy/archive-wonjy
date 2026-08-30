@@ -11,16 +11,16 @@ status: In progress
 tags:
   - Pigeon
 cover: /images/columbarium-v/Columbarium_V_01.webp
-cover_caption: _Columbarium V_, pigeon remains, epoxy resin, glue, ⌀66×23,5cm, 2024.
+cover_caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
 summary: Pigeon remains, epoxy resin, glue, ⌀66×23,5cm, 2024
 description: ''
 media:
   - type: image
     src: /images/columbarium-v/Columbarium_V_02.webp
-    caption: ''
+    caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
   - type: image
     src: /images/columbarium-v/Columbarium_V_03.webp
-    caption: ''
+    caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
