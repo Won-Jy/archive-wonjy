@@ -1,136 +1,142 @@
 ---
 layout: work
-title: "Roulé-Lavé"
-types: ["Highlight", "Exhibition"]
+title: Roulé-Lavé
+drafts: ''
+types:
+  - Highlight
+  - Exhibition
 year_start: 2025
 year_end: 2025
 date_start: 2025-01-24
-status: "Completed"
-tags: ["Stone", "Pigeon"]
-cover: "/images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp"
-cover_caption: "*Fontaine II*, concrete rubble from Pissevin, water, 220×200×130cm, 2025."
-summary: |
+status: Completed
+tags:
+  - Stone
+  - Pigeon
+cover: /images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp
+cover_caption: _Fontaine II_, concrete rubble from Pissevin, water, 220×200×130cm, 2025.
+summary: |-
   Solo exhibition at CACN – Centre d’Art Contemporain de Nîmes.
 
   Curated by Guilhem Monceaux.
-description: >
-  *Roulé-Lavé* revisits various experiments carried out by Won Jy around the transformation of matter. The artist is seen going up rivers in search of the source of the water—and thus the origin of the shape of the stones he collects. We also see him appropriating the patterns of these stones to reprint them onto blocks of rubble. Won Jy also works on the theme of hospitality and how foreigners are regarded within a given territory. He explores the metaphor of colombophobia to address how architecture can include or exclude, often depending on collective decisions. Won Jy’s works are often tinged with subtle humor, allowing complex issues to be expressed through light and poetic forms. – Excerpt from the exhibition presentation text.
-linked_works_title: "Linked works"   
-linked_works:
-  - label: ""
-    path: ""
-critique_title: "Related texts"
-related_texts:
-  - id: "roule-lave"
-  - id: "like-a-rolling-stone"
-  - id: "wonjy-au-cacn"
+description: _Roulé-Lavé_ revisits various experiments carried out by Won Jy around the transformation of matter. The artist is seen going up rivers in search of the source of the water—and thus the origin of the shape of the stones he collects. We also see him appropriating the patterns of these stones to reprint them onto blocks of rubble. Won Jy also works on the theme of hospitality and how foreigners are regarded within a given territory. He explores the metaphor of colombophobia to address how architecture can include or exclude, often depending on collective decisions. Won Jy’s works are often tinged with subtle humor, allowing complex issues to be expressed through light and poetic forms. – Excerpt from the exhibition presentation text.
 media:
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp"
-    caption: "*Fontaine II*, concrete rubble from Pissevin, water, 220×200×110cm, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp
+    caption: '*Fontaine II*, concrete rubble from Pissevin, water, 220×200×110cm, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_05.webp"
-    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_05.webp
+    caption: Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp"
-    caption: "*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0072.webp
+    caption: '*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0556.webp"
-    caption: "*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_06_IMG_0556.webp
+    caption: '*Eau de douche*, washing water from six pigeons of Pissevin, 19×34×19cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_08_IMG_0419.webp"
-    caption: "*Acryllite*, acrylic paint, variable dimensions, 2018."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_08_IMG_0419.webp
+    caption: '*Acryllite*, acrylic paint, variable dimensions, 2018.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_09_IMG_0078.webp"
-    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_09_IMG_0078.webp
+    caption: '*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_10_IMG_0448.webp"
-    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_10_IMG_0448.webp
+    caption: '*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_11_IMG_0454.webp"
-    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_11_IMG_0454.webp
+    caption: '*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_12_IMG_0462.webp"
-    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_12_IMG_0462.webp
+    caption: '*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_13_IMG_0184.webp"
-    caption: "*Granit de rêve*, HD video, color, sound, 13 min, 2021."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_13_IMG_0184.webp
+    caption: '*Granit de rêve*, HD video, color, sound, 13 min, 2021.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_14_IMG_0174.webp"
-    caption: "*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_14_IMG_0174.webp
+    caption: '*Banc en granito*, cement, Bellegarde stone, 95×40×10cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0526.webp"
-    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Columbarium room."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0526.webp
+    caption: Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Columbarium room.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0857.webp"
-    caption: "*Columbarium III*, plastic boxes, soil, pigeon remains, neon, 35×26×14cm (each), 2017 –."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_15_IMG_0857.webp
+    caption: _Columbarium III_, plastic boxes, soil, pigeon remains, 35×26×14cm (each), 2019 –.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_16_IMG_0250.webp"
-    caption: "*Columbarium VI*, neon, epoxy resin, pigeon remains, variable dimensions, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_16_IMG_0250.webp
+    caption: '*Columbarium VI*, neon, epoxy resin, pigeon remains, variable dimensions, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_17_IMG_0513.webp"
-    caption: "*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_17_IMG_0513.webp
+    caption: '*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_19_IMG_0325.webp"
-    caption: "*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_19_IMG_0325.webp
+    caption: '*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_20_IMG_0708.webp"
-    caption: "*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_20_IMG_0708.webp
+    caption: '*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_21_IMG_0683.webp"
-    caption: "*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_21_IMG_0683.webp
+    caption: '*Columbarium V*, epoxy resin, glue, pigeon remains, diameter 66×23,5cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_23_IMG_0316.webp"
-    caption: "*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_23_IMG_0316.webp
+    caption: '*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_24_IMG_0575.webp"
-    caption: "*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_24_IMG_0575.webp
+    caption: '*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_25_IMG_0297.webp"
-    caption: "*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_25_IMG_0297.webp
+    caption: '*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_26_IMG_0322.webp"
-    caption: "*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_26_IMG_0322.webp
+    caption: '*Matelas*, cast concrete, limestones, granite stones, 154×80×20cm, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_27_IMG_0754.webp"
-    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Research table."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_27_IMG_0754.webp
+    caption: Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025 — Research table.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0339.webp"
-    caption: "*Tombés-Montés*, floral foam, hair, 23×11×14cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0339.webp
+    caption: '*Tombés-Montés*, floral foam, hair, 23×11×14cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0378.webp"
-    caption: "*Troué-Rebouché*, limestone, filler, 13×7×5cm, 2018."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0378.webp
+    caption: '*Troué-Rebouché*, limestone, filler, 13×7×5cm, 2018.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0776.webp"
-    caption: "*Baudile*, pigeon powder, keratin, dimensions variables, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_28_IMG_0776.webp
+    caption: '*Baudile*, pigeon powder, keratin, dimensions variables, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0382.webp"
-    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0382.webp
+    caption: '*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0384.webp"
-    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0384.webp
+    caption: '*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0387.webp"
-    caption: "*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_29_IMG_0387.webp
+    caption: '*Évaluation de Gharib*, cast silicone, 42×58×3cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_30_IMG_0272.webp"
-    caption: "*Voyage avec Oumar*, HD video, color, sound, 1min 53sec, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_30_IMG_0272.webp
+    caption: '*Voyage avec Oumar*, HD video, color, sound, 1min 53sec, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_31.webp"
-    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_31.webp
+    caption: Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_32_IMG_0328.webp"
-    caption: "*Talon*, limestone, 10×17×8cm, 2024."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_32_IMG_0328.webp
+    caption: '*Talon*, limestone, 10×17×8cm, 2024.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_33_IMG_0398.webp"
-    caption: "Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_33_IMG_0398.webp
+    caption: Exhibition view *Roulé-Lavé*, CACN - centre d'art contemporain de Nîmes, France, 2025.
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_34_IMG_0406.webp"
-    caption: "*Porte de guano*, wood, paint, pigeon droppings, 70×208×4cm, 2019."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_34_IMG_0406.webp
+    caption: '*Porte de guano*, wood, paint, pigeon droppings, 70×208×4cm, 2019.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_35_IMG_0413.webp"
-    caption: "*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_35_IMG_0413.webp
+    caption: '*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025.'
   - type: image
-    src: "/images/2025/roule-lave/Vue_Roulé-Lavé_36_IMG_0599.webp"
-    caption: "*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025."
+    src: /images/2025/roule-lave/Vue_Roulé-Lavé_36_IMG_0599.webp
+    caption: '*Chaussures de hammam*, shoes, facade coating, dimensions variables, 2025.'
+hide_cover_if_video_top: false
+tables: ''
+linked_works_title: Linked works
+linked_works:
+  - label: ''
+    path: ''
+critique_title: Related texts
+related_texts:
+  - id: roule-lave
+  - id: like-a-rolling-stone
+  - id: wonjy-au-cacn
 ---
