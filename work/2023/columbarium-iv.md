@@ -46,7 +46,7 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
-  - label: Hostis (2023 – 2024)
+  - label: _Hostis_ (2023 – 2024)
     path: /work/2023/hostis.html
 critique_title: Related texts
 related_texts: []
