@@ -11,9 +11,9 @@ drafts: |-
 types:
   - Single work
 year_start: 2023
-year_end: 2023
+year_end: null
 date_start: 2023-06-25
-status: Completed
+status: In progress
 tags: []
 cover: /images/columbarium-iv/Columbarium_IV_01.webp
 cover_caption: _Columbarium IV_, epoxy resin, glue, pigeon remains, 36×20×12cm (each), 2023.
