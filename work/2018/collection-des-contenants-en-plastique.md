@@ -19,7 +19,7 @@ date_start: 2018-03-19
 status: Completed
 tags: []
 cover: /images/collection-des-contenants-en-plastique/Collection_contenants_01.webp
-cover_caption: Collection des contenants en plastique,
+cover_caption: _Collection des contenants en plastique_, mixed media, dimensions variable, 2018.
 summary: Installation, mixed media, dimensions variable, 2018
 description: |-
   During my second year at the Beaux-Arts, there was a workshop-like program called the "Collection" session, led by Hubert Durat and Jean-Marc Cerino, in which each student assembled a personal collection of their own and devised a display to present it freely.
@@ -32,76 +32,70 @@ description: |-
 media:
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_02.webp
-    caption: ''
+    caption: _Collection des contenants en plastique_, mixed media, dimensions variable, 2018.
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_03.webp
-    caption: ''
+    caption: 'Inside a Carrefour bread box: a Carrefour baguette and a local bakery baguette, left uneaten and forgotten.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_04.webp
-    caption: ''
+    caption: 'Inside a Ferrero Rocher box: a piece of milk bread, left uneaten and forgotten.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_05.webp
-    caption: ''
+    caption: 'Inside a tooth-cleaning solution bottle: a "paint stone" that formed while grinding down paint residue into powder'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_06.webp
-    caption: ''
+    caption: 'Inside a toothpick container: a used adhesive bandage that still smells of blood.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_07.webp
-    caption: ''
+    caption: 'Inside a baby cotton-swab box: a damaged twin doll found abandoned on the street.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_08.webp
-    caption: ''
+    caption: 'Inside a box of bundled nails: a dried banana.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_09.webp
-    caption: ''
+    caption: 'Inside a modular tool box, from bottom to top: pink and clear air-freshener beads, and a severed pigeon head.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_10.webp
-    caption: ''
+    caption: 'Still in its original packaging, inside plastic film: a name-tag ruler.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_11.webp
-    caption: ''
+    caption: 'Inside an alcohol burner container: pigment made by grinding down a pigeon.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_12.webp
-    caption: ''
+    caption: 'Inside a shoe-storage box: powder made by grinding down dried paint.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_13.webp
-    caption: ''
+    caption: 'Inside a shoe-storage box: trash sorted out to be thrown away — but never actually thrown out.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_14.webp
-    caption: ''
+    caption: "Inside a general storage box: a pigeon's grave — [_Columbarium I_](https://archive-wonjy.com/work/2016/columbarium-i.html) (2016)."
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_15.webp
-    caption: ''
+    caption: 'Inside a document case: a series of drawings made while sleeping rough, along with the map and diary used at the time.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_16.webp
-    caption: ''
+    caption: 'Inside a document case: street photographs taken while living in Vitry-sur-Seine.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_17.webp
-    caption: ''
+    caption: 'Inside a document case: the fabric shell of a cat plush toy.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_18.webp
-    caption: ''
-  - type: image
-    src: /images/collection-des-contenants-en-plastique/Collection_contenants_19.webp
-    caption: ''
+    caption: 'Inside a document case: a dossier of my first-year work at the Nîmes Beaux-Arts, an accompanying "cartel" (wall label) describing it, and a wooden chopstick I carved.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_20.webp
-    caption: ''
+    caption: 'Inside a document case: a family photo printed on an acrylic panel, discarded by Jing, someone I met at the Nîmes Beaux-Arts.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_21.webp
-    caption: ''
+    caption: 'Inside a Carrefour croissant box: a stone picked up by a river.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_22.webp
-    caption: ''
+    caption: 'Inside a Carrefour donut box: cotton wool found in the studio.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_23.webp
-    caption: ''
+    caption: "Inside a tooth-cleaning solution bottle: stones found in a dead pigeon's stomach."
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_24.webp
-    caption: ''
-  - type: image
-    src: /images/collection-des-contenants-en-plastique/Collection_contenants_25.webp
-    caption: ''
+    caption: 'Inside a tooth-cleaning solution bottle: stuffing taken from inside a cat plush toy.'
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
