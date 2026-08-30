@@ -28,7 +28,7 @@ media:
     caption: Pigeon wrapped in a baby bath towel.
   - type: image
     src: /images/2016/columbarium-i/Columbarium I_04.webp
-    caption: Plastic box in which the pigeon was buried in soil – [_Columbarium I_](https://archive-wonjy.com/work/2016/columbarium-i.html) (2016).
+    caption: Plastic box in which the pigeon was buried in soil – [_Columbarium I_ (2016)](https://archive-wonjy.com/work/2016/columbarium-i.html).
   - type: image
     src: /images/figure-de-pigeon/Figure de pigeon_04.webp
     caption: Tidying the grave.
