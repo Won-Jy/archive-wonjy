@@ -79,7 +79,7 @@ media:
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_17.webp
     caption: 'Inside a document case: the fabric shell of a cat plush toy.'
   - type: image
-    src: /images/collection-des-contenants-en-plastique/Collection_contenants_18.webp
+    src: /images/collection-des-contenants-en-plastique/Collection_contenants_19.webp
     caption: 'Inside a document case: a dossier of my first-year work at the Nîmes Beaux-Arts, an accompanying "cartel" (wall label) describing it, and a wooden chopstick I carved.'
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_20.webp
