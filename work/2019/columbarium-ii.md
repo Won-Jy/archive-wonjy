@@ -1,0 +1,56 @@
+---
+layout: work
+title: Columbarium II
+drafts: |-
+  Saint-Laurent-des-Arbres에 위치한 예술 레지던시 Échangeur 22에서 주최해서 마을과 레지던시 건물안에서 진행한 짧은 기간동안 현장에서 만들어내는 실험적 전시 "Dents creuses II"의 일환으로 소개된 작업. 
+  집에 있었던 비둘기 무덤들을 가져와서 레지던시 안에서 주은 재료들과 함께 배치해서 즉흥적으로 디스플레이 해본것임.
+
+  이 기간동안 마을의 옛 빨래터에서 새로운 비둘기 유해들 찾을수있었는데, 그들을 새로운 비둘기 무덤으로 만들어서 기존의 것에 추가됬었음. 하루 뒤 상자안의 흙에서 구더기들이 태어나 상자 내부 벽면을 타고 기어다니기 시작했고 그것은 일종의 일시적 뎃생을 그려냈다.
+types:
+  - Single work
+year_start: 2019
+year_end: 2019
+date_start: 2019-09-22
+status: Completed
+tags:
+  - Pigeon
+  - Stone
+cover: /images/columbarium-ii/Columbarium_II_01.webp
+cover_caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+summary: Mixed media, dimensions variable, 2019.
+description: |-
+  This work was presented as part of _Dents creuses II_, a short-term, on-site experimental exhibition hosted by Échangeur 22, an artist residency located in Saint-Laurent-des-Arbres, and staged both in the village and inside the residency building.
+
+  I brought the pigeon graves I had at home and improvised a display, arranging them together with materials I found on-site at the residency.
+
+  During this period, I found fresh pigeon remains at the village's old communal wash-house (_lavoir_), which I turned into new pigeon graves and added to the existing ones. A day later, maggots emerged from the soil inside the boxes and began crawling along the interior walls, tracing out a kind of temporary drawing.
+media:
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_02.webp
+    caption: ''
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_03.webp
+    caption: ''
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_04.webp
+    caption: ''
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_05.webp
+    caption: ''
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_06.webp
+    caption: ''
+  - type: image
+    src: /images/columbarium-ii/Columbarium_II_07.webp
+    caption: ''
+hide_cover_if_video_top: false
+tables: ''
+linked_works_title: Linked works
+linked_works:
+  - label: _Columbarium I_ (2016)
+    path: /work/2016/columbarium-i.html
+  - label: Secret Garden (2019)
+    path: /work/2019/secret-garden.html
+critique_title: Related texts
+related_texts: []
+---
