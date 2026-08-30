@@ -102,6 +102,8 @@ linked_works_title: Linked works
 linked_works:
   - label: ''
     path: ''
+  - label: _Columbarium I_ (2016)
+    path: /work/2016/columbarium-i.html
 critique_title: Related texts
 related_texts: []
 ---
