@@ -27,22 +27,22 @@ description: |-
 media:
   - type: image
     src: /images/columbarium-ii/Columbarium_II_02.webp
-    caption: ''
+    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_03.webp
-    caption: ''
+    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_04.webp
-    caption: ''
+    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_05.webp
-    caption: ''
+    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_06.webp
-    caption: ''
+    caption: Interior of a pigeon grave, with a single maggot.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_07.webp
-    caption: ''
+    caption: Maggot drawing.
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
