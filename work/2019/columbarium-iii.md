@@ -38,6 +38,9 @@ linked_works_title: Linked works
 linked_works:
   - label: _Columbarium I_ (2016)
     path: /work/2016/columbarium-i.html
+  - label: _Columbarium II_ (2019)
+    path: /work/2019/columbarium-ii.html
 critique_title: Related texts
-related_texts: []
+related_texts:
+  - id: columbarium
 ---
