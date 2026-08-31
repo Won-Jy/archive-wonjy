@@ -5,20 +5,24 @@ drafts: ''
 types:
   - Project
   - Writing
-types_all: "Project,Writing"
+types_all: Project,Writing
 year_start: 2016
 year_end: null
 date_start: 2016-11-12
 status: In progress
 tags:
   - Pigeon
-tags_all: "Pigeon"
-cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
-cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
+tags_all: Pigeon
 summary: A record of pigeons for which I have held funerals since 2016, as part of the _Columbarium_ project.
 description: The _Columbarium_ series brings together various forms created from pigeon remains collected in my daily life. Each one takes on a distinct sculptural form, enacting a simple funerary protocol for these abandoned bodies.
+cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
+cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
 media: []
 hide_cover_if_video_top: false
+linked_works_title: Linked works
+linked_works: []
+critique_title: Related texts
+related_texts: []
 tables:
   - image_caption:
       - column: name
@@ -665,7 +669,8 @@ tables:
         path: /work/2018/collection-des-contenants-en-plastique.html
       columbarium-v:
         title: Columbarium V
-        year: '2024'
+        year: 2024 –
+        note: ''
         path: /work/2024/columbarium-v.html
       hostis:
         title: Hostis
@@ -693,7 +698,8 @@ tables:
         path: /work/2016/figure-de-pigeon.html
       columbarium-vi:
         title: Columbarium VI
-        year: '2025'
+        year: 2025 –
+        note: ''
         path: /work/2025/columbarium-vi.html
     id: pigeons
     columns:
@@ -740,8 +746,4 @@ tables:
         label: 비고
         style: text
         private: true
-linked_works_title: Linked works
-linked_works: []
-critique_title: Related texts
-related_texts: []
 ---
