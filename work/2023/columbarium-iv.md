@@ -10,14 +10,13 @@ drafts: |-
   나는 그것들을 벽에 걸어서 관객들의 시점을 마치 그것들을 하늘에서 바라보는 위치에 놓는다.
 types:
   - Single work
-types_all: "Single work"
+types_all: Single work
 year_start: 2023
 year_end: null
 date_start: 2023-06-25
 status: In progress
 tags: []
-cover: /images/columbarium-iv/Columbarium_IV_01.webp
-cover_caption: Installed within [_Hostis_ (2023–2024)](https://archive-wonjy.com/work/2023/hostis.html).
+tags_all: ''
 summary: Epoxy resin, glue, pigeon remains, 36×20×12cm (each), 2023.
 description: |-
   In this iteration of _Columbarium_, I replaced the rectangular cube form of the boxes I had previously used with a new container for the grave: the form of the decoy pigeon used in pigeon hunting, known in French as the "appelant pigeon."
@@ -27,6 +26,8 @@ description: |-
   To do this, I took an _appelant pigeon_ sold cheaply in the hunting section of Decathlon, a major French sporting-goods retail chain, split it into two parts — a lid and a base — and reproduced it in clear resin. I then enclosed a pigeon's body inside.
 
   I hang these on the wall, positioning the viewer's gaze as though looking down at them from the sky.
+cover: /images/columbarium-iv/Columbarium_IV_01.webp
+cover_caption: Installed within [_Hostis_ (2023–2024)](https://archive-wonjy.com/work/2023/hostis.html).
 media:
   - type: image
     src: /images/columbarium-iv/Columbarium_IV_02.webp
@@ -47,8 +48,18 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
+  - label: _Book of the Dead — Columbarium_ (2016 –)
+    path: /work/2016/book-of-the-dead-columbarium.html
   - label: _Columbarium I_ (2016)
     path: /work/2016/columbarium-i.html
+  - label: '[_Columbarium II_ (2019)](https://archive-wonjy.com/work/2019/columbarium-ii.html)'
+    path: ''
+  - label: '[_Columbarium III_ (2019 –)](https://archive-wonjy.com/work/2019/columbarium-iii.html)'
+    path: ''
+  - label: '[_Columbarium V_ (2024 –)](https://archive-wonjy.com/work/2024/columbarium-v.html)'
+    path: ''
+  - label: '[_Columbarium VI_ (2025 –)](https://archive-wonjy.com/work/2025/columbarium-vi.html)'
+    path: ''
 critique_title: Related texts
 related_texts: []
 ---
