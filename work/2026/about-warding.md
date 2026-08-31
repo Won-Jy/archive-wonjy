@@ -51,7 +51,7 @@ media:
     caption: '*Untitled*, glass droplet, stone, fly remains, variable dimensions, 2026.'
   - type: image
     src: /images/about-warding/View_about_warding_04_02-18.webp
-    caption: Exhibition view _About Warding_, Teatergalleriet, Kalmar, Sweden, 2026.
+    caption: _Cullet Fountain_, glass cullet, water, 58×65×33cm, 2026.
   - type: image
     src: /images/2026/about-warding/View_about_warding_04_03-19.webp
     caption: _Cullet Fountain_, glass cullet, water, 58×65×33cm, 2026.
