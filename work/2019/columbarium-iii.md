@@ -17,8 +17,8 @@ status: Completed
 tags:
   - Pigeon
 cover: /images/columbarium-iii/Columbarium_III_01.webp
-cover_caption: _Columbarium III_, pigeon remains, plastic boxs, soil,  35×26×14cm (each), 2019 –.
-summary: ''
+cover_caption: Installed at Château d'Aubais, as part of _Trop bête ! l'homme et sa nature_ (2019).
+summary: Pigeon remains, plastic boxs, soil,  35×26×14cm (each), 2019 –.
 description: |-
   I was invited to present my pigeon graves as part of the group exhibition _Trop bête ! l'homme et sa nature_ (2019), curated by Pierrette Gaudiat at Château d'Aubais.
 
