@@ -1,11 +1,18 @@
 ---
 layout: work
 title: Grotto
-drafts: ''
+drafts: |-
+  이 전시는 Département du Gard 옛 사회복지관 건물 지하에 제작된 동명의 장소특정적 조각 작품 《Grotto》에서 파생된 형태이다. 
+
+  이 건물은 2023년 2월 철거되기 전까지 "Vaisseau 3008"이라는 별칭으로 불렸다. 지하 공간 전체를 뒤덮는 이 콘크리트 타설 수조의 아이디어는 2021년 2월부터 4월까지 진행한 비공식 레지던시에서 비롯되었으며, 이 기간 동안 나는 일주일에 이틀에서 사흘 밤을 텐트를 치고 현장에서 지냈다.
+
+  한때 님 Hôtel-Dieu의 시체안치소로 쓰였던 것으로 추정되는 이 장소의 공간적 특성에서 영감을 받아, 나는 일종의 가짜 석관을 제작했다. 이는 건물 철거 시 자동으로 매몰되는 동시에, 철거로 발생하는 잔해를 담는 용기 역할도 하도록 의도된 것이었다.
+
+  조각 작품 제작 이후, 나는 여러 장(章)으로 구성된 전시를 조직했으며, 이는 부지가 철거될 때까지 계속되었다. 이 전시는 관객과 함께 이 공간에 대한 집단적 기억을 구축하는 것을 목표로 했으며, 동시에 오랫동안 도시 내에서 다양한 환대(hospitality)의 역할을 수행해 온 건물의 소멸에 응답하는 의례적 차원을 띠기도 했다.
 types:
   - Highlight
   - Exhibition
-types_all: "Highlight,Exhibition"
+types_all: Highlight,Exhibition
 year_start: 2022
 year_end: 2022
 date_start: 2022-05-05
@@ -13,7 +20,7 @@ status: Completed
 tags:
   - Cave
   - City
-tags_all: "Cave,City"
+tags_all: Cave,City
 cover: /images/2020/grotto/Grotto_01_main views 01.webp
 cover_caption: _Grotto_, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.
 summary: Solo exhibition in the basement of _Vaisseau 3008_, a former social services building of the Gard Department, Nîmes, France.
