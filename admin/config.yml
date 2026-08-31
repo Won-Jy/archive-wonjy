@@ -39,6 +39,7 @@ collections:
       - { label: Year, field: year_start }
       - { label: Type, field: types_all, pattern: "Single work|Exhibition|Project|Writing" }
       - { label: Tag,  field: tags_all,  pattern: "Newcomer|Garden|Pigeon|Stone|Water|Cave|City|Wall|Map" }
+      - { label: Status, field: status }
     view_filters:
       - { label: "Type · Highlight", field: types_all, pattern: "(^|,)Highlight(,|$)" }
       - { label: "Type · Exhibition", field: types_all, pattern: "(^|,)Exhibition(,|$)" }
@@ -54,6 +55,9 @@ collections:
       - { label: "Tag · Stone", field: tags_all,  pattern: "(^|,)Stone(,|$)" }
       - { label: "Tag · Wall", field: tags_all,  pattern: "(^|,)Wall(,|$)" }
       - { label: "Tag · Water", field: tags_all,  pattern: "(^|,)Water(,|$)" }
+      - { label: "Status · Completed", field: status,    pattern: "^Completed$" }
+      - { label: "Status · In progress", field: status,    pattern: "^In progress$" }
+      - { label: "Status · In preparation", field: status,    pattern: "^In preparation$" }
     # <<< taxonomy:views
     fields:
       - { name: layout, widget: hidden, default: work }
@@ -88,8 +92,12 @@ collections:
           time_format: false, picker_utc: true, required: false,
           hint: "목록 정렬에 쓰입니다. 연도만 아는 경우 비워두셔도 됩니다." }
 
-      - { name: status, label: Status, widget: select,
-          options: [Completed, In progress, In preparation] }
+      - name: status
+        label: Status
+        widget: select
+        # >>> taxonomy:status
+        options: ["Completed", "In progress", "In preparation"]
+        # <<< taxonomy:status
 
       - name: tags
         label: Tags

@@ -169,19 +169,27 @@
      여러 값 필드는 `types.0`, `types.1` 로만 남고 `types` 자체는 undefined 다.
      그래서 쉼표로 이어붙인 숨은 값 `types_all` / `tags_all` 을 대신 본다.
      이 값은 preSave 훅과 이 관리 화면이 자동으로 채운다. */
-  function viewsBlock(types, tags, exclude, indent) {
+  function exactPattern(v) { return '^' + esc(v) + '$'; }
+
+  function viewsBlock(types, tags, exclude, statuses, indent) {
+    statuses = statuses || [];
     var L = [];
     L.push(indent + 'view_groups:');
     L.push(indent + '  - { label: Year, field: year_start }');
     var gt = types.filter(function (t) { return exclude.indexOf(t) === -1; });
     if (gt.length) L.push(indent + '  - { label: Type, field: types_all, pattern: ' + J(altPattern(gt)) + ' }');
     if (tags.length) L.push(indent + '  - { label: Tag,  field: tags_all,  pattern: ' + J(altPattern(tags)) + ' }');
+    /* Status 는 작업마다 하나뿐인 홑값이라 무늬 없이도 그대로 묶인다 */
+    if (statuses.length) L.push(indent + '  - { label: Status, field: status }');
     L.push(indent + 'view_filters:');
     types.forEach(function (t) {
       L.push(indent + '  - { label: ' + J('Type · ' + t) + ', field: types_all, pattern: ' + J(anchorPattern(t)) + ' }');
     });
     tags.forEach(function (g) {
       L.push(indent + '  - { label: ' + J('Tag · ' + g) + ', field: tags_all,  pattern: ' + J(anchorPattern(g)) + ' }');
+    });
+    statuses.forEach(function (st) {
+      L.push(indent + '  - { label: ' + J('Status · ' + st) + ', field: status,    pattern: ' + J(exactPattern(st)) + ' }');
     });
     return L.join('\n');
   }
@@ -211,14 +219,15 @@
     return [];
   }
 
-  function buildConfig(text, types, tags, exclude) {
+  function buildConfig(text, types, tags, exclude, statuses) {
     text = replaceRegion(text, 'types', optsLine('        ', types));
     text = replaceRegion(text, 'tags', optsLine('        ', tags));
-    text = replaceRegion(text, 'views', viewsBlock(types, tags, exclude, '    '));
+    text = replaceRegion(text, 'status', optsLine('        ', statuses || []));
+    text = replaceRegion(text, 'views', viewsBlock(types, tags, exclude, statuses, '    '));
     return text;
   }
 
-  function buildTaxonomy(types, tags, exclude) {
+  function buildTaxonomy(types, tags, exclude, statuses) {
     var L = [];
     L.push('# Type · Tag 목록.');
     L.push('# 에디터의 "관리 → Type · Tag" 화면이 이 파일과 admin/config.yml 을 함께 고칩니다.');
@@ -231,6 +240,8 @@
     L.push('  # (필터 버튼과 작업 편집 화면의 선택지에는 그대로 나옵니다.)');
     L.push('  group_exclude:');
     exclude.forEach(function (v) { L.push('    - ' + yv(v)); });
+    L.push('  statuses:');
+    (statuses || []).forEach(function (v) { L.push('    - ' + yv(v)); });
     L.push('  tags:');
     tags.forEach(function (v) { L.push('    - ' + yv(v)); });
     return L.join('\n') + '\n';
@@ -307,6 +318,7 @@
               year: readScalar(text, 'year_start'),
               types: readList(text, 'types') || [],
               tags: readList(text, 'tags') || [],
+              status: readScalar(text, 'status'),
               origTypesAll: readScalar(text, 'types_all'),
               origTagsAll: readScalar(text, 'tags_all')
             };
@@ -841,23 +853,27 @@
         var tax = r.tax.text;
         var types = readTaxList(tax, 'types');
         var tags = readTaxList(tax, 'tags');
+        var statuses = readTaxList(tax, 'statuses');
         var exclude = readTaxList(tax, 'group_exclude');
         /* taxonomy.yml 이 비었거나 지워졌으면 config.yml 의 선택지에서 되살린다 */
         if (!types.length) types = readRegionOptions(r.cfg.text, 'types');
         if (!tags.length) tags = readRegionOptions(r.cfg.text, 'tags');
+        if (!statuses.length) statuses = readRegionOptions(r.cfg.text, 'status');
         /* 목록에 없는데 작업에는 쓰이는 값도 살려낸다 */
         r.works.forEach(function (w) {
           w.types.forEach(function (v) { if (types.indexOf(v) === -1) types.push(v); });
           w.tags.forEach(function (v) { if (tags.indexOf(v) === -1) tags.push(v); });
+          if (w.status && statuses.indexOf(w.status) === -1) statuses.push(w.status);
         });
         inst.st = {
-          types: types, tags: tags, exclude: exclude,
-          origTypes: types.slice(), origTags: tags.slice(), origExclude: exclude.slice(),
+          types: types, tags: tags, statuses: statuses, exclude: exclude,
+          origTypes: types.slice(), origTags: tags.slice(),
+          origStatuses: statuses.slice(), origExclude: exclude.slice(),
           works: r.works.map(function (w) {
             return {
               path: w.path, text: w.text, title: w.title, year: w.year, ok: w.ok,
-              types: w.types.slice(), tags: w.tags.slice(),
-              origTypes: w.types.slice(), origTags: w.tags.slice(),
+              types: w.types.slice(), tags: w.tags.slice(), status: w.status,
+              origTypes: w.types.slice(), origTags: w.tags.slice(), origStatus: w.status,
               origTypesAll: w.origTypesAll, origTagsAll: w.origTagsAll
             };
           }),
@@ -896,13 +912,40 @@
     }
 
     /* --- 모델 조작 --- */
-    function list() { return inst.tab === 'types' ? inst.st.types : inst.st.tags; }
-    function setList(v) { if (inst.tab === 'types') inst.st.types = v; else inst.st.tags = v; }
-    function fieldOf() { return inst.tab; }             /* 'types' | 'tags' */
-    function worksOf(name) {
-      return inst.st.works.filter(function (w) { return w[fieldOf()].indexOf(name) !== -1; });
+    /* Status 는 작업마다 하나뿐인 홑값이라 배열인 Type·Tag 와 다루는 법이 다르다. */
+    function isScalar() { return inst.tab === 'statuses'; }
+    function list() {
+      if (inst.tab === 'types') return inst.st.types;
+      if (inst.tab === 'tags') return inst.st.tags;
+      return inst.st.statuses;
     }
-    function label() { return inst.tab === 'types' ? 'Type' : 'Tag'; }
+    function setList(v) {
+      if (inst.tab === 'types') inst.st.types = v;
+      else if (inst.tab === 'tags') inst.st.tags = v;
+      else inst.st.statuses = v;
+    }
+    function fieldOf() {                                /* 'types' | 'tags' | 'status' */
+      return isScalar() ? 'status' : inst.tab;
+    }
+    /* 지금 탭 기준으로 이 작업이 가진 값들 */
+    function valuesOf(w) {
+      if (isScalar()) return w.status ? [w.status] : [];
+      return w[fieldOf()] || [];
+    }
+    /* 오른쪽 줄 끝에 곁들여 보여줄 다른 축의 값 */
+    function otherText(w) {
+      if (inst.tab === 'types') return (w.tags || []).join(', ');
+      if (inst.tab === 'tags') return (w.types || []).join(', ');
+      return (w.types || []).join(', ');
+    }
+    function worksOf(name) {
+      return inst.st.works.filter(function (w) { return valuesOf(w).indexOf(name) !== -1; });
+    }
+    function label() {
+      if (inst.tab === 'types') return 'Type';
+      if (inst.tab === 'tags') return 'Tag';
+      return 'Status';
+    }
 
     function addItem() {
       askText('새 ' + label() + ' 만들기', '', '작업 파일에 그대로 적히는 이름입니다.', function (v, close) {
@@ -924,9 +967,9 @@
           if (list().indexOf(v) !== -1) return '같은 이름이 이미 있습니다.';
           setList(list().map(function (x) { return x === old ? v : x; }));
           inst.st.exclude = inst.st.exclude.map(function (x) { return x === old ? v : x; });
-          var f = fieldOf();
           inst.st.works.forEach(function (w) {
-            w[f] = w[f].map(function (x) { return x === old ? v : x; });
+            if (isScalar()) { if (w.status === old) w.status = v; }
+            else w[fieldOf()] = w[fieldOf()].map(function (x) { return x === old ? v : x; });
           });
           inst.sel = v; close(); inst.render();
         });
@@ -938,14 +981,15 @@
       confirmList(
         label() + ' 삭제 — ' + name,
         used.length
-          ? ('이 ' + label() + ' 를 쓰는 작업 ' + used.length + '개입니다. 삭제하면 이 작업들에서도 떨어져 나갑니다.')
+          ? ('이 ' + label() + ' 를 쓰는 작업 ' + used.length + '개입니다. 삭제하면 이 작업들에서도 떨어져 나갑니다.' +
+             (isScalar() ? ' Status 는 반드시 있어야 하는 값이라, 이 작업들은 편집 화면에서 빨간 표시가 납니다.' : ''))
           : '이 ' + label() + ' 를 쓰는 작업은 없습니다. 삭제할까요?',
         used.map(function (w) { return w.title + (w.year ? ' (' + w.year + ')' : ''); }),
         '삭제',
         function (close) {
-          var f = fieldOf();
           inst.st.works.forEach(function (w) {
-            w[f] = w[f].filter(function (x) { return x !== name; });
+            if (isScalar()) { if (w.status === name) w.status = ''; }
+            else w[fieldOf()] = w[fieldOf()].filter(function (x) { return x !== name; });
           });
           setList(list().filter(function (x) { return x !== name; }));
           inst.st.exclude = inst.st.exclude.filter(function (x) { return x !== name; });
@@ -968,16 +1012,27 @@
        바뀐 줄과 왼쪽 개수, 아래 버튼만 손본다. */
     function toggleWork(w, on, row) {
       var f = fieldOf(), name = inst.sel;
-      if (on) { if (w[f].indexOf(name) === -1) w[f] = w[f].concat([name]); }
-      else w[f] = w[f].filter(function (x) { return x !== name; });
-      if (row) {
-        var dirty = !same(w.types, w.origTypes) || !same(w.tags, w.origTags);
-        row.classList.toggle('changed', dirty);
-        var other = row.querySelector('.other');
-        if (other) other.textContent = w[f === 'types' ? 'tags' : 'types'].join(', ');
+      if (isScalar()) {
+        /* 작업 하나에 Status 는 하나뿐 — 켜면 갈아끼우고, 끄면 비운다 */
+        w.status = on ? name : '';
+      } else if (on) {
+        if (w[f].indexOf(name) === -1) w[f] = w[f].concat([name]);
+      } else {
+        w[f] = w[f].filter(function (x) { return x !== name; });
       }
+      if (row) {
+        row.classList.toggle('changed', workDirty(w));
+        var other = row.querySelector('.other');
+        if (other) other.textContent = otherText(w);
+      }
+      /* Status 는 하나를 켜면 다른 줄의 체크가 풀려야 하므로 목록을 다시 채운다 */
+      if (isScalar()) fillRows();
       paintCounts();
       paintFooter();
+    }
+
+    function workDirty(w) {
+      return !same(w.types, w.origTypes) || !same(w.tags, w.origTags) || w.status !== w.origStatus;
     }
 
     /* 왼쪽 목록의 숫자만 고쳐 쓴다 */
@@ -1017,9 +1072,9 @@
       var keep = rl.scrollTop;
       clear(rl);
       if (!inst.sel) return;
-      var f = fieldOf(), q = inst.q.trim().toLowerCase();
+      var q = inst.q.trim().toLowerCase();
       var shown = inst.st.works.filter(function (w) {
-        if (inst.onlyIn && w[f].indexOf(inst.sel) === -1) return false;
+        if (inst.onlyIn && valuesOf(w).indexOf(inst.sel) === -1) return false;
         if (q && (w.title + ' ' + w.path).toLowerCase().indexOf(q) === -1) return false;
         return true;
       }).sort(function (a, b) {
@@ -1028,11 +1083,10 @@
       });
       if (!shown.length) { rl.appendChild(el('div', 'tx-row', '해당하는 작업이 없습니다.')); return; }
       shown.forEach(function (w) {
-        var dirty = !same(w.types, w.origTypes) || !same(w.tags, w.origTags);
-        var row = el('div', 'tx-row' + (dirty ? ' changed' : ''));
+        var row = el('div', 'tx-row' + (workDirty(w) ? ' changed' : ''));
         var lab = el('label');
         var cb = el('input'); cb.type = 'checkbox';
-        cb.checked = w[f].indexOf(inst.sel) !== -1;
+        cb.checked = valuesOf(w).indexOf(inst.sel) !== -1;
         cb.disabled = !w.ok;
         cb.onchange = function () { toggleWork(w, cb.checked, row); };
         lab.appendChild(cb);
@@ -1040,7 +1094,7 @@
         lab.appendChild(el('span', 'y', w.year || ''));
         row.appendChild(lab);
         if (w.ok) {
-          row.appendChild(el('span', 'y other', w[f === 'types' ? 'tags' : 'types'].join(', ')));
+          row.appendChild(el('span', 'y other', otherText(w)));
         } else {
           row.classList.add('broken');
           row.title = w.path;
@@ -1053,11 +1107,7 @@
 
     /* --- 바뀐 것 모으기 --- */
     /* 그녀가 실제로 고친 작업 */
-    function changedWorks() {
-      return inst.st.works.filter(function (w) {
-        return !same(w.types, w.origTypes) || !same(w.tags, w.origTags);
-      });
-    }
+    function changedWorks() { return inst.st.works.filter(workDirty); }
     /* 숨은 값(types_all/tags_all)이 비었거나 어긋난 작업 */
     function mirrorStale(w) {
       return w.ok && (joinValues(w.types) !== w.origTypesAll ||
@@ -1072,7 +1122,8 @@
     }
     function listsChanged() {
       var s = inst.st;
-      return !same(s.types, s.origTypes) || !same(s.tags, s.origTags) || !same(s.exclude, s.origExclude);
+      return !same(s.types, s.origTypes) || !same(s.tags, s.origTags) ||
+             !same(s.statuses, s.origStatuses) || !same(s.exclude, s.origExclude);
     }
     function changeCount() {
       return changedWorks().length + (listsChanged() ? 1 : 0) + (mirrorOnlyWorks().length ? 1 : 0);
@@ -1080,8 +1131,11 @@
 
     function revert() {
       var s = inst.st;
-      s.types = s.origTypes.slice(); s.tags = s.origTags.slice(); s.exclude = s.origExclude.slice();
-      s.works.forEach(function (w) { w.types = w.origTypes.slice(); w.tags = w.origTags.slice(); });
+      s.types = s.origTypes.slice(); s.tags = s.origTags.slice();
+      s.statuses = s.origStatuses.slice(); s.exclude = s.origExclude.slice();
+      s.works.forEach(function (w) {
+        w.types = w.origTypes.slice(); w.tags = w.origTags.slice(); w.status = w.origStatus;
+      });
       if (list().indexOf(inst.sel) === -1) inst.sel = list()[0] || null;
       inst.render();
     }
@@ -1098,6 +1152,9 @@
         var t = w.text;
         if (!same(w.types, w.origTypes)) { var a = writeList(t, 'types', w.types); if (a == null) return null; t = a; }
         if (!same(w.tags, w.origTags)) { var b = writeList(t, 'tags', w.tags); if (b == null) return null; t = b; }
+        if (w.status !== w.origStatus) {
+          var e2 = writeScalar(t, 'status', w.status, 'date_start'); if (e2 == null) return null; t = e2;
+        }
         if (joinValues(w.types) !== w.origTypesAll) {
           var c = writeScalar(t, 'types_all', joinValues(w.types), 'types'); if (c == null) return null; t = c;
         }
@@ -1120,23 +1177,27 @@
 
       if (listsChanged() || cw.length || mo.length) {
         try {
-          files.push({ path: 'admin/config.yml', text: buildConfig(s.cfg.text, s.types, s.tags, s.exclude) });
+          files.push({ path: 'admin/config.yml',
+            text: buildConfig(s.cfg.text, s.types, s.tags, s.exclude, s.statuses) });
         } catch (e) {
           inst.error = e.message; inst.render(); return;
         }
-        files.push({ path: '_data/taxonomy.yml', text: buildTaxonomy(s.types, s.tags, s.exclude) });
+        files.push({ path: '_data/taxonomy.yml',
+          text: buildTaxonomy(s.types, s.tags, s.exclude, s.statuses) });
       }
 
       if (!files.length) return;
 
       var lines = [];
       if (listsChanged()) {
-        lines.push('목록: Type ' + s.types.length + '개, Tag ' + s.tags.length + '개');
+        lines.push('목록: Type ' + s.types.length + '개, Tag ' + s.tags.length +
+                   '개, Status ' + s.statuses.length + '개');
       }
       cw.forEach(function (w) {
         var bits = [];
         if (!same(w.types, w.origTypes)) bits.push('Type ' + (w.origTypes.join(', ') || '없음') + ' → ' + (w.types.join(', ') || '없음'));
         if (!same(w.tags, w.origTags)) bits.push('Tag ' + (w.origTags.join(', ') || '없음') + ' → ' + (w.tags.join(', ') || '없음'));
+        if (w.status !== w.origStatus) bits.push('Status ' + (w.origStatus || '없음') + ' → ' + (w.status || '없음'));
         lines.push(w.title + (w.year ? ' (' + w.year + ')' : '') + ' — ' + bits.join(' / '));
       });
 
@@ -1145,8 +1206,10 @@
       }
 
       var empty = cw.filter(function (w) { return w.types.length === 0; });
+      var noStatus = cw.filter(function (w) { return !w.status; });
       var intro = '파일 ' + files.length + '개를 커밋 하나로 저장합니다.' +
-        (empty.length ? ' Type 이 하나도 없는 작업이 ' + empty.length + '개 생깁니다 — 편집 화면에서 빨간 표시가 납니다.' : '');
+        (empty.length ? ' Type 이 하나도 없는 작업이 ' + empty.length + '개 생깁니다 — 편집 화면에서 빨간 표시가 납니다.' : '') +
+        (noStatus.length ? ' Status 가 빈 작업이 ' + noStatus.length + '개 생깁니다.' : '');
 
       confirmList('적용', intro, lines, '저장', function (close, okBtn) {
         okBtn.disabled = true; okBtn.textContent = '저장하는 중…';
@@ -1190,7 +1253,7 @@
       /* 위 줄 */
       var bar = el('div', 'tx-bar');
       var tabs = el('div', 'tx-tabs');
-      [['types', 'Type'], ['tags', 'Tag']].forEach(function (t) {
+      [['types', 'Type'], ['tags', 'Tag'], ['statuses', 'Status']].forEach(function (t) {
         var b = el('button', 'tx-tab' + (inst.tab === t[0] ? ' on' : ''), t[1]);
         b.type = 'button';
         b.onclick = function () {
