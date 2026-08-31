@@ -16,7 +16,7 @@ date_start: 2023-06-25
 status: In progress
 tags: []
 cover: /images/columbarium-iv/Columbarium_IV_01.webp
-cover_caption: _Columbarium IV_, epoxy resin, glue, pigeon remains, 36×20×12cm (each), 2023.
+cover_caption: Installed within [_Hostis_ (2023–2024)](https://archive-wonjy.com/work/2023/hostis.html).
 summary: Epoxy resin, glue, pigeon remains, 36×20×12cm (each), 2023.
 description: |-
   In this iteration of _Columbarium_, I replaced the rectangular cube form of the boxes I had previously used with a new container for the grave: the form of the decoy pigeon used in pigeon hunting, known in French as the "appelant pigeon."
@@ -29,7 +29,7 @@ description: |-
 media:
   - type: image
     src: /images/columbarium-iv/Columbarium_IV_02.webp
-    caption: Installed within [_Hostis_ (2023–2024)](https://archive-wonjy.com/work/2023/hostis.html), showing _Columbarium IV_.
+    caption: Installed within [_Hostis_ (2023–2024)](https://archive-wonjy.com/work/2023/hostis.html).
   - type: image
     src: /images/columbarium-iv/Columbarium_IV_03.webp
     caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
