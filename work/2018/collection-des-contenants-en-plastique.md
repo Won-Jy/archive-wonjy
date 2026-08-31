@@ -19,7 +19,7 @@ date_start: 2018-03-19
 status: Completed
 tags: []
 cover: /images/collection-des-contenants-en-plastique/Collection_contenants_01.webp
-cover_caption: _Collection des contenants en plastique_, mixed media, dimensions variable, 2018.
+cover_caption: Installed in the second-year studio at the Nîmes Beaux-Arts, during the "Collection" session.
 summary: Installation, mixed media, dimensions variable, 2018
 description: |-
   During my second year at the Beaux-Arts, there was a workshop-like program called the "Collection" session, led by Hubert Durat and Jean-Marc Cerino, in which each student assembled a personal collection of their own and devised a display to present it freely.
@@ -32,7 +32,7 @@ description: |-
 media:
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_02.webp
-    caption: _Collection des contenants en plastique_, mixed media, dimensions variable, 2018.
+    caption: Installed in the second-year studio at the Nîmes Beaux-Arts, during the "Collection" session.
   - type: image
     src: /images/collection-des-contenants-en-plastique/Collection_contenants_03.webp
     caption: 'Inside a Carrefour bread box: a Carrefour baguette and a local bakery baguette, left uneaten and forgotten.'
