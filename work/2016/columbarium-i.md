@@ -11,12 +11,14 @@ drafts: |-
   집에 많이 있던 아기수건을 수의로 삼아 (당시 2살이였던 딸이 있어서 그것이 가장 보드라운 천이였다.) 그를 감싸고 흙으로 채워진 플라스틱박스 속에 묻었다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2016
 year_end: 2016
 date_start: 2016-11-12
 status: Completed
 tags:
   - Pigeon
+tags_all: "Pigeon"
 cover: /images/2016/columbarium-i/Columbarium I_01.webp
 cover_caption: _Columbarium I_, pigeon remains, soil, plastic box, 35×26×14cm, 2016.
 summary: Pigeon remains, soil, plastic box, 35×26×14cm, 2016

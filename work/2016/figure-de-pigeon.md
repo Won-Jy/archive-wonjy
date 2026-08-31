@@ -9,12 +9,14 @@ drafts: |-
   이 이미지는 그것을 negative로 비디오 프로젝터로 투사한 것이다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2016
 year_end: 2016
 date_start: 2016-11-13
 status: Completed
 tags:
   - Pigeon
+tags_all: "Pigeon"
 cover: /images/figure-de-pigeon/Figure de pigeon_01.webp
 cover_caption: Installed in my first-year studio at the Nîmes Beaux-Arts.
 summary: Single-channel image projection, 2096×2764px, 2016

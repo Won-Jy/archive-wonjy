@@ -2,11 +2,13 @@
 layout: work
 title: "Esquisse sur la colombophobie"
 types: ["Highlight", "Single work", "Writing"]
+types_all: "Highlight,Single work,Writing"
 year_start: 2023
 year_end: 2023
 date_start: 2023-01-01
 status: "Completed"
 tags: ["Pigeon"]
+tags_all: "Pigeon"
 cover: "/images/2023/esquisse-sur-la-colombophobie/Esquisse sur la colombophobie_01_cover 01.webp"
 cover_caption: "*Esquisse sur la colombophobie*, edition, 2023."
 summary: |

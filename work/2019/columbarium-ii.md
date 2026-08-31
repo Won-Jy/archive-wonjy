@@ -8,6 +8,7 @@ drafts: |-
   이 기간동안 마을의 옛 빨래터에서 새로운 비둘기 유해들 찾을수있었는데, 그들을 새로운 비둘기 무덤으로 만들어서 기존의 것에 추가됬었음. 하루 뒤 상자안의 흙에서 구더기들이 태어나 상자 내부 벽면을 타고 기어다니기 시작했고 그것은 일종의 일시적 뎃생을 그려냈다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2019
 year_end: 2019
 date_start: 2019-09-22
@@ -15,6 +16,7 @@ status: Completed
 tags:
   - Pigeon
   - Stone
+tags_all: "Pigeon,Stone"
 cover: /images/columbarium-ii/Columbarium_II_01.webp
 cover_caption: Installed at the Échangeur 22 residency, as part of the exhibition _Dents creuses II_.
 summary: Mixed media, dimensions variable, 2019.

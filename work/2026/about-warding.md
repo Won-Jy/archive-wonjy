@@ -9,6 +9,7 @@ drafts: |-
 types:
   - Exhibition
   - Highlight
+types_all: "Exhibition,Highlight"
 year_start: 2026
 year_end: 2026
 date_start: 2026-06-30
@@ -17,6 +18,7 @@ tags:
   - Wall
   - City
   - Map
+tags_all: "Wall,City,Map"
 cover: /images/2026/about-warding/View_about_warding_01_01-01.webp
 cover_caption: Exhibition view _About Warding_, Teatergalleriet, Kalmar, Sweden, 2026.
 summary: |-

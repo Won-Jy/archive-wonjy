@@ -10,6 +10,7 @@ drafts: |-
   나는 그것들을 벽에 걸어서 관객들의 시점을 마치 그것들을 하늘에서 바라보는 위치에 놓는다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2023
 year_end: null
 date_start: 2023-06-25

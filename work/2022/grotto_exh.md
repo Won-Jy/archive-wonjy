@@ -5,6 +5,7 @@ drafts: ''
 types:
   - Highlight
   - Exhibition
+types_all: "Highlight,Exhibition"
 year_start: 2022
 year_end: 2022
 date_start: 2022-05-05
@@ -12,6 +13,7 @@ status: Completed
 tags:
   - Cave
   - City
+tags_all: "Cave,City"
 cover: /images/2020/grotto/Grotto_01_main views 01.webp
 cover_caption: _Grotto_, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.
 summary: Solo exhibition in the basement of _Vaisseau 3008_, a former social services building of the Gard Department, Nîmes, France.

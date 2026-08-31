@@ -8,12 +8,14 @@ drafts: |-
   이렇게 물질화되어 공간에 제시된 사진과, 스스로의 환영을 떠받치는 돌들은 "이미지-지지체-물질"이라는 세 층위가 수직으로 만나는 특유의 조각적 위치를 획득하게 된다. 나아가 알루미늄 디본드 지지 패널은 보크사이트에서 추출된 광물인 알루미늄으로 만들어진 산업 제품으로, 이를 통해 인공물과 그 천연 자원 사이의 접촉이 만들어진다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2019
 year_end: 2019
 date_start: 2019-02-14
 status: Completed
 tags:
   - Stone
+tags_all: "Stone"
 cover: /images/2019/untitled_bauxite/Untitled_bauxite_01.webp
 cover_caption: Installed at the Maison Consulaire in Mende, as part of the exhibition _Corpus_ (2019).
 summary: Dibond print and bauxite stones, 150×70×25cm, 2019.

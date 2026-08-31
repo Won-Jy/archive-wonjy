@@ -5,6 +5,7 @@ drafts: ''
 types:
   - Highlight
   - Exhibition
+types_all: "Highlight,Exhibition"
 year_start: 2025
 year_end: 2025
 date_start: 2025-01-24
@@ -12,6 +13,7 @@ status: Completed
 tags:
   - Stone
   - Pigeon
+tags_all: "Stone,Pigeon"
 cover: /images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp
 cover_caption: _Fontaine II_, concrete rubble from Pissevin, water, 220×200×130cm, 2025.
 summary: |-

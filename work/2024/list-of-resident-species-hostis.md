@@ -2,10 +2,12 @@
 layout: work
 title: "List of resident species in Hostis"
 types: ["Highlight", "Project", "Writing"]
+types_all: "Highlight,Project,Writing"
 year_start: 2024
 year_end: 2025
 status: "In progress"
 tags: ["Garden"]
+tags_all: "Garden"
 cover: "/images/2024/list-of-resident-species-hostis/cover_list-of-resident-species-hostis.webp"
 cover_caption: "*List of resident species in Hostis* (FR), print version, 210×297mm, 2025."
 summary: |

@@ -2,11 +2,13 @@
 layout: work
 title: "Fantôme 3008"
 types: ["Highlight", "Project"]
+types_all: "Highlight,Project"
 year_start: 2023
 year_end: 
 date_start: 2023-02-09
 status: "In progress"
 tags: ["City"]
+tags_all: "City"
 cover: "/images/2023/fantome-3008/Fantôme 3008_01_main views 01.webp"
 cover_caption: "Demo gameplay scene, 2024."
 summary: >

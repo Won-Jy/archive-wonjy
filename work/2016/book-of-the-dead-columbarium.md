@@ -5,12 +5,14 @@ drafts: ''
 types:
   - Project
   - Writing
+types_all: "Project,Writing"
 year_start: 2016
 year_end: null
 date_start: 2016-11-12
 status: In progress
 tags:
   - Pigeon
+tags_all: "Pigeon"
 cover: /images/2016/book-of-the-dead-columbarium/cover_book_of_the_dead.webp
 cover_caption: <i>Book of the Dead — Columbarium</i> (EN), print version, 210×297mm, 2026.
 summary: A record of pigeons for which I have held funerals since 2016, as part of the _Columbarium_ project.

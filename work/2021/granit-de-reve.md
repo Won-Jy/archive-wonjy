@@ -2,11 +2,13 @@
 layout: work
 title: "Granit de rêve"
 types: ["Highlight", "Single work"]
+types_all: "Highlight,Single work"
 year_start: 2021
 year_end: 2021
 date_start: 2021-12-09
 status: "Completed"
 tags: ["Stone", "City"]
+tags_all: "Stone,City"
 cover: "/images/2021/granit-de-reve/granit_de_reve_screenshot_01.webp"
 cover_caption: "A still from the video."
 hide_cover_if_video_top: true

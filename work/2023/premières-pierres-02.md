@@ -5,6 +5,7 @@ drafts: ''
 types:
   - Highlight
   - Single work
+types_all: "Highlight,Single work"
 year_start: 2023
 year_end: 2023
 date_start: 2023-05-09
@@ -12,6 +13,7 @@ status: Completed
 tags:
   - Stone
   - City
+tags_all: "Stone,City"
 cover: /images/2023/premieres-pierres-02/Premières pierres II_01_main views 01_IMG_3028.webp
 cover_caption: Installed on the fountain in the courtyard of Nîmes City Hall.
 summary: |-

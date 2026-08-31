@@ -2,11 +2,13 @@
 layout: work
 title: "Hostis"
 types: ["Highlight", "Project", "Exhibition"]
+types_all: "Highlight,Project,Exhibition"
 year_start: 2023
 year_end: 2024
 date_start: 2023-06-04
 status: "Completed"
 tags: ["Garden", "City"]
+tags_all: "Garden,City"
 cover: "/images/2023/hostis/Hostis_01_Vue extérieure 01.webp"
 cover_caption: "*Hostis*, Pissevin district of Nîmes, France, 2023 — External view."
 summary: >

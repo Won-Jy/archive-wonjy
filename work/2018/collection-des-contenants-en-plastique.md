@@ -13,6 +13,7 @@ drafts: |-
   역시 플라스틱안에 가둬져있는 네온들을 이용하여, 각 상자의 존재감과 배치의 리듬감을 중점적으로 세세히 비교해 보면서 바닥에 천천히 배치해보았다. 이 과정에서 당시 학교에 방문했었던 예술가 Laura Lamiel의 전시에 영감을 받았다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2018
 year_end: 2018
 date_start: 2018-03-19

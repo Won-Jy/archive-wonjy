@@ -4,6 +4,7 @@ title: Baignade
 types:
   - Highlight
   - Single work
+types_all: "Highlight,Single work"
 year_start: 2022
 year_end: 2022
 date_start: 2022-06-23
@@ -12,6 +13,7 @@ tags:
   - Water
   - Cave
   - Newcomer
+tags_all: "Water,Cave,Newcomer"
 cover: /images/2022/baignade/Baignade_01_main views 01.webp
 cover_caption: "*Baignade*, performance in *Grotto*, 2022."
 summary: |

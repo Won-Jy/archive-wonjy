@@ -2,11 +2,13 @@
 layout: work
 title: "Le quatre-heures de l’ésban"
 types: ["Exhibition"]
+types_all: "Exhibition"
 year_start: 2024
 year_end: 2024
 date_start: 2024-04-06
 status: "Completed"
 tags: ["Stone"]
+tags_all: "Stone"
 cover: "/images/2024/le-quatre-heures-de-l-ésban/Vue_Le quartre-heures de esban_01.webp"
 cover_caption: "Exhibition view *Le quatre-heures de l’ésban*, École supérieure des beaux-arts de Nîmes, France, 2024. Photo © France-Lan Lê Vu."
 summary: |

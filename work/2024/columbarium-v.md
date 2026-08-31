@@ -8,12 +8,14 @@ drafts: |-
   여기에 안치된 6구의 비둘기 시신들은 Nîmes의 Pissevin 구역의 버려진 주거건물들에서 수거한것들중 일부분이다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2024
 year_end: null
 date_start: 2024-12-28
 status: In progress
 tags:
   - Pigeon
+tags_all: "Pigeon"
 cover: /images/columbarium-v/Columbarium_V_01.webp
 cover_caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
 summary: Pigeon remains, epoxy resin, glue, ⌀66×23,5cm, 2024

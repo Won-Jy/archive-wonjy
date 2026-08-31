@@ -10,12 +10,14 @@ drafts: |-
   전시 중간에 나는 과일즙이나 달달한 액체를 그 구멍을 통해 상자안에 넣었고 파리들은 그것을 먹었다.
 types:
   - Single work
+types_all: "Single work"
 year_start: 2019
 year_end: 2019
 date_start: 2019-09-29
 status: Completed
 tags:
   - Pigeon
+tags_all: "Pigeon"
 cover: /images/columbarium-iii/Columbarium_III_01.webp
 cover_caption: Installed at Château d'Aubais, as part of _Trop bête ! l'homme et sa nature_ (2019).
 summary: Pigeon remains, plastic boxs, soil,  35×26×14cm (each), 2019 –.

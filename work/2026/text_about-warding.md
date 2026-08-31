@@ -4,6 +4,7 @@ title: About Warding
 drafts: ''
 types:
   - Writing
+types_all: "Writing"
 year_start: 2026
 year_end: 2026
 date_start: 2026-06-24
@@ -12,6 +13,7 @@ tags:
   - City
   - Wall
   - Stone
+tags_all: "City,Wall,Stone"
 cover: /images/2026/text_about-warding/cover_text_about-warding.webp
 cover_caption: "*About Warding*, text, 2026."
 summary: |
