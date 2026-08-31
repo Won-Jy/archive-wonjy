@@ -15,7 +15,7 @@ status: Completed
 tags:
   - Stone
 cover: /images/2019/untitled_bauxite/Untitled_bauxite_01.webp
-cover_caption: Installed at the Maison Consulaire in Mende, as part of the exhibition _Corpus_.
+cover_caption: Installed at the Maison Consulaire in Mende, as part of the exhibition _Corpus_ (2019).
 summary: Dibond print and bauxite stones, 150×70×25cm, 2019.
 description: |-
   This work was conceived as part of the exhibition _Corpus_, held in 2019 at the Maison Consulaire in Mende, under the guidance of Brigitte Bauer and Jean-Marc Cerino.
