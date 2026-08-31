@@ -213,7 +213,7 @@ collections:
             minimal: true
             hint: "작업 제목은 기울임(Ctrl+I)으로." 
           - { name: path, label: 주소, widget: string, required: false,
-              hint: "/work/2023/hostis.html — 아직 없는 페이지를 적어두면 회색으로 표시됩니다." }
+              hint: "/work/2023/hostis.html — 아직 없는 페이지를 적어두면 회색으로 표시됩니다. 되도록 여기에 적어주세요: 표시 이름 안에 직접 링크를 걸어도 화면에는 나오지만, 나중에 만들 작업 관계도는 이 칸만 읽습니다." }
 
       - { name: critique_title, widget: hidden, default: "Related texts" }
       - name: related_texts
