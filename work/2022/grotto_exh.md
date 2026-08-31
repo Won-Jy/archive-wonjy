@@ -2,13 +2,11 @@
 layout: work
 title: Grotto
 drafts: |-
-  이 전시는 Département du Gard 옛 사회복지관 건물 지하에 제작된 동명의 장소특정적 조각 작품 《Grotto》에서 파생된 형태이다. 
+  이 전시는 철거를 기다리고있던 Département du Gard 옛 사회복지관 건물 지하에 제작된 동명의 장소특정적 조각 작품 Grotto (2020-2022)에서 파생된 형태이다. 
 
-  이 건물은 2023년 2월 철거되기 전까지 "Vaisseau 3008"이라는 별칭으로 불렸다. 지하 공간 전체를 뒤덮는 이 콘크리트 타설 수조의 아이디어는 2021년 2월부터 4월까지 진행한 비공식 레지던시에서 비롯되었으며, 이 기간 동안 나는 일주일에 이틀에서 사흘 밤을 텐트를 치고 현장에서 지냈다.
-
-  한때 님 Hôtel-Dieu의 시체안치소로 쓰였던 것으로 추정되는 이 장소의 공간적 특성에서 영감을 받아, 나는 일종의 가짜 석관을 제작했다. 이는 건물 철거 시 자동으로 매몰되는 동시에, 철거로 발생하는 잔해를 담는 용기 역할도 하도록 의도된 것이었다.
-
-  조각 작품 제작 이후, 나는 여러 장(章)으로 구성된 전시를 조직했으며, 이는 부지가 철거될 때까지 계속되었다. 이 전시는 관객과 함께 이 공간에 대한 집단적 기억을 구축하는 것을 목표로 했으며, 동시에 오랫동안 도시 내에서 다양한 환대(hospitality)의 역할을 수행해 온 건물의 소멸에 응답하는 의례적 차원을 띠기도 했다.
+  2022년에 조각 설치를 마무리가 될때쯤, 건물 철거가 2023년으로 연기가 되었고, 그렇게 얻게된 시간적 여유 덕분에 조각《Grotto》으로부터 지하실 전체를 점거하는 전시를 구상할수있게 되었다.
+  2022년 5월 나는 여러 장(章)으로 구성된 전시를 조직했으며, 이는 부지가 철거될 때까지 계속되었다. 이 전시는 관객과 함께 이 공간에 대한 집단적 기억을 구축하는 것을 목표로 했으며, 동시에 오랫동안 도시 내에서 다양한 환대(hospitality)의 역할을 수행해 온 건물의 소멸에 응답하는 의례적 차원을 띠었다.
+  전시기간동안 4차례 퍼포먼스를 하는 다른작가들을 초청해 이 전시와 풀장, 지하실 공간을 지속적으로 활성화시켰다. 그 작가들은 시간순으로 다음과 같다 : Geoffrey Badel, Claude Boudeau, Julien Bouissou (당시 활동명 Æ) 그리고 Eva Debreceni.
 types:
   - Highlight
   - Exhibition
@@ -21,32 +19,30 @@ tags:
   - Cave
   - City
 tags_all: Cave,City
-cover: /images/2020/grotto/Grotto_01_main views 01.webp
-cover_caption: _Grotto_, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.
+cover: /images/grotto_exh/Grotto_00_01.webp
+cover_caption: Visitors entering _Grotto_ (2020–2022). Photo © Arthur Lextrait.
 summary: Solo exhibition in the basement of _Vaisseau 3008_, a former social services building of the Gard Department, Nîmes, France.
 description: |-
-  This exhibition is a derivative form of a site specific sculpture of the same name, _Grotto_, created in the basement of the former social services building of the Gard department — a site nicknamed “Vaisseau 3008” before its demolition in February 2023. The idea behind this poured concrete basin, which covers the entire surface of a basement room, was born from an informal residency I carried out between February and April 2021, during which I slept on-site in a tent two to three nights per week.
-  Inspired by the spatial qualities of the site — once thought to have served as the morgue of the Hôtel-Dieu in Nîmes — I constructed a kind of false sarcophagus. It was meant to be buried automatically during the building’s demolition, while also serving as a receptacle to hold the debris from that event.
-  Following the creation of the sculpture, I organized an exhibition composed of several chapters that continued until the site’s demolition. It aimed to build a collective memory of the space with the public, while also taking on a ritual dimension in response to the disappearance of a building that had long fulfilled various roles of hospitality in the city.
+  This exhibition grew out of the site-specific sculpture [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html), of the same name, which had been made in the basement of the former Département du Gard social welfare building while it awaited demolition.
+
+  By 2022, as the sculptural installation was nearing completion, the building's demolition was postponed to 2023. This unexpected extension of time allowed the sculpture _Grotto_ to grow into an exhibition that took over the entire basement.
+
+  In May 2022, I organized an exhibition unfolding across several chapters, which continued until the site was demolished. It aimed to build a collective memory of the space together with visitors, while also taking on a ritual dimension — a response to the disappearance of a building that had long served various roles of hospitality within the city.
+
+  Over the course of the exhibition, I invited other artists to perform there on four separate occasions, continually reactivating the exhibition, the pool, and the basement space. In chronological order, these artists were: Geoffrey Badel, Claude Boudeau, Julien Bouissou (performing at the time under the name Æ), and Eva Debreceni.
 media:
   - type: image
-    src: /images/2020/grotto/Grotto_02_detail views 01.webp
-    caption: '*Grotto*, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.'
+    src: /images/grotto_exh/Grotto_00_02.webp
+    caption: Visitors watching Geoffrey Badel's performance _Panorama Ganzfeld_ (2022) inside _Grotto_.
   - type: image
-    src: /images/2020/grotto/Grotto_02_detail views 02.webp
-    caption: '*Grotto*, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.'
-  - type: image
-    src: /images/2020/grotto/Grotto_02_detail views 03.webp
-    caption: '*Grotto*, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.'
-  - type: image
-    src: /images/2020/grotto/Grotto_02_detail views 04.webp
-    caption: '*Grotto*, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.'
+    src: /images/2020/grotto/Grotto_01_main views 01.webp
+    caption: '[_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html) installed in the basement of Vaisseau 3008.'
   - type: image
     src: /images/2020/grotto/Grotto_02_detail views 05.webp
-    caption: '*Grotto*, site specific sculpture, cast concrete, 260×574×84cm, 2020-2022.'
+    caption: View from inside, looking toward the entrance.
   - type: image
     src: /images/2020/grotto/Grotto_03_table Overview 01.webp
-    caption: '*Objets restants*, mixed materials and live snails, variable dimensions, 2022.'
+    caption: _Objets restants_, mixed materials and live snails, variable dimensions, 2022.
   - type: image
     src: /images/2020/grotto/Grotto_04_table detail views 01.webp
     caption: '*Objets restants*, mixed materials and live snails, variable dimensions, 2022.'
