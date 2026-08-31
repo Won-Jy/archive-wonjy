@@ -1040,11 +1040,177 @@
     window.CMS.registerEventListener({ name: 'preSave', handler: mirrorHandler });
   }
 
+  /* ==================================================================
+     목록 화면 필터: 기본은 "하나만", 원하면 "겹쳐 고르기"
+     ------------------------------------------------------------------
+     Sveltia 의 필터 메뉴는 항상 여러 개를 겹쳐 고르게 되어 있고(그리고 AND 로 건다),
+     설정으로 끌 수 없다 (secondary-toolbar.svelte 에 multiple={true} 로 박혀 있다).
+     그래서 여기서 흉내낸다:
+       - 도구줄에 "겹쳐 고르기" 체크상자를 하나 붙인다 (꺼짐이 기본, 브라우저에 기억).
+       - 꺼져 있을 때 필터 하나를 새로 켜면, 켜져 있던 다른 필터들을 지워 준다.
+     메뉴는 항목을 누르면 닫히고 DOM 에서 사라지므로, 지울 때는 메뉴를 잠깐 다시 열어
+     그 항목을 눌러 끈다. 그 동안은 메뉴를 안 보이게 덮어 깜빡임을 없앤다.
+     ================================================================== */
+  var COMBINE_KEY = 'wj.filter.combine';
+
+  function combineOn() {
+    try { return localStorage.getItem(COMBINE_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setCombine(on) {
+    try { localStorage.setItem(COMBINE_KEY, on ? '1' : '0'); } catch (e) { /* 무시 */ }
+  }
+
+  function filterMenu() {
+    var menus = document.querySelectorAll('[role="menu"][aria-controls="entry-list"]');
+    for (var i = 0; i < menus.length; i++) {
+      if (menus[i].querySelector('[role="menuitemcheckbox"]')) return menus[i];
+    }
+    return null;
+  }
+  function menuItems(menu) {
+    return Array.prototype.slice.call(menu.querySelectorAll('[role="menuitemcheckbox"]'));
+  }
+  function labelOf(node) { return (node.textContent || '').replace(/\s+/g, ' ').trim(); }
+
+  /* 도구줄의 Filter 단추 찾기 */
+  function findFilterButton() {
+    var bs = Array.prototype.slice.call(document.querySelectorAll('button.sui.menu-button'));
+    var hit = bs.filter(function (b) { return /filter|필터/i.test(labelOf(b)); });
+    if (hit.length) return hit[0];
+    /* 이름이 다른 언어면 Sort · Filter · Group 세 개 중 가운데 */
+    var byParent = {};
+    bs.forEach(function (b) {
+      var k = b.parentElement;
+      if (!k) return;
+      (byParent[k.className] = byParent[k.className] || []).push(b);
+    });
+    var keys = Object.keys(byParent);
+    for (var i = 0; i < keys.length; i++) {
+      if (byParent[keys[i]].length === 3) return byParent[keys[i]][1];
+    }
+    return null;
+  }
+
+  var busy = false;
+
+  function waitFor(fn, ms) {
+    return new Promise(function (resolve) {
+      var end = Date.now() + (ms || 2000);
+      (function tick() {
+        var v = fn();
+        if (v) return resolve(v);
+        if (Date.now() > end) return resolve(null);
+        requestAnimationFrame(tick);
+      })();
+    });
+  }
+
+  /* labels 에 있는 필터들을 하나씩 꺼준다 */
+  function turnOff(labels) {
+    var btn = findFilterButton();
+    if (!btn || !labels.length) return Promise.resolve();
+    busy = true;
+    document.body.classList.add('wj-filter-busy');
+    var done = Promise.resolve();
+    labels.forEach(function (lb) {
+      done = done.then(function () {
+        if (filterMenu()) return;                 /* 이미 열려 있으면 그대로 */
+        btn.click();
+        return waitFor(filterMenu, 1500);
+      }).then(function () {
+        var menu = filterMenu();
+        if (!menu) return;
+        var it = menuItems(menu).filter(function (n) { return labelOf(n) === lb; })[0];
+        if (it && it.getAttribute('aria-checked') === 'true') {
+          it.click();
+          return waitFor(function () { return !filterMenu(); }, 1500);
+        }
+        /* 안 켜져 있으면 메뉴만 닫는다 */
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+        return waitFor(function () { return !filterMenu(); }, 800);
+      });
+    });
+    return done.catch(function () { /* 무시 */ }).then(function () {
+      busy = false;
+      document.body.classList.remove('wj-filter-busy');
+    });
+  }
+
+  /* 메뉴 항목을 누를 때 가로채기 (capture) */
+  function onMenuClick(e) {
+    if (busy || combineOn()) return;
+    var item = e.target && e.target.closest && e.target.closest('[role="menuitemcheckbox"]');
+    if (!item) return;
+    var menu = item.closest('[role="menu"][aria-controls="entry-list"]');
+    if (!menu) return;
+    if (item.getAttribute('aria-checked') === 'true') return;   /* 끄는 중이면 그대로 */
+    var others = menuItems(menu)
+      .filter(function (n) { return n !== item && n.getAttribute('aria-checked') === 'true'; })
+      .map(labelOf);
+    if (!others.length) return;
+    setTimeout(function () { turnOff(others); }, 60);
+  }
+
+  /* 도구줄에 체크상자 붙이기 */
+  function mountToggle() {
+    if (busy) return;
+    var btn = findFilterButton();
+    if (!btn || !btn.parentElement) return;
+    var bar = btn.parentElement;
+    if (bar.querySelector('.wj-combine')) return;
+    var lab = el('label', 'wj-combine');
+    var box = el('input'); box.type = 'checkbox'; box.checked = combineOn();
+    box.onchange = function () {
+      setCombine(box.checked);
+      if (!box.checked) {
+        /* 켜져 있던 필터가 여러 개면 첫 것만 남긴다 */
+        var b = findFilterButton();
+        if (!b) return;
+        b.click();
+        waitFor(filterMenu, 1500).then(function (menu) {
+          if (!menu) return;
+          var on = menuItems(menu).filter(function (n) { return n.getAttribute('aria-checked') === 'true'; }).map(labelOf);
+          document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+          if (on.length > 1) setTimeout(function () { turnOff(on.slice(1)); }, 120);
+        });
+      }
+    };
+    lab.appendChild(box);
+    lab.appendChild(el('span', null, '겹쳐 고르기'));
+    lab.title = '꺼두면 필터를 하나만 고릅니다. 켜면 여러 개를 겹쳐서 (둘 다 해당하는 것만) 봅니다.';
+    bar.insertBefore(lab, btn.nextSibling);   /* Filter 단추 바로 오른쪽 */
+  }
+
+  function startFilterMode() {
+    if (!document.getElementById('wj-combine-css')) {
+      var st = el('style'); st.id = 'wj-combine-css';
+      st.textContent = [
+        '.wj-combine{display:inline-flex;align-items:center;gap:5px;font-size:.85em;opacity:.85;',
+        'margin-right:4px;cursor:pointer;white-space:nowrap;user-select:none}',
+        '.wj-combine input{width:14px;height:14px;accent-color:var(--sui-primary-accent-color,#07f);cursor:pointer}',
+        'body.wj-filter-busy dialog.sui.modal.popup{opacity:0 !important;pointer-events:none !important}'
+      ].join('');
+      document.head.appendChild(st);
+    }
+    document.addEventListener('click', onMenuClick, true);
+    var mo = new MutationObserver(function () { mountToggle(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+    mountToggle();
+    setInterval(mountToggle, 2000);   /* 안전망 */
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startFilterMode);
+  } else {
+    startFilterMode();
+  }
+
   /* 테스트용으로 순수 함수들을 내놓는다 */
   window.__TX__ = {
     readList: readList, writeList: writeList, readScalar: readScalar,
     writeScalar: writeScalar, joinValues: joinValues, mirrorHandler: mirrorHandler,
     buildConfig: buildConfig, buildTaxonomy: buildTaxonomy,
-    viewsBlock: viewsBlock, optsLine: optsLine, yv: yv
+    viewsBlock: viewsBlock, optsLine: optsLine, yv: yv,
+    combineOn: combineOn, setCombine: setCombine, mountToggle: mountToggle
   };
 })();
