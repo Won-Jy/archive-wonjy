@@ -16,7 +16,7 @@ tags:
   - Pigeon
   - Stone
 cover: /images/columbarium-ii/Columbarium_II_01.webp
-cover_caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+cover_caption: Installed at the Échangeur 22 residency, as part of the exhibition _Dents creuses II_.
 summary: Mixed media, dimensions variable, 2019.
 description: |-
   This work was presented as part of _Dents creuses II_, a short-term, on-site experimental exhibition hosted by Échangeur 22, an artist residency located in Saint-Laurent-des-Arbres, and staged both in the village and inside the residency building.
@@ -27,16 +27,16 @@ description: |-
 media:
   - type: image
     src: /images/columbarium-ii/Columbarium_II_02.webp
-    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+    caption: Installed at the Échangeur 22 residency, as part of the exhibition _Dents creuses II_.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_03.webp
-    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+    caption: Installed at the Échangeur 22 residency, as part of the exhibition _Dents creuses II_.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_04.webp
-    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+    caption: Installed at the Échangeur 22 residency, as part of the exhibition _Dents creuses II_.
   - type: image
     src: /images/columbarium-ii/Columbarium_II_05.webp
-    caption: _Columbarium II_, mixed media, dimensions variable, 2019.
+    caption: A pigeon grave
   - type: image
     src: /images/columbarium-ii/Columbarium_II_06.webp
     caption: Interior of a pigeon grave, with a single maggot.
