@@ -344,3 +344,8 @@ collections:
         file: _data/taxonomy.yml
         fields:
           - { name: groups, label: "Type · Tag 목록", widget: taxonomy, required: false }
+      - name: media
+        label: "안 쓰는 사진"
+        file: _data/media.yml
+        fields:
+          - { name: note, label: "안 쓰는 사진 · 휴지통", widget: unusedmedia, required: false }

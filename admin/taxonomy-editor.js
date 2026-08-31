@@ -321,6 +321,30 @@
       });
   }
 
+  /* 이미 만들어진 트리 항목들로 커밋 하나를 만든다.
+     sha 가 null 인 항목은 그 파일을 지운다는 뜻이다. */
+  function commitEntries(repo, branch, entries, message) {
+    var head, baseTree;
+    return gh('/repos/' + repo + '/git/ref/heads/' + encodeURIComponent(branch))
+      .then(function (r) { head = r.object.sha; return gh('/repos/' + repo + '/git/commits/' + head); })
+      .then(function (c) {
+        baseTree = c.tree.sha;
+        return gh('/repos/' + repo + '/git/trees', {
+          method: 'POST', body: { base_tree: baseTree, tree: entries }
+        });
+      })
+      .then(function (t) {
+        return gh('/repos/' + repo + '/git/commits', {
+          method: 'POST', body: { message: message, tree: t.sha, parents: [head] }
+        });
+      })
+      .then(function (c) {
+        return gh('/repos/' + repo + '/git/refs/heads/' + encodeURIComponent(branch), {
+          method: 'PATCH', body: { sha: c.sha }
+        });
+      });
+  }
+
   function commitFiles(repo, branch, files, message) {
     var refPath = '/repos/' + repo + '/git/ref/heads/' + encodeURIComponent(branch);
     var head, baseTree;
@@ -351,6 +375,56 @@
           method: 'PATCH', body: { sha: c.sha }
         });
       });
+  }
+
+  /* ---------- 안 쓰는 사진 찾기 ---------- */
+  var TRASH = '_trash/';
+  /* 글로 된 파일 — 이 안에 사진 이름이 있으면 "쓰이는 중" 으로 본다 */
+  var TEXTY = /\.(md|markdown|yml|yaml|html?|js|mjs|json|txt|xml|css|csv)$/i;
+  /* 아주 큰 파일(예: sveltia-cms.js 번들)은 훑지 않는다 — 느리기만 하고 얻는 게 없다 */
+  var SCAN_MAX = 512 * 1024;
+
+  function baseName(p) { return p.split('/').pop(); }
+  function nfc(v) { try { return String(v).normalize('NFC'); } catch (e) { return String(v); } }
+
+  /* 저장소를 훑어 안 쓰는 사진과 휴지통 목록을 만든다 */
+  function scanMedia(repo, branch) {
+    return gh('/repos/' + repo + '/git/trees/' + encodeURIComponent(branch) + '?recursive=1')
+      .then(function (tree) {
+        if (tree.truncated) throw new Error('저장소가 너무 커서 목록이 잘렸습니다');
+        var blobs = (tree.tree || []).filter(function (t) { return t.type === 'blob'; });
+        var images = blobs.filter(function (t) { return /^images\//i.test(t.path); });
+        var trash = blobs.filter(function (t) { return t.path.indexOf(TRASH) === 0; });
+        var texts = blobs.filter(function (t) {
+          return t.path.indexOf(TRASH) !== 0 && !/^images\//i.test(t.path) &&
+                 TEXTY.test(t.path) && (t.size || 0) <= SCAN_MAX;
+        });
+        return pool(texts, 6, function (t) {
+          return getBlob(repo, t.sha).catch(function () { return ''; });
+        }).then(function (contents) {
+          var hay = nfc(contents.join('\n'));
+          images.forEach(function (im) {
+            var p = nfc(im.path), b = nfc(baseName(im.path));
+            im.used = hay.indexOf(p) !== -1 ||
+                      hay.indexOf(encodeURI(p)) !== -1 ||
+                      hay.indexOf(b) !== -1 ||
+                      hay.indexOf(encodeURIComponent(b)) !== -1;
+          });
+          return {
+            images: images,
+            unused: images.filter(function (im) { return !im.used; }),
+            trash: trash,
+            scanned: texts.length
+          };
+        });
+      });
+  }
+
+  function human(n) {
+    if (n == null) return '';
+    if (n < 1024) return n + ' B';
+    if (n < 1024 * 1024) return Math.round(n / 1024) + ' KB';
+    return (n / 1024 / 1024).toFixed(1) + ' MB';
   }
 
   /* ---------- 스타일 ---------- */
@@ -398,6 +472,20 @@
     '.tx-search{font:inherit;font-size:.85em;padding:4px 8px;width:100%;box-sizing:border-box;',
     'border:1px solid var(--sui-secondary-border-color,#ccc);border-radius:4px;background:transparent;color:inherit}',
     '.tx-diff{font-size:.82em;line-height:1.7;max-height:40vh;overflow:auto;margin:6px 0 0}',
+    /* 안 쓰는 사진 · 휴지통 */
+    '.tx-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin:10px 0 0;',
+    'max-height:52vh;overflow:auto;padding:2px}',
+    '.tx.tx-wide .tx-cards{max-height:none}',
+    '.tx-card{position:relative;border:1px solid var(--sui-secondary-border-color,#ddd);border-radius:6px;',
+    'padding:6px;overflow:hidden}',
+    '.tx-card.on{border-color:var(--sui-primary-accent-color,#07f);background:var(--sui-selected-background-color,rgba(0,119,255,.12))}',
+    '.tx-card img{display:block;width:100%;height:96px;object-fit:contain;background:rgba(127,127,127,.12);border-radius:4px}',
+    '.tx-card label{position:absolute;top:8px;left:8px;margin:0}',
+    '.tx-card label input{width:16px;height:16px;accent-color:var(--sui-primary-accent-color,#07f);cursor:pointer}',
+    '.tx-card .nm{font-size:.78em;margin-top:5px;word-break:break-all;line-height:1.35}',
+    '.tx-card .sz{font-size:.72em;opacity:.6;margin-top:2px;word-break:break-all}',
+    '.tx-sep{height:1px;background:var(--sui-secondary-border-color,#ddd);margin:18px 0 10px}',
+    '.tx-phead2{font-size:.95em;font-weight:600;margin:0 0 6px}',
     '.tx-diff li{margin:0}',
     /* 대화상자 */
     '.tx-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px}',
@@ -462,6 +550,257 @@
   }
 
   /* ---------- 본체 ---------- */
+  /* ==================================================================
+     안 쓰는 사진 · 휴지통  — 커스텀 필드 `unusedmedia`
+     "관리 → 안 쓰는 사진" 화면 하나를 통째로 그린다.
+     ================================================================== */
+  function createMediaInstance(id) {
+    var inst = {
+      id: id,
+      root: el('div', 'tx'),
+      backend: { repo: '', branch: 'main' }
+    };
+
+    inst.attach = function (node) {
+      if (!node) return;
+      ensureCSS();
+      if (inst.root.parentNode !== node) { clear(node); node.appendChild(inst.root); }
+      inst.render();
+      loadMedia();
+    };
+
+    /* --- 안 쓰는 사진 / 휴지통 --- */
+    inst.media = { loaded: false, loading: false, error: '', data: null, sel: {}, selTrash: {} };
+
+    function loadMedia(force) {
+      var m = inst.media;
+      if (m.loading || (m.loaded && !force)) return;
+      m.loading = true; m.error = '';
+      inst.render();
+      scanMedia(inst.backend.repo, inst.backend.branch).then(function (r) {
+        m.data = r; m.loaded = true; m.loading = false; m.sel = {}; m.selTrash = {};
+        inst.render();
+      }).catch(function (e) {
+        m.loading = false; m.error = '훑지 못했습니다: ' + e.message;
+        inst.render();
+      });
+    }
+
+    function pickedPaths(bag) {
+      return Object.keys(bag).filter(function (k) { return bag[k]; });
+    }
+
+    /* 안 쓰는 사진을 _trash/ 아래로 옮긴다 (파일은 그대로, 자리만 바뀐다) */
+    function moveToTrash(paths) {
+      var items = inst.media.data.images.filter(function (im) { return paths.indexOf(im.path) !== -1; });
+      var entries = [];
+      items.forEach(function (im) {
+        entries.push({ path: TRASH + im.path, mode: '100644', type: 'blob', sha: im.sha });
+        entries.push({ path: im.path, mode: '100644', type: 'blob', sha: null });
+      });
+      return commitEntries(inst.backend.repo, inst.backend.branch, entries,
+        '안 쓰는 사진 ' + items.length + '개를 휴지통으로');
+    }
+
+    function restoreFromTrash(paths) {
+      var items = inst.media.data.trash.filter(function (t) { return paths.indexOf(t.path) !== -1; });
+      var entries = [];
+      items.forEach(function (t) {
+        entries.push({ path: t.path.slice(TRASH.length), mode: '100644', type: 'blob', sha: t.sha });
+        entries.push({ path: t.path, mode: '100644', type: 'blob', sha: null });
+      });
+      return commitEntries(inst.backend.repo, inst.backend.branch, entries,
+        '휴지통에서 사진 ' + items.length + '개 되돌리기');
+    }
+
+    function purgeTrash(paths) {
+      var entries = paths.map(function (p) {
+        return { path: p, mode: '100644', type: 'blob', sha: null };
+      });
+      return commitEntries(inst.backend.repo, inst.backend.branch, entries,
+        '휴지통 사진 ' + paths.length + '개 완전히 삭제');
+    }
+
+    function runMedia(title, intro, items, okLabel, fn) {
+      confirmList(title, intro, items.slice(0, 200), okLabel, function (close, okBtn) {
+        okBtn.disabled = true; okBtn.textContent = '하는 중…';
+        fn().then(function () {
+          okBtn.textContent = '됐습니다. 다시 읽습니다…';
+          setTimeout(function () { close(); loadMedia(true); }, 600);
+        }).catch(function (e) {
+          okBtn.disabled = false; okBtn.textContent = okLabel;
+          okBtn.parentNode.parentNode.appendChild(el('p', 'tx-err', '실패: ' + e.message));
+        });
+      });
+    }
+
+    function mediaCard(item, bag, showFolder) {
+      var card = el('div', 'tx-card');
+      var lab = el('label');
+      var cb = el('input'); cb.type = 'checkbox';
+      cb.checked = !!bag[item.path];
+      cb.onchange = function () {
+        bag[item.path] = cb.checked;
+        card.classList.toggle('on', cb.checked);
+        paintMediaBar();
+      };
+      lab.appendChild(cb);
+      var img = el('img');
+      var BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      img.loading = 'lazy'; img.alt = '';
+      /* 휴지통 파일은 사이트에 안 올라가므로 미리보기가 없다.
+         못 불러와도 자리는 그대로 둔다 — 숨기면 칸이 무너져 글자와 겹친다. */
+      /* 휴지통 파일은 사이트에 안 올라가므로 저장소에서 바로 불러온다 */
+      img.src = item.path.indexOf(TRASH) === 0
+        ? 'https://raw.githubusercontent.com/' + inst.backend.repo + '/' +
+          encodeURIComponent(inst.backend.branch) + '/' + encodeURI(item.path)
+        : '/' + encodeURI(item.path);
+      img.onerror = function () { img.onerror = null; img.src = BLANK; };
+      card.appendChild(img);
+      card.appendChild(lab);
+      var nm = el('div', 'nm', baseName(item.path));
+      nm.title = item.path;
+      card.appendChild(nm);
+      var folder = item.path.replace(/\/[^/]*$/, '');
+      if (folder.indexOf(TRASH) === 0) folder = folder.slice(TRASH.length);
+      card.appendChild(el('div', 'sz', (showFolder ? folder + ' · ' : '') + human(item.size)));
+      if (bag[item.path]) card.classList.add('on');
+      return card;
+    }
+
+    function paintMediaBar() {
+      var d = inst.media.dom;
+      if (!d) return;
+      var n = pickedPaths(inst.media.sel).length;
+      var t = pickedPaths(inst.media.selTrash).length;
+      if (d.toTrash) { d.toTrash.disabled = !n; d.toTrash.textContent = n ? ('휴지통으로 (' + n + ')') : '휴지통으로'; }
+      if (d.restore) { d.restore.disabled = !t; d.restore.textContent = t ? ('되돌리기 (' + t + ')') : '되돌리기'; }
+      if (d.purge) { d.purge.disabled = !t; d.purge.textContent = t ? ('완전히 지우기 (' + t + ')') : '완전히 지우기'; }
+    }
+
+    function renderMedia(root) {
+      var m = inst.media;
+      m.dom = {};
+      if (m.error) {
+        root.appendChild(el('p', 'tx-err', m.error));
+        var again = el('button', 'tx-btn', '다시 훑기');
+        again.type = 'button'; again.onclick = function () { m.error = ''; loadMedia(true); };
+        root.appendChild(again);
+        return;
+      }
+      if (!m.loaded) {
+        root.appendChild(el('p', 'tx-note',
+          m.loading ? '저장소의 글 파일을 모두 읽어 사진이 쓰이는지 맞춰보는 중…' : '준비 중…'));
+        return;
+      }
+      var d = m.data;
+      var unusedSize = d.unused.reduce(function (a, x) { return a + (x.size || 0); }, 0);
+
+      root.appendChild(el('p', 'tx-note',
+        '사진 ' + d.images.length + '개 중 어디에도 안 쓰이는 것이 ' + d.unused.length + '개입니다' +
+        (unusedSize ? ' (' + human(unusedSize) + ')' : '') +
+        '. 글 파일 ' + d.scanned + '개를 훑어 파일 이름이 한 번도 안 나오는 것만 골랐습니다.'));
+
+      /* 안 쓰는 사진 */
+      var bar = el('div', 'tx-bar');
+      var all = el('button', 'tx-btn', '모두 고르기'); all.type = 'button';
+      all.disabled = !d.unused.length;
+      all.onclick = function () {
+        var on = pickedPaths(m.sel).length !== d.unused.length;
+        m.sel = {};
+        if (on) d.unused.forEach(function (x) { m.sel[x.path] = true; });
+        inst.render();
+      };
+      var toTrash = el('button', 'tx-btn go', '휴지통으로'); toTrash.type = 'button';
+      toTrash.onclick = function () {
+        var ps = pickedPaths(m.sel);
+        runMedia('휴지통으로 보내기',
+          '사진 ' + ps.length + '개를 `_trash/` 폴더로 옮깁니다. 파일은 지워지지 않고 자리만 바뀝니다. ' +
+          '`_` 로 시작하는 폴더는 사이트에 올라가지 않으니 페이지에는 안 나옵니다. 언제든 되돌릴 수 있습니다.',
+          ps, '옮기기', function () { return moveToTrash(ps); });
+      };
+      bar.appendChild(all); bar.appendChild(toTrash);
+      bar.appendChild(el('span', 'sp'));
+      var rescan = el('button', 'tx-btn', '다시 훑기'); rescan.type = 'button';
+      rescan.onclick = function () { loadMedia(true); };
+      bar.appendChild(rescan);
+      m.dom.toTrash = toTrash;
+      root.appendChild(bar);
+
+      if (!d.unused.length) {
+        root.appendChild(el('p', 'tx-note', '안 쓰이는 사진이 없습니다. 깨끗합니다.'));
+      } else {
+        var grid = el('div', 'tx-cards');
+        d.unused.forEach(function (im) { grid.appendChild(mediaCard(im, m.sel, true)); });
+        root.appendChild(grid);
+      }
+
+      /* 휴지통 */
+      root.appendChild(el('div', 'tx-sep'));
+      root.appendChild(el('p', 'tx-phead2', '휴지통 — ' + d.trash.length + '개'));
+      if (!d.trash.length) {
+        root.appendChild(el('p', 'tx-note', '휴지통이 비어 있습니다.'));
+      } else {
+        var tbar = el('div', 'tx-bar');
+        var tall = el('button', 'tx-btn', '모두 고르기'); tall.type = 'button';
+        tall.onclick = function () {
+          var on = pickedPaths(m.selTrash).length !== d.trash.length;
+          m.selTrash = {};
+          if (on) d.trash.forEach(function (x) { m.selTrash[x.path] = true; });
+          inst.render();
+        };
+        var restore = el('button', 'tx-btn', '되돌리기'); restore.type = 'button';
+        restore.onclick = function () {
+          var ps = pickedPaths(m.selTrash);
+          runMedia('되돌리기', '사진 ' + ps.length + '개를 원래 자리로 되돌립니다.',
+            ps.map(function (p) { return p.slice(TRASH.length); }), '되돌리기',
+            function () { return restoreFromTrash(ps); });
+        };
+        var purge = el('button', 'tx-btn warn', '완전히 지우기'); purge.type = 'button';
+        purge.onclick = function () {
+          var ps = pickedPaths(m.selTrash);
+          runMedia('완전히 지우기',
+            '사진 ' + ps.length + '개를 저장소에서 지웁니다. ' +
+            '깃 기록에는 남으므로 GitHub 의 커밋 이력에서 되살릴 수는 있지만, 화면에서는 사라집니다.',
+            ps.map(function (p) { return p.slice(TRASH.length); }), '지우기',
+            function () { return purgeTrash(ps); });
+        };
+        tbar.appendChild(tall); tbar.appendChild(restore); tbar.appendChild(purge);
+        m.dom.restore = restore; m.dom.purge = purge;
+        root.appendChild(tbar);
+        var tgrid = el('div', 'tx-cards');
+        d.trash.forEach(function (t) { tgrid.appendChild(mediaCard(t, m.selTrash, true)); });
+        root.appendChild(tgrid);
+      }
+
+      root.appendChild(el('p', 'tx-note',
+        '판정 방법: 저장소의 글 파일(작업 · 비평 텍스트 · 레이아웃 · 설정)을 전부 읽어, ' +
+        '사진의 경로나 파일 이름이 한 번이라도 나오면 "쓰이는 중" 으로 봅니다. ' +
+        '헷갈리면 남겨두는 쪽으로 판단하니, 여기 나온 것은 정말 아무 데서도 안 부르는 파일입니다.'));
+      paintMediaBar();
+    }
+
+
+    inst.render = function () {
+      var root = inst.root;
+      clear(root);
+      var bar = el('div', 'tx-bar');
+      bar.appendChild(el('span', 'sp'));
+      var wide = el('button', 'tx-btn', root.classList.contains('tx-wide') ? '작게 보기' : '크게 보기');
+      wide.type = 'button';
+      wide.onclick = function () {
+        root.classList.toggle('tx-wide');
+        document.body.classList.toggle('tx-wide-open', root.classList.contains('tx-wide'));
+        inst.render();
+      };
+      bar.appendChild(wide);
+      root.appendChild(bar);
+      renderMedia(root);
+    };
+
+    return inst;
+  }
+
   function createInstance(id) {
     var inst = {
       id: id,
@@ -1004,8 +1343,26 @@
     };
   }
 
+  var mediaInstances = new Map();
+
+  function MediaControl(props) {
+    var id = props.forID || 'txm';
+    var inst = mediaInstances.get(id);
+    if (!inst) { inst = createMediaInstance(id); mediaInstances.set(id, inst); }
+    try {
+      var cfg = (window.CMS_CONFIG_BACKEND || {});
+      inst.backend.repo = cfg.repo || inst.backend.repo;
+      inst.backend.branch = cfg.branch || inst.backend.branch;
+    } catch (e) { /* 무시 */ }
+    return {
+      $$typeof: REACT_ELEMENT, type: 'div', key: null,
+      props: { ref: inst.attach }, _owner: null, _store: {}
+    };
+  }
+
   if (window.CMS && window.CMS.registerFieldType) {
     window.CMS.registerFieldType('taxonomy', Control);
+    window.CMS.registerFieldType('unusedmedia', MediaControl);
   } else {
     console.error('[taxonomy-editor] CMS 가 아직 없습니다. sveltia-cms.js 다음에 불러주세요.');
   }
