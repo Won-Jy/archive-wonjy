@@ -10,16 +10,14 @@ drafts: |-
   전시 중간에 나는 과일즙이나 달달한 액체를 그 구멍을 통해 상자안에 넣었고 파리들은 그것을 먹었다.
 types:
   - Single work
-types_all: "Single work"
+types_all: Single work
 year_start: 2019
-year_end: 2019
+year_end: null
 date_start: 2019-09-29
 status: Completed
 tags:
   - Pigeon
-tags_all: "Pigeon"
-cover: /images/columbarium-iii/Columbarium_III_01.webp
-cover_caption: Installed at Château d'Aubais, as part of _Trop bête ! l'homme et sa nature_ (2019).
+tags_all: Pigeon
 summary: Pigeon remains, plastic boxs, soil,  35×26×14cm (each), 2019 –.
 description: |-
   I was invited to present my pigeon graves as part of the group exhibition _Trop bête ! l'homme et sa nature_ (2019), curated by Pierrette Gaudiat at Château d'Aubais.
@@ -27,6 +25,8 @@ description: |-
   For this exhibition, I stacked the pigeon-grave boxes — which had piled up at home over time — into a single tall column, like a tower, and titled it _Columbarium_. This became the name I would use, from then on, for all future work involving pigeon remains. When stacking the boxes, I arranged them in chronological order from bottom to top, with the oldest burials at the base and the most recently buried graves toward the top. By the time the exhibition opened, hundreds of maggots that had been born inside the topmost box had turned into flies.
 
   The last plastic box I had used had a small air hole near its top (too small for the flies to pass through), and the flies would either gather at the hole or try to squeeze into the gap along the box's lid joint, often getting stuck there. Partway through the exhibition, I began feeding them through that hole with fruit juice or other sweet liquids, which the flies fed on.
+cover: /images/columbarium-iii/Columbarium_III_01.webp
+cover_caption: Installed at Château d'Aubais, as part of _Trop bête ! l'homme et sa nature_ (2019).
 media:
   - type: image
     src: /images/columbarium-iii/Columbarium_III_02.webp
