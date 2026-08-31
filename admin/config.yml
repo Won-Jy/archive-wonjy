@@ -34,9 +34,27 @@ collections:
     slug: "{{title}}"
     summary: "{{title}}"
     sortable_fields: [title, year_start, status]
+    # >>> taxonomy:views — 여기부터 아래 <<< 줄까지는 "관리 → Type · Tag" 화면이 다시 씁니다.
     view_groups:
-      - label: Year
-        field: year_start
+      - { label: Year, field: year_start }
+      - { label: Type, field: types, pattern: "Single work|Exhibition|Project|Writing" }
+      - { label: Tag,  field: tags,  pattern: "Newcomer|Garden|Pigeon|Stone|Water|Cave|City|Wall|Map" }
+    view_filters:
+      - { label: "Type · Highlight", field: types, pattern: "(^|,)Highlight(,|$)" }
+      - { label: "Type · Exhibition", field: types, pattern: "(^|,)Exhibition(,|$)" }
+      - { label: "Type · Project", field: types, pattern: "(^|,)Project(,|$)" }
+      - { label: "Type · Single work", field: types, pattern: "(^|,)Single work(,|$)" }
+      - { label: "Type · Writing", field: types, pattern: "(^|,)Writing(,|$)" }
+      - { label: "Tag · Cave", field: tags,  pattern: "(^|,)Cave(,|$)" }
+      - { label: "Tag · City", field: tags,  pattern: "(^|,)City(,|$)" }
+      - { label: "Tag · Garden", field: tags,  pattern: "(^|,)Garden(,|$)" }
+      - { label: "Tag · Map", field: tags,  pattern: "(^|,)Map(,|$)" }
+      - { label: "Tag · Newcomer", field: tags,  pattern: "(^|,)Newcomer(,|$)" }
+      - { label: "Tag · Pigeon", field: tags,  pattern: "(^|,)Pigeon(,|$)" }
+      - { label: "Tag · Stone", field: tags,  pattern: "(^|,)Stone(,|$)" }
+      - { label: "Tag · Wall", field: tags,  pattern: "(^|,)Wall(,|$)" }
+      - { label: "Tag · Water", field: tags,  pattern: "(^|,)Water(,|$)" }
+    # <<< taxonomy:views
     fields:
       - { name: layout, widget: hidden, default: work }
 
@@ -51,7 +69,9 @@ collections:
         label: Type
         widget: select
         multiple: true
-        options: [Highlight, Exhibition, Project, Single work, Writing]
+        # >>> taxonomy:types
+        options: ["Highlight", "Exhibition", "Project", "Single work", "Writing"]
+        # <<< taxonomy:types
         hint: "Highlight는 첫 화면에 띄우는 표시입니다. 페이지에는 안 보입니다."
 
       - { name: year_start, label: Year (from), widget: number, value_type: int, preview: false }
@@ -70,7 +90,9 @@ collections:
         multiple: true
         required: false
         create: true
-        options: [Cave, City, Garden, Map, Newcomer, Pigeon, Stone, Wall, Water]
+        # >>> taxonomy:tags
+        options: ["Cave", "City", "Garden", "Map", "Newcomer", "Pigeon", "Stone", "Wall", "Water"]
+        # <<< taxonomy:tags
 
       - { name: cover, label: Cover image, widget: image, required: false }
       - name: cover_caption
@@ -299,3 +321,17 @@ collections:
           - { name: label, label: 표시 이름, widget: string, required: false }
           - { name: slug, label: 경로, widget: string, required: false,
               hint: "work/2023/hostis — 앞의 / 와 뒤의 .html 은 빼고 적습니다." }
+
+  # ─────────────────────────────────────────────────────────────
+  # 관리 — Type · Tag  (_data/taxonomy.yml)
+  # ─────────────────────────────────────────────────────────────
+  - name: settings
+    label: 관리
+    editor:
+      preview: false
+    files:
+      - name: taxonomy
+        label: "Type · Tag"
+        file: _data/taxonomy.yml
+        fields:
+          - { name: groups, label: "Type · Tag 목록", widget: taxonomy, required: false }
