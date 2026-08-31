@@ -20,7 +20,7 @@ tags:
   - City
 tags_all: Cave,City
 cover: /images/grotto_exh/Grotto_00_01.webp
-cover_caption: Visitors entering _Grotto_ (2020–2022). Photo © Arthur Lextrait.
+cover_caption: Visitors entering [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html). Photo © Arthur Lextrait.
 summary: Solo exhibition in the basement of _Vaisseau 3008_, a former social services building of the Gard Department, Nîmes, France.
 description: |-
   This exhibition grew out of the site-specific sculpture [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html), of the same name, which had been made in the basement of the former Département du Gard social welfare building while it awaited demolition.
