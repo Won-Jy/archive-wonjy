@@ -14,7 +14,7 @@ types_all: Single work
 year_start: 2019
 year_end: null
 date_start: 2019-09-29
-status: Completed
+status: In progress
 tags:
   - Pigeon
 tags_all: Pigeon
