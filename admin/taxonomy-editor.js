@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------
-   Type · Tag 관리  (Sveltia CMS 커스텀 필드)
+   Type · Tag · Status 관리  (Sveltia CMS 커스텀 필드)
 
-   "관리 → Type · Tag" 화면 하나로 아래를 다 한다.
+   "관리 → Type · Tag · Status" 화면 하나로 아래를 다 한다.
      - 각 Type/Tag 안에 어떤 작업이 있는지 보기
      - 새 Type/Tag 만들기 · 이름 바꾸기 · 삭제 · 순서 바꾸기
      - 작업을 Type/Tag 에 넣고 빼기 (옮기기는 한쪽에서 빼고 다른 쪽에서 넣기)
@@ -229,8 +229,8 @@
 
   function buildTaxonomy(types, tags, exclude, statuses) {
     var L = [];
-    L.push('# Type · Tag 목록.');
-    L.push('# 에디터의 "관리 → Type · Tag" 화면이 이 파일과 admin/config.yml 을 함께 고칩니다.');
+    L.push('# Type · Tag · Status 목록.');
+    L.push('# 에디터의 "관리 → Type · Tag · Status" 화면이 이 파일과 admin/config.yml 을 함께 고칩니다.');
     L.push('# 손으로 고쳐도 되지만, 이름을 바꾸면 work/*.md 안의 값도 같이 바꿔야 합니다.');
     L.push('groups:');
     L.push('  types:');
@@ -1213,7 +1213,7 @@
 
       confirmList('적용', intro, lines, '저장', function (close, okBtn) {
         okBtn.disabled = true; okBtn.textContent = '저장하는 중…';
-        var msg = 'Type · Tag 정리' + (cw.length ? (' (작업 ' + cw.length + '개)') : '') +
+        var msg = 'Type · Tag · Status 정리' + (cw.length ? (' (작업 ' + cw.length + '개)') : '') +
           (mo.length ? (' + 숨은 값 ' + mo.length + '개') : '');
         commitFiles(inst.backend.repo, inst.backend.branch,
           files.map(function (f) { return { path: f.path, text: f.text }; }), msg)

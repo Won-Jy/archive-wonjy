@@ -348,10 +348,10 @@ collections:
       preview: false
     files:
       - name: taxonomy
-        label: "Type · Tag"
+        label: "Type · Tag · Status"
         file: _data/taxonomy.yml
         fields:
-          - { name: groups, label: "Type · Tag 목록", widget: taxonomy, required: false }
+          - { name: groups, label: "Type · Tag · Status 목록", widget: taxonomy, required: false }
       - name: media
         label: "안 쓰는 사진"
         file: _data/media.yml
