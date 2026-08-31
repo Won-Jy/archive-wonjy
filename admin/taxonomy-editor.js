@@ -139,6 +139,21 @@
     return out.join('\n');
   }
 
+  /* front matter 의 홑값 하나를 갈아끼운다. 없으면 after 키 바로 뒤에 끼워 넣는다. */
+  function writeScalar(text, key, value, after) {
+    var r = fmRange(text); if (!r) return null;
+    var lines = r.lines, a = r.a, b = r.b;
+    var line = key + ': ' + J(String(value));
+    var k = keyRange(lines, a, b, key);
+    if (k) return lines.slice(0, k.s).concat([line], lines.slice(k.e)).join('\n');
+    var at = b;
+    if (after) { var ka = keyRange(lines, a, b, after); if (ka) at = ka.e; }
+    return lines.slice(0, at).concat([line], lines.slice(at)).join('\n');
+  }
+
+  /* 필터·그룹이 읽는 숨은 값 */
+  function joinValues(list) { return (list || []).filter(Boolean).join(','); }
+
   /* ---------- config.yml 마커 구간 만들기 ---------- */
   function altPattern(vals) {
     return vals.slice().sort(function (x, y) { return y.length - x.length; })
@@ -150,19 +165,23 @@
     return indent + 'options: [' + vals.map(J).join(', ') + ']';
   }
 
+  /* 필터·그룹은 `types`/`tags` 를 못 본다 — Sveltia 는 초안을 납작하게 펴서 들고 있어서
+     여러 값 필드는 `types.0`, `types.1` 로만 남고 `types` 자체는 undefined 다.
+     그래서 쉼표로 이어붙인 숨은 값 `types_all` / `tags_all` 을 대신 본다.
+     이 값은 preSave 훅과 이 관리 화면이 자동으로 채운다. */
   function viewsBlock(types, tags, exclude, indent) {
     var L = [];
     L.push(indent + 'view_groups:');
     L.push(indent + '  - { label: Year, field: year_start }');
     var gt = types.filter(function (t) { return exclude.indexOf(t) === -1; });
-    if (gt.length) L.push(indent + '  - { label: Type, field: types, pattern: ' + J(altPattern(gt)) + ' }');
-    if (tags.length) L.push(indent + '  - { label: Tag,  field: tags,  pattern: ' + J(altPattern(tags)) + ' }');
+    if (gt.length) L.push(indent + '  - { label: Type, field: types_all, pattern: ' + J(altPattern(gt)) + ' }');
+    if (tags.length) L.push(indent + '  - { label: Tag,  field: tags_all,  pattern: ' + J(altPattern(tags)) + ' }');
     L.push(indent + 'view_filters:');
     types.forEach(function (t) {
-      L.push(indent + '  - { label: ' + J('Type · ' + t) + ', field: types, pattern: ' + J(anchorPattern(t)) + ' }');
+      L.push(indent + '  - { label: ' + J('Type · ' + t) + ', field: types_all, pattern: ' + J(anchorPattern(t)) + ' }');
     });
     tags.forEach(function (g) {
-      L.push(indent + '  - { label: ' + J('Tag · ' + g) + ', field: tags,  pattern: ' + J(anchorPattern(g)) + ' }');
+      L.push(indent + '  - { label: ' + J('Tag · ' + g) + ', field: tags_all,  pattern: ' + J(anchorPattern(g)) + ' }');
     });
     return L.join('\n');
   }
@@ -287,7 +306,9 @@
               title: readScalar(text, 'title') || f.path.split('/').pop().replace(/\.md$/, ''),
               year: readScalar(text, 'year_start'),
               types: readList(text, 'types') || [],
-              tags: readList(text, 'tags') || []
+              tags: readList(text, 'tags') || [],
+              origTypesAll: readScalar(text, 'types_all'),
+              origTagsAll: readScalar(text, 'tags_all')
             };
           });
         });
@@ -497,7 +518,8 @@
             return {
               path: w.path, text: w.text, title: w.title, year: w.year, ok: w.ok,
               types: w.types.slice(), tags: w.tags.slice(),
-              origTypes: w.types.slice(), origTags: w.tags.slice()
+              origTypes: w.types.slice(), origTags: w.tags.slice(),
+              origTypesAll: w.origTypesAll, origTagsAll: w.origTagsAll
             };
           }),
           cfg: r.cfg, tax: r.tax
@@ -691,16 +713,31 @@
     }
 
     /* --- 바뀐 것 모으기 --- */
+    /* 그녀가 실제로 고친 작업 */
     function changedWorks() {
       return inst.st.works.filter(function (w) {
         return !same(w.types, w.origTypes) || !same(w.tags, w.origTags);
+      });
+    }
+    /* 숨은 값(types_all/tags_all)이 비었거나 어긋난 작업 */
+    function mirrorStale(w) {
+      return w.ok && (joinValues(w.types) !== w.origTypesAll ||
+                      joinValues(w.tags) !== w.origTagsAll);
+    }
+    /* 고치지는 않았는데 숨은 값만 채워야 하는 작업 */
+    function mirrorOnlyWorks() {
+      var edited = changedWorks();
+      return inst.st.works.filter(function (w) {
+        return mirrorStale(w) && edited.indexOf(w) === -1;
       });
     }
     function listsChanged() {
       var s = inst.st;
       return !same(s.types, s.origTypes) || !same(s.tags, s.origTags) || !same(s.exclude, s.origExclude);
     }
-    function changeCount() { return changedWorks().length + (listsChanged() ? 1 : 0); }
+    function changeCount() {
+      return changedWorks().length + (listsChanged() ? 1 : 0) + (mirrorOnlyWorks().length ? 1 : 0);
+    }
 
     function revert() {
       var s = inst.st;
@@ -713,14 +750,28 @@
     function apply() {
       var s = inst.st;
       var cw = changedWorks();
+      var mo = mirrorOnlyWorks();
       var files = [];
       var bad = [];
 
-      cw.forEach(function (w) {
+      /* 한 작업 파일을 다시 쓴다: 바뀐 목록 + 필터가 읽는 숨은 값 */
+      function rewrite(w) {
         var t = w.text;
-        if (!same(w.types, w.origTypes)) { var a = writeList(t, 'types', w.types); if (a == null) { bad.push(w.path); return; } t = a; }
-        if (!same(w.tags, w.origTags)) { var b = writeList(t, 'tags', w.tags); if (b == null) { bad.push(w.path); return; } t = b; }
-        files.push({ path: w.path, text: t, _w: w });
+        if (!same(w.types, w.origTypes)) { var a = writeList(t, 'types', w.types); if (a == null) return null; t = a; }
+        if (!same(w.tags, w.origTags)) { var b = writeList(t, 'tags', w.tags); if (b == null) return null; t = b; }
+        if (joinValues(w.types) !== w.origTypesAll) {
+          var c = writeScalar(t, 'types_all', joinValues(w.types), 'types'); if (c == null) return null; t = c;
+        }
+        if (joinValues(w.tags) !== w.origTagsAll) {
+          var d = writeScalar(t, 'tags_all', joinValues(w.tags), 'tags'); if (d == null) return null; t = d;
+        }
+        return t;
+      }
+
+      cw.concat(mo).forEach(function (w) {
+        var t = rewrite(w);
+        if (t == null) { bad.push(w.path); return; }
+        if (t !== w.text) files.push({ path: w.path, text: t, _w: w });
       });
 
       if (bad.length) {
@@ -728,7 +779,7 @@
         return;
       }
 
-      if (listsChanged() || cw.length) {
+      if (listsChanged() || cw.length || mo.length) {
         try {
           files.push({ path: 'admin/config.yml', text: buildConfig(s.cfg.text, s.types, s.tags, s.exclude) });
         } catch (e) {
@@ -750,13 +801,18 @@
         lines.push(w.title + (w.year ? ' (' + w.year + ')' : '') + ' — ' + bits.join(' / '));
       });
 
+      if (mo.length) {
+        lines.push('필터·그룹이 읽는 숨은 값(types_all · tags_all) 채우기 — 작업 ' + mo.length + '개');
+      }
+
       var empty = cw.filter(function (w) { return w.types.length === 0; });
       var intro = '파일 ' + files.length + '개를 커밋 하나로 저장합니다.' +
         (empty.length ? ' Type 이 하나도 없는 작업이 ' + empty.length + '개 생깁니다 — 편집 화면에서 빨간 표시가 납니다.' : '');
 
       confirmList('적용', intro, lines, '저장', function (close, okBtn) {
         okBtn.disabled = true; okBtn.textContent = '저장하는 중…';
-        var msg = 'Type · Tag 정리' + (cw.length ? (' (작업 ' + cw.length + '개)') : '');
+        var msg = 'Type · Tag 정리' + (cw.length ? (' (작업 ' + cw.length + '개)') : '') +
+          (mo.length ? (' + 숨은 값 ' + mo.length + '개') : '');
         commitFiles(inst.backend.repo, inst.backend.branch,
           files.map(function (f) { return { path: f.path, text: f.text }; }), msg)
           .then(function () {
@@ -916,6 +972,12 @@
       bb.appendChild(el('span', 'tx-note', '작업 ' + s.works.length + '개'));
       root.appendChild(bb);
 
+      var mo = mirrorOnlyWorks().length;
+      if (mo) {
+        root.appendChild(el('p', 'tx-note',
+          '목록 화면의 필터·그룹이 읽는 숨은 값이 아직 없는 작업이 ' + mo + '개 있습니다. ' +
+          '"적용" 을 한 번 누르면 채워집니다.'));
+      }
       root.appendChild(el('p', 'tx-note',
         '저장은 이 화면의 "적용" 버튼으로 합니다 — 위쪽 Save 는 누르지 않아도 됩니다. ' +
         '적용하면 목록·설정·해당 작업 파일이 커밋 하나로 올라가고, 사이트가 다시 만들어지는 데 1분쯤 걸립니다.'));
@@ -948,9 +1010,40 @@
     console.error('[taxonomy-editor] CMS 가 아직 없습니다. sveltia-cms.js 다음에 불러주세요.');
   }
 
+  /* ---------- 저장할 때마다 숨은 값을 다시 채운다 ----------
+     목록 화면의 필터·그룹은 `types`/`tags` 를 못 읽는다 (초안이 납작하게 펴져 있어서
+     `types.0`, `types.1` 만 남는다). 그래서 쉼표로 이어붙인 `types_all` / `tags_all` 을
+     따로 두고, 작업을 저장할 때마다 여기서 다시 계산해 넣는다. */
+  function mirrorHandler(args) {
+    try {
+      var e = args && args.entry;
+      if (!e || typeof e.get !== 'function') return undefined;
+      if (e.get('collection') !== 'work') return undefined;
+      var data = e.get('data');
+      if (!data || typeof data.get !== 'function') return undefined;
+      var pick = function (key) {
+        var v = data.get(key);
+        if (v == null) return '';
+        var a = (typeof v.toJS === 'function') ? v.toJS() : v;
+        if (!Array.isArray(a)) a = [a];
+        return a.filter(function (x) { return x != null && x !== ''; }).join(',');
+      };
+      return e.setIn(['data', 'types_all'], pick('types'))
+              .setIn(['data', 'tags_all'], pick('tags'));
+    } catch (err) {
+      console.warn('[taxonomy-editor] types_all/tags_all 갱신 실패', err);
+      return undefined;
+    }
+  }
+
+  if (window.CMS && window.CMS.registerEventListener) {
+    window.CMS.registerEventListener({ name: 'preSave', handler: mirrorHandler });
+  }
+
   /* 테스트용으로 순수 함수들을 내놓는다 */
   window.__TX__ = {
     readList: readList, writeList: writeList, readScalar: readScalar,
+    writeScalar: writeScalar, joinValues: joinValues, mirrorHandler: mirrorHandler,
     buildConfig: buildConfig, buildTaxonomy: buildTaxonomy,
     viewsBlock: viewsBlock, optsLine: optsLine, yv: yv
   };

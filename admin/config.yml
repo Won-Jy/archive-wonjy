@@ -37,23 +37,23 @@ collections:
     # >>> taxonomy:views — 여기부터 아래 <<< 줄까지는 "관리 → Type · Tag" 화면이 다시 씁니다.
     view_groups:
       - { label: Year, field: year_start }
-      - { label: Type, field: types, pattern: "Single work|Exhibition|Project|Writing" }
-      - { label: Tag,  field: tags,  pattern: "Newcomer|Garden|Pigeon|Stone|Water|Cave|City|Wall|Map" }
+      - { label: Type, field: types_all, pattern: "Single work|Exhibition|Project|Writing" }
+      - { label: Tag,  field: tags_all,  pattern: "Newcomer|Garden|Pigeon|Stone|Water|Cave|City|Wall|Map" }
     view_filters:
-      - { label: "Type · Highlight", field: types, pattern: "(^|,)Highlight(,|$)" }
-      - { label: "Type · Exhibition", field: types, pattern: "(^|,)Exhibition(,|$)" }
-      - { label: "Type · Project", field: types, pattern: "(^|,)Project(,|$)" }
-      - { label: "Type · Single work", field: types, pattern: "(^|,)Single work(,|$)" }
-      - { label: "Type · Writing", field: types, pattern: "(^|,)Writing(,|$)" }
-      - { label: "Tag · Cave", field: tags,  pattern: "(^|,)Cave(,|$)" }
-      - { label: "Tag · City", field: tags,  pattern: "(^|,)City(,|$)" }
-      - { label: "Tag · Garden", field: tags,  pattern: "(^|,)Garden(,|$)" }
-      - { label: "Tag · Map", field: tags,  pattern: "(^|,)Map(,|$)" }
-      - { label: "Tag · Newcomer", field: tags,  pattern: "(^|,)Newcomer(,|$)" }
-      - { label: "Tag · Pigeon", field: tags,  pattern: "(^|,)Pigeon(,|$)" }
-      - { label: "Tag · Stone", field: tags,  pattern: "(^|,)Stone(,|$)" }
-      - { label: "Tag · Wall", field: tags,  pattern: "(^|,)Wall(,|$)" }
-      - { label: "Tag · Water", field: tags,  pattern: "(^|,)Water(,|$)" }
+      - { label: "Type · Highlight", field: types_all, pattern: "(^|,)Highlight(,|$)" }
+      - { label: "Type · Exhibition", field: types_all, pattern: "(^|,)Exhibition(,|$)" }
+      - { label: "Type · Project", field: types_all, pattern: "(^|,)Project(,|$)" }
+      - { label: "Type · Single work", field: types_all, pattern: "(^|,)Single work(,|$)" }
+      - { label: "Type · Writing", field: types_all, pattern: "(^|,)Writing(,|$)" }
+      - { label: "Tag · Cave", field: tags_all,  pattern: "(^|,)Cave(,|$)" }
+      - { label: "Tag · City", field: tags_all,  pattern: "(^|,)City(,|$)" }
+      - { label: "Tag · Garden", field: tags_all,  pattern: "(^|,)Garden(,|$)" }
+      - { label: "Tag · Map", field: tags_all,  pattern: "(^|,)Map(,|$)" }
+      - { label: "Tag · Newcomer", field: tags_all,  pattern: "(^|,)Newcomer(,|$)" }
+      - { label: "Tag · Pigeon", field: tags_all,  pattern: "(^|,)Pigeon(,|$)" }
+      - { label: "Tag · Stone", field: tags_all,  pattern: "(^|,)Stone(,|$)" }
+      - { label: "Tag · Wall", field: tags_all,  pattern: "(^|,)Wall(,|$)" }
+      - { label: "Tag · Water", field: tags_all,  pattern: "(^|,)Water(,|$)" }
     # <<< taxonomy:views
     fields:
       - { name: layout, widget: hidden, default: work }
@@ -74,6 +74,13 @@ collections:
         # <<< taxonomy:types
         hint: "Highlight는 첫 화면에 띄우는 표시입니다. 페이지에는 안 보입니다."
 
+      # 목록 화면의 필터·그룹이 읽는 숨은 값. 위의 Type/Tag 를 쉼표로 이어붙인 것.
+      # 왜 필요한가: Sveltia 는 여러 값 필드를 types.0, types.1 로 펴서 들고 있어서
+      # 필터가 `types` 를 보면 아무것도 못 찾는다 (실제로 "No entries found" 가 났다).
+      # 이 값은 작업을 저장할 때마다 taxonomy-editor.js 의 preSave 훅이 자동으로 채우고,
+      # "관리 → Type · Tag" 화면의 적용도 같이 채운다. 사람이 건드릴 필요 없다.
+      - { name: types_all, widget: hidden, required: false, preview: false }
+
       - { name: year_start, label: Year (from), widget: number, value_type: int, preview: false }
       - { name: year_end, label: Year (to), widget: number, value_type: int, required: false, preview: false,
           hint: "진행 중이면 비워두세요. 그러면 '2024 –' 처럼 표시됩니다." }
@@ -93,6 +100,8 @@ collections:
         # >>> taxonomy:tags
         options: ["Cave", "City", "Garden", "Map", "Newcomer", "Pigeon", "Stone", "Wall", "Water"]
         # <<< taxonomy:tags
+
+      - { name: tags_all, widget: hidden, required: false, preview: false }
 
       - { name: cover, label: Cover image, widget: image, required: false }
       - name: cover_caption
