@@ -16,7 +16,7 @@ status: Completed
 tags:
   - Pigeon
 cover: /images/figure-de-pigeon/Figure de pigeon_01.webp
-cover_caption: _Figure de pigeon_, single-channel image projection, 2096×2764px, 2016.
+cover_caption: Installed in my first-year studio at the Nîmes Beaux-Arts.
 summary: Single-channel image projection, 2096×2764px, 2016
 description: |-
   The first pigeon I gave a burial to ([_Columbarium I_](https://archive-wonjy.com/work/2016/columbarium-i.html)) was wrapped in a baby bath towel — which I had plenty of at home at the time — in place of a white cloth, inspired by the Shroud of Turin, and buried in soil.
