@@ -55,7 +55,7 @@ linked_works:
   - label: <i>Columbarium III</i> (2019 –)
     path: /work/2019/columbarium-iii.html
   - label: <i>Columbarium IV</i> (2023 –)
-    path: /work/2019/columbarium-iv.html
+    path: /work/2023/columbarium-iv.html
   - label: <i>Columbarium V</i> (2024 –)
     path: /work/2024/columbarium-v.html
   - label: <i>Columbarium VI</i> (2025 –)
