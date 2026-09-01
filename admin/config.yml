@@ -133,6 +133,31 @@ collections:
         editor_components: []
         hint: "긴 글은 여기에 씁니다. 다른 작업으로 링크를 걸 때는 그 페이지 주소(예: /work/2023/hostis.html)를 넣으세요."
 
+      # ── 본문 (Writing 처럼 글이 주인 작업) ──────────────────────
+      # 파일의 앞머리 아래에 통째로 들어가는 긴 글. 대부분의 작업에서는 비워둔다.
+      # 사진 버튼으로 글 중간에 사진을 넣을 수 있고, 사진 바로 다음 줄에
+      # 기울임으로 한 줄 적으면 사이트에서 캡션처럼 나온다.
+      - name: body
+        label: "본문 (긴 글 · 사진 넣기 가능)"
+        widget: markdown
+        required: false
+        modes: [rich_text, raw]
+        buttons: [bold, italic, link]
+        editor_components: [image]
+        hint: "Writing 처럼 글이 주인 작업에 씁니다. 주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 내용을 적으세요. 사진 바로 다음 줄에 기울임으로 한 줄 적으면 캡션이 됩니다."
+      - { name: notes_title, widget: hidden, default: "Notes" }
+      - name: notes
+        label: "주석 (본문용)"
+        widget: list
+        required: false
+        collapsed: true
+        summary: "[{{fields.id}}] {{fields.text}}"
+        fields:
+          - { name: id, label: 번호, widget: number, value_type: int,
+              hint: "본문의 [[1]] 과 같은 번호." }
+          - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
+              buttons: [bold, italic, link], editor_components: [], minimal: true }
+
 
       - { name: cover, label: Cover image, widget: image, required: false }
       - name: cover_caption
