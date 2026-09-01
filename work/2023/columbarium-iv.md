@@ -52,14 +52,14 @@ linked_works:
     path: /work/2016/book-of-the-dead-columbarium.html
   - label: _Columbarium I_ (2016)
     path: /work/2016/columbarium-i.html
-  - label: '[_Columbarium II_ (2019)](https://archive-wonjy.com/work/2019/columbarium-ii.html)'
-    path: ''
-  - label: '[_Columbarium III_ (2019 –)](https://archive-wonjy.com/work/2019/columbarium-iii.html)'
-    path: ''
-  - label: '[_Columbarium V_ (2024 –)](https://archive-wonjy.com/work/2024/columbarium-v.html)'
-    path: ''
-  - label: '[_Columbarium VI_ (2025 –)](https://archive-wonjy.com/work/2025/columbarium-vi.html)'
-    path: ''
+  - label: _Columbarium II_ (2019)
+    path: /work/2019/columbarium-ii.html
+  - label: _Columbarium III_ (2019 –)
+    path: /work/2019/columbarium-iii.html
+  - label: _Columbarium V_ (2024 –)
+    path: /work/2024/columbarium-v.html
+  - label: _Columbarium VI_ (2025 –)
+    path: /work/2025/columbarium-vi.html
 critique_title: Related texts
 related_texts: []
 ---
