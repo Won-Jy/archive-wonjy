@@ -1,7 +1,10 @@
 ---
 layout: work
 title: Book of the Dead — Columbarium
-drafts: ''
+drafts: |-
+  2016년부터 장례를 치러온 비둘기들의 기록으로, «Columbarium» 프로젝트의 일환이다.
+
+  «Columbarium» 연작은 일상 속에서 수집한 비둘기 사체로부터 만들어진 다양한 형태들을 한데 모은다. 각각의 작품은 저마다의 독자적인 조각적 형태를 취하며, 이 버려진 몸들을 위한 단순한 장례 절차를 수행한다.
 types:
   - Project
   - Writing
