@@ -8,16 +8,14 @@ drafts: |-
   여기에 안치된 6구의 비둘기 시신들은 Nîmes의 Pissevin 구역의 버려진 주거건물들에서 수거한것들중 일부분이다.
 types:
   - Single work
-types_all: "Single work"
+types_all: Single work
 year_start: 2024
 year_end: null
 date_start: 2024-12-28
 status: In progress
 tags:
   - Pigeon
-tags_all: "Pigeon"
-cover: /images/columbarium-v/Columbarium_V_01.webp
-cover_caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
+tags_all: Pigeon
 summary: Pigeon remains, epoxy resin, glue, ⌀66×23,5cm, 2024
 description: |-
   Continuing from [_Columbarium IV_](https://archive-wonjy.com/work/2023/columbarium-iv.html), I reused the same pigeon-shaped form and laid six newly added graves back on the floor, arranging them in a 360-degree circle centered on the front of the pigeon-shaped head.
@@ -25,6 +23,8 @@ description: |-
   I wanted this circular gathering of six graves, when viewed from above, to read at once like a flower blooming open, and like the ornamental pattern of a fountain or a Corinthian column capital.
 
   The six pigeon bodies interred here are among those collected from abandoned residential buildings in the Pissevin district of Nîmes.
+cover: /images/columbarium-v/Columbarium_V_01.webp
+cover_caption: Installed as part of the exhibition [_Roulé-Lavé_ (2025)](https://archive-wonjy.com/work/2025/roule-lave.html).
 media:
   - type: image
     src: /images/columbarium-v/Columbarium_V_02.webp
@@ -36,8 +36,18 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
+  - label: _Book of the Dead — Columbarium_ (2016 –)
+    path: /work/2016/book-of-the-dead-columbarium.html
   - label: _Columbarium I_ (2016)
     path: /work/2016/columbarium-i.html
+  - label: _Columbarium II_ (2019)
+    path: /work/2019/columbarium-ii.html
+  - label: _Columbarium III_ (2019 –)
+    path: /work/2019/columbarium-iii.html
+  - label: _Columbarium IV_ (2023 –)
+    path: /work/2023/columbarium-iv.html
+  - label: _Columbarium VI_ (2025 –)
+    path: /work/2025/columbarium-vi.html
 critique_title: Related texts
 related_texts: []
 ---
