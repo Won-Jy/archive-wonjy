@@ -22,7 +22,7 @@ summary: |-
   The tables can be updated as new species are identified.
 description: ''
 cover: /images/2024/list-of-resident-species-hostis/cover_list-of-resident-species-hostis.webp
-cover_caption: '*List of resident species in Hostis* (FR), print version, 210×297mm, 2025.'
+cover_caption: _List of resident species in Hostis_ (FR), print version, 210×297mm, 2025.
 media: []
 hide_cover_if_video_top: false
 linked_works_title: Linked works
@@ -32,32 +32,15 @@ linked_works:
 critique_title: Related texts
 related_texts: []
 tables:
-  - id: plants
-    heading: Plant residents
-    image_base: /images/2024/list-of-resident-species-hostis/
-    filter: true
-    filter_placeholder: Filter plants…
+  - heading: Plant residents
     image_caption:
       - column: en
       - column: sci
         italic: true
-    columns:
-      - key: num
-        label: '#'
-        style: num
-      - key: fr
-        label: Common name (FR)
-      - key: en
-        label: Common name (EN)
-      - key: sci
-        label: Scientific name
-        style: sci
-      - key: note
-        label: Notes
-        style: note
-      - key: images
-        label: Image
-        style: images
+    gallery_scope: table
+    filter_placeholder: Filter plants…
+    image_base: /images/2024/list-of-resident-species-hostis/
+    filter: true
     rows:
       - num: 1
         fr: Chénopode blanc
@@ -387,6 +370,24 @@ tables:
         note: The fruit of this species is known as “thorn apple” in French-speaking countries.
         images:
           - list_plant_49.webp
+    id: plants
+    columns:
+      - key: num
+        label: '#'
+        style: num
+      - key: fr
+        label: Common name (FR)
+      - key: en
+        label: Common name (EN)
+      - key: sci
+        label: Scientific name
+        style: sci
+      - key: note
+        label: Notes
+        style: note
+      - key: images
+        label: Image
+        style: images
   - id: animals
     heading: Animal residents
     image_base: /images/2024/list-of-resident-species-hostis/
