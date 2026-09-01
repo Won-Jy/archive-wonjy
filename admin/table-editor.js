@@ -448,6 +448,24 @@
       inst.emit();
     };
 
+    /* 사진을 크게 열었을 때 화살표로 어디까지 넘길지 */
+    var gw = el('label', 'wt-note');
+    gw.style.display = 'flex'; gw.style.alignItems = 'center'; gw.style.gap = '5px';
+    gw.title = '꺼두면 누른 칸 안의 사진만 넘깁니다 (기본). ' +
+               '켜면 표 전체의 사진이 하나로 이어져서 표 끝까지 넘어갑니다. ' +
+               '행마다 다른 대상을 다루는 표라면 꺼두는 편이 헷갈리지 않습니다.';
+    var gc = el('input');
+    gc.type = 'checkbox';
+    gc.checked = table.gallery_scope === 'table';
+    gc.onchange = function () {
+      if (gc.checked) table.gallery_scope = 'table';
+      else delete table.gallery_scope;
+      inst.emit();
+    };
+    gw.appendChild(gc);
+    gw.appendChild(el('span', null, '슬라이드를 표 전체로 잇기'));
+    box.appendChild(gw);
+
     var capBtn = el('button', 'wt-btn', '사진 캡션…');
     capBtn.type = 'button';
     capBtn.title = '사진을 크게 열었을 때 밑에 붙는 글을 어느 열들로 만들지 정합니다';
