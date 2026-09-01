@@ -44,6 +44,18 @@ linked_works_title: Linked works
 linked_works:
   - label: _Roulé-Lavé_ (2025)
     path: /work/2025/roule-lave.html
+  - label: _Book of the Dead — Columbarium_ (2016 –)
+    path: /work/2016/book-of-the-dead-columbarium.html
+  - label: _Columbarium I_ (2016)
+    path: /work/2016/columbarium-i.html
+  - label: _Columbarium II_ (2019)
+    path: /work/2019/columbarium-ii.html
+  - label: _Columbarium III_ (2019 –)
+    path: /work/2019/columbarium-iii.html
+  - label: _Columbarium IV_ (2023 –)
+    path: /work/2023/columbarium-iv.html
+  - label: _Columbarium V_ (2024 –)
+    path: /work/2024/columbarium-v.html
 critique_title: Related texts
 related_texts: []
 ---
