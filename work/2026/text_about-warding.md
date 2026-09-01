@@ -4,6 +4,7 @@ title: About Warding
 drafts: ''
 types:
   - Writing
+types_all: Writing
 year_start: 2026
 year_end: 2026
 date_start: 2026-06-24
@@ -12,39 +13,41 @@ tags:
   - City
   - Wall
   - Stone
-cover: /images/2026/text_about-warding/cover_text_about-warding.webp
-cover_caption: "*About Warding*, text, 2026."
-summary: |
-  Text written during the residency at Teatergalleriet, Kalmar, Sweden (June 2026), on the occasion of the exhibition *About Warding*, part of the Småland Triennial 2026.
+tags_all: City,Wall,Stone
+summary: Text written during the residency at Teatergalleriet, Kalmar, Sweden (June 2026), on the occasion of the exhibition _About Warding_, part of the Småland Triennial 2026.
 description: ''
+notes_title: Notes
+notes:
+  - id: 1
+    text: Located in Småland; the city where I stayed during the residency and where the host, Teatergalleriet, is based.
+  - id: 2
+    text: The name of an early, medieval-style hospital form in France — not exactly identical, but comparable to Sweden's "Helgeandshuset."
+  - id: 3
+    text: This actually took place in the mid-19th century.
+  - id: 4
+    text: '*Dry stone* — a French term for the dry-masonry technique, common in rural southern France, of building structures from stacked stone alone, without any binding material.'
+  - id: 5
+    text: Gabriel Bonnot de Mably, *De la législation*, Œuvres complètes, t. IX, 1789, p. 326; requoted in Michel Foucault, *Surveiller et punir*, Gallimard, 1975.
+cover: /images/2026/text_about-warding/cover_text_about-warding.webp
+cover_caption: _About Warding_, text, 2026.
 media: []
 hide_cover_if_video_top: false
+tables: ''
 linked_works_title: Linked works
 linked_works:
-  - label: "*About Warding* (2026)"
+  - label: '*About Warding* (2026)'
     path: /work/2026/about-warding.html
 critique_title: Related texts
 related_texts: []
-notes:
-- id: 1
-  text: "Located in Småland; the city where I stayed during the residency and where the host, Teatergalleriet, is based."
-- id: 2
-  text: "The name of an early, medieval-style hospital form in France — not exactly identical, but comparable to Sweden's \"Helgeandshuset.\""
-- id: 3
-  text: "This actually took place in the mid-19th century."
-- id: 4
-  text: "*Dry stone* — a French term for the dry-masonry technique, common in rural southern France, of building structures from stacked stone alone, without any binding material."
-- id: 5
-  text: "Gabriel Bonnot de Mably, *De la législation*, Œuvres complètes, t. IX, 1789, p. 326; requoted in Michel Foucault, *Surveiller et punir*, Gallimard, 1975."
 ---
 
 When I had my first Zoom meeting with the Teatergalleriet team for this roughly six-week residency in Småland, Sweden, I asked them what they thought was the most remarkable feature of Kalmar's[[1]] landscape. Their first answer was: "We have a spot where you can see the city prison really clearly."
 
 When I arrived in Kalmar, I could see it right away — the prison, fenced in and standing proudly on an island with sharp, angular corners. It sat in what could literally be called the city center, between the old town and the new town.
 
-This topological position of the Kalmar prison led me, quite naturally, to recall the Hôtel-Dieu[[2]] at the very heart of Paris, on the Île de la Cité. Each is a place that was once both hospital and prison, yet the distinction between those functions grows more blurred the further back in time one goes. All that matters, in the end, is that we set *them* apart from *us*. But why is the place where we set them apart our own navel?
+This topological position of the Kalmar prison led me, quite naturally, to recall the Hôtel-Dieu[[2]] at the very heart of Paris, on the Île de la Cité. Each is a place that was once both hospital and prison, yet the distinction between those functions grows more blurred the further back in time one goes. All that matters, in the end, is that we set _them_ apart from _us_. But why is the place where we set them apart our own navel?
 
-In two different cities — Kalmar and Paris — these places lie at the center of the map; what is it that they stir within the landscape of our minds? Are we caring for those we have pushed inside that wall, or those we have pushed *outside* the "wall"? Or are we surveilling them — through that transparent glass wall?
+In two different cities — Kalmar and Paris — these places lie at the center of the map; what is it that they stir within the landscape of our minds? Are we caring for those we have pushed inside that wall, or those we have pushed _outside_ the "wall"? Or are we surveilling them — through that transparent glass wall?
 
 These were the first questions guiding the research for my residency.
 
@@ -64,7 +67,7 @@ As the residency went on, while I lived and worked in Kalmar I had to travel eac
 
 This commute let me watch the region's rural scenery and terrain pass by through the bus window, like a broken panorama returning to its beginning again and again: no matter what detail I missed on a given day, the same scenery would roll past when I rode the bus the next.
 
-Among the landscapes I saw this way, the first thing to catch my eye on the residency's opening day was the walls built of *pierre sèche*[[4]]. The moment I saw them, I could tell they were very different from the dry-stone structures I knew in southern France — few of the lines are straight; they break off from one another midway, or wander off to the side. In other words, you can easily tell they were built organically rather than to a plan.
+Among the landscapes I saw this way, the first thing to catch my eye on the residency's opening day was the walls built of _pierre sèche_[[4]]. The moment I saw them, I could tell they were very different from the dry-stone structures I knew in southern France — few of the lines are straight; they break off from one another midway, or wander off to the side. In other words, you can easily tell they were built organically rather than to a plan.
 
 According to a text I read later, granite boulders split by glacial force and left "slid" away lie scattered like shrapnel throughout the ground here. To the first humans who tried to settle this land, they must have been like landmines in the earth, for they took up the very places where crops were meant to grow.
 
