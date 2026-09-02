@@ -11,6 +11,7 @@ drafts: |-
   이후 같은 공간에서 동명의 전시인 Grotto (2022)을 열었다.
 types:
   - Single work
+types_all: Single work
 year_start: 2020
 year_end: 2022
 date_start: 2020-11-14
@@ -18,8 +19,7 @@ status: Completed
 tags:
   - Cave
   - City
-cover: /images/2020/grotto/Grotto_01_main views 01.webp
-cover_caption: _Grotto_ installed in the basement of Vaisseau 3008.
+tags_all: Cave,City
 summary: Cast concrete, 260×574×84cm, 2020-2022.
 description: |-
   In 2020, at the height of Covid, I gained free use of the basement of a building called "Vaisseau 3008," which was then being used as a temporary _tiers-lieu_ while awaiting demolition. The building had previously housed the social and medical welfare services of the Département du Gard, before being sold to a private property developer and slated for demolition as part of a new real-estate project. I took the basement of this building as my studio and stayed there from 2020 to 2022.
@@ -29,6 +29,10 @@ description: |-
   Around this time, someone from Vaisseau 3008 who managed the building mentioned, in passing, that before it had housed social services, the building had actually been a hospital — and that the basement had served as its morgue.
 
   From that point on, I began developing a fake sarcophagus to fill a room in the basement: an object that would function both as a container and as a bathtub, one meant to eventually be filled in with rubble once the building was demolished. It took about five months to cast this sarcophagus in poured concrete. I later opened an exhibition of the same name, [_Grotto_ (2022)](https://archive-wonjy.com/work/2022/grotto_exh.html), in that same space.
+notes_title: Notes
+notes: []
+cover: /images/2020/grotto/Grotto_01_main views 01.webp
+cover_caption: _Grotto_ installed in the basement of Vaisseau 3008.
 media:
   - type: image
     src: /images/2020/grotto/Grotto_02_detail views 03.webp
@@ -63,6 +67,8 @@ linked_works_title: Linked works
 linked_works:
   - label: _Grotto_ (2022)
     path: /work/2022/grotto_exh.html
+  - label: _Premières pierres II_ (2023)
+    path: /work/2023/premières-pierres-02.html
 critique_title: Related texts
 related_texts: []
 ---
