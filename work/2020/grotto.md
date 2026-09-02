@@ -10,8 +10,9 @@ drafts: |-
   그때부터 나는 지하실의 한 방을 가득 채운, 철거될때 잔해들이 홈을 매꾸게되는 용기이자 욕조인 한 가짜 석관에 대해 구상하기 시작했다. 나는 5개월 가량의 기간이 걸려 붓는 콘크리트로 타설로 이 석관을 제작했다.
   이후 같은 공간에서 동명의 전시인 Grotto (2022)을 열었다.
 types:
-  - Single work
-types_all: Single work
+- Single work
+- Highlight
+types_all: "Single work,Highlight"
 year_start: 2020
 year_end: 2022
 date_start: 2020-11-14
