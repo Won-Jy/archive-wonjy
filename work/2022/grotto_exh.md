@@ -19,8 +19,6 @@ tags:
   - Cave
   - City
 tags_all: Cave,City
-cover: /images/grotto_exh/Grotto_00_01.webp
-cover_caption: Visitors entering [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html). Photo © Arthur Lextrait.
 summary: Solo exhibition in the basement of _Vaisseau 3008_, a former social services building of the Gard Department, Nîmes, France.
 description: |-
   This exhibition grew out of the site-specific sculpture [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html), of the same name, which had been made in the basement of the former Département du Gard social welfare building while it awaited demolition.
@@ -30,6 +28,10 @@ description: |-
   In May 2022, I organized an exhibition unfolding across several chapters, which continued until the site was demolished. It aimed to build a collective memory of the space together with visitors, while also taking on a ritual dimension — a response to the disappearance of a building that had long served various roles of hospitality within the city.
 
   Over the course of the exhibition, I invited other artists to perform there on four separate occasions, continually reactivating the exhibition, the pool, and the basement space. In chronological order, these artists were: Geoffrey Badel, Claude Boudeau, Julien Bouissou (performing at the time under the name Æ), and Eva Debreceni.
+notes_title: Notes
+notes: []
+cover: /images/grotto_exh/Grotto_00_01.webp
+cover_caption: Visitors entering [_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html). Photo © Arthur Lextrait.
 media:
   - type: image
     src: /images/grotto_exh/Grotto_00_02.webp
@@ -116,6 +118,8 @@ hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
 linked_works:
+  - label: _Grotto_ (2020-2022)
+    path: /work/2020/grotto.html
   - label: '*Fantôme 3008* (2023 –)'
     path: /work/2023/fantome-3008.html
   - label: '*Premières pierres II* (2023)'
