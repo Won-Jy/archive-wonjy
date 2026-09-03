@@ -21,7 +21,7 @@ description: |-
   The work rests on two axes. The first is a register, «Book of the Dead»: for each of the sixty bodies gathered so far, I record a name, a date of collection, GPS coordinates, and the circumstances of the discovery. The second brings together the containers that receive these bodies — the sculptural forms the funeral takes. They began as plain plastic storage boxes filled with soil, became a tower of those same boxes stacked in chronological order, and then a coffin made by casting a hunter's decoy pigeon in clear resin. Through these two gestures — recording and burying — I return an individuality to anonymous deaths, and I think through death in the tension between it and the repetition of the forms that receive it.
 notes_title: Notes
 notes: []
-cover: /images/columbarium-iv/Columbarium_IV_03.webp
+cover: /images/columbairum/Columbarium_01.webp
 cover_caption: _Columbarium IV_, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023 –.
 media: []
 hide_cover_if_video_top: false
