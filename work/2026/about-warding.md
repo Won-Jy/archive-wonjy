@@ -9,7 +9,7 @@ drafts: |-
 types:
   - Exhibition
   - Highlight
-types_all: "Exhibition,Highlight"
+types_all: Exhibition,Highlight
 year_start: 2026
 year_end: 2026
 date_start: 2026-06-30
@@ -18,14 +18,16 @@ tags:
   - Wall
   - City
   - Map
-tags_all: "Wall,City,Map"
-cover: /images/2026/about-warding/View_about_warding_01_01-01.webp
-cover_caption: Exhibition view _About Warding_, Teatergalleriet, Kalmar, Sweden, 2026.
+tags_all: Wall,City,Map
 summary: |-
   Residency exhibition at Teatergalleriet, Kalmar, Sweden.
 
   Presented as part of Småland Triennale 2026.
 description: '_About Warding_ developed from a six-week residency during which I examined Kalmar''s prison — an island fortress at the exact center of the city — alongside the Hôtel-Dieu in Paris, another site where care and confinement have historically overlapped. Tracing this line between "us" and "them," I turned to the region''s granite: boulders once cleared from farmland by hand, piled into dry-stone walls, and later reproduced as garden ornaments in suburban housing developments. Working between my established vocabulary in concrete rubble and Pukeberg''s glassblowing tradition, I translated these findings into sculptures combining stone, cast and blown glass, clay, silicone, and plaster — objects that carry the same administrative and architectural logic of protection and exclusion, wherever they are found.'
+notes_title: Notes
+notes: []
+cover: /images/2026/about-warding/View_about_warding_01_01-01.webp
+cover_caption: Exhibition view _About Warding_, Teatergalleriet, Kalmar, Sweden, 2026.
 media:
   - type: image
     src: /images/2026/about-warding/View_about_warding_02_01-03.webp
@@ -82,8 +84,8 @@ media:
     src: /images/2026/about-warding/View_about_warding_09_01-35.webp
     caption: '*Walking With*, plaster, 21×29.6×1cm, 2026.'
   - type: image
-    src: /images/2026/about-warding/View_about_warding_09_02-36.webp
-    caption: '*Walking With*, plaster, 21×29.6×1cm, 2026.'
+    src: /images/about-warding/View_about_warding_09_02-36 복사.jpg
+    caption: _Walking With_, plaster, 21×29.6×1cm, 2026.
   - type: image
     src: /images/2026/about-warding/View_about_warding_10_01-37.webp
     caption: '*Kalmar Plan*, pigmented plaster, 38×26.5×1cm, 2026.'
@@ -102,10 +104,10 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
-linked_works:
-  - label: '*About Warding* (text) (2026)'
-    path: /work/2026/text_about-warding.html
 critique_title: Related texts
 related_texts:
   - id: won-jy-kalmar
+linked_works:
+  - label: '*About Warding* (text) (2026)'
+    path: /work/2026/text_about-warding.html
 ---
