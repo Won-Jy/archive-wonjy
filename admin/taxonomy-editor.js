@@ -29,6 +29,7 @@
   }
   function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); }
   function J(v) { return JSON.stringify(v); }
+  function clone(v) { return v == null ? v : JSON.parse(JSON.stringify(v)); }
   function same(a, b) { return a.length === b.length && a.every(function (v, i) { return v === b[i]; }); }
 
   var RESC = /[.*+?^${}()|[\]\\]/g;
@@ -439,6 +440,320 @@
     return (n / 1024 / 1024).toFixed(1) + ' MB';
   }
 
+  /* ==================================================================
+     Linked works — 커스텀 필드 `worklinks`
+     작업 목록을 보여주고 체크해서 한 번에 넣는다. 파일에 저장되는 모양은
+     예전 그대로 [{label, path}] 라서 사이트도, 이미 있는 값도 그대로 쓴다.
+     ================================================================== */
+  var workCache = null;
+
+  function yearLabel(a, b) {
+    a = (a || '').trim(); b = (b || '').trim();
+    if (!a) return '';
+    if (!b) return a + ' –';
+    if (a === b) return a;
+    return a + ' – ' + b;
+  }
+
+  /* 저장소의 작업 페이지를 제목·연도까지 읽어 온다 (한 번만) */
+  function listWorks(repo, branch, force) {
+    if (workCache && !force) return Promise.resolve(workCache);
+    return gh('/repos/' + repo + '/git/trees/' + encodeURIComponent(branch) + '?recursive=1')
+      .then(function (tree) {
+        if (tree.truncated) throw new Error('저장소가 너무 커서 목록이 잘렸습니다');
+        var files = (tree.tree || []).filter(function (t) {
+          return t.type === 'blob' && /^work\/.+\.md$/.test(t.path);
+        });
+        return pool(files, 6, function (f) {
+          return getBlob(repo, f.sha).then(function (text) {
+            var m = f.path.match(/^work\/(.+)\.md$/);
+            return {
+              file: f.path,
+              text: text,
+              url: '/work/' + m[1] + '.html',
+              title: readScalar(text, 'title') || m[1].split('/').pop(),
+              year: yearLabel(readScalar(text, 'year_start'), readScalar(text, 'year_end')),
+              sortYear: readScalar(text, 'year_start') || '0000'
+            };
+          });
+        });
+      })
+      .then(function (list) {
+        list.sort(function (a, b) {
+          if (a.sortYear !== b.sortYear) return a.sortYear < b.sortYear ? 1 : -1;
+          return a.title.localeCompare(b.title);
+        });
+        workCache = list;
+        return list;
+      });
+  }
+
+  /* 표시 이름 안의 옛 HTML 태그를 마크다운으로 */
+  var OLD_TAG = /<\/?(i|em)>/i;
+  function tagsToMd(v) {
+    return String(v == null ? '' : v)
+      .replace(/<i>([\s\S]*?)<\/i>/gi, '*$1*')
+      .replace(/<em>([\s\S]*?)<\/em>/gi, '*$1*');
+  }
+
+  /* work/*.md 안의 linked_works 표시 이름들 (옛 태그 청소용) */
+  function labelsIn(text) {
+    var r = fmRange(text); if (!r) return [];
+    var k = keyRange(r.lines, r.a, r.b, 'linked_works'); if (!k) return [];
+    var out = [];
+    for (var i = k.s + 1; i < k.e; i++) {
+      var m = /^[ \t]*(?:-[ \t]*)?label[ \t]*:[ \t]*(.*)$/.exec(r.lines[i]);
+      if (m) out.push({ line: i, raw: m[1], value: unquote(m[1]) });
+    }
+    return out;
+  }
+
+  function fixLabels(text) {
+    var r = fmRange(text); if (!r) return null;
+    var lines = r.lines.slice();
+    var hits = labelsIn(text), changed = 0;
+    hits.forEach(function (h) {
+      if (!OLD_TAG.test(h.value)) return;
+      var nv = tagsToMd(h.value);
+      lines[h.line] = lines[h.line].replace(/(label[ \t]*:[ \t]*).*$/, function (_m, p1) {
+        return p1 + J(nv);
+      });
+      changed++;
+    });
+    return changed ? { text: lines.join('\n'), changed: changed } : null;
+  }
+
+  /* ---------- Linked works 위젯 본체 ---------- */
+  function createLinksInstance(id) {
+    var inst = {
+      id: id,
+      root: el('div', 'tx tx-links'),
+      backend: { repo: '', branch: 'main' },
+      rows: [],
+      open: {},          /* 펼쳐진 줄 */
+      loading: false,
+      error: '',
+      onChange: null
+    };
+
+    inst.attach = function (node) {
+      if (!node) return;
+      ensureCSS();
+      if (inst.root.parentNode !== node) { clear(node); node.appendChild(inst.root); }
+      inst.render();
+    };
+
+    inst.sync = function (rows) {
+      /* 에디터가 되돌리기 등으로 값을 바꿨을 때만 받아들인다 */
+      var mine = JSON.stringify(inst.rows);
+      var theirs = JSON.stringify(rows || []);
+      if (mine !== theirs && !inst.dirty) { inst.rows = clone(rows || []); }
+      inst.dirty = false;
+    };
+
+    function emit() {
+      inst.dirty = true;
+      if (inst.onChange) inst.onChange(clone(inst.rows));
+    }
+
+    function labelFor(w) {
+      return '*' + w.title + '*' + (w.year ? ' (' + w.year + ')' : '');
+    }
+
+    /* --- 작업 고르기 --- */
+    function openPicker() {
+      if (!inst.backend.repo) { inst.error = '저장소를 모릅니다.'; inst.render(); return; }
+      if (!token()) { inst.error = 'GitHub 토큰을 찾지 못했습니다. 로그아웃 후 다시 로그인해 주세요.'; inst.render(); return; }
+      modal('작업 고르기', function (body, acts, close) {
+        var note = el('p', 'tx-note', '작업 목록을 읽는 중…');
+        body.appendChild(note);
+        var box = el('div'); body.appendChild(box);
+        var ok = el('button', 'tx-btn go', '넣기'); ok.type = 'button'; ok.disabled = true;
+        var cancel = el('button', 'tx-btn', '취소'); cancel.type = 'button'; cancel.onclick = close;
+        acts.appendChild(cancel); acts.appendChild(ok);
+
+        listWorks(inst.backend.repo, inst.backend.branch).then(function (works) {
+          note.textContent = '체크한 작업이 Linked works 에 들어갑니다. 이미 걸린 것은 미리 체크돼 있고, 체크를 풀면 빠집니다.';
+          var have = {};
+          inst.rows.forEach(function (r) { if (r.path) have[r.path] = true; });
+          var picked = {};
+          Object.keys(have).forEach(function (p) { picked[p] = true; });
+          var q = '';
+
+          var tools = el('div', 'tx-tools');
+          var sb = el('input', 'tx-search'); sb.type = 'text'; sb.placeholder = '제목으로 찾기';
+          sb.oninput = function () { q = sb.value.trim().toLowerCase(); fill(); };
+          tools.appendChild(sb);
+          box.appendChild(tools);
+          var list = el('div', 'tx-list'); box.appendChild(list);
+
+          function count() { return Object.keys(picked).filter(function (k) { return picked[k]; }).length; }
+          function paint() { ok.textContent = '넣기 (' + count() + ')'; ok.disabled = false; }
+
+          function fill() {
+            var keep = list.scrollTop;
+            clear(list);
+            var shown = works.filter(function (w) {
+              return !q || w.title.toLowerCase().indexOf(q) !== -1;
+            });
+            if (!shown.length) { list.appendChild(el('div', 'tx-row', '해당하는 작업이 없습니다.')); return; }
+            shown.forEach(function (w) {
+              var row = el('div', 'tx-row');
+              var lab = el('label');
+              var cb = el('input'); cb.type = 'checkbox';
+              cb.checked = !!picked[w.url];
+              cb.onchange = function () { picked[w.url] = cb.checked; paint(); };
+              lab.appendChild(cb);
+              lab.appendChild(el('span', 't', w.title));
+              row.appendChild(lab);
+              row.appendChild(el('span', 'y', w.year || ''));
+              list.appendChild(row);
+            });
+            list.scrollTop = keep;
+          }
+          fill(); paint();
+          setTimeout(function () { sb.focus(); }, 0);
+
+          ok.onclick = function () {
+            /* 체크 해제된 것은 빼고, 새로 체크된 것은 뒤에 붙인다. 직접 적은 줄(주소 없음)은 그대로 둔다. */
+            var byUrl = {};
+            works.forEach(function (w) { byUrl[w.url] = w; });
+            inst.rows = inst.rows.filter(function (r) {
+              return !r.path || picked[r.path];
+            });
+            var already = {};
+            inst.rows.forEach(function (r) { if (r.path) already[r.path] = true; });
+            works.forEach(function (w) {
+              if (picked[w.url] && !already[w.url]) {
+                inst.rows.push({ label: labelFor(w), path: w.url });
+              }
+            });
+            emit(); close(); inst.render();
+          };
+        }).catch(function (e) {
+          note.textContent = '목록을 못 불러왔습니다: ' + e.message;
+        });
+      });
+    }
+
+    /* --- 옛 태그 정리 (저장소 전체) --- */
+    function sweepOldTags() {
+      listWorks(inst.backend.repo, inst.backend.branch, true).then(function (works) {
+        var files = [], lines = [];
+        works.forEach(function (w) {
+          var r = fixLabels(w.text);
+          if (r) { files.push({ path: w.file, text: r.text }); lines.push(w.title + ' — 이름 ' + r.changed + '개'); }
+        });
+        if (!files.length) {
+          confirmList('옛 태그 정리', '정리할 것이 없습니다. 모든 표시 이름이 이미 마크다운입니다.', [], '확인', function (c) { c(); });
+          return;
+        }
+        confirmList('옛 태그 정리',
+          '표시 이름 안의 <i>…</i> 를 *…* 로 바꿉니다. 사이트 화면은 그대로고, 편집기에서 태그가 안 보이게 됩니다. 파일 ' + files.length + '개를 커밋 하나로 저장합니다.',
+          lines, '정리하기', function (close, okBtn) {
+            okBtn.disabled = true; okBtn.textContent = '하는 중…';
+            commitFiles(inst.backend.repo, inst.backend.branch, files, 'Linked works 표시 이름의 옛 태그 정리')
+              .then(function () {
+                okBtn.textContent = '됐습니다. 새로 읽습니다…';
+                setTimeout(function () { location.reload(); }, 700);
+              })
+              .catch(function (e) {
+                okBtn.disabled = false; okBtn.textContent = '정리하기';
+                okBtn.parentNode.parentNode.appendChild(el('p', 'tx-err', '실패: ' + e.message));
+              });
+          });
+      }).catch(function (e) {
+        inst.error = '읽지 못했습니다: ' + e.message; inst.render();
+      });
+    }
+
+    function move(i, d) {
+      var j = i + d; if (j < 0 || j >= inst.rows.length) return;
+      var t = inst.rows[i]; inst.rows[i] = inst.rows[j]; inst.rows[j] = t;
+      emit(); inst.render();
+    }
+
+    inst.render = function () {
+      var root = inst.root;
+      clear(root);
+      if (inst.error) {
+        root.appendChild(el('p', 'tx-err', inst.error));
+        var again = el('button', 'tx-btn', '닫기'); again.type = 'button';
+        again.onclick = function () { inst.error = ''; inst.render(); };
+        root.appendChild(again);
+      }
+
+      var panel = el('div', 'tx-panel');
+      panel.appendChild(el('div', 'tx-phead', inst.rows.length ? ('연결된 작업 ' + inst.rows.length + '개') : '아직 없습니다'));
+      var list = el('div', 'tx-list');
+      inst.rows.forEach(function (r, i) {
+        var row = el('div', 'tx-lrow');
+        var head = el('div', 'tx-lhead');
+        var name = el('button', 'nm');
+        name.type = 'button';
+        var shown = tagsToMd(r.label || '').replace(/\*/g, '') || (r.path || '(빈 줄)');
+        name.appendChild(el('span', null, shown));
+        if (!r.path) name.appendChild(el('span', 'flag', '주소 없음'));
+        name.title = '눌러서 이름·주소 고치기';
+        name.onclick = function () { inst.open[i] = !inst.open[i]; inst.render(); };
+        head.appendChild(name);
+        [['↑', -1], ['↓', 1]].forEach(function (x) {
+          var b = el('button', 'tx-btn', x[0]); b.type = 'button';
+          b.disabled = (x[1] < 0 && i === 0) || (x[1] > 0 && i === inst.rows.length - 1);
+          b.onclick = function () { move(i, x[1]); };
+          head.appendChild(b);
+        });
+        var del = el('button', 'tx-btn warn', '✕'); del.type = 'button';
+        del.title = '빼기';
+        del.onclick = function () { inst.rows.splice(i, 1); delete inst.open[i]; emit(); inst.render(); };
+        head.appendChild(del);
+        row.appendChild(head);
+
+        if (inst.open[i]) {
+          var body = el('div', 'tx-lbody');
+          [['표시 이름', 'label', '작업 제목은 *기울임*'], ['주소', 'path', '/work/2023/hostis.html']].forEach(function (f) {
+            var w = el('label', 'tx-field');
+            w.appendChild(el('span', null, f[0]));
+            var inp = el('input'); inp.type = 'text'; inp.className = 'tx-search';
+            inp.value = r[f[1]] == null ? '' : String(r[f[1]]);
+            inp.placeholder = f[2];
+            inp.oninput = function () { r[f[1]] = inp.value; emit(); };
+            w.appendChild(inp);
+            body.appendChild(w);
+          });
+          row.appendChild(body);
+        }
+        list.appendChild(row);
+      });
+      panel.appendChild(list);
+      root.appendChild(panel);
+
+      var bar = el('div', 'tx-bar'); bar.style.margin = '8px 0 0';
+      var pick = el('button', 'tx-btn go', '+ 작업 고르기'); pick.type = 'button'; pick.onclick = openPicker;
+      var manual = el('button', 'tx-btn', '+ 직접 적기'); manual.type = 'button';
+      manual.onclick = function () {
+        inst.rows.push({ label: '', path: '' });
+        inst.open[inst.rows.length - 1] = true;
+        emit(); inst.render();
+      };
+      bar.appendChild(pick); bar.appendChild(manual);
+      bar.appendChild(el('span', 'sp'));
+      var old = inst.rows.filter(function (r) { return OLD_TAG.test(r.label || ''); }).length;
+      if (old) {
+        var fix = el('button', 'tx-btn', '옛 태그 정리…');
+        fix.type = 'button';
+        fix.title = '저장소 전체에서 표시 이름의 <i>…</i> 를 *…* 로 바꿉니다';
+        fix.onclick = sweepOldTags;
+        bar.appendChild(fix);
+      }
+      root.appendChild(bar);
+      root.appendChild(el('p', 'tx-note',
+        '"작업 고르기" 로 여러 개를 한 번에 넣을 수 있습니다. 아직 없는 페이지는 "직접 적기" 로 넣으면 사이트에서 회색으로 표시됩니다.'));
+    };
+
+    return inst;
+  }
+
   /* ---------- 스타일 ---------- */
   var CSS = [
     '.tx{font:inherit;color:inherit}',
@@ -497,6 +812,17 @@
     '.tx-card .nm{font-size:.78em;margin-top:5px;word-break:break-all;line-height:1.35}',
     '.tx-card .sz{font-size:.72em;opacity:.6;margin-top:2px;word-break:break-all}',
     '.tx-sep{height:1px;background:var(--sui-secondary-border-color,#ddd);margin:18px 0 10px}',
+    /* Linked works */
+    '.tx-links .tx-list{max-height:none}',
+    '.tx-lrow{border-bottom:1px solid var(--sui-secondary-border-color,#f0f0f0)}',
+    '.tx-lhead{display:flex;align-items:center;gap:4px;padding:4px 8px}',
+    '.tx-lhead .nm{flex:1;display:flex;align-items:center;gap:8px;min-width:0;text-align:left;',
+    'background:transparent;border:0;color:inherit;font:inherit;font-size:.9em;padding:4px 2px;cursor:pointer}',
+    '.tx-lhead .nm:hover{text-decoration:underline}',
+    '.tx-lhead .nm > span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '.tx-lbody{padding:2px 8px 10px;display:flex;flex-direction:column;gap:6px}',
+    '.tx-field{display:flex;align-items:center;gap:8px;font-size:.82em;opacity:.9}',
+    '.tx-field > span{flex:0 0 4.5em}',
     '.tx-phead2{font-size:.95em;font-weight:600;margin:0 0 6px}',
     '.tx-diff li{margin:0}',
     /* 대화상자 */
@@ -1406,6 +1732,40 @@
     };
   }
 
+  var linkInstances = new Map();
+
+  /* Sveltia 는 초안을 납작하게 펴서 들고 있어서 props.value 로는 목록이 안 온다.
+     원래 모양은 props.entry(Immutable) 에 있다 — 표 편집기와 같은 방법. */
+  function readRows(props) {
+    var name = (props.field && props.field.get) ? props.field.get('name') : 'linked_works';
+    try {
+      var e = props.entry;
+      if (e && typeof e.getIn === 'function') {
+        var v = e.getIn(['data', name]);
+        if (v && typeof v.toJS === 'function') return v.toJS();
+        if (Array.isArray(v)) return v;
+      }
+    } catch (err) { /* 아래로 */ }
+    return Array.isArray(props.value) ? props.value : [];
+  }
+
+  function LinksControl(props) {
+    var id = props.forID || 'txl';
+    var inst = linkInstances.get(id);
+    if (!inst) { inst = createLinksInstance(id); linkInstances.set(id, inst); }
+    inst.onChange = props.onChange;
+    try {
+      var cfg = (window.CMS_CONFIG_BACKEND || {});
+      inst.backend.repo = cfg.repo || inst.backend.repo;
+      inst.backend.branch = cfg.branch || inst.backend.branch;
+    } catch (e) { /* 무시 */ }
+    inst.sync(readRows(props));
+    return {
+      $$typeof: REACT_ELEMENT, type: 'div', key: null,
+      props: { ref: inst.attach }, _owner: null, _store: {}
+    };
+  }
+
   var mediaInstances = new Map();
 
   function MediaControl(props) {
@@ -1426,6 +1786,7 @@
   if (window.CMS && window.CMS.registerFieldType) {
     window.CMS.registerFieldType('taxonomy', Control);
     window.CMS.registerFieldType('unusedmedia', MediaControl);
+    window.CMS.registerFieldType('worklinks', LinksControl);
   } else {
     console.error('[taxonomy-editor] CMS 가 아직 없습니다. sveltia-cms.js 다음에 불러주세요.');
   }

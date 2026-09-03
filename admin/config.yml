@@ -221,24 +221,9 @@ collections:
 
       # ── 연결 ──────────────────────────────────────────────────
       - { name: linked_works_title, widget: hidden, default: "Linked works" }
-      - name: linked_works
-        label: Linked works
-        widget: list
-        required: false
-        collapsed: true
-        summary: "{{fields.label}}"
-        fields:
-          - name: label
-            label: 표시 이름
-            widget: markdown
-            required: false
-            modes: [rich_text, raw]
-            buttons: [bold, italic, link]
-            editor_components: []
-            minimal: true
-            hint: "작업 제목은 기울임(Ctrl+I)으로." 
-          - { name: path, label: 주소, widget: string, required: false,
-              hint: "/work/2023/hostis.html — 아직 없는 페이지를 적어두면 회색으로 표시됩니다. 되도록 여기에 적어주세요: 표시 이름 안에 직접 링크를 걸어도 화면에는 나오지만, 나중에 만들 작업 관계도는 이 칸만 읽습니다." }
+      # 작업 목록에서 체크해서 한 번에 넣는다. 파일에 저장되는 모양은 예전과 같은
+      # [{label, path}] 라서 사이트도 이미 있는 값도 그대로 쓴다.
+      - { name: linked_works, label: Linked works, widget: worklinks, required: false }
 
       - { name: critique_title, widget: hidden, default: "Related texts" }
       - name: related_texts
