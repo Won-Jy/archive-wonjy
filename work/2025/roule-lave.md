@@ -5,7 +5,7 @@ drafts: ''
 types:
   - Highlight
   - Exhibition
-types_all: "Highlight,Exhibition"
+types_all: Highlight,Exhibition
 year_start: 2025
 year_end: 2025
 date_start: 2025-01-24
@@ -13,14 +13,16 @@ status: Completed
 tags:
   - Stone
   - Pigeon
-tags_all: "Stone,Pigeon"
-cover: /images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp
-cover_caption: _Fontaine II_, concrete rubble from Pissevin, water, 220×200×130cm, 2025.
+tags_all: Stone,Pigeon
 summary: |-
   Solo exhibition at CACN – Centre d’Art Contemporain de Nîmes.
 
   Curated by Guilhem Monceaux.
 description: _Roulé-Lavé_ revisits various experiments carried out by Won Jy around the transformation of matter. The artist is seen going up rivers in search of the source of the water—and thus the origin of the shape of the stones he collects. We also see him appropriating the patterns of these stones to reprint them onto blocks of rubble. Won Jy also works on the theme of hospitality and how foreigners are regarded within a given territory. He explores the metaphor of colombophobia to address how architecture can include or exclude, often depending on collective decisions. Won Jy’s works are often tinged with subtle humor, allowing complex issues to be expressed through light and poetic forms. – Excerpt from the exhibition presentation text.
+notes_title: Notes
+notes: []
+cover: /images/2025/roule-lave/Vue_Roulé-Lavé_01_IMG_0125.webp
+cover_caption: _Fontaine II_, concrete rubble from Pissevin, water, 220×200×130cm, 2025.
 media:
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_02__IMG_0109.webp
@@ -63,19 +65,19 @@ media:
     caption: _Columbarium III_, plastic boxes, soil, pigeon remains, 35×26×14cm (each), 2019 –.
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_16_IMG_0250.webp
-    caption: '*Columbarium VI*, neon, epoxy resin, pigeon remains, variable dimensions, 2025.'
+    caption: _Columbarium VI_, neon, epoxy resin, pigeon remains, variable dimensions, 2025 –.
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_17_IMG_0513.webp
-    caption: '*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023.'
+    caption: _Columbarium IV_, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023 –.
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_19_IMG_0325.webp
-    caption: '*Columbarium IV*, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023.'
+    caption: _Columbarium IV_, epoxy resin, glue, pigeon remains, 36×20×12cm, 2023 –.
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_20_IMG_0708.webp
-    caption: '[_Columbarium V_](https://archive-wonjy.com/work/2024/columbarium-v.html), epoxy resin, glue, pigeon remains, ⌀66×23,5cm, 2024.'
+    caption: '[_Columbarium V_](https://archive-wonjy.com/work/2024/columbarium-v.html), epoxy resin, glue, pigeon remains, ⌀66×23,5cm, 2024 –.'
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_23_IMG_0316.webp
-    caption: '*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025.'
+    caption: _Premières pierres III_, hydrography on concrete debris, dimensions variables, 2025.
   - type: image
     src: /images/2025/roule-lave/Vue_Roulé-Lavé_24_IMG_0575.webp
     caption: '*Premières pierres III*, hydrography on concrete debris, dimensions variables, 2025.'
