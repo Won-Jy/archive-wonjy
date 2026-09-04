@@ -448,6 +448,15 @@
      Linked works — 커스텀 필드 `worklinks`
      작업 목록을 보여주고 체크해서 한 번에 넣는다. 파일에 저장되는 모양은
      예전 그대로 [{label, path}] 라서 사이트도, 이미 있는 값도 그대로 쓴다.
+
+     쓰는 곳이 두 군데라 저장 모양이 다르다. config.yml 에서 골라 쓴다:
+       Work  linked_works  : path_key=path (기본), path_format=html  (/work/2023/hostis.html),
+                             label_format=markdown (기본) → *제목* (2023)
+       Texts related_works : path_key=slug,        path_format=bare  (work/2023/hostis),
+                             label_format=html                        → <i>제목</i> (2023)
+     Texts 쪽을 HTML 로 맞추는 이유: texts.html 이 label 을 그대로 innerHTML 에
+     넣기 때문에 마크다운을 쓰면 별표가 글자로 보인다. (Texts 는 아직 제목·출처·
+     소개도 전부 HTML 이다 — 통째로 옮기는 건 별도 작업.)
      ================================================================== */
   var workCache = null;
 
@@ -475,6 +484,7 @@
               file: f.path,
               text: text,
               url: '/work/' + m[1] + '.html',
+              bare: 'work/' + m[1],
               title: readScalar(text, 'title') || m[1].split('/').pop(),
               year: yearLabel(readScalar(text, 'year_start'), readScalar(text, 'year_end')),
               sortYear: readScalar(text, 'year_start') || '0000'
@@ -528,7 +538,17 @@
   }
 
   /* ---------- Linked works 위젯 본체 ---------- */
-  function createLinksInstance(id) {
+  function createLinksInstance(id, opt) {
+    opt = opt || {};
+    var PATH_KEY = opt.pathKey || 'path';
+    var BARE     = opt.pathFormat === 'bare';
+    var HTML_LBL = opt.labelFormat === 'html';
+    /* 줄에서 주소를 읽고 쓰는 곳을 한 군데로 모은다 */
+    function P(r) { var v = r[PATH_KEY]; return v == null ? '' : String(v); }
+    /* 작업 하나가 이 필드에서 갖는 주소 */
+    function addrOf(w) { return BARE ? w.bare : w.url; }
+    function blankRow() { var r = { label: '' }; r[PATH_KEY] = ''; return r; }
+
     var inst = {
       id: id,
       root: el('div', 'tx tx-links'),
@@ -561,7 +581,8 @@
     }
 
     function labelFor(w) {
-      return '*' + w.title + '*' + (w.year ? ' (' + w.year + ')' : '');
+      var t = HTML_LBL ? ('<i>' + w.title + '</i>') : ('*' + w.title + '*');
+      return t + (w.year ? ' (' + w.year + ')' : '');
     }
 
     /* --- 작업 고르기 --- */
@@ -579,7 +600,7 @@
         listWorks(inst.backend.repo, inst.backend.branch).then(function (works) {
           note.textContent = '체크한 작업이 Linked works 에 들어갑니다. 이미 걸린 것은 미리 체크돼 있고, 체크를 풀면 빠집니다.';
           var have = {};
-          inst.rows.forEach(function (r) { if (r.path) have[r.path] = true; });
+          inst.rows.forEach(function (r) { if (P(r)) have[P(r)] = true; });
           var picked = {};
           Object.keys(have).forEach(function (p) { picked[p] = true; });
           var q = '';
@@ -605,8 +626,9 @@
               var row = el('div', 'tx-row');
               var lab = el('label');
               var cb = el('input'); cb.type = 'checkbox';
-              cb.checked = !!picked[w.url];
-              cb.onchange = function () { picked[w.url] = cb.checked; paint(); };
+              var addr = addrOf(w);
+              cb.checked = !!picked[addr];
+              cb.onchange = function () { picked[addr] = cb.checked; paint(); };
               lab.appendChild(cb);
               lab.appendChild(el('span', 't', w.title));
               row.appendChild(lab);
@@ -620,16 +642,17 @@
 
           ok.onclick = function () {
             /* 체크 해제된 것은 빼고, 새로 체크된 것은 뒤에 붙인다. 직접 적은 줄(주소 없음)은 그대로 둔다. */
-            var byUrl = {};
-            works.forEach(function (w) { byUrl[w.url] = w; });
             inst.rows = inst.rows.filter(function (r) {
-              return !r.path || picked[r.path];
+              return !P(r) || picked[P(r)];
             });
             var already = {};
-            inst.rows.forEach(function (r) { if (r.path) already[r.path] = true; });
+            inst.rows.forEach(function (r) { if (P(r)) already[P(r)] = true; });
             works.forEach(function (w) {
-              if (picked[w.url] && !already[w.url]) {
-                inst.rows.push({ label: labelFor(w), path: w.url });
+              var addr = addrOf(w);
+              if (picked[addr] && !already[addr]) {
+                var row = { label: labelFor(w) };
+                row[PATH_KEY] = addr;
+                inst.rows.push(row);
               }
             });
             emit(); close(); inst.render();
@@ -695,9 +718,9 @@
         var head = el('div', 'tx-lhead');
         var name = el('button', 'nm');
         name.type = 'button';
-        var shown = tagsToMd(r.label || '').replace(/\*/g, '') || (r.path || '(빈 줄)');
+        var shown = tagsToMd(r.label || '').replace(/\*/g, '') || (P(r) || '(빈 줄)');
         name.appendChild(el('span', null, shown));
-        if (!r.path) name.appendChild(el('span', 'flag', '주소 없음'));
+        if (!P(r)) name.appendChild(el('span', 'flag', '주소 없음'));
         name.title = '눌러서 이름·주소 고치기';
         name.onclick = function () { inst.open[i] = !inst.open[i]; inst.render(); };
         head.appendChild(name);
@@ -715,7 +738,8 @@
 
         if (inst.open[i]) {
           var body = el('div', 'tx-lbody');
-          [['표시 이름', 'label', '작업 제목은 *기울임*'], ['주소', 'path', '/work/2023/hostis.html']].forEach(function (f) {
+          [['표시 이름', 'label', HTML_LBL ? '작업 제목은 <i>기울임</i>' : '작업 제목은 *기울임*'],
+           ['주소', PATH_KEY, BARE ? 'work/2023/hostis' : '/work/2023/hostis.html']].forEach(function (f) {
             var w = el('label', 'tx-field');
             w.appendChild(el('span', null, f[0]));
             var inp = el('input'); inp.type = 'text'; inp.className = 'tx-search';
@@ -736,13 +760,14 @@
       var pick = el('button', 'tx-btn go', '+ 작업 고르기'); pick.type = 'button'; pick.onclick = openPicker;
       var manual = el('button', 'tx-btn', '+ 직접 적기'); manual.type = 'button';
       manual.onclick = function () {
-        inst.rows.push({ label: '', path: '' });
+        inst.rows.push(blankRow());
         inst.open[inst.rows.length - 1] = true;
         emit(); inst.render();
       };
       bar.appendChild(pick); bar.appendChild(manual);
       bar.appendChild(el('span', 'sp'));
-      var old = inst.rows.filter(function (r) { return OLD_TAG.test(r.label || ''); }).length;
+      /* HTML 로 쓰는 필드(Texts)에서는 <i> 가 정상이라 정리 단추를 안 낸다 */
+      var old = HTML_LBL ? 0 : inst.rows.filter(function (r) { return OLD_TAG.test(r.label || ''); }).length;
       if (old) {
         var fix = el('button', 'tx-btn', '옛 태그 정리…');
         fix.type = 'button';
@@ -1753,10 +1778,23 @@
     return Array.isArray(props.value) ? props.value : [];
   }
 
+  /* config.yml 에 적어둔 이 필드만의 설정. Sveltia 는 모르는 키도 그대로 넘겨준다. */
+  function linkOpts(props) {
+    var f = props.field;
+    function g(k) {
+      try { return (f && f.get) ? f.get(k) : (f ? f[k] : null); } catch (e) { return null; }
+    }
+    return {
+      pathKey: g('path_key') || 'path',
+      pathFormat: g('path_format') || 'html',
+      labelFormat: g('label_format') || 'markdown'
+    };
+  }
+
   function LinksControl(props) {
     var id = props.forID || 'txl';
     var inst = linkInstances.get(id);
-    if (!inst) { inst = createLinksInstance(id); linkInstances.set(id, inst); }
+    if (!inst) { inst = createLinksInstance(id, linkOpts(props)); linkInstances.set(id, inst); }
     inst.onChange = props.onChange;
     try {
       var cfg = (window.CMS_CONFIG_BACKEND || {});

@@ -353,16 +353,14 @@ collections:
               - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
                   buttons: [bold, italic, link], editor_components: [], minimal: true }
 
-      - name: related_works
-        label: 관련 작업
-        widget: list
-        required: false
-        collapsed: true
-        summary: "{{fields.label}}"
-        fields:
-          - { name: label, label: 표시 이름, widget: string, required: false }
-          - { name: slug, label: 경로, widget: string, required: false,
-              hint: "work/2023/hostis — 앞의 / 와 뒤의 .html 은 빼고 적습니다." }
+      # 작업 목록에서 체크해서 한 번에 넣는다 (Work 의 Linked works 와 같은 창).
+      # 저장되는 모양은 예전 그대로 [{label, slug}] 다:
+      #   slug  = work/2023/hostis   (앞의 / 와 뒤의 .html 없이)
+      #   label = <i>Hostis</i> (2023)
+      # Texts 는 제목·출처·소개가 아직 HTML 이고 texts.html 이 label 을 그대로
+      # innerHTML 에 넣으므로, 여기서만 표시 이름을 HTML 로 만든다.
+      - { name: related_works, label: 관련 작업, widget: worklinks, required: false,
+          path_key: slug, path_format: bare, label_format: html }
 
   # ─────────────────────────────────────────────────────────────
   # 관리 — Type · Tag  (_data/taxonomy.yml)
