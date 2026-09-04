@@ -5,12 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="format-detection" content="telephone=no, address=no, email=no, date=no">
   <title>{{ page.title }} | archive-wonjy.com</title>
+{%- if page.hidden %}
+  {%- comment -%} 비공개 작업: 목록·검색에서 빠지고 검색엔진도 막는다.
+      주소를 아는 사람은 열 수 있다 — 올리기 전에 눈으로 확인하라고 남겨둔 것. {%- endcomment -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- endif %}
   <link rel="icon" href="/favicon.png" type="image/x-icon">
 <style>
   :root { --blue:#007BFF; --border:#ddd; --text:#222; --muted:#666; }
   html, body { margin:0; padding:0; font-family:sans-serif; color:var(--text); line-height:1.6; }
 
   header.site { display:flex; align-items:center; gap:40px; padding:20px 40px; border-bottom:1px solid var(--border); }
+
+  /* 비공개 표시 띠. 사이트 목록에는 안 나오지만 주소로는 열리는 페이지라,
+     실수로 "올라간 줄 알았다" 가 없게 페이지 맨 위에 한 줄 붙인다. */
+  .unlisted { padding:10px 40px; background:#f4f4f4; border-bottom:1px solid var(--border);
+              color:var(--muted); font-size:0.85em; }
+  .unlisted strong { color:#444; font-weight:600; }
+  @media (max-width:768px){ .unlisted { padding:10px 20px; } }
   .title { font-size:1.2em; font-weight:600; text-transform: lowercase; }
   .title:link,
   .title:visited { color:#000; text-decoration:none; }
@@ -376,12 +388,15 @@
       <a href="/contact.html">Contact</a>
     </nav>
   </header>
+{%- if page.hidden %}
+  <div class="unlisted"><strong>비공개</strong> — 이 페이지는 Work 목록·검색·다른 페이지의 Linked works 에 나오지 않습니다.</div>
+{%- endif %}
 
   {%- comment -%}
     Jekyll이 실제로 만들 작업 페이지 목록. 여기 없는 주소는 아직 없는 페이지라
     링크 대신 회색 글씨로 나온다. 본문의 linked_works 와 표의 links 열이 같이 쓴다.
   {%- endcomment -%}
-  {%- assign built_works = site.pages | where: "layout", "work" | map: "url" -%}
+  {%- assign built_works = site.pages | where: "layout", "work" | where_exp: "p", "p.hidden != true" | map: "url" -%}
 
   <main>
     {%- assign s = page.year_start -%}

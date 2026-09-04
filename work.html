@@ -211,7 +211,7 @@ layout: none
 
 <script>
 window.WORKS = [
-  {% assign works = site.pages | where: "layout", "work" %}
+  {% assign works = site.pages | where: "layout", "work" | where_exp: "p", "p.hidden != true" %}
   {% for p in works %}
   {
     title: {{ p.title | jsonify }},

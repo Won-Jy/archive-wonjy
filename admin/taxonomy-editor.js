@@ -192,6 +192,10 @@
     statuses.forEach(function (st) {
       L.push(indent + '  - { label: ' + J('Status · ' + st) + ', field: status,    pattern: ' + J(exactPattern(st)) + ' }');
     });
+    /* 관리 표시. Type · Tag 목록과 무관하게 늘 있는 두 개라 그대로 붙인다.
+       (여기서 빠뜨리면 "적용" 을 누를 때 config 에서 지워진다.) */
+    L.push(indent + '  - { label: "더 손볼 것", field: todo,   pattern: true }');
+    L.push(indent + '  - { label: "비공개", field: hidden, pattern: true }');
     return L.join('\n');
   }
 

@@ -4,7 +4,7 @@ permalink: /search_index.json
 ---
 
 [
-{% assign works = site.pages | where: "layout", "work" %}
+{% assign works = site.pages | where: "layout", "work" | where_exp: "p", "p.hidden != true" %}
 {% for p in works %}
 
   {% comment %} ① Related texts 인덱싱 {% endcomment %}

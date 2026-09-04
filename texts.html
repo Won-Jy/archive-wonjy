@@ -134,7 +134,7 @@ title: Texts
        list is a page that hasn't been written yet — it shows as plain text and
        becomes a real link on its own once the page exists. */
     const BUILT_WORKS = new Set([
-      {% assign built = site.pages | where: "layout", "work" | map: "url" %}
+      {% assign built = site.pages | where: "layout", "work" | where_exp: "p", "p.hidden != true" | map: "url" %}
       {% for u in built %}{{ u | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}
     ]);
     const PENDING_LABEL = {{ site.pending_label | default: "forthcoming" | jsonify }};
