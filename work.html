@@ -20,9 +20,9 @@ layout: none
       .title:link,
       .title:visited{color:#000;text-decoration:none;}
       .title:hover{color:var(--blue);text-decoration:none;}
-      nav{margin-left:55px}
-      nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
-      nav a:hover,nav a.active{color:var(--blue)}
+      header nav{margin-left:55px}
+      header nav a{margin-left:24px;text-decoration:none;color:#555;font-size:0.95em;transition:color .2s}
+      header nav a:hover,header nav a.active{color:var(--blue)}
     
       main{max-width:1200px;margin:0;padding:20px 40px;}
     
@@ -103,10 +103,10 @@ layout: none
       /* 7) Grid & Pagination */
       .grid-pager-wrap{width:min(1200px,100%);margin:0 auto}
       .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-      .pagination{margin:45px 0 60px;display:flex;justify-content:center;gap:6px}
-      .pagination a{text-decoration:none;color:#000;font-size:0.95em}
+      .pagination{margin:45px 0 60px;display:flex;justify-content:center;align-items:center;gap:30px}
+      .pagination a{margin:0;padding:0;text-decoration:none;color:#000;font-size:0.95em}
       .pagination a:hover,.pagination a.current{color:var(--blue)}
-      .pagination .ellipsis{padding:0 6px;color:#999}
+      .pagination .ellipsis{margin:0;padding:0;color:#999;font-size:0.95em;letter-spacing:.06em}
     
       /* 8) Utilities */
       .sr{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -123,13 +123,13 @@ layout: none
           header .title{ align-self:flex-start; }
         
           /* 데스크톱에서 쓰던 nav 좌여백(55px) 무효화 */
-          nav{
+          header nav{
             margin:12px 0 0 0;
             margin-left:0;               /* override */
           }
         
           /* 모바일 메뉴 간격/크기 */
-          nav a{
+          header nav a{
           margin-left:30px;
           text-decoration:none;
           color:#555;
@@ -137,9 +137,9 @@ layout: none
           transition:color .2s;
           font-weight:normal;
           }
-          nav a:first-child{ margin-left:0; }
-          nav a:hover,
-          nav a.active{ color:var(--blue); }
+          header nav a:first-child{ margin-left:0; }
+          header nav a:hover,
+          header nav a.active{ color:var(--blue); }
         
         main{ padding:15px 24px; }
            .layout{ display:grid; grid-template-columns: var(--sidebar-w, 120px) minmax(0,1fr); gap:18px; align-items:start; grid-template-areas:"sidebar main"; }
@@ -153,10 +153,10 @@ layout: none
            .search{ order:2; margin-left:auto; }
            .combine{ display:none; }   /* 모바일에서는 숨김 */
            .filter-group[data-filter="year"] .chips{grid-template-columns: repeat(2, auto); }
-           .pagination{ display:flex; justify-content:center; align-content:flex-start; flex-wrap: nowrap; gap: 0px 2px; margin: 20px 0 30px; }
+           .pagination{ display:flex; justify-content:center; align-items:center; flex-wrap: nowrap; gap: 0px 18px; margin: 20px 0 30px; }
            .pagination > *{ flex: 0 0 auto; }
            .pagination a{ flex: 0 1 auto; font-size: .85rem; padding: 2px 2px; min-width: 0px; min-height: 28px; line-height: 1.2; }
-           .pagination .ellipsis{ padding: 0 2px; }
+           .pagination .ellipsis{ font-size:.85rem; padding: 0; }
            .grid-pager-wrap{ width:100%; max-width:100%; }
            .card.preview .hover{ opacity:1; }
            
