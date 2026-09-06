@@ -2,7 +2,7 @@
 layout: work
 todo: true
 hidden: false
-title: Residency at Maison Daura I
+title: Residency at Maison Daura – I
 drafts: + andreaan beguin 큐레이터 초청 일주일간 같이 체류하며 텍스트쓴거
 types:
   - Project
