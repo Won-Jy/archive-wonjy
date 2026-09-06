@@ -80,9 +80,17 @@ collections:
       - { name: title, label: Title, widget: string,
           hint: "페이지 주소가 이 제목으로 만들어집니다. 한글만 적으면 주소가 임의의 문자가 되니 영문/불어 제목으로 적어주세요." }
 
-      - { name: drafts, label: "초고 (사이트에 안 나감)", widget: text, required: false,
-          preview: false,
-          hint: "자유롭게 쓰세요. 다듬어지면 아래 Summary나 Description으로 옮기시면 됩니다." }
+      # 초고도 아래 Summary·본문과 같은 글상자다 (굵게·기울임·링크·사진).
+      # 글상자 글자 크기는 편집 화면 위쪽 도구줄의 "가 − +" 로 바꾼다 (taxonomy-editor.js).
+      - name: drafts
+        label: "초고 (사이트에 안 나감)"
+        widget: markdown
+        required: false
+        preview: false
+        modes: [rich_text, raw]
+        buttons: [bold, italic, link]
+        editor_components: [image]
+        hint: "자유롭게 쓰세요. 다듬어지면 아래 Summary나 Description, 본문으로 옮기시면 됩니다."
 
       - name: types
         label: Type
@@ -172,6 +180,44 @@ collections:
               hint: "본문의 [[1]] 과 같은 번호." }
           - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
               buttons: [bold, italic, link], editor_components: [], minimal: true }
+
+      # ── 본문 번역 (비평 텍스트와 같은 방식) ─────────────────────
+      # 번역이 하나라도 있으면 사이트 본문 위에 (FR) orig. (EN) 버튼이 생기고,
+      # 각 번역은 자기 주석을 따로 가진다. 영문 제목은 EN 을 골랐을 때 본문 위에
+      # "English title: …" 로 나온다 (제목과 같으면 안 나온다).
+      - { name: body_language, label: "본문 언어", widget: string, required: false,
+          hint: "fr, en, ko 처럼 두 글자로. 비워두면 영어로 봅니다. 번역이 있을 때 버튼에 이 글자가 나옵니다." }
+      - { name: title_en, label: "영문 제목", widget: string, required: false,
+          hint: "제목이 영어가 아닐 때만. 영문 번역 본문 위에 'English title: …' 로 나옵니다." }
+      - name: translations
+        label: "본문 번역"
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.language}}"
+        fields:
+          - { name: language, label: 언어, widget: string, default: en,
+              hint: "en, fr, ko 처럼 두 글자로." }
+          - { name: translator, label: 번역자, widget: string, required: false }
+          - name: body
+            label: 본문
+            widget: markdown
+            required: false
+            modes: [rich_text, raw]
+            buttons: [bold, italic, link]
+            editor_components: [image]
+            hint: "주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 이 언어의 내용을 적으세요."
+          - name: notes
+            label: 주석
+            widget: list
+            required: false
+            collapsed: true
+            summary: "[{{fields.id}}] {{fields.text}}"
+            fields:
+              - { name: id, label: 번호, widget: number, value_type: int,
+                  hint: "본문의 [[1]] 과 같은 번호." }
+              - { name: text, label: 내용, widget: markdown, modes: [rich_text, raw],
+                  buttons: [bold, italic, link], editor_components: [], minimal: true }
 
 
       - { name: cover, label: Cover image, widget: image, required: false }

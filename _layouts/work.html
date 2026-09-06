@@ -105,6 +105,13 @@
   /* Matches the footnote styling used on the Texts page (assets/css/main.css),
   reproduced locally since this layout (work.html) doesn't load main.css. */
   .notes{ margin-top:24px; }
+
+  /* 본문 번역 — 언어 버튼. texts.html(assets/css/main.css) 의 .lang-tabs 와 같은 모양 */
+  .lang-tabs{ display:flex; gap:8px; margin:0 0 1rem; }
+  .lang-tabs button{ border:none; background:#fff; padding:0; font:inherit; cursor:pointer; color:#444; }
+  .lang-tabs button:hover, .lang-tabs button.active{ color:var(--blue); }
+  .lang-tabs .orig-badge{ margin-left:6px; font-size:.8em; color:var(--muted); }
+  .title-en-note{ font-size:.9em; color:var(--muted); margin:0 0 1em; }
   .notes h3{ font-weight:bold; margin:.2em 0 .4em; }
   .notes ol{ margin:0; padding-left:0; list-style:none; }
   .notes li{ margin:.6rem 0; }
@@ -775,7 +782,14 @@
       페이지 맨 아래에 구분선 하나를 그려버린다. strip 후 비교해야 걸러진다.
     {%- endcomment -%}
     {%- assign _body = content | strip -%}
-    {%- if _body != "" -%}
+    {%- comment -%}
+      본문 번역 (비평 텍스트와 같은 방식). 번역이 하나라도 있으면 언어 버튼을 만들고
+      원문·번역을 전부 그려 둔 뒤 화면에서 하나만 보인다. 번역이 없으면 예전 그대로.
+      원문 각주는 fn1 / fnref1, 번역 각주는 fn1-en / fnref1-en 처럼 언어를 붙여 구분한다.
+    {%- endcomment -%}
+    {%- assign has_tr = false -%}
+    {%- if page.translations and page.translations.size > 0 -%}{%- assign has_tr = true -%}{%- endif -%}
+    {%- if _body != "" or has_tr -%}
       {%- comment -%}
         본문 안의 [[1]] 을 각주 번호로 바꾼다. Liquid 에는 정규식이 없으므로
         앞머리에 적힌 각주를 하나씩 돌면서 그 번호만 정확히 갈아끼운다.
@@ -787,9 +801,72 @@
         {%- capture _sup -%}<sup><a class="note-ref" href="#fn{{ n.id }}" id="fnref{{ n.id }}">[{{ n.id }}]</a></sup>{%- endcapture -%}
         {%- assign _rendered = _rendered | replace: _mark, _sup -%}
       {%- endfor -%}
+      {%- assign any_notes = false -%}
+      {%- if page.notes and page.notes.size > 0 -%}{%- assign any_notes = true -%}{%- endif -%}
       <article class="rich">
+        {%- if has_tr -%}
+          {%- assign olang = page.body_language | default: 'en' | downcase | strip -%}
+          {%- if olang == '' -%}{%- assign olang = 'en' -%}{%- endif -%}
+          <div class="lang-tabs" id="langTabs">
+            <button type="button" class="lang-btn" data-lang="{{ olang }}">({{ olang | upcase }})<span class="orig-badge">orig.</span></button>
+            {%- for tr in page.translations -%}
+              {%- assign tl = tr.language | default: 'en' | downcase | strip -%}
+              {%- if tl == '' -%}{%- assign tl = 'en' -%}{%- endif -%}
+              <button type="button" class="lang-btn" data-lang="{{ tl }}">({{ tl | upcase }})</button>
+            {%- endfor -%}
+          </div>
+          <div class="rich variant" data-lang="{{ olang }}">
+            {{ _rendered }}
+            {%- if any_notes -%}
+              <div class="divider"></div>
+              <section class="notes">
+                <h3>{{ page.notes_title | default: "Notes" }}</h3>
+                <ol>
+                  {%- for n in page.notes -%}
+                    {%- assign _ntxt = n.text | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+                    <li id="fn{{ n.id }}"><a class="note-num" href="#fnref{{ n.id }}">[{{ n.id }}]</a> {{ _ntxt }}</li>
+                  {%- endfor -%}
+                </ol>
+              </section>
+            {%- endif -%}
+          </div>
+          {%- for tr in page.translations -%}
+            {%- assign tl = tr.language | default: 'en' | downcase | strip -%}
+            {%- if tl == '' -%}{%- assign tl = 'en' -%}{%- endif -%}
+            {%- assign _trb = tr.body | default: '' | markdownify -%}
+            {%- for n in tr.notes -%}
+              {%- capture _mark -%}[[{{ n.id }}]]{%- endcapture -%}
+              {%- capture _sup -%}<sup><a class="note-ref" href="#fn{{ n.id }}-{{ tl }}" id="fnref{{ n.id }}-{{ tl }}">[{{ n.id }}]</a></sup>{%- endcapture -%}
+              {%- assign _trb = _trb | replace: _mark, _sup -%}
+            {%- endfor -%}
+            {%- assign _ten = page.title_en | default: '' | strip -%}
+            {%- assign _tt = page.title | default: '' | strip -%}
+            <div class="rich variant" data-lang="{{ tl }}" style="display:none">
+              {%- if tl == 'en' and _ten != '' and _ten != _tt -%}
+                <p class="title-en-note">English title: {{ _ten }}</p>
+              {%- endif -%}
+              {{ _trb }}
+              {%- if tr.notes and tr.notes.size > 0 -%}
+                {%- assign any_notes = true -%}
+                <div class="divider"></div>
+                <section class="notes">
+                  <h3>{{ page.notes_title | default: "Notes" }}</h3>
+                  <ol>
+                    {%- for n in tr.notes -%}
+                      {%- assign _ntxt = n.text | markdownify | remove: '<p>' | remove: '</p>' | strip -%}
+                      <li id="fn{{ n.id }}-{{ tl }}"><a class="note-num" href="#fnref{{ n.id }}-{{ tl }}">[{{ n.id }}]</a> {{ _ntxt }}</li>
+                    {%- endfor -%}
+                  </ol>
+                </section>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+          {%- if any_notes -%}
+            <div id="fnTooltip" class="fn-tooltip" style="display:none"></div>
+          {%- endif -%}
+        {%- else -%}
         {{ _rendered }}
-        {%- if page.notes and page.notes.size > 0 -%}
+        {%- if any_notes -%}
           <div class="divider"></div>
           <section class="notes">
             <h3>{{ page.notes_title | default: "Notes" }}</h3>
@@ -801,6 +878,7 @@
             </ol>
           </section>
           <div id="fnTooltip" class="fn-tooltip" style="display:none"></div>
+        {%- endif -%}
         {%- endif -%}
       </article>
     {%- endif -%}
@@ -1459,6 +1537,34 @@
       });
     })();
   </script>
+<script>
+/* 본문 번역 — 언어 버튼. texts.html 과 같은 동작: ?lang= 으로 기억하고, 고른 언어의 본문·주석만 보인다. */
+(function(){
+  var tabs = document.getElementById('langTabs');
+  if (!tabs) return;
+  var btns = Array.prototype.slice.call(tabs.querySelectorAll('.lang-btn'));
+  var variants = Array.prototype.slice.call(document.querySelectorAll('.variant[data-lang]'));
+  function setLang(lang){
+    btns.forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
+    variants.forEach(function(v){ v.style.display = (v.dataset.lang === lang) ? '' : 'none'; });
+    var tip = document.getElementById('fnTooltip');
+    if (tip) { tip.style.display = 'none'; tip.innerHTML = ''; }
+    document.querySelectorAll('a.note-ref').forEach(function(a){ a.dataset.peek = '0'; });
+    try {
+      var url = new URL(location);
+      url.searchParams.set('lang', lang);
+      history.replaceState({}, '', url);
+    } catch (e) { /* 무시 */ }
+  }
+  tabs.addEventListener('click', function(e){
+    var b = e.target.closest('.lang-btn');
+    if (b) setLang(b.dataset.lang);
+  });
+  var want = new URLSearchParams(location.search).get('lang');
+  var known = btns.some(function(b){ return b.dataset.lang === want; });
+  setLang(known ? want : btns[0].dataset.lang);
+})();
+</script>
 <script>
 (function(){
   var notesMap = {};

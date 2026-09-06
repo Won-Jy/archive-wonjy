@@ -2022,10 +2022,73 @@
     setInterval(mountToggle, 2000);   /* 안전망 */
   }
 
+  /* ==================================================================
+     글상자 글자 크기 — 편집 화면 도구줄의 "가 − +"
+     초고·본문·번역 본문·주석 같은 글상자(markdown / text 위젯)의 글자를
+     한꺼번에 키우고 줄인다. 값은 브라우저에 기억한다 (localStorage).
+     Sveltia 의 글상자 구조(실측): 서식 글상자 .sui.text-editor > .lexical-root,
+     원문 보기와 여러 줄 칸은 textarea. 둘 다 기본 15px / 24px.
+     ================================================================== */
+  var FONT_KEY = 'wj.editor.font', FONT_MIN = 13, FONT_MAX = 26, FONT_DEF = 15;
+
+  function fontSize() {
+    var v = parseInt(localStorage.getItem(FONT_KEY), 10);
+    return (v >= FONT_MIN && v <= FONT_MAX) ? v : FONT_DEF;
+  }
+  function applyFont(px) {
+    var st = document.getElementById('wj-font-css');
+    if (!st) { st = el('style'); st.id = 'wj-font-css'; document.head.appendChild(st); }
+    st.textContent = [
+      '.sui.text-editor .lexical-root, .sui.text-editor textarea, .sui.text-area textarea',
+      '{font-size:' + px + 'px !important; line-height:1.6 !important}',
+      '.wj-font{display:inline-flex;align-items:center;gap:2px;margin-left:10px;font-size:.85em;opacity:.85;user-select:none}',
+      '.wj-font button{all:unset;cursor:pointer;padding:2px 7px;border-radius:4px;line-height:1.4}',
+      '.wj-font button:hover{background:rgba(127,127,127,.18)}',
+      '.wj-font .n{min-width:2.2em;text-align:center;opacity:.7;font-variant-numeric:tabular-nums}'
+    ].join('\n');
+    document.querySelectorAll('.wj-font .n').forEach(function (n) { n.textContent = px; });
+  }
+  function setFont(px) {
+    px = Math.max(FONT_MIN, Math.min(FONT_MAX, px));
+    try { localStorage.setItem(FONT_KEY, String(px)); } catch (e) { /* 무시 */ }
+    applyFont(px);
+  }
+  /* 편집 화면(입력 칸이 있는 쪽)의 작은 도구줄을 찾는다 — "Edit" 이라는 글자에 기대지 않는다 */
+  function findEditToolbar() {
+    var bars = document.querySelectorAll('.sui.toolbar.secondary');
+    for (var i = 0; i < bars.length; i++) {
+      /* 실측: 도구줄 < div.header < 편집 창(입력 칸들이 든 곳) */
+      var head = bars[i].parentElement, pane = head && head.parentElement;
+      if (!pane || !pane.querySelector('section.field')) continue;
+      return bars[i].querySelector('.wj-font') ? null : bars[i];   /* 이미 달려 있으면 null */
+    }
+    return null;
+  }
+  function mountFont() {
+    var bar = findEditToolbar();
+    if (!bar) return;
+    var box = el('span', 'wj-font');
+    box.title = '글상자 글자 크기 (초고·본문·번역·주석)';
+    var minus = el('button', null, '가−'); minus.type = 'button';
+    var num = el('span', 'n', String(fontSize()));
+    var plus = el('button', null, '가+'); plus.type = 'button';
+    minus.onclick = function () { setFont(fontSize() - 1); };
+    plus.onclick = function () { setFont(fontSize() + 1); };
+    box.appendChild(minus); box.appendChild(num); box.appendChild(plus);
+    bar.appendChild(box);
+  }
+  function startFontControl() {
+    applyFont(fontSize());
+    var mo = new MutationObserver(function () { mountFont(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+    mountFont();
+  }
+
+  function startAll() { startFilterMode(); startFontControl(); }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startFilterMode);
+    document.addEventListener('DOMContentLoaded', startAll);
   } else {
-    startFilterMode();
+    startAll();
   }
 
   /* 테스트용으로 순수 함수들을 내놓는다 */
