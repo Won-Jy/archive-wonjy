@@ -2023,11 +2023,15 @@
   }
 
   /* ==================================================================
-     글상자 글자 크기 — 편집 화면 도구줄의 "가 − +"
-     초고·본문·번역 본문·주석 같은 글상자(markdown / text 위젯)의 글자를
-     한꺼번에 키우고 줄인다. 값은 브라우저에 기억한다 (localStorage).
-     Sveltia 의 글상자 구조(실측): 서식 글상자 .sui.text-editor > .lexical-root,
-     원문 보기와 여러 줄 칸은 textarea. 둘 다 기본 15px / 24px.
+     글상자 글자 크기 — 글상자마다 제 도구줄에 "가− 15 가+"
+     초고·본문·번역 본문처럼 긴 글을 쓰는 칸의 서식 단추(B I 링크 사진) 옆에
+     붙는다. 크기는 하나로 이어져 있어서 어느 칸에서 바꾸든 모든 글상자가
+     같이 바뀌고, 브라우저에 기억한다 (localStorage).
+     한 줄짜리 칸(Summary·캡션·주석 = wrapper 에 minimal)에는 안 붙인다 —
+     글자 크기는 같이 바뀌지만 단추까지 늘어놓으면 도구줄이 지저분해진다.
+     Sveltia 글상자 구조(실측): .sui.text-editor > .sui.toolbar(flex, gap 4px,
+     안에 .inner 이 display:contents) + .lexical-root, 원문 보기는 textarea.
+     도구줄 오른쪽 끝의 m↓ 앞에 .sui.spacer 가 있어 그 앞에 끼워 넣는다.
      ================================================================== */
   var FONT_KEY = 'wj.editor.font', FONT_MIN = 13, FONT_MAX = 26, FONT_DEF = 15;
 
@@ -2041,10 +2045,11 @@
     st.textContent = [
       '.sui.text-editor .lexical-root, .sui.text-editor textarea, .sui.text-area textarea',
       '{font-size:' + px + 'px !important; line-height:1.6 !important}',
-      '.wj-font{display:inline-flex;align-items:center;gap:2px;margin-left:10px;font-size:.85em;opacity:.85;user-select:none}',
-      '.wj-font button{all:unset;cursor:pointer;padding:2px 7px;border-radius:4px;line-height:1.4}',
-      '.wj-font button:hover{background:rgba(127,127,127,.18)}',
-      '.wj-font .n{min-width:2.2em;text-align:center;opacity:.7;font-variant-numeric:tabular-nums}'
+      '.wj-font{display:inline-flex;align-items:center;gap:1px;margin-left:4px;',
+      'font-size:13px;line-height:1;opacity:.8;user-select:none;flex:0 0 auto}',
+      '.wj-font button{all:unset;cursor:pointer;padding:4px 6px;border-radius:4px}',
+      '.wj-font button:hover{background:rgba(127,127,127,.2);opacity:1}',
+      '.wj-font .n{min-width:2em;text-align:center;opacity:.65;font-variant-numeric:tabular-nums}'
     ].join('\n');
     document.querySelectorAll('.wj-font .n').forEach(function (n) { n.textContent = px; });
   }
@@ -2053,29 +2058,48 @@
     try { localStorage.setItem(FONT_KEY, String(px)); } catch (e) { /* 무시 */ }
     applyFont(px);
   }
-  /* 편집 화면(입력 칸이 있는 쪽)의 작은 도구줄을 찾는다 — "Edit" 이라는 글자에 기대지 않는다 */
-  function findEditToolbar() {
-    var bars = document.querySelectorAll('.sui.toolbar.secondary');
-    for (var i = 0; i < bars.length; i++) {
-      /* 실측: 도구줄 < div.header < 편집 창(입력 칸들이 든 곳) */
-      var head = bars[i].parentElement, pane = head && head.parentElement;
-      if (!pane || !pane.querySelector('section.field')) continue;
-      return bars[i].querySelector('.wj-font') ? null : bars[i];   /* 이미 달려 있으면 null */
-    }
-    return null;
-  }
-  function mountFont() {
-    var bar = findEditToolbar();
-    if (!bar) return;
+  function fontBox() {
     var box = el('span', 'wj-font');
-    box.title = '글상자 글자 크기 (초고·본문·번역·주석)';
+    box.title = '이 글상자의 글자 크기 (모든 글상자가 같이 바뀝니다)';
     var minus = el('button', null, '가−'); minus.type = 'button';
+    minus.title = '글자 작게';
     var num = el('span', 'n', String(fontSize()));
     var plus = el('button', null, '가+'); plus.type = 'button';
+    plus.title = '글자 크게';
+    /* mousedown 을 막아야 글상자에서 커서가 안 빠진다 */
+    [minus, plus].forEach(function (b) {
+      b.onmousedown = function (e) { e.preventDefault(); };
+    });
     minus.onclick = function () { setFont(fontSize() - 1); };
     plus.onclick = function () { setFont(fontSize() + 1); };
     box.appendChild(minus); box.appendChild(num); box.appendChild(plus);
-    bar.appendChild(box);
+    return box;
+  }
+
+  /* 글상자 하나의 도구줄에 붙인다 */
+  function mountFontIn(ed) {
+    var bar = ed.querySelector(':scope > .sui.toolbar');
+    if (!bar) {
+      /* 혹시 한 겹 더 들어가 있으면 이 글상자의 것만 고른다 */
+      var all = ed.querySelectorAll('.sui.toolbar');
+      for (var i = 0; i < all.length; i++) {
+        if (all[i].closest('.sui.text-editor') === ed) { bar = all[i]; break; }
+      }
+    }
+    if (!bar || bar.querySelector('.wj-font')) return;
+    var box = fontBox();
+    var spacer = bar.querySelector('.sui.spacer');
+    if (spacer && spacer.parentNode) spacer.parentNode.insertBefore(box, spacer);
+    else (bar.querySelector('.inner') || bar).appendChild(box);
+  }
+
+  function mountFont() {
+    document.querySelectorAll('.sui.text-editor').forEach(function (ed) {
+      var wrap = ed.closest('.wrapper');
+      /* 한 줄짜리 칸(minimal)에는 안 붙인다 */
+      if (wrap && String(wrap.className).indexOf('minimal') !== -1) return;
+      mountFontIn(ed);
+    });
   }
   function startFontControl() {
     applyFont(fontSize());
