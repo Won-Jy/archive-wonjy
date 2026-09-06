@@ -11,6 +11,8 @@ drafts: |-
   큐레이터 이자 비평가인 Andréanne Béguin도 같이 약 일주일 정도 기간동안 체류하면서 각 작가의 교류하며 비평텍스트를 집필하는 과정이 있었음.
 
   ----
+
+  2025년 가을 6주의 기간동안 나는 Saint-Cirq-Lapopie에 위치한 화가 Pierre Daura가 머물던 거처에 머물며 레지던시를 진행하게되었다.
 types:
   - Project
 types_all: Project
