@@ -1,5 +1,7 @@
 ---
 layout: work
+todo: false
+hidden: false
 title: Grotto
 drafts: |-
   이 전시는 철거를 기다리고있던 Département du Gard 옛 사회복지관 건물 지하에 제작된 동명의 장소특정적 조각 작품 Grotto (2020-2022)에서 파생된 형태이다. 
@@ -38,7 +40,7 @@ media:
     caption: Visitors watching Geoffrey Badel's performance _Panorama Ganzfeld_ (2022) inside _Grotto_.
   - type: image
     src: /images/2020/grotto/Grotto_01_main views 01.webp
-    caption: '[_Grotto_ (2020–2022)](https://archive-wonjy.com/work/2020/grotto.html) installed in the basement of Vaisseau 3008.'
+    caption: '[_Grotto_ (2020-2022)](https://archive-wonjy.com/work/2020/grotto.html) installed in the basement of Vaisseau 3008.'
   - type: image
     src: /images/2020/grotto/Grotto_02_detail views 05.webp
     caption: View from inside, looking toward the entrance.
@@ -117,6 +119,10 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
+critique_title: Related texts
+related_texts:
+  - id: grotto-en-trois-temps
+  - id: le-temps-davant-leffondrement
 linked_works:
   - label: _Grotto_ (2020-2022)
     path: /work/2020/grotto.html
@@ -124,8 +130,4 @@ linked_works:
     path: /work/2023/fantome-3008.html
   - label: '*Premières pierres II* (2023)'
     path: /work/2023/premières-pierres-02.html
-critique_title: Related texts
-related_texts:
-  - id: grotto-en-trois-temps
-  - id: le-temps-davant-leffondrement
 ---
