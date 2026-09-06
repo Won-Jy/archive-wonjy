@@ -22,74 +22,74 @@ body_language: ''
 title_en: ''
 translations: []
 cover: /images/residency-at-maison-daura-i/Maison_Daura_I_09.webp
-cover_caption: Maison Daura에서의 아침.
+cover_caption: Morning at Maison Daura.
 media:
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_10.webp
-    caption: 책상에 몇일동안 남겨둔 커피잔과 그안의 증발하며 남은 _지층_들.
+    caption: A coffee cup left on the desk for several days, with the _sediment layers_ left behind as it evaporated.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_21.webp
-    caption: 키친타월에 남은 물로 닦아낸 열매류의 흔적.
+    caption: Traces of washed fruit on a kitchen towel.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_12.webp
-    caption: Trou Madame안 동굴에서, Cénevières.
+    caption: Inside the cave at _Trou Madame_, Cénevières.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_13.webp
-    caption: Lot 강에 합류하는 작은 fleuve인 Le Girou.
+    caption: Le Girou, a small river (_fleuve_) that joins the Lot.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_14.webp
-    caption: 돌채집 후 걸어가는 중.
+    caption: Walking back after collecting stones.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_11.webp
-    caption: 레지던시 작업실에서 채집한 돌들을 물로 진흙을 닦아내고 사이즈별로 분류하는 모습.
+    caption: Washing the mud off collected stones and sorting them by size, in the residency studio.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_15.webp
-    caption: 분류된 모래 사이즈의 돌들.
+    caption: Sand-sized stones, sorted.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_17.webp
-    caption: 씻기기 위해 물에 담가놓은 석회암 돌들.
+    caption: Limestone stones soaking in water to be washed.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_18.webp
-    caption: 돌들을 씻긴뒤 바가지 바닥에 남은 진흙 층.
+    caption: A layer of mud left at the bottom of the basin after washing the stones.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_16.webp
-    caption: Cénevières의 채석장 방문중.
+    caption: Visiting a quarry in Cénevières (_Occitanie Pierres_ company)
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_22.webp
-    caption: 임시 곰팡이 생성기.
+    caption: A makeshift mold-growing apparatus.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_23.webp
-    caption: 약 3일뒤 약간의 지의류가 피어난 자갈의 표면의 모습.
+    caption: The surface of a pebble, showing a bit of lichen growth after about three days.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_20.webp
-    caption: 작업중인 미니어쳐 모습.
+    caption: A miniature piece in progress.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_19.webp
-    caption: 주형으로 만들어내고있는 미니어쳐 맥주병들.
+    caption: Miniature beer bottles in progress.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_01.webp
-    caption: _자화상_, 석회암, 색칠한 점토, 가변크기, 2025.
+    caption: _Self-portrait_, limestone, painted clay, dimensions variable, 2025.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_04.webp
-    caption: _자화상_, 석회암, 색칠한 점토, 가변크기, 2025.
+    caption: _Self-portrait_, limestone, painted clay, dimensions variable, 2025.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_03.webp
-    caption: 소개용 테이블에 올려져있는 여러 요소들 (돌, 점토 조형 등).
+    caption: Various elements (stones, clay forms, etc.) laid out on a presentation table.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_05.webp
-    caption: 깨진 맥주병 미니어쳐.
+    caption: A broken miniature beer bottle.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_08.webp
-    caption: 레지던시 결산전시 모습.
+    caption: View of the residency's closing exhibition.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_.webp
-    caption: Granito pavé 위 Lot 석회암석 돌.
+    caption: A Lot limestone stone on granito paving.
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_06.webp
-    caption: 레지던시 결산전시 모습 (윗층 작업실 안).
+    caption: View of the residency's closing exhibition (inside the upstairs studio).
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_07.webp
-    caption: _Lithosomnia_의 프로토타입.
+    caption: Prototype of _Lithosomnia_.
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
