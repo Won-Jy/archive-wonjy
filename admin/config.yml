@@ -3,7 +3,7 @@
 # <link rel="icon">, 그리고 apple-touch-icon(그림을 webp 로 줄여서).
 # app_title 은 로고 아래 글씨이자 브라우저 탭 제목이다 — index.html 의
 # <title> 을 덮어쓰므로 제목은 여기서 바꾼다.
-app_title: "archive-wonjy — 편집"
+app_title: "archive-wonjy editor"
 logo_url: /favicon.svg
 
 backend:
