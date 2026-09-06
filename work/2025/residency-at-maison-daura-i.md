@@ -67,8 +67,29 @@ media:
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_19.webp
     caption: 주형으로 만들어내고있는 미니어쳐 맥주병들.
   - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_01.webp
+    caption: _자화상_, 석회암, 색칠한 점토, 가변크기, 2025.
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_04.webp
+    caption: _자화상_, 석회암, 색칠한 점토, 가변크기, 2025.
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_03.webp
+    caption: 소개용 테이블에 올려져있는 여러 요소들 (돌, 점토 조형 등).
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_05.webp
+    caption: 깨진 맥주병 미니어쳐.
+  - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_08.webp
-    caption: ''
+    caption: 레지던시 결산전시 모습.
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_.webp
+    caption: Granito pavé 위 Lot 석회암석 돌.
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_06.webp
+    caption: 레지던시 결산전시 모습 (윗층 작업실 안).
+  - type: image
+    src: /images/residency-at-maison-daura-i/Maison_Daura_I_07.webp
+    caption: _Lithosomnia_의 프로토타입.
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
