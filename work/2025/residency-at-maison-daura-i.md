@@ -2,8 +2,15 @@
 layout: work
 todo: true
 hidden: false
-title: Residency at Maison Daura – I
-drafts: + andreaan beguin 큐레이터 초청 일주일간 같이 체류하며 텍스트쓴거
+title: Residency at Maison Daura I
+drafts: |-
+  MAGCP – Maison des arts Georges & Claude Pompidou의 기획으로 진행된 Occitanie 지역청년 작가 예술 레지던시 프로그램 _Horizons_의 일환. 
+
+  2025년 에디션은 La Réunion 지방도 포함되었음.
+
+  큐레이터 이자 비평가인 Andréanne Béguin도 같이 약 일주일 정도 기간동안 체류하면서 각 작가의 교류하며 비평텍스트를 집필하는 과정이 있었음.
+
+  ----
 types:
   - Project
 types_all: Project
