@@ -1,6 +1,6 @@
 ---
 layout: work
-todo: true
+todo: false
 hidden: false
 title: Residency at Maison Daura I
 drafts: |-
