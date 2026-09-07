@@ -31,8 +31,15 @@ status: Completed
 tags:
   - Stone
 tags_all: Stone
-summary: ''
-description: ''
+summary: MAGCP – Maison des arts Georges & Claude Pompidou organizes this artist residency program, _Horizons_, for young artists based in the Occitanie region. The 2025 edition also included the region of La Réunion. The curator and critic Andréanne Béguin stayed for about a week as well, engaging with each artist and writing a critical text as part of the process.
+description: |-
+  In the fall of 2025, I spent six weeks in residence at the former home of the painter Pierre Daura, in Saint-Cirq-Lapopie. The village, perched halfway up a gorge, was often shrouded in the damp autumn clouds that give the area its distinctive landscape.
+
+  My residency largely consisted of exploring the Lot river and its natural rock formations. I collected stones, washed them, and sorted them by size, using each size differently depending on its purpose in the work. However, I couldn't use the mud that often clings to the stones native. I also filmed a video documenting the process of collecting stones, which became the starting point for an early-stage work, _Lithosomnia_, connecting this footage to a coding-based process. 
+
+  In addition, since the high humidity of autumn here allows lichen and small plants to thrive, I ran a small experiment encouraging lichen to grow on pebbles and stones.
+
+  During the residency, the MAGCP team also led visits to the Pech Merle cave (with a guided tour by the director) and to Roger Rousseau's _le Terrain_.
 notes_title: Notes
 notes: []
 body_language: ''
