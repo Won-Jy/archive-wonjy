@@ -1,6 +1,6 @@
 ---
 layout: work
-todo: true
+todo: false
 hidden: false
 title: Self-portrait
 drafts: |-
