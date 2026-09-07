@@ -91,20 +91,8 @@ media:
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_19.webp
     caption: Miniature beer bottles in progress.
   - type: image
-    src: /images/residency-at-maison-daura-i/Maison_Daura_I_01.webp
-    caption: _Self-portrait_, limestone, painted clay, dimensions variable, 2025.
-  - type: image
-    src: /images/residency-at-maison-daura-i/Maison_Daura_I_04.webp
-    caption: _Self-portrait_, limestone, painted clay, dimensions variable, 2025.
-  - type: image
-    src: /images/residency-at-maison-daura-i/Maison_Daura_I_03.webp
-    caption: Various elements (stones, clay forms, etc.) laid out on a presentation table.
-  - type: image
-    src: /images/residency-at-maison-daura-i/Maison_Daura_I_05.webp
-    caption: A broken miniature beer bottle.
-  - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_08.webp
-    caption: View of the residency's closing exhibition.
+    caption: View of the presentation table including [_Self-portrait_ (2025)](https://archive-wonjy.com/work/2025/self-portrait.html).
   - type: image
     src: /images/residency-at-maison-daura-i/Maison_Daura_I_.webp
     caption: A Lot limestone stone on granito paving.
