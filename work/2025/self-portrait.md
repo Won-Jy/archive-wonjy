@@ -6,7 +6,7 @@ title: Self-portrait
 drafts: |-
   MAGCP가 운영하는 Maison Daura 에서의 연간 레지던시 프로그램 "Horizons" 2025년 에디션의 결산 전시중 소개된 작업 ([_Residency at Maison Daura I_](https://archive-wonjy.com/work/2025/residency-at-maison-daura-i.html))
 
-  ---
+  ***
 
   미시세계에 거시세계를 투영하는 "수석"문화를 영감을 받고 시작했었던 미니어쳐 작업을 레지던시 일환으로 심화시켰다. _Grotto_ (2020-2022)의 콘크리트 basin, 지하실에서 쓰던 텐트 같이 내 작업의 자전적 디테일들이 재현됬었다. 나는 특히 같은 물질의 돌이지만 조약돌을 저 작은 세계에 두면 커다란 바위가 그 특유의 투과성에 주의를 기울이며 작업했다.
 
@@ -50,7 +50,9 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
-linked_works: ''
 critique_title: Related texts
 related_texts: []
+linked_works:
+  - label: '*Residency at Maison Daura I* (2025)'
+    path: /work/2025/residency-at-maison-daura-i.html
 ---
