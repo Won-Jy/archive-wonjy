@@ -105,8 +105,10 @@ media:
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
-linked_works: ''
 critique_title: Related texts
 related_texts:
   - id: texte-sur-l-oeuvre-de-wonjy
+linked_works:
+  - label: '*Self-portrait*'
+    path: /work/2025/self-portrait.html
 ---
