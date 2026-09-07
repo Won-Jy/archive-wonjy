@@ -35,7 +35,7 @@ summary: MAGCP – Maison des arts Georges & Claude Pompidou organizes this arti
 description: |-
   In the fall of 2025, I spent six weeks in residence at the former home of the painter Pierre Daura, in Saint-Cirq-Lapopie. The village, perched halfway up a gorge, was often shrouded in the damp autumn clouds that give the area its distinctive landscape.
 
-  My residency largely consisted of exploring the Lot river and its natural rock formations. I collected stones, washed them, and sorted them by size, using each size differently depending on its purpose in the work. However, I couldn't use the mud that often clings to the stones native. I also filmed a video documenting the process of collecting stones, which became the starting point for an early-stage work, _Lithosomnia_, connecting this footage to a coding-based process. 
+  My residency largely consisted of exploring the Lot river and its natural rock formations. I collected stones, washed them, and sorted them by size, using each size differently depending on its purpose in the work. However, I couldn't use the mud that often clings to the stones native to this soil. I also filmed a video documenting the process of collecting stones, which became the starting point for an early-stage work, _Lithosomnia_, connecting this footage to a coding-based process. 
 
   In addition, since the high humidity of autumn here allows lichen and small plants to thrive, I ran a small experiment encouraging lichen to grow on pebbles and stones.
 
