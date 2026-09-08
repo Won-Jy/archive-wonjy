@@ -32,7 +32,7 @@ notes: []
 body_language: ''
 title_en: ''
 translations: []
-cover: /images/residency-at-maison-daura-i/Maison_Daura_I_01.webp
+cover: /images/self-portrait/Maison_Daura_I_01.webp
 cover_caption: View of the residency’s closing exhibition.
 media:
   - type: image
