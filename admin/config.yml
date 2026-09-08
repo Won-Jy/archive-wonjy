@@ -47,7 +47,7 @@ collections:
     # >>> taxonomy:views — 여기부터 아래 <<< 줄까지는 "관리 → Type · Tag" 화면이 다시 씁니다.
     view_groups:
       - { label: Year, field: year_start }
-      - { label: Type, field: types_all, pattern: "Single work|Exhibition|Project|Writing" }
+      - { label: Type, field: types_all, pattern: "Single work|Exhibition|Project|Writing|Reading|Scrap" }
       - { label: Tag,  field: tags_all,  pattern: "Newcomer|Garden|Pigeon|Stone|Water|Cave|City|Wall|Map" }
       - { label: Status, field: status }
     view_filters:
@@ -56,6 +56,8 @@ collections:
       - { label: "Type · Project", field: types_all, pattern: "(^|,)Project(,|$)" }
       - { label: "Type · Single work", field: types_all, pattern: "(^|,)Single work(,|$)" }
       - { label: "Type · Writing", field: types_all, pattern: "(^|,)Writing(,|$)" }
+      - { label: "Type · Reading", field: types_all, pattern: "(^|,)Reading(,|$)" }
+      - { label: "Type · Scrap", field: types_all, pattern: "(^|,)Scrap(,|$)" }
       - { label: "Tag · Cave", field: tags_all,  pattern: "(^|,)Cave(,|$)" }
       - { label: "Tag · City", field: tags_all,  pattern: "(^|,)City(,|$)" }
       - { label: "Tag · Garden", field: tags_all,  pattern: "(^|,)Garden(,|$)" }
@@ -107,7 +109,7 @@ collections:
         widget: select
         multiple: true
         # >>> taxonomy:types
-        options: ["Highlight", "Exhibition", "Project", "Single work", "Writing"]
+        options: ["Highlight", "Exhibition", "Project", "Single work", "Writing", "Reading", "Scrap"]
         # <<< taxonomy:types
         hint: "Highlight는 첫 화면에 띄우는 표시입니다. 페이지에는 안 보입니다."
 
