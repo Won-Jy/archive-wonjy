@@ -116,29 +116,29 @@ translations:
       After about two hours in the exhibition, I came out of the museum and they were still in the same spot,
 
       so I asked them whether they would be coming back tomorrow. When they said yes, we agreed to meet there the next morning, and I left with my group for the next stop on our schedule.
-       
-      ---
-       
+
+      —
+
       The next day, Friday, the morning I was leaving Barcelona, at 10 o’clock, I checked out of my lodgings and headed for MACBA carrying the leftover fruit and cans of beer. It was a morning when Barcelona greeted us with perfect weather and sunshine.
 
       When I arrived in front of the museum, Alex and Ousmane were nowhere to be seen, but other men were sitting in the same spot.
 
       When I asked them, they said Alex and Ousmane hadn’t arrived yet. They too had come from Senegal; one said his name was Modou, and the other said his was Aliou. Their faces full of laughter, they welcomed me by making room for me to sit beside them on the museum’s threshold. Next to them stood a shopping trolley loaded with scrap metal.
-       
+
       That morning there was also a man called Biki, standing shirtless, with a gait steeped in roughness, carrying a large bottle of beer in one hand that he would raise confidently high to gulp it down. He was pacing the square between the coffee shop and the rubbish containers in front of the museum’s threshold (in other words, right in front of us as we sat), watching the passers-by.
 
       Biki did a lot of things that caught the eye. One of them: after circling the square with his distinctive gait, he set his empty beer bottle down on the ground in the middle of the square, where people were walking, and smashed it. (I didn’t see the moment itself, so I don’t know how he broke it, but it made a really loud noise and the bottle shattered into pieces; at the centre of the scattered shards, all that remained was the round, flat disc of glass from the bottom of the bottle.) Then he stepped back a few paces and chuckled quietly to himself as he watched pedestrians go to the trouble of avoiding the broken glass. People of every class, adults, the elderly and children alike, Black, white, Hispanic, whatever their race… all the so-called well-dressed people you see in front of a museum were equally inconvenienced by Biki’s shards of glass.
 
       Then, when a woman who looked Black (and did not look homeless) walked past the square, he shouted out to her, “Sista! Sista!” And then, when he called out to me, “Chino! Chino!”, I told him to stop. Biki was like a tethered wild dog that, desperate for a stimulus that isn’t there, lunges forward and chokes itself on its own leash. It was his own way of staying on the street, of catching the rare scraps of social stimulation, and of forming relationships with the “well-dressed”.
-       
+
       I shared the fruit I had bundled into bags with these threshold people, but the only one who wanted the cans of beer was the sole Spanish national in the group, a homeless man, so I drank beer with him alone. His name was Miguel. As on any spring morning, he had come here to sit in the sun and talk with the people of this “museum threshold” group. Sitting to his right on the long threshold, I handed him a beer and asked him how he was doing. Miguel said he was content with his free life, and that these days he was sleeping rough near the museum. He told me that when the cold season comes he can rent himself a place to live; curious, I asked more, and it seemed he rented, at low cost, housing let out by landlords under contract with the city council.
-       
+
       On the other side, opposite Miguel — that is, to my left — Modou and Aliou were still sitting brightly on the threshold. Their shopping trolley, it seemed, would not be filling up any further until the afternoon. Pointing at their trolley, I asked them about their peculiar commercial activity. Modou squinted in the sunlight, and his cheeks, lifted along with it, stretched his lips out on both sides like a smiling mouth, naturally revealing his white teeth. That mechanism was a kind of “smile of inertia” he had built up over the course of his life: an attitude, a way of relating to people that was his alone, one he could define for himself.
 
       With that mouth, he answered me. He had inherited his shopping trolley from yet another stranger; the scrap metal was what he had picked up that morning going around the museum area, and if he sold it as it was to a scrap dealer, he could make about 4 euros. After three or four rounds like that, he said, he could buy a pouch of tobacco or something to eat.
-       
-      ---
-       
+
+      —
+
       Just as Miguel and I were finishing our beers, Alex, whom I had arranged to meet, appeared, wearing a flashy, shiny white glossy puffer jacket and baggy trousers like ski pants.
 
       He must have thought I was going to do an interview or film something. He asked excitedly where we were going, and when I said I had just wanted to talk with him here, he looked a little disappointed.
@@ -148,7 +148,7 @@ translations:
       I went to the café and waited for him, but a good while passed and he showed no sign of coming, and as my train time drew near I set off for the station. It wasn’t exactly close on foot, but I decided to walk anyway.
 
       Far off, in a corner against the building’s outer wall, Alex’s puffer jacket, swaying as he chats away with his friends, glitters in the sunlight.
-       
+
       Relationships and time that you try to grasp with your hand, but which, like water, simply slip away between your palm and fingers. On the train back to Nîmes, I look out of the window; sunlight reflecting off the ceiling panels of the passing buildings dazzles my eyes. I thought of all the stranger children I had let go like that over the years.
 
       The one thing I can be sure of, at least, is that there is a kind of wonder you can feel only before someone who would calmly accept dying today. Before the unashamed dignity of that body which does not give up on life, and before its bold fatalism, I still find myself reflecting on my own attitude to life.
@@ -156,7 +156,7 @@ translations:
       It was a train journey that deepened my thoughts.
     notes:
       - id: 1
-        text: _Quilt II_ is a programme run by ésban (École supérieure des beaux-arts de Nîmes, the Nîmes school of fine arts) for its 2025–2026 graduates, supporting the research and development phase of projects connected with social minorities and marginalised communities. It is made up of sessions held in several cities; this Barcelona session was led with the curator Véronica Valentini.
+        text: _Quilt II_ is a programme run by the École supérieure des beaux-arts de Nîmes (the Nîmes school of fine arts) with Ghost House, supporting the school's graduates in the research and development phase of projects connected with social minorities and marginalised communities. Its 2025–2026 edition is made up of sessions held in several cities; this Barcelona session was led with the curator Véronica Valentini.
 cover: /images/alex-here/cover_text_alex_here.webp
 cover_caption: _Alex Here_, writing, 2026.
 media: []
@@ -194,7 +194,7 @@ Après environ deux heures de visite, je suis ressorti du musée ; ils étaient
 
 alors je leur ai demandé s’ils revenaient ici le lendemain. Ils ont répondu que oui ; nous nous sommes donné rendez-vous au même endroit le lendemain matin, puis je suis parti avec mon groupe vers l’étape suivante du programme.
 
-***
+—
 
 Le lendemain, vendredi, jour de mon départ de Barcelone, à 10 heures, j’ai quitté mon logement et pris la direction du MACBA avec les fruits et les canettes de bière qui me restaient. C’était un matin où Barcelone nous accueillait sous un temps idéal et un grand soleil.
 
@@ -214,7 +214,7 @@ De l’autre côté, à l’opposé de Miguel — c’est-à-dire à ma gauche �
 
 C’est avec cette bouche-là qu’il m’a répondu. Son chariot, il l’avait hérité d’un autre étranger ; la ferraille, il l’avait ramassée le matin même en faisant le tour du quartier du musée, et en la revendant telle quelle à un ferrailleur, il pouvait en tirer environ 4 euros. Trois ou quatre tournées comme celle-là, et il pouvait s’acheter un paquet de tabac ou de quoi manger.
 
-***
+—
 
 Alors que Miguel et moi finissions nos bières, Alex, avec qui j’avais rendez-vous, est apparu, vêtu d’une doudoune blanche lustrée, brillante et tape-à-l’œil, et d’un pantalon ample façon pantalon de ski.
 
