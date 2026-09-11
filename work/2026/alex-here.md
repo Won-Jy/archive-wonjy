@@ -159,25 +159,7 @@ translations:
         text: _Quilt II_ is a programme run by the École supérieure des beaux-arts de Nîmes (the Nîmes school of fine arts) with Ghost House, supporting the school's graduates in the research and development phase of projects connected with social minorities and marginalised communities. Its 2025–2026 edition is made up of sessions held in several cities; this Barcelona session was led with the curator Véronica Valentini.
 cover: /images/alex-here/cover_text_alex_here.webp
 cover_caption: _Alex Here_, writing, 2026.
-media:
-  - type: image
-    src: /images/alex-here/alex_here_04.webp
-    caption: ''
-  - type: image
-    src: /images/alex-here/alex_here_01.webp
-    caption: ''
-  - type: image
-    src: /images/alex-here/alex_here_02.webp
-    caption: ''
-  - type: image
-    src: /images/alex-here/alex_here_03.webp
-    caption: ''
-  - type: image
-    src: /images/alex-here/alex_here_05.webp
-    caption: ''
-  - type: image
-    src: /images/alex-here/alex_here_06.webp
-    caption: ''
+media: []
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
@@ -249,3 +231,15 @@ Des liens et un temps que l’on tente de saisir, mais qui, comme de l’eau, ne
 La seule chose dont je puisse être sûr, c’est qu’il existe un émerveillement que l’on ne ressent que face à celui qui accepterait sans ciller de mourir aujourd’hui. Devant la dignité de ce corps qui ne renonce pas à la vie, devant ce fatalisme audacieux, je continue de m’interroger sur ma propre manière de vivre.
 
 Ce fut un trajet où, le long des rails, mes pensées n’ont cessé de s’approfondir.
+
+![Le Musée d'art contemporain de Barcelone (MACBA), un jour de printemps.](/images/alex-here/alex_here_04.webp "Le Musée d'art contemporain de Barcelone (MACBA), un jour de printemps.")
+
+![Le groupe d'immigrés assis sur le seuil du musée.](/images/alex-here/alex_here_01.webp)
+
+![Un passant évitant les éclats de la bouteille de bière brisée par Biki.](/images/alex-here/alex_here_02.webp)
+
+![La San Miguel partagée avec Miguel.](/images/alex-here/alex_here_03.webp)
+
+![Un immigré partant pour sa « tournée de ferraille ».](/images/alex-here/alex_here_05.webp)
+
+![Un pigeon qui traînait à côté de moi.](/images/alex-here/alex_here_06.webp)
