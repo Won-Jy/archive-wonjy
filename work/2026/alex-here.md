@@ -159,7 +159,25 @@ translations:
         text: _Quilt II_ is a programme run by the École supérieure des beaux-arts de Nîmes (the Nîmes school of fine arts) with Ghost House, supporting the school's graduates in the research and development phase of projects connected with social minorities and marginalised communities. Its 2025–2026 edition is made up of sessions held in several cities; this Barcelona session was led with the curator Véronica Valentini.
 cover: /images/alex-here/cover_text_alex_here.webp
 cover_caption: _Alex Here_, writing, 2026.
-media: []
+media:
+  - type: image
+    src: /images/alex-here/alex_here_04.webp
+    caption: ''
+  - type: image
+    src: /images/alex-here/alex_here_01.webp
+    caption: ''
+  - type: image
+    src: /images/alex-here/alex_here_02.webp
+    caption: ''
+  - type: image
+    src: /images/alex-here/alex_here_03.webp
+    caption: ''
+  - type: image
+    src: /images/alex-here/alex_here_05.webp
+    caption: ''
+  - type: image
+    src: /images/alex-here/alex_here_06.webp
+    caption: ''
 hide_cover_if_video_top: false
 tables: ''
 linked_works_title: Linked works
