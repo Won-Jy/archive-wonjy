@@ -170,8 +170,10 @@ collections:
 
       # ── 본문 (Writing 처럼 글이 주인 작업) ──────────────────────
       # 파일의 앞머리 아래에 통째로 들어가는 긴 글. 대부분의 작업에서는 비워둔다.
-      # 사진 버튼으로 글 중간에 사진을 넣을 수 있고, 사진 바로 다음 줄에
-      # 기울임으로 한 줄 적으면 사이트에서 캡션처럼 나온다.
+      # 사진 버튼으로 글 중간에 사진을 넣을 수 있다. 사진 밑에 나올 글은
+      # 사진 창의 "Alt Text" 칸에 적는다 — 사이트에서 위쪽 작업 사진과 똑같은
+      # 모양(폭 70%, 회색 작은 글씨)의 캡션이 된다. (Alt Text 가 비어 있으면
+      # Title 칸을, 그것도 없으면 바로 다음 줄의 기울임 한 줄을 쓴다.)
       - name: body
         label: "본문 (긴 글 · 사진 넣기 가능)"
         widget: markdown
@@ -179,7 +181,7 @@ collections:
         modes: [rich_text, raw]
         buttons: [bold, italic, link]
         editor_components: [image]
-        hint: "Writing 처럼 글이 주인 작업에 씁니다. 주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 내용을 적으세요. 사진 바로 다음 줄에 기울임으로 한 줄 적으면 캡션이 됩니다."
+        hint: "Writing 처럼 글이 주인 작업에 씁니다. 주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 내용을 적으세요. 사진은 사진 단추로 넣고, 사진 밑에 나올 글은 그 창의 \"Alt Text\" 칸에 적으세요."
       - { name: notes_title, widget: hidden, default: "Notes" }
       - name: notes
         label: "주석 (본문용)"
@@ -218,7 +220,7 @@ collections:
             modes: [rich_text, raw]
             buttons: [bold, italic, link]
             editor_components: [image]
-            hint: "주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 이 언어의 내용을 적으세요."
+            hint: "주석 번호는 [[1]] 처럼 적고, 아래 '주석'에 이 언어의 내용을 적으세요. 사진은 원문 본문을 m↓(원문 보기)로 통째로 복사해 오면 사진 줄까지 같이 따라옵니다 — 다시 올릴 필요 없습니다."
           - name: notes
             label: 주석
             widget: list
