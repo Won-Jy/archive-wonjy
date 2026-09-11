@@ -79,7 +79,7 @@ status: Completed
 tags:
   - Newcomer
 tags_all: Newcomer
-summary: ''
+summary: During a work trip to Barcelona, I came across a group of Senegalese immigrants who spent their days sitting on the entrance threshold of MACBA, the city's contemporary art museum. This is an account of the two mornings I spent with them.
 description: ''
 notes_title: Notes
 notes:
@@ -107,7 +107,7 @@ translations:
 
       And so, in that unfathomable space-time, I was welcomed. As it turned out, most of the group were immigrants from Senegal, which is why we could talk in French.
 
-      I asked them their names. The man in the sunglasses was Ousmane, and the man with the bandage introduced himself as Alex “Here”. When I asked again whether his surname was really Here, he said he was here, and that he would be here.
+      I asked them their names. The man in the sunglasses was Ousmane, and the man with the bandage introduced himself as _Alex Here_. When I asked again whether his surname was really Here, he said he was here, and that he would be here.
 
       Then Alex whispered in my ear, offering me a gram or so of something. I said I didn’t need anything, that I had to go in and see the exhibition, and I left.
 
@@ -184,7 +184,7 @@ Lorsque je leur ai dit en français que je venais de France, le costaud aux lune
 
 C’est ainsi que, dans cet espace-temps indéchiffrable, j’ai été accueilli. La plupart d’entre eux, ai-je appris, étaient des immigrés venus du Sénégal, ce qui nous permettait de communiquer en français.
 
-Je leur ai demandé leurs noms. L’homme aux lunettes s’appelait Ousmane ; celui au bandage s’est présenté comme Alex « Here ». Quand je lui ai redemandé si son nom de famille était vraiment Here, il m’a répondu qu’il était ici, et qu’il serait ici.
+Je leur ai demandé leurs noms. L’homme aux lunettes s’appelait Ousmane ; celui au bandage s’est présenté comme _Alex Here_. Quand je lui ai redemandé si son nom de famille était vraiment Here, il m’a répondu qu’il était ici, et qu’il serait ici.
 
 Alex m’a ensuite glissé à l’oreille une proposition : est-ce que je voulais un gramme de quelque chose ? J’ai répondu que je n’en avais pas besoin, que je devais aller voir l’exposition, et je suis parti.
 
