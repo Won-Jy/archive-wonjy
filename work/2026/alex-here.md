@@ -154,6 +154,18 @@ translations:
       The one thing I can be sure of, at least, is that there is a kind of wonder you can feel only before someone who would calmly accept dying today. Before the unashamed dignity of that body which does not give up on life, and before its bold fatalism, I still find myself reflecting on my own attitude to life.
 
       It was a train journey that deepened my thoughts.
+
+      ![Barcelona's Museum of Contemporary Art (MACBA) on a spring day.](/images/alex-here/alex_here_04.webp)
+
+      ![The group of immigrants sitting on the museum's threshold.](/images/alex-here/alex_here_01.webp)
+
+      ![A passer-by stepping around the shards of the beer bottle Biki smashed.](/images/alex-here/alex_here_02.webp)
+
+      ![The San Miguel I shared with Miguel.](/images/alex-here/alex_here_03.webp)
+
+      ![An immigrant setting off on his "scrap-metal round".](/images/alex-here/alex_here_05.webp)
+
+      ![A pigeon hanging around beside me.](/images/alex-here/alex_here_06.webp)
     notes:
       - id: 1
         text: _Quilt II_ is a programme run by the École supérieure des beaux-arts de Nîmes (the Nîmes school of fine arts) with Ghost House, supporting the school's graduates in the research and development phase of projects connected with social minorities and marginalised communities. Its 2025–2026 edition is made up of sessions held in several cities; this Barcelona session was led with the curator Véronica Valentini.
