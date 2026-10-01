@@ -153,6 +153,20 @@
     font-size:.8em; color:var(--muted); margin:0 0 22px; }
   .rich p:has(> img:only-child) + p:has(> em:only-child) em{ font-style:normal; }
 
+  /* ── 사진 격자 (photo_grid) ────────────────────────────────────
+     한 작업이 같은 모양의 그림 수백 장으로 이루어진 경우. 표가 아니라
+     선 없는 격자로 늘어놓고, 밑에 날짜만 적는다. 누르면 슬라이드쇼. */
+  .photo-grid{ display:grid; grid-template-columns:repeat(5, 1fr); gap:24px 20px; margin:0 0 40px; }
+  .photo-grid figure{ margin:0; }
+  .photo-grid img{ width:100%; height:auto; display:block; cursor:zoom-in; background:#f4f4f4; }
+  .pg-cap{ font-size:.78em; color:var(--muted); margin-top:5px; }
+  /* 팔려서 원본이 없는 것: 날짜에 취소선, 오른쪽에 글씨만 (테두리 없음).
+     색은 격자 안에서만 회색으로 하고, 슬라이드쇼 캡션에서는 그쪽 색을 따른다. */
+  .gone{ text-decoration:line-through; }
+  .gone-label{ font-style:italic; margin-left:6px; }
+  .pg-cap .gone, .pg-cap .gone-label{ color:#999; }
+  .photo-grid-title{ margin:0 0 10px 0; font-size:1em; color:#555; }
+
   .linked-works a { color:var(--blue); text-decoration:none; margin-left:6px; }
   .linked-works .lw-text { margin-left:6px; }
   .linked-works .lw-text a { margin-left:0; }
@@ -293,6 +307,9 @@
       margin-top: 12px;
       margin-bottom: 30px;
     }
+
+    /* 모바일: 사진 격자는 2칸 */
+    .photo-grid{ grid-template-columns:repeat(2, 1fr); gap:18px 12px; }
 
     /* 모바일에서는 본문 사진도 꽉 차게 */
     .rich figure.work, .rich p > img:only-child{ width:100%; }
@@ -891,6 +908,101 @@
       </article>
     {%- endif -%}
 
+    {%- comment -%}
+      사진 격자. 같은 모양의 그림이 아주 많은 작업(자화상 연작 같은)을 위한 것.
+      앞머리에 이렇게 적는다:
+
+        photo_grid:
+          folder: /images/autoportraits-en-solde/
+          sold: |                 # 팔려서 원본이 없는 것 (날짜만, 한 줄에 하나)
+            2020-03-19
+          sold_label: vendu
+
+      사진은 **그 폴더에 올리기만 하면 격자에 뜬다** — 목록을 따로 안 적어도 된다.
+      파일 이름은 앞 10글자가 날짜여야 한다: 2020-03-19… 또는 2020.03.19… 둘 다 된다.
+      (예: 2020.04.17_autoportrait.jpg) 날짜순으로 저절로 늘어선다.
+
+      폴더를 못 읽는 상황이거나 순서를 손으로 정하고 싶으면 names 로 적을 수도 있다:
+          names: |
+            2020-03-19
+            2020-03-20.jpg        # 확장자를 적으면 그대로, 안 적으면 ext(기본 .webp)
+    {%- endcomment -%}
+    {%- assign pg = page.photo_grid -%}
+    {%- assign pg_src = '' -%}
+    {%- if pg -%}
+      {%- assign pg_folder = pg.folder | default: '' -%}
+      {%- assign pg_ext = pg.ext | default: '.webp' -%}
+      {%- assign pg_names = pg.names | default: '' | strip -%}
+
+      {%- if pg_names != '' -%}
+        {%- comment -%} 손으로 적은 목록 {%- endcomment -%}
+        {%- assign rows = pg_names | newline_to_br | replace: '<br />', '|' | strip_newlines | split: '|' -%}
+        {%- for r in rows -%}
+          {%- assign nm = r | strip -%}
+          {%- if nm != '' -%}
+            {%- assign tail = nm | split: '.' | last | downcase -%}
+            {%- assign has_ext = false -%}
+            {%- if tail == 'webp' or tail == 'jpg' or tail == 'jpeg' or tail == 'png' -%}{%- assign has_ext = true -%}{%- endif -%}
+            {%- if has_ext -%}
+              {%- assign pg_src = pg_src | append: pg_folder | append: nm | append: '|' -%}
+            {%- else -%}
+              {%- assign pg_src = pg_src | append: pg_folder | append: nm | append: pg_ext | append: '|' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%- elsif pg_folder != '' -%}
+        {%- comment -%} 폴더를 훑는다. where_exp 대신 for+if 만 쓴다 — 더 단순하고 안전하다. {%- endcomment -%}
+        {%- assign found = '' -%}
+        {%- for f in site.static_files -%}
+          {%- if f.path contains pg_folder -%}
+            {%- assign ex = f.extname | downcase -%}
+            {%- if ex == '.webp' or ex == '.jpg' or ex == '.jpeg' or ex == '.png' -%}
+              {%- assign found = found | append: f.path | append: '|' -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign pg_src = found | split: '|' | sort | join: '|' -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- assign pg_list = pg_src | split: '|' -%}
+    {%- if pg_list.size > 0 -%}
+      {%- assign pg_label = pg.sold_label | default: 'vendu' -%}
+      {%- comment -%} 팔린 목록을 ",날짜,날짜," 한 줄로. 2020.03.19 로 적어도 되게 점을 바꾼다.
+          newline_to_br 는 줄바꿈을 지우지 않으므로 strip_newlines 를 꼭 거쳐야 한다. {%- endcomment -%}
+      {%- assign pg_sold_one = pg.sold | default: '' | replace: '.', '-' | newline_to_br | replace: '<br />', ',' | strip_newlines | replace: ' ', '' -%}
+      {%- capture pg_sold -%},{{ pg_sold_one }},{%- endcapture -%}
+      <section class="photo-grid-wrap">
+        {%- if pg.heading -%}<div class="photo-grid-title">{{ pg.heading }}</div>{%- endif -%}
+        <div class="photo-grid">
+          {%- for src in pg_list -%}
+            {%- comment -%} 구분자로 이어 붙였으므로 빈 칸이 섞일 수 있다 (루비와 파이썬 Liquid 의
+                split 이 끝의 빈 조각을 다르게 다룬다). 양쪽 다 안전하게 건너뛴다. {%- endcomment -%}
+            {%- if src != '' -%}
+            {%- assign base = src | split: '/' | last -%}
+            {%- assign ymd = base | slice: 0, 10 | replace: '.', '-' -%}
+            {%- assign bits = ymd | split: '-' -%}
+            {%- capture shown -%}{{ bits[2] }}. {{ bits[1] }}. {{ bits[0] }}{%- endcapture -%}
+            {%- capture key -%},{{ ymd }},{%- endcapture -%}
+            {%- assign is_gone = false -%}
+            {%- if pg_sold contains key -%}{%- assign is_gone = true -%}{%- endif -%}
+            <figure>
+              <img src="{{ src | relative_url }}" alt="{{ shown }}" loading="lazy" decoding="async" />
+              <figcaption class="pg-cap">
+                {%- if is_gone -%}
+                  <span class="gone">{{ shown }}</span><span class="gone-label">{{ pg_label }}</span>
+                {%- else -%}
+                  <span>{{ shown }}</span>
+                {%- endif -%}
+              </figcaption>
+            </figure>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+
     {%- if page.tables and page.tables.size > 0 -%}
       <div class="spec-tables">
         {%- for t in page.tables -%}
@@ -1321,7 +1433,29 @@
       lbNext.addEventListener('click', next);
       lbPrev.addEventListener('click', prev);
 
+      /* 손가락으로 옆으로 넘기기. 가로로 45px 넘게, 세로보다 확실히 많이
+         움직였을 때만 넘긴다 (아래로 쓸어내리다가 넘어가지 않게).
+         쓸고 난 직후의 click 은 무시한다 — 안 그러면 배경을 누른 것으로
+         보고 라이트박스가 닫힌다. */
+      let swStartX = 0, swStartY = 0, swTracking = false, swJustSwiped = false;
+      overlay.addEventListener('touchstart', (e)=>{
+        if(e.touches.length !== 1){ swTracking = false; return; }
+        swStartX = e.touches[0].clientX; swStartY = e.touches[0].clientY; swTracking = true;
+      }, {passive:true});
+      overlay.addEventListener('touchend', (e)=>{
+        if(!swTracking) return;
+        swTracking = false;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - swStartX, dy = t.clientY - swStartY;
+        if(Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5){
+          swJustSwiped = true;
+          setTimeout(()=>{ swJustSwiped = false; }, 400);
+          if(dx < 0) next(); else prev();
+        }
+      }, {passive:true});
+
       overlay.addEventListener('click', (e)=>{
+        if(swJustSwiped) return;
         if(e.target === overlay) closeLB();
       });
 
@@ -1438,6 +1572,27 @@
                        caption: capEl ? capEl.innerHTML : '' });
         node.style.cursor = 'zoom-in';
         node.addEventListener('click', function(e){
+          e.preventDefault();
+          window.WorkLightbox.open(gallery, index);
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    /* 사진 격자 — 누르면 슬라이드쇼. 격자 안에서만 넘어간다. */
+    (function(){
+      if (!window.WorkLightbox) return;
+      const nodes = document.querySelectorAll('.photo-grid figure img');
+      if (!nodes.length) return;
+      const gallery = [];
+      nodes.forEach((node)=>{
+        const fig = node.closest('figure');
+        const capEl = fig ? fig.querySelector('.pg-cap') : null;
+        const cap = capEl ? capEl.innerHTML.trim() : '';
+        const index = gallery.length;
+        gallery.push({ type:'image', el:node, src: node.getAttribute('src') || '', caption: cap });
+        node.addEventListener('click', (e)=>{
           e.preventDefault();
           window.WorkLightbox.open(gallery, index);
         });
