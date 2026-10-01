@@ -294,6 +294,26 @@ collections:
       # ── 표 ────────────────────────────────────────────────────
       - { name: tables, label: "표", widget: worktable, required: false, preview: false }
 
+      # ── 사진 격자 ──────────────────────────────────────────────
+      # 선 없는 격자로 사진을 쭉 늘어놓는 방식. 파일 이름 앞 10자리가 날짜면
+      # (2020.03.19_… / 2020-03-19_…) 그게 캡션이 된다.
+      # 팔려서 원본이 없는 것은 "판매된 날짜"에 한 줄에 하나씩 적으면
+      # 캡션에 취소선 + 표시 문구가 붙는다. 나중에 더 팔리면 줄만 추가하면 된다.
+      - name: photo_grid
+        label: "사진 격자"
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: folder, label: "이미지 폴더", widget: string, required: false,
+              hint: "예: /images/autoportraits-en-solde/ — 이 폴더에 있는 사진을 이름 순서로 전부 넣는다. 비워두면 격자가 안 나온다." }
+          - { name: heading, label: "제목", widget: string, required: false,
+              hint: "격자 위에 붙는 작은 제목. 필요 없으면 비워둔다." }
+          - { name: sold_label, label: "판매 표시 문구", widget: string, required: false,
+              hint: "취소선 옆에 붙는 말. 비워두면 vendu." }
+          - { name: sold, label: "판매된 날짜", widget: text, required: false,
+              hint: "한 줄에 하나. 2020-03-19 또는 2020.03.19 둘 다 된다." }
+
       # ── 연결 ──────────────────────────────────────────────────
       - { name: linked_works_title, widget: hidden, default: "Linked works" }
       # 작업 목록에서 체크해서 한 번에 넣는다. 파일에 저장되는 모양은 예전과 같은
