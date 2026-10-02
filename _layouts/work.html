@@ -958,7 +958,22 @@
           {%- if f.path contains pg_folder -%}
             {%- assign ex = f.extname | downcase -%}
             {%- if ex == '.webp' or ex == '.jpg' or ex == '.jpeg' or ex == '.png' -%}
-              {%- assign found = found | append: f.path | append: '|' -%}
+              {%- comment -%} 이름이 날짜로 시작하는 것만 넣는다. 커버 사진이나 다른 파일이
+                  같은 폴더에 들어와도 격자에 끼어들지 않는다. {%- endcomment -%}
+              {%- assign d_c = f.name | slice: 0, 2 -%}
+              {%- assign d_s4 = f.name | slice: 4, 1 -%}
+              {%- assign d_s7 = f.name | slice: 7, 1 -%}
+              {%- assign ok_date = false -%}
+              {%- if d_c == '19' or d_c == '20' or d_c == '21' -%}
+                {%- if d_s4 == '.' or d_s4 == '-' -%}
+                  {%- if d_s7 == '.' or d_s7 == '-' -%}
+                    {%- assign ok_date = true -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if ok_date -%}
+                {%- assign found = found | append: f.path | append: '|' -%}
+              {%- endif -%}
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
