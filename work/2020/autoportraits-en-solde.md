@@ -6,31 +6,29 @@ title: Autoportraits en solde
 drafts: ''
 types:
   - Project
-types_all: Project
+  - Single work
+types_all: Project,Single work
 year_start: 2020
 year_end: 2021
 date_start: 2020-03-19
 status: Completed
 tags: []
 tags_all: ''
-summary: ''
-description: ''
+summary: A daily self-portrait sales project carried out from 2020 to 2021, during the Covid lockdown period.
+description: Each day, I spent one hour drawing a self-portrait on A5 paper, posted it on a website I built myself, and sold it for the hourly minimum wage (around €10 at the time, in 2020).
 notes_title: Notes
 notes: []
 body_language: ''
 title_en: ''
 translations: []
-cover: ''
-cover_caption: ''
+cover: /images/autoportraits-en-solde/autoportraits_en_solde_01.webp
+cover_caption: Screenshot of the sales website as it appeared in 2020.
 media: []
 hide_cover_if_video_top: false
 tables: ''
-linked_works_title: Linked works
-linked_works: ''
-critique_title: Related texts
-related_texts: []
 photo_grid:
   folder: /images/autoportraits-en-solde/
+  heading: ''
   sold_label: vendu
   sold: |-
     2020-03-19
@@ -112,4 +110,8 @@ photo_grid:
     2021-01-05
     2021-01-12
     2021-02-18
+linked_works_title: Linked works
+linked_works: ''
+critique_title: Related texts
+related_texts: []
 ---
